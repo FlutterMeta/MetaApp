@@ -26,7 +26,8 @@ class LoginButtonWidget extends StatelessWidget {
         style: UISettings.buttonStyle,
         child: const Text(
           "Login",
-          style: TextStyle(color: Colors.blue, fontSize: 17, fontWeight: FontWeight.w600),
+          style: TextStyle(
+              color: Colors.blue, fontSize: 17, fontWeight: FontWeight.w600),
         ),
       ),
     );

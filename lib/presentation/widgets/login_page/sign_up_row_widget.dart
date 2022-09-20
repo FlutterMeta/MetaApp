@@ -26,9 +26,9 @@ class SignUpRowWidget extends StatelessWidget {
               },
             );
           }),
-          child:  Text(
+          child: Text(
             "Sign Up",
-          style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.headline3,
           ),
         ),
       ],
