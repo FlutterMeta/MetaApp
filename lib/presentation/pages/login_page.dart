@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/login_page/background_widget.dart';
-import 'package:meta_app/presentation/widgets/login_page/code_field_widget.dart';
+import 'package:meta_app/presentation/widgets/login_page/custom_field_widget.dart';
 import 'package:meta_app/presentation/widgets/login_page/forgot_password_row_widget.dart';
 import 'package:meta_app/presentation/widgets/login_page/login_button_widget.dart';
-import 'package:meta_app/presentation/widgets/login_page/login_field_widget.dart';
-import 'package:meta_app/presentation/widgets/login_page/password_field_widget.dart';
 import 'package:meta_app/presentation/widgets/login_page/sign_up_row_widget.dart';
 
 class LoginPage extends StatefulWidget {
@@ -71,7 +69,6 @@ class _LoginPageState extends State<LoginPage> {
                 padding: const EdgeInsets.only(top: 60, right: 40, left: 40),
                 child: SingleChildScrollView(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
                         height: 60,
@@ -96,7 +93,8 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
-                            child: LoginFieldWidget(
+                            child: CustomFieldWidget(
+                              hint: "Your login (account name)",
                               controller: _loginFieldController,
                             ),
                           ),
@@ -109,7 +107,8 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
-                            child: PasswordFieldWidget(
+                            child: CustomFieldWidget(
+                              hint: "Your password",
                               controller: _passwordFieldController,
                             ),
                           ),
@@ -133,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(top: 10),
-                                        child: CodeFieldWidget(
+                                        child: CustomFieldWidget(
                                           controller: _codeFieldController,
                                         ),
                                       ),

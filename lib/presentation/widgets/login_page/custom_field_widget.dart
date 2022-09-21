@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
 
-class LoginFieldWidget extends StatelessWidget {
+class CustomFieldWidget extends StatelessWidget {
   final TextEditingController controller;
+  final String? hint;
 
-  const LoginFieldWidget({
+  const CustomFieldWidget({
     Key? key,
     required this.controller,
+    this.hint,
   }) : super(key: key);
 
   @override
@@ -14,14 +16,14 @@ class LoginFieldWidget extends StatelessWidget {
     return SizedBox(
       child: TextField(
         controller: controller,
-        decoration: const InputDecoration(
-          hintText: "Your login (account name)",
-          hintStyle: TextStyle(
+        decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: const TextStyle(
             fontSize: 15.0,
           ),
           filled: true,
           fillColor: AppColors.formFieldFillColor,
-          border: OutlineInputBorder(borderSide: BorderSide.none),
+          border: const OutlineInputBorder(borderSide: BorderSide.none),
         ),
       ),
     );
