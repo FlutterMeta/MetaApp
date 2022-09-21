@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SignUpRowWidget extends StatelessWidget {
   const SignUpRowWidget({super.key});
@@ -9,7 +10,7 @@ class SignUpRowWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "Don't have an account yet?",
+          AppLocalizations.of(context)!.dontHaveAnAccount,
           style: Theme.of(context).textTheme.headline3,
         ),
         const SizedBox(width: 10),
@@ -27,7 +28,7 @@ class SignUpRowWidget extends StatelessWidget {
             );
           }),
           child: Text(
-            "Sign Up",
+            AppLocalizations.of(context)!.signUp,
             style: Theme.of(context).textTheme.headline3,
           ),
         ),

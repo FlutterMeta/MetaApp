@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginButtonWidget extends StatelessWidget {
   const LoginButtonWidget({super.key});
@@ -24,10 +25,13 @@ class LoginButtonWidget extends StatelessWidget {
           );
         },
         style: UISettings.buttonStyle,
-        child: const Text(
-          "Login",
-          style: TextStyle(
-              color: Colors.blue, fontSize: 17, fontWeight: FontWeight.w600),
+        child: Text(
+          AppLocalizations.of(context)!.login,
+          style: const TextStyle(
+            color: Colors.blue,
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );

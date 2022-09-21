@@ -1,3 +1,12 @@
 {
-    "hello": "Hello"
+    "authorization": "Authorization",
+    "yourLogin": "Your login",
+    "yourLoginWithTip": "Your login (account name)",
+    "yourPassword": "Your password",
+    "codeFromImage": "Code from an image*",
+    "dontHaveAnAccount": "Don't have an account yet?",
+    "signUp": "Sign Up",
+    "forgotPassword": "Forgot your password?",
+    "restore": "Restore",
+    "login": "Login"
 }

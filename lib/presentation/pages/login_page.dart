@@ -5,6 +5,7 @@ import 'package:meta_app/presentation/widgets/login_page/custom_field_widget.dar
 import 'package:meta_app/presentation/widgets/login_page/forgot_password_row_widget.dart';
 import 'package:meta_app/presentation/widgets/login_page/login_button_widget.dart';
 import 'package:meta_app/presentation/widgets/login_page/sign_up_row_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -77,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                       Padding(
                         padding: const EdgeInsets.only(top: 15),
                         child: Text(
-                          "Authorization",
+                          AppLocalizations.of(context)!.authorization,
                           style: Theme.of(context).textTheme.headline1,
                         ),
                       ),
@@ -87,28 +88,29 @@ class _LoginPageState extends State<LoginPage> {
                           Padding(
                             padding: const EdgeInsets.only(top: 30),
                             child: Text(
-                              "Your login",
+                              AppLocalizations.of(context)!.yourLogin,
                               style: Theme.of(context).textTheme.headline3,
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: CustomFieldWidget(
-                              hint: "Your login (account name)",
+                              hint: AppLocalizations.of(context)!
+                                  .yourLoginWithTip,
                               controller: _loginFieldController,
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 20),
                             child: Text(
-                              "Your password",
+                              AppLocalizations.of(context)!.yourPassword,
                               style: Theme.of(context).textTheme.headline3,
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
                             child: CustomFieldWidget(
-                              hint: "Your password",
+                              hint: AppLocalizations.of(context)!.yourPassword,
                               controller: _passwordFieldController,
                             ),
                           ),
@@ -125,7 +127,8 @@ class _LoginPageState extends State<LoginPage> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Code from an image*",
+                                        AppLocalizations.of(context)!
+                                            .codeFromImage,
                                         style: Theme.of(context)
                                             .textTheme
                                             .headline3,
