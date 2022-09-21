@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/l10n.dart';
-import 'package:meta_app/presentation/pages/login_page.dart';
+import 'package:meta_app/presentation/pages/home_page.dart';
 import 'package:meta_app/presentation/redux/app_state.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
 
@@ -31,8 +31,7 @@ class Application extends StatelessWidget {
           theme: createLightTheme(),
           darkTheme: createDarkTheme(),
           themeMode: vm.themeMode,
-          //home: const HomePage(title: 'title'),
-          home: const LoginPage(),
+          home: const HomePage(),
         ),
       ),
     );

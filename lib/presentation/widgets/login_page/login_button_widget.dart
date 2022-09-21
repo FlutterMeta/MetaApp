@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meta_app/presentation/themes/theme.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
 class LoginButtonWidget extends StatelessWidget {
   const LoginButtonWidget({super.key});
@@ -10,28 +9,18 @@ class LoginButtonWidget extends StatelessWidget {
     return SizedBox(
       height: 60,
       child: ElevatedButton(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return const Center(
-                child: Card(
-                  child: Text(
-                    "Button Pressed",
-                  ),
-                ),
-              );
-            },
-          );
-        },
-        style: UISettings.buttonStyle,
-        child: Text(
-          AppLocalizations.of(context)!.login,
-          style: const TextStyle(
-            color: Colors.blue,
-            fontSize: 17,
-            fontWeight: FontWeight.w600,
+        onPressed: () {},
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.white),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
           ),
+        ),
+        child: Text(
+          context.localizations.login,
+          style: context.text.loginButtonText,
         ),
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meta_app/presentation/themes/theme.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
 class ForgotPasswordRowWidget extends StatelessWidget {
   const ForgotPasswordRowWidget({super.key});
@@ -10,30 +9,15 @@ class ForgotPasswordRowWidget extends StatelessWidget {
     return Row(
       children: [
         Text(
-          AppLocalizations.of(context)!.forgotPassword,
-          style: Theme.of(context).textTheme.headline3,
+          context.localizations.forgotPassword,
+          style: context.text.loginFormText,
         ),
         const SizedBox(width: 10),
         InkWell(
-          onTap: (() {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return const Center(
-                  child: Card(
-                    child: Text("Restore Button Pressed"),
-                  ),
-                );
-              },
-            );
-          }),
+          onTap: () {},
           child: Text(
-            AppLocalizations.of(context)!.restore,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 17,
-              color: AppColors.white,
-            ),
+            context.localizations.restore,
+            style: context.text.loginFormTextBold,
           ),
         ),
       ],

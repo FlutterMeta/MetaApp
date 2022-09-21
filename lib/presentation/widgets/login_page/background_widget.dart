@@ -1,29 +1,16 @@
 import 'package:flutter/material.dart';
+import "package:meta_app/core/utils/extensions/build_context_ext.dart";
 
-///separate class which describes background widget for all pages
 class BackgroundWidget extends StatelessWidget {
-  ///child widget
-  final Widget? child;
+  final Widget child;
 
-  ///to be on top of the tree child parameter needed
   const BackgroundWidget({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          stops: [
-            0.01,
-            0.89,
-          ],
-          colors: [
-            Color.fromARGB(255, 169, 161, 184),
-            Colors.white,
-          ],
-        ),
+      decoration: BoxDecoration(
+        gradient: context.gradient.lightPurple,
       ),
       alignment: Alignment.center,
       child: child,
