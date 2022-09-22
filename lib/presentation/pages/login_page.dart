@@ -23,7 +23,6 @@ class _LoginPageState extends State<LoginPage> with Validator {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       body: GradientBackgroundWidget(
@@ -36,16 +35,15 @@ class _LoginPageState extends State<LoginPage> with Validator {
                 gradient: context.gradient.purple,
               ),
               width: screenWidth * (550 / screenWidth),
-              height: screenHeight * (800 / screenHeight),
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
+                    const EdgeInsets.symmetric(horizontal: 45, vertical: 60),
                 child: Form(
                   key: _formKey,
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 60,
+                        height: 65,
                         child: Image.asset(AppAssets.logo),
                       ),
                       const SizedBox(height: 15),

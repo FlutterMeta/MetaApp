@@ -26,6 +26,7 @@ class AuthFieldWidget extends StatelessWidget {
         hintStyle: context.text.loginFormHint,
         filled: true,
         fillColor: context.color.formFieldFill,
+        errorStyle: context.text.loginFormError,
         border: const OutlineInputBorder(borderSide: BorderSide.none),
       ),
     );

@@ -7,6 +7,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle loginFormTextBold;
   final TextStyle loginButtonText;
   final TextStyle loginFormHint;
+  final TextStyle loginFormError;
 
   ThemeTextStyles({
     required this.test,
@@ -15,6 +16,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.loginFormTextBold,
     required this.loginButtonText,
     required this.loginFormHint,
+    required this.loginFormError,
   });
 
   @override
@@ -25,6 +27,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? loginFormTextBold,
     TextStyle? loginButtonText,
     TextStyle? loginFormHint,
+    TextStyle? loginFormError,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -33,6 +36,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       loginFormTextBold: loginFormTextBold ?? this.loginFormTextBold,
       loginButtonText: loginButtonText ?? this.loginButtonText,
       loginFormHint: loginFormHint ?? this.loginFormHint,
+      loginFormError: loginFormError ?? this.loginFormError,
     );
   }
 
@@ -54,6 +58,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       loginButtonText:
           TextStyle.lerp(loginButtonText, other.loginButtonText, t)!,
       loginFormHint: TextStyle.lerp(loginFormHint, other.loginFormHint, t)!,
+      loginFormError: TextStyle.lerp(loginFormError, other.loginFormError, t)!,
     );
   }
 
@@ -78,6 +83,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         loginFormHint: headline1.copyWith(fontSize: 14),
+        loginFormError: headline3.copyWith(
+          color: AppColors.lighterPurple,
+          fontWeight: FontWeight.w400,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -101,5 +110,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         loginFormHint: headline1.copyWith(fontSize: 14),
+        loginFormError: headline3.copyWith(
+          color: AppColors.lighterPurple,
+          fontWeight: FontWeight.w400,
+        ),
       );
 }

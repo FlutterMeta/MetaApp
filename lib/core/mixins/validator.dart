@@ -5,7 +5,7 @@ import 'package:useful_extensions/useful_extensions.dart';
 mixin Validator {
   String? validateLogin(String? login, BuildContext context) {
     if (login.isNullOrEmpty) {
-      return context.localizations.loginMustNotBeEmpty;
+      return context.localizations.fieldMustNotBeEmpty;
     }
     return null;
   }
@@ -16,7 +16,7 @@ mixin Validator {
     minPasswordLength = 8,
   ]) {
     if (password.isNullOrEmpty) {
-      return context.localizations.passwordMustNotBeEmpty;
+      return context.localizations.fieldMustNotBeEmpty;
     } else if (password!
         .trim()
         .isPasswordLengthLonger(length: minPasswordLength)
@@ -28,7 +28,7 @@ mixin Validator {
 
   String? validateCode(String? code, BuildContext context) {
     if (code.isNullOrEmpty) {
-      return context.localizations.codeMustNotBeEmpty;
+      return context.localizations.fieldMustNotBeEmpty;
     }
     return null;
   }

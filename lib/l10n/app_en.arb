@@ -13,10 +13,8 @@
     "incorrectLogin": "Incorrect login",
     "incorrectPassword": "Incorrect password",
     "incorrectCode": "Incorrect code",
-    "loginMustNotBeEmpty": "Login must not be empty",
-    "passwordMustNotBeEmpty": "Password must not be empty",
-    "codeMustNotBeEmpty": "Code must not be empty",
-    "passwordMustBeLonger": "Password must be longer than {minLength}",
+    "fieldMustNotBeEmpty": "This field must not be empty",
+    "passwordMustBeLonger": "Password must be longer than {minLength} symbols",
     "@passwordMustBeLonger": {
         "placeholders": {
             "minLength": {
