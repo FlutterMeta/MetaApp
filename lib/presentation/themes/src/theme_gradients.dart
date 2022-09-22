@@ -3,6 +3,7 @@ part of '../theme.dart';
 class ThemeGradients extends ThemeExtension<ThemeGradients> {
   final LinearGradient purple;
   final LinearGradient lightPurple;
+
   const ThemeGradients({
     required this.purple,
     required this.lightPurple,
@@ -38,52 +39,28 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
         lightPurple: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          stops: [
-            0.01,
-            0.99,
-          ],
-          colors: [
-            AppColors.lighterPurple,
-            Colors.white,
-          ],
+          stops: [0.01, 0.99],
+          colors: [AppColors.lighterPurple, AppColors.white],
         ),
         purple: LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          stops: [
-            0.4,
-            0.8,
-          ],
-          colors: [
-            AppColors.purple,
-            AppColors.lightPurple,
-          ],
+          stops: [0.4, 0.8],
+          colors: [AppColors.purple, AppColors.lightPurple],
         ),
       );
   static get dark => const ThemeGradients(
         lightPurple: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          stops: [
-            0.01,
-            0.99,
-          ],
-          colors: [
-            AppColors.lighterPurple,
-            Colors.white,
-          ],
+          stops: [0.01, 0.99],
+          colors: [AppColors.lighterPurple, AppColors.white],
         ),
         purple: LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          stops: [
-            0.4,
-            0.8,
-          ],
-          colors: [
-            AppColors.purple,
-            AppColors.lightPurple,
-          ],
+          stops: [0.4, 0.8],
+          colors: [AppColors.purple, AppColors.lightPurple],
         ),
       );
 }

@@ -7,6 +7,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle loginFormTextBold;
   final TextStyle loginButtonText;
   final TextStyle loginFormHint;
+
   ThemeTextStyles({
     required this.test,
     required this.loginFormText,
@@ -63,7 +64,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         loginButtonText: headline3.copyWith(
           color: AppColors.blue,
-          fontSize: 17,
+          fontSize: 16,
           fontWeight: FontWeight.w600,
         ),
         loginFormText: headline3.copyWith(
@@ -76,7 +77,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         loginFormTitle: headline1.copyWith(
           color: AppColors.white,
         ),
-        loginFormHint: headline1.copyWith(fontSize: 15),
+        loginFormHint: headline1.copyWith(fontSize: 14),
       );
 
   static get dark => ThemeTextStyles(
@@ -99,6 +100,6 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         loginFormTitle: headline1.copyWith(
           color: AppColors.white,
         ),
-        loginFormHint: headline1.copyWith(fontSize: 15),
+        loginFormHint: headline1.copyWith(fontSize: 14),
       );
 }

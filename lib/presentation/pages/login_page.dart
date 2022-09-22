@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:meta_app/presentation/assets_api.dart';
-import 'package:meta_app/presentation/widgets/login_page/background_widget.dart';
-import 'package:meta_app/presentation/widgets/login_page/custom_field_widget.dart';
-import 'package:meta_app/presentation/widgets/login_page/forgot_password_row_widget.dart';
-import 'package:meta_app/presentation/widgets/login_page/login_button_widget.dart';
-import 'package:meta_app/presentation/widgets/login_page/password_field_widget.dart';
-import 'package:meta_app/presentation/widgets/login_page/sign_up_row_widget.dart';
+
 import "package:meta_app/core/utils/extensions/build_context_ext.dart";
+import 'package:meta_app/presentation/constants/app_assets.dart';
+import 'package:meta_app/presentation/widgets/login_page/auth_field_widget.dart';
+import 'package:meta_app/presentation/widgets/login_page/gradient_background_widget.dart';
+import 'package:meta_app/presentation/widgets/login_page/login_button_widget.dart';
+import 'package:meta_app/core/mixins/validator.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -15,10 +14,11 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginPage> with Validator {
   final _loginFieldController = TextEditingController();
   final _passwordFieldController = TextEditingController();
   final _codeFieldController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,116 +26,110 @@ class _LoginPageState extends State<LoginPage> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      body: BackgroundWidget(
-        child: Center(
-          child: SingleChildScrollView(
+      body: GradientBackgroundWidget(
+        gradient: context.gradient.lightPurple,
+        child: SingleChildScrollView(
+          child: Center(
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 gradient: context.gradient.purple,
               ),
               width: screenWidth * (550 / screenWidth),
-              height: screenHeight * (750 / screenHeight),
+              height: screenHeight * (800 / screenHeight),
               child: Padding(
-                padding: const EdgeInsets.only(top: 70, right: 40, left: 40),
-                child: SingleChildScrollView(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
+                child: Form(
+                  key: _formKey,
                   child: Column(
                     children: [
                       SizedBox(
                         height: 60,
-                        child: Image.asset(AssetsApi.logo),
+                        child: Image.asset(AppAssets.logo),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15),
+                      const SizedBox(height: 15),
+                      Text(
+                        context.localizations.authorization,
+                        style: context.text.loginFormTitle,
+                      ),
+                      const SizedBox(height: 30),
+                      Align(
+                        alignment: Alignment.centerLeft,
                         child: Text(
-                          context.localizations.authorization,
-                          style: context.text.loginFormTitle,
+                          context.localizations.yourLogin,
+                          style: context.text.loginFormText,
                         ),
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      const SizedBox(height: 10),
+                      AuthFieldWidget(
+                        validator: (login) {
+                          return validateLogin(login, context);
+                        },
+                        hint: context.localizations.yourLoginWithTip,
+                        controller: _loginFieldController,
+                      ),
+                      const SizedBox(height: 20),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          context.localizations.yourPassword,
+                          style: context.text.loginFormText,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      AuthFieldWidget(
+                        validator: (password) {
+                          return validatePassword(password, context);
+                        },
+                        isPasswordField: true,
+                        hint: context.localizations.yourPassword,
+                        controller: _passwordFieldController,
+                      ),
+                      const SizedBox(height: 20),
+                      Row(
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 30),
-                            child: Text(
-                              context.localizations.yourLogin,
-                              style: context.text.loginFormText,
-                            ),
+                          const Expanded(
+                            child: Icon(Icons.numbers),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: CustomFieldWidget(
-                              hint: context.localizations.yourLoginWithTip,
-                              controller: _loginFieldController,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: Text(
-                              context.localizations.yourPassword,
-                              style: context.text.loginFormText,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: PasswordFieldWidget(
-                              hint: context.localizations.yourPassword,
-                              controller: _passwordFieldController,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: Row(
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Expanded(
-                                  child: Icon(Icons.numbers),
+                                Text(
+                                  context.localizations.codeFromImage,
+                                  style: context.text.loginFormText,
                                 ),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        context.localizations.codeFromImage,
-                                        style: context.text.loginFormText,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: CustomFieldWidget(
-                                          controller: _codeFieldController,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                const SizedBox(height: 10),
+                                AuthFieldWidget(
+                                  validator: (code) {
+                                    return validateCode(code, context);
+                                  },
+                                  controller: _codeFieldController,
                                 ),
                               ],
                             ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 20),
-                            child: SignUpRowWidget(),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 30),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: const [
-                                Expanded(
-                                  child: LoginButtonWidget(),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 15),
-                            child: Divider(),
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.only(top: 20),
-                            child: ForgotPasswordRowWidget(),
                           ),
                         ],
                       ),
+                      const SizedBox(height: 20),
+                      _SignUpRowWidget(onTap: () {}),
+                      const SizedBox(height: 30),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Expanded(
+                            child: LoginButtonWidget(
+                              onPressed: (() =>
+                                  _formKey.currentState?.validate()),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 15),
+                      const Divider(),
+                      const SizedBox(height: 20),
+                      _ForgotPasswordWidget(onTap: () {}),
                     ],
                   ),
                 ),
@@ -144,6 +138,65 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ForgotPasswordWidget extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const _ForgotPasswordWidget({
+    Key? key,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text(
+          context.localizations.forgotPassword,
+          style: context.text.loginFormText,
+        ),
+        const SizedBox(width: 10),
+        InkWell(
+          onTap: onTap,
+          child: Text(
+            context.localizations.restore,
+            style: context.text.loginFormTextBold,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _SignUpRowWidget extends StatelessWidget {
+  final VoidCallback onTap;
+
+  const _SignUpRowWidget({
+    Key? key,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          context.localizations.dontHaveAnAccount,
+          style: context.text.loginFormText,
+        ),
+        const SizedBox(width: 10),
+        InkWell(
+          onTap: onTap,
+          child: Text(
+            context.localizations.signUp,
+            style: context.text.loginFormTextBold,
+          ),
+        ),
+      ],
     );
   }
 }

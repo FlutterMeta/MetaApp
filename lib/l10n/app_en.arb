@@ -9,5 +9,19 @@
     "signUp": "Sign Up",
     "forgotPassword": "Forgot your password?",
     "restore": "Restore",
-    "login": "Login"
+    "login": "Login",
+    "incorrectLogin": "Incorrect login",
+    "incorrectPassword": "Incorrect password",
+    "incorrectCode": "Incorrect code",
+    "loginMustNotBeEmpty": "Login must not be empty",
+    "passwordMustNotBeEmpty": "Password must not be empty",
+    "codeMustNotBeEmpty": "Code must not be empty",
+    "passwordMustBeLonger": "Password must be longer than {minLength}",
+    "@passwordMustBeLonger": {
+        "placeholders": {
+            "minLength": {
+                "type": "int"
+            }
+        }
+    }
 }
