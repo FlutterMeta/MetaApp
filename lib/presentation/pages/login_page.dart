@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meta_app/presentation/api_assets.dart';
+import 'package:meta_app/presentation/assets_api.dart';
 import 'package:meta_app/presentation/widgets/login_page/background_widget.dart';
 import 'package:meta_app/presentation/widgets/login_page/custom_field_widget.dart';
 import 'package:meta_app/presentation/widgets/login_page/forgot_password_row_widget.dart';
@@ -22,6 +22,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: BackgroundWidget(
         child: Center(
@@ -31,18 +34,16 @@ class _LoginPageState extends State<LoginPage> {
                 borderRadius: BorderRadius.circular(5),
                 gradient: context.gradient.purple,
               ),
-              width: MediaQuery.of(context).size.width *
-                  (550 / MediaQuery.of(context).size.width),
-              height: MediaQuery.of(context).size.width *
-                  (800 / MediaQuery.of(context).size.width),
+              width: screenWidth * (550 / screenWidth),
+              height: screenHeight * (750 / screenHeight),
               child: Padding(
-                padding: const EdgeInsets.only(top: 80, right: 40, left: 40),
+                padding: const EdgeInsets.only(top: 70, right: 40, left: 40),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
                       SizedBox(
                         height: 60,
-                        child: Image.asset(ApiAssets.logo),
+                        child: Image.asset(AssetsApi.logo),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 15),
