@@ -6,6 +6,7 @@ ThemeData createDarkTheme() {
     extensions: <ThemeExtension<dynamic>>[
       ThemeColors.dark,
       ThemeTextStyles.dark,
+      ThemeGradients.dark,
     ],
   );
 }

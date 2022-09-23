@@ -1,18 +1,22 @@
 part of '../theme.dart';
 
 class ThemeColors extends ThemeExtension<ThemeColors> {
-  final Color test;
+  final Color loginButtonFill;
+  final Color formFieldFill;
 
   const ThemeColors({
-    required this.test,
+    required this.loginButtonFill,
+    required this.formFieldFill,
   });
 
   @override
   ThemeExtension<ThemeColors> copyWith({
-    Color? test,
+    Color? loginButtonFill,
+    Color? formFieldFill,
   }) {
     return ThemeColors(
-      test: test ?? this.test,
+      loginButtonFill: loginButtonFill ?? this.loginButtonFill,
+      formFieldFill: formFieldFill ?? this.formFieldFill,
     );
   }
 
@@ -26,15 +30,18 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     }
 
     return ThemeColors(
-      test: Color.lerp(test, other.test, t)!,
+      loginButtonFill: Color.lerp(loginButtonFill, other.loginButtonFill, t)!,
+      formFieldFill: Color.lerp(formFieldFill, other.formFieldFill, t)!,
     );
   }
 
   static get light => const ThemeColors(
-        test: AppColors.white,
+        loginButtonFill: AppColors.white,
+        formFieldFill: AppColors.brighterWhite,
       );
 
   static get dark => const ThemeColors(
-        test: AppColors.white,
+        loginButtonFill: AppColors.white,
+        formFieldFill: AppColors.brighterWhite,
       );
 }

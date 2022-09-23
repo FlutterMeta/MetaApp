@@ -1,3 +1,25 @@
 {
-    "hello": "Hello"
+    "@_LOGIN_PAGE": {},
+    "authorization": "Authorization",
+    "yourLogin": "Your login",
+    "yourLoginWithTip": "Your login (account name)",
+    "yourPassword": "Your password",
+    "codeFromImage": "Code from an image*",
+    "dontHaveAnAccount": "Don't have an account yet?",
+    "signUp": "Sign Up",
+    "forgotPassword": "Forgot your password?",
+    "restore": "Restore",
+    "login": "Login",
+    "incorrectLogin": "Incorrect login",
+    "incorrectPassword": "Incorrect password",
+    "incorrectCode": "Incorrect code",
+    "fieldMustNotBeEmpty": "This field must not be empty",
+    "passwordMustBeLonger": "Password must be longer than {minLength} symbols",
+    "@passwordMustBeLonger": {
+        "placeholders": {
+            "minLength": {
+                "type": "int"
+            }
+        }
+    }
 }

@@ -40,6 +40,8 @@ dependencies:
   # Storage
   shared_preferences: ^2.0.15
 
+  # Utils
+  useful_extensions: ^0.0.1
 
 dev_dependencies:
   flutter_test:
@@ -56,3 +58,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - assets/images/
