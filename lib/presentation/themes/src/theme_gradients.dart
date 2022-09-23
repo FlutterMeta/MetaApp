@@ -49,7 +49,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           colors: [AppColors.purple, AppColors.lightPurple],
         ),
       );
-      
+
   static get dark => const ThemeGradients(
         lightPurple: LinearGradient(
           begin: Alignment.topRight,

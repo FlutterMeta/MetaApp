@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import "package:meta_app/core/utils/extensions/build_context_ext.dart";
 import 'package:meta_app/core/mixins/validator.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
-import 'package:meta_app/presentation/widgets/login_page/auth_field_widget.dart';
-import 'package:meta_app/presentation/widgets/login_page/gradient_background.dart';
+import 'package:meta_app/presentation/widgets/auth_field.dart';
+import 'package:meta_app/presentation/widgets/gradient_background.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -18,6 +18,9 @@ class _LoginPageState extends State<LoginPage> with Validator {
   final _passwordFieldController = TextEditingController();
   final _codeFieldController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  void _onLoginButtonPressed() {
+    _formKey.currentState?.validate();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,70 +36,68 @@ class _LoginPageState extends State<LoginPage> with Validator {
             constraints: const BoxConstraints(
               maxWidth: 550,
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 45, vertical: 60),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 65,
-                      child: Image.asset(AppAssets.logo),
+            padding: const EdgeInsets.symmetric(horizontal: 44, vertical: 60),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 66,
+                    child: Image.asset(AppAssets.logo),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    context.localizations.authorization,
+                    style: context.text.loginFormTitle,
+                  ),
+                  const SizedBox(height: 30),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      context.localizations.yourLogin,
+                      style: context.text.loginFormText,
                     ),
-                    const SizedBox(height: 15),
-                    Text(
-                      context.localizations.authorization,
-                      style: context.text.loginFormTitle,
+                  ),
+                  const SizedBox(height: 10),
+                  AuthField(
+                    validator: (login) => validateLogin(login, context),
+                    hint: context.localizations.yourLoginWithTip,
+                    controller: _loginFieldController,
+                  ),
+                  const SizedBox(height: 20),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      context.localizations.yourPassword,
+                      style: context.text.loginFormText,
                     ),
-                    const SizedBox(height: 30),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        context.localizations.yourLogin,
-                        style: context.text.loginFormText,
-                      ),
+                  ),
+                  const SizedBox(height: 10),
+                  AuthField(
+                    validator: (password) =>
+                        validatePassword(password, context),
+                    obscureText: true,
+                    hint: context.localizations.yourPassword,
+                    controller: _passwordFieldController,
+                  ),
+                  const SizedBox(height: 20),
+                  _CodeVerificationSection(
+                    child: AuthField(
+                      validator: (code) => validateCode(code, context),
+                      controller: _codeFieldController,
                     ),
-                    const SizedBox(height: 10),
-                    AuthFieldWidget(
-                      validator: (login) => validateLogin(login, context),
-                      hint: context.localizations.yourLoginWithTip,
-                      controller: _loginFieldController,
-                    ),
-                    const SizedBox(height: 20),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        context.localizations.yourPassword,
-                        style: context.text.loginFormText,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    AuthFieldWidget(
-                      validator: (password) =>
-                          validatePassword(password, context),
-                      obscureText: true,
-                      hint: context.localizations.yourPassword,
-                      controller: _passwordFieldController,
-                    ),
-                    const SizedBox(height: 20),
-                    _CodeVerificationSection(
-                      authField: AuthFieldWidget(
-                        validator: (code) => validateCode(code, context),
-                        controller: _codeFieldController,
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    _ForgotPasswordForm(onTap: () {}),
-                    const SizedBox(height: 30),
-                    _LoginButton(
-                      onPressed: (() => _formKey.currentState?.validate()),
-                    ),
-                    const SizedBox(height: 15),
-                    const Divider(),
-                    const SizedBox(height: 20),
-                    _SignUpForm(onTap: () {}),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 20),
+                  _ForgotPasswordSection(onTap: () {}),
+                  const SizedBox(height: 30),
+                  _LoginButton(
+                    onPressed: _onLoginButtonPressed,
+                  ),
+                  const SizedBox(height: 16),
+                  const Divider(),
+                  const SizedBox(height: 20),
+                  _SignUpSection(onTap: () {}),
+                ],
               ),
             ),
           ),
@@ -106,10 +107,10 @@ class _LoginPageState extends State<LoginPage> with Validator {
   }
 }
 
-class _ForgotPasswordForm extends StatelessWidget {
+class _ForgotPasswordSection extends StatelessWidget {
   final VoidCallback onTap;
 
-  const _ForgotPasswordForm({
+  const _ForgotPasswordSection({
     required this.onTap,
     Key? key,
   }) : super(key: key);
@@ -135,10 +136,10 @@ class _ForgotPasswordForm extends StatelessWidget {
   }
 }
 
-class _SignUpForm extends StatelessWidget {
+class _SignUpSection extends StatelessWidget {
   final VoidCallback onTap;
 
-  const _SignUpForm({
+  const _SignUpSection({
     required this.onTap,
     Key? key,
   }) : super(key: key);
@@ -199,9 +200,10 @@ class _LoginButton extends StatelessWidget {
 }
 
 class _CodeVerificationSection extends StatelessWidget {
-  final Widget authField;
+  final Widget child;
+
   const _CodeVerificationSection({
-    required this.authField,
+    required this.child,
     Key? key,
   }) : super(key: key);
 
@@ -221,7 +223,7 @@ class _CodeVerificationSection extends StatelessWidget {
                 style: context.text.loginFormText,
               ),
               const SizedBox(height: 10),
-              authField,
+              child,
             ],
           ),
         ),

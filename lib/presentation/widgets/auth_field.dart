@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import "package:meta_app/core/utils/extensions/build_context_ext.dart";
 
-class AuthFieldWidget extends StatelessWidget {
+class AuthField extends StatelessWidget {
   final TextEditingController controller;
   final String? hint;
   final bool obscureText;
   final String? Function(String?) validator;
 
-  const AuthFieldWidget({
+  const AuthField({
     required this.controller,
     this.hint,
     this.obscureText = false,
