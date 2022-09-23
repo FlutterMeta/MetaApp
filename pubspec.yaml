@@ -40,7 +40,7 @@ dependencies:
   # Storage
   shared_preferences: ^2.0.15
 
-  # Other
+  # Utils
   useful_extensions: ^0.0.1
 
 dev_dependencies:

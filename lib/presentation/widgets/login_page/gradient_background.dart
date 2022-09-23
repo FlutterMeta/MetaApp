@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
-class GradientBackgroundWidget extends StatelessWidget {
+class GradientBackground extends StatelessWidget {
   final Widget child;
   final LinearGradient? gradient;
 
-  const GradientBackgroundWidget({
+  const GradientBackground({
     Key? key,
     required this.child,
     this.gradient,

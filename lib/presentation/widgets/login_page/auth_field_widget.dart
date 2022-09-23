@@ -4,13 +4,13 @@ import "package:meta_app/core/utils/extensions/build_context_ext.dart";
 class AuthFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final String? hint;
-  final bool? isPasswordField;
+  final bool obscureText;
   final String? Function(String?) validator;
 
   const AuthFieldWidget({
     required this.controller,
     this.hint,
-    this.isPasswordField = false,
+    this.obscureText = false,
     required this.validator,
     Key? key,
   }) : super(key: key);
@@ -20,7 +20,7 @@ class AuthFieldWidget extends StatelessWidget {
     return TextFormField(
       validator: validator,
       controller: controller,
-      obscureText: isPasswordField as bool,
+      obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: context.text.loginFormHint,
