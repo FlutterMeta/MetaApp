@@ -17,7 +17,6 @@ class GradientBackground extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: gradient ?? context.gradient.lightPurple,
       ),
-      alignment: Alignment.center,
       child: child,
     );
   }
