@@ -18,6 +18,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
   final _passwordFieldController = TextEditingController();
   final _codeFieldController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
   void _onLoginButtonPressed() {
     _formKey.currentState?.validate();
   }
@@ -90,9 +91,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
                   const SizedBox(height: 20),
                   _ForgotPasswordSection(onTap: () {}),
                   const SizedBox(height: 30),
-                  _LoginButton(
-                    onPressed: _onLoginButtonPressed,
-                  ),
+                  _LoginButton(onPressed: _onLoginButtonPressed),
                   const SizedBox(height: 16),
                   const Divider(),
                   const SizedBox(height: 20),
