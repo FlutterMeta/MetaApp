@@ -3,9 +3,11 @@ part of '../theme.dart';
 class ThemeGradients extends ThemeExtension<ThemeGradients> {
   final LinearGradient purple;
   final LinearGradient lightPurple;
+  final LinearGradient purple180deg;
 
   const ThemeGradients({
     required this.purple,
+    required this.purple180deg,
     required this.lightPurple,
   });
 
@@ -15,9 +17,9 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     LinearGradient? lightPurple,
   }) {
     return ThemeGradients(
-      purple: purple ?? this.purple,
-      lightPurple: lightPurple ?? this.lightPurple,
-    );
+        purple: purple ?? this.purple,
+        lightPurple: lightPurple ?? this.lightPurple,
+        purple180deg: purple180deg ?? this.purple180deg);
   }
 
   @override
@@ -32,6 +34,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     return ThemeGradients(
       purple: LinearGradient.lerp(purple, other.purple, t)!,
       lightPurple: LinearGradient.lerp(lightPurple, other.lightPurple, t)!,
+      purple180deg: LinearGradient.lerp(purple180deg, other.purple180deg, t)!,
     );
   }
 
@@ -45,6 +48,12 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
         purple: LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
+          stops: [0.4, 0.8],
+          colors: [AppColors.purple, AppColors.lightPurple],
+        ),
+        purple180deg: LinearGradient(
+          begin: Alignment.center,
+          end: Alignment.center,
           stops: [0.4, 0.8],
           colors: [AppColors.purple, AppColors.lightPurple],
         ),
@@ -62,6 +71,12 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           end: Alignment.centerRight,
           stops: [0.4, 0.8],
           colors: [AppColors.purple, AppColors.lightPurple],
+        ),
+        purple180deg: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          stops: [0.2, 0, 6],
+          colors: [AppColors.purple, AppColors.white],
         ),
       );
 }

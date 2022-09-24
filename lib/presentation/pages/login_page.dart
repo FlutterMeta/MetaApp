@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
                   children: [
                     SizedBox(
                       height: 66,
-                      child: Image.asset(AppAssets.logo),
+                      child: Image.asset(AppAssets.lightLogo),
                     ),
                     const SizedBox(height: 16),
                     Text(

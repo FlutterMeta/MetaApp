@@ -8,6 +8,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle loginButtonText;
   final TextStyle loginFormHint;
   final TextStyle loginFormError;
+  final TextStyle largeTitle;
+  final TextStyle gradientSubLargeTitle;
+  final TextStyle purpleTitle;
+  final TextStyle lightPurpleTitle;
+  final TextStyle lighterPurpleTitle;
+  final TextStyle purpleText;
+  final TextStyle purpleBoldText;
+  final TextStyle bodyText;
+  final TextStyle bodyTextWhite;
+  final TextStyle smallerBodyTextWhite;
 
   ThemeTextStyles({
     required this.test,
@@ -17,6 +27,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.loginButtonText,
     required this.loginFormHint,
     required this.loginFormError,
+    required this.largeTitle,
+    required this.gradientSubLargeTitle,
+    required this.purpleTitle,
+    required this.lightPurpleTitle,
+    required this.lighterPurpleTitle,
+    required this.purpleText,
+    required this.purpleBoldText,
+    required this.bodyText,
+    required this.bodyTextWhite,
+    required this.smallerBodyTextWhite,
   });
 
   @override
@@ -28,6 +48,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? loginButtonText,
     TextStyle? loginFormHint,
     TextStyle? loginFormError,
+    TextStyle? largeTitle,
+    TextStyle? gradientSubLargeTitle,
+    TextStyle? purpleTitle,
+    TextStyle? lightPurpleTitle,
+    TextStyle? lighterPurpleTitle,
+    TextStyle? purpleBoldText,
+    TextStyle? purpleText,
+    TextStyle? bodyText,
+    TextStyle? bodyTextWhite,
+    TextStyle? smallerBodyTextWhite,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -37,6 +67,17 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       loginButtonText: loginButtonText ?? this.loginButtonText,
       loginFormHint: loginFormHint ?? this.loginFormHint,
       loginFormError: loginFormError ?? this.loginFormError,
+      largeTitle: largeTitle ?? this.largeTitle,
+      gradientSubLargeTitle:
+          gradientSubLargeTitle ?? this.gradientSubLargeTitle,
+      purpleTitle: purpleTitle ?? this.purpleTitle,
+      lightPurpleTitle: lightPurpleTitle ?? this.lightPurpleTitle,
+      lighterPurpleTitle: lighterPurpleTitle ?? this.lighterPurpleTitle,
+      purpleBoldText: purpleBoldText ?? this.purpleBoldText,
+      purpleText: purpleText ?? this.purpleText,
+      bodyText: bodyText ?? this.bodyText,
+      bodyTextWhite: bodyTextWhite ?? this.bodyTextWhite,
+      smallerBodyTextWhite: smallerBodyTextWhite ?? this.smallerBodyTextWhite,
     );
   }
 
@@ -59,6 +100,20 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(loginButtonText, other.loginButtonText, t)!,
       loginFormHint: TextStyle.lerp(loginFormHint, other.loginFormHint, t)!,
       loginFormError: TextStyle.lerp(loginFormError, other.loginFormError, t)!,
+      largeTitle: TextStyle.lerp(largeTitle, other.largeTitle, t)!,
+      purpleTitle: TextStyle.lerp(purpleTitle, other.purpleTitle, t)!,
+      lightPurpleTitle:
+          TextStyle.lerp(lightPurpleTitle, other.lightPurpleTitle, t)!,
+      lighterPurpleTitle:
+          TextStyle.lerp(lighterPurpleTitle, other.lighterPurpleTitle, t)!,
+      gradientSubLargeTitle: TextStyle.lerp(
+          gradientSubLargeTitle, other.gradientSubLargeTitle, t)!,
+      purpleBoldText: TextStyle.lerp(purpleBoldText, other.purpleBoldText, t)!,
+      purpleText: TextStyle.lerp(purpleText, other.purpleText, t)!,
+      bodyText: TextStyle.lerp(bodyText, other.bodyText, t)!,
+      bodyTextWhite: TextStyle.lerp(bodyTextWhite, other.bodyTextWhite, t)!,
+      smallerBodyTextWhite:
+          TextStyle.lerp(smallerBodyTextWhite, other.smallerBodyTextWhite, t)!,
     );
   }
 
@@ -87,6 +142,23 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.lighterPurple,
           fontWeight: FontWeight.w400,
         ),
+        largeTitle: headline1.copyWith(fontSize: 62),
+        gradientSubLargeTitle: headline1.copyWith(
+          fontSize: 52,
+        ),
+        purpleTitle: headline1.copyWith(fontSize: 22, color: AppColors.purple),
+        lightPurpleTitle:
+            headline1.copyWith(fontSize: 22, color: AppColors.lightPurple),
+        lighterPurpleTitle:
+            headline1.copyWith(fontSize: 22, color: AppColors.lighterPurple),
+        purpleBoldText: headline3.copyWith(
+            fontWeight: FontWeight.bold, color: AppColors.purple),
+        purpleText: headline3.copyWith(
+            color: AppColors.purple, fontWeight: FontWeight.w500),
+        bodyText: headline2,
+        bodyTextWhite: headline3.copyWith(color: AppColors.white),
+        smallerBodyTextWhite:
+            headline3.copyWith(color: AppColors.white, fontSize: 14),
       );
 
   static get dark => ThemeTextStyles(
@@ -114,5 +186,21 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.lighterPurple,
           fontWeight: FontWeight.w400,
         ),
+        largeTitle: headline1.copyWith(fontSize: 62),
+        gradientSubLargeTitle: headline1.copyWith(
+          fontSize: 52,
+        ),
+        purpleTitle: headline1.copyWith(fontSize: 22, color: AppColors.purple),
+        lightPurpleTitle:
+            headline1.copyWith(fontSize: 22, color: AppColors.lightPurple),
+        lighterPurpleTitle:
+            headline1.copyWith(fontSize: 22, color: AppColors.lighterPurple),
+        purpleBoldText: headline3.copyWith(
+            fontWeight: FontWeight.bold, color: AppColors.purple),
+        purpleText: headline3.copyWith(color: AppColors.purple),
+        bodyText: headline2,
+        bodyTextWhite: headline3.copyWith(color: AppColors.white),
+        smallerBodyTextWhite:
+            headline3.copyWith(color: AppColors.white, fontSize: 14),
       );
 }
