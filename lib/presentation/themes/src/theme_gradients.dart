@@ -52,9 +52,9 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           colors: [AppColors.purple, AppColors.lightPurple],
         ),
         purple180deg: LinearGradient(
-          begin: Alignment.center,
-          end: Alignment.center,
-          stops: [0.4, 0.8],
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          stops: [0.4, 0.5],
           colors: [AppColors.purple, AppColors.lightPurple],
         ),
       );
@@ -75,7 +75,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
         purple180deg: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          stops: [0.2, 0, 6],
+          stops: [0.4, 0.5],
           colors: [AppColors.purple, AppColors.white],
         ),
       );

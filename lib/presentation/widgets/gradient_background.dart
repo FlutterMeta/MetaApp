@@ -3,7 +3,7 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
 class GradientBackground extends StatelessWidget {
   final Widget child;
-  final LinearGradient? gradient;
+  final Gradient? gradient;
 
   const GradientBackground({
     Key? key,

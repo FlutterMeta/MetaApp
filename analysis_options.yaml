@@ -59,6 +59,8 @@ dart_code_metrics:
         severity: warning
     - no-equal-arguments:
         severity: warning
+        exclude:
+            - lib/presentation/widgets/web_button.dart
     - no-equal-then-else:
         severity: warning
     - no-object-declaration:

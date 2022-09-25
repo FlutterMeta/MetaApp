@@ -32,5 +32,8 @@
     "account": "Account",
     "roadmap": "Road map",
     "revelantInfo": "More revelant information:",
-    "startNow": "Start now"
+    "startNow": "Start now",
+    "directions": "Directions",
+    "products": "Products",
+    "partners": "Partners"
 }
