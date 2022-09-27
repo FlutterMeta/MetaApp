@@ -8,16 +8,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle loginButtonText;
   final TextStyle loginFormHint;
   final TextStyle loginFormError;
-  final TextStyle largeTitle;
-  final TextStyle gradientSubLargeTitle;
-  final TextStyle purpleTitle;
-  final TextStyle lightPurpleTitle;
-  final TextStyle lighterPurpleTitle;
-  final TextStyle purpleText;
-  final TextStyle purpleBoldText;
-  final TextStyle bodyText;
-  final TextStyle bodyTextWhite;
-  final TextStyle smallerBodyTextWhite;
+  final TextStyle multiMetaUniverseTitle;
+  final TextStyle metaverseThatUnitesTitle;
+  final TextStyle fromFiftyDollarsTitle;
+  final TextStyle leadershipBonusesTitle;
+  final TextStyle profitToPartnersTitle;
+  final TextStyle homePagePurpleBodyText;
+  final TextStyle accountTitle;
+  final TextStyle revelantInfo;
+  final TextStyle revelantInfoWhite;
+  final TextStyle darkBackgroundText;
 
   ThemeTextStyles({
     required this.test,
@@ -27,16 +27,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.loginButtonText,
     required this.loginFormHint,
     required this.loginFormError,
-    required this.largeTitle,
-    required this.gradientSubLargeTitle,
-    required this.purpleTitle,
-    required this.lightPurpleTitle,
-    required this.lighterPurpleTitle,
-    required this.purpleText,
-    required this.purpleBoldText,
-    required this.bodyText,
-    required this.bodyTextWhite,
-    required this.smallerBodyTextWhite,
+    required this.multiMetaUniverseTitle,
+    required this.metaverseThatUnitesTitle,
+    required this.fromFiftyDollarsTitle,
+    required this.leadershipBonusesTitle,
+    required this.profitToPartnersTitle,
+    required this.homePagePurpleBodyText,
+    required this.accountTitle,
+    required this.revelantInfo,
+    required this.revelantInfoWhite,
+    required this.darkBackgroundText,
   });
 
   @override
@@ -48,16 +48,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? loginButtonText,
     TextStyle? loginFormHint,
     TextStyle? loginFormError,
-    TextStyle? largeTitle,
-    TextStyle? gradientSubLargeTitle,
-    TextStyle? purpleTitle,
-    TextStyle? lightPurpleTitle,
-    TextStyle? lighterPurpleTitle,
-    TextStyle? purpleBoldText,
-    TextStyle? purpleText,
-    TextStyle? bodyText,
-    TextStyle? bodyTextWhite,
-    TextStyle? smallerBodyTextWhite,
+    TextStyle? multiMetaUniverseTitle,
+    TextStyle? metaverseThatUnitesTitle,
+    TextStyle? fromFiftyDollarsTitle,
+    TextStyle? leadershipBonusesTitle,
+    TextStyle? profitToPartnersTitle,
+    TextStyle? accountTitle,
+    TextStyle? homePagePurpleBodyText,
+    TextStyle? revelantInfo,
+    TextStyle? revelantInfoWhite,
+    TextStyle? darkBackgroundText,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -67,17 +67,22 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       loginButtonText: loginButtonText ?? this.loginButtonText,
       loginFormHint: loginFormHint ?? this.loginFormHint,
       loginFormError: loginFormError ?? this.loginFormError,
-      largeTitle: largeTitle ?? this.largeTitle,
-      gradientSubLargeTitle:
-          gradientSubLargeTitle ?? this.gradientSubLargeTitle,
-      purpleTitle: purpleTitle ?? this.purpleTitle,
-      lightPurpleTitle: lightPurpleTitle ?? this.lightPurpleTitle,
-      lighterPurpleTitle: lighterPurpleTitle ?? this.lighterPurpleTitle,
-      purpleBoldText: purpleBoldText ?? this.purpleBoldText,
-      purpleText: purpleText ?? this.purpleText,
-      bodyText: bodyText ?? this.bodyText,
-      bodyTextWhite: bodyTextWhite ?? this.bodyTextWhite,
-      smallerBodyTextWhite: smallerBodyTextWhite ?? this.smallerBodyTextWhite,
+      multiMetaUniverseTitle:
+          multiMetaUniverseTitle ?? this.multiMetaUniverseTitle,
+      metaverseThatUnitesTitle:
+          metaverseThatUnitesTitle ?? this.metaverseThatUnitesTitle,
+      fromFiftyDollarsTitle:
+          fromFiftyDollarsTitle ?? this.fromFiftyDollarsTitle,
+      leadershipBonusesTitle:
+          leadershipBonusesTitle ?? this.leadershipBonusesTitle,
+      profitToPartnersTitle:
+          profitToPartnersTitle ?? this.profitToPartnersTitle,
+      accountTitle: accountTitle ?? this.accountTitle,
+      homePagePurpleBodyText:
+          homePagePurpleBodyText ?? this.homePagePurpleBodyText,
+      revelantInfo: revelantInfo ?? this.revelantInfo,
+      revelantInfoWhite: revelantInfoWhite ?? this.revelantInfoWhite,
+      darkBackgroundText: darkBackgroundText ?? this.darkBackgroundText,
     );
   }
 
@@ -100,20 +105,24 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(loginButtonText, other.loginButtonText, t)!,
       loginFormHint: TextStyle.lerp(loginFormHint, other.loginFormHint, t)!,
       loginFormError: TextStyle.lerp(loginFormError, other.loginFormError, t)!,
-      largeTitle: TextStyle.lerp(largeTitle, other.largeTitle, t)!,
-      purpleTitle: TextStyle.lerp(purpleTitle, other.purpleTitle, t)!,
-      lightPurpleTitle:
-          TextStyle.lerp(lightPurpleTitle, other.lightPurpleTitle, t)!,
-      lighterPurpleTitle:
-          TextStyle.lerp(lighterPurpleTitle, other.lighterPurpleTitle, t)!,
-      gradientSubLargeTitle: TextStyle.lerp(
-          gradientSubLargeTitle, other.gradientSubLargeTitle, t)!,
-      purpleBoldText: TextStyle.lerp(purpleBoldText, other.purpleBoldText, t)!,
-      purpleText: TextStyle.lerp(purpleText, other.purpleText, t)!,
-      bodyText: TextStyle.lerp(bodyText, other.bodyText, t)!,
-      bodyTextWhite: TextStyle.lerp(bodyTextWhite, other.bodyTextWhite, t)!,
-      smallerBodyTextWhite:
-          TextStyle.lerp(smallerBodyTextWhite, other.smallerBodyTextWhite, t)!,
+      multiMetaUniverseTitle: TextStyle.lerp(
+          multiMetaUniverseTitle, other.multiMetaUniverseTitle, t)!,
+      fromFiftyDollarsTitle: TextStyle.lerp(
+          fromFiftyDollarsTitle, other.fromFiftyDollarsTitle, t)!,
+      leadershipBonusesTitle: TextStyle.lerp(
+          leadershipBonusesTitle, other.leadershipBonusesTitle, t)!,
+      profitToPartnersTitle: TextStyle.lerp(
+          profitToPartnersTitle, other.profitToPartnersTitle, t)!,
+      metaverseThatUnitesTitle: TextStyle.lerp(
+          metaverseThatUnitesTitle, other.metaverseThatUnitesTitle, t)!,
+      accountTitle: TextStyle.lerp(accountTitle, other.accountTitle, t)!,
+      homePagePurpleBodyText: TextStyle.lerp(
+          homePagePurpleBodyText, other.homePagePurpleBodyText, t)!,
+      revelantInfo: TextStyle.lerp(revelantInfo, other.revelantInfo, t)!,
+      revelantInfoWhite:
+          TextStyle.lerp(revelantInfoWhite, other.revelantInfoWhite, t)!,
+      darkBackgroundText:
+          TextStyle.lerp(darkBackgroundText, other.darkBackgroundText, t)!,
     );
   }
 
@@ -142,23 +151,36 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.lighterPurple,
           fontWeight: FontWeight.w400,
         ),
-        largeTitle: headline1.copyWith(fontSize: 62),
-        gradientSubLargeTitle: headline1.copyWith(
-          fontSize: 52,
+        multiMetaUniverseTitle: headline1.copyWith(fontSize: 62),
+        metaverseThatUnitesTitle: headline1.copyWith(fontSize: 52),
+        fromFiftyDollarsTitle: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.purple,
         ),
-        purpleTitle: headline1.copyWith(fontSize: 22, color: AppColors.purple),
-        lightPurpleTitle:
-            headline1.copyWith(fontSize: 22, color: AppColors.lightPurple),
-        lighterPurpleTitle:
-            headline1.copyWith(fontSize: 22, color: AppColors.lighterPurple),
-        purpleBoldText: headline3.copyWith(
-            fontWeight: FontWeight.bold, color: AppColors.purple),
-        purpleText: headline3.copyWith(
-            color: AppColors.purple, fontWeight: FontWeight.w500),
-        bodyText: headline2,
-        bodyTextWhite: headline3.copyWith(color: AppColors.white),
-        smallerBodyTextWhite:
-            headline3.copyWith(color: AppColors.white, fontSize: 14),
+        leadershipBonusesTitle: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.lightPurple,
+        ),
+        profitToPartnersTitle: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.lighterPurple,
+        ),
+        accountTitle: headline3.copyWith(
+          fontWeight: FontWeight.bold,
+          color: AppColors.purple,
+        ),
+        homePagePurpleBodyText: headline3.copyWith(
+          color: AppColors.purple,
+          fontWeight: FontWeight.w500,
+        ),
+        revelantInfo: headline2,
+        revelantInfoWhite: headline3.copyWith(
+          color: AppColors.white,
+        ),
+        darkBackgroundText: headline3.copyWith(
+          color: AppColors.white,
+          fontSize: 14,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -186,21 +208,37 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.lighterPurple,
           fontWeight: FontWeight.w400,
         ),
-        largeTitle: headline1.copyWith(fontSize: 62),
-        gradientSubLargeTitle: headline1.copyWith(
+        multiMetaUniverseTitle: headline1.copyWith(fontSize: 62),
+        metaverseThatUnitesTitle: headline1.copyWith(
           fontSize: 52,
         ),
-        purpleTitle: headline1.copyWith(fontSize: 22, color: AppColors.purple),
-        lightPurpleTitle:
-            headline1.copyWith(fontSize: 22, color: AppColors.lightPurple),
-        lighterPurpleTitle:
-            headline1.copyWith(fontSize: 22, color: AppColors.lighterPurple),
-        purpleBoldText: headline3.copyWith(
-            fontWeight: FontWeight.bold, color: AppColors.purple),
-        purpleText: headline3.copyWith(color: AppColors.purple),
-        bodyText: headline2,
-        bodyTextWhite: headline3.copyWith(color: AppColors.white),
-        smallerBodyTextWhite:
-            headline3.copyWith(color: AppColors.white, fontSize: 14),
+        fromFiftyDollarsTitle: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.purple,
+        ),
+        leadershipBonusesTitle: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.lightPurple,
+        ),
+        profitToPartnersTitle: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.lighterPurple,
+        ),
+        accountTitle: headline3.copyWith(
+          fontWeight: FontWeight.bold,
+          color: AppColors.purple,
+        ),
+        homePagePurpleBodyText: headline3.copyWith(
+          color: AppColors.purple,
+          fontWeight: FontWeight.w500,
+        ),
+        revelantInfo: headline2,
+        revelantInfoWhite: headline3.copyWith(
+          color: AppColors.white,
+        ),
+        darkBackgroundText: headline3.copyWith(
+          color: AppColors.white,
+          fontSize: 14,
+        ),
       );
 }

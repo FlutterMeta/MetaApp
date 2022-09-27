@@ -1,23 +1,31 @@
 import 'package:flutter/material.dart';
 
-class OnHover extends StatefulWidget {
+class Hover extends StatefulWidget {
   final Widget Function(bool isHovered) builder;
 
-  const OnHover({
+  const Hover({
     required this.builder,
     Key? key,
   }) : super(key: key);
 
   @override
-  OnHoverState createState() => OnHoverState();
+  HoverState createState() => HoverState();
 }
 
-class OnHoverState extends State<OnHover> {
+class HoverState extends State<Hover> {
   bool isHovered = false;
+
+  void onEntered(bool isHovered) {
+    setState(() {
+      this.isHovered = isHovered;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final hovered = Matrix4.identity()..translate(0, -2, 0);
     final transform = isHovered ? hovered : Matrix4.identity();
+
     return MouseRegion(
       onEnter: (_) => onEntered(true),
       onExit: (_) => onEntered(false),
@@ -27,11 +35,5 @@ class OnHoverState extends State<OnHover> {
         child: widget.builder(isHovered),
       ),
     );
-  }
-
-  void onEntered(bool isHovered) {
-    setState(() {
-      this.isHovered = isHovered;
-    });
   }
 }

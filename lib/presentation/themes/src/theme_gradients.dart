@@ -3,11 +3,11 @@ part of '../theme.dart';
 class ThemeGradients extends ThemeExtension<ThemeGradients> {
   final LinearGradient purple;
   final LinearGradient lightPurple;
-  final LinearGradient purple180deg;
+  final LinearGradient purpleVertical;
 
   const ThemeGradients({
     required this.purple,
-    required this.purple180deg,
+    required this.purpleVertical,
     required this.lightPurple,
   });
 
@@ -19,7 +19,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     return ThemeGradients(
         purple: purple ?? this.purple,
         lightPurple: lightPurple ?? this.lightPurple,
-        purple180deg: purple180deg ?? this.purple180deg);
+        purpleVertical: purpleVertical ?? this.purpleVertical);
   }
 
   @override
@@ -34,7 +34,8 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     return ThemeGradients(
       purple: LinearGradient.lerp(purple, other.purple, t)!,
       lightPurple: LinearGradient.lerp(lightPurple, other.lightPurple, t)!,
-      purple180deg: LinearGradient.lerp(purple180deg, other.purple180deg, t)!,
+      purpleVertical:
+          LinearGradient.lerp(purpleVertical, other.purpleVertical, t)!,
     );
   }
 
@@ -51,7 +52,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           stops: [0.4, 0.8],
           colors: [AppColors.purple, AppColors.lightPurple],
         ),
-        purple180deg: LinearGradient(
+        purpleVertical: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
           stops: [0.4, 0.5],
@@ -72,7 +73,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           stops: [0.4, 0.8],
           colors: [AppColors.purple, AppColors.lightPurple],
         ),
-        purple180deg: LinearGradient(
+        purpleVertical: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           stops: [0.4, 0.5],

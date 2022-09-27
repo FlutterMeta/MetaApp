@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import "package:meta_app/core/utils/extensions/build_context_ext.dart";
-import 'package:meta_app/presentation/widgets/gradient_background.dart';
+import 'package:meta_app/presentation/widgets/gradient_button.dart';
+import 'package:meta_app/presentation/widgets/gradient_text.dart';
 import 'package:meta_app/presentation/widgets/header.dart';
-import 'package:meta_app/presentation/widgets/on_hover.dart';
+import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,18 +12,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       body: SingleChildScrollView(
         child: SizedBox(
-          width: screenWidth,
+          width: double.infinity,
           child: Column(
             children: [
-              screenWidth > 1000 ? const Header() : const HeaderCompact(),
+              const Header(),
               const SizedBox(height: 70),
               _PresentationSection(
-                isBreakpointReached: screenWidth < 780 ? true : false,
+                isBreakpointReached: context.screen.width < 780 ? true : false,
               ),
             ],
           ),
@@ -49,7 +48,6 @@ class _PresentationSection extends StatelessWidget {
 
     return Container(
       constraints: const BoxConstraints(maxWidth: 1270),
-      width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Column(
         crossAxisAlignment: crossAxisAlignment,
@@ -57,65 +55,40 @@ class _PresentationSection extends StatelessWidget {
           Text(
             context.localizations.multiMetaUniverse,
             textAlign: textAlign,
-            style: context.text.largeTitle,
+            style: context.text.multiMetaUniverseTitle,
           ),
-          _GradientText(
+          GradientText(
             text: context.localizations.metaverseThatUnites,
             textAlign: textAlign,
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 15),
           Text(
             context.localizations.profitToPartners,
             textAlign: textAlign,
-            style: context.text.lighterPurpleTitle,
+            style: context.text.profitToPartnersTitle,
           ),
           Text(
             context.localizations.leadershipBonuses,
             textAlign: textAlign,
-            style: context.text.lightPurpleTitle,
+            style: context.text.leadershipBonusesTitle,
           ),
           Text(
-            context.localizations.fromfiftydollars,
+            context.localizations.fromFiftyDollars,
             textAlign: textAlign,
-            style: context.text.purpleTitle,
+            style: context.text.fromFiftyDollarsTitle,
           ),
           const SizedBox(height: 35),
           Text(
             context.localizations.revelantInfo,
             textAlign: textAlign,
-            style: context.text.bodyText,
+            style: context.text.revelantInfo,
           ),
           const SizedBox(height: 6),
           _RevelantInfoSection(isBreakpointReached: isBreakpointReached),
           const SizedBox(height: 10),
-          _GradientButton(title: context.localizations.startNow, onTap: () {}),
+          GradientButton(title: context.localizations.startNow, onTap: () {}),
           const SizedBox(height: 300),
         ],
-      ),
-    );
-  }
-}
-
-class _GradientText extends StatelessWidget {
-  final String text;
-  final TextAlign? textAlign;
-
-  const _GradientText({
-    required this.text,
-    this.textAlign,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ShaderMask(
-      blendMode: BlendMode.srcIn,
-      shaderCallback: (bounds) =>
-          context.gradient.purple180deg.createShader(bounds),
-      child: Text(
-        context.localizations.metaverseThatUnites,
-        textAlign: textAlign,
-        style: context.text.gradientSubLargeTitle,
       ),
     );
   }
@@ -141,8 +114,8 @@ class _RevelantInfoSection extends StatelessWidget {
           ? MainAxisAlignment.center
           : MainAxisAlignment.start,
       children: info
-          .map((e) => _InfoCard(
-                title: e,
+          .map((info) => _InfoCard(
+                title: info,
                 onTap: () {},
               ))
           .toList(),
@@ -162,72 +135,24 @@ class _InfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6),
-      child: ConstrainedBox(
-        constraints:
-            BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.28),
-        child: OnHover(builder: (_) {
-          return WebButton(
-            onTap: onTap,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: ColoredBox(
-                color: context.color.itemsGreyBackground,
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                  child: Text(title, style: context.text.purpleText),
-                ),
-              ),
-            ),
-          );
-        }),
+      constraints: BoxConstraints(
+        maxWidth: context.screen.width * 0.28,
       ),
-    );
-  }
-}
-
-class _GradientButton extends StatelessWidget {
-  final String title;
-  final VoidCallback onTap;
-
-  const _GradientButton({
-    required this.title,
-    required this.onTap,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return OnHover(
-      builder: (bool _) {
-        return ClipRRect(
-          borderRadius: BorderRadius.circular(8.0),
-          child: GradientBackground(
-            gradient: context.gradient.purple,
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(minWidth: 127),
-              child: WebButton(
-                onTap: onTap,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 9,
-                    bottom: 11,
-                    right: 20,
-                    left: 20,
-                  ),
-                  child: Text(
-                    title,
-                    textAlign: TextAlign.center,
-                    style: context.text.smallerBodyTextWhite,
-                  ),
-                ),
-              ),
+      child: Hover(builder: (_) {
+        return WebButton(
+          onTap: onTap,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              color: context.color.infoCardBackground,
+              child: Text(title, style: context.text.homePagePurpleBodyText),
             ),
           ),
         );
-      },
+      }),
     );
   }
 }
