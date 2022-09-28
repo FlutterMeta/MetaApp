@@ -13,26 +13,29 @@ class Hover extends StatefulWidget {
 }
 
 class HoverState extends State<Hover> {
-  bool isHovered = false;
+  bool _isHovered = false;
 
   void onEntered(bool isHovered) {
     setState(() {
-      this.isHovered = isHovered;
+      _isHovered = isHovered;
     });
+  }
+
+  Matrix4 _transform() {
+    final hovered = Matrix4.identity()..translate(0, -2, 0);
+
+    return _isHovered ? hovered : Matrix4.identity();
   }
 
   @override
   Widget build(BuildContext context) {
-    final hovered = Matrix4.identity()..translate(0, -2, 0);
-    final transform = isHovered ? hovered : Matrix4.identity();
-
     return MouseRegion(
       onEnter: (_) => onEntered(true),
       onExit: (_) => onEntered(false),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
-        transform: transform,
-        child: widget.builder(isHovered),
+        transform: _transform(),
+        child: widget.builder(_isHovered),
       ),
     );
   }

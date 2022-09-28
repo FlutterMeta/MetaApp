@@ -24,8 +24,8 @@ class WebButton extends StatelessWidget {
       borderRadius: borderRadius,
       onTap: onTap,
       splashFactory: NoSplash.splashFactory,
-      highlightColor: highlightColor ?? context.color.transparency,
-      hoverColor: hoverColor ?? context.color.transparency,
+      highlightColor: highlightColor ?? context.color.webButtonFillColor,
+      hoverColor: hoverColor ?? context.color.webButtonFillColor,
       child: child,
     );
   }

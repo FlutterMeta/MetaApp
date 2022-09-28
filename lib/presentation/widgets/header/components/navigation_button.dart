@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/widgets/web_button.dart';
+part of '../header.dart';
 
-class NavBarButton extends StatelessWidget {
+class _NavigationButton extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
 
-  const NavBarButton({
+  const _NavigationButton({
     required this.title,
     required this.onTap,
     Key? key,

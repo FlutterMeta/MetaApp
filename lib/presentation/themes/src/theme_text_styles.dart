@@ -15,8 +15,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle profitToPartnersTitle;
   final TextStyle homePagePurpleBodyText;
   final TextStyle accountTitle;
-  final TextStyle revelantInfo;
-  final TextStyle revelantInfoWhite;
+  final TextStyle revelantInfoTitle;
+
   final TextStyle darkBackgroundText;
 
   ThemeTextStyles({
@@ -34,8 +34,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.profitToPartnersTitle,
     required this.homePagePurpleBodyText,
     required this.accountTitle,
-    required this.revelantInfo,
-    required this.revelantInfoWhite,
+    required this.revelantInfoTitle,
     required this.darkBackgroundText,
   });
 
@@ -55,8 +54,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? profitToPartnersTitle,
     TextStyle? accountTitle,
     TextStyle? homePagePurpleBodyText,
-    TextStyle? revelantInfo,
-    TextStyle? revelantInfoWhite,
+    TextStyle? revelantInfoTitle,
     TextStyle? darkBackgroundText,
   }) {
     return ThemeTextStyles(
@@ -80,8 +78,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       accountTitle: accountTitle ?? this.accountTitle,
       homePagePurpleBodyText:
           homePagePurpleBodyText ?? this.homePagePurpleBodyText,
-      revelantInfo: revelantInfo ?? this.revelantInfo,
-      revelantInfoWhite: revelantInfoWhite ?? this.revelantInfoWhite,
+      revelantInfoTitle: revelantInfoTitle ?? this.revelantInfoTitle,
       darkBackgroundText: darkBackgroundText ?? this.darkBackgroundText,
     );
   }
@@ -118,9 +115,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       accountTitle: TextStyle.lerp(accountTitle, other.accountTitle, t)!,
       homePagePurpleBodyText: TextStyle.lerp(
           homePagePurpleBodyText, other.homePagePurpleBodyText, t)!,
-      revelantInfo: TextStyle.lerp(revelantInfo, other.revelantInfo, t)!,
-      revelantInfoWhite:
-          TextStyle.lerp(revelantInfoWhite, other.revelantInfoWhite, t)!,
+      revelantInfoTitle:
+          TextStyle.lerp(revelantInfoTitle, other.revelantInfoTitle, t)!,
       darkBackgroundText:
           TextStyle.lerp(darkBackgroundText, other.darkBackgroundText, t)!,
     );
@@ -173,10 +169,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.purple,
           fontWeight: FontWeight.w500,
         ),
-        revelantInfo: headline2,
-        revelantInfoWhite: headline3.copyWith(
-          color: AppColors.white,
-        ),
+        revelantInfoTitle: headline2,
         darkBackgroundText: headline3.copyWith(
           color: AppColors.white,
           fontSize: 14,
@@ -232,10 +225,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.purple,
           fontWeight: FontWeight.w500,
         ),
-        revelantInfo: headline2,
-        revelantInfoWhite: headline3.copyWith(
-          color: AppColors.white,
-        ),
+        revelantInfoTitle: headline2,
         darkBackgroundText: headline3.copyWith(
           color: AppColors.white,
           fontSize: 14,

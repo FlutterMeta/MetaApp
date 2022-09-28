@@ -6,7 +6,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color infoCardBackground;
   final Color roadmapCardBackground;
   final Color navButtonHover;
-  final Color transparency;
+  final Color webButtonFillColor;
 
   const ThemeColors({
     required this.loginButtonFill,
@@ -14,7 +14,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.infoCardBackground,
     required this.roadmapCardBackground,
     required this.navButtonHover,
-    required this.transparency,
+    required this.webButtonFillColor,
   });
 
   @override
@@ -24,7 +24,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? infoCardBackground,
     Color? roadmapCardBackground,
     Color? navButtonHover,
-    Color? transparency,
+    Color? webButtonFillColor,
   }) {
     return ThemeColors(
       loginButtonFill: loginButtonFill ?? this.loginButtonFill,
@@ -33,7 +33,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       roadmapCardBackground:
           roadmapCardBackground ?? this.roadmapCardBackground,
       navButtonHover: navButtonHover ?? this.navButtonHover,
-      transparency: transparency ?? this.transparency,
+      webButtonFillColor: webButtonFillColor ?? this.webButtonFillColor,
     );
   }
 
@@ -54,7 +54,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       roadmapCardBackground:
           Color.lerp(roadmapCardBackground, other.roadmapCardBackground, t)!,
       navButtonHover: Color.lerp(navButtonHover, other.navButtonHover, t)!,
-      transparency: Color.lerp(transparency, other.transparency, t)!,
+      webButtonFillColor:
+          Color.lerp(webButtonFillColor, other.webButtonFillColor, t)!,
     );
   }
 
@@ -64,7 +65,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         infoCardBackground: AppColors.grey,
         roadmapCardBackground: AppColors.purple,
         navButtonHover: AppColors.blueGrey,
-        transparency: AppColors.transparent,
+        webButtonFillColor: AppColors.transparent,
       );
 
   static get dark => const ThemeColors(
@@ -73,6 +74,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         infoCardBackground: AppColors.grey,
         roadmapCardBackground: AppColors.purple,
         navButtonHover: AppColors.blueGrey,
-        transparency: AppColors.transparent,
+        webButtonFillColor: AppColors.transparent,
       );
 }

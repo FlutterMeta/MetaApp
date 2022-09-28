@@ -22,7 +22,7 @@ class GradientButton extends StatelessWidget {
     return Hover(
       builder: (bool _) {
         return Container(
-          constraints: const BoxConstraints(minWidth: 127),
+          constraints: const BoxConstraints(minWidth: 128),
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
           clipBehavior: Clip.antiAlias,
           child: GradientBackground(
@@ -31,7 +31,7 @@ class GradientButton extends StatelessWidget {
               onTap: onTap,
               child: Padding(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 9,
+                  vertical: 10,
                   horizontal: 20,
                 ),
                 child: Text(

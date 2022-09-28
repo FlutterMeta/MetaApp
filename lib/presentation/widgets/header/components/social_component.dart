@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:meta_app/presentation/constants/app_assets.dart';
-import 'package:meta_app/presentation/widgets/hover.dart';
-import 'package:meta_app/presentation/widgets/web_button.dart';
+part of '../header.dart';
 
-class SocialSection extends StatelessWidget {
-  const SocialSection({Key? key}) : super(key: key);
+class _SocialComponent extends StatelessWidget {
+  const _SocialComponent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
