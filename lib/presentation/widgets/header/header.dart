@@ -11,17 +11,12 @@ part 'components/locale_dropdown_menu.dart';
 part 'components/menu_component.dart';
 part 'components/mobile_menu_navigation.dart';
 part 'components/navigation_button.dart';
-part 'components/opened_mobile_menu.dart';
-part 'components/opened_mobile_menu_content.dart';
-part 'components/opened_mobile_menu_navigation.dart';
+part 'components/mobile_menu_content.dart';
 part 'components/social_component.dart';
 part 'components/special_info_component.dart';
 
 class Header extends StatelessWidget {
-  final bool? isMenuOpened;
-
   const Header({
-    this.isMenuOpened = false,
     Key? key,
   }) : super(key: key);
 
@@ -32,7 +27,7 @@ class Header extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Column(
         children: [
-          if (context.screenWidth > 1000)
+          if (context.screenWidth > 780)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -43,12 +38,12 @@ class Header extends StatelessWidget {
                   Spacer(),
                   _AuthButton(),
                   SizedBox(width: 24),
-                  LocaleDropdownMenu(),
+                  _LocaleDropdownMenu(),
                   SizedBox(width: 90),
                 ],
               ),
             ),
-          if (context.screenWidth > 1000) const Divider(),
+          if (context.screenWidth > 780) const Divider(),
           const SizedBox(height: 18),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -57,10 +52,7 @@ class Header extends StatelessWidget {
               children: [
                 Image.asset(AppAssets.logo, height: 76),
                 if (context.screenWidth > 780) const _MenuComponent(),
-                if (context.screenWidth <= 780)
-                  isMenuOpened as bool
-                      ? const _OpenedMobileMenuNavigation()
-                      : const _MobileMenuNavigation(),
+                if (context.screenWidth <= 780) const _MobileMenuNavigation(),
               ],
             ),
           ),
@@ -69,34 +61,9 @@ class Header extends StatelessWidget {
     );
   }
 }
+/* 
 
-void _pushLoginPage(BuildContext context) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => const LoginPage()),
-  );
-}
 
-void _pushMobileMenu(BuildContext context) {
-  Navigator.of(context).push(_openMobileMenu());
-}
 
-void _popMobileMenu(BuildContext context) {
-  Navigator.pop(context);
-}
 
-Route _openMobileMenu() {
-  return PageRouteBuilder(
-    transitionDuration: const Duration(milliseconds: 500),
-    reverseTransitionDuration: const Duration(milliseconds: 250),
-    pageBuilder: (context, animation, secondaryAnimation) =>
-        const _OpenedMobileMenu(),
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      var curveTween = CurveTween(curve: Curves.easeIn);
-      return FadeTransition(
-        opacity: animation.drive(curveTween),
-        child: child,
-      );
-    },
-  );
-}
+ */

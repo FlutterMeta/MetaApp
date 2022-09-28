@@ -1,11 +1,12 @@
 part of '../header.dart';
 
-class _OpenedMobileMenuContent extends StatelessWidget {
-  const _OpenedMobileMenuContent({Key? key}) : super(key: key);
+class _MobileMenuContent extends StatelessWidget {
+  const _MobileMenuContent({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _NavigationButton(
           onTap: () {},
@@ -21,6 +22,11 @@ class _OpenedMobileMenuContent extends StatelessWidget {
           onTap: () {},
           title: context.localizations.partners,
         ),
+        const SizedBox(height: 26),
+        const _AuthButton(),
+        const SizedBox(height: 26),
+        const _LocaleDropdownMenu(),
+        const SizedBox(height: 100),
       ],
     );
   }

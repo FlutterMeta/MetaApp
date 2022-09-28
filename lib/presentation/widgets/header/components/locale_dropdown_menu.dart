@@ -1,19 +1,19 @@
 part of '../header.dart';
 
-class LocaleDropdownMenu extends StatefulWidget {
-  const LocaleDropdownMenu({super.key});
+class _LocaleDropdownMenu extends StatefulWidget {
+  const _LocaleDropdownMenu({super.key});
 
   @override
-  State<LocaleDropdownMenu> createState() => _LocaleDropdownMenuState();
+  State<_LocaleDropdownMenu> createState() => _LocaleDropdownMenuState();
 }
 
-class _LocaleDropdownMenuState extends State<LocaleDropdownMenu> {
+class _LocaleDropdownMenuState extends State<_LocaleDropdownMenu> {
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Image.asset(AppAssets.engLocaleFlag, height: 20),
+        Image.asset(AppAssets.engFlag, height: 20),
         const SizedBox(width: 10),
         const Icon(Icons.arrow_drop_down),
       ],

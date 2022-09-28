@@ -15,6 +15,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      /*  appBar: PreferredSize(
+        preferredSize: Size(1270, context.screenWidth > 780 ? 180 : 106),
+        child: const Header(),
+      ), */
       body: SingleChildScrollView(
         child: SizedBox(
           width: double.infinity,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/widgets/gradient_background.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 
 import 'hover.dart';
@@ -23,22 +22,22 @@ class GradientButton extends StatelessWidget {
       builder: (bool _) {
         return Container(
           constraints: const BoxConstraints(minWidth: 128),
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0)),
-          clipBehavior: Clip.antiAlias,
-          child: GradientBackground(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
             gradient: gradient ?? context.gradient.purple,
-            child: WebButton(
-              onTap: onTap,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 20,
-                ),
-                child: Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: context.text.darkBackgroundText,
-                ),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: WebButton(
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 10,
+                horizontal: 20,
+              ),
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: context.text.darkBackgroundText,
               ),
             ),
           ),

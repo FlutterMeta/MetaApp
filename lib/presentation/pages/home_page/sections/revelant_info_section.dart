@@ -46,13 +46,13 @@ class _InfoCard extends StatelessWidget {
       child: Hover(builder: (_) {
         return WebButton(
           onTap: onTap,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
               color: context.color.infoCardBackground,
-              child: Text(title, style: context.text.homePagePurpleBodyText),
             ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            child: Text(title, style: context.text.homePagePurpleBodyText),
           ),
         );
       }),

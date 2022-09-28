@@ -9,10 +9,10 @@ class Hover extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  HoverState createState() => HoverState();
+  _HoverState createState() => _HoverState();
 }
 
-class HoverState extends State<Hover> {
+class _HoverState extends State<Hover> {
   bool _isHovered = false;
 
   void onEntered(bool isHovered) {

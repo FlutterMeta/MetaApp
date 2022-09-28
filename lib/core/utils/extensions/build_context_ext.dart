@@ -12,5 +12,6 @@ extension BuildContextExt on BuildContext {
   ThemeGradients get gradient => Theme.of(this).extension<ThemeGradients>()!;
 
   double get screenWidth => MediaQuery.of(this).size.width;
+
   double get screenHeight => MediaQuery.of(this).size.height;
 }
