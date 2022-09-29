@@ -8,7 +8,7 @@ class _MobileMenuNavigation extends StatefulWidget {
 }
 
 class _MobileMenuNavigationState extends State<_MobileMenuNavigation>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, RouteAware {
   late AnimationController animationController;
   late Animation<double> animation;
   late OverlayEntry overlayEntry;
@@ -39,7 +39,7 @@ class _MobileMenuNavigationState extends State<_MobileMenuNavigation>
               child: AnimatedContainer(
                 height: context.screenHeight - 120,
                 width: context.screenWidth,
-                duration: const Duration(milliseconds: 700),
+                duration: Duration(milliseconds: 700),
                 child: const _MobileMenuContent(),
               ),
             ),
@@ -49,7 +49,7 @@ class _MobileMenuNavigationState extends State<_MobileMenuNavigation>
     });
   }
 
-  void _showOverlay(BuildContext context) async {
+  void _showOverlay() async {
     OverlayState? overlayState = Overlay.of(context);
 
     animationController.addListener(() {
@@ -70,13 +70,22 @@ class _MobileMenuNavigationState extends State<_MobileMenuNavigation>
     Future.delayed(Duration.zero, () {
       if (context.screenWidth > 780) _removeOverlay();
     });
-
     super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context) as PageRoute);
+  }
+
+  @override
+  void didPushNext() {
+    _isClicked = !_isClicked;
+    setState(() {});
+    _removeOverlay();
   }
 
   @override
   void dispose() {
     _removeOverlay();
+    animationController.dispose();
+    routeObserver.unsubscribe(this);
     super.dispose();
   }
 
@@ -86,7 +95,7 @@ class _MobileMenuNavigationState extends State<_MobileMenuNavigation>
       children: [
         IconButton(
           onPressed: () {
-            _isClicked ? _removeOverlay() : _showOverlay(context);
+            _isClicked ? _removeOverlay() : _showOverlay();
             _isClicked = !_isClicked;
             setState(() {});
           },

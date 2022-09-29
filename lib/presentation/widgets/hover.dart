@@ -9,13 +9,13 @@ class Hover extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _HoverState createState() => _HoverState();
+  HoverState createState() => HoverState();
 }
 
-class _HoverState extends State<Hover> {
+class HoverState extends State<Hover> {
   bool _isHovered = false;
 
-  void onEntered(bool isHovered) {
+  void _onEntered(bool isHovered) {
     setState(() {
       _isHovered = isHovered;
     });
@@ -30,8 +30,8 @@ class _HoverState extends State<Hover> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      onEnter: (_) => onEntered(true),
-      onExit: (_) => onEntered(false),
+      onEnter: (_) => _onEntered(true),
+      onExit: (_) => _onEntered(false),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 300),
         transform: _transform(),

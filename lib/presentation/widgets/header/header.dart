@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meta_app/core/application.dart';
 
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';

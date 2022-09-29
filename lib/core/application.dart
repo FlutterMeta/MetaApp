@@ -8,6 +8,8 @@ import 'package:meta_app/presentation/pages/home_page/home_page.dart';
 import 'package:meta_app/presentation/redux/app_state.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
 
+final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+
 class Application extends StatelessWidget {
   final Store<AppState> store;
 
@@ -28,6 +30,7 @@ class Application extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
           ],
+          navigatorObservers: [routeObserver],
           theme: createLightTheme(),
           darkTheme: createDarkTheme(),
           themeMode: vm.themeMode,
