@@ -39,7 +39,8 @@ class _MobileMenuNavigationState extends State<_MobileMenuNavigation>
               child: AnimatedContainer(
                 height: context.screenHeight - 120,
                 width: context.screenWidth,
-                duration: Duration(milliseconds: 700),
+                duration: const Duration(milliseconds: 700),
+                curve: Curves.bounceInOut,
                 child: const _MobileMenuContent(),
               ),
             ),
