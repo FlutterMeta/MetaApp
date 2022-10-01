@@ -37,5 +37,6 @@ mixin Validator {
     if (email.isEmailValid().not()) {
       return context.localizations.incorrectLogin;
     }
+    return null;
   }
 }
