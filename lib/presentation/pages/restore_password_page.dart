@@ -1,36 +1,26 @@
 import 'package:flutter/material.dart';
-
-import "package:meta_app/core/utils/extensions/build_context_ext.dart";
 import 'package:meta_app/core/mixins/validator.dart';
+import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
-import 'package:meta_app/presentation/pages/restore_password_page.dart';
 import 'package:meta_app/presentation/widgets/auth_field.dart';
 import 'package:meta_app/presentation/widgets/entry_flow_button.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RestorePasswordPage extends StatefulWidget {
+  const RestorePasswordPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RestorePasswordPage> createState() => _RestorePasswordPageState();
 }
 
-class _LoginPageState extends State<LoginPage> with Validator {
+class _RestorePasswordPageState extends State<RestorePasswordPage>
+    with Validator {
   final _loginFieldController = TextEditingController();
-  final _passwordFieldController = TextEditingController();
+  final _emailFieldController = TextEditingController();
   final _codeFieldController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  void _onLoginButtonPressed() {
-    _formKey.currentState?.validate();
-  }
-
-  void _goToRestorePage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const RestorePasswordPage()),
-    );
-  }
+  void _onRestoreButtonPressed() => _formKey.currentState?.validate();
 
   @override
   Widget build(BuildContext context) {
@@ -55,42 +45,40 @@ class _LoginPageState extends State<LoginPage> with Validator {
                   children: [
                     SizedBox(
                       height: 66,
-                      child: Image.asset(AppAssets.lightLogo),
+                      child: Image.asset(AppAssets.logo),
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      context.localizations.authorization,
+                      context.localizations.accessRecovery,
                       style: context.text.loginFormTitle,
                     ),
                     const SizedBox(height: 30),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        context.localizations.yourLogin,
+                        context.localizations.loginInSys,
                         style: context.text.loginFormText,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 12),
                     AuthField(
                       validator: (login) => validateLogin(login, context),
-                      hint: context.localizations.yourLoginWithTip,
+                      hint: context.localizations.loginInSys,
                       controller: _loginFieldController,
                     ),
                     const SizedBox(height: 20),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        context.localizations.yourPassword,
+                        context.localizations.registrationEmail,
                         style: context.text.loginFormText,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 12),
                     AuthField(
-                      validator: (password) =>
-                          validatePassword(password, context),
-                      obscureText: true,
-                      hint: context.localizations.yourPassword,
-                      controller: _passwordFieldController,
+                      validator: (email) => validateEmail(email, context),
+                      hint: context.localizations.registrationEmail,
+                      controller: _emailFieldController,
                     ),
                     const SizedBox(height: 20),
                     _CodeVerificationSection(
@@ -100,18 +88,10 @@ class _LoginPageState extends State<LoginPage> with Validator {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    _ForgotPasswordSection(
-                      onTap: () => _goToRestorePage(context),
-                    ),
-                    const SizedBox(height: 30),
                     EntryFlowButton(
-                      text: context.localizations.login,
-                      onPressed: _onLoginButtonPressed,
+                      text: context.localizations.restoreAccess,
+                      onPressed: _onRestoreButtonPressed,
                     ),
-                    const SizedBox(height: 16),
-                    const Divider(),
-                    const SizedBox(height: 20),
-                    _SignUpSection(onTap: () {}),
                   ],
                 ),
               ),
@@ -119,65 +99,6 @@ class _LoginPageState extends State<LoginPage> with Validator {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _ForgotPasswordSection extends StatelessWidget {
-  final VoidCallback onTap;
-
-  const _ForgotPasswordSection({
-    required this.onTap,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(
-          context.localizations.forgotPassword,
-          style: context.text.loginFormText,
-        ),
-        const SizedBox(width: 10),
-        InkWell(
-          onTap: onTap,
-          child: Text(
-            context.localizations.restore,
-            style: context.text.loginFormTextBold,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _SignUpSection extends StatelessWidget {
-  final VoidCallback onTap;
-
-  const _SignUpSection({
-    required this.onTap,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          context.localizations.dontHaveAnAccount,
-          style: context.text.loginFormText,
-        ),
-        const SizedBox(width: 10),
-        InkWell(
-          onTap: onTap,
-          child: Text(
-            context.localizations.signUp,
-            style: context.text.loginFormTextBold,
-          ),
-        ),
-      ],
     );
   }
 }
