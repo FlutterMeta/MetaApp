@@ -13,9 +13,9 @@ class _MobileMenuNavigationState extends State<_MobileMenuNavigation>
   late Animation<double> animation;
   late OverlayEntry overlayEntry = OverlayEntry(builder: (context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 120),
+      padding: const EdgeInsets.only(top: 110),
       child: Material(
-        color: Colors.transparent,
+        color: context.color.menuOpacity,
         child: WebButton(
           onTap: (() {
             _isClicked = !_isClicked;
@@ -25,7 +25,7 @@ class _MobileMenuNavigationState extends State<_MobileMenuNavigation>
           child: FadeTransition(
             opacity: animation,
             child: Container(
-              color: context.color.menuBackground,
+              color: Theme.of(context).scaffoldBackgroundColor,
               height: context.screenHeight - 110,
               width: context.screenWidth,
               child: const _MobileMenuContent(),

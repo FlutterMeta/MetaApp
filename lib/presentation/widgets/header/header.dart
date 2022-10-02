@@ -40,40 +40,44 @@ class Header extends SliverPersistentHeaderDelegate {
     bool overlapsContent,
   ) {
     return Container(
+      alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(vertical: 6),
       color: Theme.of(context).scaffoldBackgroundColor,
-      child: Column(
-        children: [
-          if (context.screenWidth > 780)
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1270),
+        child: Column(
+          children: [
+            if (context.screenWidth > 780)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    _SpecialInfoComponent(),
+                    Spacer(),
+                    _AuthButton(),
+                    SizedBox(width: 24),
+                    _LocaleDropdownMenu(),
+                    SizedBox(width: 90),
+                  ],
+                ),
+              ),
+            if (context.screenWidth > 780) const Divider(),
+            const SizedBox(height: 18),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
-                mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  _SpecialInfoComponent(),
-                  Spacer(),
-                  _AuthButton(),
-                  SizedBox(width: 24),
-                  _LocaleDropdownMenu(),
-                  SizedBox(width: 90),
+                children: [
+                  Image.asset(AppAssets.logo, height: 76),
+                  if (context.screenWidth > 780) const _MenuComponent(),
+                  if (context.screenWidth <= 780) const _MobileMenuNavigation(),
                 ],
               ),
             ),
-          if (context.screenWidth > 780) const Divider(),
-          const SizedBox(height: 18),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset(AppAssets.logo, height: 76),
-                if (context.screenWidth > 780) const _MenuComponent(),
-                if (context.screenWidth <= 780) const _MobileMenuNavigation(),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
