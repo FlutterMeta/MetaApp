@@ -9,11 +9,11 @@ class _CompactMenu extends StatefulWidget {
 
 class _CompactMenuState extends State<_CompactMenu>
     with SingleTickerProviderStateMixin, RouteAware {
+  static const double _headerHeight = 120;
   late AnimationController animationController;
   late Animation<double> animation;
   late OverlayEntry overlayEntry;
 
-  static const double _headerHeight = 120;
   bool _isClicked = false;
 
   void _onMenuButtonTap() {
