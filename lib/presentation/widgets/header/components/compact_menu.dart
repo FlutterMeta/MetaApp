@@ -88,10 +88,10 @@ class _CompactMenuState extends State<_CompactMenu>
 
   @override
   void dispose() {
-    super.dispose();
     _removeOverlay();
     animationController.dispose();
     routeObserver.unsubscribe(this);
+    super.dispose();
   }
 
   @override
