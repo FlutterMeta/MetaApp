@@ -8,6 +8,15 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle loginButtonText;
   final TextStyle loginFormHint;
   final TextStyle loginFormError;
+  final TextStyle multiMetaUniverseTitle;
+  final TextStyle metaverseThatUnitesTitle;
+  final TextStyle fromFiftyDollarsTitle;
+  final TextStyle leadershipBonusesTitle;
+  final TextStyle profitToPartnersTitle;
+  final TextStyle homePagePurpleBodyText;
+  final TextStyle accountTitle;
+  final TextStyle revelantInfoTitle;
+  final TextStyle purpleButtonText;
 
   ThemeTextStyles({
     required this.test,
@@ -17,6 +26,15 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.loginButtonText,
     required this.loginFormHint,
     required this.loginFormError,
+    required this.multiMetaUniverseTitle,
+    required this.metaverseThatUnitesTitle,
+    required this.fromFiftyDollarsTitle,
+    required this.leadershipBonusesTitle,
+    required this.profitToPartnersTitle,
+    required this.homePagePurpleBodyText,
+    required this.accountTitle,
+    required this.revelantInfoTitle,
+    required this.purpleButtonText,
   });
 
   @override
@@ -28,6 +46,15 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? loginButtonText,
     TextStyle? loginFormHint,
     TextStyle? loginFormError,
+    TextStyle? multiMetaUniverseTitle,
+    TextStyle? metaverseThatUnitesTitle,
+    TextStyle? fromFiftyDollarsTitle,
+    TextStyle? leadershipBonusesTitle,
+    TextStyle? profitToPartnersTitle,
+    TextStyle? accountTitle,
+    TextStyle? homePagePurpleBodyText,
+    TextStyle? revelantInfoTitle,
+    TextStyle? purpleButtonText,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -37,6 +64,21 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       loginButtonText: loginButtonText ?? this.loginButtonText,
       loginFormHint: loginFormHint ?? this.loginFormHint,
       loginFormError: loginFormError ?? this.loginFormError,
+      multiMetaUniverseTitle:
+          multiMetaUniverseTitle ?? this.multiMetaUniverseTitle,
+      metaverseThatUnitesTitle:
+          metaverseThatUnitesTitle ?? this.metaverseThatUnitesTitle,
+      fromFiftyDollarsTitle:
+          fromFiftyDollarsTitle ?? this.fromFiftyDollarsTitle,
+      leadershipBonusesTitle:
+          leadershipBonusesTitle ?? this.leadershipBonusesTitle,
+      profitToPartnersTitle:
+          profitToPartnersTitle ?? this.profitToPartnersTitle,
+      accountTitle: accountTitle ?? this.accountTitle,
+      homePagePurpleBodyText:
+          homePagePurpleBodyText ?? this.homePagePurpleBodyText,
+      revelantInfoTitle: revelantInfoTitle ?? this.revelantInfoTitle,
+      purpleButtonText: purpleButtonText ?? this.purpleButtonText,
     );
   }
 
@@ -59,6 +101,23 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(loginButtonText, other.loginButtonText, t)!,
       loginFormHint: TextStyle.lerp(loginFormHint, other.loginFormHint, t)!,
       loginFormError: TextStyle.lerp(loginFormError, other.loginFormError, t)!,
+      multiMetaUniverseTitle: TextStyle.lerp(
+          multiMetaUniverseTitle, other.multiMetaUniverseTitle, t)!,
+      fromFiftyDollarsTitle: TextStyle.lerp(
+          fromFiftyDollarsTitle, other.fromFiftyDollarsTitle, t)!,
+      leadershipBonusesTitle: TextStyle.lerp(
+          leadershipBonusesTitle, other.leadershipBonusesTitle, t)!,
+      profitToPartnersTitle: TextStyle.lerp(
+          profitToPartnersTitle, other.profitToPartnersTitle, t)!,
+      metaverseThatUnitesTitle: TextStyle.lerp(
+          metaverseThatUnitesTitle, other.metaverseThatUnitesTitle, t)!,
+      accountTitle: TextStyle.lerp(accountTitle, other.accountTitle, t)!,
+      homePagePurpleBodyText: TextStyle.lerp(
+          homePagePurpleBodyText, other.homePagePurpleBodyText, t)!,
+      revelantInfoTitle:
+          TextStyle.lerp(revelantInfoTitle, other.revelantInfoTitle, t)!,
+      purpleButtonText:
+          TextStyle.lerp(purpleButtonText, other.purpleButtonText, t)!,
     );
   }
 
@@ -87,6 +146,33 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.lighterPurple,
           fontWeight: FontWeight.w400,
         ),
+        multiMetaUniverseTitle: headline1.copyWith(fontSize: 62),
+        metaverseThatUnitesTitle: headline1.copyWith(fontSize: 52),
+        fromFiftyDollarsTitle: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.purple,
+        ),
+        leadershipBonusesTitle: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.lightPurple,
+        ),
+        profitToPartnersTitle: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.lighterPurple,
+        ),
+        accountTitle: headline3.copyWith(
+          fontWeight: FontWeight.bold,
+          color: AppColors.purple,
+        ),
+        homePagePurpleBodyText: headline3.copyWith(
+          color: AppColors.purple,
+          fontWeight: FontWeight.w500,
+        ),
+        revelantInfoTitle: headline2,
+        purpleButtonText: headline3.copyWith(
+          color: AppColors.white,
+          fontSize: 14,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -113,6 +199,35 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         loginFormError: headline3.copyWith(
           color: AppColors.lighterPurple,
           fontWeight: FontWeight.w400,
+        ),
+        multiMetaUniverseTitle: headline1.copyWith(fontSize: 62),
+        metaverseThatUnitesTitle: headline1.copyWith(
+          fontSize: 52,
+        ),
+        fromFiftyDollarsTitle: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.purple,
+        ),
+        leadershipBonusesTitle: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.lightPurple,
+        ),
+        profitToPartnersTitle: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.lighterPurple,
+        ),
+        accountTitle: headline3.copyWith(
+          fontWeight: FontWeight.bold,
+          color: AppColors.purple,
+        ),
+        homePagePurpleBodyText: headline3.copyWith(
+          color: AppColors.purple,
+          fontWeight: FontWeight.w500,
+        ),
+        revelantInfoTitle: headline2,
+        purpleButtonText: headline3.copyWith(
+          color: AppColors.white,
+          fontSize: 14,
         ),
       );
 }

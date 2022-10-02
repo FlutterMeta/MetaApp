@@ -4,9 +4,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/l10n.dart';
-import 'package:meta_app/presentation/pages/home_page.dart';
+import 'package:meta_app/presentation/pages/home_page/home_page.dart';
 import 'package:meta_app/presentation/redux/app_state.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
+import 'package:meta_app/core/route_observer.dart';
 
 class Application extends StatelessWidget {
   final Store<AppState> store;
@@ -28,6 +29,7 @@ class Application extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,
           ],
+          navigatorObservers: [routeObserver],
           theme: createLightTheme(),
           darkTheme: createDarkTheme(),
           themeMode: vm.themeMode,

@@ -10,4 +10,8 @@ extension BuildContextExt on BuildContext {
   ThemeColors get color => Theme.of(this).extension<ThemeColors>()!;
 
   ThemeGradients get gradient => Theme.of(this).extension<ThemeGradients>()!;
+
+  double get screenWidth => MediaQuery.of(this).size.width;
+
+  double get screenHeight => MediaQuery.of(this).size.height;
 }

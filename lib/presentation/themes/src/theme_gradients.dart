@@ -3,9 +3,11 @@ part of '../theme.dart';
 class ThemeGradients extends ThemeExtension<ThemeGradients> {
   final LinearGradient purple;
   final LinearGradient lightPurple;
+  final LinearGradient purpleVertical;
 
   const ThemeGradients({
     required this.purple,
+    required this.purpleVertical,
     required this.lightPurple,
   });
 
@@ -15,9 +17,9 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     LinearGradient? lightPurple,
   }) {
     return ThemeGradients(
-      purple: purple ?? this.purple,
-      lightPurple: lightPurple ?? this.lightPurple,
-    );
+        purple: purple ?? this.purple,
+        lightPurple: lightPurple ?? this.lightPurple,
+        purpleVertical: purpleVertical ?? this.purpleVertical);
   }
 
   @override
@@ -32,6 +34,8 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     return ThemeGradients(
       purple: LinearGradient.lerp(purple, other.purple, t)!,
       lightPurple: LinearGradient.lerp(lightPurple, other.lightPurple, t)!,
+      purpleVertical:
+          LinearGradient.lerp(purpleVertical, other.purpleVertical, t)!,
     );
   }
 
@@ -48,6 +52,12 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           stops: [0.4, 0.8],
           colors: [AppColors.purple, AppColors.lightPurple],
         ),
+        purpleVertical: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          stops: [0.4, 0.5],
+          colors: [AppColors.purple, AppColors.lightPurple],
+        ),
       );
 
   static get dark => const ThemeGradients(
@@ -62,6 +72,12 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           end: Alignment.centerRight,
           stops: [0.4, 0.8],
           colors: [AppColors.purple, AppColors.lightPurple],
+        ),
+        purpleVertical: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          stops: [0.4, 0.5],
+          colors: [AppColors.purple, AppColors.white],
         ),
       );
 }

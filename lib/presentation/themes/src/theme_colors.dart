@@ -3,20 +3,49 @@ part of '../theme.dart';
 class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color loginButtonFill;
   final Color formFieldFill;
+  final Color infoCardBackground;
+  final Color roadmapCardBackground;
+  final Color navButtonHover;
+  final Color webButtonFillColor;
+  final Color menuOpacity;
+  final Color headerBackground;
+  final Color headerShadow;
 
   const ThemeColors({
     required this.loginButtonFill,
     required this.formFieldFill,
+    required this.infoCardBackground,
+    required this.roadmapCardBackground,
+    required this.navButtonHover,
+    required this.webButtonFillColor,
+    required this.menuOpacity,
+    required this.headerBackground,
+    required this.headerShadow,
   });
 
   @override
   ThemeExtension<ThemeColors> copyWith({
     Color? loginButtonFill,
     Color? formFieldFill,
+    Color? infoCardBackground,
+    Color? roadmapCardBackground,
+    Color? navButtonHover,
+    Color? webButtonFillColor,
+    Color? menuOpacity,
+    Color? headerBackground,
+    Color? headerShadow,
   }) {
     return ThemeColors(
       loginButtonFill: loginButtonFill ?? this.loginButtonFill,
       formFieldFill: formFieldFill ?? this.formFieldFill,
+      infoCardBackground: infoCardBackground ?? this.infoCardBackground,
+      roadmapCardBackground:
+          roadmapCardBackground ?? this.roadmapCardBackground,
+      navButtonHover: navButtonHover ?? this.navButtonHover,
+      webButtonFillColor: webButtonFillColor ?? this.webButtonFillColor,
+      menuOpacity: menuOpacity ?? this.menuOpacity,
+      headerBackground: headerBackground ?? this.headerBackground,
+      headerShadow: headerShadow ?? this.headerShadow,
     );
   }
 
@@ -32,16 +61,41 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     return ThemeColors(
       loginButtonFill: Color.lerp(loginButtonFill, other.loginButtonFill, t)!,
       formFieldFill: Color.lerp(formFieldFill, other.formFieldFill, t)!,
+      infoCardBackground:
+          Color.lerp(infoCardBackground, other.infoCardBackground, t)!,
+      roadmapCardBackground:
+          Color.lerp(roadmapCardBackground, other.roadmapCardBackground, t)!,
+      navButtonHover: Color.lerp(navButtonHover, other.navButtonHover, t)!,
+      webButtonFillColor:
+          Color.lerp(webButtonFillColor, other.webButtonFillColor, t)!,
+      menuOpacity: Color.lerp(menuOpacity, other.menuOpacity, t)!,
+      headerBackground:
+          Color.lerp(headerBackground, other.headerBackground, t)!,
+      headerShadow: Color.lerp(headerShadow, other.headerShadow, t)!,
     );
   }
 
-  static get light => const ThemeColors(
+  static get light => ThemeColors(
         loginButtonFill: AppColors.white,
-        formFieldFill: AppColors.brighterWhite,
+        formFieldFill: AppColors.brightWhite,
+        infoCardBackground: AppColors.grey,
+        roadmapCardBackground: AppColors.purple,
+        navButtonHover: AppColors.blueGrey,
+        webButtonFillColor: AppColors.transparent,
+        menuOpacity: AppColors.transparent,
+        headerBackground: AppColors.brighterWhite,
+        headerShadow: AppColors.grey.withOpacity(0.4),
       );
 
-  static get dark => const ThemeColors(
+  static get dark => ThemeColors(
         loginButtonFill: AppColors.white,
-        formFieldFill: AppColors.brighterWhite,
+        formFieldFill: AppColors.brightWhite,
+        infoCardBackground: AppColors.grey,
+        roadmapCardBackground: AppColors.purple,
+        navButtonHover: AppColors.blueGrey,
+        webButtonFillColor: AppColors.transparent,
+        menuOpacity: AppColors.transparent,
+        headerBackground: AppColors.brighterWhite,
+        headerShadow: AppColors.grey.withOpacity(0.4),
       );
 }
