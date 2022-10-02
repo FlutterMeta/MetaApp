@@ -17,10 +17,7 @@ class SliverSizedBox extends StatelessWidget {
       child: SizedBox(
         width: width,
         height: height,
-        child: Align(
-          alignment: Alignment.center,
-          child: child,
-        ),
+        child: child,
       ),
     );
   }

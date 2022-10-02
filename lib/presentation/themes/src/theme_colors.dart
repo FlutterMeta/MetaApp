@@ -8,6 +8,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color navButtonHover;
   final Color webButtonFillColor;
   final Color menuOpacity;
+  final Color headerBackground;
 
   const ThemeColors({
     required this.loginButtonFill,
@@ -17,6 +18,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.navButtonHover,
     required this.webButtonFillColor,
     required this.menuOpacity,
+    required this.headerBackground,
   });
 
   @override
@@ -28,6 +30,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? navButtonHover,
     Color? webButtonFillColor,
     Color? menuOpacity,
+    Color? headerBackground,
   }) {
     return ThemeColors(
       loginButtonFill: loginButtonFill ?? this.loginButtonFill,
@@ -38,6 +41,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       navButtonHover: navButtonHover ?? this.navButtonHover,
       webButtonFillColor: webButtonFillColor ?? this.webButtonFillColor,
       menuOpacity: menuOpacity ?? this.menuOpacity,
+      headerBackground: headerBackground ?? this.headerBackground,
     );
   }
 
@@ -61,26 +65,30 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       webButtonFillColor:
           Color.lerp(webButtonFillColor, other.webButtonFillColor, t)!,
       menuOpacity: Color.lerp(menuOpacity, other.menuOpacity, t)!,
+      headerBackground:
+          Color.lerp(headerBackground, other.headerBackground, t)!,
     );
   }
 
-  static get light => const ThemeColors(
+  static get light => ThemeColors(
         loginButtonFill: AppColors.white,
-        formFieldFill: AppColors.brighterWhite,
+        formFieldFill: AppColors.brightWhite,
         infoCardBackground: AppColors.grey,
         roadmapCardBackground: AppColors.purple,
         navButtonHover: AppColors.blueGrey,
         webButtonFillColor: AppColors.transparent,
         menuOpacity: AppColors.transparent,
+        headerBackground: AppColors.brighterWhite,
       );
 
-  static get dark => const ThemeColors(
+  static get dark => ThemeColors(
         loginButtonFill: AppColors.white,
-        formFieldFill: AppColors.brighterWhite,
+        formFieldFill: AppColors.brightWhite,
         infoCardBackground: AppColors.grey,
         roadmapCardBackground: AppColors.purple,
         navButtonHover: AppColors.blueGrey,
         webButtonFillColor: AppColors.transparent,
         menuOpacity: AppColors.transparent,
+        headerBackground: AppColors.brighterWhite,
       );
 }

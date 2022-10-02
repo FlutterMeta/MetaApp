@@ -15,15 +15,15 @@ class _SpecialInfoComponent extends StatelessWidget {
           children: [
             Text(context.localizations.moreFactsAbout),
             const SizedBox(width: 6),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Container(
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
                 color: context.color.roadmapCardBackground,
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  context.localizations.roadmap,
-                  style: context.text.darkBackgroundText,
-                ),
+              ),
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                context.localizations.roadmap,
+                style: context.text.purpleButtonText,
               ),
             ),
           ],

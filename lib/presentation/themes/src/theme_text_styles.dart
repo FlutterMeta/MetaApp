@@ -16,8 +16,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle homePagePurpleBodyText;
   final TextStyle accountTitle;
   final TextStyle revelantInfoTitle;
-
-  final TextStyle darkBackgroundText;
+  final TextStyle purpleButtonText;
 
   ThemeTextStyles({
     required this.test,
@@ -35,7 +34,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.homePagePurpleBodyText,
     required this.accountTitle,
     required this.revelantInfoTitle,
-    required this.darkBackgroundText,
+    required this.purpleButtonText,
   });
 
   @override
@@ -55,7 +54,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? accountTitle,
     TextStyle? homePagePurpleBodyText,
     TextStyle? revelantInfoTitle,
-    TextStyle? darkBackgroundText,
+    TextStyle? purpleButtonText,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -79,7 +78,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       homePagePurpleBodyText:
           homePagePurpleBodyText ?? this.homePagePurpleBodyText,
       revelantInfoTitle: revelantInfoTitle ?? this.revelantInfoTitle,
-      darkBackgroundText: darkBackgroundText ?? this.darkBackgroundText,
+      purpleButtonText: purpleButtonText ?? this.purpleButtonText,
     );
   }
 
@@ -117,8 +116,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           homePagePurpleBodyText, other.homePagePurpleBodyText, t)!,
       revelantInfoTitle:
           TextStyle.lerp(revelantInfoTitle, other.revelantInfoTitle, t)!,
-      darkBackgroundText:
-          TextStyle.lerp(darkBackgroundText, other.darkBackgroundText, t)!,
+      purpleButtonText:
+          TextStyle.lerp(purpleButtonText, other.purpleButtonText, t)!,
     );
   }
 
@@ -170,7 +169,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w500,
         ),
         revelantInfoTitle: headline2,
-        darkBackgroundText: headline3.copyWith(
+        purpleButtonText: headline3.copyWith(
           color: AppColors.white,
           fontSize: 14,
         ),
@@ -226,7 +225,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w500,
         ),
         revelantInfoTitle: headline2,
-        darkBackgroundText: headline3.copyWith(
+        purpleButtonText: headline3.copyWith(
           color: AppColors.white,
           fontSize: 14,
         ),

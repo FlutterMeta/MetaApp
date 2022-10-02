@@ -1,13 +1,13 @@
 part of '../header.dart';
 
-class _LocaleDropdownMenu extends StatefulWidget {
-  const _LocaleDropdownMenu({Key? key}) : super(key: key);
+class _LocaleDropdown extends StatefulWidget {
+  const _LocaleDropdown({Key? key}) : super(key: key);
 
   @override
-  State<_LocaleDropdownMenu> createState() => _LocaleDropdownMenuState();
+  State<_LocaleDropdown> createState() => _LocaleDropdownState();
 }
 
-class _LocaleDropdownMenuState extends State<_LocaleDropdownMenu> {
+class _LocaleDropdownState extends State<_LocaleDropdown> {
   @override
   Widget build(BuildContext context) {
     return Row(

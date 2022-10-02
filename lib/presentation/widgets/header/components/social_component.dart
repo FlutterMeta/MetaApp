@@ -8,7 +8,10 @@ class _SocialComponent extends StatelessWidget {
     return Row(
       children: [
         const SizedBox(width: 10),
-        _SocialMediaButton(asset: AppAssets.telegramIcon, onTap: () {}),
+        _SocialMediaButton(
+          asset: AppAssets.telegramIcon,
+          onTap: () {},
+        ),
         const SizedBox(width: 10),
         _SocialMediaButton(
           asset: AppAssets.youtubeIcon,

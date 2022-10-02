@@ -1,7 +1,7 @@
 part of '../header.dart';
 
-class _MenuComponent extends StatelessWidget {
-  const _MenuComponent({Key? key}) : super(key: key);
+class _ExpandedMenu extends StatelessWidget {
+  const _ExpandedMenu({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

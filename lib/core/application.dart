@@ -7,8 +7,7 @@ import 'package:meta_app/l10n/l10n.dart';
 import 'package:meta_app/presentation/pages/home_page/home_page.dart';
 import 'package:meta_app/presentation/redux/app_state.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
-
-final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+import 'package:meta_app/route_observer.dart';
 
 class Application extends StatelessWidget {
   final Store<AppState> store;

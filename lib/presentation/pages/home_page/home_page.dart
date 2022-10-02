@@ -9,7 +9,6 @@ import 'package:meta_app/presentation/widgets/sliver_sized_box.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 
 part 'sections/presentation_section.dart';
-part 'sections/revelant_info_section.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -25,13 +24,10 @@ class HomePage extends StatelessWidget {
           ),
           const SliverSizedBox(height: 70),
           const SliverSizedBox(
-            width: double.infinity,
-            child: _PresentationSection(),
-          ),
-          const SliverSizedBox(
-            height: 1700,
-            width: double.infinity,
-            child: ColoredBox(color: Colors.deepPurple),
+            child: Align(
+              alignment: Alignment.center,
+              child: _PresentationSection(),
+            ),
           ),
         ],
       ),

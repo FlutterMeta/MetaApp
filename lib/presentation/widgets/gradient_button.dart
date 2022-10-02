@@ -26,19 +26,17 @@ class GradientButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(8.0),
             gradient: gradient ?? context.gradient.purple,
           ),
+          padding: const EdgeInsets.symmetric(
+            vertical: 10,
+            horizontal: 20,
+          ),
           clipBehavior: Clip.antiAlias,
           child: WebButton(
             onTap: onTap,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 20,
-              ),
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                style: context.text.darkBackgroundText,
-              ),
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: context.text.purpleButtonText,
             ),
           ),
         );
