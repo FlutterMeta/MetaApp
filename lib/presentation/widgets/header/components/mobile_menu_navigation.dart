@@ -11,7 +11,32 @@ class _MobileMenuNavigationState extends State<_MobileMenuNavigation>
     with SingleTickerProviderStateMixin, RouteAware {
   late AnimationController animationController;
   late Animation<double> animation;
-  late OverlayEntry overlayEntry;
+  late OverlayEntry overlayEntry = OverlayEntry(builder: (context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 120),
+      child: Material(
+        color: Colors.transparent,
+        child: WebButton(
+          onTap: (() {
+            _isClicked = !_isClicked;
+            if (mounted) setState(() {});
+            _removeOverlay();
+          }),
+          child: FadeTransition(
+            opacity: animation,
+            child: AnimatedContainer(
+              color: Colors.white,
+              height: context.screenHeight - 110,
+              width: context.screenWidth,
+              duration: const Duration(milliseconds: 400),
+              curve: Curves.linear,
+              child: const _MobileMenuContent(),
+            ),
+          ),
+        ),
+      ),
+    );
+  });
   bool _isClicked = false;
 
   @override
@@ -19,35 +44,9 @@ class _MobileMenuNavigationState extends State<_MobileMenuNavigation>
     super.initState();
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 900),
+      duration: const Duration(milliseconds: 400),
     );
-    animation =
-        CurveTween(curve: Curves.fastOutSlowIn).animate(animationController);
-
-    overlayEntry = OverlayEntry(builder: (context) {
-      return Padding(
-        padding: const EdgeInsets.only(top: 120),
-        child: Material(
-          child: WebButton(
-            onTap: (() {
-              _isClicked = !_isClicked;
-              setState(() {});
-              _removeOverlay();
-            }),
-            child: FadeTransition(
-              opacity: animation,
-              child: AnimatedContainer(
-                height: context.screenHeight - 120,
-                width: context.screenWidth,
-                duration: const Duration(milliseconds: 700),
-                curve: Curves.bounceInOut,
-                child: const _MobileMenuContent(),
-              ),
-            ),
-          ),
-        ),
-      );
-    });
+    animation = CurveTween(curve: Curves.linear).animate(animationController);
   }
 
   void _showOverlay() async {
@@ -69,16 +68,19 @@ class _MobileMenuNavigationState extends State<_MobileMenuNavigation>
   @override
   void didChangeDependencies() {
     Future.delayed(Duration.zero, () {
-      if (context.screenWidth > 780) _removeOverlay();
+      if (mounted && context.screenWidth > 780) _removeOverlay();
     });
     super.didChangeDependencies();
+
     routeObserver.subscribe(this, ModalRoute.of(context) as PageRoute);
   }
 
   @override
-  void didPushNext() {
+  void didPushNext() async {
     _isClicked = !_isClicked;
     setState(() {});
+
+    await Future.delayed(const Duration(milliseconds: 100));
     _removeOverlay();
   }
 

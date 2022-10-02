@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:meta_app/presentation/widgets/gradient_button.dart';
 import 'package:meta_app/presentation/widgets/header/header.dart';
@@ -15,21 +17,34 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*  appBar: PreferredSize(
-        preferredSize: Size(1270, context.screenWidth > 780 ? 180 : 106),
-        child: const Header(),
-      ), */
-      body: SingleChildScrollView(
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            children: const [
-              Header(),
-              SizedBox(height: 70),
-              _PresentationSection(),
-            ],
+      body: CustomScrollView(
+        slivers: [
+          SliverPadding(
+            padding: EdgeInsets.symmetric(
+              vertical: 5,
+              horizontal: max((context.screenWidth - 1270) / 2, 0) > 5
+                  ? max((context.screenWidth - 1270) / 2, 0)
+                  : 5,
+            ),
+            sliver: SliverPersistentHeader(delegate: Header(), pinned: true),
           ),
-        ),
+          if (context.screenWidth > 780)
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 70),
+            ),
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              width: double.infinity,
+              child: Align(
+                alignment: Alignment.center,
+                child: _PresentationSection(),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: Container(height: 1700, color: Colors.deepPurple),
+          ),
+        ],
       ),
     );
   }

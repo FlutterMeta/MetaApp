@@ -16,16 +16,26 @@ part 'components/mobile_menu_content.dart';
 part 'components/social_component.dart';
 part 'components/special_info_component.dart';
 
-class Header extends StatelessWidget {
-  const Header({
-    Key? key,
-  }) : super(key: key);
+class Header extends SliverPersistentHeaderDelegate {
+  @override
+  double get minExtent => 180;
 
   @override
-  Widget build(BuildContext context) {
+  double get maxExtent => 180;
+  @override
+  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
+    return true;
+  }
+
+  @override
+  Widget build(
+    BuildContext context,
+    double shrinkOffset,
+    bool overlapsContent,
+  ) {
     return Container(
-      constraints: const BoxConstraints(maxWidth: 1270),
       padding: const EdgeInsets.symmetric(vertical: 6),
+      color: Theme.of(context).scaffoldBackgroundColor,
       child: Column(
         children: [
           if (context.screenWidth > 780)
@@ -62,9 +72,3 @@ class Header extends StatelessWidget {
     );
   }
 }
-/* 
-
-
-
-
- */
