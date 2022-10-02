@@ -7,6 +7,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color roadmapCardBackground;
   final Color navButtonHover;
   final Color webButtonFillColor;
+  final Color menuBackground;
 
   const ThemeColors({
     required this.loginButtonFill,
@@ -15,6 +16,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.roadmapCardBackground,
     required this.navButtonHover,
     required this.webButtonFillColor,
+    required this.menuBackground,
   });
 
   @override
@@ -25,6 +27,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? roadmapCardBackground,
     Color? navButtonHover,
     Color? webButtonFillColor,
+    Color? menuBackground,
   }) {
     return ThemeColors(
       loginButtonFill: loginButtonFill ?? this.loginButtonFill,
@@ -34,6 +37,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           roadmapCardBackground ?? this.roadmapCardBackground,
       navButtonHover: navButtonHover ?? this.navButtonHover,
       webButtonFillColor: webButtonFillColor ?? this.webButtonFillColor,
+      menuBackground: menuBackground ?? this.menuBackground,
     );
   }
 
@@ -56,6 +60,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       navButtonHover: Color.lerp(navButtonHover, other.navButtonHover, t)!,
       webButtonFillColor:
           Color.lerp(webButtonFillColor, other.webButtonFillColor, t)!,
+      menuBackground: Color.lerp(menuBackground, other.menuBackground, t)!,
     );
   }
 
@@ -66,6 +71,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         roadmapCardBackground: AppColors.purple,
         navButtonHover: AppColors.blueGrey,
         webButtonFillColor: AppColors.transparent,
+        menuBackground: AppColors.white,
       );
 
   static get dark => const ThemeColors(
@@ -75,5 +81,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         roadmapCardBackground: AppColors.purple,
         navButtonHover: AppColors.blueGrey,
         webButtonFillColor: AppColors.transparent,
+        menuBackground: AppColors.white,
       );
 }

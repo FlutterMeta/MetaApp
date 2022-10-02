@@ -24,12 +24,10 @@ class _MobileMenuNavigationState extends State<_MobileMenuNavigation>
           }),
           child: FadeTransition(
             opacity: animation,
-            child: AnimatedContainer(
-              color: Colors.white,
+            child: Container(
+              color: context.color.menuBackground,
               height: context.screenHeight - 110,
               width: context.screenWidth,
-              duration: const Duration(milliseconds: 400),
-              curve: Curves.linear,
               child: const _MobileMenuContent(),
             ),
           ),
