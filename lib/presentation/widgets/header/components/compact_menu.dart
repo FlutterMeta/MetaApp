@@ -13,7 +13,7 @@ class _CompactMenuState extends State<_CompactMenu>
   late Animation<double> animation;
   late OverlayEntry overlayEntry;
 
-  static const _headerHeight = 110;
+  static const double _headerHeight = 120;
   bool _isClicked = false;
 
   void _onMenuButtonTap() {
@@ -26,26 +26,14 @@ class _CompactMenuState extends State<_CompactMenu>
   OverlayEntry _getOverlay() {
     return OverlayEntry(builder: (context) {
       return Padding(
-        padding: const EdgeInsets.only(top: 110),
+        padding: const EdgeInsets.only(top: _headerHeight),
         child: Material(
           color: context.color.menuOpacity,
-          child: WebButton(
-            onTap: (() {
-              if (mounted) {
-                setState(() {
-                  _isClicked = !_isClicked;
-                });
-                _removeOverlay();
-              }
-            }),
-            child: FadeTransition(
-              opacity: animation,
-              child: Container(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                height: context.screenHeight - _headerHeight,
-                width: context.screenWidth,
-                child: const _MenuTabs(),
-              ),
+          child: FadeTransition(
+            opacity: animation,
+            child: Container(
+              color: context.color.headerBackground,
+              child: const _MenuTabs(),
             ),
           ),
         ),
@@ -78,18 +66,20 @@ class _CompactMenuState extends State<_CompactMenu>
 
   @override
   void didChangeDependencies() {
+    super.didChangeDependencies();
+
     Future.delayed(Duration.zero, () {
       if (mounted && context.screenWidth > 780) _removeOverlay();
     });
-    super.didChangeDependencies();
 
     routeObserver.subscribe(this, ModalRoute.of(context) as PageRoute);
   }
 
   @override
   void didPushNext() async {
-    _isClicked = !_isClicked;
-    setState(() {});
+    setState(() {
+      _isClicked = !_isClicked;
+    });
 
     await Future.delayed(const Duration(milliseconds: 100));
     _removeOverlay();
@@ -97,10 +87,10 @@ class _CompactMenuState extends State<_CompactMenu>
 
   @override
   void dispose() {
+    super.dispose();
     _removeOverlay();
     animationController.dispose();
     routeObserver.unsubscribe(this);
-    super.dispose();
   }
 
   @override

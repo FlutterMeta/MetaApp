@@ -29,6 +29,10 @@ class HomePage extends StatelessWidget {
               child: _PresentationSection(),
             ),
           ),
+          const SliverSizedBox(
+            height: 500,
+            child: ColoredBox(color: Colors.deepPurple),
+          ),
         ],
       ),
     );

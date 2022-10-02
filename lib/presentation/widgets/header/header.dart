@@ -5,7 +5,7 @@ import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/pages/login_page.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
-import 'package:meta_app/route_observer.dart';
+import 'package:meta_app/core/route_observer.dart';
 
 part 'components/account_button.dart';
 part 'components/locale_dropdown.dart';
@@ -42,7 +42,7 @@ class Header extends SliverPersistentHeaderDelegate {
         color: context.color.headerBackground,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: context.color.headerShadow,
             spreadRadius: 3,
             blurRadius: 6,
           ),
