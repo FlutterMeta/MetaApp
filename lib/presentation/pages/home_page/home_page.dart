@@ -26,7 +26,10 @@ class HomePage extends StatelessWidget {
                   ? max((context.screenWidth - 1270) / 2, 0)
                   : 5,
             ),
-            sliver: SliverPersistentHeader(delegate: Header(), pinned: true),
+            sliver: SliverPersistentHeader(
+              delegate: Header(screenWidth: context.screenWidth),
+              pinned: true,
+            ),
           ),
           if (context.screenWidth > 780)
             const SliverToBoxAdapter(

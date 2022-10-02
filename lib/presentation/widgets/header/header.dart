@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meta_app/core/application.dart';
 
+import 'package:meta_app/core/application.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/pages/login_page.dart';
@@ -10,18 +10,24 @@ import 'package:meta_app/presentation/widgets/web_button.dart';
 part 'components/auth_button.dart';
 part 'components/locale_dropdown_menu.dart';
 part 'components/menu_component.dart';
+part 'components/mobile_menu_content.dart';
 part 'components/mobile_menu_navigation.dart';
 part 'components/navigation_button.dart';
-part 'components/mobile_menu_content.dart';
 part 'components/social_component.dart';
 part 'components/special_info_component.dart';
 
 class Header extends SliverPersistentHeaderDelegate {
-  @override
-  double get minExtent => 180;
+  final double screenWidth;
+
+  Header({required this.screenWidth});
 
   @override
-  double get maxExtent => 180;
+  double get minExtent {
+    return screenWidth > 780 ? 180 : 110;
+  }
+
+  @override
+  double get maxExtent => minExtent;
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
     return true;
