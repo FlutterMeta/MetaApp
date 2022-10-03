@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
-class EntryFlowButton extends StatelessWidget {
+class AuthButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const EntryFlowButton({
+  const AuthButton({
     required this.text,
     required this.onPressed,
     Key? key,

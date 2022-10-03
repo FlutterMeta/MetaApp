@@ -22,11 +22,11 @@
             }
         }
     },
+    "@_PASSWORD_RECOVERY_PAGE": {},
     "accessRecovery": "Access recovery",
-    "loginInSys": "Login in the system",
+    "logInSystem": "Login in the system",
     "registrationEmail": "Registration e-mail",
-    "restoreAccess": "Restore access"
-    },
+    "restoreAccess": "Restore access",
     "@_HOME_PAGE": {},
     "moreFactsAbout": "More facts about MultiMeta in the updated",
     "multiMetaUniverse": "MultiMeta Universe",
