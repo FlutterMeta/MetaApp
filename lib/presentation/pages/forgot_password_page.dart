@@ -21,7 +21,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
   final _codeFieldController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  void _goToForgotPasswordPage() => _formKey.currentState?.validate();
+  void _onRestoreButtonPressed() => _formKey.currentState?.validate();
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +91,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
                     const SizedBox(height: 20),
                     AuthButton(
                       text: context.localizations.restoreAccess,
-                      onPressed: _goToForgotPasswordPage,
+                      onPressed: _onRestoreButtonPressed,
                     ),
                   ],
                 ),

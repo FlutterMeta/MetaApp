@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
     _formKey.currentState?.validate();
   }
 
-  void _goToRestorePage(BuildContext context) {
+  void _goToForgotPasswordPage(BuildContext context) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
                     ),
                     const SizedBox(height: 20),
                     _ForgotPasswordSection(
-                      onTap: () => _goToRestorePage(context),
+                      onTap: () => _goToForgotPasswordPage(context),
                     ),
                     const SizedBox(height: 30),
                     AuthButton(
