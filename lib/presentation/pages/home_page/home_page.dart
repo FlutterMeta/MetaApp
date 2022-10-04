@@ -45,9 +45,11 @@ class HomePage extends StatelessWidget {
               child: _PresentationSection(),
             ),
           ),
+          const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(
             child: VideoSection(),
           ),
+          const SliverSizedBox(height: 50),
         ],
       ),
     );
