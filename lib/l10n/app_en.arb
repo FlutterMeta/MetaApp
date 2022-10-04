@@ -22,6 +22,11 @@
             }
         }
     },
+    "@_PASSWORD_RECOVERY_PAGE": {},
+    "accessRecovery": "Access recovery",
+    "logInSystem": "Login in the system",
+    "registrationEmail": "Registration e-mail",
+    "restoreAccess": "Restore access",
     "@_HOME_PAGE": {},
     "moreFactsAbout": "More facts about MultiMeta in the updated",
     "multiMetaUniverse": "MultiMeta Universe",

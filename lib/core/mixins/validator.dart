@@ -32,4 +32,11 @@ mixin Validator {
     }
     return null;
   }
+
+  String? validateEmail(String? email, BuildContext context) {
+    if (email.isEmailValid().not()) {
+      return context.localizations.incorrectLogin;
+    }
+    return null;
+  }
 }

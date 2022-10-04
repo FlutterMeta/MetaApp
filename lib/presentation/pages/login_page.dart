@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import "package:meta_app/core/utils/extensions/build_context_ext.dart";
 import 'package:meta_app/core/mixins/validator.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
+import 'package:meta_app/presentation/pages/forgot_password_page.dart';
 import 'package:meta_app/presentation/widgets/auth_field.dart';
+import 'package:meta_app/presentation/widgets/auth_button.dart';
+import 'package:meta_app/presentation/widgets/code_verification_section.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,6 +24,13 @@ class _LoginPageState extends State<LoginPage> with Validator {
 
   void _onLoginButtonPressed() {
     _formKey.currentState?.validate();
+  }
+
+  void _goToForgotPasswordPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
+    );
   }
 
   @override
@@ -84,16 +94,21 @@ class _LoginPageState extends State<LoginPage> with Validator {
                       controller: _passwordFieldController,
                     ),
                     const SizedBox(height: 20),
-                    _CodeVerificationSection(
+                    CodeVerificationSection(
                       child: AuthField(
                         validator: (code) => validateCode(code, context),
                         controller: _codeFieldController,
                       ),
                     ),
                     const SizedBox(height: 20),
-                    _ForgotPasswordSection(onTap: () {}),
+                    _ForgotPasswordSection(
+                      onTap: () => _goToForgotPasswordPage(context),
+                    ),
                     const SizedBox(height: 30),
-                    _LoginButton(onPressed: _onLoginButtonPressed),
+                    AuthButton(
+                      text: context.localizations.login,
+                      onPressed: _onLoginButtonPressed,
+                    ),
                     const SizedBox(height: 16),
                     const Divider(),
                     const SizedBox(height: 20),
@@ -161,72 +176,6 @@ class _SignUpSection extends StatelessWidget {
           child: Text(
             context.localizations.signUp,
             style: context.text.loginFormTextBold,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _LoginButton extends StatelessWidget {
-  final VoidCallback onPressed;
-
-  const _LoginButton({
-    required this.onPressed,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 60,
-      width: double.maxFinite,
-      child: TextButton(
-        onPressed: onPressed,
-        style: ButtonStyle(
-          backgroundColor:
-              MaterialStateProperty.all(context.color.loginButtonFill),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-            const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
-            ),
-          ),
-        ),
-        child: Text(
-          context.localizations.login,
-          style: context.text.loginButtonText,
-        ),
-      ),
-    );
-  }
-}
-
-class _CodeVerificationSection extends StatelessWidget {
-  final Widget child;
-
-  const _CodeVerificationSection({
-    required this.child,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Expanded(
-          child: Icon(Icons.numbers),
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                context.localizations.codeFromImage,
-                style: context.text.loginFormText,
-              ),
-              const SizedBox(height: 10),
-              child,
-            ],
           ),
         ),
       ],
