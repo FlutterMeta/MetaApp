@@ -4,6 +4,7 @@ import "package:meta_app/core/utils/extensions/build_context_ext.dart";
 import 'package:meta_app/core/mixins/validator.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/pages/forgot_password_page.dart';
+import 'package:meta_app/presentation/pages/registration_page.dart';
 import 'package:meta_app/presentation/widgets/auth_field.dart';
 import 'package:meta_app/presentation/widgets/auth_button.dart';
 import 'package:meta_app/presentation/widgets/code_verification_section.dart';
@@ -30,6 +31,13 @@ class _LoginPageState extends State<LoginPage> with Validator {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
+    );
+  }
+
+  void _goToRegistrationPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const RegistrationPage()),
     );
   }
 
@@ -112,7 +120,9 @@ class _LoginPageState extends State<LoginPage> with Validator {
                     const SizedBox(height: 16),
                     const Divider(),
                     const SizedBox(height: 20),
-                    _SignUpSection(onTap: () {}),
+                    _SignUpSection(
+                      onTap: () => _goToRegistrationPage(context),
+                    ),
                   ],
                 ),
               ),
