@@ -1,7 +1,11 @@
 part of '../header.dart';
 
 class _CompactMenu extends StatefulWidget {
-  const _CompactMenu({Key? key}) : super(key: key);
+  final double Function() headerOffset;
+  const _CompactMenu({
+    required this.headerOffset,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<_CompactMenu> createState() => _CompactMenuState();
@@ -9,11 +13,9 @@ class _CompactMenu extends StatefulWidget {
 
 class _CompactMenuState extends State<_CompactMenu>
     with SingleTickerProviderStateMixin, RouteAware {
-  static const double _headerHeight = 120;
-
   late AnimationController animationController;
   late Animation<double> animation;
-  late OverlayEntry overlayEntry;
+  OverlayEntry? overlayEntry;
 
   bool _isClicked = false;
 
@@ -24,34 +26,26 @@ class _CompactMenuState extends State<_CompactMenu>
     });
   }
 
-  OverlayEntry _getOverlay() {
-    return OverlayEntry(builder: (context) {
-      return Padding(
-        padding: const EdgeInsets.only(top: _headerHeight),
-        child: Material(
-          color: context.color.menuOpacity,
-          child: FadeTransition(
-            opacity: animation,
-            child: Container(
-              color: context.color.headerBackground,
-              child: const _MenuTabs(),
-            ),
-          ),
-        ),
-      );
-    });
-  }
-
   void _showOverlay() async {
     OverlayState? overlayState = Overlay.of(context);
-    overlayState?.insert(overlayEntry);
+
+    overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        top: widget.headerOffset(),
+        height: context.screenHeight - widget.headerOffset(),
+        width: context.screenWidth,
+        child: _OverlayMenu(animation: animation),
+      ),
+    );
+
+    overlayState?.insert(overlayEntry as OverlayEntry);
     animationController.forward();
   }
 
   void _removeOverlay() {
-    if (!overlayEntry.mounted) return;
+    if (overlayEntry == null ? true : !overlayEntry!.mounted) return;
     animationController.reverse();
-    overlayEntry.remove();
+    overlayEntry?.remove();
   }
 
   @override
@@ -62,7 +56,6 @@ class _CompactMenuState extends State<_CompactMenu>
       duration: const Duration(milliseconds: 400),
     );
     animation = CurveTween(curve: Curves.linear).animate(animationController);
-    overlayEntry = _getOverlay();
   }
 
   @override
@@ -106,6 +99,28 @@ class _CompactMenuState extends State<_CompactMenu>
         ),
         const _SocialComponent(),
       ],
+    );
+  }
+}
+
+class _OverlayMenu extends StatelessWidget {
+  final Animation<double> animation;
+  const _OverlayMenu({
+    required this.animation,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: context.color.menuOpacity,
+      child: FadeTransition(
+        opacity: animation,
+        child: Container(
+          color: context.color.headerBackground,
+          child: const _MenuTabs(),
+        ),
+      ),
     );
   }
 }

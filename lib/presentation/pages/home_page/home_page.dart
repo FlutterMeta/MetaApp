@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:meta_app/presentation/pages/home_page/sections/video_section.dart';
 
 import 'package:meta_app/presentation/widgets/gradient_button.dart';
 import 'package:meta_app/presentation/widgets/header/header.dart';
@@ -11,7 +13,17 @@ import 'package:meta_app/presentation/widgets/web_button.dart';
 part 'sections/presentation_section.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final _headerKey = GlobalKey();
+  HomePage({super.key});
+
+  double _getHeaderYOffset() {
+    final renderSliver =
+        _headerKey.currentContext?.findRenderObject() as RenderSliver;
+
+    final yOffset = renderSliver.constraints.precedingScrollExtent +
+        (renderSliver.geometry?.scrollExtent ?? 0);
+    return yOffset;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +31,11 @@ class HomePage extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
-            delegate: Header(screenWidth: context.screenWidth),
+            key: _headerKey,
+            delegate: Header(
+              headerOffset: _getHeaderYOffset,
+              screenWidth: context.screenWidth,
+            ),
             pinned: true,
           ),
           const SliverSizedBox(height: 70),
@@ -29,9 +45,8 @@ class HomePage extends StatelessWidget {
               child: _PresentationSection(),
             ),
           ),
-          const SliverSizedBox(
-            height: 500,
-            child: ColoredBox(color: Colors.deepPurple),
+          const SliverToBoxAdapter(
+            child: VideoSection(),
           ),
         ],
       ),
