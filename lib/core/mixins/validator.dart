@@ -33,9 +33,30 @@ mixin Validator {
     return null;
   }
 
+  String? validateUsername(
+    String? username,
+    BuildContext context,
+  ) {
+    if (username.isNullOrEmpty) {
+      return context.localizations.fieldMustNotBeEmpty;
+    }
+    return null;
+  }
+
   String? validateEmail(String? email, BuildContext context) {
     if (email.isEmailValid().not()) {
       return context.localizations.incorrectLogin;
+    }
+    return null;
+  }
+
+  String? validateRepeatPass(
+    String? repeatPassword,
+    String? password,
+    BuildContext context,
+  ) {
+    if (password != repeatPassword) {
+      return context.localizations.forgotPassword;
     }
     return null;
   }
