@@ -27,14 +27,14 @@ class _LoginPageState extends State<LoginPage> with Validator {
     _formKey.currentState?.validate();
   }
 
-  void _goToForgotPasswordPage(BuildContext context) {
+  void _goToForgotPasswordPage() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
     );
   }
 
-  void _goToRegistrationPage(BuildContext context) {
+  void _goToRegistrationPage() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const RegistrationPage()),
@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
                     ),
                     const SizedBox(height: 20),
                     _ForgotPasswordSection(
-                      onTap: () => _goToForgotPasswordPage(context),
+                      onTap: () => _goToForgotPasswordPage,
                     ),
                     const SizedBox(height: 30),
                     AuthButton(
@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
                     const Divider(),
                     const SizedBox(height: 20),
                     _SignUpSection(
-                      onTap: () => _goToRegistrationPage(context),
+                      onTap: () => _goToRegistrationPage,
                     ),
                   ],
                 ),

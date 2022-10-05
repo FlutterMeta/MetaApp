@@ -1,7 +1,7 @@
 part of '../theme.dart';
 
 class ThemeColors extends ThemeExtension<ThemeColors> {
-  final Color loginButtonFill;
+  final Color authButtonFill;
   final Color formFieldFill;
   final Color infoCardBackground;
   final Color roadmapCardBackground;
@@ -12,7 +12,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color headerShadow;
 
   const ThemeColors({
-    required this.loginButtonFill,
+    required this.authButtonFill,
     required this.formFieldFill,
     required this.infoCardBackground,
     required this.roadmapCardBackground,
@@ -25,7 +25,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
 
   @override
   ThemeExtension<ThemeColors> copyWith({
-    Color? loginButtonFill,
+    Color? authButtonFill,
     Color? formFieldFill,
     Color? infoCardBackground,
     Color? roadmapCardBackground,
@@ -36,7 +36,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? headerShadow,
   }) {
     return ThemeColors(
-      loginButtonFill: loginButtonFill ?? this.loginButtonFill,
+      authButtonFill: authButtonFill ?? this.authButtonFill,
       formFieldFill: formFieldFill ?? this.formFieldFill,
       infoCardBackground: infoCardBackground ?? this.infoCardBackground,
       roadmapCardBackground:
@@ -59,7 +59,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     }
 
     return ThemeColors(
-      loginButtonFill: Color.lerp(loginButtonFill, other.loginButtonFill, t)!,
+      authButtonFill: Color.lerp(authButtonFill, other.authButtonFill, t)!,
       formFieldFill: Color.lerp(formFieldFill, other.formFieldFill, t)!,
       infoCardBackground:
           Color.lerp(infoCardBackground, other.infoCardBackground, t)!,
@@ -76,7 +76,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   }
 
   static get light => ThemeColors(
-        loginButtonFill: AppColors.white,
+        authButtonFill: AppColors.white,
         formFieldFill: AppColors.brightWhite,
         infoCardBackground: AppColors.grey,
         roadmapCardBackground: AppColors.purple,
@@ -88,7 +88,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       );
 
   static get dark => ThemeColors(
-        loginButtonFill: AppColors.white,
+        authButtonFill: AppColors.white,
         formFieldFill: AppColors.brightWhite,
         infoCardBackground: AppColors.grey,
         roadmapCardBackground: AppColors.purple,

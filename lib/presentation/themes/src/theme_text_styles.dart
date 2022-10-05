@@ -5,9 +5,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle loginFormText;
   final TextStyle loginFormTitle;
   final TextStyle loginFormTextBold;
-  final TextStyle loginButtonText;
-  final TextStyle loginFormHint;
-  final TextStyle loginFormError;
+  final TextStyle authButtonText;
+  final TextStyle authFormHint;
+  final TextStyle authFormError;
   final TextStyle multiMetaUniverseTitle;
   final TextStyle metaverseThatUnitesTitle;
   final TextStyle fromFiftyDollarsTitle;
@@ -17,15 +17,22 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle accountTitle;
   final TextStyle revelantInfoTitle;
   final TextStyle purpleButtonText;
+  final TextStyle registrationFormText;
+  final TextStyle registrationFormTitle;
+  final TextStyle registrationFormTextBold;
+  final TextStyle forgotPasswordFormText;
+  final TextStyle forgotPasswordFormTitle;
+  final TextStyle forgotPasswordFormTextBold;
+  final TextStyle haveAnAccount;
 
   ThemeTextStyles({
     required this.test,
     required this.loginFormText,
     required this.loginFormTitle,
     required this.loginFormTextBold,
-    required this.loginButtonText,
-    required this.loginFormHint,
-    required this.loginFormError,
+    required this.authButtonText,
+    required this.authFormHint,
+    required this.authFormError,
     required this.multiMetaUniverseTitle,
     required this.metaverseThatUnitesTitle,
     required this.fromFiftyDollarsTitle,
@@ -35,6 +42,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.accountTitle,
     required this.revelantInfoTitle,
     required this.purpleButtonText,
+    required this.registrationFormText,
+    required this.registrationFormTitle,
+    required this.registrationFormTextBold,
+    required this.forgotPasswordFormText,
+    required this.forgotPasswordFormTitle,
+    required this.forgotPasswordFormTextBold,
+    required this.haveAnAccount,
   });
 
   @override
@@ -43,9 +57,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? loginFormText,
     TextStyle? loginFormTitle,
     TextStyle? loginFormTextBold,
-    TextStyle? loginButtonText,
-    TextStyle? loginFormHint,
-    TextStyle? loginFormError,
+    TextStyle? authButtonText,
+    TextStyle? authFormHint,
+    TextStyle? authFormError,
     TextStyle? multiMetaUniverseTitle,
     TextStyle? metaverseThatUnitesTitle,
     TextStyle? fromFiftyDollarsTitle,
@@ -55,15 +69,22 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? homePagePurpleBodyText,
     TextStyle? revelantInfoTitle,
     TextStyle? purpleButtonText,
+    TextStyle? registrationFormText,
+    TextStyle? registrationFormTitle,
+    TextStyle? registrationFormTextBold,
+    TextStyle? forgotPasswordFormText,
+    TextStyle? forgotPasswordFormTitle,
+    TextStyle? forgotPasswordFormTextBold,
+    TextStyle? haveAnAccount;
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
       loginFormText: loginFormText ?? this.loginFormText,
       loginFormTitle: loginFormTitle ?? this.loginFormTitle,
       loginFormTextBold: loginFormTextBold ?? this.loginFormTextBold,
-      loginButtonText: loginButtonText ?? this.loginButtonText,
-      loginFormHint: loginFormHint ?? this.loginFormHint,
-      loginFormError: loginFormError ?? this.loginFormError,
+      authButtonText: authButtonText ?? this.authButtonText,
+      authFormHint: authFormHint ?? this.authFormHint,
+      authFormError: authFormError ?? this.authFormError,
       multiMetaUniverseTitle:
           multiMetaUniverseTitle ?? this.multiMetaUniverseTitle,
       metaverseThatUnitesTitle:
@@ -79,6 +100,19 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           homePagePurpleBodyText ?? this.homePagePurpleBodyText,
       revelantInfoTitle: revelantInfoTitle ?? this.revelantInfoTitle,
       purpleButtonText: purpleButtonText ?? this.purpleButtonText,
+      registrationFormText: registrationFormText ?? this.registrationFormText,
+      registrationFormTitle:
+          registrationFormTitle ?? this.registrationFormTitle,
+      registrationFormTextBold:
+          registrationFormTextBold ?? this.registrationFormTextBold,
+      registrationFormError ?? this.registrationFormError,
+      forgotPasswordFormText:
+          forgotPasswordFormText ?? this.forgotPasswordFormText,
+      forgotPasswordFormTitle:
+          forgotPasswordFormTitle ?? this.forgotPasswordFormTitle,
+      forgotPasswordFormTextBold:
+          forgotPasswordFormTextBold ?? this.forgotPasswordFormTextBold,
+          haveAnAccount:  haveAnAccount ?? this.haveAnAccount,
     );
   }
 
@@ -97,10 +131,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       loginFormTitle: TextStyle.lerp(loginFormTitle, other.loginFormTitle, t)!,
       loginFormTextBold:
           TextStyle.lerp(loginFormTextBold, other.loginFormTextBold, t)!,
-      loginButtonText:
-          TextStyle.lerp(loginButtonText, other.loginButtonText, t)!,
-      loginFormHint: TextStyle.lerp(loginFormHint, other.loginFormHint, t)!,
-      loginFormError: TextStyle.lerp(loginFormError, other.loginFormError, t)!,
+      authButtonText: TextStyle.lerp(authButtonText, other.authButtonText, t)!,
+      authFormHint: TextStyle.lerp(authFormHint, other.authFormHint, t)!,
+      authFormError: TextStyle.lerp(authFormError, other.authFormError, t)!,
       multiMetaUniverseTitle: TextStyle.lerp(
           multiMetaUniverseTitle, other.multiMetaUniverseTitle, t)!,
       fromFiftyDollarsTitle: TextStyle.lerp(
@@ -118,6 +151,20 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(revelantInfoTitle, other.revelantInfoTitle, t)!,
       purpleButtonText:
           TextStyle.lerp(purpleButtonText, other.purpleButtonText, t)!,
+      registrationFormText:
+          TextStyle.lerp(registrationFormText, other.registrationFormText, t)!,
+      registrationFormTitle: TextStyle.lerp(
+          registrationFormTitle, other.registrationFormTitle, t)!,
+      registrationFormTextBold: TextStyle.lerp(
+          registrationFormTextBold, other.registrationFormTextBold, t)!,
+      forgotPasswordFormText: TextStyle.lerp(
+          forgotPasswordFormText, other.forgotPasswordFormText, t)!,
+      forgotPasswordFormTitle: TextStyle.lerp(
+          forgotPasswordFormTitle, other.forgotPasswordFormTitle, t)!,
+      forgotPasswordFormTextBold: TextStyle.lerp(
+          forgotPasswordFormTextBold, other.forgotPasswordFormTextBold, t)!,
+          haveAnAccount:  TextStyle.lerp(
+          haveAnAccount, other.haveAnAccount, t)!,
     );
   }
 
@@ -126,7 +173,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontWeight: FontWeight.w700,
         ),
-        loginButtonText: headline3.copyWith(
+        authButtonText: headline3.copyWith(
           color: AppColors.blue,
           fontSize: 16,
           fontWeight: FontWeight.w600,
@@ -141,8 +188,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         loginFormTitle: headline1.copyWith(
           color: AppColors.white,
         ),
-        loginFormHint: headline1.copyWith(fontSize: 14),
-        loginFormError: headline3.copyWith(
+        authFormHint: headline1.copyWith(fontSize: 14),
+        authFormError: headline3.copyWith(
           color: AppColors.lighterPurple,
           fontWeight: FontWeight.w400,
         ),
@@ -173,6 +220,29 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontSize: 14,
         ),
+        registrationFormText: headline3.copyWith(
+          color: AppColors.white,
+        ),
+        registrationFormTextBold: headline3.copyWith(
+          fontWeight: FontWeight.w600,
+          color: AppColors.white,
+        ),
+        registrationFormTitle: headline1.copyWith(
+          color: AppColors.white,
+        ),
+        forgotPasswordFormText: headline3.copyWith(
+          color: AppColors.white,
+        ),
+        forgotPasswordFormTextBold: headline3.copyWith(
+          fontWeight: FontWeight.w600,
+          color: AppColors.white,
+        ),
+        forgotPasswordFormTitle: headline1.copyWith(
+          color: AppColors.white,
+        ),
+        haveAnAccount: headline3.copyWith(
+          color: AppColors.white,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -180,7 +250,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontWeight: FontWeight.w700,
         ),
-        loginButtonText: headline3.copyWith(
+        authButtonText: headline3.copyWith(
           color: AppColors.blue,
           fontSize: 17,
           fontWeight: FontWeight.w600,
@@ -195,8 +265,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         loginFormTitle: headline1.copyWith(
           color: AppColors.white,
         ),
-        loginFormHint: headline1.copyWith(fontSize: 14),
-        loginFormError: headline3.copyWith(
+        authFormHint: headline1.copyWith(fontSize: 14),
+        authFormError: headline3.copyWith(
           color: AppColors.lighterPurple,
           fontWeight: FontWeight.w400,
         ),
@@ -228,6 +298,29 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         purpleButtonText: headline3.copyWith(
           color: AppColors.white,
           fontSize: 14,
+        ),
+        registrationFormText: headline3.copyWith(
+          color: AppColors.white,
+        ),
+        registrationFormTextBold: headline3.copyWith(
+          fontWeight: FontWeight.w600,
+          color: AppColors.white,
+        ),
+        registrationFormTitle: headline1.copyWith(
+          color: AppColors.white,
+        ),
+        forgotPasswordFormText: headline3.copyWith(
+          color: AppColors.white,
+        ),
+        forgotPasswordFormTextBold: headline3.copyWith(
+          fontWeight: FontWeight.w600,
+          color: AppColors.white,
+        ),
+        forgotPasswordFormTitle: headline1.copyWith(
+          color: AppColors.white,
+        ),
+        haveAnAccount: headline3.copyWith(
+          color: AppColors.white,
         ),
       );
 }

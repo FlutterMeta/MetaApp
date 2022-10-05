@@ -33,11 +33,11 @@ mixin Validator {
     return null;
   }
 
-  String? validateUsername(
-    String? username,
+  String? validateField(
+    String? field,
     BuildContext context,
   ) {
-    if (username.isNullOrEmpty) {
+    if (field.isNullOrEmpty) {
       return context.localizations.fieldMustNotBeEmpty;
     }
     return null;
@@ -50,7 +50,7 @@ mixin Validator {
     return null;
   }
 
-  String? validateRepeatPass(
+  String? validateRepeatPassword(
     String? repeatPassword,
     String? password,
     BuildContext context,

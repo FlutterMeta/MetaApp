@@ -20,7 +20,7 @@ class AuthButton extends StatelessWidget {
         onPressed: onPressed,
         style: ButtonStyle(
           backgroundColor:
-              MaterialStateProperty.all(context.color.loginButtonFill),
+              MaterialStateProperty.all(context.color.authButtonFill),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -29,7 +29,7 @@ class AuthButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: context.text.loginButtonText,
+          style: context.text.authButtonText,
         ),
       ),
     );
