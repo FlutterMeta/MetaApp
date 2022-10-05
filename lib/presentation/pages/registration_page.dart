@@ -16,13 +16,13 @@ class RegistrationPage extends StatefulWidget {
 }
 
 class _RegistrationPageState extends State<RegistrationPage> with Validator {
-  final _loginFieldController = TextEditingController();
-  final _emailFieldController = TextEditingController();
-  final _telegramFieldController = TextEditingController();
-  final _passwordFieldController = TextEditingController();
-  final _repeatPassFieldController = TextEditingController();
-  final _inviteCodeFieldController = TextEditingController();
-  final _imageCodeFieldController = TextEditingController();
+  final _loginController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _telegramController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _repeatPasswordController = TextEditingController();
+  final _inviteCodeController = TextEditingController();
+  final _imageCodeController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -79,7 +79,7 @@ class _RegistrationPageState extends State<RegistrationPage> with Validator {
                     AuthField(
                       validator: (login) => validateField(login, context),
                       hint: context.localizations.accountName,
-                      controller: _loginFieldController,
+                      controller: _loginController,
                     ),
                     const SizedBox(height: 30),
                     Align(
@@ -93,7 +93,7 @@ class _RegistrationPageState extends State<RegistrationPage> with Validator {
                     AuthField(
                       validator: (username) => validateField(username, context),
                       hint: context.localizations.enterYourEmail,
-                      controller: _telegramFieldController,
+                      controller: _telegramController,
                     ),
                     const SizedBox(height: 20),
                     Align(
@@ -107,7 +107,7 @@ class _RegistrationPageState extends State<RegistrationPage> with Validator {
                     AuthField(
                       validator: (email) => validateEmail(email, context),
                       hint: context.localizations.yourTelegram,
-                      controller: _emailFieldController,
+                      controller: _emailController,
                     ),
                     const SizedBox(height: 20),
                     Align(
@@ -123,7 +123,7 @@ class _RegistrationPageState extends State<RegistrationPage> with Validator {
                           validatePassword(password, context),
                       obscureText: true,
                       hint: context.localizations.createAccountPassword,
-                      controller: _passwordFieldController,
+                      controller: _passwordController,
                     ),
                     const SizedBox(height: 20),
                     Align(
@@ -137,12 +137,12 @@ class _RegistrationPageState extends State<RegistrationPage> with Validator {
                     AuthField(
                       validator: (repeatPassword) => validateRepeatPassword(
                         repeatPassword,
-                        _passwordFieldController.text,
+                        _passwordController.text,
                         context,
                       ),
                       obscureText: true,
                       hint: context.localizations.repeatPassword,
-                      controller: _repeatPassFieldController,
+                      controller: _repeatPasswordController,
                     ),
                     const SizedBox(height: 20),
                     Align(
@@ -156,13 +156,13 @@ class _RegistrationPageState extends State<RegistrationPage> with Validator {
                     AuthField(
                       validator: (code) => validateCode(code, context),
                       hint: context.localizations.enterInvitationCode,
-                      controller: _inviteCodeFieldController,
+                      controller: _inviteCodeController,
                     ),
                     const SizedBox(height: 20),
                     CodeVerificationSection(
                       child: AuthField(
                         validator: (code) => validateCode(code, context),
-                        controller: _imageCodeFieldController,
+                        controller: _imageCodeController,
                       ),
                     ),
                     const SizedBox(height: 30),
@@ -172,11 +172,11 @@ class _RegistrationPageState extends State<RegistrationPage> with Validator {
                     ),
                     const SizedBox(height: 20),
                     TextButton(
+                      onPressed: _goToLoginPage,
                       child: Text(
                         context.localizations.alreadyHaveAccount,
-                        style: const TextStyle(color: Colors.white),
+                        style: context.text.haveAnAccount,
                       ),
-                      onPressed: () => _goToLoginPage,
                     ),
                   ],
                 ),

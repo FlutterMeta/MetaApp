@@ -23,10 +23,10 @@ class AuthField extends StatelessWidget {
       obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: context.text.loginFormHint,
+        hintStyle: context.text.authFormHint,
         filled: true,
         fillColor: context.color.formFieldFill,
-        errorStyle: context.text.loginFormError,
+        errorStyle: context.text.authFormError,
         border: const OutlineInputBorder(borderSide: BorderSide.none),
       ),
     );

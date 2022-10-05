@@ -75,7 +75,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? forgotPasswordFormText,
     TextStyle? forgotPasswordFormTitle,
     TextStyle? forgotPasswordFormTextBold,
-    TextStyle? haveAnAccount;
+    TextStyle? haveAnAccount,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -105,14 +105,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           registrationFormTitle ?? this.registrationFormTitle,
       registrationFormTextBold:
           registrationFormTextBold ?? this.registrationFormTextBold,
-      registrationFormError ?? this.registrationFormError,
       forgotPasswordFormText:
           forgotPasswordFormText ?? this.forgotPasswordFormText,
       forgotPasswordFormTitle:
           forgotPasswordFormTitle ?? this.forgotPasswordFormTitle,
       forgotPasswordFormTextBold:
           forgotPasswordFormTextBold ?? this.forgotPasswordFormTextBold,
-          haveAnAccount:  haveAnAccount ?? this.haveAnAccount,
+      haveAnAccount: haveAnAccount ?? this.haveAnAccount,
     );
   }
 
@@ -163,8 +162,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           forgotPasswordFormTitle, other.forgotPasswordFormTitle, t)!,
       forgotPasswordFormTextBold: TextStyle.lerp(
           forgotPasswordFormTextBold, other.forgotPasswordFormTextBold, t)!,
-          haveAnAccount:  TextStyle.lerp(
-          haveAnAccount, other.haveAnAccount, t)!,
+      haveAnAccount: TextStyle.lerp(haveAnAccount, other.haveAnAccount, t)!,
     );
   }
 

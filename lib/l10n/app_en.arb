@@ -22,7 +22,7 @@
             }
         }
     },
-    "@_PASSWORD_RECOVERY_PAGE": {},
+    "@_FORGOT_PASSWORD_PAGE": {},
     "accessRecovery": "Access recovery",
     "logInSystem": "Login in the system",
     "registrationEmail": "Registration e-mail",

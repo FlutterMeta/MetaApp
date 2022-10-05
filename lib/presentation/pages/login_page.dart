@@ -18,9 +18,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> with Validator {
-  final _loginFieldController = TextEditingController();
-  final _passwordFieldController = TextEditingController();
-  final _codeFieldController = TextEditingController();
+  final _loginController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _codeController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   void _onLoginButtonPressed() {
@@ -83,7 +84,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
                     AuthField(
                       validator: (login) => validateLogin(login, context),
                       hint: context.localizations.yourLoginWithTip,
-                      controller: _loginFieldController,
+                      controller: _loginController,
                     ),
                     const SizedBox(height: 20),
                     Align(
@@ -99,19 +100,17 @@ class _LoginPageState extends State<LoginPage> with Validator {
                           validatePassword(password, context),
                       obscureText: true,
                       hint: context.localizations.yourPassword,
-                      controller: _passwordFieldController,
+                      controller: _passwordController,
                     ),
                     const SizedBox(height: 20),
                     CodeVerificationSection(
                       child: AuthField(
                         validator: (code) => validateCode(code, context),
-                        controller: _codeFieldController,
+                        controller: _codeController,
                       ),
                     ),
                     const SizedBox(height: 20),
-                    _ForgotPasswordSection(
-                      onTap: () => _goToForgotPasswordPage,
-                    ),
+                    _ForgotPasswordSection(onTap: _goToForgotPasswordPage),
                     const SizedBox(height: 30),
                     AuthButton(
                       text: context.localizations.login,
@@ -120,9 +119,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
                     const SizedBox(height: 16),
                     const Divider(),
                     const SizedBox(height: 20),
-                    _SignUpSection(
-                      onTap: () => _goToRegistrationPage,
-                    ),
+                    _SignUpSection(onTap: _goToRegistrationPage),
                   ],
                 ),
               ),

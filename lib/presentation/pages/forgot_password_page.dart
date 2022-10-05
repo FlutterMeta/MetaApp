@@ -16,9 +16,10 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage>
     with Validator {
-  final _loginFieldController = TextEditingController();
-  final _emailFieldController = TextEditingController();
-  final _codeFieldController = TextEditingController();
+  final _loginController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _codeController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   void _onRestoreButtonPressed() => _formKey.currentState?.validate();
@@ -65,7 +66,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
                     AuthField(
                       validator: (login) => validateLogin(login, context),
                       hint: context.localizations.logInSystem,
-                      controller: _loginFieldController,
+                      controller: _loginController,
                     ),
                     const SizedBox(height: 20),
                     Align(
@@ -79,13 +80,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage>
                     AuthField(
                       validator: (email) => validateEmail(email, context),
                       hint: context.localizations.registrationEmail,
-                      controller: _emailFieldController,
+                      controller: _emailController,
                     ),
                     const SizedBox(height: 20),
                     CodeVerificationSection(
                       child: AuthField(
                         validator: (code) => validateCode(code, context),
-                        controller: _codeFieldController,
+                        controller: _codeController,
                       ),
                     ),
                     const SizedBox(height: 20),

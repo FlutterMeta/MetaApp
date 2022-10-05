@@ -45,8 +45,8 @@ jobs:
           check_unused_files: false
       - name: Check Formatting
         run: flutter format --set-exit-if-changed lib
-  build_android:
-    name: Build Android APK
+  build_web:
+    name: Build Web
     needs: [analyze]
     runs-on: ubuntu-latest
     steps:
@@ -67,5 +67,5 @@ jobs:
         run: flutter clean
       - name: Flutter pub get
         run: flutter pub get
-      - name: Flutter build apk
-        run: flutter build apk
+      - name: Flutter build web
+        run: flutter build web
