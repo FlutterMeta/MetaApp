@@ -4,6 +4,7 @@ import "package:meta_app/core/utils/extensions/build_context_ext.dart";
 import 'package:meta_app/core/mixins/validator.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/pages/forgot_password_page.dart';
+import 'package:meta_app/presentation/pages/registration_page.dart';
 import 'package:meta_app/presentation/widgets/auth_field.dart';
 import 'package:meta_app/presentation/widgets/auth_button.dart';
 import 'package:meta_app/presentation/widgets/code_verification_section.dart';
@@ -17,19 +18,27 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> with Validator {
-  final _loginFieldController = TextEditingController();
-  final _passwordFieldController = TextEditingController();
-  final _codeFieldController = TextEditingController();
+  final _loginController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _codeController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
 
   void _onLoginButtonPressed() {
     _formKey.currentState?.validate();
   }
 
-  void _goToForgotPasswordPage(BuildContext context) {
+  void _goToForgotPasswordPage() {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const ForgotPasswordPage()),
+    );
+  }
+
+  void _goToRegistrationPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const RegistrationPage()),
     );
   }
 
@@ -75,7 +84,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
                     AuthField(
                       validator: (login) => validateLogin(login, context),
                       hint: context.localizations.yourLoginWithTip,
-                      controller: _loginFieldController,
+                      controller: _loginController,
                     ),
                     const SizedBox(height: 20),
                     Align(
@@ -91,19 +100,17 @@ class _LoginPageState extends State<LoginPage> with Validator {
                           validatePassword(password, context),
                       obscureText: true,
                       hint: context.localizations.yourPassword,
-                      controller: _passwordFieldController,
+                      controller: _passwordController,
                     ),
                     const SizedBox(height: 20),
                     CodeVerificationSection(
                       child: AuthField(
                         validator: (code) => validateCode(code, context),
-                        controller: _codeFieldController,
+                        controller: _codeController,
                       ),
                     ),
                     const SizedBox(height: 20),
-                    _ForgotPasswordSection(
-                      onTap: () => _goToForgotPasswordPage(context),
-                    ),
+                    _ForgotPasswordSection(onTap: _goToForgotPasswordPage),
                     const SizedBox(height: 30),
                     AuthButton(
                       text: context.localizations.login,
@@ -112,7 +119,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
                     const SizedBox(height: 16),
                     const Divider(),
                     const SizedBox(height: 20),
-                    _SignUpSection(onTap: () {}),
+                    _SignUpSection(onTap: _goToRegistrationPage),
                   ],
                 ),
               ),
