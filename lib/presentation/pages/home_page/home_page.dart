@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:meta_app/presentation/pages/home_page/sections/video_section.dart';
-
-import 'package:meta_app/presentation/widgets/gradient_button.dart';
-import 'package:meta_app/presentation/widgets/header/header.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/pages/home_page/sections/video_section.dart';
+import 'package:meta_app/presentation/widgets/gradient_button.dart';
 import 'package:meta_app/presentation/widgets/gradient_text.dart';
+import 'package:meta_app/presentation/widgets/header/header.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/sliver_sized_box.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
@@ -45,9 +44,14 @@ class HomePage extends StatelessWidget {
               child: _PresentationSection(),
             ),
           ),
-          const SliverSizedBox(height: 100),
-          const SliverToBoxAdapter(
-            child: VideoSection(),
+          const SliverSizedBox(height: 60),
+          const SliverPadding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            sliver: SliverToBoxAdapter(
+              child: Center(
+                child: VideoSection(),
+              ),
+            ),
           ),
           const SliverSizedBox(height: 50),
         ],
