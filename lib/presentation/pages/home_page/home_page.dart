@@ -13,6 +13,7 @@ part 'sections/presentation_section.dart';
 
 class HomePage extends StatelessWidget {
   final _headerKey = GlobalKey();
+
   HomePage({super.key});
 
   double _getHeaderYOffset() {
@@ -32,7 +33,7 @@ class HomePage extends StatelessWidget {
           SliverPersistentHeader(
             key: _headerKey,
             delegate: Header(
-              headerOffset: _getHeaderYOffset,
+              headerYOffset: _getHeaderYOffset,
               screenWidth: context.screenWidth,
             ),
             pinned: true,

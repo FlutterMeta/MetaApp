@@ -43,7 +43,7 @@ class _CompactMenuState extends State<_CompactMenu>
   }
 
   void _removeOverlay() {
-    if (overlayEntry == null ? true : !overlayEntry!.mounted) return;
+    if (!overlayEntry!.mounted) return;
     animationController.reverse();
     overlayEntry?.remove();
   }

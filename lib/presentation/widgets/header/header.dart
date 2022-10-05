@@ -17,10 +17,11 @@ part 'components/special_info_component.dart';
 
 class Header extends SliverPersistentHeaderDelegate {
   final double screenWidth;
-  final double Function() headerOffset;
+  final double Function() headerYOffset;
+
   Header({
     required this.screenWidth,
-    required this.headerOffset,
+    required this.headerYOffset,
   });
 
   @override
@@ -83,7 +84,7 @@ class Header extends SliverPersistentHeaderDelegate {
                 children: [
                   Image.asset(AppAssets.logo, height: 76),
                   if (width > 780) const _ExpandedMenu(),
-                  if (width <= 780) _CompactMenu(headerOffset: headerOffset),
+                  if (width <= 780) _CompactMenu(headerOffset: headerYOffset),
                 ],
               ),
             ),
