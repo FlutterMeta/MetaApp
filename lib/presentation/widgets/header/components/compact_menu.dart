@@ -1,9 +1,10 @@
 part of '../header.dart';
 
 class _CompactMenu extends StatefulWidget {
-  final double Function() headerOffset;
+  final double Function() headerYOffset ;
+
   const _CompactMenu({
-    required this.headerOffset,
+    required this.headerYOffset ,
     Key? key,
   }) : super(key: key);
 
@@ -12,7 +13,7 @@ class _CompactMenu extends StatefulWidget {
 }
 
 class _CompactMenuState extends State<_CompactMenu>
-    with SingleTickerProviderStateMixin, RouteAware {
+    with SingleTickerProviderStateMixin, RouteAware { 
   late AnimationController animationController;
   late Animation<double> animation;
   OverlayEntry? overlayEntry;
@@ -31,8 +32,8 @@ class _CompactMenuState extends State<_CompactMenu>
 
     overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
-        top: widget.headerOffset(),
-        height: context.screenHeight - widget.headerOffset(),
+        top: widget.headerYOffset(),
+        height: context.screenHeight - widget.headerYOffset(),
         width: context.screenWidth,
         child: _OverlayMenu(animation: animation),
       ),
@@ -43,7 +44,7 @@ class _CompactMenuState extends State<_CompactMenu>
   }
 
   void _removeOverlay() {
-    if (!overlayEntry!.mounted) return;
+    if (overlayEntry?.mounted ?? false) return;
     animationController.reverse();
     overlayEntry?.remove();
   }
@@ -105,6 +106,7 @@ class _CompactMenuState extends State<_CompactMenu>
 
 class _OverlayMenu extends StatelessWidget {
   final Animation<double> animation;
+
   const _OverlayMenu({
     required this.animation,
     Key? key,

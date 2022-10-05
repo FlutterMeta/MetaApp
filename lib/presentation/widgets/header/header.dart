@@ -84,7 +84,7 @@ class Header extends SliverPersistentHeaderDelegate {
                 children: [
                   Image.asset(AppAssets.logo, height: 76),
                   if (width > 780) const _ExpandedMenu(),
-                  if (width <= 780) _CompactMenu(headerOffset: headerYOffset),
+                  if (width <= 780) _CompactMenu(headerYOffset: headerYOffset),
                 ],
               ),
             ),
