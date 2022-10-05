@@ -38,9 +38,10 @@ class _CompactMenuState extends State<_CompactMenu>
         child: _OverlayMenu(animation: animation),
       ),
     );
-
-    overlayState?.insert(overlayEntry as OverlayEntry);
-    animationController.forward();
+    overlayEntry?.let((entry) {
+      overlayState?.insert(entry);
+      animationController.forward();
+    });
   }
 
   void _removeOverlay() {
