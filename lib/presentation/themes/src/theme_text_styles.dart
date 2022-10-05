@@ -24,6 +24,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle forgotPasswordFormTitle;
   final TextStyle forgotPasswordFormTextBold;
   final TextStyle haveAnAccount;
+  final TextStyle videoTitle;
 
   ThemeTextStyles({
     required this.test,
@@ -49,6 +50,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.forgotPasswordFormTitle,
     required this.forgotPasswordFormTextBold,
     required this.haveAnAccount,
+    required this.videoTitle,
   });
 
   @override
@@ -76,6 +78,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? forgotPasswordFormTitle,
     TextStyle? forgotPasswordFormTextBold,
     TextStyle? haveAnAccount,
+    TextStyle? videoTitle,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -112,6 +115,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       forgotPasswordFormTextBold:
           forgotPasswordFormTextBold ?? this.forgotPasswordFormTextBold,
       haveAnAccount: haveAnAccount ?? this.haveAnAccount,
+      videoTitle: videoTitle ?? this.videoTitle,
     );
   }
 
@@ -163,6 +167,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       forgotPasswordFormTextBold: TextStyle.lerp(
           forgotPasswordFormTextBold, other.forgotPasswordFormTextBold, t)!,
       haveAnAccount: TextStyle.lerp(haveAnAccount, other.haveAnAccount, t)!,
+      videoTitle: TextStyle.lerp(videoTitle, other.videoTitle, t)!,
     );
   }
 
@@ -240,6 +245,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         haveAnAccount: headline3.copyWith(
           color: AppColors.white,
+        ),
+        videoTitle: headline1.copyWith(
+          fontWeight: FontWeight.w400,
         ),
       );
 
@@ -319,6 +327,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         haveAnAccount: headline3.copyWith(
           color: AppColors.white,
+        ),
+        videoTitle: headline1.copyWith(
+          fontWeight: FontWeight.w400,
         ),
       );
 }

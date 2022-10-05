@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
 
+import 'package:meta_app/core/route_observer.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/pages/login_page.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
-import 'package:meta_app/core/route_observer.dart';
+import 'package:useful_extensions/useful_extensions.dart';
 
 part 'components/account_button.dart';
-part 'components/locale_dropdown.dart';
-part 'components/expanded_menu.dart';
 part 'components/compact_menu.dart';
+part 'components/expanded_menu.dart';
+part 'components/locale_dropdown.dart';
 part 'components/navigation_button.dart';
 part 'components/social_component.dart';
 part 'components/special_info_component.dart';
 
 class Header extends SliverPersistentHeaderDelegate {
   final double screenWidth;
+  final double Function() headerYOffset;
 
-  Header({required this.screenWidth});
+  Header({
+    required this.screenWidth,
+    required this.headerYOffset,
+  });
 
   @override
   double get minExtent => screenWidth > 780 ? 190 : 120;
@@ -80,7 +85,7 @@ class Header extends SliverPersistentHeaderDelegate {
                 children: [
                   Image.asset(AppAssets.logo, height: 76),
                   if (width > 780) const _ExpandedMenu(),
-                  if (width <= 780) const _CompactMenu(),
+                  if (width <= 780) _CompactMenu(headerYOffset: headerYOffset),
                 ],
               ),
             ),

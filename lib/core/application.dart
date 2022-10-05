@@ -33,7 +33,7 @@ class Application extends StatelessWidget {
           theme: createLightTheme(),
           darkTheme: createDarkTheme(),
           themeMode: vm.themeMode,
-          home: const HomePage(),
+          home: HomePage(),
         ),
       ),
     );
