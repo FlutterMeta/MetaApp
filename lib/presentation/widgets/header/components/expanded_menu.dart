@@ -21,7 +21,7 @@ class _ExpandedMenu extends StatelessWidget {
           onTap: () {},
           title: context.localizations.partners,
         ),
-        const _SocialComponent(),
+        const MediaButtons(),
       ],
     );
   }

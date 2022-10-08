@@ -4,7 +4,7 @@ import 'package:meta_app/core/route_observer.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/pages/login_page.dart';
-import 'package:meta_app/presentation/widgets/hover.dart';
+import 'package:meta_app/presentation/widgets/media_buttons.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 
@@ -13,7 +13,6 @@ part 'components/compact_menu.dart';
 part 'components/expanded_menu.dart';
 part 'components/locale_dropdown.dart';
 part 'components/navigation_button.dart';
-part 'components/social_component.dart';
 part 'components/special_info_component.dart';
 
 class Header extends SliverPersistentHeaderDelegate {

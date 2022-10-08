@@ -49,5 +49,17 @@
     "startNow": "Start now",
     "directions": "Directions",
     "products": "Products",
-    "partners": "Partners"
+    "partners": "Partners",
+    "@_FOOTER": {},
+    "weCareAbouYou": "We care about You | MultiMeta Universe | Auckland",
+    "telegram": "Telegram",
+    "email": "E-mail",
+    "submitTicket": "Submit a ticket",
+    "questions": "Questions",
+    "usagePolicy": "Usage policy",
+    "whitePaper": "White paper",
+    "officeProgram": "Office program",
+    "multimeta": "MultiMeta",
+    "resources": "Resources",
+    "mediaAndSupport": "Media and support"
 }
