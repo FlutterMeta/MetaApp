@@ -8,20 +8,15 @@ analyzer:
     - lib/**/**.g.dart
     - lib/**/**.freezed.dart
     - test/**
-    - lib/presentation/themes/**
+
   errors:
     invalid_annotation_target: ignore
 
 dart_code_metrics:
-  anti-patterns:
-    - long-method
-    - long-parameter-list
   metrics:
     # Function
     cyclomatic-complexity: 20
     maximum-nesting-level: 5
-    number-of-parameters: 4
-    source-lines-of-code: 40
     # Class
     weight-of-class: 0.33
     # Tech debt
@@ -41,6 +36,8 @@ dart_code_metrics:
         acceptable-level: 2
     - avoid-non-null-assertion:
         severity: warning
+        exclude:
+            - lib/presentation/themes/**
     - avoid-missing-enum-constant-in-map:
         severity: warning
     - avoid-unnecessary-type-assertions:
@@ -57,11 +54,6 @@ dart_code_metrics:
         severity: warning
     - no-boolean-literal-compare:
         severity: warning
-    - no-equal-arguments:
-        severity: warning
-        ignored-parameters:
-            - highlightColor
-            - splashColor
     - no-equal-then-else:
         severity: warning
     - no-object-declaration:
@@ -74,6 +66,8 @@ dart_code_metrics:
         severity: warning
     - prefer-trailing-comma:
         severity: warning
+        exclude:
+            - lib/presentation/themes/**
     - prefer-match-file-name:
         severity: warning
         exclude:
