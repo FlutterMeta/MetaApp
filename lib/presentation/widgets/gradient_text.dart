@@ -4,10 +4,12 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 class GradientText extends StatelessWidget {
   final String text;
   final TextAlign? textAlign;
+  final Gradient? gradient;
 
   const GradientText({
     required this.text,
     this.textAlign,
+    this.gradient,
     Key? key,
   }) : super(key: key);
 
@@ -16,9 +18,9 @@ class GradientText extends StatelessWidget {
     return ShaderMask(
       blendMode: BlendMode.srcIn,
       shaderCallback: (bounds) =>
-          context.gradient.purpleVertical.createShader(bounds),
+          (gradient ?? context.gradient.purpleVertical).createShader(bounds),
       child: Text(
-        context.localizations.metaverseThatUnites,
+        text,
         textAlign: textAlign,
         style: context.text.metaverseThatUnitesTitle,
       ),

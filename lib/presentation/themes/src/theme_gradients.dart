@@ -1,9 +1,9 @@
 part of '../theme.dart';
 
 class ThemeGradients extends ThemeExtension<ThemeGradients> {
-  final LinearGradient purple;
-  final LinearGradient lightPurple;
-  final LinearGradient purpleVertical;
+  final Gradient purple;
+  final Gradient lightPurple;
+  final Gradient purpleVertical;
 
   const ThemeGradients({
     required this.purple,
@@ -13,13 +13,15 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
 
   @override
   ThemeExtension<ThemeGradients> copyWith({
-    LinearGradient? purple,
-    LinearGradient? lightPurple,
+    Gradient? purple,
+    Gradient? lightPurple,
+    Gradient? purpleVertical,
   }) {
     return ThemeGradients(
-        purple: purple ?? this.purple,
-        lightPurple: lightPurple ?? this.lightPurple,
-        purpleVertical: purpleVertical ?? this.purpleVertical);
+      purple: purple ?? this.purple,
+      lightPurple: lightPurple ?? this.lightPurple,
+      purpleVertical: purpleVertical ?? this.purpleVertical,
+    );
   }
 
   @override
@@ -32,10 +34,9 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     }
 
     return ThemeGradients(
-      purple: LinearGradient.lerp(purple, other.purple, t)!,
-      lightPurple: LinearGradient.lerp(lightPurple, other.lightPurple, t)!,
-      purpleVertical:
-          LinearGradient.lerp(purpleVertical, other.purpleVertical, t)!,
+      purple: Gradient.lerp(purple, other.purple, t)!,
+      lightPurple: Gradient.lerp(lightPurple, other.lightPurple, t)!,
+      purpleVertical: Gradient.lerp(purpleVertical, other.purpleVertical, t)!,
     );
   }
 

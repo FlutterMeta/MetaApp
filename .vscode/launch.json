@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "name": "app",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+        },
+        {
+            "name": "storybook",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main_storybook.dart",
+        },
+    ]
+}

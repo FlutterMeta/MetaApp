@@ -6,6 +6,7 @@ import 'package:meta_app/presentation/pages/login_page.dart';
 import 'package:meta_app/presentation/widgets/auth_button.dart';
 import 'package:meta_app/presentation/widgets/auth_field.dart';
 import 'package:meta_app/presentation/widgets/code_verification_section.dart';
+import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_view.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 
 class RegistrationPage extends StatefulWidget {
@@ -40,11 +41,11 @@ class _RegistrationPageState extends State<RegistrationPage> with Validator {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GradientBackground(
-        gradient: context.gradient.lightPurple,
-        child: Align(
-          alignment: Alignment.center,
-          child: SingleChildScrollView(
+      body: FillViewportSingleChildScrollView(
+        child: GradientBackground(
+          gradient: context.gradient.lightPurple,
+          child: Align(
+            alignment: Alignment.center,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(6),
