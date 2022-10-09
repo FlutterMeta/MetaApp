@@ -25,10 +25,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle forgotPasswordFormTextBold;
   final TextStyle haveAnAccount;
   final TextStyle videoTitle;
-  final TextStyle footerNavColumnTitle;
-  final TextStyle footerNavColumnText;
+  final TextStyle footerNavTabTitle;
+  final TextStyle footerNavTabText;
   final TextStyle footerWeCareAboutYou;
-  final TextStyle hoveredFooterNavColumnText;
+  final TextStyle footerHoveredNavTabText;
 
   ThemeTextStyles({
     required this.test,
@@ -55,10 +55,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.forgotPasswordFormTextBold,
     required this.haveAnAccount,
     required this.videoTitle,
-    required this.footerNavColumnTitle,
-    required this.footerNavColumnText,
+    required this.footerNavTabTitle,
+    required this.footerNavTabText,
     required this.footerWeCareAboutYou,
-    required this.hoveredFooterNavColumnText,
+    required this.footerHoveredNavTabText,
   });
 
   @override
@@ -87,10 +87,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? forgotPasswordFormTextBold,
     TextStyle? haveAnAccount,
     TextStyle? videoTitle,
-    TextStyle? footerNavColumnTitle,
-    TextStyle? footerNavColumnText,
+    TextStyle? footerNavTabTitle,
+    TextStyle? footerNavTabText,
     TextStyle? footerWeCareAboutYou,
-    TextStyle? hoveredFooterNavColumnText,
+    TextStyle? footerHoveredNavTabText,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -128,11 +128,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           forgotPasswordFormTextBold ?? this.forgotPasswordFormTextBold,
       haveAnAccount: haveAnAccount ?? this.haveAnAccount,
       videoTitle: videoTitle ?? this.videoTitle,
-      footerNavColumnTitle: footerNavColumnTitle ?? this.footerNavColumnTitle,
-      footerNavColumnText: footerNavColumnText ?? this.footerNavColumnText,
+      footerNavTabTitle: footerNavTabTitle ?? this.footerNavTabTitle,
+      footerNavTabText: footerNavTabText ?? this.footerNavTabText,
       footerWeCareAboutYou: footerWeCareAboutYou ?? this.footerWeCareAboutYou,
-      hoveredFooterNavColumnText:
-          hoveredFooterNavColumnText ?? this.hoveredFooterNavColumnText,
+      footerHoveredNavTabText:
+          footerHoveredNavTabText ?? this.footerHoveredNavTabText,
     );
   }
 
@@ -185,14 +185,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           forgotPasswordFormTextBold, other.forgotPasswordFormTextBold, t)!,
       haveAnAccount: TextStyle.lerp(haveAnAccount, other.haveAnAccount, t)!,
       videoTitle: TextStyle.lerp(videoTitle, other.videoTitle, t)!,
-      footerNavColumnTitle:
-          TextStyle.lerp(footerNavColumnTitle, other.footerNavColumnTitle, t)!,
-      footerNavColumnText:
-          TextStyle.lerp(footerNavColumnText, other.footerNavColumnText, t)!,
+      footerNavTabTitle:
+          TextStyle.lerp(footerNavTabTitle, other.footerNavTabTitle, t)!,
+      footerNavTabText:
+          TextStyle.lerp(footerNavTabText, other.footerNavTabText, t)!,
       footerWeCareAboutYou:
           TextStyle.lerp(footerWeCareAboutYou, other.footerWeCareAboutYou, t)!,
-      hoveredFooterNavColumnText: TextStyle.lerp(
-          hoveredFooterNavColumnText, other.hoveredFooterNavColumnText, t)!,
+      footerHoveredNavTabText: TextStyle.lerp(
+          footerHoveredNavTabText, other.footerHoveredNavTabText, t)!,
     );
   }
 
@@ -274,13 +274,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         videoTitle: headline1.copyWith(
           fontWeight: FontWeight.w400,
         ),
-        footerNavColumnTitle: headline3.copyWith(
+        footerNavTabTitle: headline3.copyWith(
           color: AppColors.lightPurple,
           fontSize: 18,
           fontFamily:
               GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
         ),
-        footerNavColumnText: headline3.copyWith(
+        footerNavTabText: headline3.copyWith(
           color: AppColors.brighterWhite,
           fontSize: 16,
           fontFamily:
@@ -292,8 +292,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily:
               GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
         ),
-        hoveredFooterNavColumnText: headline3.copyWith(
-          color: AppColors.lightPurple,
+        footerHoveredNavTabText: headline3.copyWith(
+          color: AppColors.darkPurple,
           fontSize: 16,
           fontFamily:
               GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
@@ -381,13 +381,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         videoTitle: headline1.copyWith(
           fontWeight: FontWeight.w400,
         ),
-        footerNavColumnTitle: headline3.copyWith(
+        footerNavTabTitle: headline3.copyWith(
           color: AppColors.lightPurple,
           fontSize: 18,
           fontFamily:
               GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
         ),
-        footerNavColumnText: headline3.copyWith(
+        footerNavTabText: headline3.copyWith(
           color: AppColors.brighterWhite,
           fontSize: 16,
           fontFamily:
@@ -399,8 +399,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily:
               GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
         ),
-        hoveredFooterNavColumnText: headline3.copyWith(
-          color: AppColors.lightPurple,
+        footerHoveredNavTabText: headline3.copyWith(
+          color: AppColors.darkPurple,
           fontSize: 16,
           fontFamily:
               GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,

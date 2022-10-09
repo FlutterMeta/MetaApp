@@ -1,41 +1,39 @@
-import 'package:flutter/material.dart';
+part of '../footer.dart';
 
-import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+class _FooterNavigation extends StatelessWidget {
+  const _FooterNavigation({super.key});
 
-class FooterNavigation extends StatelessWidget {
-  const FooterNavigation({super.key});
-
-  List<_NavColumnLink> _multimetaLinks(BuildContext context) {
+  List<_NavTabLink> _multimetaLinks(BuildContext context) {
     return [
-      _NavColumnLink(onTap: () {}, title: context.localizations.directions),
-      _NavColumnLink(onTap: () {}, title: context.localizations.products),
-      _NavColumnLink(onTap: () {}, title: context.localizations.partners),
+      _NavTabLink(onTap: () {}, title: context.localizations.directions),
+      _NavTabLink(onTap: () {}, title: context.localizations.products),
+      _NavTabLink(onTap: () {}, title: context.localizations.partners),
     ];
   }
 
-  List<_NavColumnLink> _resourcesLinks(BuildContext context) {
+  List<_NavTabLink> _resourcesLinks(BuildContext context) {
     return [
-      _NavColumnLink(onTap: () {}, title: context.localizations.officeProgram),
-      _NavColumnLink(onTap: () {}, title: context.localizations.roadmap),
-      _NavColumnLink(onTap: () {}, title: context.localizations.whitePaper),
+      _NavTabLink(onTap: () {}, title: context.localizations.officeProgram),
+      _NavTabLink(onTap: () {}, title: context.localizations.roadmap),
+      _NavTabLink(onTap: () {}, title: context.localizations.whitePaper),
     ];
   }
 
-  List<_NavColumnLink> _accountLinks(BuildContext context) {
+  List<_NavTabLink> _accountLinks(BuildContext context) {
     return [
-      _NavColumnLink(onTap: () {}, title: context.localizations.login),
-      _NavColumnLink(onTap: () {}, title: context.localizations.createAccount),
-      _NavColumnLink(onTap: () {}, title: context.localizations.forgotPassword),
-      _NavColumnLink(onTap: () {}, title: context.localizations.usagePolicy),
+      _NavTabLink(onTap: () {}, title: context.localizations.login),
+      _NavTabLink(onTap: () {}, title: context.localizations.createAccount),
+      _NavTabLink(onTap: () {}, title: context.localizations.forgotPassword),
+      _NavTabLink(onTap: () {}, title: context.localizations.usagePolicy),
     ];
   }
 
-  List<_NavColumnLink> _mediaAndSupportLinks(BuildContext context) {
+  List<_NavTabLink> _mediaAndSupportLinks(BuildContext context) {
     return [
-      _NavColumnLink(onTap: () {}, title: context.localizations.telegram),
-      _NavColumnLink(onTap: () {}, title: context.localizations.email),
-      _NavColumnLink(onTap: () {}, title: context.localizations.submitTicket),
-      _NavColumnLink(onTap: () {}, title: context.localizations.questions),
+      _NavTabLink(onTap: () {}, title: context.localizations.telegram),
+      _NavTabLink(onTap: () {}, title: context.localizations.email),
+      _NavTabLink(onTap: () {}, title: context.localizations.submitTicket),
+      _NavTabLink(onTap: () {}, title: context.localizations.questions),
     ];
   }
 
@@ -47,19 +45,19 @@ class FooterNavigation extends StatelessWidget {
         spacing: 80,
         runSpacing: 40,
         children: [
-          _NavColumn(
+          _NavTab(
             title: context.localizations.multimeta,
             links: _multimetaLinks(context),
           ),
-          _NavColumn(
+          _NavTab(
             title: context.localizations.resources,
             links: _resourcesLinks(context),
           ),
-          _NavColumn(
+          _NavTab(
             title: context.localizations.account,
             links: _accountLinks(context),
           ),
-          _NavColumn(
+          _NavTab(
             title: context.localizations.mediaAndSupport,
             links: _mediaAndSupportLinks(context),
           ),
@@ -69,11 +67,11 @@ class FooterNavigation extends StatelessWidget {
   }
 }
 
-class _NavColumn extends StatelessWidget {
+class _NavTab extends StatelessWidget {
   final String title;
-  final List<_NavColumnLink> links;
+  final List<_NavTabLink> links;
 
-  const _NavColumn({
+  const _NavTab({
     required this.title,
     required this.links,
     Key? key,
@@ -88,7 +86,7 @@ class _NavColumn extends StatelessWidget {
         children: [
           Text(
             title,
-            style: context.text.footerNavColumnTitle,
+            style: context.text.footerNavTabTitle,
           ),
           ...links,
         ],
@@ -97,22 +95,23 @@ class _NavColumn extends StatelessWidget {
   }
 }
 
-class _NavColumnLink extends StatefulWidget {
+class _NavTabLink extends StatefulWidget {
   final VoidCallback onTap;
   final String title;
 
-  const _NavColumnLink({
+  const _NavTabLink({
     required this.onTap,
     required this.title,
     Key? key,
   }) : super(key: key);
 
   @override
-  State<_NavColumnLink> createState() => _NavColumnLinkState();
+  State<_NavTabLink> createState() => _NavTabLinkState();
 }
 
-class _NavColumnLinkState extends State<_NavColumnLink> {
+class _NavTabLinkState extends State<_NavTabLink> {
   bool _isHovered = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -125,8 +124,8 @@ class _NavColumnLinkState extends State<_NavColumnLink> {
         child: Text(
           widget.title,
           style: _isHovered
-              ? context.text.hoveredFooterNavColumnText
-              : context.text.footerNavColumnText,
+              ? context.text.footerHoveredNavTabText
+              : context.text.footerNavTabText,
         ),
       ),
     );
