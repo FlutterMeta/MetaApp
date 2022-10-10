@@ -1,7 +1,7 @@
 part of '../footer.dart';
 
 class _FooterNavigation extends StatelessWidget {
-  const _FooterNavigation({super.key});
+  const _FooterNavigation({Key? key}) : super(key: key);
 
   List<_NavTabLink> _multimetaLinks(BuildContext context) {
     return [
@@ -112,14 +112,18 @@ class _NavTabLink extends StatefulWidget {
 class _NavTabLinkState extends State<_NavTabLink> {
   bool _isHovered = false;
 
+  void _onHover() {
+    setState(() {
+      _isHovered = !_isHovered;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 16),
       child: InkWell(
-        onHover: (_) => setState(() {
-          _isHovered = !_isHovered;
-        }),
+        onHover: (_) => _onHover(),
         onTap: widget.onTap,
         child: Text(
           widget.title,

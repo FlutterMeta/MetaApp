@@ -1,7 +1,7 @@
 part of '../footer.dart';
 
 class _FooterLogoArea extends StatelessWidget {
-  const _FooterLogoArea({super.key});
+  const _FooterLogoArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
