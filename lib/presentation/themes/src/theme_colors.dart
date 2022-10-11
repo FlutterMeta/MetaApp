@@ -58,8 +58,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       footerBackground: footerBackground ?? this.footerBackground,
       localeDropdownBackground:
           localeDropdownBackground ?? this.localeDropdownBackground,
-      localeDropdownOpacity: localeDropdownOpacity ??
-          this.localeDropdownOpacity,
+      localeDropdownOpacity:
+          localeDropdownOpacity ?? this.localeDropdownOpacity,
     );
   }
 
@@ -90,8 +90,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(footerBackground, other.footerBackground, t)!,
       localeDropdownBackground: Color.lerp(
           localeDropdownBackground, other.localeDropdownBackground, t)!,
-      localeDropdownOpacity: Color.lerp(
-          localeDropdownOpacity, other.localeDropdownOpacity, t)!,
+      localeDropdownOpacity:
+          Color.lerp(localeDropdownOpacity, other.localeDropdownOpacity, t)!,
     );
   }
 

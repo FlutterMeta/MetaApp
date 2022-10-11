@@ -94,7 +94,6 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? footerWeCareAboutYou,
     TextStyle? footerHoveredNavTabText,
     TextStyle? localeTitle,
-
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
