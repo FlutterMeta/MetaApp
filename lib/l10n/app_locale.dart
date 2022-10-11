@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 enum AppLocale {
   en,
-  ru;
+  ru,
+  uk;
 
   const AppLocale();
 
@@ -12,6 +13,8 @@ enum AppLocale {
         return const Locale('en');
       case AppLocale.ru:
         return const Locale('ru');
+      case AppLocale.uk:
+        return const Locale('uk');
     }
   }
 }

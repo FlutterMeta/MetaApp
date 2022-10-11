@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:meta_app/core/route_observer.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/l10n/app_locale.dart';
+import 'package:meta_app/l10n/locale_manager.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/pages/login_page.dart';
 import 'package:meta_app/presentation/widgets/media_buttons.dart';

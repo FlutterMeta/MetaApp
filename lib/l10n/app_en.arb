@@ -61,5 +61,9 @@
     "officeProgram": "Office program",
     "multimeta": "MultiMeta",
     "resources": "Resources",
-    "mediaAndSupport": "Media and support"
+    "mediaAndSupport": "Media and support",
+    "@_LOCALE_DROPDOWN": {},
+    "english": "English",
+    "russian": "Russian",
+    "ukrainian": "Ukrainian"
 }

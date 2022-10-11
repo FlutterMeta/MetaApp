@@ -29,6 +29,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle footerNavTabText;
   final TextStyle footerWeCareAboutYou;
   final TextStyle footerHoveredNavTabText;
+  final TextStyle localeTitle;
 
   ThemeTextStyles({
     required this.test,
@@ -59,6 +60,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.footerNavTabText,
     required this.footerWeCareAboutYou,
     required this.footerHoveredNavTabText,
+    required this.localeTitle,
   });
 
   @override
@@ -91,6 +93,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? footerNavTabText,
     TextStyle? footerWeCareAboutYou,
     TextStyle? footerHoveredNavTabText,
+    TextStyle? localeTitle,
+
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -133,6 +137,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       footerWeCareAboutYou: footerWeCareAboutYou ?? this.footerWeCareAboutYou,
       footerHoveredNavTabText:
           footerHoveredNavTabText ?? this.footerHoveredNavTabText,
+      localeTitle: localeTitle ?? this.localeTitle,
     );
   }
 
@@ -193,6 +198,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(footerWeCareAboutYou, other.footerWeCareAboutYou, t)!,
       footerHoveredNavTabText: TextStyle.lerp(
           footerHoveredNavTabText, other.footerHoveredNavTabText, t)!,
+      localeTitle: TextStyle.lerp(localeTitle, other.localeTitle, t)!,
     );
   }
 
@@ -287,7 +293,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
               GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
         ),
         footerWeCareAboutYou: headline3.copyWith(
-          color: AppColors.darkerGrey,
+          color: AppColors.darkerBlueGrey,
           fontSize: 12,
           fontFamily:
               GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
@@ -298,6 +304,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily:
               GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
           decoration: TextDecoration.underline,
+        ),
+        localeTitle: headline3.copyWith(
+          fontSize: 16,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
         ),
       );
 
@@ -405,6 +416,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily:
               GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
           decoration: TextDecoration.underline,
+        ),
+        localeTitle: headline3.copyWith(
+          fontSize: 16,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
         ),
       );
 }
