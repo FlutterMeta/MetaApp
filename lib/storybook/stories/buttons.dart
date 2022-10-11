@@ -37,4 +37,18 @@ List<Story> get _buttons => [
           ),
         ),
       ),
+      Story(
+        name: "Buttons/MediaButtons",
+        builder: (context) {
+          return Scaffold(
+            body: Container(
+              alignment: Alignment.center,
+              child: const SizedBox(
+                width: 300,
+                child: MediaButtons(),
+              ),
+            ),
+          );
+        },
+      ),
     ];

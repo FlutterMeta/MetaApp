@@ -10,6 +10,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color menuOpacity;
   final Color headerBackground;
   final Color headerShadow;
+  final Color footerBackground;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -21,6 +22,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.menuOpacity,
     required this.headerBackground,
     required this.headerShadow,
+    required this.footerBackground,
   });
 
   @override
@@ -34,6 +36,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? menuOpacity,
     Color? headerBackground,
     Color? headerShadow,
+    Color? footerBackground,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -46,6 +49,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       menuOpacity: menuOpacity ?? this.menuOpacity,
       headerBackground: headerBackground ?? this.headerBackground,
       headerShadow: headerShadow ?? this.headerShadow,
+      footerBackground: footerBackground ?? this.footerBackground,
     );
   }
 
@@ -72,6 +76,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       headerBackground:
           Color.lerp(headerBackground, other.headerBackground, t)!,
       headerShadow: Color.lerp(headerShadow, other.headerShadow, t)!,
+      footerBackground:
+          Color.lerp(footerBackground, other.footerBackground, t)!,
     );
   }
 
@@ -85,6 +91,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         menuOpacity: AppColors.transparent,
         headerBackground: AppColors.brighterWhite,
         headerShadow: AppColors.grey.withOpacity(0.4),
+        footerBackground: AppColors.darkBlue,
       );
 
   static get dark => ThemeColors(
@@ -97,5 +104,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         menuOpacity: AppColors.transparent,
         headerBackground: AppColors.brighterWhite,
         headerShadow: AppColors.grey.withOpacity(0.4),
+        footerBackground: AppColors.darkBlue,
       );
 }

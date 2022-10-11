@@ -25,6 +25,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle forgotPasswordFormTextBold;
   final TextStyle haveAnAccount;
   final TextStyle videoTitle;
+  final TextStyle footerNavTabTitle;
+  final TextStyle footerNavTabText;
+  final TextStyle footerWeCareAboutYou;
+  final TextStyle footerHoveredNavTabText;
 
   ThemeTextStyles({
     required this.test,
@@ -51,6 +55,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.forgotPasswordFormTextBold,
     required this.haveAnAccount,
     required this.videoTitle,
+    required this.footerNavTabTitle,
+    required this.footerNavTabText,
+    required this.footerWeCareAboutYou,
+    required this.footerHoveredNavTabText,
   });
 
   @override
@@ -79,6 +87,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? forgotPasswordFormTextBold,
     TextStyle? haveAnAccount,
     TextStyle? videoTitle,
+    TextStyle? footerNavTabTitle,
+    TextStyle? footerNavTabText,
+    TextStyle? footerWeCareAboutYou,
+    TextStyle? footerHoveredNavTabText,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -116,6 +128,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           forgotPasswordFormTextBold ?? this.forgotPasswordFormTextBold,
       haveAnAccount: haveAnAccount ?? this.haveAnAccount,
       videoTitle: videoTitle ?? this.videoTitle,
+      footerNavTabTitle: footerNavTabTitle ?? this.footerNavTabTitle,
+      footerNavTabText: footerNavTabText ?? this.footerNavTabText,
+      footerWeCareAboutYou: footerWeCareAboutYou ?? this.footerWeCareAboutYou,
+      footerHoveredNavTabText:
+          footerHoveredNavTabText ?? this.footerHoveredNavTabText,
     );
   }
 
@@ -168,6 +185,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           forgotPasswordFormTextBold, other.forgotPasswordFormTextBold, t)!,
       haveAnAccount: TextStyle.lerp(haveAnAccount, other.haveAnAccount, t)!,
       videoTitle: TextStyle.lerp(videoTitle, other.videoTitle, t)!,
+      footerNavTabTitle:
+          TextStyle.lerp(footerNavTabTitle, other.footerNavTabTitle, t)!,
+      footerNavTabText:
+          TextStyle.lerp(footerNavTabText, other.footerNavTabText, t)!,
+      footerWeCareAboutYou:
+          TextStyle.lerp(footerWeCareAboutYou, other.footerWeCareAboutYou, t)!,
+      footerHoveredNavTabText: TextStyle.lerp(
+          footerHoveredNavTabText, other.footerHoveredNavTabText, t)!,
     );
   }
 
@@ -248,6 +273,31 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         videoTitle: headline1.copyWith(
           fontWeight: FontWeight.w400,
+        ),
+        footerNavTabTitle: headline3.copyWith(
+          color: AppColors.lightPurple,
+          fontSize: 18,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+        ),
+        footerNavTabText: headline3.copyWith(
+          color: AppColors.brighterWhite,
+          fontSize: 16,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+        ),
+        footerWeCareAboutYou: headline3.copyWith(
+          color: AppColors.darkerGrey,
+          fontSize: 12,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+        ),
+        footerHoveredNavTabText: headline3.copyWith(
+          color: AppColors.darkPurple,
+          fontSize: 16,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+          decoration: TextDecoration.underline,
         ),
       );
 
@@ -330,6 +380,31 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         videoTitle: headline1.copyWith(
           fontWeight: FontWeight.w400,
+        ),
+        footerNavTabTitle: headline3.copyWith(
+          color: AppColors.lightPurple,
+          fontSize: 18,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+        ),
+        footerNavTabText: headline3.copyWith(
+          color: AppColors.brighterWhite,
+          fontSize: 16,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+        ),
+        footerWeCareAboutYou: headline3.copyWith(
+          color: AppColors.grey,
+          fontSize: 12,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+        ),
+        footerHoveredNavTabText: headline3.copyWith(
+          color: AppColors.darkPurple,
+          fontSize: 16,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+          decoration: TextDecoration.underline,
         ),
       );
 }

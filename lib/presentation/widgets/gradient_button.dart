@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
-
-import 'hover.dart';
 
 class GradientButton extends StatelessWidget {
   final String title;

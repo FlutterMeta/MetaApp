@@ -100,7 +100,7 @@ class _CompactMenuState extends State<_CompactMenu>
           iconSize: 30,
           splashRadius: 26,
         ),
-        const _SocialComponent(),
+        const MediaButtons(),
       ],
     );
   }

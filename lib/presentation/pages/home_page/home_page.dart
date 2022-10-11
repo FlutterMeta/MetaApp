@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/pages/home_page/sections/video_section.dart';
+import 'package:meta_app/presentation/widgets/footer/footer.dart';
 import 'package:meta_app/presentation/widgets/gradient_button.dart';
 import 'package:meta_app/presentation/widgets/gradient_text.dart';
 import 'package:meta_app/presentation/widgets/header/header.dart';
@@ -54,7 +55,8 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          const SliverSizedBox(height: 50),
+          const SliverSizedBox(height: 100),
+          const SliverToBoxAdapter(child: Footer()),
         ],
       ),
     );
