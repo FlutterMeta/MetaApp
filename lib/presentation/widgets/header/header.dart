@@ -16,6 +16,7 @@ part 'components/expanded_menu.dart';
 part 'components/locale_dropdown.dart';
 part 'components/navigation_button.dart';
 part 'components/special_info_component.dart';
+part 'components/blog_button.dart';
 
 class Header extends SliverPersistentHeaderDelegate {
   final double screenWidth;
@@ -49,7 +50,7 @@ class Header extends SliverPersistentHeaderDelegate {
         boxShadow: [
           BoxShadow(
             color: context.color.headerShadow,
-            spreadRadius: 3,
+            spreadRadius: 4,
             blurRadius: 6,
           ),
         ],
@@ -69,6 +70,8 @@ class Header extends SliverPersistentHeaderDelegate {
                   children: const [
                     _SpecialInfoComponent(),
                     Spacer(),
+                    _BlogButton(),
+                    SizedBox(width: 10),
                     _AccountButton(),
                     SizedBox(width: 24),
                     _LocaleDropdown(),

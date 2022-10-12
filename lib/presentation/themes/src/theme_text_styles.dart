@@ -30,6 +30,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle footerWeCareAboutYou;
   final TextStyle footerHoveredNavTabText;
   final TextStyle localeTitle;
+  final TextStyle blogTitle;
+  final TextStyle blogTitleHovered;
 
   ThemeTextStyles({
     required this.test,
@@ -61,6 +63,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.footerWeCareAboutYou,
     required this.footerHoveredNavTabText,
     required this.localeTitle,
+    required this.blogTitle,
+    required this.blogTitleHovered,
   });
 
   @override
@@ -94,6 +98,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? footerWeCareAboutYou,
     TextStyle? footerHoveredNavTabText,
     TextStyle? localeTitle,
+    TextStyle? blogTitle,
+    TextStyle? blogTitleHovered,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -137,6 +143,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       footerHoveredNavTabText:
           footerHoveredNavTabText ?? this.footerHoveredNavTabText,
       localeTitle: localeTitle ?? this.localeTitle,
+      blogTitle: blogTitle ?? this.blogTitle,
+      blogTitleHovered: blogTitleHovered ?? this.blogTitleHovered,
     );
   }
 
@@ -198,6 +206,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       footerHoveredNavTabText: TextStyle.lerp(
           footerHoveredNavTabText, other.footerHoveredNavTabText, t)!,
       localeTitle: TextStyle.lerp(localeTitle, other.localeTitle, t)!,
+      blogTitle: TextStyle.lerp(blogTitle, other.blogTitle, t)!,
+      blogTitleHovered:
+          TextStyle.lerp(blogTitleHovered, other.blogTitleHovered, t)!,
     );
   }
 
@@ -246,7 +257,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         homePagePurpleBodyText: headline3.copyWith(
           color: AppColors.purple,
-          fontWeight: FontWeight.w500,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w700).fontFamily,
         ),
         revelantInfoTitle: headline2,
         purpleButtonText: headline3.copyWith(
@@ -309,6 +321,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily:
               GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
         ),
+        blogTitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        blogTitleHovered: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          color: AppColors.darkPurple,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -358,7 +377,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         homePagePurpleBodyText: headline3.copyWith(
           color: AppColors.purple,
-          fontWeight: FontWeight.w500,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w700).fontFamily,
         ),
         revelantInfoTitle: headline2,
         purpleButtonText: headline3.copyWith(
@@ -420,6 +440,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 16,
           fontFamily:
               GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+        ),
+        blogTitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        blogTitleHovered: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          color: AppColors.darkPurple,
         ),
       );
 }
