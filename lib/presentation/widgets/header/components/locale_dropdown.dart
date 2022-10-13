@@ -31,10 +31,13 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
 
     _overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
-        top: offset.dy + size.height,
+        top: offset.dy + size.height + 5,
         left: offset.dx,
         child: GestureDetector(
-          child: _LocaleOverlay(animation: animation),
+          child: _LocaleOverlay(
+            animation: animation,
+            onExit: () => removeOverlay(),
+          ),
         ),
       ),
     );
@@ -59,11 +62,17 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
   }
 
   @override
+  void dispose() {
+    removeOverlay();
+    animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) => showOverlay(),
-      onExit: (_) => removeOverlay(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -84,9 +93,11 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
 
 class _LocaleOverlay extends StatelessWidget {
   final Animation<double> animation;
+  final VoidCallback onExit;
 
   const _LocaleOverlay({
     required this.animation,
+    required this.onExit,
     Key? key,
   }) : super(key: key);
 
@@ -112,17 +123,18 @@ class _LocaleOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: context.color.localeDropdownOpacity,
-      child: FadeTransition(
-        opacity: animation,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: context.color.localeDropdownBackground,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+    return MouseRegion(
+      onExit: (_) => onExit(),
+      child: Material(
+        color: context.color.localeDropdownOpacity,
+        child: FadeTransition(
+          opacity: animation,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: context.color.localeDropdownBackground,
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: getLocales(context),
