@@ -132,13 +132,22 @@ class _OverlayMenu extends StatelessWidget {
 class _MenuTabs extends StatelessWidget {
   const _MenuTabs({Key? key}) : super(key: key);
 
+  void _goToProductsPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ProductsPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _NavigationButton(
-          onTap: () {},
+          onTap: () {
+            _goToProductsPage(context);
+          },
           title: context.localizations.directions,
         ),
         const SizedBox(height: 26),
