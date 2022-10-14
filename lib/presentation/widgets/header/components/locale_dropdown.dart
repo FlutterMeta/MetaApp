@@ -26,39 +26,30 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
   void showOverlay() {
     final overlayState = Overlay.of(context);
     final renderBox = context.findRenderObject() as RenderBox;
-    final size = renderBox.size;
     final offset = renderBox.localToGlobal(Offset.zero);
 
     _overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
-        top: offset.dy + size.height + 5,
+        top: offset.dy,
         left: offset.dx,
-        child: GestureDetector(
-          child: _LocaleOverlay(
-            animation: animation,
-            onExit: () => removeOverlay(),
-          ),
+        child: _LocaleOverlay(
+          animation: animation,
+          onExit: removeOverlay,
         ),
       ),
     );
 
-    if (_overlayEntry?.mounted ?? false) return;
-
     _overlayEntry?.let((entry) {
+      overlayState?.insert(entry);
       animationController.forward();
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) => overlayState?.insert(_overlayEntry as OverlayEntry),
-      );
     });
   }
 
   void removeOverlay() {
-    Future.delayed(const Duration(milliseconds: 100), () {
-      if (_overlayEntry?.mounted ?? false) {
-        animationController.reverse();
-        _overlayEntry?.remove();
-      }
-    });
+    if (_overlayEntry?.mounted ?? false) {
+      animationController.reverse();
+      _overlayEntry?.remove();
+    }
   }
 
   @override
@@ -123,21 +114,23 @@ class _LocaleOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onExit: (_) => onExit(),
-      child: Material(
-        color: context.color.localeDropdownOpacity,
-        child: FadeTransition(
-          opacity: animation,
+    return Material(
+      color: context.color.localeDropdownOpacity,
+      child: FadeTransition(
+        opacity: animation,
+        child: MouseRegion(
+          onExit: (_) => onExit(),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: context.color.localeDropdownBackground,
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: getLocales(context),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: getLocales(context),
+              ),
             ),
           ),
         ),
