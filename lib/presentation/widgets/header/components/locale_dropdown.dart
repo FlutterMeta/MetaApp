@@ -26,36 +26,30 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
   void showOverlay() {
     final overlayState = Overlay.of(context);
     final renderBox = context.findRenderObject() as RenderBox;
-    final size = renderBox.size;
     final offset = renderBox.localToGlobal(Offset.zero);
 
     _overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
-        top: offset.dy + size.height,
+        top: offset.dy,
         left: offset.dx,
-        child: GestureDetector(
-          child: _LocaleOverlay(animation: animation),
+        child: _LocaleOverlay(
+          animation: animation,
+          onExit: removeOverlay,
         ),
       ),
     );
 
-    if (_overlayEntry?.mounted ?? false) return;
-
     _overlayEntry?.let((entry) {
+      overlayState?.insert(entry);
       animationController.forward();
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) => overlayState?.insert(_overlayEntry as OverlayEntry),
-      );
     });
   }
 
   void removeOverlay() {
-    Future.delayed(const Duration(milliseconds: 100), () {
-      if (_overlayEntry?.mounted ?? false) {
-        animationController.reverse();
-        _overlayEntry?.remove();
-      }
-    });
+    if (_overlayEntry?.mounted ?? false) {
+      animationController.reverse();
+      _overlayEntry?.remove();
+    }
   }
 
   @override
@@ -63,7 +57,6 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) => showOverlay(),
-      onExit: (_) => removeOverlay(),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -84,9 +77,11 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
 
 class _LocaleOverlay extends StatelessWidget {
   final Animation<double> animation;
+  final VoidCallback onExit;
 
   const _LocaleOverlay({
     required this.animation,
+    required this.onExit,
     Key? key,
   }) : super(key: key);
 
@@ -116,16 +111,19 @@ class _LocaleOverlay extends StatelessWidget {
       color: context.color.localeDropdownOpacity,
       child: FadeTransition(
         opacity: animation,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: context.color.localeDropdownBackground,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: getLocales(context),
+        child: MouseRegion(
+          onExit: (_) => onExit(),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: context.color.localeDropdownBackground,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: getLocales(context),
+              ),
             ),
           ),
         ),
