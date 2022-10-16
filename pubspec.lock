@@ -455,6 +455,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  locale_emoji:
+    dependency: transitive
+    description:
+      name: locale_emoji
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
+  locale_emoji_flutter:
+    dependency: "direct main"
+    description:
+      name: locale_emoji_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.1"
   logger:
     dependency: transitive
     description:

@@ -14,7 +14,7 @@
     "incorrectPassword": "Неправильный пароль",
     "incorrectCode": "Не корректный код",
     "fieldMustNotBeEmpty": "Это поле не должно быть пустым",
-    "passwordMustBeLonger": "Пароль должен быть длиннее {minLength}и символов",
+    "passwordMustBeLonger": "Пароль должен быть длиннее {minLength} символов",
     "@passwordMustBeLonger": {
         "placeholders": {
             "minLength": {
@@ -23,10 +23,10 @@
         }
     },
     "@_FORGOT_PASSWORD_PAGE": {},
-    "accessRecovery": "Получить восстановление ???",
+    "accessRecovery": "Восстановить доступ",
     "logInSystem": "Авторизация в системе",
     "registrationEmail": "Электронная почта для регистрации",
-    "restoreAccess": "Возобновить доступ",
+    "restoreAccess": "Восстановить доступ",
     "@REGISTRATIOB_PAGE": {},
     "createAccount": "Создать аккаунт",
     "accountName": "Имя аккаунта (логин)",
@@ -58,8 +58,8 @@
     "submitTicket": "Отправить билет",
     "questions": "Вопросы",
     "usagePolicy": "Политика использования",
-    "whitePaper": "White paper",
-    "officeProgram": "Office program",
+    "whitePaper": "Белая бумага",
+    "officeProgram": "Офисная программа",
     "multimeta": "MultiMeta",
     "resources": "Ресурсы",
     "mediaAndSupport": "Медиа и поддержка",

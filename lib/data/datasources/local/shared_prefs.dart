@@ -23,7 +23,6 @@ class SharedPrefs {
 
   Future<bool> setLocale(AppLocale locale) async =>
       _preferences.setString(_localeKey, locale.name);
-
   AppLocale? getLocale() {
     final String? value = _preferences.getString(_localeKey);
     return value != null

@@ -13,26 +13,15 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
   late AnimationController animationController;
   late Animation<double> animation;
 
-  @override
-  void initState() {
-    super.initState();
-    animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-    animation = CurveTween(curve: Curves.linear).animate(animationController);
-  }
-
   void showOverlay() {
     final overlayState = Overlay.of(context);
     final renderBox = context.findRenderObject() as RenderBox;
     final offset = renderBox.localToGlobal(Offset.zero);
-    final compactMenuDxPosition = renderBox.size.width / 2 - 70;
 
     _overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
         top: offset.dy,
-        left: context.screenWidth > 780 ? offset.dx : compactMenuDxPosition,
+        left: offset.dx,
         child: _LocaleOverlay(
           animation: animation,
           onExit: removeOverlay,
@@ -54,23 +43,29 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
   }
 
   @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 500),
+    );
+    animation = CurveTween(curve: Curves.linear).animate(animationController);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    Future.delayed(Duration.zero, () {
+      if (mounted && context.screenWidth > 780) removeOverlay();
+    });
+  }
+
+  @override
   void dispose() {
     removeOverlay();
     animationController.dispose();
     super.dispose();
-  }
-
-  static String getCurrentLocaleAsset() {
-    final locale = locator<SharedPrefs>().getLocale() ?? AppLocale.en;
-
-    switch (locale) {
-      case AppLocale.en:
-        return AppAssets.engFlag;
-      case AppLocale.ru:
-        return AppAssets.rusFlag;
-      case AppLocale.uk:
-        return AppAssets.ukrFlag;
-    }
   }
 
   @override
@@ -86,12 +81,14 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
             child: Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: context.color.localeDropdownBackground,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Row(
                 children: [
-                  Image.asset(getCurrentLocaleAsset(), height: 20),
+                  Text(
+                    AppLocale.currentLocaleFlag as String,
+                    style: const TextStyle(fontSize: 20),
+                  ),
                   const Icon(Icons.arrow_drop_down),
                 ],
               ),
@@ -116,17 +113,17 @@ class _LocaleOverlay extends StatelessWidget {
   List<_LocaleWidget> getLocales(BuildContext context) {
     return [
       _LocaleWidget(
-        flagAsset: AppAssets.engFlag,
+        flag: AppLocale.enFlag,
         localeTitle: context.localizations.english,
         locale: AppLocale.en,
       ),
       _LocaleWidget(
-        flagAsset: AppAssets.ukrFlag,
+        flag: AppLocale.ukFlag,
         localeTitle: context.localizations.ukrainian,
         locale: AppLocale.uk,
       ),
       _LocaleWidget(
-        flagAsset: AppAssets.rusFlag,
+        flag: AppLocale.ruFlag,
         localeTitle: context.localizations.russian,
         locale: AppLocale.ru,
       ),
@@ -144,7 +141,7 @@ class _LocaleOverlay extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: context.color.localeDropdownOpenedBackground,
+              color: context.color.localeDropdownBackground,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
@@ -161,12 +158,12 @@ class _LocaleOverlay extends StatelessWidget {
 }
 
 class _LocaleWidget extends StatelessWidget {
-  final String flagAsset;
+  final String flag;
   final String localeTitle;
   final AppLocale locale;
 
   const _LocaleWidget({
-    required this.flagAsset,
+    required this.flag,
     required this.localeTitle,
     required this.locale,
     Key? key,
@@ -174,13 +171,14 @@ class _LocaleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: InkWell(
-        onTap: () => LocaleManager.setLocaleAction(context, locale),
+    return InkWell(
+      onTap: () => LocaleManager.setLocaleAction(context, locale),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Image.asset(flagAsset, height: 26, width: 20),
+            Text(flag),
             const SizedBox(width: 10),
             Text(localeTitle, style: context.text.localeTitle),
           ],

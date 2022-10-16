@@ -11,9 +11,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color headerBackground;
   final Color headerShadow;
   final Color footerBackground;
-  final Color localeDropdownOpenedBackground;
-  final Color localeDropdownOpacity;
   final Color localeDropdownBackground;
+  final Color localeDropdownOpacity;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -26,7 +25,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.headerBackground,
     required this.headerShadow,
     required this.footerBackground,
-    required this.localeDropdownOpenedBackground,
     required this.localeDropdownOpacity,
     required this.localeDropdownBackground,
   });
@@ -59,8 +57,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       headerBackground: headerBackground ?? this.headerBackground,
       headerShadow: headerShadow ?? this.headerShadow,
       footerBackground: footerBackground ?? this.footerBackground,
-      localeDropdownOpenedBackground:
-          localeDropdownOpenedBackground ?? this.localeDropdownOpenedBackground,
       localeDropdownOpacity:
           localeDropdownOpacity ?? this.localeDropdownOpacity,
       localeDropdownBackground:
@@ -93,8 +89,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       headerShadow: Color.lerp(headerShadow, other.headerShadow, t)!,
       footerBackground:
           Color.lerp(footerBackground, other.footerBackground, t)!,
-      localeDropdownOpenedBackground: Color.lerp(localeDropdownOpenedBackground,
-          other.localeDropdownOpenedBackground, t)!,
       localeDropdownOpacity:
           Color.lerp(localeDropdownOpacity, other.localeDropdownOpacity, t)!,
       localeDropdownBackground: Color.lerp(
@@ -113,9 +107,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         headerBackground: AppColors.brighterWhite,
         headerShadow: AppColors.grey.withOpacity(0.4),
         footerBackground: AppColors.darkBlue,
-        localeDropdownOpenedBackground: AppColors.darkerGrey,
+        localeDropdownBackground: AppColors.darkerGrey,
         localeDropdownOpacity: AppColors.transparent,
-        localeDropdownBackground: AppColors.brightWhite,
       );
 
   static get dark => ThemeColors(
@@ -129,8 +122,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         headerBackground: AppColors.brighterWhite,
         headerShadow: AppColors.grey.withOpacity(0.4),
         footerBackground: AppColors.darkBlue,
-        localeDropdownOpenedBackground: AppColors.darkerGrey,
+        localeDropdownBackground: AppColors.darkerGrey,
         localeDropdownOpacity: AppColors.transparent,
-        localeDropdownBackground: AppColors.brightWhite,
       );
 }
