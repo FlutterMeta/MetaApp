@@ -27,11 +27,12 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
     final overlayState = Overlay.of(context);
     final renderBox = context.findRenderObject() as RenderBox;
     final offset = renderBox.localToGlobal(Offset.zero);
+    final compactMenuDxPosition = renderBox.size.width / 2 - 70;
 
     _overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
         top: offset.dy,
-        left: offset.dx,
+        left: context.screenWidth > 780 ? offset.dx : compactMenuDxPosition,
         child: _LocaleOverlay(
           animation: animation,
           onExit: removeOverlay,
@@ -59,6 +60,19 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
     super.dispose();
   }
 
+  static String getCurrentLocaleAsset() {
+    final locale = locator<SharedPrefs>().getLocale() ?? AppLocale.en;
+
+    switch (locale) {
+      case AppLocale.en:
+        return AppAssets.engFlag;
+      case AppLocale.ru:
+        return AppAssets.rusFlag;
+      case AppLocale.uk:
+        return AppAssets.ukrFlag;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
@@ -69,11 +83,18 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
         children: [
           InkWell(
             onTap: () => showOverlay(),
-            child: Row(
-              children: const [
-                Icon(Icons.language),
-                Icon(Icons.arrow_drop_down),
-              ],
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: context.color.localeDropdownBackground,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                children: [
+                  Image.asset(getCurrentLocaleAsset(), height: 20),
+                  const Icon(Icons.arrow_drop_down),
+                ],
+              ),
             ),
           ),
         ],
@@ -123,7 +144,7 @@ class _LocaleOverlay extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: context.color.localeDropdownBackground,
+              color: context.color.localeDropdownOpenedBackground,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
