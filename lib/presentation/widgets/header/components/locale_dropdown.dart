@@ -12,7 +12,7 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
   OverlayEntry? _overlayEntry;
   late AnimationController animationController;
   late Animation<double> animation;
-
+  late AppLocale currentLocale;
   void showOverlay() {
     final overlayState = Overlay.of(context);
     final renderBox = context.findRenderObject() as RenderBox;
@@ -50,6 +50,7 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
       duration: const Duration(milliseconds: 500),
     );
     animation = CurveTween(curve: Curves.linear).animate(animationController);
+    currentLocale = locator<SharedPrefs>().getLocale() ?? AppLocale.en;
   }
 
   @override
@@ -86,7 +87,7 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
               child: Row(
                 children: [
                   Text(
-                    AppLocale.currentLocaleFlag as String,
+                    currentLocale.localeFlag ?? '',
                     style: const TextStyle(fontSize: 20),
                   ),
                   const Icon(Icons.arrow_drop_down),
@@ -113,17 +114,17 @@ class _LocaleOverlay extends StatelessWidget {
   List<_LocaleWidget> getLocales(BuildContext context) {
     return [
       _LocaleWidget(
-        flag: AppLocale.enFlag,
+        flag: AppLocale.en.localeFlag ?? '',
         localeTitle: context.localizations.english,
         locale: AppLocale.en,
       ),
       _LocaleWidget(
-        flag: AppLocale.ukFlag,
+        flag: AppLocale.uk.localeFlag ?? '',
         localeTitle: context.localizations.ukrainian,
         locale: AppLocale.uk,
       ),
       _LocaleWidget(
-        flag: AppLocale.ruFlag,
+        flag: AppLocale.ru.localeFlag ?? '',
         localeTitle: context.localizations.russian,
         locale: AppLocale.ru,
       ),

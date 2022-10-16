@@ -154,7 +154,10 @@ class _MenuTabs extends StatelessWidget {
         const SizedBox(height: 26),
         const _AccountButton(),
         const SizedBox(height: 26),
-        const SizedBox(width: 82, child: _LocaleDropdown()),
+        const SizedBox(
+          width: 82,
+          child: _LocaleDropdown(),
+        ),
         const SizedBox(height: 100),
       ],
     );
