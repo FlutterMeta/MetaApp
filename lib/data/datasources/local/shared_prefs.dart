@@ -23,10 +23,10 @@ class SharedPrefs {
 
   Future<bool> setLocale(AppLocale locale) async =>
       _preferences.setString(_localeKey, locale.name);
-  AppLocale? getLocale() {
+  AppLocale getLocale() {
     final String? value = _preferences.getString(_localeKey);
     return value != null
         ? AppLocale.values.firstWhere((element) => element.name == value)
-        : null;
+        : AppLocale.en;
   }
 }

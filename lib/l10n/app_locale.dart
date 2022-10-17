@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:locale_emoji_flutter/locale_emoji_flutter.dart' as le;
+import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
 enum AppLocale {
   en,
@@ -27,6 +28,17 @@ enum AppLocale {
         return le.getFlagEmoji(languageCode: 'ru');
       case AppLocale.uk:
         return le.getFlagEmoji(languageCode: 'uk');
+    }
+  }
+
+  String toTitle(BuildContext context) {
+    switch (this) {
+      case AppLocale.en:
+        return context.localizations.english;
+      case AppLocale.ru:
+        return context.localizations.russian;
+      case AppLocale.uk:
+        return context.localizations.ukrainian;
     }
   }
 }

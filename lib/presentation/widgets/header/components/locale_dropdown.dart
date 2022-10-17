@@ -13,6 +13,7 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
   late AnimationController animationController;
   late Animation<double> animation;
   late AppLocale currentLocale;
+
   void showOverlay() {
     final overlayState = Overlay.of(context);
     final renderBox = context.findRenderObject() as RenderBox;
@@ -50,7 +51,7 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
       duration: const Duration(milliseconds: 500),
     );
     animation = CurveTween(curve: Curves.linear).animate(animationController);
-    currentLocale = locator<SharedPrefs>().getLocale() ?? AppLocale.en;
+    currentLocale = locator<SharedPrefs>().getLocale();
   }
 
   @override
@@ -74,28 +75,23 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) => showOverlay(),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          InkWell(
-            onTap: () => showOverlay(),
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    currentLocale.localeFlag ?? '',
-                    style: const TextStyle(fontSize: 20),
-                  ),
-                  const Icon(Icons.arrow_drop_down),
-                ],
-              ),
-            ),
+      child: InkWell(
+        onTap: () => showOverlay(),
+        child: Container(
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
           ),
-        ],
+          child: Row(
+            children: [
+              Text(
+                currentLocale.localeFlag ?? '',
+                style: const TextStyle(fontSize: 20),
+              ),
+              const Icon(Icons.arrow_drop_down),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -110,26 +106,6 @@ class _LocaleOverlay extends StatelessWidget {
     required this.onExit,
     Key? key,
   }) : super(key: key);
-
-  List<_LocaleWidget> getLocales(BuildContext context) {
-    return [
-      _LocaleWidget(
-        flag: AppLocale.en.localeFlag ?? '',
-        localeTitle: context.localizations.english,
-        locale: AppLocale.en,
-      ),
-      _LocaleWidget(
-        flag: AppLocale.uk.localeFlag ?? '',
-        localeTitle: context.localizations.ukrainian,
-        locale: AppLocale.uk,
-      ),
-      _LocaleWidget(
-        flag: AppLocale.ru.localeFlag ?? '',
-        localeTitle: context.localizations.russian,
-        locale: AppLocale.ru,
-      ),
-    ];
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +124,11 @@ class _LocaleOverlay extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: getLocales(context),
+                children: const [
+                  _LocaleWidget(locale: AppLocale.en),
+                  _LocaleWidget(locale: AppLocale.uk),
+                  _LocaleWidget(locale: AppLocale.ru),
+                ],
               ),
             ),
           ),
@@ -159,13 +139,9 @@ class _LocaleOverlay extends StatelessWidget {
 }
 
 class _LocaleWidget extends StatelessWidget {
-  final String flag;
-  final String localeTitle;
   final AppLocale locale;
 
   const _LocaleWidget({
-    required this.flag,
-    required this.localeTitle,
     required this.locale,
     Key? key,
   }) : super(key: key);
@@ -179,9 +155,12 @@ class _LocaleWidget extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(flag),
+            Text(locale.localeFlag ?? ""),
             const SizedBox(width: 10),
-            Text(localeTitle, style: context.text.localeTitle),
+            Text(
+              locale.toTitle(context),
+              style: context.text.localeTitle,
+            ),
           ],
         ),
       ),
