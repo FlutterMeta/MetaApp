@@ -25,8 +25,9 @@ class SharedPrefs {
       _preferences.setString(_localeKey, locale.name);
   AppLocale getLocale() {
     final String? value = _preferences.getString(_localeKey);
-    return value != null
-        ? AppLocale.values.firstWhere((element) => element.name == value)
-        : AppLocale.en;
+    return AppLocale.values.firstWhere(
+      (element) => element.name == value,
+      orElse: () => AppLocale.en,
+    );
   }
 }
