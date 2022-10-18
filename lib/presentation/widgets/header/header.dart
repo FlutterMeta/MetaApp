@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:meta_app/core/di/locator.dart';
 import 'package:meta_app/core/route_observer.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/data/datasources/local/shared_prefs.dart';
+import 'package:meta_app/l10n/app_locale.dart';
+import 'package:meta_app/l10n/locale_manager.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/pages/login_page.dart';
 import 'package:meta_app/presentation/pages/products_page/products_page.dart';
@@ -15,6 +18,7 @@ part 'components/expanded_menu.dart';
 part 'components/locale_dropdown.dart';
 part 'components/navigation_button.dart';
 part 'components/special_info_component.dart';
+part 'components/blog_button.dart';
 
 class Header extends SliverPersistentHeaderDelegate {
   final double screenWidth;
@@ -48,7 +52,7 @@ class Header extends SliverPersistentHeaderDelegate {
         boxShadow: [
           BoxShadow(
             color: context.color.headerShadow,
-            spreadRadius: 3,
+            spreadRadius: 4,
             blurRadius: 6,
           ),
         ],
@@ -68,6 +72,8 @@ class Header extends SliverPersistentHeaderDelegate {
                   children: const [
                     _SpecialInfoComponent(),
                     Spacer(),
+                    _BlogButton(),
+                    SizedBox(width: 10),
                     _AccountButton(),
                     SizedBox(width: 24),
                     _LocaleDropdown(),

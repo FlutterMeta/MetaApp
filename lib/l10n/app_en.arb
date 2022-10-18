@@ -43,6 +43,7 @@
     "profitToPartners": "Profit to partners from 0.8% per day",
     "leadershipBonuses": "Leadership bonuses in 15 levels",
     "fromFiftyDollars": "From $50 to $1,000,000 for Leader Partner Park",
+    "blog": "Blog",
     "account": "Account",
     "roadmap": "Road map",
     "revelantInfo": "More revelant information:",
@@ -61,5 +62,9 @@
     "officeProgram": "Office program",
     "multimeta": "MultiMeta",
     "resources": "Resources",
-    "mediaAndSupport": "Media and support"
+    "mediaAndSupport": "Media and support",
+    "@_LOCALE_DROPDOWN": {},
+    "english": "English",
+    "russian": "Российский",
+    "ukrainian": "Українська"
 }
