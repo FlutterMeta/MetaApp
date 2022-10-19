@@ -6,9 +6,11 @@ import 'package:meta_app/presentation/widgets/footer/footer.dart';
 import 'package:meta_app/presentation/widgets/gradient_button.dart';
 import 'package:meta_app/presentation/widgets/header/header.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
+import 'package:meta_app/presentation/widgets/sliver_sized_box.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 import 'package:video_player/video_player.dart';
 
+part 'sections/cards_section.dart';
 part 'sections/income_section.dart';
 
 class PartnersPage extends StatelessWidget {
@@ -39,6 +41,9 @@ class PartnersPage extends StatelessWidget {
             pinned: true,
           ),
           const SliverToBoxAdapter(child: _IncomeSection()),
+          const SliverSizedBox(height: 100),
+          const SliverToBoxAdapter(child: _CardsSection()),
+          const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: Footer()),
         ],
       ),

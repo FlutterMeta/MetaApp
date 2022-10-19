@@ -35,6 +35,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle incomeSectionTitle;
   final TextStyle incomeSectionText;
   final TextStyle joinButton;
+  final TextStyle cardsSectionTitle;
+  final TextStyle cardsSectionText;
+  final TextStyle partnersSectionCardTitle;
+  final TextStyle partnersSectionCardSubtitle;
+  final TextStyle partnersSectionCardText;
 
   ThemeTextStyles({
     required this.test,
@@ -71,6 +76,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.incomeSectionTitle,
     required this.incomeSectionText,
     required this.joinButton,
+    required this.cardsSectionTitle,
+    required this.cardsSectionText,
+    required this.partnersSectionCardTitle,
+    required this.partnersSectionCardSubtitle,
+    required this.partnersSectionCardText,
   });
 
   @override
@@ -109,6 +119,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? incomeSectionTitle,
     TextStyle? incomeSectionText,
     TextStyle? joinButton,
+    TextStyle? cardsSectionTitle,
+    TextStyle? cardsSectionText,
+    TextStyle? partnersSectionCardTitle,
+    TextStyle? partnersSectionCardSubtitle,
+    TextStyle? partnersSectionCardText,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -157,6 +172,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       incomeSectionTitle: incomeSectionTitle ?? this.incomeSectionTitle,
       incomeSectionText: incomeSectionText ?? this.incomeSectionText,
       joinButton: joinButton ?? this.joinButton,
+      cardsSectionTitle: cardsSectionTitle ?? this.cardsSectionTitle,
+      cardsSectionText: cardsSectionText ?? this.cardsSectionText,
+      partnersSectionCardTitle:
+          partnersSectionCardTitle ?? this.partnersSectionCardTitle,
+      partnersSectionCardSubtitle:
+          partnersSectionCardSubtitle ?? this.partnersSectionCardSubtitle,
+      partnersSectionCardText:
+          partnersSectionCardText ?? this.partnersSectionCardText,
     );
   }
 
@@ -226,6 +249,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       incomeSectionText:
           TextStyle.lerp(incomeSectionText, other.incomeSectionText, t)!,
       joinButton: TextStyle.lerp(joinButton, other.joinButton, t)!,
+      cardsSectionTitle:
+          TextStyle.lerp(cardsSectionTitle, other.cardsSectionTitle, t)!,
+      cardsSectionText:
+          TextStyle.lerp(cardsSectionText, other.cardsSectionText, t)!,
+      partnersSectionCardTitle: TextStyle.lerp(
+          partnersSectionCardTitle, other.partnersSectionCardTitle, t)!,
+      partnersSectionCardSubtitle: TextStyle.lerp(
+          partnersSectionCardSubtitle, other.partnersSectionCardSubtitle, t)!,
+      partnersSectionCardText: TextStyle.lerp(
+          partnersSectionCardText, other.partnersSectionCardText, t)!,
     );
   }
 
@@ -355,6 +388,26 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         joinButton: headline3.copyWith(
           color: AppColors.darkPurple,
+        ),
+        cardsSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        cardsSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnersSectionCardTitle: headline1.copyWith(
+          fontSize: 22,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        partnersSectionCardSubtitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnersSectionCardText: headline3.copyWith(
+          color: AppColors.darkPurple,
+          fontFamily: GoogleFonts.roboto().fontFamily,
         ),
       );
 
@@ -486,6 +539,26 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         joinButton: headline3.copyWith(
           color: AppColors.darkPurple,
+        ),
+        cardsSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        cardsSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnersSectionCardTitle: headline1.copyWith(
+          fontSize: 22,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        partnersSectionCardSubtitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnersSectionCardText: headline3.copyWith(
+          color: AppColors.darkPurple,
+          fontFamily: GoogleFonts.roboto().fontFamily,
         ),
       );
 }

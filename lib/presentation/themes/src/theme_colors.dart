@@ -15,6 +15,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color localeDropdownOpacity;
   final Color incomeSectionBackground;
   final Color joinButtonBorder;
+  final Color partnersCardBackground;
+  final Color partnersCardContentBackground;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -31,6 +33,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.localeDropdownBackground,
     required this.incomeSectionBackground,
     required this.joinButtonBorder,
+    required this.partnersCardBackground,
+    required this.partnersCardContentBackground,
   });
 
   @override
@@ -50,6 +54,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? localeDropdownBackground,
     Color? incomeSectionBackground,
     Color? joinButtonBorder,
+    Color? partnersCardBackground,
+    Color? partnersCardContentBackground,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -70,6 +76,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       incomeSectionBackground:
           incomeSectionBackground ?? this.incomeSectionBackground,
       joinButtonBorder: joinButtonBorder ?? this.joinButtonBorder,
+      partnersCardBackground:
+          partnersCardBackground ?? this.partnersCardBackground,
+      partnersCardContentBackground:
+          partnersCardContentBackground ?? this.partnersCardContentBackground,
     );
   }
 
@@ -106,6 +116,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           incomeSectionBackground, other.incomeSectionBackground, t)!,
       joinButtonBorder:
           Color.lerp(joinButtonBorder, other.joinButtonBorder, t)!,
+      partnersCardBackground:
+          Color.lerp(partnersCardBackground, other.partnersCardBackground, t)!,
+      partnersCardContentBackground: Color.lerp(partnersCardContentBackground,
+          other.partnersCardContentBackground, t)!,
     );
   }
 
@@ -124,6 +138,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         localeDropdownOpacity: AppColors.transparent,
         incomeSectionBackground: AppColors.whitePurple,
         joinButtonBorder: AppColors.darkPurple,
+        partnersCardBackground: AppColors.purple,
+        partnersCardContentBackground: AppColors.white,
       );
 
   static get dark => ThemeColors(
@@ -141,5 +157,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         localeDropdownOpacity: AppColors.transparent,
         incomeSectionBackground: AppColors.whitePurple,
         joinButtonBorder: AppColors.darkPurple,
+        partnersCardBackground: AppColors.purple,
+        partnersCardContentBackground: AppColors.white,
       );
 }
