@@ -66,5 +66,10 @@
     "@_LOCALE_DROPDOWN": {},
     "english": "English",
     "russian": "Российский",
-    "ukrainian": "Українська"
+    "ukrainian": "Українська",
+    "@_PARTNERS_PAGE": {},
+    "wmaIncome": "WMA Income,\nInvesting,\nLeadership\nRewards",
+    "chooseMostProfitableWay": "Choose the most profitable and interesting way to earn money with MultiMeta. Profit from owning shares in MultiMeta Universe, invest in profitable deposit programs, or show leadership and build a team in MultiMeta, receiving 3 types of bonus rewards.",
+    "downloadPdfPresentation": "Download PDF presentation",
+    "join": "Join"
 }

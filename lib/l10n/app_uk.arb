@@ -66,5 +66,10 @@
     "@_LOCALE_DROPDOWN": {},
     "english": "English",
     "russian": "Российский",
-    "ukrainian": "Українська"
+    "ukrainian": "Українська",
+    "@_PARTNERS_PAGE": {},
+    "wmaIncome": "Дохід WMA,\nінвестиції,\nвинагороди\nза лідерство",
+    "chooseMostProfitableWay": "Виберіть найбільш вигідний і цікавий спосіб заробітку з MultiMeta. Отримайте прибуток від володіння акціями в MultiMeta Universe, інвестуйте в прибуткові депозитні програми або продемонструйте лідерство та створіть команду в MultiMeta, отримуючи 3 типи бонусів.",
+    "downloadPdfPresentation": "Завантажити PDF презентацію",
+    "join": "Приєднатися"
 }

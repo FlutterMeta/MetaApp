@@ -13,6 +13,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color footerBackground;
   final Color localeDropdownBackground;
   final Color localeDropdownOpacity;
+  final Color incomeSectionBackground;
+  final Color joinButtonBorder;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -27,6 +29,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.footerBackground,
     required this.localeDropdownOpacity,
     required this.localeDropdownBackground,
+    required this.incomeSectionBackground,
+    required this.joinButtonBorder,
   });
 
   @override
@@ -44,6 +48,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? localeDropdownOpenedBackground,
     Color? localeDropdownOpacity,
     Color? localeDropdownBackground,
+    Color? incomeSectionBackground,
+    Color? joinButtonBorder,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -61,6 +67,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           localeDropdownOpacity ?? this.localeDropdownOpacity,
       localeDropdownBackground:
           localeDropdownBackground ?? this.localeDropdownBackground,
+      incomeSectionBackground:
+          incomeSectionBackground ?? this.incomeSectionBackground,
+      joinButtonBorder: joinButtonBorder ?? this.joinButtonBorder,
     );
   }
 
@@ -93,6 +102,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(localeDropdownOpacity, other.localeDropdownOpacity, t)!,
       localeDropdownBackground: Color.lerp(
           localeDropdownBackground, other.localeDropdownBackground, t)!,
+      incomeSectionBackground: Color.lerp(
+          incomeSectionBackground, other.incomeSectionBackground, t)!,
+      joinButtonBorder:
+          Color.lerp(joinButtonBorder, other.joinButtonBorder, t)!,
     );
   }
 
@@ -109,6 +122,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         footerBackground: AppColors.darkBlue,
         localeDropdownBackground: AppColors.darkerGrey,
         localeDropdownOpacity: AppColors.transparent,
+        incomeSectionBackground: AppColors.whitePurple,
+        joinButtonBorder: AppColors.darkPurple,
       );
 
   static get dark => ThemeColors(
@@ -124,5 +139,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         footerBackground: AppColors.darkBlue,
         localeDropdownBackground: AppColors.darkerGrey,
         localeDropdownOpacity: AppColors.transparent,
+        incomeSectionBackground: AppColors.whitePurple,
+        joinButtonBorder: AppColors.darkPurple,
       );
 }

@@ -32,6 +32,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle localeTitle;
   final TextStyle blogTitle;
   final TextStyle blogTitleHovered;
+  final TextStyle incomeSectionTitle;
+  final TextStyle incomeSectionText;
+  final TextStyle joinButton;
 
   ThemeTextStyles({
     required this.test,
@@ -65,6 +68,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.localeTitle,
     required this.blogTitle,
     required this.blogTitleHovered,
+    required this.incomeSectionTitle,
+    required this.incomeSectionText,
+    required this.joinButton,
   });
 
   @override
@@ -100,6 +106,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? localeTitle,
     TextStyle? blogTitle,
     TextStyle? blogTitleHovered,
+    TextStyle? incomeSectionTitle,
+    TextStyle? incomeSectionText,
+    TextStyle? joinButton,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -145,6 +154,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       localeTitle: localeTitle ?? this.localeTitle,
       blogTitle: blogTitle ?? this.blogTitle,
       blogTitleHovered: blogTitleHovered ?? this.blogTitleHovered,
+      incomeSectionTitle: incomeSectionTitle ?? this.incomeSectionTitle,
+      incomeSectionText: incomeSectionText ?? this.incomeSectionText,
+      joinButton: joinButton ?? this.joinButton,
     );
   }
 
@@ -209,6 +221,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       blogTitle: TextStyle.lerp(blogTitle, other.blogTitle, t)!,
       blogTitleHovered:
           TextStyle.lerp(blogTitleHovered, other.blogTitleHovered, t)!,
+      incomeSectionTitle:
+          TextStyle.lerp(incomeSectionTitle, other.incomeSectionTitle, t)!,
+      incomeSectionText:
+          TextStyle.lerp(incomeSectionText, other.incomeSectionText, t)!,
+      joinButton: TextStyle.lerp(joinButton, other.joinButton, t)!,
     );
   }
 
@@ -326,6 +343,17 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         blogTitleHovered: headline3.copyWith(
           fontFamily: GoogleFonts.roboto().fontFamily,
+          color: AppColors.darkPurple,
+        ),
+        incomeSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        incomeSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        joinButton: headline3.copyWith(
           color: AppColors.darkPurple,
         ),
       );
@@ -446,6 +474,17 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         blogTitleHovered: headline3.copyWith(
           fontFamily: GoogleFonts.roboto().fontFamily,
+          color: AppColors.darkPurple,
+        ),
+        incomeSectionTitle: headline3.copyWith(
+          color: AppColors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
+        incomeSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        joinButton: headline3.copyWith(
           color: AppColors.darkPurple,
         ),
       );
