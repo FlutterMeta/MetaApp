@@ -17,6 +17,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color joinButtonBorder;
   final Color partnersCardBackground;
   final Color partnersCardContentBackground;
+  final Color careSeviceButton;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -35,6 +36,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.joinButtonBorder,
     required this.partnersCardBackground,
     required this.partnersCardContentBackground,
+    required this.careSeviceButton,
   });
 
   @override
@@ -56,6 +58,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? joinButtonBorder,
     Color? partnersCardBackground,
     Color? partnersCardContentBackground,
+    Color? careSeviceButton,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -80,6 +83,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           partnersCardBackground ?? this.partnersCardBackground,
       partnersCardContentBackground:
           partnersCardContentBackground ?? this.partnersCardContentBackground,
+      careSeviceButton: careSeviceButton ?? this.careSeviceButton,
     );
   }
 
@@ -120,6 +124,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(partnersCardBackground, other.partnersCardBackground, t)!,
       partnersCardContentBackground: Color.lerp(partnersCardContentBackground,
           other.partnersCardContentBackground, t)!,
+      careSeviceButton:
+          Color.lerp(careSeviceButton, other.careSeviceButton, t)!,
     );
   }
 
@@ -140,6 +146,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         joinButtonBorder: AppColors.darkPurple,
         partnersCardBackground: AppColors.purple,
         partnersCardContentBackground: AppColors.white,
+        careSeviceButton: AppColors.white,
       );
 
   static get dark => ThemeColors(
@@ -159,5 +166,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         joinButtonBorder: AppColors.darkPurple,
         partnersCardBackground: AppColors.purple,
         partnersCardContentBackground: AppColors.white,
+        careSeviceButton: AppColors.white,
       );
 }

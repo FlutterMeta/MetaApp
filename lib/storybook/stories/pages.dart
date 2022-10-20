@@ -17,4 +17,8 @@ List<Story> get _pages => [
         name: 'Pages/ForgotPassword',
         builder: (context) => const ForgotPasswordPage(),
       ),
+      Story(
+        name: 'Pages/PartnersPage',
+        builder: (context) => PartnersPage(),
+      ),
     ];

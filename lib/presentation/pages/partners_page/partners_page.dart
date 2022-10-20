@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/widgets/footer/footer.dart';
+import 'package:meta_app/presentation/widgets/gradient_background.dart';
 import 'package:meta_app/presentation/widgets/gradient_button.dart';
 import 'package:meta_app/presentation/widgets/header/header.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
@@ -12,6 +13,7 @@ import 'package:video_player/video_player.dart';
 
 part 'sections/cards_section.dart';
 part 'sections/income_section.dart';
+part 'sections/become_partner_section.dart';
 
 class PartnersPage extends StatelessWidget {
   final _headerKey = GlobalKey();
@@ -44,6 +46,7 @@ class PartnersPage extends StatelessWidget {
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: _CardsSection()),
           const SliverSizedBox(height: 100),
+          const SliverToBoxAdapter(child: _BecomePartnerSection()),
           const SliverToBoxAdapter(child: Footer()),
         ],
       ),

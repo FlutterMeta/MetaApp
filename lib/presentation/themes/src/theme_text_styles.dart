@@ -40,6 +40,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle partnersSectionCardTitle;
   final TextStyle partnersSectionCardSubtitle;
   final TextStyle partnersSectionCardText;
+  final TextStyle becomePartnerSectionTitle;
+  final TextStyle becomePartnerSectionText;
+  final TextStyle careServiceButton;
 
   ThemeTextStyles({
     required this.test,
@@ -81,6 +84,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.partnersSectionCardTitle,
     required this.partnersSectionCardSubtitle,
     required this.partnersSectionCardText,
+    required this.becomePartnerSectionTitle,
+    required this.becomePartnerSectionText,
+    required this.careServiceButton,
   });
 
   @override
@@ -124,6 +130,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? partnersSectionCardTitle,
     TextStyle? partnersSectionCardSubtitle,
     TextStyle? partnersSectionCardText,
+    TextStyle? becomePartnerSectionTitle,
+    TextStyle? becomePartnerSectionText,
+    TextStyle? careServiceButton,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -180,6 +189,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           partnersSectionCardSubtitle ?? this.partnersSectionCardSubtitle,
       partnersSectionCardText:
           partnersSectionCardText ?? this.partnersSectionCardText,
+      becomePartnerSectionTitle:
+          becomePartnerSectionTitle ?? this.becomePartnerSectionTitle,
+      becomePartnerSectionText:
+          becomePartnerSectionText ?? this.becomePartnerSectionText,
+      careServiceButton: careServiceButton ?? this.careServiceButton,
     );
   }
 
@@ -259,6 +273,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           partnersSectionCardSubtitle, other.partnersSectionCardSubtitle, t)!,
       partnersSectionCardText: TextStyle.lerp(
           partnersSectionCardText, other.partnersSectionCardText, t)!,
+      becomePartnerSectionTitle: TextStyle.lerp(
+          becomePartnerSectionTitle, other.becomePartnerSectionTitle, t)!,
+      becomePartnerSectionText: TextStyle.lerp(
+          becomePartnerSectionText, other.becomePartnerSectionText, t)!,
+      careServiceButton:
+          TextStyle.lerp(careServiceButton, other.careServiceButton, t)!,
     );
   }
 
@@ -408,6 +428,19 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         partnersSectionCardText: headline3.copyWith(
           color: AppColors.darkPurple,
           fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        becomePartnerSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          color: AppColors.white,
+          fontWeight: FontWeight.w600,
+        ),
+        becomePartnerSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          color: AppColors.white,
+        ),
+        careServiceButton: headline3.copyWith(
+          color: AppColors.darkPurple,
         ),
       );
 
@@ -559,6 +592,19 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         partnersSectionCardText: headline3.copyWith(
           color: AppColors.darkPurple,
           fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        becomePartnerSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          color: AppColors.white,
+          fontWeight: FontWeight.w600,
+        ),
+        becomePartnerSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          color: AppColors.white,
+        ),
+        careServiceButton: headline3.copyWith(
+          color: AppColors.darkPurple,
         ),
       );
 }
