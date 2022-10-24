@@ -14,6 +14,7 @@ import 'package:video_player/video_player.dart';
 part 'sections/cards_section.dart';
 part 'sections/income_section.dart';
 part 'sections/become_partner_section.dart';
+part 'sections/table_section.dart';
 
 class PartnersPage extends StatelessWidget {
   final _headerKey = GlobalKey();
@@ -45,6 +46,8 @@ class PartnersPage extends StatelessWidget {
           const SliverToBoxAdapter(child: _IncomeSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: _CardsSection()),
+          const SliverSizedBox(height: 100),
+          const SliverToBoxAdapter(child: _TableSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: _BecomePartnerSection()),
           const SliverToBoxAdapter(child: Footer()),

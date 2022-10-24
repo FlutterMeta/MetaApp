@@ -18,6 +18,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color partnersCardBackground;
   final Color partnersCardContentBackground;
   final Color careSeviceButton;
+  final Color referralBonusCell;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -37,6 +38,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.partnersCardBackground,
     required this.partnersCardContentBackground,
     required this.careSeviceButton,
+    required this.referralBonusCell,
   });
 
   @override
@@ -59,6 +61,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? partnersCardBackground,
     Color? partnersCardContentBackground,
     Color? careSeviceButton,
+    Color? referralBonusCell,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -84,6 +87,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       partnersCardContentBackground:
           partnersCardContentBackground ?? this.partnersCardContentBackground,
       careSeviceButton: careSeviceButton ?? this.careSeviceButton,
+      referralBonusCell: referralBonusCell ?? this.referralBonusCell,
     );
   }
 
@@ -126,6 +130,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           other.partnersCardContentBackground, t)!,
       careSeviceButton:
           Color.lerp(careSeviceButton, other.careSeviceButton, t)!,
+      referralBonusCell:
+          Color.lerp(referralBonusCell, other.referralBonusCell, t)!,
     );
   }
 
@@ -147,6 +153,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         partnersCardBackground: AppColors.purple,
         partnersCardContentBackground: AppColors.white,
         careSeviceButton: AppColors.white,
+        referralBonusCell: AppColors.whitePurple,
       );
 
   static get dark => ThemeColors(
@@ -167,5 +174,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         partnersCardBackground: AppColors.purple,
         partnersCardContentBackground: AppColors.white,
         careSeviceButton: AppColors.white,
+        referralBonusCell: AppColors.whitePurple,
       );
 }

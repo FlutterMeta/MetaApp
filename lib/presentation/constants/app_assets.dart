@@ -6,6 +6,7 @@ abstract class AppAssets {
   static const people = "assets/images/people.png";
   static const board = "assets/images/board.png";
   static const worldMap = "assets/images/world_map.png";
+  static const earth = "assets/images/earth.png";
 
   static const incomeVideo = "assets/videos/income.mp4";
 }

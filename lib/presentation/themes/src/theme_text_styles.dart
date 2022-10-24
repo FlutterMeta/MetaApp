@@ -43,6 +43,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle becomePartnerSectionTitle;
   final TextStyle becomePartnerSectionText;
   final TextStyle careServiceButton;
+  final TextStyle partnerTableSectionTitle;
+  final TextStyle partnerTableSectionText;
+  final TextStyle partnerTableSectionCellTitle;
+  final TextStyle partnerTableSectionIncomeCell;
+  final TextStyle partnerTableSectionReferralCell;
 
   ThemeTextStyles({
     required this.test,
@@ -87,6 +92,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.becomePartnerSectionTitle,
     required this.becomePartnerSectionText,
     required this.careServiceButton,
+    required this.partnerTableSectionTitle,
+    required this.partnerTableSectionText,
+    required this.partnerTableSectionCellTitle,
+    required this.partnerTableSectionIncomeCell,
+    required this.partnerTableSectionReferralCell,
   });
 
   @override
@@ -133,6 +143,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? becomePartnerSectionTitle,
     TextStyle? becomePartnerSectionText,
     TextStyle? careServiceButton,
+    TextStyle? partnerTableSectionTitle,
+    TextStyle? partnerTableSectionText,
+    TextStyle? partnerTableSectionCellTitle,
+    TextStyle? partnerTableSectionIncomeCell,
+    TextStyle? partnerTableSectionReferralCell,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -194,6 +209,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       becomePartnerSectionText:
           becomePartnerSectionText ?? this.becomePartnerSectionText,
       careServiceButton: careServiceButton ?? this.careServiceButton,
+      partnerTableSectionTitle:
+          partnerTableSectionTitle ?? this.partnerTableSectionTitle,
+      partnerTableSectionText:
+          partnerTableSectionText ?? this.partnerTableSectionText,
+      partnerTableSectionCellTitle:
+          partnerTableSectionCellTitle ?? this.partnerTableSectionCellTitle,
+      partnerTableSectionIncomeCell:
+          partnerTableSectionIncomeCell ?? this.partnerTableSectionIncomeCell,
+      partnerTableSectionReferralCell: partnerTableSectionReferralCell ??
+          this.partnerTableSectionReferralCell,
     );
   }
 
@@ -279,6 +304,20 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           becomePartnerSectionText, other.becomePartnerSectionText, t)!,
       careServiceButton:
           TextStyle.lerp(careServiceButton, other.careServiceButton, t)!,
+      partnerTableSectionTitle: TextStyle.lerp(
+          partnerTableSectionTitle, other.partnerTableSectionTitle, t)!,
+      partnerTableSectionText: TextStyle.lerp(
+          partnerTableSectionText, other.partnerTableSectionText, t)!,
+      partnerTableSectionCellTitle: TextStyle.lerp(
+          partnerTableSectionCellTitle, other.partnerTableSectionCellTitle, t)!,
+      partnerTableSectionIncomeCell: TextStyle.lerp(
+          partnerTableSectionIncomeCell,
+          other.partnerTableSectionIncomeCell,
+          t)!,
+      partnerTableSectionReferralCell: TextStyle.lerp(
+          partnerTableSectionReferralCell,
+          other.partnerTableSectionReferralCell,
+          t)!,
     );
   }
 
@@ -440,6 +479,26 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         careServiceButton: headline3.copyWith(
+          color: AppColors.darkPurple,
+        ),
+        partnerTableSectionTitle: headline1.copyWith(
+          fontSize: 48,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w500,
+        ),
+        partnerTableSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnerTableSectionCellTitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnerTableSectionIncomeCell: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        partnerTableSectionReferralCell: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
           color: AppColors.darkPurple,
         ),
       );
@@ -604,6 +663,26 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         careServiceButton: headline3.copyWith(
+          color: AppColors.darkPurple,
+        ),
+        partnerTableSectionTitle: headline1.copyWith(
+          fontSize: 48,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w500,
+        ),
+        partnerTableSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnerTableSectionCellTitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnerTableSectionIncomeCell: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        partnerTableSectionReferralCell: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
           color: AppColors.darkPurple,
         ),
       );
