@@ -15,14 +15,14 @@ class _ExpandedMenu extends StatelessWidget {
     return Row(
       children: [
         _NavigationButton(
-          onTap: () {
-            _goToProductsPage(context);
-          },
+          onTap: () {},
           title: context.localizations.directions,
         ),
         const SizedBox(width: 6),
         _NavigationButton(
-          onTap: () {},
+          onTap: () {
+            _goToProductsPage(context);
+          },
           title: context.localizations.products,
         ),
         const SizedBox(width: 6),

@@ -13,6 +13,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color footerBackground;
   final Color localeDropdownBackground;
   final Color localeDropdownOpacity;
+  final Color fagItemBorder;
+  final Color fagItemHoverBackground;
+  final Color productsPartnersSectionBackground;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -27,6 +30,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.footerBackground,
     required this.localeDropdownOpacity,
     required this.localeDropdownBackground,
+    required this.fagItemBorder,
+    required this.fagItemHoverBackground,
+    required this.productsPartnersSectionBackground,
   });
 
   @override
@@ -44,6 +50,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? localeDropdownOpenedBackground,
     Color? localeDropdownOpacity,
     Color? localeDropdownBackground,
+    Color? fagItemBorder,
+    Color? fagItemHoverBackground,
+    Color? productsPartnersSectionBackground,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -61,6 +70,11 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           localeDropdownOpacity ?? this.localeDropdownOpacity,
       localeDropdownBackground:
           localeDropdownBackground ?? this.localeDropdownBackground,
+      fagItemBorder: fagItemBorder ?? this.fagItemBorder,
+      fagItemHoverBackground:
+          fagItemHoverBackground ?? this.fagItemHoverBackground,
+      productsPartnersSectionBackground: productsPartnersSectionBackground ??
+          this.productsPartnersSectionBackground,
     );
   }
 
@@ -93,6 +107,13 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(localeDropdownOpacity, other.localeDropdownOpacity, t)!,
       localeDropdownBackground: Color.lerp(
           localeDropdownBackground, other.localeDropdownBackground, t)!,
+      fagItemBorder: Color.lerp(fagItemBorder, other.fagItemBorder, t)!,
+      fagItemHoverBackground:
+          Color.lerp(fagItemHoverBackground, other.fagItemHoverBackground, t)!,
+      productsPartnersSectionBackground: Color.lerp(
+          productsPartnersSectionBackground,
+          other.productsPartnersSectionBackground,
+          t)!,
     );
   }
 
@@ -109,6 +130,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         footerBackground: AppColors.darkBlue,
         localeDropdownBackground: AppColors.darkerGrey,
         localeDropdownOpacity: AppColors.transparent,
+        fagItemBorder: AppColors.blueGrey,
+        fagItemHoverBackground: AppColors.whiteBlue,
+        productsPartnersSectionBackground: AppColors.whiteBlue,
       );
 
   static get dark => ThemeColors(
@@ -124,5 +148,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         footerBackground: AppColors.darkBlue,
         localeDropdownBackground: AppColors.darkerGrey,
         localeDropdownOpacity: AppColors.transparent,
+        fagItemBorder: AppColors.blueGrey,
+        fagItemHoverBackground: AppColors.whiteBlue,
+        productsPartnersSectionBackground: AppColors.whiteBlue,
       );
 }

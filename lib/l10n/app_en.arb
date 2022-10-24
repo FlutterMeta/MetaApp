@@ -66,5 +66,9 @@
     "@_LOCALE_DROPDOWN": {},
     "english": "English",
     "russian": "Российский",
-    "ukrainian": "Українська"
+    "ukrainian": "Українська",
+    "@_PRODUCTS_PAGE": {},
+    "mmPartners": "MultiMeta Partners in terms of venture investments",
+    "largeEuropeanVenture": "Large European and American Venture and Private Equity funds involved in different startup development stages.",
+    "becomeAnInvestor": "Become an investor"
 }

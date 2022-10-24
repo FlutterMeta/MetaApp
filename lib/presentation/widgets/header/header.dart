@@ -6,6 +6,7 @@ import 'package:meta_app/data/datasources/local/shared_prefs.dart';
 import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/locale_manager.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
+import 'package:meta_app/presentation/pages/home_page/home_page.dart';
 import 'package:meta_app/presentation/pages/login_page.dart';
 import 'package:meta_app/presentation/pages/products_page/products_page.dart';
 import 'package:meta_app/presentation/widgets/media_buttons.dart';
@@ -28,6 +29,13 @@ class Header extends SliverPersistentHeaderDelegate {
     required this.screenWidth,
     required this.headerYOffset,
   });
+
+  void _goToHomePage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => HomePage()),
+    );
+  }
 
   @override
   double get minExtent => screenWidth > 780 ? 190 : 120;
@@ -89,7 +97,10 @@ class Header extends SliverPersistentHeaderDelegate {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(AppAssets.logo, height: 76),
+                  InkWell(
+                    onTap: () => _goToHomePage(context),
+                    child: Image.asset(AppAssets.logo, height: 76),
+                  ),
                   if (width > 780) const _ExpandedMenu(),
                   if (width <= 780) _CompactMenu(headerYOffset: headerYOffset),
                 ],

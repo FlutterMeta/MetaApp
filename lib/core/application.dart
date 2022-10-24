@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/l10n.dart';
 import 'package:meta_app/presentation/pages/home_page/home_page.dart';
+import 'package:meta_app/presentation/pages/products_page/products_page.dart';
 import 'package:meta_app/presentation/redux/app_state.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/core/route_observer.dart';
@@ -33,7 +34,8 @@ class Application extends StatelessWidget {
           theme: createLightTheme(),
           darkTheme: createDarkTheme(),
           themeMode: vm.themeMode,
-          home: HomePage(),
+          //  home: HomePage(), //TODO: uncomment
+          home: ProductsPage(),
         ),
       ),
     );

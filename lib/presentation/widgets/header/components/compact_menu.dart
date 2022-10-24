@@ -145,14 +145,14 @@ class _MenuTabs extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         _NavigationButton(
-          onTap: () {
-            _goToProductsPage(context);
-          },
+          onTap: () {},
           title: context.localizations.directions,
         ),
         const SizedBox(height: 26),
         _NavigationButton(
-          onTap: () {},
+          onTap: () {
+            _goToProductsPage(context);
+          },
           title: context.localizations.products,
         ),
         const SizedBox(height: 26),
