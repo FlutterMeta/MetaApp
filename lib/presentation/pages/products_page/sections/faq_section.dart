@@ -1,7 +1,7 @@
 part of '../products_page.dart';
 
 class _FaqSection extends StatelessWidget {
-  const _FaqSection({super.key});
+  const _FaqSection();
 
   @override
   Widget build(BuildContext context) {

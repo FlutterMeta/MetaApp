@@ -32,10 +32,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle localeTitle;
   final TextStyle blogTitle;
   final TextStyle blogTitleHovered;
-  final TextStyle productsHeaderBig;
-  final TextStyle productsHeaderMedium;
-  final TextStyle productsHeaderSmall;
-  final TextStyle productsSubHeader;
+  final TextStyle productsHeadlineMedium;
+  final TextStyle productsSubHeadline;
   final TextStyle productsInvestorSectionTitle;
   final TextStyle productsInvestorSectionDescription;
   final TextStyle productsGradientSectionTitle;
@@ -83,10 +81,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.localeTitle,
     required this.blogTitle,
     required this.blogTitleHovered,
-    required this.productsHeaderBig,
-    required this.productsHeaderMedium,
-    required this.productsHeaderSmall,
-    required this.productsSubHeader,
+    required this.productsHeadlineMedium,
+    required this.productsSubHeadline,
     required this.productsInvestorSectionTitle,
     required this.productsInvestorSectionDescription,
     required this.productsGradientSectionTitle,
@@ -136,10 +132,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? localeTitle,
     TextStyle? blogTitle,
     TextStyle? blogTitleHovered,
-    TextStyle? productsHeaderBig,
-    TextStyle? productsHeaderMedium,
-    TextStyle? productsHeaderSmall,
-    TextStyle? productsSubHeader,
+    TextStyle? productsHeadlineBig,
+    TextStyle? productsHeadlineMedium,
+    TextStyle? productsHeadlineSmall,
+    TextStyle? productsSubHeadline,
     TextStyle? productsInvestorSectionTitle,
     TextStyle? productsInvestorSectionDescription,
     TextStyle? productsGradientSectionTitle,
@@ -153,6 +149,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? productsPartnersSectionDescription,
     TextStyle? productsPartnersSectionSpecialPurple,
     TextStyle? productsPartnersInfoCardDescription,
+    TextStyle? productsPartnersImageCardTitle,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -198,10 +195,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       localeTitle: localeTitle ?? this.localeTitle,
       blogTitle: blogTitle ?? this.blogTitle,
       blogTitleHovered: blogTitleHovered ?? this.blogTitleHovered,
-      productsHeaderBig: productsHeaderBig ?? this.productsHeaderBig,
-      productsHeaderMedium: productsHeaderMedium ?? this.productsHeaderMedium,
-      productsHeaderSmall: productsHeaderSmall ?? this.productsHeaderSmall,
-      productsSubHeader: productsSubHeader ?? this.productsSubHeader,
+      productsHeadlineMedium:
+          productsHeadlineMedium ?? this.productsHeadlineMedium,
+      productsSubHeadline: productsSubHeadline ?? this.productsSubHeadline,
       productsInvestorSectionTitle:
           productsInvestorSectionTitle ?? this.productsInvestorSectionTitle,
       productsInvestorSectionDescription: productsInvestorSectionDescription ??
@@ -296,14 +292,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       blogTitle: TextStyle.lerp(blogTitle, other.blogTitle, t)!,
       blogTitleHovered:
           TextStyle.lerp(blogTitleHovered, other.blogTitleHovered, t)!,
-      productsHeaderBig:
-          TextStyle.lerp(productsHeaderBig, other.productsHeaderBig, t)!,
-      productsHeaderMedium:
-          TextStyle.lerp(productsHeaderMedium, other.productsHeaderMedium, t)!,
-      productsHeaderSmall:
-          TextStyle.lerp(productsHeaderSmall, other.productsHeaderSmall, t)!,
-      productsSubHeader:
-          TextStyle.lerp(productsSubHeader, other.productsSubHeader, t)!,
+      productsHeadlineMedium: TextStyle.lerp(
+          productsHeadlineMedium, other.productsHeadlineMedium, t)!,
+      productsSubHeadline:
+          TextStyle.lerp(productsSubHeadline, other.productsSubHeadline, t)!,
       productsInvestorSectionTitle: TextStyle.lerp(
           productsInvestorSectionTitle, other.productsInvestorSectionTitle, t)!,
       productsInvestorSectionDescription: TextStyle.lerp(
@@ -467,20 +459,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily: GoogleFonts.roboto().fontFamily,
           color: AppColors.darkPurple,
         ),
-        productsHeaderBig: headline1.copyWith(
-          fontSize: 85,
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
-        productsHeaderMedium: headline1.copyWith(
+        productsHeadlineMedium: headline1.copyWith(
           fontSize: 40,
           height: 1.5,
           fontFamily: GoogleFonts.roboto().fontFamily,
         ),
-        productsHeaderSmall: headline1.copyWith(
-          fontSize: 6,
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
-        productsSubHeader: headline3.copyWith(
+        productsSubHeadline: headline3.copyWith(
           fontSize: 16,
           color: AppColors.darkGrey,
           height: 1.4,
@@ -691,16 +675,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily: GoogleFonts.roboto().fontFamily,
           color: AppColors.darkPurple,
         ),
-        productsHeaderBig: headline1.copyWith(
-          fontSize: 45,
-        ),
-        productsHeaderMedium: headline1.copyWith(
+        productsHeadlineMedium: headline1.copyWith(
           fontSize: 40,
         ),
-        productsHeaderSmall: headline1.copyWith(
-          fontSize: 36,
-        ),
-        productsSubHeader: headline3.copyWith(
+        productsSubHeadline: headline3.copyWith(
           fontSize: 16,
           fontFamily: GoogleFonts.roboto().fontFamily,
         ),

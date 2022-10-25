@@ -5,6 +5,7 @@ const headline2 = TextStyle(fontWeight: FontWeight.w400, fontSize: 18);
 const headline3 = TextStyle(fontWeight: FontWeight.w400, fontSize: 16);
 
 abstract class AppColors {
+  static const black = Colors.black;
   static const transparent = Colors.transparent;
 
   static const white = Colors.white;
@@ -15,10 +16,10 @@ abstract class AppColors {
   static const grey = Color(0xFFE4DFFA);
   static const darkerGrey = Color(0xFFDDDDDD);
   static const darkGrey = Color(0xFF5d5e67);
- 
+
   static const blue = Colors.blue;
   static const darkBlue = Color(0xFF181925);
-  static const blueGrey = Color(0xFFCACBDF);  
+  static const blueGrey = Color(0xFFCACBDF);
   static const darkerBlueGrey = Color(0xFF9596af);
 
   static const purple = Color(0xFF7967D6);

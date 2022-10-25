@@ -1,6 +1,9 @@
 part of '../products_page.dart';
 
 class _PresentationSection extends StatelessWidget {
+  static const _mobileWidth = 428;
+  static const _paddingsWidth = 32;
+
   const _PresentationSection({
     Key? key,
   }) : super(key: key);
@@ -11,31 +14,29 @@ class _PresentationSection extends StatelessWidget {
       constraints: const BoxConstraints(maxWidth: 1270),
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Column(
-            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 100),
-              Container(
-                constraints: const BoxConstraints(maxWidth: 400),
-                width: 600,
-                child: Text(
-                  context.localizations.mmPartners,
-                  style: context.text.productsHeaderMedium,
-                  softWrap: true,
+              _ConstrainedText(
+                text: context.localizations.mmPartners,
+                style: context.text.productsHeadlineMedium,
+                constraints: BoxConstraints(
+                  maxWidth: context.screenWidth < _mobileWidth
+                      ? context.screenWidth - _paddingsWidth
+                      : 400,
                 ),
               ),
               const SizedBox(height: 16),
-              Flexible(
-                fit: FlexFit.loose,
-                child: SizedBox(
-                  width: 600,
-                  child: Text(
-                    context.localizations.largeEuropeanVenture,
-                    style: context.text.productsSubHeader,
-                    softWrap: true,
-                  ),
+              _ConstrainedText(
+                text: context.localizations.largeEuropeanVenture,
+                style: context.text.productsSubHeadline,
+                constraints: BoxConstraints(
+                  maxWidth: context.screenWidth < _mobileWidth
+                      ? context.screenWidth - _paddingsWidth
+                      : 400,
                 ),
               ),
               const SizedBox(height: 30),
@@ -51,37 +52,3 @@ class _PresentationSection extends StatelessWidget {
     );
   }
 }
-
-/* class _AdaptiveHeaderText extends StatelessWidget {
-  TextAlign? textAlign;
-  _AdaptiveHeaderText({
-    Key? key,
-    this.textAlign,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(builder: ((context, constraints) {
-      if (constraints.maxWidth > 990) {
-        return Text(
-          context.localizations.mmPartners,
-          textAlign: textAlign,
-          style: context.text.productsHeaderBig,
-        );
-      } else if (constraints.maxWidth > 766) {
-        return Text(
-          context.localizations.mmPartners,
-          textAlign: textAlign,
-          style: context.text.productsHeaderMedium,
-        );
-      } else {
-        return Text(
-          context.localizations.mmPartners,
-          textAlign: textAlign,
-          style: context.text.productsHeaderSmall,
-        );
-      }
-    }));
-  }
-}
- */

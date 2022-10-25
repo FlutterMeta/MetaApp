@@ -1,7 +1,7 @@
 part of '../products_page.dart';
 
 class _GradientSection extends StatelessWidget {
-  const _GradientSection({super.key});
+  const _GradientSection();
 
   @override
   Widget build(BuildContext context) {
@@ -12,20 +12,35 @@ class _GradientSection extends StatelessWidget {
         gradient: context.gradient.purple,
       ),
       alignment: Alignment.center,
-      child: Wrap(children: const [
-        _InfoBlock(title: "We are trusted"),
-        SizedBox(width: 100),
-        ..._statsInfoBlocks,
-      ]),
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        runAlignment: WrapAlignment.center,
+        runSpacing: 20,
+        children: [
+          const _InfoBlock(title: "We are trusted"),
+          ..._statsInfoBlocks(context),
+        ],
+      ),
     );
   }
 }
 
-const _statsInfoBlocks = [
-  _InfoBlock(title: "150+ K", description: "Investment Partners"),
-  _InfoBlock(title: "12+ B", description: "Financial Capital"),
-  _InfoBlock(title: "28+ K", description: "Partners multimeta.com"),
-];
+List<_InfoBlock> _statsInfoBlocks(BuildContext context) {
+  return [
+    _InfoBlock(
+      title: context.localizations.investmentPatrnersNumber,
+      description: context.localizations.investmentPatrners,
+    ),
+    _InfoBlock(
+      title: context.localizations.financialCapitalNumber,
+      description: context.localizations.financialCapital,
+    ),
+    _InfoBlock(
+      title: context.localizations.partnersMultimetaNumber,
+      description: context.localizations.partnersMultimeta,
+    ),
+  ];
+}
 
 class _InfoBlock extends StatelessWidget {
   final String title;

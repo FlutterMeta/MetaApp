@@ -1,7 +1,7 @@
 part of '../products_page.dart';
 
 class _ComponentsSection extends StatelessWidget {
-  const _ComponentsSection({super.key});
+  const _ComponentsSection();
 
   @override
   Widget build(BuildContext context) {
@@ -9,13 +9,13 @@ class _ComponentsSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(children: [
         Text(
-          "The Metaverse Components",
+          context.localizations.components,
           textAlign: TextAlign.center,
           style: context.text.productsComponentsSectionTitle,
         ),
         const SizedBox(height: 20),
         Text(
-          "The main products for the Metaverse functioning, which are developed and searched by MultiMeta Universe.",
+          context.localizations.mainProducts,
           textAlign: TextAlign.center,
           style: context.text.productsComponentItemDescription,
         ),
@@ -26,7 +26,7 @@ class _ComponentsSection extends StatelessWidget {
             child: Wrap(
               spacing: 80,
               runSpacing: 16,
-              children: _components,
+              children: _components(context),
             ),
           ),
         ),
@@ -35,41 +35,40 @@ class _ComponentsSection extends StatelessWidget {
   }
 }
 
-const _components = [
-  _Component(
-    imageAsset: "",
-    title: "Equipment",
-    description:
-        "VR glasses and AR gadgets for interacting with the Metaverse.",
-  ),
-  _Component(
-    imageAsset: "",
-    title: "Artificial intelligence",
-    description:
-        "Allow to develop the project in the early stages of development to attract large investments.",
-  ),
-  _Component(
-    imageAsset: "",
-    title: "Venture investments",
-    description:
-        "Allow to develop the project in the early stages of development to attract large investments.",
-  ),
-  _Component(
-    imageAsset: "",
-    title: "Software",
-    description: "Virtual world projects created using 3D engines.",
-  ),
-  _Component(
-    imageAsset: "",
-    title: "Data centers",
-    description: "Cloud storage for metaverse data.",
-  ),
-  _Component(
-    imageAsset: "",
-    title: "Blockchain",
-    description: "Attaches each user's data and money to a digital account.",
-  ),
-];
+List<Widget> _components(BuildContext context) {
+  return [
+    _Component(
+      imageAsset: "",
+      title: context.localizations.equipment,
+      description: context.localizations.equipmentDescription,
+    ),
+    _Component(
+      imageAsset: "",
+      title: context.localizations.artificialIntelligence,
+      description: context.localizations.artificialIntelligenceDescription,
+    ),
+    _Component(
+      imageAsset: "",
+      title: context.localizations.ventureInvestments,
+      description: context.localizations.ventureInvestmentsDescription,
+    ),
+    _Component(
+      imageAsset: "",
+      title: context.localizations.software,
+      description: context.localizations.softwareDescription,
+    ),
+    _Component(
+      imageAsset: "",
+      title: context.localizations.dataCenters,
+      description: context.localizations.dataCentersDescription,
+    ),
+    _Component(
+      imageAsset: "",
+      title: context.localizations.blockchain,
+      description: context.localizations.blockchainDescription,
+    ),
+  ];
+}
 
 class _Component extends StatelessWidget {
   final String imageAsset;
@@ -91,7 +90,7 @@ class _Component extends StatelessWidget {
           height: 80,
           width: 80,
           child: Placeholder(),
-        ), //Image.asset(imageAsset),
+        ),
         const SizedBox(height: 30),
         Text(title, style: context.text.productsComponentItemTitle),
         const SizedBox(height: 14),

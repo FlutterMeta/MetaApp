@@ -1,7 +1,7 @@
 part of '../products_page.dart';
 
 class _InvestorsSection extends StatelessWidget {
-  const _InvestorsSection({super.key});
+  const _InvestorsSection();
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,14 @@ class _InvestorsSection extends StatelessWidget {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: _investors,
+              children: _investors(context),
             );
           } else {
             return Row(
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: _investors,
+                  children: _investors(context),
                 ),
                 const Spacer(),
               ],
@@ -33,23 +33,22 @@ class _InvestorsSection extends StatelessWidget {
   }
 }
 
-const _investors = [
-  _InvestorComponent(
-    title: "Andreessen Horowitz",
-    subtitle:
-        "Projects that focus on games and NFTs, namely: Dapper Labs, Roblox, Open Sea.",
-  ),
-  _InvestorComponent(
-    title: "Sequoia Capital",
-    subtitle:
-        "Projects related to the social network and game mixture, namely: Gather and RecRoom.",
-  ),
-  _InvestorComponent(
-    title: "Index Ventures",
-    subtitle:
-        "4 investments in metaverse projects with a focus on streaming platforms.",
-  ),
-];
+List<_InvestorComponent> _investors(BuildContext context) {
+  return [
+    _InvestorComponent(
+      title: context.localizations.horrowitz,
+      subtitle: context.localizations.horrowitzDescription,
+    ),
+    _InvestorComponent(
+      title: context.localizations.sequoia,
+      subtitle: context.localizations.sequoiaDescription,
+    ),
+    _InvestorComponent(
+      title: context.localizations.indexVentures,
+      subtitle: context.localizations.indexVenturesDescription,
+    ),
+  ];
+}
 
 class _InvestorComponent extends StatelessWidget {
   final String title;

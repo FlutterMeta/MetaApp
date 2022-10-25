@@ -1,18 +1,25 @@
 part of '../products_page.dart';
 
 class _PartnersSection extends StatelessWidget {
-  const _PartnersSection({super.key});
+  const _PartnersSection();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: context.color.productsPartnersSectionBackground,
-      padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 6),
-      constraints: const BoxConstraints(maxWidth: 1270),
+      padding: const EdgeInsets.symmetric(
+        vertical: 20,
+        horizontal: _UISettings.horizontalPadding,
+      ),
+      constraints: const BoxConstraints(
+        maxWidth: _UISettings.contentMaxWidth,
+      ),
+      alignment: Alignment.center,
       child: Column(
-        crossAxisAlignment: context.screenWidth > 800
-            ? CrossAxisAlignment.start
-            : CrossAxisAlignment.center,
+        crossAxisAlignment:
+            context.screenWidth - _UISettings.horizontalPadding * 2 >
+                    _UISettings.smallScreenWidth
+                ? CrossAxisAlignment.start
+                : CrossAxisAlignment.center,
         children: [
           Text(
             'MultiMeta current achievements in development',
@@ -27,18 +34,33 @@ class _PartnersSection extends StatelessWidget {
   }
 }
 
+abstract class _UISettings {
+  static const double contentMaxWidth = 1270;
+  static const double smallScreenWidth = 780;
+  static const double horizontalPadding = 16;
+  static const double partnerCardMaxHeight = 470;
+}
+
 class _AdaptiveSectionHeadlines extends StatelessWidget {
-  const _AdaptiveSectionHeadlines({super.key});
+  static const double _maxWidth = 400;
+
+  const _AdaptiveSectionHeadlines();
 
   List<Widget> _getHeadlines(BuildContext context) {
     return [
-      Text(
-        'MultiMeta Partners',
+      _ConstrainedText(
+        text: context.localizations.partners,
         style: context.text.productsPartnersSectionTitle,
+        constraints: const BoxConstraints(
+          maxWidth: _maxWidth,
+        ),
       ),
-      Text(
-        'MultiMeta Participation in the popular metaverses development',
+      _ConstrainedText(
+        text: context.localizations.participation,
         style: context.text.productsPartnersSectionDescription,
+        constraints: const BoxConstraints(
+          maxWidth: _maxWidth,
+        ),
       ),
     ];
   }
@@ -47,7 +69,7 @@ class _AdaptiveSectionHeadlines extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth > 820) {
+        if (constraints.maxWidth >= _UISettings.smallScreenWidth) {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: _getHeadlines(context),
@@ -68,6 +90,8 @@ class _PartnersSlider extends StatefulWidget {
 }
 
 class _PartnersSliderState extends State<_PartnersSlider> {
+  final double _horizontalCarouselHeight = 500;
+  final double _verticalCarouselHeight = 600;
   late CarouselController _controller;
 
   @override
@@ -76,65 +100,54 @@ class _PartnersSliderState extends State<_PartnersSlider> {
     _controller = CarouselController();
   }
 
+  void _nextPage() {
+    _controller.nextPage(
+      duration: const Duration(milliseconds: 300),
+    );
+  }
+
+  void _previousPage() {
+    _controller.previousPage(
+      duration: const Duration(milliseconds: 300),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(maxWidth: 1270),
+      constraints: const BoxConstraints(maxWidth: _UISettings.contentMaxWidth),
       child: CarouselSlider(
         carouselController: _controller,
         options: CarouselOptions(
-          disableCenter: true,
+          height: context.screenWidth > _UISettings.smallScreenWidth
+              ? _horizontalCarouselHeight
+              : _verticalCarouselHeight,
           viewportFraction: 1,
+          disableCenter: true,
         ),
         items: [
           _PartnerCards(
-            infoCardChild: const _PartnerInfoCard(
+            infoCardChild: _PartnerInfoCard(
               logo: AppAssets.logo,
-              description:
-                  "Welcome to Decentraland. Create, explore and trade in a virtual world owned by its users.",
+              description: context.localizations.welcomeToDecentraland,
             ),
             imageCardChild: _PartnerImageCard(
               image: AppAssets.decentralandImage,
-              onLeftArrowTap: () => _controller.previousPage(
-                duration: const Duration(milliseconds: 300),
-              ),
-              onRightArrowTap: () => _controller.nextPage(
-                duration: const Duration(milliseconds: 300),
-              ),
-              partnerName: 'Decentraland',
+              onLeftArrowTap: () => _previousPage(),
+              onRightArrowTap: () => _nextPage(),
+              partnerName: context.localizations.decentraland,
             ),
           ),
           _PartnerCards(
-            infoCardChild: const _PartnerInfoCard(
+            infoCardChild: _PartnerInfoCard(
               logo: AppAssets.telegramIcon,
-              description:
-                  "Space exploration strategy game, territorial conquest and political domination.",
+              description: context.localizations.spaceExploration,
             ),
             imageCardChild: _PartnerImageCard(
               image: AppAssets.starAtlasImage,
-              onLeftArrowTap: () => _controller.previousPage(
-                duration: const Duration(milliseconds: 300),
-              ),
-              onRightArrowTap: () => _controller.nextPage(
-                duration: const Duration(milliseconds: 300),
-              ),
-              partnerName: 'Star Atlas',
-            ),
-          ),
-          _PartnerCards(
-            infoCardChild: const _PartnerInfoCard(
-              logo: AppAssets.youtubeIcon,
-              description: "sdfsdfsdfffffffffffffffffsdffs.",
-            ),
-            imageCardChild: _PartnerImageCard(
-              image: AppAssets.logo,
-              onLeftArrowTap: () => _controller.previousPage(
-                duration: const Duration(milliseconds: 300),
-              ),
-              onRightArrowTap: () => _controller.nextPage(
-                duration: const Duration(milliseconds: 300),
-              ),
-              partnerName: 'zaaas',
+              onLeftArrowTap: () => _previousPage(),
+              onRightArrowTap: () => _nextPage(),
+              partnerName: context.localizations.starAtlas,
             ),
           ),
         ],
@@ -155,12 +168,35 @@ class _PartnerCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      children: [
-        infoCardChild,
-        imageCardChild,
-      ],
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      if (constraints.maxWidth >
+          _UISettings.smallScreenWidth - _UISettings.horizontalPadding * 2) {
+        return Hover(
+          builder: (_) {
+            return Row(
+              children: [
+                Expanded(child: infoCardChild),
+                const SizedBox(width: 16),
+                Expanded(flex: 2, child: imageCardChild),
+              ],
+            );
+          },
+        );
+      } else {
+        return Hover(
+          builder: (_) {
+            return Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Expanded(child: infoCardChild),
+                const SizedBox(height: 16),
+                Expanded(child: imageCardChild),
+              ],
+            );
+          },
+        );
+      }
+    });
   }
 }
 
@@ -179,13 +215,19 @@ class _PartnerInfoCard extends StatefulWidget {
 }
 
 class __PartnerCardState extends State<_PartnerInfoCard> {
+  static const double _padding = 30;
+  static const double _maxWidth = 400;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 470,
-      padding: const EdgeInsets.all(30),
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      constraints: const BoxConstraints(maxWidth: 400),
+      padding: const EdgeInsets.all(_padding),
+      constraints: BoxConstraints(
+        minWidth: context.screenWidth <= _UISettings.smallScreenWidth
+            ? context.screenWidth - 50
+            : _UISettings.smallScreenWidth,
+        maxHeight: _UISettings.partnerCardMaxHeight,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
@@ -201,11 +243,22 @@ class __PartnerCardState extends State<_PartnerInfoCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset(widget.logo, height: 60),
+          Image.asset(
+            widget.logo,
+            height:
+                context.screenWidth <= _UISettings.smallScreenWidth ? 40 : 60,
+          ),
           const Spacer(),
-          Text(
-            widget.description,
-            style: context.text.productsPartnersInfoCardDescription,
+          ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: _maxWidth,
+            ),
+            child: AutoSizeText(
+              widget.description,
+              style: context.text.productsPartnersInfoCardDescription,
+              maxLines:
+                  context.screenWidth < _UISettings.smallScreenWidth ? 3 : 6,
+            ),
           ),
           const SizedBox(height: 10),
           Text(
@@ -237,33 +290,95 @@ class _PartnerImageCard extends StatefulWidget {
 }
 
 class _PartnerImageCardState extends State<_PartnerImageCard> {
+  bool _isHovered = false;
+
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10),
-          height: 470,
-          constraints: const BoxConstraints(maxWidth: 800),
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(widget.image),
-              fit: BoxFit.cover,
+    return Container(
+      constraints: BoxConstraints(
+        maxWidth: context.screenWidth < _UISettings.smallScreenWidth
+            ? context.screenWidth - 50
+            : _UISettings.smallScreenWidth,
+        maxHeight: context.screenWidth < _UISettings.smallScreenWidth
+            ? 150
+            : _UISettings.partnerCardMaxHeight,
+      ),
+      child: MouseRegion(
+        onEnter: (event) => setState(() => _isHovered = !_isHovered),
+        onExit: (event) => setState(() => _isHovered = !_isHovered),
+        child: Stack(
+          children: [
+            Stack(children: [
+              Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(widget.image),
+                    fit: BoxFit.cover,
+                    scale: _isHovered ? 2 : 1,
+                  ),
+                  borderRadius: BorderRadius.circular(26),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(26),
+                  gradient: context.gradient.shadowVertical,
+                ),
+              ),
+            ]),
+            Positioned(
+              left: 0,
+              right: 14,
+              bottom: 24,
+              child: _PartnerImageCardArrowSection(
+                onLeftArrowTap: () => widget.onLeftArrowTap(),
+                onRightArrowTap: () => widget.onRightArrowTap(),
+                partnerName: widget.partnerName,
+              ),
             ),
-            borderRadius: BorderRadius.circular(30),
-          ),
+          ],
         ),
-        Positioned(
-          left: 10,
-          right: 10,
-          bottom: 20,
-          child: _PartnerImageCardArrowSection(
-            onLeftArrowTap: () => widget.onLeftArrowTap(),
-            onRightArrowTap: () => widget.onRightArrowTap(),
-            partnerName: widget.partnerName,
-          ),
-        ),
-      ],
+      ),
+    );
+  }
+}
+
+class _OnImageCardHover extends StatefulWidget {
+  final Widget Function(bool isHovered) builder;
+
+  const _OnImageCardHover({
+    required this.builder,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _OnImageCardHoverState createState() => _OnImageCardHoverState();
+}
+
+class _OnImageCardHoverState extends State<_OnImageCardHover> {
+  bool _isHovered = false;
+
+  void _onEntered(bool isHovered) {
+    setState(() {
+      _isHovered = isHovered;
+    });
+  }
+
+  Matrix4 _transform() {
+    final hovered = Matrix4.identity()..scale(1.3);
+    return _isHovered ? hovered : Matrix4.identity();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => _onEntered(true),
+      onExit: (_) => _onEntered(false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        transform: _transform(),
+        child: widget.builder(_isHovered),
+      ),
     );
   }
 }
@@ -288,27 +403,83 @@ class _PartnerImageCardArrowSection extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          IconButton(
-            icon: const Icon(
-              Icons.arrow_circle_left_outlined,
-              size: 40,
-              color: Colors.white,
-            ),
-            onPressed: onLeftArrowTap,
+          _OnArrowHover(
+            isLeftArrow: true,
+            builder: (context) {
+              return IconButton(
+                icon: const Icon(
+                  Icons.arrow_circle_left_outlined,
+                  size: 40,
+                  color: Colors.white,
+                ),
+                onPressed: onLeftArrowTap,
+              );
+            },
           ),
-          Text(
-            partnerName,
-            style: const TextStyle(color: Colors.white),
-          ),
-          IconButton(
-            icon: const Icon(
-              Icons.arrow_circle_right_outlined,
-              size: 40,
-              color: Colors.white,
+          Center(
+            child: Text(
+              partnerName,
+              style: const TextStyle(color: Colors.white),
             ),
-            onPressed: onRightArrowTap,
+          ),
+          _OnArrowHover(
+            builder: (context) {
+              return IconButton(
+                icon: const Icon(
+                  Icons.arrow_circle_right_outlined,
+                  size: 40,
+                  color: Colors.white,
+                ),
+                onPressed: onRightArrowTap,
+              );
+            },
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _OnArrowHover extends StatefulWidget {
+  final Widget Function(bool isHovered) builder;
+  final bool? isLeftArrow;
+
+  const _OnArrowHover({
+    required this.builder,
+    this.isLeftArrow,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _OnArrowHoverState createState() => _OnArrowHoverState();
+}
+
+class _OnArrowHoverState extends State<_OnArrowHover> {
+  bool _isHovered = false;
+
+  void _onEntered(bool isHovered) {
+    setState(() {
+      _isHovered = isHovered;
+    });
+  }
+
+  Matrix4 _transform() {
+    if (widget.isLeftArrow == true) {
+      return Matrix4.identity()..translate(_isHovered ? -4 : 0, 0, 0);
+    } else {
+      return Matrix4.identity()..translate(_isHovered ? 4 : 0, 0, 0);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => _onEntered(true),
+      onExit: (_) => _onEntered(false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        transform: _transform(),
+        child: widget.builder(_isHovered),
       ),
     );
   }
