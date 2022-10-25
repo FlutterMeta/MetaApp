@@ -32,6 +32,24 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle localeTitle;
   final TextStyle blogTitle;
   final TextStyle blogTitleHovered;
+  final TextStyle incomeSectionTitle;
+  final TextStyle incomeSectionText;
+  final TextStyle joinButton;
+  final TextStyle cardsSectionTitle;
+  final TextStyle cardsSectionText;
+  final TextStyle partnersSectionCardTitle;
+  final TextStyle partnersSectionCardSubtitle;
+  final TextStyle partnersSectionCardText;
+  final TextStyle becomePartnerSectionTitle;
+  final TextStyle becomePartnerSectionText;
+  final TextStyle careServiceButton;
+  final TextStyle partnerTableSectionTitle;
+  final TextStyle partnerTableSectionText;
+  final TextStyle partnerTableSectionCellTitle;
+  final TextStyle partnerTableSectionIncomeCell;
+  final TextStyle partnerTableSectionReferralCell;
+  final TextStyle partnerPdfSectionTitle;
+  final TextStyle partnerPdfSectionSubtitle;
 
   ThemeTextStyles({
     required this.test,
@@ -65,6 +83,24 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.localeTitle,
     required this.blogTitle,
     required this.blogTitleHovered,
+    required this.incomeSectionTitle,
+    required this.incomeSectionText,
+    required this.joinButton,
+    required this.cardsSectionTitle,
+    required this.cardsSectionText,
+    required this.partnersSectionCardTitle,
+    required this.partnersSectionCardSubtitle,
+    required this.partnersSectionCardText,
+    required this.becomePartnerSectionTitle,
+    required this.becomePartnerSectionText,
+    required this.careServiceButton,
+    required this.partnerTableSectionTitle,
+    required this.partnerTableSectionText,
+    required this.partnerTableSectionCellTitle,
+    required this.partnerTableSectionIncomeCell,
+    required this.partnerTableSectionReferralCell,
+    required this.partnerPdfSectionTitle,
+    required this.partnerPdfSectionSubtitle,
   });
 
   @override
@@ -100,6 +136,24 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? localeTitle,
     TextStyle? blogTitle,
     TextStyle? blogTitleHovered,
+    TextStyle? incomeSectionTitle,
+    TextStyle? incomeSectionText,
+    TextStyle? joinButton,
+    TextStyle? cardsSectionTitle,
+    TextStyle? cardsSectionText,
+    TextStyle? partnersSectionCardTitle,
+    TextStyle? partnersSectionCardSubtitle,
+    TextStyle? partnersSectionCardText,
+    TextStyle? becomePartnerSectionTitle,
+    TextStyle? becomePartnerSectionText,
+    TextStyle? careServiceButton,
+    TextStyle? partnerTableSectionTitle,
+    TextStyle? partnerTableSectionText,
+    TextStyle? partnerTableSectionCellTitle,
+    TextStyle? partnerTableSectionIncomeCell,
+    TextStyle? partnerTableSectionReferralCell,
+    TextStyle? partnerPdfSectionTitle,
+    TextStyle? partnerPdfSectionSubtitle,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -145,6 +199,36 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       localeTitle: localeTitle ?? this.localeTitle,
       blogTitle: blogTitle ?? this.blogTitle,
       blogTitleHovered: blogTitleHovered ?? this.blogTitleHovered,
+      incomeSectionTitle: incomeSectionTitle ?? this.incomeSectionTitle,
+      incomeSectionText: incomeSectionText ?? this.incomeSectionText,
+      joinButton: joinButton ?? this.joinButton,
+      cardsSectionTitle: cardsSectionTitle ?? this.cardsSectionTitle,
+      cardsSectionText: cardsSectionText ?? this.cardsSectionText,
+      partnersSectionCardTitle:
+          partnersSectionCardTitle ?? this.partnersSectionCardTitle,
+      partnersSectionCardSubtitle:
+          partnersSectionCardSubtitle ?? this.partnersSectionCardSubtitle,
+      partnersSectionCardText:
+          partnersSectionCardText ?? this.partnersSectionCardText,
+      becomePartnerSectionTitle:
+          becomePartnerSectionTitle ?? this.becomePartnerSectionTitle,
+      becomePartnerSectionText:
+          becomePartnerSectionText ?? this.becomePartnerSectionText,
+      careServiceButton: careServiceButton ?? this.careServiceButton,
+      partnerTableSectionTitle:
+          partnerTableSectionTitle ?? this.partnerTableSectionTitle,
+      partnerTableSectionText:
+          partnerTableSectionText ?? this.partnerTableSectionText,
+      partnerTableSectionCellTitle:
+          partnerTableSectionCellTitle ?? this.partnerTableSectionCellTitle,
+      partnerTableSectionIncomeCell:
+          partnerTableSectionIncomeCell ?? this.partnerTableSectionIncomeCell,
+      partnerTableSectionReferralCell: partnerTableSectionReferralCell ??
+          this.partnerTableSectionReferralCell,
+      partnerPdfSectionTitle:
+          partnerPdfSectionTitle ?? this.partnerPdfSectionTitle,
+      partnerPdfSectionSubtitle:
+          partnerPdfSectionSubtitle ?? this.partnerPdfSectionSubtitle,
     );
   }
 
@@ -209,6 +293,45 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       blogTitle: TextStyle.lerp(blogTitle, other.blogTitle, t)!,
       blogTitleHovered:
           TextStyle.lerp(blogTitleHovered, other.blogTitleHovered, t)!,
+      incomeSectionTitle:
+          TextStyle.lerp(incomeSectionTitle, other.incomeSectionTitle, t)!,
+      incomeSectionText:
+          TextStyle.lerp(incomeSectionText, other.incomeSectionText, t)!,
+      joinButton: TextStyle.lerp(joinButton, other.joinButton, t)!,
+      cardsSectionTitle:
+          TextStyle.lerp(cardsSectionTitle, other.cardsSectionTitle, t)!,
+      cardsSectionText:
+          TextStyle.lerp(cardsSectionText, other.cardsSectionText, t)!,
+      partnersSectionCardTitle: TextStyle.lerp(
+          partnersSectionCardTitle, other.partnersSectionCardTitle, t)!,
+      partnersSectionCardSubtitle: TextStyle.lerp(
+          partnersSectionCardSubtitle, other.partnersSectionCardSubtitle, t)!,
+      partnersSectionCardText: TextStyle.lerp(
+          partnersSectionCardText, other.partnersSectionCardText, t)!,
+      becomePartnerSectionTitle: TextStyle.lerp(
+          becomePartnerSectionTitle, other.becomePartnerSectionTitle, t)!,
+      becomePartnerSectionText: TextStyle.lerp(
+          becomePartnerSectionText, other.becomePartnerSectionText, t)!,
+      careServiceButton:
+          TextStyle.lerp(careServiceButton, other.careServiceButton, t)!,
+      partnerTableSectionTitle: TextStyle.lerp(
+          partnerTableSectionTitle, other.partnerTableSectionTitle, t)!,
+      partnerTableSectionText: TextStyle.lerp(
+          partnerTableSectionText, other.partnerTableSectionText, t)!,
+      partnerTableSectionCellTitle: TextStyle.lerp(
+          partnerTableSectionCellTitle, other.partnerTableSectionCellTitle, t)!,
+      partnerTableSectionIncomeCell: TextStyle.lerp(
+          partnerTableSectionIncomeCell,
+          other.partnerTableSectionIncomeCell,
+          t)!,
+      partnerTableSectionReferralCell: TextStyle.lerp(
+          partnerTableSectionReferralCell,
+          other.partnerTableSectionReferralCell,
+          t)!,
+      partnerPdfSectionTitle: TextStyle.lerp(
+          partnerPdfSectionTitle, other.partnerPdfSectionTitle, t)!,
+      partnerPdfSectionSubtitle: TextStyle.lerp(
+          partnerPdfSectionSubtitle, other.partnerPdfSectionSubtitle, t)!,
     );
   }
 
@@ -327,6 +450,78 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         blogTitleHovered: headline3.copyWith(
           fontFamily: GoogleFonts.roboto().fontFamily,
           color: AppColors.darkPurple,
+        ),
+        incomeSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        incomeSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        joinButton: headline3.copyWith(
+          color: AppColors.darkPurple,
+        ),
+        cardsSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        cardsSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnersSectionCardTitle: headline1.copyWith(
+          fontSize: 22,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        partnersSectionCardSubtitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnersSectionCardText: headline3.copyWith(
+          color: AppColors.darkPurple,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        becomePartnerSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          color: AppColors.white,
+          fontWeight: FontWeight.w600,
+        ),
+        becomePartnerSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          color: AppColors.white,
+        ),
+        careServiceButton: headline3.copyWith(
+          color: AppColors.darkPurple,
+        ),
+        partnerTableSectionTitle: headline1.copyWith(
+          fontSize: 48,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w500,
+        ),
+        partnerTableSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnerTableSectionCellTitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnerTableSectionIncomeCell: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        partnerTableSectionReferralCell: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+          color: AppColors.darkPurple,
+        ),
+        partnerPdfSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnerPdfSectionSubtitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontSize: 24,
         ),
       );
 
@@ -447,6 +642,78 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         blogTitleHovered: headline3.copyWith(
           fontFamily: GoogleFonts.roboto().fontFamily,
           color: AppColors.darkPurple,
+        ),
+        incomeSectionTitle: headline3.copyWith(
+          color: AppColors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
+        incomeSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        joinButton: headline3.copyWith(
+          color: AppColors.darkPurple,
+        ),
+        cardsSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        cardsSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnersSectionCardTitle: headline1.copyWith(
+          fontSize: 22,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        partnersSectionCardSubtitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnersSectionCardText: headline3.copyWith(
+          color: AppColors.darkPurple,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        becomePartnerSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          color: AppColors.white,
+          fontWeight: FontWeight.w600,
+        ),
+        becomePartnerSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          color: AppColors.white,
+        ),
+        careServiceButton: headline3.copyWith(
+          color: AppColors.darkPurple,
+        ),
+        partnerTableSectionTitle: headline1.copyWith(
+          fontSize: 48,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w500,
+        ),
+        partnerTableSectionText: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnerTableSectionCellTitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnerTableSectionIncomeCell: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+        ),
+        partnerTableSectionReferralCell: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontWeight: FontWeight.w600,
+          color: AppColors.darkPurple,
+        ),
+        partnerPdfSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnerPdfSectionSubtitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontSize: 24,
         ),
       );
 }

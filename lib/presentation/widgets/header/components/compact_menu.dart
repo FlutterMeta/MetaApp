@@ -132,6 +132,12 @@ class _OverlayMenu extends StatelessWidget {
 class _MenuTabs extends StatelessWidget {
   const _MenuTabs({Key? key}) : super(key: key);
 
+  void _goToPartnersPage(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => PartnersPage(),
+    ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -148,7 +154,7 @@ class _MenuTabs extends StatelessWidget {
         ),
         const SizedBox(height: 26),
         _NavigationButton(
-          onTap: () {},
+          onTap: () => _goToPartnersPage(context),
           title: context.localizations.partners,
         ),
         const SizedBox(height: 26),

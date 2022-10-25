@@ -13,6 +13,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color footerBackground;
   final Color localeDropdownBackground;
   final Color localeDropdownOpacity;
+  final Color incomeSectionBackground;
+  final Color joinButtonBorder;
+  final Color partnersCardBackground;
+  final Color partnersCardContentBackground;
+  final Color careServiceButton;
+  final Color referralBonusCell;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -27,6 +33,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.footerBackground,
     required this.localeDropdownOpacity,
     required this.localeDropdownBackground,
+    required this.incomeSectionBackground,
+    required this.joinButtonBorder,
+    required this.partnersCardBackground,
+    required this.partnersCardContentBackground,
+    required this.careServiceButton,
+    required this.referralBonusCell,
   });
 
   @override
@@ -44,6 +56,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? localeDropdownOpenedBackground,
     Color? localeDropdownOpacity,
     Color? localeDropdownBackground,
+    Color? incomeSectionBackground,
+    Color? joinButtonBorder,
+    Color? partnersCardBackground,
+    Color? partnersCardContentBackground,
+    Color? careServiceButton,
+    Color? referralBonusCell,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -61,6 +79,15 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           localeDropdownOpacity ?? this.localeDropdownOpacity,
       localeDropdownBackground:
           localeDropdownBackground ?? this.localeDropdownBackground,
+      incomeSectionBackground:
+          incomeSectionBackground ?? this.incomeSectionBackground,
+      joinButtonBorder: joinButtonBorder ?? this.joinButtonBorder,
+      partnersCardBackground:
+          partnersCardBackground ?? this.partnersCardBackground,
+      partnersCardContentBackground:
+          partnersCardContentBackground ?? this.partnersCardContentBackground,
+      careServiceButton: careServiceButton ?? this.careServiceButton,
+      referralBonusCell: referralBonusCell ?? this.referralBonusCell,
     );
   }
 
@@ -93,6 +120,18 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(localeDropdownOpacity, other.localeDropdownOpacity, t)!,
       localeDropdownBackground: Color.lerp(
           localeDropdownBackground, other.localeDropdownBackground, t)!,
+      incomeSectionBackground: Color.lerp(
+          incomeSectionBackground, other.incomeSectionBackground, t)!,
+      joinButtonBorder:
+          Color.lerp(joinButtonBorder, other.joinButtonBorder, t)!,
+      partnersCardBackground:
+          Color.lerp(partnersCardBackground, other.partnersCardBackground, t)!,
+      partnersCardContentBackground: Color.lerp(partnersCardContentBackground,
+          other.partnersCardContentBackground, t)!,
+      careServiceButton:
+          Color.lerp(careServiceButton, other.careServiceButton, t)!,
+      referralBonusCell:
+          Color.lerp(referralBonusCell, other.referralBonusCell, t)!,
     );
   }
 
@@ -109,6 +148,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         footerBackground: AppColors.darkBlue,
         localeDropdownBackground: AppColors.darkerGrey,
         localeDropdownOpacity: AppColors.transparent,
+        incomeSectionBackground: AppColors.whitePurple,
+        joinButtonBorder: AppColors.darkPurple,
+        partnersCardBackground: AppColors.purple,
+        partnersCardContentBackground: AppColors.white,
+        careServiceButton: AppColors.white,
+        referralBonusCell: AppColors.whitePurple,
       );
 
   static get dark => ThemeColors(
@@ -124,5 +169,11 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         footerBackground: AppColors.darkBlue,
         localeDropdownBackground: AppColors.darkerGrey,
         localeDropdownOpacity: AppColors.transparent,
+        incomeSectionBackground: AppColors.whitePurple,
+        joinButtonBorder: AppColors.darkPurple,
+        partnersCardBackground: AppColors.purple,
+        partnersCardContentBackground: AppColors.white,
+        careServiceButton: AppColors.white,
+        referralBonusCell: AppColors.whitePurple,
       );
 }

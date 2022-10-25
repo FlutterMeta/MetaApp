@@ -6,6 +6,7 @@ import 'package:meta_app/l10n/l10n.dart';
 import 'package:meta_app/presentation/pages/forgot_password_page.dart';
 import 'package:meta_app/presentation/pages/home_page/home_page.dart';
 import 'package:meta_app/presentation/pages/login_page.dart';
+import 'package:meta_app/presentation/pages/partners_page/partners_page.dart';
 import 'package:meta_app/presentation/pages/registration_page.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/auth_button.dart';

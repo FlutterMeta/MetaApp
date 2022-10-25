@@ -7,6 +7,7 @@ import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/locale_manager.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/pages/login_page.dart';
+import 'package:meta_app/presentation/pages/partners_page/partners_page.dart';
 import 'package:meta_app/presentation/widgets/media_buttons.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 import 'package:useful_extensions/useful_extensions.dart';
