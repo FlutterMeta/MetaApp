@@ -17,7 +17,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color joinButtonBorder;
   final Color partnersCardBackground;
   final Color partnersCardContentBackground;
-  final Color careSeviceButton;
+  final Color careServiceButton;
   final Color referralBonusCell;
 
   const ThemeColors({
@@ -37,7 +37,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.joinButtonBorder,
     required this.partnersCardBackground,
     required this.partnersCardContentBackground,
-    required this.careSeviceButton,
+    required this.careServiceButton,
     required this.referralBonusCell,
   });
 
@@ -86,7 +86,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           partnersCardBackground ?? this.partnersCardBackground,
       partnersCardContentBackground:
           partnersCardContentBackground ?? this.partnersCardContentBackground,
-      careSeviceButton: careSeviceButton ?? this.careSeviceButton,
+      careServiceButton: careSeviceButton ?? this.careServiceButton,
       referralBonusCell: referralBonusCell ?? this.referralBonusCell,
     );
   }
@@ -128,8 +128,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(partnersCardBackground, other.partnersCardBackground, t)!,
       partnersCardContentBackground: Color.lerp(partnersCardContentBackground,
           other.partnersCardContentBackground, t)!,
-      careSeviceButton:
-          Color.lerp(careSeviceButton, other.careSeviceButton, t)!,
+      careServiceButton:
+          Color.lerp(careServiceButton, other.careServiceButton, t)!,
       referralBonusCell:
           Color.lerp(referralBonusCell, other.referralBonusCell, t)!,
     );
@@ -152,7 +152,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         joinButtonBorder: AppColors.darkPurple,
         partnersCardBackground: AppColors.purple,
         partnersCardContentBackground: AppColors.white,
-        careSeviceButton: AppColors.white,
+        careServiceButton: AppColors.white,
         referralBonusCell: AppColors.whitePurple,
       );
 
@@ -173,7 +173,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         joinButtonBorder: AppColors.darkPurple,
         partnersCardBackground: AppColors.purple,
         partnersCardContentBackground: AppColors.white,
-        careSeviceButton: AppColors.white,
+        careServiceButton: AppColors.white,
         referralBonusCell: AppColors.whitePurple,
       );
 }

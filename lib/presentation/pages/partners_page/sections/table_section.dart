@@ -156,18 +156,18 @@ class _ReferralBonusRow extends StatelessWidget {
   final String bonus;
 
   const _ReferralBonusRow({
-    Key? key,
     required this.referralBonus,
     required this.cachback,
     required this.numberOfLevels,
     required this.bonus,
+    Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: context.color.referralBonusCell,
-      padding: const EdgeInsets.only(top: 5, bottom: 20, left: 20, right: 20),
+      padding: const EdgeInsets.only(top: 6, bottom: 20, left: 20, right: 20),
       child: Wrap(
         alignment: WrapAlignment.spaceBetween,
         spacing: 20,

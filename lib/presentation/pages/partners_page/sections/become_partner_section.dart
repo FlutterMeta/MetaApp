@@ -27,8 +27,8 @@ class _BecomePartnerSection extends StatelessWidget {
               spacing: 20,
               runSpacing: 20,
               children: [
-                _CareSericeButton(onTap: () {}),
-                _CareSericeButton(onTap: () {}),
+                _CareServiceButton(onTap: () {}),
+                _CareServiceButton(onTap: () {}),
               ],
             ),
           ],
@@ -38,10 +38,10 @@ class _BecomePartnerSection extends StatelessWidget {
   }
 }
 
-class _CareSericeButton extends StatelessWidget {
+class _CareServiceButton extends StatelessWidget {
   final VoidCallback onTap;
 
-  const _CareSericeButton({
+  const _CareServiceButton({
     required this.onTap,
     Key? key,
   }) : super(key: key);
@@ -54,7 +54,7 @@ class _CareSericeButton extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
             border: Border.all(color: context.color.joinButtonBorder),
-            color: context.color.careSeviceButton,
+            color: context.color.careServiceButton,
           ),
           padding: const EdgeInsets.symmetric(
             vertical: 10,
