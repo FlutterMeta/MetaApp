@@ -96,5 +96,8 @@
     "referralBonus": "Referral bonus",
     "monthlyCachback": "Monthly cashback for holding shares",
     "numberOfLevels": "Number of levels in the count",
-    "bonus": "Bonus"
+    "bonus": "Bonus",
+    "tableOfStabilization": "Table of Stabilization of Interest Rates of Yield from 2022 to 2025",
+    "accordingToTheRoadmap": "according to the company's roadmap from 05/01/2022 to 05/01/2025",
+    "tableOfRates": "Table of rates of return"
 }

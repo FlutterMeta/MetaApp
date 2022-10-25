@@ -15,6 +15,7 @@ part 'sections/cards_section.dart';
 part 'sections/income_section.dart';
 part 'sections/become_partner_section.dart';
 part 'sections/table_section.dart';
+part 'sections/pdf_section.dart';
 
 class PartnersPage extends StatelessWidget {
   final _headerKey = GlobalKey();
@@ -47,6 +48,8 @@ class PartnersPage extends StatelessWidget {
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: _CardsSection()),
           const SliverSizedBox(height: 100),
+          const SliverToBoxAdapter(child: _PdfSection()),
+          const SliverSizedBox(height: 180),
           const SliverToBoxAdapter(child: _TableSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: _BecomePartnerSection()),

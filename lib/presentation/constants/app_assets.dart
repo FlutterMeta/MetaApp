@@ -7,6 +7,7 @@ abstract class AppAssets {
   static const board = "assets/images/board.png";
   static const worldMap = "assets/images/world_map.png";
   static const earth = "assets/images/earth.png";
+  static const pdfIcon = "assets/images/pdf_icon.png";
 
   static const incomeVideo = "assets/videos/income.mp4";
 }

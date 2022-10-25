@@ -48,6 +48,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle partnerTableSectionCellTitle;
   final TextStyle partnerTableSectionIncomeCell;
   final TextStyle partnerTableSectionReferralCell;
+  final TextStyle partnerPdfSectionTitle;
+  final TextStyle partnerPdfSectionSubtitle;
 
   ThemeTextStyles({
     required this.test,
@@ -97,6 +99,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.partnerTableSectionCellTitle,
     required this.partnerTableSectionIncomeCell,
     required this.partnerTableSectionReferralCell,
+    required this.partnerPdfSectionTitle,
+    required this.partnerPdfSectionSubtitle,
   });
 
   @override
@@ -148,6 +152,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? partnerTableSectionCellTitle,
     TextStyle? partnerTableSectionIncomeCell,
     TextStyle? partnerTableSectionReferralCell,
+    TextStyle? partnerPdfSectionTitle,
+    TextStyle? partnerPdfSectionSubtitle,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -219,6 +225,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           partnerTableSectionIncomeCell ?? this.partnerTableSectionIncomeCell,
       partnerTableSectionReferralCell: partnerTableSectionReferralCell ??
           this.partnerTableSectionReferralCell,
+      partnerPdfSectionTitle:
+          partnerPdfSectionTitle ?? this.partnerPdfSectionTitle,
+      partnerPdfSectionSubtitle:
+          partnerPdfSectionSubtitle ?? this.partnerPdfSectionSubtitle,
     );
   }
 
@@ -318,6 +328,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           partnerTableSectionReferralCell,
           other.partnerTableSectionReferralCell,
           t)!,
+      partnerPdfSectionTitle: TextStyle.lerp(
+          partnerPdfSectionTitle, other.partnerPdfSectionTitle, t)!,
+      partnerPdfSectionSubtitle: TextStyle.lerp(
+          partnerPdfSectionSubtitle, other.partnerPdfSectionSubtitle, t)!,
     );
   }
 
@@ -500,6 +514,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily: GoogleFonts.roboto().fontFamily,
           fontWeight: FontWeight.w600,
           color: AppColors.darkPurple,
+        ),
+        partnerPdfSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnerPdfSectionSubtitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontSize: 24,
         ),
       );
 
@@ -684,6 +706,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily: GoogleFonts.roboto().fontFamily,
           fontWeight: FontWeight.w600,
           color: AppColors.darkPurple,
+        ),
+        partnerPdfSectionTitle: headline1.copyWith(
+          fontSize: 60,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        partnerPdfSectionSubtitle: headline3.copyWith(
+          fontFamily: GoogleFonts.roboto().fontFamily,
+          fontSize: 24,
         ),
       );
 }
