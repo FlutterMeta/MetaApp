@@ -60,7 +60,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? joinButtonBorder,
     Color? partnersCardBackground,
     Color? partnersCardContentBackground,
-    Color? careSeviceButton,
+    Color? careServiceButton,
     Color? referralBonusCell,
   }) {
     return ThemeColors(
@@ -86,7 +86,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           partnersCardBackground ?? this.partnersCardBackground,
       partnersCardContentBackground:
           partnersCardContentBackground ?? this.partnersCardContentBackground,
-      careServiceButton: careSeviceButton ?? this.careServiceButton,
+      careServiceButton: careServiceButton ?? this.careServiceButton,
       referralBonusCell: referralBonusCell ?? this.referralBonusCell,
     );
   }
