@@ -21,4 +21,8 @@ List<Story> get _pages => [
         name: 'Pages/ProductsPage',
         builder: (context) => ProductsPage(),
       ),
+      Story(
+        name: 'Pages/PartnersPage',
+        builder: (context) => PartnersPage(),
+      ),
     ];

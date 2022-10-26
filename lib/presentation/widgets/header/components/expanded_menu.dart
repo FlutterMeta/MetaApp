@@ -3,6 +3,12 @@ part of '../header.dart';
 class _ExpandedMenu extends StatelessWidget {
   const _ExpandedMenu({Key? key}) : super(key: key);
 
+  void _goToPartnersPage(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => PartnersPage(),
+    ));
+  }
+
   void _goToProductsPage(BuildContext context) {
     Navigator.push(
       context,
@@ -27,7 +33,7 @@ class _ExpandedMenu extends StatelessWidget {
         ),
         const SizedBox(width: 6),
         _NavigationButton(
-          onTap: () {},
+          onTap: () => _goToPartnersPage(context),
           title: context.localizations.partners,
         ),
         const MediaButtons(),

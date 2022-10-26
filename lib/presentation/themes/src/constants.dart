@@ -27,4 +27,5 @@ abstract class AppColors {
   static const lightPurple = Color(0xFF9A8DE9);
   static const lighterPurple = Color(0xFFb2a4ff);
   static const lightestPurple = Color(0xFFD6CEFF);
+  static const whitePurple = Color(0xFFF5F2FC);
 }
