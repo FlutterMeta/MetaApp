@@ -69,7 +69,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           stops: [0.4, 0.5],
           colors: [AppColors.purple, AppColors.lightPurple],
         ),
-        deepPurple: LinearGradient(
+        deepPurple: const LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           stops: [0.99, 0.01],

@@ -99,8 +99,7 @@
     "bonus": "Bonus",
     "tableOfStabilization": "Table of Stabilization of Interest Rates of Yield from 2022 to 2025",
     "accordingToTheRoadmap": "according to the company's roadmap from 05/01/2022 to 05/01/2025",
-    "tableOfRates": "Table of rates of return"
-    "ukrainian": "Українська",
+    "tableOfRates": "Table of rates of return",
     "@_PRODUCTS_PAGE": {},
     "mmPartnersInTerms": "MultiMeta Partners in terms of venture investments",
     "largeEuropeanVenture": "Large European and American Venture and Private Equity funds involved in different startup development stages.",
@@ -131,7 +130,7 @@
     "software": "Software",
     "softwareDescription": "Virtual world projects created using 3D engines.",
     "artificialIntelligence": "Artificial intelligence",
-    "artificialIntelligenceDescription":  "Allow to develop the project in the early stages of development to attract large investments.",
+    "artificialIntelligenceDescription": "Allow to develop the project in the early stages of development to attract large investments.",
     "dataCenters": "Data centers",
     "dataCentersDescription": "Cloud storage for metaverse data.",
     "blockchain": "Blockchain",

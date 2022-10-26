@@ -75,7 +75,7 @@ class _InvestorComponent extends StatelessWidget {
           SizedBox(
             width: context.screenWidth < 780
                 ? context.screenWidth * 0.66
-                : context.screenWidth * 0.21,
+                : context.screenWidth * 0.22,
             child: Text(
               subtitle,
               style: context.text.productsInvestorSectionDescription,
