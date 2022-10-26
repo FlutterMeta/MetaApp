@@ -136,5 +136,9 @@
     "blockchain": "Blockchain",
     "blockchainDescription": "Attaches each user's data and money to a digital account.",
     "ventureInvestments": "Venture investments",
-    "ventureInvestmentsDescription": "Allow to develop the project in the early stages of development to attract large investments."
+    "ventureInvestmentsDescription": "Allow to develop the project in the early stages of development to attract large investments.",
+    "@_BLOG_PAGE": {},
+    "officeProgramMultiMetaUniverse": "Office program MultiMeta Universe",
+    "multiMetaConsulting": "MultiMeta\nConsulting",
+    "offlineDevelopment": "Offline development of MultiMeta"
 }

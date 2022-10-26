@@ -6,6 +6,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
   final Gradient purpleVertical;
   final Gradient deepPurple;
   final Gradient shadowVertical;
+  final Gradient purpleLightShadowVertical;
 
   const ThemeGradients({
     required this.purple,
@@ -13,6 +14,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     required this.lightPurple,
     required this.deepPurple,
     required this.shadowVertical,
+    required this.purpleLightShadowVertical,
   });
 
   @override
@@ -22,6 +24,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     Gradient? purpleVertical,
     Gradient? deepPurple,
     Gradient? shadowVertical,
+    Gradient? purpleLightShadowVertical,
   }) {
     return ThemeGradients(
       purple: purple ?? this.purple,
@@ -29,6 +32,8 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
       purpleVertical: purpleVertical ?? this.purpleVertical,
       deepPurple: deepPurple ?? this.deepPurple,
       shadowVertical: shadowVertical ?? this.shadowVertical,
+      purpleLightShadowVertical:
+          purpleLightShadowVertical ?? this.purpleLightShadowVertical,
     );
   }
 
@@ -47,6 +52,8 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
       purpleVertical: Gradient.lerp(purpleVertical, other.purpleVertical, t)!,
       deepPurple: Gradient.lerp(deepPurple, other.deepPurple, t)!,
       shadowVertical: Gradient.lerp(shadowVertical, other.shadowVertical, t)!,
+      purpleLightShadowVertical: Gradient.lerp(
+          purpleLightShadowVertical, other.purpleLightShadowVertical, t)!,
     );
   }
 
@@ -81,38 +88,56 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           stops: const [0.01, 1],
           colors: [AppColors.black.withOpacity(0.84), AppColors.transparent],
         ),
+        purpleLightShadowVertical: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          stops: const [0.01, 0.05, 0.15, 0.3, 0.5],
+          colors: [
+            AppColors.purple.withOpacity(0.4),
+            AppColors.purple.withOpacity(0.3),
+            AppColors.purple.withOpacity(0.2),
+            AppColors.purple.withOpacity(0.1),
+            AppColors.transparent,
+          ],
+        ),
       );
 
-  static get dark => const ThemeGradients(
-        lightPurple: LinearGradient(
+  static get dark => ThemeGradients(
+        lightPurple: const LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           stops: [0.01, 0.99],
           colors: [AppColors.lighterPurple, AppColors.white],
         ),
-        purple: LinearGradient(
+        purple: const LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
           stops: [0.4, 0.8],
           colors: [AppColors.purple, AppColors.lightPurple],
         ),
-        purpleVertical: LinearGradient(
+        purpleVertical: const LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           stops: [0.4, 0.5],
           colors: [AppColors.purple, AppColors.white],
         ),
-        deepPurple: LinearGradient(
+        deepPurple: const LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
           stops: [0.99, 0.01],
           colors: [AppColors.purple, AppColors.darkPurple],
         ),
-        shadowVertical: LinearGradient(
+        shadowVertical: const LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
           stops: [0.4, 0.5],
           colors: [AppColors.purple, AppColors.lightPurple],
+        ),
+        purpleLightShadowVertical: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          stops: const [0.01, 0.1],
+          colors: [AppColors.black.withOpacity(0.64), AppColors.transparent],
         ),
       );
 }

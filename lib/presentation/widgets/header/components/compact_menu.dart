@@ -133,9 +133,11 @@ class _MenuTabs extends StatelessWidget {
   const _MenuTabs({Key? key}) : super(key: key);
 
   void _goToPartnersPage(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (_) => PartnersPage(),
-    ));
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => PartnersPage(),
+      ),
+    );
   }
 
   void _goToProductsPage(BuildContext context) {
@@ -166,6 +168,8 @@ class _MenuTabs extends StatelessWidget {
         ),
         const SizedBox(height: 26),
         const _AccountButton(),
+        const SizedBox(height: 26),
+        const _BlogButton(),
         const SizedBox(height: 26),
         const SizedBox(
           width: 82,
