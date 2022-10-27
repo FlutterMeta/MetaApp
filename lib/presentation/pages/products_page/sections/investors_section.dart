@@ -8,36 +8,20 @@ class _InvestorsSection extends StatelessWidget {
     return Container(
       constraints: const BoxConstraints(maxWidth: 1270),
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: LayoutBuilder(
-        builder: ((context, constraints) {
-          if (constraints.maxWidth > 780) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: _investors(context),
-            );
-          } else {
-            return Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: _investors(context),
-                ),
-                const Spacer(),
-              ],
-            );
-          }
-        }),
+      child: Wrap(
+        spacing: 80,
+        runSpacing: 16,
+        children: _investors(context),
       ),
     );
   }
 }
 
-List<_InvestorComponent> _investors(BuildContext context) {
+List<Widget> _investors(BuildContext context) {
   return [
     _InvestorComponent(
-      title: context.localizations.horrowitz,
-      subtitle: context.localizations.horrowitzDescription,
+      title: context.localizations.horowitz,
+      subtitle: context.localizations.horowitzDescription,
     ),
     _InvestorComponent(
       title: context.localizations.sequoia,
@@ -64,6 +48,9 @@ class _InvestorComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
+      width: context.screenWidth < 780
+          ? context.screenWidth * 0.66
+          : context.screenWidth * 0.22,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -72,14 +59,9 @@ class _InvestorComponent extends StatelessWidget {
             style: context.text.productsInvestorSectionTitle,
           ),
           const SizedBox(height: 16),
-          SizedBox(
-            width: context.screenWidth < 780
-                ? context.screenWidth * 0.66
-                : context.screenWidth * 0.22,
-            child: Text(
-              subtitle,
-              style: context.text.productsInvestorSectionDescription,
-            ),
+          Text(
+            subtitle,
+            style: context.text.productsInvestorSectionDescription,
           ),
         ],
       ),

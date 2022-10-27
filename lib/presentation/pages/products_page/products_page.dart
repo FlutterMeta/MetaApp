@@ -9,6 +9,7 @@ import 'package:meta_app/presentation/widgets/gradient_button.dart';
 import 'package:meta_app/presentation/widgets/header/header.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/sliver_sized_box.dart';
+import 'package:meta_app/presentation/widgets/web_button.dart';
 
 part 'sections/presentation_section.dart';
 part 'sections/investors_section.dart';
@@ -45,9 +46,9 @@ class ProductsPage extends StatelessWidget {
             pinned: true,
           ),
           const SliverSizedBox(child: Align(child: _PresentationSection())),
-          if (context.screenWidth > 780 + 32) const SliverSizedBox(height: 130),
+          if (context.screenWidth > 812) const SliverSizedBox(height: 130),
           const SliverSizedBox(height: 40),
-          const SliverToBoxAdapter(child: Align(child: _SectionDivider())),
+          const SliverToBoxAdapter(child: Align(child: _Divider())),
           const SliverSizedBox(height: 20),
           const SliverSizedBox(child: Align(child: _InvestorsSection())),
           const SliverSizedBox(height: 100),
@@ -55,14 +56,7 @@ class ProductsPage extends StatelessWidget {
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: Align(child: _ComponentsSection())),
           const SliverSizedBox(height: 100),
-          SliverToBoxAdapter(
-            child: Container(
-              color: context.color.productsPartnersSectionBackground,
-              padding: const EdgeInsets.symmetric(vertical: 100),
-              alignment: Alignment.center,
-              child: const _PartnersSection(),
-            ),
-          ),
+          const SliverToBoxAdapter(child: _PartnersSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: Align(child: _FaqSection())),
           const SliverSizedBox(height: 100),
@@ -73,8 +67,8 @@ class ProductsPage extends StatelessWidget {
   }
 }
 
-class _SectionDivider extends StatelessWidget {
-  const _SectionDivider({Key? key}) : super(key: key);
+class _Divider extends StatelessWidget {
+  const _Divider({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -82,29 +76,6 @@ class _SectionDivider extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       constraints: const BoxConstraints(maxWidth: 1270),
       child: const Divider(),
-    );
-  }
-}
-
-class _ConstrainedText extends StatelessWidget {
-  final String text;
-  final TextStyle style;
-  final BoxConstraints constraints;
-
-  const _ConstrainedText({
-    required this.text,
-    required this.style,
-    required this.constraints,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: constraints,
-      child: Text(
-        text,
-        style: style,
-      ),
     );
   }
 }

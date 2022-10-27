@@ -50,7 +50,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle partnerTableSectionReferralCell;
   final TextStyle partnerPdfSectionTitle;
   final TextStyle partnerPdfSectionSubtitle;
-  final TextStyle productsHeadlineMedium;
+  final TextStyle productsHeadline;
   final TextStyle productsSubHeadline;
   final TextStyle productsInvestorSectionTitle;
   final TextStyle productsInvestorSectionDescription;
@@ -117,7 +117,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.partnerTableSectionReferralCell,
     required this.partnerPdfSectionTitle,
     required this.partnerPdfSectionSubtitle,
-    required this.productsHeadlineMedium,
+    required this.productsHeadline,
     required this.productsSubHeadline,
     required this.productsInvestorSectionTitle,
     required this.productsInvestorSectionDescription,
@@ -187,7 +187,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? partnerPdfSectionTitle,
     TextStyle? partnerPdfSectionSubtitle,
     TextStyle? productsHeadlineBig,
-    TextStyle? productsHeadlineMedium,
+    TextStyle? productsHeadline,
     TextStyle? productsHeadlineSmall,
     TextStyle? productsSubHeadline,
     TextStyle? productsInvestorSectionTitle,
@@ -279,8 +279,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           partnerPdfSectionTitle ?? this.partnerPdfSectionTitle,
       partnerPdfSectionSubtitle:
           partnerPdfSectionSubtitle ?? this.partnerPdfSectionSubtitle,
-      productsHeadlineMedium:
-          productsHeadlineMedium ?? this.productsHeadlineMedium,
+      productsHeadline: productsHeadline ?? this.productsHeadline,
       productsSubHeadline: productsSubHeadline ?? this.productsSubHeadline,
       productsInvestorSectionTitle:
           productsInvestorSectionTitle ?? this.productsInvestorSectionTitle,
@@ -415,8 +414,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           partnerPdfSectionTitle, other.partnerPdfSectionTitle, t)!,
       partnerPdfSectionSubtitle: TextStyle.lerp(
           partnerPdfSectionSubtitle, other.partnerPdfSectionSubtitle, t)!,
-      productsHeadlineMedium: TextStyle.lerp(
-          productsHeadlineMedium, other.productsHeadlineMedium, t)!,
+      productsHeadline:
+          TextStyle.lerp(productsHeadline, other.productsHeadline, t)!,
       productsSubHeadline:
           TextStyle.lerp(productsSubHeadline, other.productsSubHeadline, t)!,
       productsInvestorSectionTitle: TextStyle.lerp(
@@ -654,7 +653,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily: GoogleFonts.roboto().fontFamily,
           fontSize: 24,
         ),
-        productsHeadlineMedium: headline1.copyWith(
+        productsHeadline: headline1.copyWith(
           fontSize: 40,
           height: 1.5,
           fontFamily: GoogleFonts.roboto().fontFamily,
@@ -942,7 +941,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily: GoogleFonts.roboto().fontFamily,
           fontSize: 24,
         ),
-        productsHeadlineMedium: headline1.copyWith(
+        productsHeadline: headline1.copyWith(
           fontSize: 40,
         ),
         productsSubHeadline: headline3.copyWith(
