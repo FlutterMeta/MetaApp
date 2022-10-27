@@ -66,6 +66,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle productsPartnersSectionSpecialPurple;
   final TextStyle productsPartnersInfoCardDescription;
   final TextStyle productsPartnersImageCardTitle;
+  final TextStyle productsFaqAnswer;
 
   ThemeTextStyles({
     required this.test,
@@ -133,6 +134,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.productsPartnersSectionSpecialPurple,
     required this.productsPartnersInfoCardDescription,
     required this.productsPartnersImageCardTitle,
+    required this.productsFaqAnswer,
   });
 
   @override
@@ -204,6 +206,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? productsPartnersSectionSpecialPurple,
     TextStyle? productsPartnersInfoCardDescription,
     TextStyle? productsPartnersImageCardTitle,
+    TextStyle? productsFaqAnswer,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -311,6 +314,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
               this.productsPartnersInfoCardDescription,
       productsPartnersImageCardTitle:
           productsPartnersImageCardTitle ?? this.productsPartnersImageCardTitle,
+      productsFaqAnswer: productsFaqAnswer ?? this.productsFaqAnswer,
     );
   }
 
@@ -462,6 +466,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           productsPartnersInfoCardDescription,
           other.productsPartnersInfoCardDescription,
           t)!,
+      productsFaqAnswer:
+          TextStyle.lerp(productsFaqAnswer, other.productsFaqAnswer, t)!,
     );
   }
 
@@ -749,6 +755,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
               GoogleFonts.roboto(fontWeight: FontWeight.w400, height: 1.1)
                   .fontFamily,
         ),
+        productsFaqAnswer: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, height: 1.4, letterSpacing: .3)
+              .fontFamily,
+          color: AppColors.darkGrey,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1031,6 +1044,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily:
               GoogleFonts.roboto(fontWeight: FontWeight.w400, height: 1.1)
                   .fontFamily,
+        ),
+        productsFaqAnswer: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, height: 1.4, letterSpacing: .3)
+              .fontFamily,
+          color: AppColors.darkGrey,
         ),
       );
 }

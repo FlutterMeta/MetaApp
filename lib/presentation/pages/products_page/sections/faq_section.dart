@@ -84,7 +84,7 @@ class _FaqItemState extends State<_FaqItem>
   Widget _buildRotatingIcon() {
     return RotationTransition(
       turns: _iconTurns,
-      child: const Icon(Icons.arrow_forward),
+      child: Icon(Icons.arrow_forward, color: context.color.faqItemArrowFill),
     );
   }
 
@@ -126,10 +126,7 @@ class _FaqItemState extends State<_FaqItem>
       onTap: () => _handleTap(),
       child: MouseRegion(
         onEnter: (_) => setState(() => _isHovered = !_isHovered),
-        onExit: (_) => setState(() {
-          _isHovered = !_isHovered;
-          _isExpanded = false;
-        }),
+        onExit: (_) => setState(() => _isHovered = !_isHovered),
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
@@ -157,7 +154,8 @@ class _FaqItemState extends State<_FaqItem>
                 height: _isExpanded ? 100 : 0,
                 padding: const EdgeInsets.all(20),
                 duration: const Duration(milliseconds: 300),
-                child: Text(widget.answer),
+                child:
+                    Text(widget.answer, style: context.text.productsFaqAnswer),
               ),
             ],
           ),

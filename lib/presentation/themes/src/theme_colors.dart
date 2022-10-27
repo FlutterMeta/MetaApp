@@ -23,6 +23,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color partnersCardContentBackground;
   final Color careServiceButton;
   final Color referralBonusCell;
+  final Color faqItemArrowFill;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -47,6 +48,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.careServiceButton,
     required this.referralBonusCell,
     required this.faqItemBorderHovered,
+    required this.faqItemArrowFill,
   });
 
   @override
@@ -74,6 +76,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? careServiceButton,
     Color? referralBonusCell,
     Color? faqItemBorderHovered,
+    Color? faqItemArrowFill,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -106,6 +109,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       careServiceButton: careServiceButton ?? this.careServiceButton,
       referralBonusCell: referralBonusCell ?? this.referralBonusCell,
       faqItemBorderHovered: faqItemBorderHovered ?? this.faqItemBorderHovered,
+      faqItemArrowFill: faqItemArrowFill ?? this.faqItemArrowFill,
     );
   }
 
@@ -159,6 +163,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(referralBonusCell, other.referralBonusCell, t)!,
       faqItemBorderHovered:
           Color.lerp(faqItemBorderHovered, other.faqItemBorderHovered, t)!,
+      faqItemArrowFill:
+          Color.lerp(faqItemArrowFill, other.faqItemArrowFill, t)!,
     );
   }
 
@@ -185,6 +191,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         careServiceButton: AppColors.white,
         referralBonusCell: AppColors.whitePurple,
         faqItemBorderHovered: AppColors.transparent,
+        faqItemArrowFill: AppColors.purple,
       );
 
   static get dark => ThemeColors(
@@ -210,5 +217,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         careServiceButton: AppColors.white,
         referralBonusCell: AppColors.whitePurple,
         faqItemBorderHovered: AppColors.transparent,
+        faqItemArrowFill: AppColors.purple,
       );
 }
