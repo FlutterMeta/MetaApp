@@ -43,7 +43,6 @@ class _PartnersSection extends StatelessWidget {
 }
 
 class _AdaptiveSectionHeadlines extends StatelessWidget {
-  static const double _maxWidth = 400;
   static const double _smallScreenWidth = 780;
 
   const _AdaptiveSectionHeadlines({Key? key}) : super(key: key);
