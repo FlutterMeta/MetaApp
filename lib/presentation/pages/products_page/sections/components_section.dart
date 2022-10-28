@@ -1,14 +1,14 @@
 part of '../products_page.dart';
 
 class _ComponentsSection extends StatelessWidget {
-  const _ComponentsSection();
+  const _ComponentsSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1000),
+    return Align(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        constraints: const BoxConstraints(maxWidth: 1020),
         child: Column(
           children: [
             Text(

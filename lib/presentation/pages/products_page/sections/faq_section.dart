@@ -3,14 +3,18 @@ part of '../products_page.dart';
 class _FaqSection extends StatelessWidget {
   const _FaqSection({Key? key}) : super(key: key);
 
-  List<Widget> _faqItems(BuildContext context) {
-    return [
-      Center(
-        child: Text(
-          "FAQ",
-          style: context.text.productsFaqSectionTitle,
-        ),
+  Widget _buildTitle(BuildContext context) {
+    return Center(
+      child: Text(
+        "FAQ",
+        style: context.text.productsFaqSectionTitle,
       ),
+    );
+  }
+
+  List<Widget> _faqItems(BuildContext _) {
+    //context will be needed in the future
+    return [
       const _FaqItem(
         question: "When can I buy NFT from MultiMeta NFT-Marketplace?",
         answer: "NFT-Marketplace Beta Launch scheduled for September 2022",
@@ -37,18 +41,22 @@ class _FaqSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 820),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: ListView.separated(
-        itemCount: _faqItems(context).length,
-        itemBuilder: (BuildContext context, int index) {
-          return _faqItems(context).elementAt(index);
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return const SizedBox(height: 16);
-        },
-        shrinkWrap: true,
+    return Align(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        constraints: const BoxConstraints(maxWidth: 820),
+        child: Column(
+          children: [
+            _buildTitle(context),
+            const SizedBox(height: 20),
+            ListView.separated(
+              itemCount: _faqItems(context).length,
+              itemBuilder: (_, index) => _faqItems(context).elementAt(index),
+              separatorBuilder: (_, __) => const SizedBox(height: 20),
+              shrinkWrap: true,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -70,39 +78,16 @@ class _FaqItem extends StatefulWidget {
 
 class _FaqItemState extends State<_FaqItem>
     with SingleTickerProviderStateMixin {
-  bool _isHovered = false;
-  bool _isExpanded = false;
-
   static final Animatable<double> _easeInTween =
       CurveTween(curve: Curves.easeIn);
   static final Animatable<double> _halfTween =
       Tween<double>(begin: 0.0, end: 0.25);
 
+  bool _isHovered = false;
+  bool _isExpanded = false;
+
   late AnimationController _controller;
   late Animation<double> _iconTurns;
-
-  Widget _buildRotatingIcon() {
-    return RotationTransition(
-      turns: _iconTurns,
-      child: Icon(Icons.arrow_forward, color: context.color.faqItemArrowFill),
-    );
-  }
-
-  void _handleTap() {
-    setState(() {
-      _isExpanded = !_isExpanded;
-      if (_isExpanded) {
-        _controller.forward();
-      } else {
-        _controller.reverse().then<void>((void value) {
-          if (!mounted) {
-            return;
-          }
-          setState(() {});
-        });
-      }
-    });
-  }
 
   @override
   void initState() {
@@ -118,6 +103,20 @@ class _FaqItemState extends State<_FaqItem>
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  Widget _buildRotatingIcon() {
+    return RotationTransition(
+      turns: _iconTurns,
+      child: Icon(Icons.arrow_forward, color: context.color.faqItemArrowFill),
+    );
+  }
+
+  void _handleTap() {
+    setState(() {
+      _isExpanded = !_isExpanded;
+      _isExpanded ? _controller.forward() : _controller.reverse();
+    });
   }
 
   @override
@@ -152,10 +151,15 @@ class _FaqItemState extends State<_FaqItem>
               ),
               AnimatedContainer(
                 height: _isExpanded ? 100 : 0,
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.symmetric(vertical: 10),
                 duration: const Duration(milliseconds: 300),
-                child:
-                    Text(widget.answer, style: context.text.productsFaqAnswer),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    widget.answer,
+                    style: context.text.productsFaqAnswer,
+                  ),
+                ),
               ),
             ],
           ),

@@ -1,7 +1,7 @@
 part of '../products_page.dart';
 
 class _PartnersSection extends StatelessWidget {
-  const _PartnersSection();
+  const _PartnersSection({Key? key}) : super(key: key);
 
   static const double _contentMaxWidth = 1270;
   static const double _smallScreenWidth = 780;
@@ -174,10 +174,11 @@ class _PartnersSliderState extends State<_PartnersSlider> {
 }
 
 class _PartnerCards extends StatelessWidget {
-  final Widget infoCardChild;
-  final Widget imageCardChild;
   static const double _smallScreenWidth = 780;
   static const double _horizontalPaddings = 32;
+
+  final Widget infoCardChild;
+  final Widget imageCardChild;
 
   const _PartnerCards({
     required this.infoCardChild,
@@ -290,12 +291,13 @@ class __PartnerCardState extends State<_PartnerInfoCard> {
 }
 
 class _PartnerImageCard extends StatefulWidget {
+  static const double _smallScreenWidth = 780;
+  static const double partnerCardMaxHeight = 470;
+
   final String image;
   final String partnerName;
   final VoidCallback onRightArrowTap;
   final VoidCallback onLeftArrowTap;
-  static const double _smallScreenWidth = 780;
-  static const double partnerCardMaxHeight = 470;
 
   const _PartnerImageCard({
     required this.image,

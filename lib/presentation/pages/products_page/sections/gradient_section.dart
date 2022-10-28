@@ -48,7 +48,7 @@ class _InfoBlock extends StatelessWidget {
 
   const _InfoBlock({
     required this.title,
-    this.description,
+    this.description = "",
     Key? key,
   }) : super(key: key);
 

@@ -45,20 +45,20 @@ class ProductsPage extends StatelessWidget {
             ),
             pinned: true,
           ),
-          const SliverSizedBox(child: Align(child: _PresentationSection())),
+          const SliverSizedBox(child: _PresentationSection()),
           if (context.screenWidth > 812) const SliverSizedBox(height: 130),
           const SliverSizedBox(height: 40),
-          const SliverToBoxAdapter(child: Align(child: _Divider())),
+          const SliverToBoxAdapter(child: _Divider()),
           const SliverSizedBox(height: 20),
-          const SliverSizedBox(child: Align(child: _InvestorsSection())),
+          const SliverSizedBox(child: _InvestorsSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: _GradientSection()),
           const SliverSizedBox(height: 100),
-          const SliverToBoxAdapter(child: Align(child: _ComponentsSection())),
+          const SliverToBoxAdapter(child: _ComponentsSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: _PartnersSection()),
           const SliverSizedBox(height: 100),
-          const SliverToBoxAdapter(child: Align(child: _FaqSection())),
+          const SliverToBoxAdapter(child: _FaqSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: Footer()),
         ],
@@ -73,9 +73,12 @@ class _Divider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      constraints: const BoxConstraints(maxWidth: 1270),
-      child: const Divider(),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1270),
+        child: const Divider(),
+      ),
     );
   }
 }

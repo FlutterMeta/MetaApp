@@ -1,37 +1,39 @@
 part of '../products_page.dart';
 
 class _InvestorsSection extends StatelessWidget {
-  const _InvestorsSection();
+  const _InvestorsSection({Key? key}) : super(key: key);
+
+  List<Widget> _investors(BuildContext context) {
+    return [
+      _InvestorComponent(
+        title: context.localizations.horowitz,
+        subtitle: context.localizations.horowitzDescription,
+      ),
+      _InvestorComponent(
+        title: context.localizations.sequoia,
+        subtitle: context.localizations.sequoiaDescription,
+      ),
+      _InvestorComponent(
+        title: context.localizations.indexVentures,
+        subtitle: context.localizations.indexVenturesDescription,
+      ),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: const BoxConstraints(maxWidth: 1270),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Wrap(
-        spacing: 80,
-        runSpacing: 16,
-        children: _investors(context),
+    return Align(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        constraints: const BoxConstraints(maxWidth: 1270),
+        child: Wrap(
+          spacing: 80,
+          runSpacing: 16,
+          children: _investors(context),
+        ),
       ),
     );
   }
-}
-
-List<Widget> _investors(BuildContext context) {
-  return [
-    _InvestorComponent(
-      title: context.localizations.horowitz,
-      subtitle: context.localizations.horowitzDescription,
-    ),
-    _InvestorComponent(
-      title: context.localizations.sequoia,
-      subtitle: context.localizations.sequoiaDescription,
-    ),
-    _InvestorComponent(
-      title: context.localizations.indexVentures,
-      subtitle: context.localizations.indexVenturesDescription,
-    ),
-  ];
 }
 
 class _InvestorComponent extends StatelessWidget {
