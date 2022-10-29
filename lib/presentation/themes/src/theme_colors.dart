@@ -119,12 +119,13 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       referralBonusCell: referralBonusCell ?? this.referralBonusCell,
       faqItemBorderHovered: faqItemBorderHovered ?? this.faqItemBorderHovered,
       faqItemArrowFill: faqItemArrowFill ?? this.faqItemArrowFill,
-      productsPartnersSectionArrowButton:
-          productsPartnersSectionArrowButton ??
-              this.productsPartnersSectionArrowButton,
-      productsPartnersSectionCardBackground: productsPartnersSectionCardBackground ??
-          this.productsPartnersSectionCardBackground,
-      productsPartnersSectionCardShadow: productsPartnersSectionCardShadow ?? this.productsPartnersSectionCardShadow,
+      productsPartnersSectionArrowButton: productsPartnersSectionArrowButton ??
+          this.productsPartnersSectionArrowButton,
+      productsPartnersSectionCardBackground:
+          productsPartnersSectionCardBackground ??
+              this.productsPartnersSectionCardBackground,
+      productsPartnersSectionCardShadow: productsPartnersSectionCardShadow ??
+          this.productsPartnersSectionCardShadow,
     );
   }
 
@@ -180,9 +181,18 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(faqItemBorderHovered, other.faqItemBorderHovered, t)!,
       faqItemArrowFill:
           Color.lerp(faqItemArrowFill, other.faqItemArrowFill, t)!,
-      productsPartnersSectionArrowButton: Color.lerp( productsPartnersSectionArrowButton, other.productsPartnersSectionArrowButton, t)!,
-      productsPartnersSectionCardBackground: Color.lerp( productsPartnersSectionCardBackground, other.productsPartnersSectionCardBackground, t)!,
-      productsPartnersSectionCardShadow: Color.lerp( productsPartnersSectionCardShadow, other.productsPartnersSectionCardShadow, t)!,
+      productsPartnersSectionArrowButton: Color.lerp(
+          productsPartnersSectionArrowButton,
+          other.productsPartnersSectionArrowButton,
+          t)!,
+      productsPartnersSectionCardBackground: Color.lerp(
+          productsPartnersSectionCardBackground,
+          other.productsPartnersSectionCardBackground,
+          t)!,
+      productsPartnersSectionCardShadow: Color.lerp(
+          productsPartnersSectionCardShadow,
+          other.productsPartnersSectionCardShadow,
+          t)!,
     );
   }
 
