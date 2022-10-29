@@ -5,9 +5,10 @@ class _FaqSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      alignment: Alignment.center,
+      child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 820),
         child: Column(
           children: [
@@ -94,7 +95,7 @@ class _FaqItemState extends State<_FaqItem> {
         ),
         child: ExpandablePanel(
           theme: ExpandableThemeData(
-            animationDuration: const Duration(milliseconds: 400),
+            animationDuration: const Duration(milliseconds: 300),
             iconColor: context.color.faqItemArrowFill,
             collapseIcon: Icons.arrow_downward,
             expandIcon: Icons.arrow_forward,

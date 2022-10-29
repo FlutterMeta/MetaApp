@@ -137,6 +137,7 @@ class _PartnersSliderState extends State<_PartnersSlider> {
               : _verticalCarouselHeight,
           viewportFraction: 1,
           disableCenter: true,
+          enableInfiniteScroll: false,
         ),
         items: [
           _PartnerCards(
@@ -248,13 +249,13 @@ class __PartnerCardState extends State<_PartnerInfoCard> {
         maxHeight: partnerCardMaxHeight,
       ),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.color.productsPartnersSectionCardBackground,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.10),
+            color: context.color.productsPartnersSectionCardShadow,
             spreadRadius: 0,
-            blurRadius: 5,
+            blurRadius: 4,
             offset: const Offset(0, 1),
           ),
         ],
@@ -425,12 +426,12 @@ class _PartnerImageCardArrowSection extends StatelessWidget {
         children: [
           _OnArrowHover(
             isLeftArrow: true,
-            builder: (context) {
+            builder: (_) {
               return IconButton(
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_circle_left_outlined,
                   size: 40,
-                  color: Colors.white,
+                  color: context.color.productsPartnersSectionArrowButton,
                 ),
                 onPressed: onLeftArrowTap,
               );
@@ -439,16 +440,16 @@ class _PartnerImageCardArrowSection extends StatelessWidget {
           Center(
             child: Text(
               partnerName,
-              style: const TextStyle(color: Colors.white),
+              style: context.text.productsPartnerName,
             ),
           ),
           _OnArrowHover(
-            builder: (context) {
+            builder: (_) {
               return IconButton(
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_circle_right_outlined,
                   size: 40,
-                  color: Colors.white,
+                  color: context.color.productsPartnersSectionArrowButton,
                 ),
                 onPressed: onRightArrowTap,
               );

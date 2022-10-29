@@ -24,6 +24,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color careServiceButton;
   final Color referralBonusCell;
   final Color faqItemArrowFill;
+  final Color productsPartnersSectionArrowButton;
+  final Color productsPartnersSectionCardBackground;
+  final Color productsPartnersSectionCardShadow;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -49,6 +52,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.referralBonusCell,
     required this.faqItemBorderHovered,
     required this.faqItemArrowFill,
+    required this.productsPartnersSectionArrowButton,
+    required this.productsPartnersSectionCardBackground,
+    required this.productsPartnersSectionCardShadow,
   });
 
   @override
@@ -77,6 +83,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? referralBonusCell,
     Color? faqItemBorderHovered,
     Color? faqItemArrowFill,
+    Color? productsPartnersSectionArrowButton,
+    Color? productsPartnersSectionCardBackground,
+    Color? productsPartnersSectionCardShadow,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -110,6 +119,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       referralBonusCell: referralBonusCell ?? this.referralBonusCell,
       faqItemBorderHovered: faqItemBorderHovered ?? this.faqItemBorderHovered,
       faqItemArrowFill: faqItemArrowFill ?? this.faqItemArrowFill,
+      productsPartnersSectionArrowButton:
+          productsPartnersSectionArrowButton ??
+              this.productsPartnersSectionArrowButton,
+      productsPartnersSectionCardBackground: productsPartnersSectionCardBackground ??
+          this.productsPartnersSectionCardBackground,
+      productsPartnersSectionCardShadow: productsPartnersSectionCardShadow ?? this.productsPartnersSectionCardShadow,
     );
   }
 
@@ -165,6 +180,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(faqItemBorderHovered, other.faqItemBorderHovered, t)!,
       faqItemArrowFill:
           Color.lerp(faqItemArrowFill, other.faqItemArrowFill, t)!,
+      productsPartnersSectionArrowButton: Color.lerp( productsPartnersSectionArrowButton, other.productsPartnersSectionArrowButton, t)!,
+      productsPartnersSectionCardBackground: Color.lerp( productsPartnersSectionCardBackground, other.productsPartnersSectionCardBackground, t)!,
+      productsPartnersSectionCardShadow: Color.lerp( productsPartnersSectionCardShadow, other.productsPartnersSectionCardShadow, t)!,
     );
   }
 
@@ -192,6 +210,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         referralBonusCell: AppColors.whitePurple,
         faqItemBorderHovered: AppColors.transparent,
         faqItemArrowFill: AppColors.purple,
+        productsPartnersSectionArrowButton: AppColors.white,
+        productsPartnersSectionCardBackground: AppColors.white,
+        productsPartnersSectionCardShadow: AppColors.black.withOpacity(0.1),
       );
 
   static get dark => ThemeColors(
@@ -218,5 +239,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         referralBonusCell: AppColors.whitePurple,
         faqItemBorderHovered: AppColors.transparent,
         faqItemArrowFill: AppColors.purple,
+        productsPartnersSectionArrowButton: AppColors.white,
+        productsPartnersSectionCardBackground: AppColors.white,
+        productsPartnersSectionCardShadow: AppColors.black.withOpacity(0.1),
       );
 }

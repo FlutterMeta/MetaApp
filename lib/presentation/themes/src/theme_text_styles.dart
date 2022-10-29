@@ -67,6 +67,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle productsPartnersInfoCardDescription;
   final TextStyle productsPartnersImageCardTitle;
   final TextStyle productsFaqAnswer;
+  final TextStyle productsPartnerName;
 
   ThemeTextStyles({
     required this.test,
@@ -135,6 +136,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.productsPartnersInfoCardDescription,
     required this.productsPartnersImageCardTitle,
     required this.productsFaqAnswer,
+    required this.productsPartnerName,
   });
 
   @override
@@ -207,6 +209,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? productsPartnersInfoCardDescription,
     TextStyle? productsPartnersImageCardTitle,
     TextStyle? productsFaqAnswer,
+    TextStyle? productsPartnerName,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -315,6 +318,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       productsPartnersImageCardTitle:
           productsPartnersImageCardTitle ?? this.productsPartnersImageCardTitle,
       productsFaqAnswer: productsFaqAnswer ?? this.productsFaqAnswer,
+      productsPartnerName: productsPartnerName ?? this.productsPartnerName,
     );
   }
 
@@ -468,6 +472,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           t)!,
       productsFaqAnswer:
           TextStyle.lerp(productsFaqAnswer, other.productsFaqAnswer, t)!,
+      productsPartnerName:
+          TextStyle.lerp(productsPartnerName, other.productsPartnerName, t)!,
     );
   }
 
@@ -762,6 +768,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
               .fontFamily,
           color: AppColors.darkGrey,
         ),
+        productsPartnerName: headline3.copyWith(
+          color: AppColors.white,
+          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1051,6 +1061,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
                   fontWeight: FontWeight.w400, height: 1.4, letterSpacing: .3)
               .fontFamily,
           color: AppColors.darkGrey,
+        ),
+        productsPartnerName: headline3.copyWith(
+          color: AppColors.white,
+          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
         ),
       );
 }
