@@ -13,12 +13,20 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color footerBackground;
   final Color localeDropdownBackground;
   final Color localeDropdownOpacity;
+  final Color faqItemBorder;
+  final Color faqItemBorderHovered;
+  final Color faqItemHoverBackground;
+  final Color productsPartnersSectionBackground;
   final Color incomeSectionBackground;
   final Color joinButtonBorder;
   final Color partnersCardBackground;
   final Color partnersCardContentBackground;
   final Color careServiceButton;
   final Color referralBonusCell;
+  final Color faqItemArrowFill;
+  final Color productsPartnersSectionArrowButton;
+  final Color productsPartnersSectionCardBackground;
+  final Color productsPartnersSectionCardShadow;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -33,12 +41,20 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.footerBackground,
     required this.localeDropdownOpacity,
     required this.localeDropdownBackground,
+    required this.faqItemBorder,
+    required this.faqItemHoverBackground,
+    required this.productsPartnersSectionBackground,
     required this.incomeSectionBackground,
     required this.joinButtonBorder,
     required this.partnersCardBackground,
     required this.partnersCardContentBackground,
     required this.careServiceButton,
     required this.referralBonusCell,
+    required this.faqItemBorderHovered,
+    required this.faqItemArrowFill,
+    required this.productsPartnersSectionArrowButton,
+    required this.productsPartnersSectionCardBackground,
+    required this.productsPartnersSectionCardShadow,
   });
 
   @override
@@ -56,12 +72,20 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? localeDropdownOpenedBackground,
     Color? localeDropdownOpacity,
     Color? localeDropdownBackground,
+    Color? faqItemBorder,
+    Color? faqItemHoverBackground,
+    Color? productsPartnersSectionBackground,
     Color? incomeSectionBackground,
     Color? joinButtonBorder,
     Color? partnersCardBackground,
     Color? partnersCardContentBackground,
     Color? careServiceButton,
     Color? referralBonusCell,
+    Color? faqItemBorderHovered,
+    Color? faqItemArrowFill,
+    Color? productsPartnersSectionArrowButton,
+    Color? productsPartnersSectionCardBackground,
+    Color? productsPartnersSectionCardShadow,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -79,6 +103,11 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           localeDropdownOpacity ?? this.localeDropdownOpacity,
       localeDropdownBackground:
           localeDropdownBackground ?? this.localeDropdownBackground,
+      faqItemBorder: faqItemBorder ?? this.faqItemBorder,
+      faqItemHoverBackground:
+          faqItemHoverBackground ?? this.faqItemHoverBackground,
+      productsPartnersSectionBackground: productsPartnersSectionBackground ??
+          this.productsPartnersSectionBackground,
       incomeSectionBackground:
           incomeSectionBackground ?? this.incomeSectionBackground,
       joinButtonBorder: joinButtonBorder ?? this.joinButtonBorder,
@@ -88,6 +117,15 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           partnersCardContentBackground ?? this.partnersCardContentBackground,
       careServiceButton: careServiceButton ?? this.careServiceButton,
       referralBonusCell: referralBonusCell ?? this.referralBonusCell,
+      faqItemBorderHovered: faqItemBorderHovered ?? this.faqItemBorderHovered,
+      faqItemArrowFill: faqItemArrowFill ?? this.faqItemArrowFill,
+      productsPartnersSectionArrowButton: productsPartnersSectionArrowButton ??
+          this.productsPartnersSectionArrowButton,
+      productsPartnersSectionCardBackground:
+          productsPartnersSectionCardBackground ??
+              this.productsPartnersSectionCardBackground,
+      productsPartnersSectionCardShadow: productsPartnersSectionCardShadow ??
+          this.productsPartnersSectionCardShadow,
     );
   }
 
@@ -120,6 +158,13 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(localeDropdownOpacity, other.localeDropdownOpacity, t)!,
       localeDropdownBackground: Color.lerp(
           localeDropdownBackground, other.localeDropdownBackground, t)!,
+      faqItemBorder: Color.lerp(faqItemBorder, other.faqItemBorder, t)!,
+      faqItemHoverBackground:
+          Color.lerp(faqItemHoverBackground, other.faqItemHoverBackground, t)!,
+      productsPartnersSectionBackground: Color.lerp(
+          productsPartnersSectionBackground,
+          other.productsPartnersSectionBackground,
+          t)!,
       incomeSectionBackground: Color.lerp(
           incomeSectionBackground, other.incomeSectionBackground, t)!,
       joinButtonBorder:
@@ -132,6 +177,22 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(careServiceButton, other.careServiceButton, t)!,
       referralBonusCell:
           Color.lerp(referralBonusCell, other.referralBonusCell, t)!,
+      faqItemBorderHovered:
+          Color.lerp(faqItemBorderHovered, other.faqItemBorderHovered, t)!,
+      faqItemArrowFill:
+          Color.lerp(faqItemArrowFill, other.faqItemArrowFill, t)!,
+      productsPartnersSectionArrowButton: Color.lerp(
+          productsPartnersSectionArrowButton,
+          other.productsPartnersSectionArrowButton,
+          t)!,
+      productsPartnersSectionCardBackground: Color.lerp(
+          productsPartnersSectionCardBackground,
+          other.productsPartnersSectionCardBackground,
+          t)!,
+      productsPartnersSectionCardShadow: Color.lerp(
+          productsPartnersSectionCardShadow,
+          other.productsPartnersSectionCardShadow,
+          t)!,
     );
   }
 
@@ -148,12 +209,20 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         footerBackground: AppColors.darkBlue,
         localeDropdownBackground: AppColors.darkerGrey,
         localeDropdownOpacity: AppColors.transparent,
+        faqItemBorder: AppColors.blueGrey,
+        faqItemHoverBackground: AppColors.whiteBlue,
+        productsPartnersSectionBackground: AppColors.whiteBlue,
         incomeSectionBackground: AppColors.whitePurple,
         joinButtonBorder: AppColors.darkPurple,
         partnersCardBackground: AppColors.purple,
         partnersCardContentBackground: AppColors.white,
         careServiceButton: AppColors.white,
         referralBonusCell: AppColors.whitePurple,
+        faqItemBorderHovered: AppColors.transparent,
+        faqItemArrowFill: AppColors.purple,
+        productsPartnersSectionArrowButton: AppColors.white,
+        productsPartnersSectionCardBackground: AppColors.white,
+        productsPartnersSectionCardShadow: AppColors.black.withOpacity(0.1),
       );
 
   static get dark => ThemeColors(
@@ -169,11 +238,19 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         footerBackground: AppColors.darkBlue,
         localeDropdownBackground: AppColors.darkerGrey,
         localeDropdownOpacity: AppColors.transparent,
+        faqItemBorder: AppColors.blueGrey,
+        faqItemHoverBackground: AppColors.whiteBlue,
+        productsPartnersSectionBackground: AppColors.whiteBlue,
         incomeSectionBackground: AppColors.whitePurple,
         joinButtonBorder: AppColors.darkPurple,
         partnersCardBackground: AppColors.purple,
         partnersCardContentBackground: AppColors.white,
         careServiceButton: AppColors.white,
         referralBonusCell: AppColors.whitePurple,
+        faqItemBorderHovered: AppColors.transparent,
+        faqItemArrowFill: AppColors.purple,
+        productsPartnersSectionArrowButton: AppColors.white,
+        productsPartnersSectionCardBackground: AppColors.white,
+        productsPartnersSectionCardShadow: AppColors.black.withOpacity(0.1),
       );
 }

@@ -8,6 +8,8 @@ abstract class AppAssets {
   static const worldMap = "assets/images/world_map.png";
   static const earth = "assets/images/earth.png";
   static const pdfIcon = "assets/images/pdf_icon.png";
-
+  static const blockchainComponent = "assets/images/blockchain_component.png";
   static const incomeVideo = "assets/videos/income.mp4";
+  static const decentralandImage = "assets/images/decentraland.jpg";
+  static const starAtlasImage = "assets/images/star_atlas.jpg";
 }

@@ -5,13 +5,17 @@ const headline2 = TextStyle(fontWeight: FontWeight.w400, fontSize: 18);
 const headline3 = TextStyle(fontWeight: FontWeight.w400, fontSize: 16);
 
 abstract class AppColors {
+  static const black = Colors.black;
   static const transparent = Colors.transparent;
 
   static const white = Colors.white;
   static const brighterWhite = Color(0xFFFAFAFA);
   static const brightWhite = Color(0xFFeeeeee);
+  static const whiteBlue = Color(0xFFF2F3F8);
+
   static const grey = Color(0xFFE4DFFA);
   static const darkerGrey = Color(0xFFDDDDDD);
+  static const darkGrey = Color(0xFF5d5e67);
 
   static const blue = Colors.blue;
   static const darkBlue = Color(0xFF181925);

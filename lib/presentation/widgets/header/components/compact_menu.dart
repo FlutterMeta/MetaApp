@@ -138,6 +138,13 @@ class _MenuTabs extends StatelessWidget {
     ));
   }
 
+  void _goToProductsPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ProductsPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -149,7 +156,7 @@ class _MenuTabs extends StatelessWidget {
         ),
         const SizedBox(height: 26),
         _NavigationButton(
-          onTap: () {},
+          onTap: () => _goToProductsPage(context),
           title: context.localizations.products,
         ),
         const SizedBox(height: 26),

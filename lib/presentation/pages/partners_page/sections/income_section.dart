@@ -17,42 +17,37 @@ class _IncomeSectionCollapsed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
+    return Container(
       color: context.color.incomeSectionBackground,
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Center(
-          child: SizedBox(
-            width: 400,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  context.localizations.wmaIncome,
-                  style: context.text.incomeSectionTitle,
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  context.localizations.chooseMostProfitableWay,
-                  style: context.text.incomeSectionText,
-                ),
-                const SizedBox(height: 20),
-                Wrap(
-                  runSpacing: 20,
-                  spacing: 20,
-                  children: [
-                    GradientButton(
-                      title: context.localizations.downloadPdfPresentation,
-                      onTap: () {},
-                    ),
-                    _JoinButton(onTap: () {}),
-                  ],
-                ),
-              ],
-            ),
+      padding: const EdgeInsets.all(20),
+      width: 400,
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            context.localizations.wmaIncome,
+            style: context.text.incomeSectionTitle,
           ),
-        ),
+          const SizedBox(height: 20),
+          Text(
+            context.localizations.chooseMostProfitableWay,
+            style: context.text.incomeSectionText,
+          ),
+          const SizedBox(height: 20),
+          Wrap(
+            runSpacing: 20,
+            spacing: 20,
+            children: [
+              GradientButton(
+                title: context.localizations.downloadPdfPresentation,
+                onTap: () {},
+              ),
+              _JoinButton(onTap: () {}),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -94,10 +89,12 @@ class _IncomeSectionExpandedState extends State<_IncomeSectionExpanded> {
 
   @override
   Widget build(BuildContext context) {
-    return ColoredBox(
+    return Container(
       color: context.color.incomeSectionBackground,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+      alignment: Alignment.center,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1270),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,

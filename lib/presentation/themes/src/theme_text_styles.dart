@@ -50,6 +50,24 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle partnerTableSectionReferralCell;
   final TextStyle partnerPdfSectionTitle;
   final TextStyle partnerPdfSectionSubtitle;
+  final TextStyle productsHeadline;
+  final TextStyle productsSubHeadline;
+  final TextStyle productsInvestorSectionTitle;
+  final TextStyle productsInvestorSectionDescription;
+  final TextStyle productsGradientSectionTitle;
+  final TextStyle productsGradientSectionDescription;
+  final TextStyle productsFaqSectionItemText;
+  final TextStyle productsFaqSectionTitle;
+  final TextStyle productsComponentsSectionTitle;
+  final TextStyle productsComponentItemTitle;
+  final TextStyle productsComponentItemDescription;
+  final TextStyle productsPartnersSectionTitle;
+  final TextStyle productsPartnersSectionDescription;
+  final TextStyle productsPartnersSectionSpecialPurple;
+  final TextStyle productsPartnersInfoCardDescription;
+  final TextStyle productsPartnersImageCardTitle;
+  final TextStyle productsFaqAnswer;
+  final TextStyle productsPartnerName;
 
   ThemeTextStyles({
     required this.test,
@@ -101,6 +119,24 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.partnerTableSectionReferralCell,
     required this.partnerPdfSectionTitle,
     required this.partnerPdfSectionSubtitle,
+    required this.productsHeadline,
+    required this.productsSubHeadline,
+    required this.productsInvestorSectionTitle,
+    required this.productsInvestorSectionDescription,
+    required this.productsGradientSectionTitle,
+    required this.productsGradientSectionDescription,
+    required this.productsFaqSectionItemText,
+    required this.productsFaqSectionTitle,
+    required this.productsComponentsSectionTitle,
+    required this.productsComponentItemTitle,
+    required this.productsComponentItemDescription,
+    required this.productsPartnersSectionTitle,
+    required this.productsPartnersSectionDescription,
+    required this.productsPartnersSectionSpecialPurple,
+    required this.productsPartnersInfoCardDescription,
+    required this.productsPartnersImageCardTitle,
+    required this.productsFaqAnswer,
+    required this.productsPartnerName,
   });
 
   @override
@@ -154,6 +190,26 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? partnerTableSectionReferralCell,
     TextStyle? partnerPdfSectionTitle,
     TextStyle? partnerPdfSectionSubtitle,
+    TextStyle? productsHeadlineBig,
+    TextStyle? productsHeadline,
+    TextStyle? productsHeadlineSmall,
+    TextStyle? productsSubHeadline,
+    TextStyle? productsInvestorSectionTitle,
+    TextStyle? productsInvestorSectionDescription,
+    TextStyle? productsGradientSectionTitle,
+    TextStyle? productsGradientSectionDescription,
+    TextStyle? productsFaqSectionItemText,
+    TextStyle? productsFaqSectionTitle,
+    TextStyle? productsComponentsSectionTitle,
+    TextStyle? productsComponentItemTitle,
+    TextStyle? productsComponentItemDescription,
+    TextStyle? productsPartnersSectionTitle,
+    TextStyle? productsPartnersSectionDescription,
+    TextStyle? productsPartnersSectionSpecialPurple,
+    TextStyle? productsPartnersInfoCardDescription,
+    TextStyle? productsPartnersImageCardTitle,
+    TextStyle? productsFaqAnswer,
+    TextStyle? productsPartnerName,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -229,6 +285,40 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           partnerPdfSectionTitle ?? this.partnerPdfSectionTitle,
       partnerPdfSectionSubtitle:
           partnerPdfSectionSubtitle ?? this.partnerPdfSectionSubtitle,
+      productsHeadline: productsHeadline ?? this.productsHeadline,
+      productsSubHeadline: productsSubHeadline ?? this.productsSubHeadline,
+      productsInvestorSectionTitle:
+          productsInvestorSectionTitle ?? this.productsInvestorSectionTitle,
+      productsInvestorSectionDescription: productsInvestorSectionDescription ??
+          this.productsInvestorSectionDescription,
+      productsGradientSectionTitle:
+          productsGradientSectionTitle ?? this.productsGradientSectionTitle,
+      productsGradientSectionDescription: productsGradientSectionDescription ??
+          this.productsGradientSectionDescription,
+      productsFaqSectionItemText:
+          productsFaqSectionItemText ?? this.productsFaqSectionItemText,
+      productsFaqSectionTitle:
+          productsFaqSectionTitle ?? this.productsFaqSectionTitle,
+      productsComponentsSectionTitle:
+          productsComponentsSectionTitle ?? this.productsComponentsSectionTitle,
+      productsComponentItemDescription: productsComponentItemDescription ??
+          this.productsComponentItemDescription,
+      productsComponentItemTitle:
+          productsComponentItemTitle ?? this.productsComponentItemTitle,
+      productsPartnersSectionTitle:
+          productsPartnersSectionTitle ?? this.productsPartnersSectionTitle,
+      productsPartnersSectionDescription: productsPartnersSectionDescription ??
+          this.productsPartnersSectionDescription,
+      productsPartnersSectionSpecialPurple:
+          productsPartnersSectionSpecialPurple ??
+              this.productsPartnersSectionSpecialPurple,
+      productsPartnersInfoCardDescription:
+          productsPartnersInfoCardDescription ??
+              this.productsPartnersInfoCardDescription,
+      productsPartnersImageCardTitle:
+          productsPartnersImageCardTitle ?? this.productsPartnersImageCardTitle,
+      productsFaqAnswer: productsFaqAnswer ?? this.productsFaqAnswer,
+      productsPartnerName: productsPartnerName ?? this.productsPartnerName,
     );
   }
 
@@ -332,6 +422,58 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           partnerPdfSectionTitle, other.partnerPdfSectionTitle, t)!,
       partnerPdfSectionSubtitle: TextStyle.lerp(
           partnerPdfSectionSubtitle, other.partnerPdfSectionSubtitle, t)!,
+      productsHeadline:
+          TextStyle.lerp(productsHeadline, other.productsHeadline, t)!,
+      productsSubHeadline:
+          TextStyle.lerp(productsSubHeadline, other.productsSubHeadline, t)!,
+      productsInvestorSectionTitle: TextStyle.lerp(
+          productsInvestorSectionTitle, other.productsInvestorSectionTitle, t)!,
+      productsInvestorSectionDescription: TextStyle.lerp(
+          productsInvestorSectionDescription,
+          other.productsInvestorSectionDescription,
+          t)!,
+      productsGradientSectionTitle: TextStyle.lerp(
+          productsGradientSectionTitle, other.productsGradientSectionTitle, t)!,
+      productsGradientSectionDescription: TextStyle.lerp(
+          productsGradientSectionDescription,
+          other.productsGradientSectionDescription,
+          t)!,
+      productsFaqSectionItemText: TextStyle.lerp(
+          productsFaqSectionItemText, other.productsFaqSectionItemText, t)!,
+      productsFaqSectionTitle: TextStyle.lerp(
+          productsFaqSectionTitle, other.productsFaqSectionTitle, t)!,
+      productsComponentsSectionTitle: TextStyle.lerp(
+          productsComponentsSectionTitle,
+          other.productsComponentsSectionTitle,
+          t)!,
+      productsComponentItemDescription: TextStyle.lerp(
+          productsComponentItemDescription,
+          other.productsComponentItemDescription,
+          t)!,
+      productsComponentItemTitle: TextStyle.lerp(
+          productsComponentItemTitle, other.productsComponentItemTitle, t)!,
+      productsPartnersSectionTitle: TextStyle.lerp(
+          productsPartnersSectionTitle, other.productsPartnersSectionTitle, t)!,
+      productsPartnersSectionDescription: TextStyle.lerp(
+          productsPartnersSectionDescription,
+          other.productsPartnersSectionDescription,
+          t)!,
+      productsPartnersSectionSpecialPurple: TextStyle.lerp(
+          productsPartnersSectionSpecialPurple,
+          other.productsPartnersSectionSpecialPurple,
+          t)!,
+      productsPartnersImageCardTitle: TextStyle.lerp(
+          productsPartnersImageCardTitle,
+          other.productsPartnersImageCardTitle,
+          t)!,
+      productsPartnersInfoCardDescription: TextStyle.lerp(
+          productsPartnersInfoCardDescription,
+          other.productsPartnersInfoCardDescription,
+          t)!,
+      productsFaqAnswer:
+          TextStyle.lerp(productsFaqAnswer, other.productsFaqAnswer, t)!,
+      productsPartnerName:
+          TextStyle.lerp(productsPartnerName, other.productsPartnerName, t)!,
     );
   }
 
@@ -522,6 +664,113 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         partnerPdfSectionSubtitle: headline3.copyWith(
           fontFamily: GoogleFonts.roboto().fontFamily,
           fontSize: 24,
+        ),
+        productsHeadline: headline1.copyWith(
+          fontSize: 40,
+          height: 1.5,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        productsSubHeadline: headline3.copyWith(
+          fontSize: 16,
+          color: AppColors.darkGrey,
+          height: 1.4,
+          letterSpacing: .3,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        productsInvestorSectionTitle: headline3.copyWith(
+          fontSize: 22,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500, height: 1.2)
+                  .fontFamily,
+        ),
+        productsInvestorSectionDescription: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
+              .fontFamily,
+          color: AppColors.darkGrey,
+        ),
+        productsGradientSectionTitle: headline3.copyWith(
+          fontSize: 56,
+          height: 1.1,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500, height: 1.2)
+                  .fontFamily,
+          color: AppColors.white,
+        ),
+        productsGradientSectionDescription: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
+              .fontFamily,
+          color: AppColors.white,
+        ),
+        productsFaqSectionItemText: headline3.copyWith(
+          fontSize: 22,
+          height: 1.2,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+        ),
+        productsFaqSectionTitle: headline3.copyWith(
+          fontSize: 45,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+        ),
+        productsComponentsSectionTitle: headline3.copyWith(
+          fontSize: 45,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+        ),
+        productsComponentItemDescription: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
+              .fontFamily,
+          color: AppColors.darkGrey,
+        ),
+        productsComponentItemTitle: headline3.copyWith(
+          fontSize: 22,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500, height: 1.2)
+                  .fontFamily,
+        ),
+        productsPartnersSectionTitle: headline3.copyWith(
+          fontSize: 45,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+        ),
+        productsPartnersSectionDescription: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
+              .fontFamily,
+          color: AppColors.darkGrey,
+        ),
+        productsPartnersSectionSpecialPurple: headline3.copyWith(
+          fontSize: 18,
+          color: AppColors.purple,
+          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+        ),
+        productsPartnersImageCardTitle: headline3.copyWith(
+          fontSize: 18,
+          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+        ),
+        productsPartnersInfoCardDescription: headline3.copyWith(
+          fontSize: 34,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w400, height: 1.1)
+                  .fontFamily,
+        ),
+        productsFaqAnswer: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, height: 1.4, letterSpacing: .3)
+              .fontFamily,
+          color: AppColors.darkGrey,
+        ),
+        productsPartnerName: headline3.copyWith(
+          color: AppColors.white,
+          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
         ),
       );
 
@@ -714,6 +963,108 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         partnerPdfSectionSubtitle: headline3.copyWith(
           fontFamily: GoogleFonts.roboto().fontFamily,
           fontSize: 24,
+        ),
+        productsHeadline: headline1.copyWith(
+          fontSize: 40,
+        ),
+        productsSubHeadline: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto().fontFamily,
+        ),
+        productsInvestorSectionTitle: headline3.copyWith(
+          fontSize: 22,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500, height: 1.2)
+                  .fontFamily,
+        ),
+        productsInvestorSectionDescription: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
+              .fontFamily,
+          color: AppColors.darkGrey,
+        ),
+        productsGradientSectionTitle: headline3.copyWith(
+          fontSize: 56,
+          height: 1.1,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500, height: 1.2)
+                  .fontFamily,
+          color: AppColors.white,
+        ),
+        productsGradientSectionDescription: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
+              .fontFamily,
+          color: AppColors.white,
+        ),
+        productsFaqSectionItemText: headline3.copyWith(
+          fontSize: 22,
+          height: 1.2,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+        ),
+        productsFaqSectionTitle: headline3.copyWith(
+          fontSize: 45,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+        ),
+        productsComponentsSectionTitle: headline3.copyWith(
+          fontSize: 45,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+        ),
+        productsComponentItemDescription: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
+              .fontFamily,
+          color: AppColors.darkGrey,
+        ),
+        productsComponentItemTitle: headline3.copyWith(
+          fontSize: 22,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500, height: 1.2)
+                  .fontFamily,
+        ),
+        productsPartnersSectionTitle: headline3.copyWith(
+          fontSize: 45,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+        ),
+        productsPartnersSectionDescription: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
+              .fontFamily,
+          color: AppColors.darkGrey,
+        ),
+        productsPartnersSectionSpecialPurple: headline3.copyWith(
+          fontSize: 18,
+          color: AppColors.purple,
+          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+        ),
+        productsPartnersImageCardTitle: headline3.copyWith(
+          fontSize: 18,
+          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+        ),
+        productsPartnersInfoCardDescription: headline3.copyWith(
+          fontSize: 34,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w400, height: 1.1)
+                  .fontFamily,
+        ),
+        productsFaqAnswer: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, height: 1.4, letterSpacing: .3)
+              .fontFamily,
+          color: AppColors.darkGrey,
+        ),
+        productsPartnerName: headline3.copyWith(
+          color: AppColors.white,
+          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
         ),
       );
 }

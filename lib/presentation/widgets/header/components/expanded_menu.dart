@@ -9,6 +9,13 @@ class _ExpandedMenu extends StatelessWidget {
     ));
   }
 
+  void _goToProductsPage(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ProductsPage()),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -19,7 +26,9 @@ class _ExpandedMenu extends StatelessWidget {
         ),
         const SizedBox(width: 6),
         _NavigationButton(
-          onTap: () {},
+          onTap: () {
+            _goToProductsPage(context);
+          },
           title: context.localizations.products,
         ),
         const SizedBox(width: 6),
