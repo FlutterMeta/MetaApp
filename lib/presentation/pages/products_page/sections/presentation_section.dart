@@ -1,25 +1,20 @@
 part of '../products_page.dart';
 
 class _PresentationSection extends StatelessWidget {
-  static const _mobileWidth = 428;
-
   const _PresentationSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      alignment: Alignment.center,
+      child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1270),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: context.screenWidth < _mobileWidth
-                    ? context.screenWidth
-                    : 400,
-              ),
+            SizedBox(
+              width: 400,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

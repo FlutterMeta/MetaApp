@@ -3,6 +3,28 @@ part of '../products_page.dart';
 class _FaqSection extends StatelessWidget {
   const _FaqSection({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        constraints: const BoxConstraints(maxWidth: 820),
+        child: Column(
+          children: [
+            _buildTitle(context),
+            const SizedBox(height: 20),
+            ListView.separated(
+              itemCount: _faqItems().length,
+              itemBuilder: (_, index) => _faqItems()[index],
+              separatorBuilder: (_, __) => const SizedBox(height: 20),
+              shrinkWrap: true,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildTitle(BuildContext context) {
     return Center(
       child: Text(
@@ -12,8 +34,7 @@ class _FaqSection extends StatelessWidget {
     );
   }
 
-  List<Widget> _faqItems(BuildContext _) {
-    //context will be needed in the future
+  List<Widget> _faqItems() {
     return [
       const _FaqItem(
         question: "When can I buy NFT from MultiMeta NFT-Marketplace?",
@@ -38,28 +59,6 @@ class _FaqSection extends StatelessWidget {
       ),
     ];
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        constraints: const BoxConstraints(maxWidth: 820),
-        child: Column(
-          children: [
-            _buildTitle(context),
-            const SizedBox(height: 20),
-            ListView.separated(
-              itemCount: _faqItems(context).length,
-              itemBuilder: (_, index) => _faqItems(context).elementAt(index),
-              separatorBuilder: (_, __) => const SizedBox(height: 20),
-              shrinkWrap: true,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
 
 class _FaqItem extends StatefulWidget {
@@ -76,92 +75,45 @@ class _FaqItem extends StatefulWidget {
   State<_FaqItem> createState() => _FaqItemState();
 }
 
-class _FaqItemState extends State<_FaqItem>
-    with SingleTickerProviderStateMixin {
-  static final Animatable<double> _easeInTween =
-      CurveTween(curve: Curves.easeIn);
-  static final Animatable<double> _halfTween =
-      Tween<double>(begin: 0.0, end: 0.25);
-
+class _FaqItemState extends State<_FaqItem> {
   bool _isHovered = false;
-  bool _isExpanded = false;
-
-  late AnimationController _controller;
-  late Animation<double> _iconTurns;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 300),
-      vsync: this,
-    );
-    _iconTurns = _controller.drive(_halfTween.chain(_easeInTween));
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  Widget _buildRotatingIcon() {
-    return RotationTransition(
-      turns: _iconTurns,
-      child: Icon(Icons.arrow_forward, color: context.color.faqItemArrowFill),
-    );
-  }
-
-  void _handleTap() {
-    setState(() {
-      _isExpanded = !_isExpanded;
-      _isExpanded ? _controller.forward() : _controller.reverse();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
-    return WebButton(
-      onTap: () => _handleTap(),
-      child: MouseRegion(
-        onEnter: (_) => setState(() => _isHovered = !_isHovered),
-        onExit: (_) => setState(() => _isHovered = !_isHovered),
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: _isHovered ? context.color.faqItemHoverBackground : null,
-            border: _isHovered
-                ? Border.all(color: context.color.faqItemBorderHovered)
-                : Border.all(color: context.color.faqItemBorder),
-            borderRadius: BorderRadius.circular(16),
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = !_isHovered),
+      onExit: (_) => setState(() => _isHovered = !_isHovered),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: _isHovered ? context.color.faqItemHoverBackground : null,
+          border: _isHovered
+              ? Border.all(color: context.color.faqItemBorderHovered)
+              : Border.all(color: context.color.faqItemBorder),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: ExpandablePanel(
+          theme: ExpandableThemeData(
+            animationDuration: const Duration(milliseconds: 400),
+            iconColor: context.color.faqItemArrowFill,
+            collapseIcon: Icons.arrow_downward,
+            expandIcon: Icons.arrow_forward,
+            iconRotationAngle: pi / 2,
           ),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      widget.question,
-                      style: context.text.productsFaqSectionItemText,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  _buildRotatingIcon(),
-                ],
+          header: Text(
+            widget.question,
+            style: context.text.productsFaqSectionItemText,
+          ),
+          collapsed: const SizedBox(),
+          expanded: Container(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                widget.answer,
+                style: context.text.productsFaqAnswer,
               ),
-              AnimatedContainer(
-                height: _isExpanded ? 100 : 0,
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                duration: const Duration(milliseconds: 300),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    widget.answer,
-                    style: context.text.productsFaqAnswer,
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

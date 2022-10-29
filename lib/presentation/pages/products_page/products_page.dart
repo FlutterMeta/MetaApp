@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
@@ -9,7 +12,6 @@ import 'package:meta_app/presentation/widgets/gradient_button.dart';
 import 'package:meta_app/presentation/widgets/header/header.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/sliver_sized_box.dart';
-import 'package:meta_app/presentation/widgets/web_button.dart';
 
 part 'sections/presentation_section.dart';
 part 'sections/investors_section.dart';
@@ -46,8 +48,7 @@ class ProductsPage extends StatelessWidget {
             pinned: true,
           ),
           const SliverSizedBox(child: _PresentationSection()),
-          if (context.screenWidth > 812) const SliverSizedBox(height: 130),
-          const SliverSizedBox(height: 40),
+          const SliverSizedBox(height: 60),
           const SliverToBoxAdapter(child: _Divider()),
           const SliverSizedBox(height: 20),
           const SliverSizedBox(child: _InvestorsSection()),

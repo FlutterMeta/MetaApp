@@ -16,10 +16,7 @@ class _GradientSection extends StatelessWidget {
         runAlignment: WrapAlignment.center,
         runSpacing: 20,
         spacing: 20,
-        children: [
-          _InfoBlock(title: context.localizations.weAreTrusted),
-          ..._statsInfoBlocks(context),
-        ],
+        children: _statsInfoBlocks(context),
       ),
     );
   }
@@ -27,6 +24,7 @@ class _GradientSection extends StatelessWidget {
 
 List<Widget> _statsInfoBlocks(BuildContext context) {
   return [
+    _InfoBlock(title: context.localizations.weAreTrusted),
     _InfoBlock(
       title: context.localizations.investmentPatrnersNumber,
       description: context.localizations.investmentPatrners,

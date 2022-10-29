@@ -5,9 +5,10 @@ class _ComponentsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      alignment: Alignment.center,
+      child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1020),
         child: Column(
           children: [
@@ -23,12 +24,10 @@ class _ComponentsSection extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40),
-            Align(
-              child: Wrap(
-                spacing: 110,
-                runSpacing: 80,
-                children: _components(context),
-              ),
+            Wrap(
+              spacing: 110,
+              runSpacing: 80,
+              children: _components(context),
             ),
           ],
         ),
@@ -90,7 +89,10 @@ class _Component extends StatelessWidget {
       width: 250,
       child: Column(
         children: [
-          Image.asset(imageAsset, height: 80),
+          Image.asset(
+            imageAsset,
+            height: 80,
+          ),
           Text(
             title,
             style: context.text.productsComponentItemTitle,

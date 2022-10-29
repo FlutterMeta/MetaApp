@@ -3,7 +3,6 @@ part of '../products_page.dart';
 class _PartnersSection extends StatelessWidget {
   const _PartnersSection({Key? key}) : super(key: key);
 
-  static const double _contentMaxWidth = 1270;
   static const double _smallScreenWidth = 780;
   static const double _horizontalPadding = 16;
 
@@ -18,9 +17,7 @@ class _PartnersSection extends StatelessWidget {
           vertical: 20,
           horizontal: _horizontalPadding,
         ),
-        constraints: const BoxConstraints(
-          maxWidth: _contentMaxWidth,
-        ),
+        constraints: const BoxConstraints(maxWidth: 1270),
         alignment: Alignment.center,
         child: Column(
           crossAxisAlignment:
@@ -88,11 +85,10 @@ class _AdaptiveSectionHeadlines extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: _getAdaptiveHeadlines(context),
           );
-        } else {
-          return Column(
-            children: _getHeadlines(context),
-          );
         }
+        return Column(
+          children: _getHeadlines(context),
+        );
       },
     );
   }
@@ -111,12 +107,6 @@ class _PartnersSliderState extends State<_PartnersSlider> {
 
   late CarouselController _controller;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = CarouselController();
-  }
-
   void _nextPage() {
     _controller.nextPage(
       duration: const Duration(milliseconds: 300),
@@ -127,6 +117,12 @@ class _PartnersSliderState extends State<_PartnersSlider> {
     _controller.previousPage(
       duration: const Duration(milliseconds: 300),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = CarouselController();
   }
 
   @override
@@ -196,25 +192,27 @@ class _PartnerCards extends StatelessWidget {
               children: [
                 Expanded(child: infoCardChild),
                 const SizedBox(width: 16),
-                Expanded(flex: 2, child: imageCardChild),
-              ],
-            );
-          },
-        );
-      } else {
-        return Hover(
-          builder: (_) {
-            return Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(child: infoCardChild),
-                const SizedBox(height: 16),
-                Expanded(child: imageCardChild),
+                Expanded(
+                  flex: 2,
+                  child: imageCardChild,
+                ),
               ],
             );
           },
         );
       }
+      return Hover(
+        builder: (_) {
+          return Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(child: infoCardChild),
+              const SizedBox(height: 16),
+              Expanded(child: imageCardChild),
+            ],
+          );
+        },
+      );
     });
   }
 }

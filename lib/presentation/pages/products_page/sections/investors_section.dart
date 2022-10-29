@@ -22,9 +22,10 @@ class _InvestorsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      alignment: Alignment.center,
+      child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1270),
         child: Wrap(
           spacing: 80,
