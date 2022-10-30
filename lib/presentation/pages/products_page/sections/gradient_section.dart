@@ -1,12 +1,11 @@
 part of '../products_page.dart';
 
 class _GradientSection extends StatelessWidget {
-  const _GradientSection();
+  const _GradientSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: context.screenWidth,
       padding: const EdgeInsets.symmetric(vertical: 100),
       decoration: BoxDecoration(
         gradient: context.gradient.purple,
@@ -16,17 +15,16 @@ class _GradientSection extends StatelessWidget {
         crossAxisAlignment: WrapCrossAlignment.center,
         runAlignment: WrapAlignment.center,
         runSpacing: 20,
-        children: [
-          const _InfoBlock(title: "We are trusted"),
-          ..._statsInfoBlocks(context),
-        ],
+        spacing: 20,
+        children: _statsInfoBlocks(context),
       ),
     );
   }
 }
 
-List<_InfoBlock> _statsInfoBlocks(BuildContext context) {
+List<Widget> _statsInfoBlocks(BuildContext context) {
   return [
+    _InfoBlock(title: context.localizations.weAreTrusted),
     _InfoBlock(
       title: context.localizations.investmentPatrnersNumber,
       description: context.localizations.investmentPatrners,
@@ -48,7 +46,7 @@ class _InfoBlock extends StatelessWidget {
 
   const _InfoBlock({
     required this.title,
-    this.description,
+    this.description = "",
     Key? key,
   }) : super(key: key);
 

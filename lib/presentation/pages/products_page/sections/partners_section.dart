@@ -1,66 +1,77 @@
 part of '../products_page.dart';
 
 class _PartnersSection extends StatelessWidget {
-  const _PartnersSection();
+  const _PartnersSection({Key? key}) : super(key: key);
+
+  static const double _smallScreenWidth = 780;
+  static const double _horizontalPadding = 16;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: 20,
-        horizontal: _UISettings.horizontalPadding,
-      ),
-      constraints: const BoxConstraints(
-        maxWidth: _UISettings.contentMaxWidth,
-      ),
+      color: context.color.productsPartnersSectionBackground,
+      padding: const EdgeInsets.symmetric(vertical: 100),
       alignment: Alignment.center,
-      child: Column(
-        crossAxisAlignment:
-            context.screenWidth - _UISettings.horizontalPadding * 2 >
-                    _UISettings.smallScreenWidth
-                ? CrossAxisAlignment.start
-                : CrossAxisAlignment.center,
-        children: [
-          Text(
-            'MultiMeta current achievements in development',
-            style: context.text.productsPartnersSectionSpecialPurple,
-          ),
-          const _AdaptiveSectionHeadlines(),
-          const SizedBox(height: 10),
-          _PartnersSlider(),
-        ],
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          vertical: 20,
+          horizontal: _horizontalPadding,
+        ),
+        constraints: const BoxConstraints(maxWidth: 1270),
+        alignment: Alignment.center,
+        child: Column(
+          crossAxisAlignment:
+              context.screenWidth - _horizontalPadding * 2 > _smallScreenWidth
+                  ? CrossAxisAlignment.start
+                  : CrossAxisAlignment.center,
+          children: [
+            Text(
+              'MultiMeta current achievements in development',
+              style: context.text.productsPartnersSectionSpecialPurple,
+            ),
+            const _AdaptiveSectionHeadlines(),
+            const SizedBox(height: 10),
+            _PartnersSlider(),
+          ],
+        ),
       ),
     );
   }
 }
 
-abstract class _UISettings {
-  static const double contentMaxWidth = 1270;
-  static const double smallScreenWidth = 780;
-  static const double horizontalPadding = 16;
-  static const double partnerCardMaxHeight = 470;
-}
-
 class _AdaptiveSectionHeadlines extends StatelessWidget {
-  static const double _maxWidth = 400;
+  static const double _smallScreenWidth = 780;
 
-  const _AdaptiveSectionHeadlines();
+  const _AdaptiveSectionHeadlines({Key? key}) : super(key: key);
+
+  List<Widget> _getAdaptiveHeadlines(BuildContext context) {
+    return [
+      Expanded(
+        child: Text(
+          context.localizations.metaPartners,
+          style: context.text.productsPartnersSectionTitle,
+        ),
+      ),
+      const SizedBox(width: 20),
+      Expanded(
+        child: Text(
+          context.localizations.participationInDevelopment,
+          style: context.text.productsPartnersSectionDescription,
+        ),
+      ),
+    ];
+  }
 
   List<Widget> _getHeadlines(BuildContext context) {
     return [
-      _ConstrainedText(
-        text: context.localizations.partners,
+      Text(
+        context.localizations.metaPartners,
         style: context.text.productsPartnersSectionTitle,
-        constraints: const BoxConstraints(
-          maxWidth: _maxWidth,
-        ),
       ),
-      _ConstrainedText(
-        text: context.localizations.participation,
+      const SizedBox(height: 20),
+      Text(
+        context.localizations.participationInDevelopment,
         style: context.text.productsPartnersSectionDescription,
-        constraints: const BoxConstraints(
-          maxWidth: _maxWidth,
-        ),
       ),
     ];
   }
@@ -69,16 +80,15 @@ class _AdaptiveSectionHeadlines extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth >= _UISettings.smallScreenWidth) {
+        if (constraints.maxWidth >= _smallScreenWidth) {
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: _getHeadlines(context),
-          );
-        } else {
-          return Column(
-            children: _getHeadlines(context),
+            children: _getAdaptiveHeadlines(context),
           );
         }
+        return Column(
+          children: _getHeadlines(context),
+        );
       },
     );
   }
@@ -90,15 +100,12 @@ class _PartnersSlider extends StatefulWidget {
 }
 
 class _PartnersSliderState extends State<_PartnersSlider> {
-  final double _horizontalCarouselHeight = 500;
-  final double _verticalCarouselHeight = 600;
-  late CarouselController _controller;
+  static const double _horizontalCarouselHeight = 500;
+  static const double _verticalCarouselHeight = 600;
+  static const double _contentMaxWidth = 1270;
+  static const double _smallScreenWidth = 780;
 
-  @override
-  void initState() {
-    super.initState();
-    _controller = CarouselController();
-  }
+  late CarouselController _controller;
 
   void _nextPage() {
     _controller.nextPage(
@@ -113,17 +120,24 @@ class _PartnersSliderState extends State<_PartnersSlider> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _controller = CarouselController();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(maxWidth: _UISettings.contentMaxWidth),
+      constraints: const BoxConstraints(maxWidth: _contentMaxWidth),
       child: CarouselSlider(
         carouselController: _controller,
         options: CarouselOptions(
-          height: context.screenWidth > _UISettings.smallScreenWidth
+          height: context.screenWidth > _smallScreenWidth
               ? _horizontalCarouselHeight
               : _verticalCarouselHeight,
           viewportFraction: 1,
           disableCenter: true,
+          enableInfiniteScroll: false,
         ),
         items: [
           _PartnerCards(
@@ -157,6 +171,9 @@ class _PartnersSliderState extends State<_PartnersSlider> {
 }
 
 class _PartnerCards extends StatelessWidget {
+  static const double _smallScreenWidth = 780;
+  static const double _horizontalPaddings = 32;
+
   final Widget infoCardChild;
   final Widget imageCardChild;
 
@@ -169,33 +186,34 @@ class _PartnerCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxWidth >
-          _UISettings.smallScreenWidth - _UISettings.horizontalPadding * 2) {
+      if (constraints.maxWidth > _smallScreenWidth - _horizontalPaddings) {
         return Hover(
           builder: (_) {
             return Row(
               children: [
                 Expanded(child: infoCardChild),
                 const SizedBox(width: 16),
-                Expanded(flex: 2, child: imageCardChild),
-              ],
-            );
-          },
-        );
-      } else {
-        return Hover(
-          builder: (_) {
-            return Column(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Expanded(child: infoCardChild),
-                const SizedBox(height: 16),
-                Expanded(child: imageCardChild),
+                Expanded(
+                  flex: 2,
+                  child: imageCardChild,
+                ),
               ],
             );
           },
         );
       }
+      return Hover(
+        builder: (_) {
+          return Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Expanded(child: infoCardChild),
+              const SizedBox(height: 16),
+              Expanded(child: imageCardChild),
+            ],
+          );
+        },
+      );
     });
   }
 }
@@ -217,25 +235,27 @@ class _PartnerInfoCard extends StatefulWidget {
 class __PartnerCardState extends State<_PartnerInfoCard> {
   static const double _padding = 30;
   static const double _maxWidth = 400;
+  static const double _smallScreenWidth = 780;
+  static const double partnerCardMaxHeight = 470;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(_padding),
       constraints: BoxConstraints(
-        minWidth: context.screenWidth <= _UISettings.smallScreenWidth
+        minWidth: context.screenWidth <= _smallScreenWidth
             ? context.screenWidth - 50
-            : _UISettings.smallScreenWidth,
-        maxHeight: _UISettings.partnerCardMaxHeight,
+            : _smallScreenWidth,
+        maxHeight: partnerCardMaxHeight,
       ),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.color.productsPartnersSectionCardBackground,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.10),
+            color: context.color.productsPartnersSectionCardShadow,
             spreadRadius: 0,
-            blurRadius: 5,
+            blurRadius: 4,
             offset: const Offset(0, 1),
           ),
         ],
@@ -245,8 +265,7 @@ class __PartnerCardState extends State<_PartnerInfoCard> {
         children: [
           Image.asset(
             widget.logo,
-            height:
-                context.screenWidth <= _UISettings.smallScreenWidth ? 40 : 60,
+            height: context.screenWidth <= _smallScreenWidth ? 40 : 60,
           ),
           const Spacer(),
           ConstrainedBox(
@@ -256,8 +275,7 @@ class __PartnerCardState extends State<_PartnerInfoCard> {
             child: AutoSizeText(
               widget.description,
               style: context.text.productsPartnersInfoCardDescription,
-              maxLines:
-                  context.screenWidth < _UISettings.smallScreenWidth ? 3 : 6,
+              maxLines: context.screenWidth < _smallScreenWidth ? 3 : 6,
             ),
           ),
           const SizedBox(height: 10),
@@ -272,6 +290,9 @@ class __PartnerCardState extends State<_PartnerInfoCard> {
 }
 
 class _PartnerImageCard extends StatefulWidget {
+  static const double _smallScreenWidth = 780;
+  static const double partnerCardMaxHeight = 470;
+
   final String image;
   final String partnerName;
   final VoidCallback onRightArrowTap;
@@ -296,12 +317,12 @@ class _PartnerImageCardState extends State<_PartnerImageCard> {
   Widget build(BuildContext context) {
     return Container(
       constraints: BoxConstraints(
-        maxWidth: context.screenWidth < _UISettings.smallScreenWidth
+        maxWidth: context.screenWidth < _PartnerImageCard._smallScreenWidth
             ? context.screenWidth - 50
-            : _UISettings.smallScreenWidth,
-        maxHeight: context.screenWidth < _UISettings.smallScreenWidth
+            : _PartnerImageCard._smallScreenWidth,
+        maxHeight: context.screenWidth < _PartnerImageCard._smallScreenWidth
             ? 150
-            : _UISettings.partnerCardMaxHeight,
+            : _PartnerImageCard.partnerCardMaxHeight,
       ),
       child: MouseRegion(
         onEnter: (event) => setState(() => _isHovered = !_isHovered),
@@ -322,7 +343,7 @@ class _PartnerImageCardState extends State<_PartnerImageCard> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(26),
-                  gradient: context.gradient.shadowVertical,
+                  gradient: context.gradient.blackVertical,
                 ),
               ),
             ]),
@@ -405,12 +426,12 @@ class _PartnerImageCardArrowSection extends StatelessWidget {
         children: [
           _OnArrowHover(
             isLeftArrow: true,
-            builder: (context) {
+            builder: (_) {
               return IconButton(
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_circle_left_outlined,
                   size: 40,
-                  color: Colors.white,
+                  color: context.color.productsPartnersSectionArrowButton,
                 ),
                 onPressed: onLeftArrowTap,
               );
@@ -419,16 +440,16 @@ class _PartnerImageCardArrowSection extends StatelessWidget {
           Center(
             child: Text(
               partnerName,
-              style: const TextStyle(color: Colors.white),
+              style: context.text.productsPartnerName,
             ),
           ),
           _OnArrowHover(
-            builder: (context) {
+            builder: (_) {
               return IconButton(
-                icon: const Icon(
+                icon: Icon(
                   Icons.arrow_circle_right_outlined,
                   size: 40,
-                  color: Colors.white,
+                  color: context.color.productsPartnersSectionArrowButton,
                 ),
                 onPressed: onRightArrowTap,
               );

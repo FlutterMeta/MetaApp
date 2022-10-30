@@ -50,7 +50,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle partnerTableSectionReferralCell;
   final TextStyle partnerPdfSectionTitle;
   final TextStyle partnerPdfSectionSubtitle;
-  final TextStyle productsHeadlineMedium;
+  final TextStyle productsHeadline;
   final TextStyle productsSubHeadline;
   final TextStyle productsInvestorSectionTitle;
   final TextStyle productsInvestorSectionDescription;
@@ -66,9 +66,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle productsPartnersSectionSpecialPurple;
   final TextStyle productsPartnersInfoCardDescription;
   final TextStyle productsPartnersImageCardTitle;
-  final TextStyle blogHeadline;
-  final TextStyle blogSubHeadline;
-  final TextStyle blogPurpleSubHeadline;
+  final TextStyle productsFaqAnswer;
+  final TextStyle productsPartnerName;
 
   ThemeTextStyles({
     required this.test,
@@ -120,7 +119,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.partnerTableSectionReferralCell,
     required this.partnerPdfSectionTitle,
     required this.partnerPdfSectionSubtitle,
-    required this.productsHeadlineMedium,
+    required this.productsHeadline,
     required this.productsSubHeadline,
     required this.productsInvestorSectionTitle,
     required this.productsInvestorSectionDescription,
@@ -136,9 +135,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.productsPartnersSectionSpecialPurple,
     required this.productsPartnersInfoCardDescription,
     required this.productsPartnersImageCardTitle,
-    required this.blogHeadline,
-    required this.blogSubHeadline,
-    required this.blogPurpleSubHeadline,
+    required this.productsFaqAnswer,
+    required this.productsPartnerName,
   });
 
   @override
@@ -193,7 +191,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? partnerPdfSectionTitle,
     TextStyle? partnerPdfSectionSubtitle,
     TextStyle? productsHeadlineBig,
-    TextStyle? productsHeadlineMedium,
+    TextStyle? productsHeadline,
     TextStyle? productsHeadlineSmall,
     TextStyle? productsSubHeadline,
     TextStyle? productsInvestorSectionTitle,
@@ -210,9 +208,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? productsPartnersSectionSpecialPurple,
     TextStyle? productsPartnersInfoCardDescription,
     TextStyle? productsPartnersImageCardTitle,
-    TextStyle? blogHeadline,
-    TextStyle? blogSubHeadline,
-    TextStyle? blogPurpleSubHeadline,
+    TextStyle? productsFaqAnswer,
+    TextStyle? productsPartnerName,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -288,8 +285,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           partnerPdfSectionTitle ?? this.partnerPdfSectionTitle,
       partnerPdfSectionSubtitle:
           partnerPdfSectionSubtitle ?? this.partnerPdfSectionSubtitle,
-      productsHeadlineMedium:
-          productsHeadlineMedium ?? this.productsHeadlineMedium,
+      productsHeadline: productsHeadline ?? this.productsHeadline,
       productsSubHeadline: productsSubHeadline ?? this.productsSubHeadline,
       productsInvestorSectionTitle:
           productsInvestorSectionTitle ?? this.productsInvestorSectionTitle,
@@ -321,10 +317,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
               this.productsPartnersInfoCardDescription,
       productsPartnersImageCardTitle:
           productsPartnersImageCardTitle ?? this.productsPartnersImageCardTitle,
-      blogHeadline: blogHeadline ?? this.blogHeadline,
-      blogSubHeadline: blogSubHeadline ?? this.blogSubHeadline,
-      blogPurpleSubHeadline:
-          blogPurpleSubHeadline ?? this.blogPurpleSubHeadline,
+      productsFaqAnswer: productsFaqAnswer ?? this.productsFaqAnswer,
+      productsPartnerName: productsPartnerName ?? this.productsPartnerName,
     );
   }
 
@@ -428,8 +422,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           partnerPdfSectionTitle, other.partnerPdfSectionTitle, t)!,
       partnerPdfSectionSubtitle: TextStyle.lerp(
           partnerPdfSectionSubtitle, other.partnerPdfSectionSubtitle, t)!,
-      productsHeadlineMedium: TextStyle.lerp(
-          productsHeadlineMedium, other.productsHeadlineMedium, t)!,
+      productsHeadline:
+          TextStyle.lerp(productsHeadline, other.productsHeadline, t)!,
       productsSubHeadline:
           TextStyle.lerp(productsSubHeadline, other.productsSubHeadline, t)!,
       productsInvestorSectionTitle: TextStyle.lerp(
@@ -476,11 +470,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           productsPartnersInfoCardDescription,
           other.productsPartnersInfoCardDescription,
           t)!,
-      blogHeadline: TextStyle.lerp(blogHeadline, other.blogHeadline, t)!,
-      blogSubHeadline:
-          TextStyle.lerp(blogSubHeadline, other.blogSubHeadline, t)!,
-      blogPurpleSubHeadline: TextStyle.lerp(
-          blogPurpleSubHeadline, other.blogPurpleSubHeadline, t)!,
+      productsFaqAnswer:
+          TextStyle.lerp(productsFaqAnswer, other.productsFaqAnswer, t)!,
+      productsPartnerName:
+          TextStyle.lerp(productsPartnerName, other.productsPartnerName, t)!,
     );
   }
 
@@ -672,7 +665,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily: GoogleFonts.roboto().fontFamily,
           fontSize: 24,
         ),
-        productsHeadlineMedium: headline1.copyWith(
+        productsHeadline: headline1.copyWith(
           fontSize: 40,
           height: 1.5,
           fontFamily: GoogleFonts.roboto().fontFamily,
@@ -768,22 +761,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
               GoogleFonts.roboto(fontWeight: FontWeight.w400, height: 1.1)
                   .fontFamily,
         ),
-        blogHeadline: headline3.copyWith(
-          fontSize: 65,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
-        ),
-        blogPurpleSubHeadline: headline3.copyWith(
-          fontSize: 18,
-          color: AppColors.purple,
-          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
-        ),
-        blogSubHeadline: headline3.copyWith(
+        productsFaqAnswer: headline3.copyWith(
           fontSize: 16,
           fontFamily: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
+                  fontWeight: FontWeight.w400, height: 1.4, letterSpacing: .3)
               .fontFamily,
           color: AppColors.darkGrey,
+        ),
+        productsPartnerName: headline3.copyWith(
+          color: AppColors.white,
+          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
         ),
       );
 
@@ -977,7 +964,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontFamily: GoogleFonts.roboto().fontFamily,
           fontSize: 24,
         ),
-        productsHeadlineMedium: headline1.copyWith(
+        productsHeadline: headline1.copyWith(
           fontSize: 40,
         ),
         productsSubHeadline: headline3.copyWith(
@@ -1068,22 +1055,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
               GoogleFonts.roboto(fontWeight: FontWeight.w400, height: 1.1)
                   .fontFamily,
         ),
-        blogHeadline: headline3.copyWith(
-          fontSize: 65,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
-        ),
-        blogPurpleSubHeadline: headline3.copyWith(
-          fontSize: 18,
-          color: AppColors.purple,
-          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
-        ),
-        blogSubHeadline: headline3.copyWith(
+        productsFaqAnswer: headline3.copyWith(
           fontSize: 16,
           fontFamily: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
+                  fontWeight: FontWeight.w400, height: 1.4, letterSpacing: .3)
               .fontFamily,
           color: AppColors.darkGrey,
+        ),
+        productsPartnerName: headline3.copyWith(
+          color: AppColors.white,
+          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
         ),
       );
 }

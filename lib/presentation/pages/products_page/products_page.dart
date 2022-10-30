@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
@@ -44,27 +47,19 @@ class ProductsPage extends StatelessWidget {
             ),
             pinned: true,
           ),
-          const SliverSizedBox(child: Align(child: _PresentationSection())),
-          if (context.screenWidth > 780 + 32) const SliverSizedBox(height: 130),
-          const SliverSizedBox(height: 40),
-          const SliverToBoxAdapter(child: Align(child: _SectionDivider())),
+          const SliverSizedBox(child: _PresentationSection()),
+          const SliverSizedBox(height: 60),
+          const SliverToBoxAdapter(child: _Divider()),
           const SliverSizedBox(height: 20),
-          const SliverSizedBox(child: Align(child: _InvestorsSection())),
+          const SliverSizedBox(child: _InvestorsSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: _GradientSection()),
           const SliverSizedBox(height: 100),
-          const SliverToBoxAdapter(child: Align(child: _ComponentsSection())),
+          const SliverToBoxAdapter(child: _ComponentsSection()),
           const SliverSizedBox(height: 100),
-          SliverToBoxAdapter(
-            child: Container(
-              color: context.color.productsPartnersSectionBackground,
-              padding: const EdgeInsets.symmetric(vertical: 100),
-              alignment: Alignment.center,
-              child: const _PartnersSection(),
-            ),
-          ),
+          const SliverToBoxAdapter(child: _PartnersSection()),
           const SliverSizedBox(height: 100),
-          const SliverToBoxAdapter(child: Align(child: _FaqSection())),
+          const SliverToBoxAdapter(child: _FaqSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: Footer()),
         ],
@@ -73,37 +68,17 @@ class ProductsPage extends StatelessWidget {
   }
 }
 
-class _SectionDivider extends StatelessWidget {
-  const _SectionDivider({Key? key}) : super(key: key);
+class _Divider extends StatelessWidget {
+  const _Divider({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      constraints: const BoxConstraints(maxWidth: 1270),
-      child: const Divider(),
-    );
-  }
-}
-
-class _ConstrainedText extends StatelessWidget {
-  final String text;
-  final TextStyle style;
-  final BoxConstraints constraints;
-
-  const _ConstrainedText({
-    required this.text,
-    required this.style,
-    required this.constraints,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: constraints,
-      child: Text(
-        text,
-        style: style,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1270),
+        child: const Divider(),
       ),
     );
   }
