@@ -68,6 +68,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle productsPartnersImageCardTitle;
   final TextStyle productsFaqAnswer;
   final TextStyle productsPartnerName;
+  final TextStyle blogHeadline;
+  final TextStyle blogSubHeadline;
+  final TextStyle blogPurpleSubHeadline;
 
   ThemeTextStyles({
     required this.test,
@@ -137,6 +140,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.productsPartnersImageCardTitle,
     required this.productsFaqAnswer,
     required this.productsPartnerName,
+    required this.blogHeadline,
+    required this.blogSubHeadline,
+    required this.blogPurpleSubHeadline,
   });
 
   @override
@@ -210,6 +216,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? productsPartnersImageCardTitle,
     TextStyle? productsFaqAnswer,
     TextStyle? productsPartnerName,
+    TextStyle? blogHeadline,
+    TextStyle? blogSubHeadline,
+    TextStyle? blogPurpleSubHeadline,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -319,6 +328,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           productsPartnersImageCardTitle ?? this.productsPartnersImageCardTitle,
       productsFaqAnswer: productsFaqAnswer ?? this.productsFaqAnswer,
       productsPartnerName: productsPartnerName ?? this.productsPartnerName,
+      blogHeadline: blogHeadline ?? this.blogHeadline,
+      blogSubHeadline: blogSubHeadline ?? this.blogSubHeadline,
+      blogPurpleSubHeadline:
+          blogPurpleSubHeadline ?? this.blogPurpleSubHeadline,
     );
   }
 
@@ -474,6 +487,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(productsFaqAnswer, other.productsFaqAnswer, t)!,
       productsPartnerName:
           TextStyle.lerp(productsPartnerName, other.productsPartnerName, t)!,
+      blogHeadline: TextStyle.lerp(blogHeadline, other.blogHeadline, t)!,
+      blogSubHeadline:
+          TextStyle.lerp(blogSubHeadline, other.blogSubHeadline, t)!,
+      blogPurpleSubHeadline: TextStyle.lerp(
+          blogPurpleSubHeadline, other.blogPurpleSubHeadline, t)!,
     );
   }
 
@@ -772,6 +790,23 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
           fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
         ),
+        blogHeadline: headline3.copyWith(
+          fontSize: 65,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+        ),
+        blogPurpleSubHeadline: headline3.copyWith(
+          fontSize: 18,
+          color: AppColors.purple,
+          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+        ),
+        blogSubHeadline: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
+              .fontFamily,
+          color: AppColors.darkGrey,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1065,6 +1100,23 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         productsPartnerName: headline3.copyWith(
           color: AppColors.white,
           fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+        ),
+        blogHeadline: headline3.copyWith(
+          fontSize: 65,
+          fontFamily:
+              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+        ),
+        blogPurpleSubHeadline: headline3.copyWith(
+          fontSize: 18,
+          color: AppColors.purple,
+          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+        ),
+        blogSubHeadline: headline3.copyWith(
+          fontSize: 16,
+          fontFamily: GoogleFonts.roboto(
+                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
+              .fontFamily,
+          color: AppColors.darkGrey,
         ),
       );
 }

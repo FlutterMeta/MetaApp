@@ -6,6 +6,7 @@ import 'package:meta_app/data/datasources/local/shared_prefs.dart';
 import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/locale_manager.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
+import 'package:meta_app/presentation/pages/blog_page/blog_page.dart';
 import 'package:meta_app/presentation/pages/home_page/home_page.dart';
 import 'package:meta_app/presentation/pages/login_page.dart';
 import 'package:meta_app/presentation/pages/products_page/products_page.dart';

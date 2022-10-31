@@ -33,7 +33,7 @@ class HoverState extends State<Hover> {
       onEnter: (_) => _onEntered(true),
       onExit: (_) => _onEntered(false),
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 200),
         transform: _transform(),
         child: widget.builder(_isHovered),
       ),

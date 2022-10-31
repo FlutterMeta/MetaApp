@@ -147,13 +147,6 @@ class _MenuTabs extends StatelessWidget {
     );
   }
 
-  void _goToProductsPage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ProductsPage()),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
