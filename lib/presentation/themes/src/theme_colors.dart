@@ -27,6 +27,11 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color productsPartnersSectionArrowButton;
   final Color productsPartnersSectionCardBackground;
   final Color productsPartnersSectionCardShadow;
+  final Color blogPostBorder;
+  final Color blogPostBorderHovered;
+  final Color blogPostBackground;
+  final Color askButtonBackground;
+  final Color partnerButtonBorder;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -55,6 +60,11 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.productsPartnersSectionArrowButton,
     required this.productsPartnersSectionCardBackground,
     required this.productsPartnersSectionCardShadow,
+    required this.blogPostBorder,
+    required this.blogPostBorderHovered,
+    required this.blogPostBackground,
+    required this.askButtonBackground,
+    required this.partnerButtonBorder,
   });
 
   @override
@@ -86,6 +96,11 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? productsPartnersSectionArrowButton,
     Color? productsPartnersSectionCardBackground,
     Color? productsPartnersSectionCardShadow,
+    Color? blogPostBorder,
+    Color? blogPostBorderHovered,
+    Color? blogPostBackground,
+    Color? askButtonBackground,
+    Color? partnerButtonBorder,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -126,6 +141,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
               this.productsPartnersSectionCardBackground,
       productsPartnersSectionCardShadow: productsPartnersSectionCardShadow ??
           this.productsPartnersSectionCardShadow,
+      blogPostBorder: blogPostBorder ?? this.blogPostBorder,
+      blogPostBorderHovered:
+          blogPostBorderHovered ?? this.blogPostBorderHovered,
+      blogPostBackground: blogPostBackground ?? this.blogPostBackground,
+      askButtonBackground: askButtonBackground ?? this.askButtonBackground,
+      partnerButtonBorder: partnerButtonBorder ?? this.partnerButtonBorder,
     );
   }
 
@@ -193,6 +214,15 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           productsPartnersSectionCardShadow,
           other.productsPartnersSectionCardShadow,
           t)!,
+      blogPostBorder: Color.lerp(blogPostBorder, other.blogPostBorder, t)!,
+      blogPostBorderHovered:
+          Color.lerp(blogPostBorderHovered, other.blogPostBorderHovered, t)!,
+      blogPostBackground:
+          Color.lerp(blogPostBackground, other.blogPostBackground, t)!,
+      askButtonBackground:
+          Color.lerp(askButtonBackground, other.askButtonBackground, t)!,
+      partnerButtonBorder:
+          Color.lerp(partnerButtonBorder, other.partnerButtonBorder, t)!,
     );
   }
 
@@ -223,6 +253,11 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         productsPartnersSectionArrowButton: AppColors.white,
         productsPartnersSectionCardBackground: AppColors.white,
         productsPartnersSectionCardShadow: AppColors.black.withOpacity(0.1),
+        blogPostBorder: AppColors.blueGrey,
+        blogPostBorderHovered: AppColors.indigo,
+        blogPostBackground: AppColors.lightGrey,
+        askButtonBackground: AppColors.white,
+        partnerButtonBorder: AppColors.white,
       );
 
   static get dark => ThemeColors(
@@ -252,5 +287,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         productsPartnersSectionArrowButton: AppColors.white,
         productsPartnersSectionCardBackground: AppColors.white,
         productsPartnersSectionCardShadow: AppColors.black.withOpacity(0.1),
+        blogPostBorder: AppColors.blueGrey,
+        blogPostBorderHovered: AppColors.indigo,
+        blogPostBackground: AppColors.lightGrey,
+        askButtonBackground: AppColors.white,
+        partnerButtonBorder: AppColors.white,
       );
 }

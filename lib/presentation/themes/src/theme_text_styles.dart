@@ -68,6 +68,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle productsPartnersImageCardTitle;
   final TextStyle productsFaqAnswer;
   final TextStyle productsPartnerName;
+  final TextStyle blogHeadline;
+  final TextStyle blogSubHeadline;
+  final TextStyle blogPostHeadline;
+  final TextStyle blogPostSubHeadline;
+  final TextStyle blogWelcomeHeadline;
+  final TextStyle blogWelcomeDescription;
+  final TextStyle askButton;
+  final TextStyle partnerButton;
+  final TextStyle blogPostLink;
+  final TextStyle blogPostLinkHovered;
 
   ThemeTextStyles({
     required this.test,
@@ -137,6 +147,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.productsPartnersImageCardTitle,
     required this.productsFaqAnswer,
     required this.productsPartnerName,
+    required this.blogHeadline,
+    required this.blogSubHeadline,
+    required this.blogPostHeadline,
+    required this.blogPostSubHeadline,
+    required this.blogWelcomeHeadline,
+    required this.blogWelcomeDescription,
+    required this.askButton,
+    required this.partnerButton,
+    required this.blogPostLink,
+    required this.blogPostLinkHovered,
   });
 
   @override
@@ -210,6 +230,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? productsPartnersImageCardTitle,
     TextStyle? productsFaqAnswer,
     TextStyle? productsPartnerName,
+    TextStyle? blogHeadline,
+    TextStyle? blogSubHeadline,
+    TextStyle? blogPostHeadline,
+    TextStyle? blogPostSubHeadline,
+    TextStyle? blogWelcomeHeadline,
+    TextStyle? blogWelcomeDescription,
+    TextStyle? askButton,
+    TextStyle? partnerButton,
+    TextStyle? blogPostLink,
+    TextStyle? blogPostLinkHovered,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -319,6 +349,17 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           productsPartnersImageCardTitle ?? this.productsPartnersImageCardTitle,
       productsFaqAnswer: productsFaqAnswer ?? this.productsFaqAnswer,
       productsPartnerName: productsPartnerName ?? this.productsPartnerName,
+      blogHeadline: blogHeadline ?? this.blogHeadline,
+      blogSubHeadline: blogSubHeadline ?? this.blogSubHeadline,
+      blogPostHeadline: blogPostHeadline ?? this.blogPostHeadline,
+      blogPostSubHeadline: blogPostSubHeadline ?? this.blogPostSubHeadline,
+      blogWelcomeHeadline: blogWelcomeHeadline ?? this.blogWelcomeHeadline,
+      blogWelcomeDescription:
+          blogWelcomeDescription ?? this.blogWelcomeDescription,
+      askButton: askButton ?? this.askButton,
+      partnerButton: partnerButton ?? this.partnerButton,
+      blogPostLink: blogPostLink ?? this.blogPostLink,
+      blogPostLinkHovered: blogPostLinkHovered ?? this.blogPostLinkHovered,
     );
   }
 
@@ -474,6 +515,22 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(productsFaqAnswer, other.productsFaqAnswer, t)!,
       productsPartnerName:
           TextStyle.lerp(productsPartnerName, other.productsPartnerName, t)!,
+      blogHeadline: TextStyle.lerp(blogHeadline, other.blogHeadline, t)!,
+      blogSubHeadline:
+          TextStyle.lerp(blogSubHeadline, other.blogSubHeadline, t)!,
+      blogWelcomeDescription: TextStyle.lerp(
+          blogWelcomeDescription, other.blogWelcomeDescription, t)!,
+      blogPostHeadline:
+          TextStyle.lerp(blogPostHeadline, other.blogPostHeadline, t)!,
+      blogPostSubHeadline:
+          TextStyle.lerp(blogPostSubHeadline, other.blogPostSubHeadline, t)!,
+      blogWelcomeHeadline:
+          TextStyle.lerp(blogWelcomeHeadline, other.blogWelcomeHeadline, t)!,
+      askButton: TextStyle.lerp(askButton, other.askButton, t)!,
+      partnerButton: TextStyle.lerp(partnerButton, other.partnerButton, t)!,
+      blogPostLink: TextStyle.lerp(blogPostLink, other.blogPostLink, t)!,
+      blogPostLinkHovered:
+          TextStyle.lerp(blogPostLinkHovered, other.blogPostLinkHovered, t)!,
     );
   }
 
@@ -522,8 +579,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         homePagePurpleBodyText: headline3.copyWith(
           color: AppColors.purple,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w700).fontFamily,
+          fontWeight: FontWeight.w700,
         ),
         revelantInfoTitle: headline2,
         purpleButtonText: headline3.copyWith(
@@ -559,79 +615,59 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         footerNavTabTitle: headline3.copyWith(
           color: AppColors.lightPurple,
           fontSize: 18,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+          fontWeight: FontWeight.w300,
         ),
         footerNavTabText: headline3.copyWith(
           color: AppColors.brighterWhite,
           fontSize: 16,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+          fontWeight: FontWeight.w300,
         ),
         footerWeCareAboutYou: headline3.copyWith(
           color: AppColors.darkerBlueGrey,
           fontSize: 12,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+          fontWeight: FontWeight.w300,
         ),
         footerHoveredNavTabText: headline3.copyWith(
           color: AppColors.darkPurple,
           fontSize: 16,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+          fontWeight: FontWeight.w300,
           decoration: TextDecoration.underline,
         ),
         localeTitle: headline3.copyWith(
           fontSize: 16,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+          fontWeight: FontWeight.w300,
         ),
-        blogTitle: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
+        blogTitle: headline3.copyWith(),
         blogTitleHovered: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
           color: AppColors.darkPurple,
         ),
         incomeSectionTitle: headline1.copyWith(
           fontSize: 60,
-          fontFamily: GoogleFonts.roboto().fontFamily,
           fontWeight: FontWeight.w600,
         ),
-        incomeSectionText: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
+        incomeSectionText: headline3.copyWith(),
         joinButton: headline3.copyWith(
           color: AppColors.darkPurple,
         ),
         cardsSectionTitle: headline1.copyWith(
           fontSize: 60,
-          fontFamily: GoogleFonts.roboto().fontFamily,
           fontWeight: FontWeight.w600,
         ),
-        cardsSectionText: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
+        cardsSectionText: headline3.copyWith(),
         partnersSectionCardTitle: headline1.copyWith(
           fontSize: 22,
-          fontFamily: GoogleFonts.roboto().fontFamily,
           fontWeight: FontWeight.w600,
         ),
-        partnersSectionCardSubtitle: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
+        partnersSectionCardSubtitle: headline3.copyWith(),
         partnersSectionCardText: headline3.copyWith(
           color: AppColors.darkPurple,
-          fontFamily: GoogleFonts.roboto().fontFamily,
         ),
         becomePartnerSectionTitle: headline1.copyWith(
           fontSize: 60,
-          fontFamily: GoogleFonts.roboto().fontFamily,
           color: AppColors.white,
           fontWeight: FontWeight.w600,
         ),
         becomePartnerSectionText: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
           color: AppColors.white,
         ),
         careServiceButton: headline3.copyWith(
@@ -639,138 +675,164 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         partnerTableSectionTitle: headline1.copyWith(
           fontSize: 48,
-          fontFamily: GoogleFonts.roboto().fontFamily,
           fontWeight: FontWeight.w500,
         ),
-        partnerTableSectionText: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
-        partnerTableSectionCellTitle: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
+        partnerTableSectionText: headline3.copyWith(),
+        partnerTableSectionCellTitle: headline3.copyWith(),
         partnerTableSectionIncomeCell: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
           fontWeight: FontWeight.w600,
         ),
         partnerTableSectionReferralCell: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
           fontWeight: FontWeight.w600,
           color: AppColors.darkPurple,
         ),
         partnerPdfSectionTitle: headline1.copyWith(
           fontSize: 60,
-          fontFamily: GoogleFonts.roboto().fontFamily,
         ),
         partnerPdfSectionSubtitle: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
           fontSize: 24,
         ),
         productsHeadline: headline1.copyWith(
           fontSize: 40,
           height: 1.5,
-          fontFamily: GoogleFonts.roboto().fontFamily,
         ),
         productsSubHeadline: headline3.copyWith(
           fontSize: 16,
           color: AppColors.darkGrey,
           height: 1.4,
           letterSpacing: .3,
-          fontFamily: GoogleFonts.roboto().fontFamily,
         ),
         productsInvestorSectionTitle: headline3.copyWith(
           fontSize: 22,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500, height: 1.2)
-                  .fontFamily,
+          fontWeight: FontWeight.w500,
+          height: 1.2,
         ),
         productsInvestorSectionDescription: headline3.copyWith(
           fontSize: 16,
-          fontFamily: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
-              .fontFamily,
+          fontWeight: FontWeight.w400,
+          letterSpacing: .3,
+          height: 1.4,
           color: AppColors.darkGrey,
         ),
         productsGradientSectionTitle: headline3.copyWith(
           fontSize: 56,
           height: 1.1,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500, height: 1.2)
-                  .fontFamily,
+          fontWeight: FontWeight.w500,
           color: AppColors.white,
         ),
         productsGradientSectionDescription: headline3.copyWith(
           fontSize: 16,
-          fontFamily: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
-              .fontFamily,
+          fontWeight: FontWeight.w400,
+          letterSpacing: .3,
+          height: 1.4,
           color: AppColors.white,
         ),
         productsFaqSectionItemText: headline3.copyWith(
           fontSize: 22,
           height: 1.2,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+          fontWeight: FontWeight.w500,
         ),
         productsFaqSectionTitle: headline3.copyWith(
           fontSize: 45,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+          fontWeight: FontWeight.w500,
         ),
         productsComponentsSectionTitle: headline3.copyWith(
           fontSize: 45,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+          fontWeight: FontWeight.w500,
         ),
         productsComponentItemDescription: headline3.copyWith(
           fontSize: 16,
-          fontFamily: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
-              .fontFamily,
+          fontWeight: FontWeight.w400,
+          letterSpacing: .3,
+          height: 1.4,
           color: AppColors.darkGrey,
         ),
         productsComponentItemTitle: headline3.copyWith(
           fontSize: 22,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500, height: 1.2)
-                  .fontFamily,
+          fontWeight: FontWeight.w500,
+          height: 1.2,
         ),
         productsPartnersSectionTitle: headline3.copyWith(
           fontSize: 45,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+          fontWeight: FontWeight.w500,
         ),
         productsPartnersSectionDescription: headline3.copyWith(
           fontSize: 16,
-          fontFamily: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
-              .fontFamily,
+          fontWeight: FontWeight.w400,
+          letterSpacing: .3,
+          height: 1.4,
           color: AppColors.darkGrey,
         ),
         productsPartnersSectionSpecialPurple: headline3.copyWith(
           fontSize: 18,
           color: AppColors.purple,
-          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+          height: 1.2,
         ),
         productsPartnersImageCardTitle: headline3.copyWith(
           fontSize: 18,
-          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+          height: 1.2,
         ),
         productsPartnersInfoCardDescription: headline3.copyWith(
           fontSize: 34,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w400, height: 1.1)
-                  .fontFamily,
+          fontWeight: FontWeight.w400,
+          height: 1.1,
         ),
         productsFaqAnswer: headline3.copyWith(
           fontSize: 16,
-          fontFamily: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400, height: 1.4, letterSpacing: .3)
-              .fontFamily,
+          fontWeight: FontWeight.w400,
+          height: 1.4,
+          letterSpacing: .3,
           color: AppColors.darkGrey,
         ),
-        productsPartnerName: headline3.copyWith(
+        productsPartnerName:
+            headline3.copyWith(color: AppColors.white, height: 1.2),
+        blogHeadline: headline1.copyWith(
+          fontSize: 63,
+          height: .94,
+        ),
+        blogSubHeadline: headline3.copyWith(
+          fontSize: 16,
+          color: AppColors.indigo,
+          height: 1.12,
+        ),
+        blogPostSubHeadline: headline3.copyWith(
+          fontSize: 13,
+          color: AppColors.darkerBlueGrey,
+          height: 1.16,
+        ),
+        blogPostHeadline: headline3.copyWith(
+          fontSize: 28,
+          color: AppColors.darkBlue,
+          height: .92,
+        ),
+        blogWelcomeDescription: headline3.copyWith(
+          fontSize: 16,
           color: AppColors.white,
-          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+          height: 1.16,
+          letterSpacing: .3,
+        ),
+        blogWelcomeHeadline: headline3.copyWith(
+          fontSize: 55,
+          color: AppColors.white,
+          height: .92,
+        ),
+        askButton: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.indigo,
+          height: 1.22,
+        ),
+        partnerButton: headline3.copyWith(
+          fontSize: 15,
+          color: AppColors.white,
+          height: 1.16,
+        ),
+        blogPostLink: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.indigo,
+        ),
+        blogPostLinkHovered: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.darkIndigo,
         ),
       );
 
@@ -781,7 +843,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         authButtonText: headline3.copyWith(
           color: AppColors.blue,
-          fontSize: 17,
+          fontSize: 16,
           fontWeight: FontWeight.w600,
         ),
         loginFormText: headline3.copyWith(
@@ -800,9 +862,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w400,
         ),
         multiMetaUniverseTitle: headline1.copyWith(fontSize: 62),
-        metaverseThatUnitesTitle: headline1.copyWith(
-          fontSize: 52,
-        ),
+        metaverseThatUnitesTitle: headline1.copyWith(fontSize: 52),
         fromFiftyDollarsTitle: headline1.copyWith(
           fontSize: 22,
           color: AppColors.purple,
@@ -821,8 +881,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         homePagePurpleBodyText: headline3.copyWith(
           color: AppColors.purple,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w700).fontFamily,
+          fontWeight: FontWeight.w700,
         ),
         revelantInfoTitle: headline2,
         purpleButtonText: headline3.copyWith(
@@ -858,79 +917,59 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         footerNavTabTitle: headline3.copyWith(
           color: AppColors.lightPurple,
           fontSize: 18,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+          fontWeight: FontWeight.w300,
         ),
         footerNavTabText: headline3.copyWith(
           color: AppColors.brighterWhite,
           fontSize: 16,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+          fontWeight: FontWeight.w300,
         ),
         footerWeCareAboutYou: headline3.copyWith(
-          color: AppColors.grey,
+          color: AppColors.darkerBlueGrey,
           fontSize: 12,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+          fontWeight: FontWeight.w300,
         ),
         footerHoveredNavTabText: headline3.copyWith(
           color: AppColors.darkPurple,
           fontSize: 16,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+          fontWeight: FontWeight.w300,
           decoration: TextDecoration.underline,
         ),
         localeTitle: headline3.copyWith(
           fontSize: 16,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w300).fontFamily,
+          fontWeight: FontWeight.w300,
         ),
-        blogTitle: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
+        blogTitle: headline3.copyWith(),
         blogTitleHovered: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
           color: AppColors.darkPurple,
         ),
-        incomeSectionTitle: headline3.copyWith(
-          color: AppColors.white,
-          fontSize: 16,
+        incomeSectionTitle: headline1.copyWith(
+          fontSize: 60,
           fontWeight: FontWeight.w600,
         ),
-        incomeSectionText: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
+        incomeSectionText: headline3.copyWith(),
         joinButton: headline3.copyWith(
           color: AppColors.darkPurple,
         ),
         cardsSectionTitle: headline1.copyWith(
           fontSize: 60,
-          fontFamily: GoogleFonts.roboto().fontFamily,
           fontWeight: FontWeight.w600,
         ),
-        cardsSectionText: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
+        cardsSectionText: headline3.copyWith(),
         partnersSectionCardTitle: headline1.copyWith(
           fontSize: 22,
-          fontFamily: GoogleFonts.roboto().fontFamily,
           fontWeight: FontWeight.w600,
         ),
-        partnersSectionCardSubtitle: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
+        partnersSectionCardSubtitle: headline3.copyWith(),
         partnersSectionCardText: headline3.copyWith(
           color: AppColors.darkPurple,
-          fontFamily: GoogleFonts.roboto().fontFamily,
         ),
         becomePartnerSectionTitle: headline1.copyWith(
           fontSize: 60,
-          fontFamily: GoogleFonts.roboto().fontFamily,
           color: AppColors.white,
           fontWeight: FontWeight.w600,
         ),
         becomePartnerSectionText: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
           color: AppColors.white,
         ),
         careServiceButton: headline3.copyWith(
@@ -938,133 +977,164 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         partnerTableSectionTitle: headline1.copyWith(
           fontSize: 48,
-          fontFamily: GoogleFonts.roboto().fontFamily,
           fontWeight: FontWeight.w500,
         ),
-        partnerTableSectionText: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
-        partnerTableSectionCellTitle: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
-        ),
+        partnerTableSectionText: headline3.copyWith(),
+        partnerTableSectionCellTitle: headline3.copyWith(),
         partnerTableSectionIncomeCell: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
           fontWeight: FontWeight.w600,
         ),
         partnerTableSectionReferralCell: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
           fontWeight: FontWeight.w600,
           color: AppColors.darkPurple,
         ),
         partnerPdfSectionTitle: headline1.copyWith(
           fontSize: 60,
-          fontFamily: GoogleFonts.roboto().fontFamily,
         ),
         partnerPdfSectionSubtitle: headline3.copyWith(
-          fontFamily: GoogleFonts.roboto().fontFamily,
           fontSize: 24,
         ),
         productsHeadline: headline1.copyWith(
           fontSize: 40,
+          height: 1.5,
         ),
         productsSubHeadline: headline3.copyWith(
           fontSize: 16,
-          fontFamily: GoogleFonts.roboto().fontFamily,
+          color: AppColors.darkGrey,
+          height: 1.4,
+          letterSpacing: .3,
         ),
         productsInvestorSectionTitle: headline3.copyWith(
           fontSize: 22,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500, height: 1.2)
-                  .fontFamily,
+          fontWeight: FontWeight.w500,
+          height: 1.2,
         ),
         productsInvestorSectionDescription: headline3.copyWith(
           fontSize: 16,
-          fontFamily: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
-              .fontFamily,
+          fontWeight: FontWeight.w400,
+          letterSpacing: .3,
+          height: 1.4,
           color: AppColors.darkGrey,
         ),
         productsGradientSectionTitle: headline3.copyWith(
           fontSize: 56,
           height: 1.1,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500, height: 1.2)
-                  .fontFamily,
+          fontWeight: FontWeight.w500,
           color: AppColors.white,
         ),
         productsGradientSectionDescription: headline3.copyWith(
           fontSize: 16,
-          fontFamily: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
-              .fontFamily,
+          fontWeight: FontWeight.w400,
+          letterSpacing: .3,
+          height: 1.4,
           color: AppColors.white,
         ),
         productsFaqSectionItemText: headline3.copyWith(
           fontSize: 22,
           height: 1.2,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+          fontWeight: FontWeight.w500,
         ),
         productsFaqSectionTitle: headline3.copyWith(
           fontSize: 45,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+          fontWeight: FontWeight.w500,
         ),
         productsComponentsSectionTitle: headline3.copyWith(
           fontSize: 45,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+          fontWeight: FontWeight.w500,
         ),
         productsComponentItemDescription: headline3.copyWith(
           fontSize: 16,
-          fontFamily: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
-              .fontFamily,
+          fontWeight: FontWeight.w400,
+          letterSpacing: .3,
+          height: 1.4,
           color: AppColors.darkGrey,
         ),
         productsComponentItemTitle: headline3.copyWith(
           fontSize: 22,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500, height: 1.2)
-                  .fontFamily,
+          fontWeight: FontWeight.w500,
+          height: 1.2,
         ),
         productsPartnersSectionTitle: headline3.copyWith(
           fontSize: 45,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w500).fontFamily,
+          fontWeight: FontWeight.w500,
         ),
         productsPartnersSectionDescription: headline3.copyWith(
           fontSize: 16,
-          fontFamily: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400, letterSpacing: .3, height: 1.4)
-              .fontFamily,
+          fontWeight: FontWeight.w400,
+          letterSpacing: .3,
+          height: 1.4,
           color: AppColors.darkGrey,
         ),
         productsPartnersSectionSpecialPurple: headline3.copyWith(
           fontSize: 18,
           color: AppColors.purple,
-          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+          height: 1.2,
         ),
         productsPartnersImageCardTitle: headline3.copyWith(
           fontSize: 18,
-          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+          height: 1.2,
         ),
         productsPartnersInfoCardDescription: headline3.copyWith(
           fontSize: 34,
-          fontFamily:
-              GoogleFonts.roboto(fontWeight: FontWeight.w400, height: 1.1)
-                  .fontFamily,
+          fontWeight: FontWeight.w400,
+          height: 1.1,
         ),
         productsFaqAnswer: headline3.copyWith(
           fontSize: 16,
-          fontFamily: GoogleFonts.roboto(
-                  fontWeight: FontWeight.w400, height: 1.4, letterSpacing: .3)
-              .fontFamily,
+          fontWeight: FontWeight.w400,
+          height: 1.4,
+          letterSpacing: .3,
           color: AppColors.darkGrey,
         ),
-        productsPartnerName: headline3.copyWith(
+        productsPartnerName:
+            headline3.copyWith(color: AppColors.white, height: 1.2),
+        blogHeadline: headline1.copyWith(
+          fontSize: 63,
+          height: .94,
+        ),
+        blogSubHeadline: headline3.copyWith(
+          fontSize: 16,
+          color: AppColors.indigo,
+          height: 1.12,
+        ),
+        blogPostSubHeadline: headline3.copyWith(
+          fontSize: 13,
+          color: AppColors.darkerBlueGrey,
+          height: 1.16,
+        ),
+        blogPostHeadline: headline3.copyWith(
+          fontSize: 28,
+          color: AppColors.darkBlue,
+          height: .92,
+        ),
+        blogWelcomeDescription: headline3.copyWith(
+          fontSize: 16,
           color: AppColors.white,
-          fontFamily: GoogleFonts.roboto(height: 1.2).fontFamily,
+          height: 1.16,
+          letterSpacing: .3,
+        ),
+        blogWelcomeHeadline: headline3.copyWith(
+          fontSize: 55,
+          color: AppColors.white,
+          height: .92,
+        ),
+        askButton: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.indigo,
+          height: 1.22,
+        ),
+        partnerButton: headline3.copyWith(
+          fontSize: 15,
+          color: AppColors.white,
+          height: 1.16,
+        ),
+        blogPostLink: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.indigo,
+        ),
+        blogPostLinkHovered: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.darkIndigo,
         ),
       );
 }

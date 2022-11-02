@@ -14,6 +14,7 @@ abstract class AppColors {
   static const whiteBlue = Color(0xFFF2F3F8);
 
   static const grey = Color(0xFFE4DFFA);
+  static const lightGrey = Color(0xFFf9f8fa);
   static const darkerGrey = Color(0xFFDDDDDD);
   static const darkGrey = Color(0xFF5d5e67);
 
@@ -28,4 +29,8 @@ abstract class AppColors {
   static const lighterPurple = Color(0xFFb2a4ff);
   static const lightestPurple = Color(0xFFD6CEFF);
   static const whitePurple = Color(0xFFF5F2FC);
+
+  static const indigo = Color(0xFF3F51B5);
+  static const darkIndigo = Color(0xFF2E3A59);
+  static const turquoise = Color(0xff00aec4);
 }

@@ -126,7 +126,6 @@ class _LocaleOverlay extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
                   _LocaleWidget(locale: AppLocale.en),
-                  _LocaleWidget(locale: AppLocale.uk),
                   _LocaleWidget(locale: AppLocale.ru),
                 ],
               ),
