@@ -17,10 +17,7 @@ class _BlogButtonState extends State<_BlogButton> {
   }
 
   void _goToBlogPage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => BlogPage()),
-    );
+    context.router.navigate(BlogRoute());
   }
 
   @override
