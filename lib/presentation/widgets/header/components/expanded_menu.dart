@@ -21,9 +21,7 @@ class _ExpandedMenu extends StatelessWidget {
         ),
         const SizedBox(width: 6),
         _NavigationButton(
-          onTap: () {
-            _goToProductsPage(context);
-          },
+          onTap: () => _goToProductsPage(context),
           title: context.localizations.products,
         ),
         const SizedBox(width: 6),

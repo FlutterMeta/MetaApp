@@ -13,4 +13,6 @@ abstract class AppAssets {
   static const decentralandImage = "assets/images/decentraland.jpg";
   static const starAtlasImage = "assets/images/star_atlas.jpg";
   static const indigoBackground = "assets/images/indigo_background.png";
+  static const auroraGradient = "assets/images/aurora_gradient.png";
+  static const lightAuroraGradient = "assets/images/light_aurora_gradient.png";
 }

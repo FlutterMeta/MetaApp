@@ -1,38 +1,41 @@
 part of '../theme.dart';
 
 class ThemeGradients extends ThemeExtension<ThemeGradients> {
-  final Gradient purple;
-  final Gradient lightPurple;
-  final Gradient purpleVertical;
-  final Gradient deepPurple;
-  final Gradient blackVertical;
   final Gradient indigoTurquoise;
+  final Gradient indigoTurquoiseReversed;
+  final Gradient indigoTurquoiseDiagonal;
+  final Gradient lightIndigoTurquoise;
+  final Gradient indigoVertical;
+  final Gradient blackVertical;
 
   const ThemeGradients({
-    required this.purple,
-    required this.purpleVertical,
-    required this.lightPurple,
-    required this.deepPurple,
-    required this.blackVertical,
     required this.indigoTurquoise,
+    required this.indigoTurquoiseReversed,
+    required this.indigoTurquoiseDiagonal,
+    required this.lightIndigoTurquoise,
+    required this.indigoVertical,
+    required this.blackVertical,
   });
 
   @override
   ThemeExtension<ThemeGradients> copyWith({
-    Gradient? purple,
-    Gradient? lightPurple,
-    Gradient? purpleVertical,
-    Gradient? deepPurple,
-    Gradient? blackVertical,
     Gradient? indigoTurquoise,
+    Gradient? indigoTurquoiseReversed,
+    Gradient? indigoTurquoiseDiagonal,
+    Gradient? lightIndigoTurquoise,
+    Gradient? lightPurple,
+    Gradient? indigoVertical,
+    Gradient? blackVertical,
   }) {
     return ThemeGradients(
-      purple: purple ?? this.purple,
-      lightPurple: lightPurple ?? this.lightPurple,
-      purpleVertical: purpleVertical ?? this.purpleVertical,
-      deepPurple: deepPurple ?? this.deepPurple,
-      blackVertical: blackVertical ?? this.blackVertical,
       indigoTurquoise: indigoTurquoise ?? this.indigoTurquoise,
+      indigoTurquoiseReversed:
+          indigoTurquoiseReversed ?? this.indigoTurquoiseReversed,
+      indigoVertical: indigoVertical ?? this.indigoVertical,
+      blackVertical: blackVertical ?? this.blackVertical,
+      indigoTurquoiseDiagonal:
+          indigoTurquoiseDiagonal ?? this.indigoTurquoiseDiagonal,
+      lightIndigoTurquoise: lightIndigoTurquoise ?? this.lightIndigoTurquoise,
     );
   }
 
@@ -46,89 +49,93 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     }
 
     return ThemeGradients(
-      purple: Gradient.lerp(purple, other.purple, t)!,
-      lightPurple: Gradient.lerp(lightPurple, other.lightPurple, t)!,
-      purpleVertical: Gradient.lerp(purpleVertical, other.purpleVertical, t)!,
-      deepPurple: Gradient.lerp(deepPurple, other.deepPurple, t)!,
-      blackVertical: Gradient.lerp(blackVertical, other.blackVertical, t)!,
       indigoTurquoise:
           Gradient.lerp(indigoTurquoise, other.indigoTurquoise, t)!,
+      indigoTurquoiseReversed: Gradient.lerp(
+        indigoTurquoiseReversed,
+        other.indigoTurquoiseReversed,
+        t,
+      )!,
+      indigoVertical: Gradient.lerp(indigoVertical, other.indigoVertical, t)!,
+      blackVertical: Gradient.lerp(blackVertical, other.blackVertical, t)!,
+      indigoTurquoiseDiagonal: Gradient.lerp(
+          indigoTurquoiseDiagonal, other.indigoTurquoiseDiagonal, t)!,
+      lightIndigoTurquoise:
+          Gradient.lerp(lightIndigoTurquoise, other.lightIndigoTurquoise, t)!,
     );
   }
 
   static get light => ThemeGradients(
-        lightPurple: const LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          stops: [0.01, 0.99],
-          colors: [AppColors.lighterPurple, AppColors.white],
-        ),
-        purple: const LinearGradient(
+        indigoTurquoise: const LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          stops: [0.4, 0.8],
-          colors: [AppColors.purple, AppColors.lightPurple],
+          colors: [AppColors.turquoise, AppColors.indigo],
         ),
-        purpleVertical: const LinearGradient(
+        indigoTurquoiseReversed: const LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [AppColors.indigo, AppColors.turquoise],
+        ),
+        indigoTurquoiseDiagonal: const LinearGradient(
+          colors: [AppColors.indigo, AppColors.turquoise],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        lightIndigoTurquoise: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            AppColors.lightIndigo.withOpacity(0.2),
+            AppColors.turquoise.withOpacity(0.2)
+          ],
+        ),
+        indigoVertical: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
-          stops: [0.4, 0.5],
-          colors: [AppColors.purple, AppColors.lightPurple],
-        ),
-        deepPurple: const LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          stops: [0.99, 0.01],
-          colors: [AppColors.darkPurple, AppColors.purple],
+          colors: [AppColors.indigo, AppColors.indigo.withOpacity(0.2)],
         ),
         blackVertical: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
           stops: const [0.01, 1],
           colors: [AppColors.black.withOpacity(0.84), AppColors.transparent],
-        ),
-        indigoTurquoise: const LinearGradient(
-          colors: [AppColors.indigo, AppColors.turquoise],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
         ),
       );
 
   static get dark => ThemeGradients(
-        lightPurple: const LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          stops: [0.01, 0.99],
-          colors: [AppColors.lighterPurple, AppColors.white],
-        ),
-        purple: const LinearGradient(
+        indigoTurquoise: const LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          stops: [0.4, 0.8],
-          colors: [AppColors.purple, AppColors.lightPurple],
+          colors: [AppColors.turquoise, AppColors.indigo],
         ),
-        purpleVertical: const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          stops: [0.4, 0.5],
-          colors: [AppColors.purple, AppColors.white],
+        indigoTurquoiseReversed: const LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [AppColors.indigo, AppColors.turquoise],
         ),
-        deepPurple: const LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          stops: [0.99, 0.01],
-          colors: [AppColors.purple, AppColors.darkPurple],
+        indigoTurquoiseDiagonal: const LinearGradient(
+          colors: [AppColors.indigo, AppColors.turquoise],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        lightIndigoTurquoise: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            AppColors.lightIndigo.withOpacity(0.2),
+            AppColors.turquoise.withOpacity(0.2)
+          ],
+        ),
+        indigoVertical: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          colors: [AppColors.indigo, AppColors.indigo.withOpacity(0.2)],
         ),
         blackVertical: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
           stops: const [0.01, 1],
           colors: [AppColors.black.withOpacity(0.84), AppColors.transparent],
-        ),
-        indigoTurquoise: const LinearGradient(
-          colors: [AppColors.indigo, AppColors.turquoise],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
         ),
       );
 }

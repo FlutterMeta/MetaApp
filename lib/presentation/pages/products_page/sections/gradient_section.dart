@@ -8,7 +8,7 @@ class _GradientSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 100),
       decoration: BoxDecoration(
-        gradient: context.gradient.purple,
+        gradient: context.gradient.indigoTurquoiseDiagonal,
       ),
       alignment: Alignment.center,
       child: Wrap(
@@ -34,8 +34,8 @@ List<Widget> _statsInfoBlocks(BuildContext context) {
       description: context.localizations.financialCapital,
     ),
     _InfoBlock(
-      title: context.localizations.partnersMultimetaNumber,
-      description: context.localizations.partnersMultimeta,
+      title: context.localizations.partnersAuroraNumber,
+      description: context.localizations.partnersAurora,
     ),
   ];
 }

@@ -10,17 +10,17 @@ class _SpecialInfoComponent extends StatelessWidget {
       hoverColor: context.color.infoCardBackground,
       onTap: () {},
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         child: Row(
           children: [
             Text(context.localizations.moreFactsAbout),
-            const SizedBox(width: 6),
+            const SizedBox(width: 10),
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
+                borderRadius: BorderRadius.circular(8),
                 color: context.color.roadmapCardBackground,
               ),
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: Text(
                 context.localizations.roadmap,
                 style: context.text.purpleButtonText,

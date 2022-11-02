@@ -16,7 +16,7 @@ class _CardsSection extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              context.localizations.optionsFromMultiMeta,
+              context.localizations.optionsFromAurora,
               style: context.text.cardsSectionTitle,
               textAlign: TextAlign.center,
             ),

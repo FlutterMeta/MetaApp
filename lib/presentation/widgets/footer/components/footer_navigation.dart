@@ -46,7 +46,7 @@ class _FooterNavigation extends StatelessWidget {
         runSpacing: 40,
         children: [
           _NavTab(
-            title: context.localizations.multimeta,
+            title: context.localizations.aurora,
             links: _multimetaLinks(context),
           ),
           _NavTab(

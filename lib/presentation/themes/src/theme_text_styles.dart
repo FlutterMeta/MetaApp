@@ -556,29 +556,29 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         authFormHint: headline1.copyWith(fontSize: 14),
         authFormError: headline3.copyWith(
-          color: AppColors.lighterPurple,
+          color: AppColors.lighterIndigo,
           fontWeight: FontWeight.w400,
         ),
         multiMetaUniverseTitle: headline1.copyWith(fontSize: 62),
         metaverseThatUnitesTitle: headline1.copyWith(fontSize: 52),
         fromFiftyDollarsTitle: headline1.copyWith(
           fontSize: 22,
-          color: AppColors.purple,
+          color: AppColors.indigo,
         ),
         leadershipBonusesTitle: headline1.copyWith(
           fontSize: 22,
-          color: AppColors.lightPurple,
+          color: AppColors.lightIndigo,
         ),
         profitToPartnersTitle: headline1.copyWith(
           fontSize: 22,
-          color: AppColors.lighterPurple,
+          color: AppColors.lighterIndigo,
         ),
         accountTitle: headline3.copyWith(
           fontWeight: FontWeight.bold,
-          color: AppColors.purple,
+          color: AppColors.indigo,
         ),
         homePagePurpleBodyText: headline3.copyWith(
-          color: AppColors.purple,
+          color: AppColors.indigo,
           fontWeight: FontWeight.w700,
         ),
         revelantInfoTitle: headline2,
@@ -613,7 +613,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w400,
         ),
         footerNavTabTitle: headline3.copyWith(
-          color: AppColors.lightPurple,
+          color: AppColors.lightIndigo,
           fontSize: 18,
           fontWeight: FontWeight.w300,
         ),
@@ -628,7 +628,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w300,
         ),
         footerHoveredNavTabText: headline3.copyWith(
-          color: AppColors.darkPurple,
+          color: AppColors.darkIndigo,
           fontSize: 16,
           fontWeight: FontWeight.w300,
           decoration: TextDecoration.underline,
@@ -639,7 +639,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         blogTitle: headline3.copyWith(),
         blogTitleHovered: headline3.copyWith(
-          color: AppColors.darkPurple,
+          color: AppColors.darkIndigo,
         ),
         incomeSectionTitle: headline1.copyWith(
           fontSize: 60,
@@ -647,7 +647,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         incomeSectionText: headline3.copyWith(),
         joinButton: headline3.copyWith(
-          color: AppColors.darkPurple,
+          color: AppColors.darkIndigo,
         ),
         cardsSectionTitle: headline1.copyWith(
           fontSize: 60,
@@ -660,7 +660,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         partnersSectionCardSubtitle: headline3.copyWith(),
         partnersSectionCardText: headline3.copyWith(
-          color: AppColors.darkPurple,
+          color: AppColors.darkIndigo,
         ),
         becomePartnerSectionTitle: headline1.copyWith(
           fontSize: 60,
@@ -671,7 +671,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         careServiceButton: headline3.copyWith(
-          color: AppColors.darkPurple,
+          color: AppColors.darkIndigo,
         ),
         partnerTableSectionTitle: headline1.copyWith(
           fontSize: 48,
@@ -684,7 +684,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         partnerTableSectionReferralCell: headline3.copyWith(
           fontWeight: FontWeight.w600,
-          color: AppColors.darkPurple,
+          color: AppColors.darkIndigo,
         ),
         partnerPdfSectionTitle: headline1.copyWith(
           fontSize: 60,
@@ -765,7 +765,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         productsPartnersSectionSpecialPurple: headline3.copyWith(
           fontSize: 18,
-          color: AppColors.purple,
+          color: AppColors.indigo,
           height: 1.2,
         ),
         productsPartnersImageCardTitle: headline3.copyWith(
@@ -858,29 +858,29 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         authFormHint: headline1.copyWith(fontSize: 14),
         authFormError: headline3.copyWith(
-          color: AppColors.lighterPurple,
+          color: AppColors.lighterIndigo,
           fontWeight: FontWeight.w400,
         ),
         multiMetaUniverseTitle: headline1.copyWith(fontSize: 62),
         metaverseThatUnitesTitle: headline1.copyWith(fontSize: 52),
         fromFiftyDollarsTitle: headline1.copyWith(
           fontSize: 22,
-          color: AppColors.purple,
+          color: AppColors.indigo,
         ),
         leadershipBonusesTitle: headline1.copyWith(
           fontSize: 22,
-          color: AppColors.lightPurple,
+          color: AppColors.lightIndigo,
         ),
         profitToPartnersTitle: headline1.copyWith(
           fontSize: 22,
-          color: AppColors.lighterPurple,
+          color: AppColors.lighterIndigo,
         ),
         accountTitle: headline3.copyWith(
           fontWeight: FontWeight.bold,
-          color: AppColors.purple,
+          color: AppColors.indigo,
         ),
         homePagePurpleBodyText: headline3.copyWith(
-          color: AppColors.purple,
+          color: AppColors.indigo,
           fontWeight: FontWeight.w700,
         ),
         revelantInfoTitle: headline2,
@@ -915,7 +915,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w400,
         ),
         footerNavTabTitle: headline3.copyWith(
-          color: AppColors.lightPurple,
+          color: AppColors.lightIndigo,
           fontSize: 18,
           fontWeight: FontWeight.w300,
         ),
@@ -930,7 +930,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w300,
         ),
         footerHoveredNavTabText: headline3.copyWith(
-          color: AppColors.darkPurple,
+          color: AppColors.darkIndigo,
           fontSize: 16,
           fontWeight: FontWeight.w300,
           decoration: TextDecoration.underline,
@@ -941,7 +941,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         blogTitle: headline3.copyWith(),
         blogTitleHovered: headline3.copyWith(
-          color: AppColors.darkPurple,
+          color: AppColors.darkIndigo,
         ),
         incomeSectionTitle: headline1.copyWith(
           fontSize: 60,
@@ -949,7 +949,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         incomeSectionText: headline3.copyWith(),
         joinButton: headline3.copyWith(
-          color: AppColors.darkPurple,
+          color: AppColors.darkIndigo,
         ),
         cardsSectionTitle: headline1.copyWith(
           fontSize: 60,
@@ -962,7 +962,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         partnersSectionCardSubtitle: headline3.copyWith(),
         partnersSectionCardText: headline3.copyWith(
-          color: AppColors.darkPurple,
+          color: AppColors.darkIndigo,
         ),
         becomePartnerSectionTitle: headline1.copyWith(
           fontSize: 60,
@@ -973,7 +973,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         careServiceButton: headline3.copyWith(
-          color: AppColors.darkPurple,
+          color: AppColors.darkIndigo,
         ),
         partnerTableSectionTitle: headline1.copyWith(
           fontSize: 48,
@@ -986,7 +986,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         partnerTableSectionReferralCell: headline3.copyWith(
           fontWeight: FontWeight.w600,
-          color: AppColors.darkPurple,
+          color: AppColors.darkIndigo,
         ),
         partnerPdfSectionTitle: headline1.copyWith(
           fontSize: 60,
@@ -1067,7 +1067,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         productsPartnersSectionSpecialPurple: headline3.copyWith(
           fontSize: 18,
-          color: AppColors.purple,
+          color: AppColors.indigo,
           height: 1.2,
         ),
         productsPartnersImageCardTitle: headline3.copyWith(

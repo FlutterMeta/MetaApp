@@ -7,8 +7,11 @@ class _WelcomeSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 100),
-      decoration: BoxDecoration(
-        gradient: context.gradient.indigoTurquoise,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(AppAssets.auroraGradient),
+          fit: BoxFit.cover,
+        ),
       ),
       alignment: Alignment.center,
       child: ConstrainedBox(

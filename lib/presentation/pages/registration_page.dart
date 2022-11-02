@@ -40,13 +40,13 @@ class _RegistrationPageState extends State<RegistrationPage> with Validator {
     return Scaffold(
       body: FillViewportSingleChildScrollView(
         child: GradientBackground(
-          gradient: context.gradient.lightPurple,
+          gradient: context.gradient.lightIndigoTurquoise,
           child: Align(
             alignment: Alignment.center,
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(6),
-                gradient: context.gradient.purple,
+                gradient: context.gradient.indigoTurquoise,
               ),
               constraints: const BoxConstraints(
                 maxWidth: 550,

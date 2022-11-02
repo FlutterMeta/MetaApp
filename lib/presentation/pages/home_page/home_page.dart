@@ -40,12 +40,7 @@ class HomePage extends StatelessWidget {
             pinned: true,
           ),
           const SliverSizedBox(height: 70),
-          const SliverSizedBox(
-            child: Align(
-              alignment: Alignment.center,
-              child: _PresentationSection(),
-            ),
-          ),
+          const SliverSizedBox(child: _PresentationSection()),
           const SliverSizedBox(height: 60),
           const SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: 20),

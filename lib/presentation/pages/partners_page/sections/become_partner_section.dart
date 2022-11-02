@@ -6,19 +6,19 @@ class _BecomePartnerSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GradientBackground(
-      gradient: context.gradient.deepPurple,
+      gradient: context.gradient.indigoTurquoiseDiagonal,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 100, horizontal: 20),
         child: Column(
           children: [
             Text(
-              context.localizations.becomeAMultiMetaPartner,
+              context.localizations.becomeAuroraPartner,
               style: context.text.becomePartnerSectionTitle,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
             Text(
-              context.localizations.joinMultiMetaTeam,
+              context.localizations.joinAuroraTeam,
               style: context.text.becomePartnerSectionText,
               textAlign: TextAlign.center,
             ),
