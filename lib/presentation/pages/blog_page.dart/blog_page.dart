@@ -52,17 +52,3 @@ class BlogPage extends StatelessWidget {
     );
   }
 }
-
-class Post {
-  final String title;
-  final String body;
-  final String image;
-  final String date;
-
-  Post({
-    required this.title,
-    required this.body,
-    required this.image,
-    required this.date,
-  });
-}

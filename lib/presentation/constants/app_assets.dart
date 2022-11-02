@@ -12,5 +12,5 @@ abstract class AppAssets {
   static const incomeVideo = "assets/videos/income.mp4";
   static const decentralandImage = "assets/images/decentraland.jpg";
   static const starAtlasImage = "assets/images/star_atlas.jpg";
-  static const lightIndigoGradient = "assets/images/blog_consulting_bg.png";
+  static const lightIndigoGradient = "assets/images/indigo_background.png";
 }

@@ -130,9 +130,7 @@ class _NavTabLinkState extends State<_NavTabLink> {
           style: _isHovered
               ? context.text.footerHoveredNavTabText
               : context.text.footerNavTabText,
-          child: Text(
-            widget.title,
-          ),
+          child: Text(widget.title),
         ),
       ),
     );

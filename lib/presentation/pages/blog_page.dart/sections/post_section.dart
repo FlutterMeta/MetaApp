@@ -1,15 +1,29 @@
 part of "../blog_page.dart";
 
+class Post {
+  final String title;
+  final String body;
+  final String imagePath;
+  final DateTime date;
+
+  Post({
+    required this.title,
+    required this.body,
+    required this.imagePath,
+    required this.date,
+  });
+}
+
+final examplePost = Post(
+  title: "Office program for regional development leaders Aurora Universe",
+  body:
+      "Due to the positive trend in the development of investment products from Meta Investments and the investment direction on the MultiMeta Universe NFT platform in particular, we announce the launch of a regional development program to popularize the direction of the metaverse product by opening consulting centers, representative branches, regional centers, and from February 2023 - VR stores with branded branded products from MultiMeta Universe in the Meta Investments ecosystem. \n- We present you an office program of regional development for active leaders with a priority development of investment products in the offline direction.",
+  date: DateTime.now(),
+  imagePath: AppAssets.starAtlasImage,
+);
+
 class _PostSection extends StatelessWidget {
   const _PostSection({Key? key}) : super(key: key);
-
-  static final examplePost = Post(
-    title: "Office program for regional development leaders Aurora Universe",
-    body:
-        "Due to the positive trend in the development of investment products from Meta Investments and the investment direction on the MultiMeta Universe NFT platform in particular, we announce the launch of a regional development program to popularize the direction of the metaverse product by opening consulting centers, representative branches, regional centers, and from February 2023 - VR stores with branded branded products from MultiMeta Universe in the Meta Investments ecosystem. \n- We present you an office program of regional development for active leaders with a priority development of investment products in the offline direction.",
-    date: "19 September 2022, 07:10",
-    image: AppAssets.starAtlasImage,
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +32,15 @@ class _PostSection extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 1000),
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.4),
-              blurRadius: 6,
+              color: context.color.postShadow,
+              blurRadius: 30,
             ),
           ],
         ),
-        child: _HoverablePost(
-          post: examplePost,
-        ),
+        child: _HoverablePost(post: examplePost),
       ),
     );
   }
@@ -52,7 +63,7 @@ class __HoverablePostState extends State<_HoverablePost> {
 
   @override
   Widget build(BuildContext context) {
-    return _OnPostHover(
+    return _HoveredPost(
       builder: (_) {
         return MouseRegion(
           onEnter: (_) => setState(() => _isHovered = !_isHovered),
@@ -70,7 +81,7 @@ class __HoverablePostState extends State<_HoverablePost> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${widget.post.date} | Publication date",
+                  "${widget.post.date} ${context.localizations.publicationDate}",
                   style: context.text.blogPostSubHeadline,
                 ),
                 const SizedBox(height: 10),
@@ -90,7 +101,7 @@ class __HoverablePostState extends State<_HoverablePost> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Image.asset(
-                      widget.post.image,
+                      widget.post.imagePath,
                       height: 150,
                     ),
                     _PostLink(
@@ -141,19 +152,19 @@ class __PostLinkState extends State<_PostLink> {
   }
 }
 
-class _OnPostHover extends StatefulWidget {
+class _HoveredPost extends StatefulWidget {
   final Widget Function(bool isHovered) builder;
 
-  const _OnPostHover({
+  const _HoveredPost({
     required this.builder,
     Key? key,
   }) : super(key: key);
 
   @override
-  _OnPostHoverState createState() => _OnPostHoverState();
+  _HoveredPostState createState() => _HoveredPostState();
 }
 
-class _OnPostHoverState extends State<_OnPostHover> {
+class _HoveredPostState extends State<_HoveredPost> {
   bool _isHovered = false;
 
   void _onEntered(bool isHovered) {

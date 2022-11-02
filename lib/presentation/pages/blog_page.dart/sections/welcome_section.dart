@@ -55,25 +55,27 @@ class _AskButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Hover(builder: (_) {
-      return Container(
-        height: 40,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6),
-          color: context.color.askButtonBackground,
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        clipBehavior: Clip.antiAlias,
-        alignment: Alignment.center,
-        child: WebButton(
-          onTap: onTap,
-          child: Text(
-            context.localizations.askQuestion,
-            style: context.text.askButton,
+    return Hover(
+      builder: (_) {
+        return Container(
+          height: 40,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(6),
+            color: context.color.askButtonBackground,
           ),
-        ),
-      );
-    });
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          clipBehavior: Clip.antiAlias,
+          alignment: Alignment.center,
+          child: WebButton(
+            onTap: onTap,
+            child: Text(
+              context.localizations.askQuestion,
+              style: context.text.askButton,
+            ),
+          ),
+        );
+      },
+    );
   }
 }
 
@@ -95,9 +97,7 @@ class _BecomePartnerButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(6),
             border: Border.all(color: context.color.partnerButtonBorder),
           ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-          ),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           alignment: Alignment.center,
           clipBehavior: Clip.antiAlias,
           child: WebButton(

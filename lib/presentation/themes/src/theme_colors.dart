@@ -32,6 +32,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color blogPostBackground;
   final Color askButtonBackground;
   final Color partnerButtonBorder;
+  final Color postShadow;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -65,6 +66,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.blogPostBackground,
     required this.askButtonBackground,
     required this.partnerButtonBorder,
+    required this.postShadow,
   });
 
   @override
@@ -101,6 +103,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? blogPostBackground,
     Color? askButtonBackground,
     Color? partnerButtonBorder,
+    Color? postShadow,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -147,6 +150,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       blogPostBackground: blogPostBackground ?? this.blogPostBackground,
       askButtonBackground: askButtonBackground ?? this.askButtonBackground,
       partnerButtonBorder: partnerButtonBorder ?? this.partnerButtonBorder,
+      postShadow: postShadow ?? this.postShadow,
     );
   }
 
@@ -223,6 +227,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(askButtonBackground, other.askButtonBackground, t)!,
       partnerButtonBorder:
           Color.lerp(partnerButtonBorder, other.partnerButtonBorder, t)!,
+      postShadow: Color.lerp(postShadow, other.postShadow, t)!,
     );
   }
 
@@ -258,6 +263,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         blogPostBackground: AppColors.lightGrey,
         askButtonBackground: AppColors.white,
         partnerButtonBorder: AppColors.white,
+        postShadow: AppColors.black.withOpacity(0.1),
       );
 
   static get dark => ThemeColors(
@@ -292,5 +298,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         blogPostBackground: AppColors.lightGrey,
         askButtonBackground: AppColors.white,
         partnerButtonBorder: AppColors.white,
+        postShadow: AppColors.black.withOpacity(0.2),
       );
 }
