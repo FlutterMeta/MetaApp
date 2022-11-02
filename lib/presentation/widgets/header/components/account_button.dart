@@ -4,10 +4,7 @@ class _AccountButton extends StatelessWidget {
   const _AccountButton({Key? key}) : super(key: key);
 
   void _goToLoginPage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const LoginPage()),
-    );
+    context.router.push(const LoginRoute());
   }
 
   @override

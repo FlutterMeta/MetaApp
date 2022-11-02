@@ -13,11 +13,12 @@ class _CompactMenu extends StatefulWidget {
 }
 
 class _CompactMenuState extends State<_CompactMenu>
-    with SingleTickerProviderStateMixin, RouteAware {
-  late AnimationController animationController;
-  late Animation<double> animation;
-  OverlayEntry? overlayEntry;
+    with SingleTickerProviderStateMixin, AutoRouteAware {
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+  late AutoRouteObserver? _observer;
 
+  OverlayEntry? _overlayEntry;
   bool _isClicked = false;
 
   void _onMenuButtonTap() {
@@ -30,35 +31,35 @@ class _CompactMenuState extends State<_CompactMenu>
   void _showOverlay() async {
     OverlayState? overlayState = Overlay.of(context);
 
-    overlayEntry = OverlayEntry(
+    _overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
         top: widget.headerYOffset(),
         height: context.screenHeight - widget.headerYOffset(),
         width: context.screenWidth,
-        child: _OverlayMenu(animation: animation),
+        child: _OverlayMenu(animation: _animation),
       ),
     );
-    overlayEntry?.let((entry) {
+    _overlayEntry?.let((entry) {
       overlayState?.insert(entry);
-      animationController.forward();
+      _animationController.forward();
     });
   }
 
   void _removeOverlay() {
-    if (overlayEntry?.mounted ?? false) {
-      animationController.reverse();
-      overlayEntry?.remove();
+    if (_overlayEntry?.mounted ?? false) {
+      _animationController.reverse();
+      _overlayEntry?.remove();
     }
   }
 
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(
+    _animationController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 400),
     );
-    animation = CurveTween(curve: Curves.linear).animate(animationController);
+    _animation = CurveTween(curve: Curves.linear).animate(_animationController);
   }
 
   @override
@@ -69,7 +70,11 @@ class _CompactMenuState extends State<_CompactMenu>
       if (mounted && context.screenWidth > 780) _removeOverlay();
     });
 
-    routeObserver.subscribe(this, ModalRoute.of(context) as PageRoute);
+    _observer =
+        RouterScope.of(context).firstObserverOfType<AutoRouteObserver>();
+    if (_observer != null) {
+      _observer?.subscribe(this, context.routeData);
+    }
   }
 
   @override
@@ -85,8 +90,8 @@ class _CompactMenuState extends State<_CompactMenu>
   @override
   void dispose() {
     _removeOverlay();
-    animationController.dispose();
-    routeObserver.unsubscribe(this);
+    _animationController.dispose();
+    _observer?.unsubscribe(this);
     super.dispose();
   }
 
@@ -133,16 +138,11 @@ class _MenuTabs extends StatelessWidget {
   const _MenuTabs({Key? key}) : super(key: key);
 
   void _goToPartnersPage(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (_) => PartnersPage(),
-    ));
+    context.router.navigate(PartnersRoute());
   }
 
   void _goToProductsPage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ProductsPage()),
-    );
+    context.router.navigate(ProductsRoute());
   }
 
   @override

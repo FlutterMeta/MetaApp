@@ -1,15 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/di/locator.dart';
-import 'package:meta_app/core/route_observer.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/datasources/local/shared_prefs.dart';
 import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/locale_manager.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
-import 'package:meta_app/presentation/pages/home_page/home_page.dart';
-import 'package:meta_app/presentation/pages/login_page.dart';
-import 'package:meta_app/presentation/pages/products_page/products_page.dart';
-import 'package:meta_app/presentation/pages/partners_page/partners_page.dart';
+import 'package:meta_app/presentation/navigation/app_router.gr.dart';
 import 'package:meta_app/presentation/widgets/media_buttons.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 import 'package:useful_extensions/useful_extensions.dart';
@@ -32,10 +29,7 @@ class Header extends SliverPersistentHeaderDelegate {
   });
 
   void _goToHomePage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => HomePage()),
-    );
+    context.router.navigate(HomeRoute());
   }
 
   @override

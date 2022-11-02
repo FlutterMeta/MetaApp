@@ -4,16 +4,11 @@ class _ExpandedMenu extends StatelessWidget {
   const _ExpandedMenu({Key? key}) : super(key: key);
 
   void _goToPartnersPage(BuildContext context) {
-    Navigator.of(context).push(MaterialPageRoute(
-      builder: (_) => PartnersPage(),
-    ));
+    context.router.navigate(PartnersRoute());
   }
 
   void _goToProductsPage(BuildContext context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => ProductsPage()),
-    );
+    context.router.navigate(ProductsRoute());
   }
 
   @override
