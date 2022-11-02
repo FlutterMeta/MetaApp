@@ -125,11 +125,14 @@ class _NavTabLinkState extends State<_NavTabLink> {
       child: InkWell(
         onHover: (_) => _onHover(),
         onTap: widget.onTap,
-        child: Text(
-          widget.title,
+        child: AnimatedDefaultTextStyle(
+          duration: const Duration(milliseconds: 200),
           style: _isHovered
               ? context.text.footerHoveredNavTabText
               : context.text.footerNavTabText,
+          child: Text(
+            widget.title,
+          ),
         ),
       ),
     );

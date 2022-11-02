@@ -8,7 +8,7 @@ class _PresentationSection extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(AppAssets.blogConsultingBackground),
+          image: AssetImage(AppAssets.lightIndigoGradient),
           fit: BoxFit.fill,
         ),
       ),

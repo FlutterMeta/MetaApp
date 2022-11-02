@@ -39,8 +39,8 @@ class _HoverablePost extends StatefulWidget {
   final Post post;
 
   const _HoverablePost({
-    Key? key,
     required this.post,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -83,9 +83,7 @@ class __HoverablePostState extends State<_HoverablePost> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Text(
-                  widget.post.body,
-                ),
+                Text(widget.post.body),
                 const SizedBox(height: 60),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -137,9 +135,7 @@ class __PostLinkState extends State<_PostLink> {
         style: widget.isHovered
             ? context.text.blogPostLinkHovered
             : context.text.blogPostLink,
-        child: Text(
-          widget.text,
-        ),
+        child: Text(widget.text),
       ),
     );
   }
@@ -161,9 +157,7 @@ class _OnPostHoverState extends State<_OnPostHover> {
   bool _isHovered = false;
 
   void _onEntered(bool isHovered) {
-    setState(() {
-      _isHovered = isHovered;
-    });
+    setState(() => _isHovered = isHovered);
   }
 
   Matrix4 _transform() {
