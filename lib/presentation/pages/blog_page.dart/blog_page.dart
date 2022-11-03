@@ -43,7 +43,7 @@ class BlogPage extends StatelessWidget {
           const SliverSizedBox(height: 70),
           const SliverSizedBox(child: _PresentationSection()),
           const SliverSizedBox(height: 20),
-          const SliverSizedBox(child: _PostSection()),
+          SliverSizedBox(child: _PostSection()),
           const SliverSizedBox(height: 40),
           const SliverSizedBox(child: _WelcomeSection()),
           const SliverToBoxAdapter(child: Footer()),

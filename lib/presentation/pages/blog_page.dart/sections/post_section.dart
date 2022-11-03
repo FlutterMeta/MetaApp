@@ -1,12 +1,45 @@
 part of "../blog_page.dart";
 
-class Post {
+class _PostSection extends StatelessWidget {
+  final examplePost = _Post(
+    title: "Office program for regional development leaders Aurora Universe",
+    body:
+        "Due to the positive trend in the development of investment products from Meta Investments and the investment direction on the MultiMeta Universe NFT platform in particular, we announce the launch of a regional development program to popularize the direction of the metaverse product by opening consulting centers, representative branches, regional centers, and from February 2023 - VR stores with branded branded products from MultiMeta Universe in the Meta Investments ecosystem. \n- We present you an office program of regional development for active leaders with a priority development of investment products in the offline direction.",
+    date: DateTime.now(),
+    imagePath: AppAssets.starAtlasImage,
+  );
+
+  _PostSection({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: context.color.postShadow,
+            blurRadius: 30,
+          ),
+        ],
+      ),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1000),
+        child: _HoverablePost(post: examplePost),
+      ),
+    );
+  }
+}
+
+class _Post {
   final String title;
   final String body;
   final String imagePath;
   final DateTime date;
 
-  Post({
+  _Post({
     required this.title,
     required this.body,
     required this.imagePath,
@@ -14,40 +47,8 @@ class Post {
   });
 }
 
-final examplePost = Post(
-  title: "Office program for regional development leaders Aurora Universe",
-  body:
-      "Due to the positive trend in the development of investment products from Meta Investments and the investment direction on the MultiMeta Universe NFT platform in particular, we announce the launch of a regional development program to popularize the direction of the metaverse product by opening consulting centers, representative branches, regional centers, and from February 2023 - VR stores with branded branded products from MultiMeta Universe in the Meta Investments ecosystem. \n- We present you an office program of regional development for active leaders with a priority development of investment products in the offline direction.",
-  date: DateTime.now(),
-  imagePath: AppAssets.starAtlasImage,
-);
-
-class _PostSection extends StatelessWidget {
-  const _PostSection({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      child: Container(
-        constraints: const BoxConstraints(maxWidth: 1000),
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: context.color.postShadow,
-              blurRadius: 30,
-            ),
-          ],
-        ),
-        child: _HoverablePost(post: examplePost),
-      ),
-    );
-  }
-}
-
 class _HoverablePost extends StatefulWidget {
-  final Post post;
+  final _Post post;
 
   const _HoverablePost({
     required this.post,
