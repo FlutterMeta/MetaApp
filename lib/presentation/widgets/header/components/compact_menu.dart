@@ -70,11 +70,13 @@ class _CompactMenuState extends State<_CompactMenu>
       if (mounted && context.screenWidth > 780) _removeOverlay();
     });
 
-    _observer =
-        RouterScope.of(context).firstObserverOfType<AutoRouteObserver>();
-    if (_observer != null) {
-      _observer?.subscribe(this, context.routeData);
-    }
+    try {
+      _observer =
+          RouterScope.of(context).firstObserverOfType<AutoRouteObserver>();
+      if (_observer != null) {
+        _observer?.subscribe(this, context.routeData);
+      }
+    } catch (_) {}
   }
 
   @override

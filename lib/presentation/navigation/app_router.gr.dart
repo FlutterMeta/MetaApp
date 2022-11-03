@@ -11,9 +11,10 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i7;
-import 'package:flutter/material.dart' as _i8;
+import 'package:auto_route/auto_route.dart' as _i8;
+import 'package:flutter/material.dart' as _i9;
 
+import '../pages/blog_page.dart/blog_page.dart' as _i7;
 import '../pages/forgot_password_page.dart' as _i4;
 import '../pages/home_page/home_page.dart' as _i1;
 import '../pages/login_page.dart' as _i2;
@@ -21,34 +22,34 @@ import '../pages/partners_page/partners_page.dart' as _i6;
 import '../pages/products_page/products_page.dart' as _i5;
 import '../pages/registration_page.dart' as _i3;
 
-class AppRouter extends _i7.RootStackRouter {
-  AppRouter([_i8.GlobalKey<_i8.NavigatorState>? navigatorKey])
+class AppRouter extends _i8.RootStackRouter {
+  AppRouter([_i9.GlobalKey<_i9.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i7.PageFactory> pagesMap = {
+  final Map<String, _i8.PageFactory> pagesMap = {
     HomeRoute.name: (routeData) {
       final args =
           routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
-      return _i7.MaterialPageX<dynamic>(
+      return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i1.HomePage(key: args.key),
       );
     },
     LoginRoute.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
+      return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i2.LoginPage(),
       );
     },
     RegistrationRoute.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
+      return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i3.RegistrationPage(),
       );
     },
     ForgotPasswordRoute.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
+      return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i4.ForgotPasswordPage(),
       );
@@ -56,7 +57,7 @@ class AppRouter extends _i7.RootStackRouter {
     ProductsRoute.name: (routeData) {
       final args = routeData.argsAs<ProductsRouteArgs>(
           orElse: () => const ProductsRouteArgs());
-      return _i7.MaterialPageX<dynamic>(
+      return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i5.ProductsPage(key: args.key),
       );
@@ -64,52 +65,64 @@ class AppRouter extends _i7.RootStackRouter {
     PartnersRoute.name: (routeData) {
       final args = routeData.argsAs<PartnersRouteArgs>(
           orElse: () => const PartnersRouteArgs());
-      return _i7.MaterialPageX<dynamic>(
+      return _i8.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i6.PartnersPage(key: args.key),
+      );
+    },
+    BlogRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<BlogRouteArgs>(orElse: () => const BlogRouteArgs());
+      return _i8.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: _i7.BlogPage(key: args.key),
       );
     },
   };
 
   @override
-  List<_i7.RouteConfig> get routes => [
-        _i7.RouteConfig(
+  List<_i8.RouteConfig> get routes => [
+        _i8.RouteConfig(
           '/#redirect',
           path: '/',
           redirectTo: '/home',
           fullMatch: true,
         ),
-        _i7.RouteConfig(
+        _i8.RouteConfig(
           HomeRoute.name,
           path: '/home',
         ),
-        _i7.RouteConfig(
+        _i8.RouteConfig(
           LoginRoute.name,
           path: '/login',
         ),
-        _i7.RouteConfig(
+        _i8.RouteConfig(
           RegistrationRoute.name,
           path: '/registration',
         ),
-        _i7.RouteConfig(
+        _i8.RouteConfig(
           ForgotPasswordRoute.name,
           path: '/forgot-password',
         ),
-        _i7.RouteConfig(
+        _i8.RouteConfig(
           ProductsRoute.name,
           path: '/products',
         ),
-        _i7.RouteConfig(
+        _i8.RouteConfig(
           PartnersRoute.name,
           path: '/partners',
+        ),
+        _i8.RouteConfig(
+          BlogRoute.name,
+          path: '/blog',
         ),
       ];
 }
 
 /// generated route for
 /// [_i1.HomePage]
-class HomeRoute extends _i7.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({_i8.Key? key})
+class HomeRoute extends _i8.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({_i9.Key? key})
       : super(
           HomeRoute.name,
           path: '/home',
@@ -122,7 +135,7 @@ class HomeRoute extends _i7.PageRouteInfo<HomeRouteArgs> {
 class HomeRouteArgs {
   const HomeRouteArgs({this.key});
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
   @override
   String toString() {
@@ -132,7 +145,7 @@ class HomeRouteArgs {
 
 /// generated route for
 /// [_i2.LoginPage]
-class LoginRoute extends _i7.PageRouteInfo<void> {
+class LoginRoute extends _i8.PageRouteInfo<void> {
   const LoginRoute()
       : super(
           LoginRoute.name,
@@ -144,7 +157,7 @@ class LoginRoute extends _i7.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.RegistrationPage]
-class RegistrationRoute extends _i7.PageRouteInfo<void> {
+class RegistrationRoute extends _i8.PageRouteInfo<void> {
   const RegistrationRoute()
       : super(
           RegistrationRoute.name,
@@ -156,7 +169,7 @@ class RegistrationRoute extends _i7.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.ForgotPasswordPage]
-class ForgotPasswordRoute extends _i7.PageRouteInfo<void> {
+class ForgotPasswordRoute extends _i8.PageRouteInfo<void> {
   const ForgotPasswordRoute()
       : super(
           ForgotPasswordRoute.name,
@@ -168,8 +181,8 @@ class ForgotPasswordRoute extends _i7.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.ProductsPage]
-class ProductsRoute extends _i7.PageRouteInfo<ProductsRouteArgs> {
-  ProductsRoute({_i8.Key? key})
+class ProductsRoute extends _i8.PageRouteInfo<ProductsRouteArgs> {
+  ProductsRoute({_i9.Key? key})
       : super(
           ProductsRoute.name,
           path: '/products',
@@ -182,7 +195,7 @@ class ProductsRoute extends _i7.PageRouteInfo<ProductsRouteArgs> {
 class ProductsRouteArgs {
   const ProductsRouteArgs({this.key});
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
   @override
   String toString() {
@@ -192,8 +205,8 @@ class ProductsRouteArgs {
 
 /// generated route for
 /// [_i6.PartnersPage]
-class PartnersRoute extends _i7.PageRouteInfo<PartnersRouteArgs> {
-  PartnersRoute({_i8.Key? key})
+class PartnersRoute extends _i8.PageRouteInfo<PartnersRouteArgs> {
+  PartnersRoute({_i9.Key? key})
       : super(
           PartnersRoute.name,
           path: '/partners',
@@ -206,10 +219,34 @@ class PartnersRoute extends _i7.PageRouteInfo<PartnersRouteArgs> {
 class PartnersRouteArgs {
   const PartnersRouteArgs({this.key});
 
-  final _i8.Key? key;
+  final _i9.Key? key;
 
   @override
   String toString() {
     return 'PartnersRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i7.BlogPage]
+class BlogRoute extends _i8.PageRouteInfo<BlogRouteArgs> {
+  BlogRoute({_i9.Key? key})
+      : super(
+          BlogRoute.name,
+          path: '/blog',
+          args: BlogRouteArgs(key: key),
+        );
+
+  static const String name = 'BlogRoute';
+}
+
+class BlogRouteArgs {
+  const BlogRouteArgs({this.key});
+
+  final _i9.Key? key;
+
+  @override
+  String toString() {
+    return 'BlogRouteArgs{key: $key}';
   }
 }

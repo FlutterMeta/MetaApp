@@ -4,8 +4,7 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
 enum AppLocale {
   en,
-  ru,
-  uk;
+  ru;
 
   const AppLocale();
 
@@ -15,8 +14,6 @@ enum AppLocale {
         return const Locale('en');
       case AppLocale.ru:
         return const Locale('ru');
-      case AppLocale.uk:
-        return const Locale('uk');
     }
   }
 
@@ -26,8 +23,6 @@ enum AppLocale {
         return le.getFlagEmoji(languageCode: 'en');
       case AppLocale.ru:
         return le.getFlagEmoji(languageCode: 'ru');
-      case AppLocale.uk:
-        return le.getFlagEmoji(languageCode: 'uk');
     }
   }
 
@@ -37,8 +32,6 @@ enum AppLocale {
         return context.localizations.english;
       case AppLocale.ru:
         return context.localizations.russian;
-      case AppLocale.uk:
-        return context.localizations.ukrainian;
     }
   }
 }

@@ -16,11 +16,15 @@ class _BlogButtonState extends State<_BlogButton> {
     });
   }
 
+  void _goToBlogPage(BuildContext context) {
+    context.router.navigate(BlogRoute());
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onHover: (_) => _onHover(),
-      onTap: () {},
+      onTap: () => _goToBlogPage(context),
       child: Text(
         context.localizations.blog,
         style:

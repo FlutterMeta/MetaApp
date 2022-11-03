@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/l10n/l10n.dart';
+import 'package:meta_app/presentation/pages/blog_page.dart/blog_page.dart';
 import 'package:meta_app/presentation/pages/forgot_password_page.dart';
 import 'package:meta_app/presentation/pages/home_page/home_page.dart';
 import 'package:meta_app/presentation/pages/login_page.dart';

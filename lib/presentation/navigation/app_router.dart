@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:meta_app/presentation/pages/blog_page.dart/blog_page.dart';
 import 'package:meta_app/presentation/pages/forgot_password_page.dart';
 import 'package:meta_app/presentation/pages/home_page/home_page.dart';
 import 'package:meta_app/presentation/pages/login_page.dart';
@@ -15,6 +16,7 @@ import 'package:meta_app/presentation/pages/registration_page.dart';
     AutoRoute(page: ForgotPasswordPage, path: "/forgot-password"),
     AutoRoute(page: ProductsPage, path: "/products"),
     AutoRoute(page: PartnersPage, path: "/partners"),
+    AutoRoute(page: BlogPage, path: "/blog"),
   ],
 )
 class $AppRouter {}
