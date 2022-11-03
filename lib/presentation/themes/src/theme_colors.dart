@@ -239,7 +239,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   static get light => ThemeColors(
         authButtonFill: AppColors.white,
         formFieldFill: AppColors.brightWhite,
-        infoCardBackground: AppColors.turquoise.withOpacity(0.3),
+        infoCardBackground: AppColors.turquoise.withOpacity(0.1),
         roadmapCardBackground: AppColors.indigo,
         navButtonHover: AppColors.blueGrey,
         webButtonFillColor: AppColors.transparent,
@@ -275,7 +275,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   static get dark => ThemeColors(
         authButtonFill: AppColors.white,
         formFieldFill: AppColors.brightWhite,
-        infoCardBackground: AppColors.grey,
+        infoCardBackground: AppColors.turquoise.withOpacity(0.1),
         roadmapCardBackground: AppColors.indigo,
         navButtonHover: AppColors.blueGrey,
         webButtonFillColor: AppColors.transparent,

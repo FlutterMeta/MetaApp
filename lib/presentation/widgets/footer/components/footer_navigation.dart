@@ -113,9 +113,7 @@ class _NavTabLinkState extends State<_NavTabLink> {
   bool _isHovered = false;
 
   void _onHover() {
-    setState(() {
-      _isHovered = !_isHovered;
-    });
+    setState(() => _isHovered = !_isHovered);
   }
 
   @override

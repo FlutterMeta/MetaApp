@@ -613,7 +613,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w400,
         ),
         footerNavTabTitle: headline3.copyWith(
-          color: AppColors.lightIndigo,
+          color: AppColors.darkerBlueGrey,
           fontSize: 18,
           fontWeight: FontWeight.w300,
         ),
@@ -628,7 +628,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w300,
         ),
         footerHoveredNavTabText: headline3.copyWith(
-          color: AppColors.darkIndigo,
+          color: AppColors.darkerBlueGrey,
           fontSize: 16,
           fontWeight: FontWeight.w300,
           decoration: TextDecoration.underline,
@@ -671,7 +671,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         careServiceButton: headline3.copyWith(
-          color: AppColors.darkIndigo,
+          color: AppColors.indigo,
         ),
         partnerTableSectionTitle: headline1.copyWith(
           fontSize: 48,
@@ -915,7 +915,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w400,
         ),
         footerNavTabTitle: headline3.copyWith(
-          color: AppColors.lightIndigo,
+          color: AppColors.darkerBlueGrey,
           fontSize: 18,
           fontWeight: FontWeight.w300,
         ),
@@ -930,7 +930,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w300,
         ),
         footerHoveredNavTabText: headline3.copyWith(
-          color: AppColors.darkIndigo,
+          color: AppColors.darkerBlueGrey,
           fontSize: 16,
           fontWeight: FontWeight.w300,
           decoration: TextDecoration.underline,
@@ -973,7 +973,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         careServiceButton: headline3.copyWith(
-          color: AppColors.darkIndigo,
+          color: AppColors.indigo,
         ),
         partnerTableSectionTitle: headline1.copyWith(
           fontSize: 48,

@@ -111,7 +111,7 @@ class __HoverablePostState extends State<_HoverablePost> {
                       ),
                       _PostLink(
                         isHovered: _isHovered,
-                        text: "News channel in Telegram",
+                        text: context.localizations.newsChannelInTelegram,
                         onTap: () {},
                       ),
                     ],
