@@ -33,6 +33,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color askButtonBackground;
   final Color partnerButtonBorder;
   final Color postShadow;
+  final Color postBackground;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -67,6 +68,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.askButtonBackground,
     required this.partnerButtonBorder,
     required this.postShadow,
+    required this.postBackground,
   });
 
   @override
@@ -104,6 +106,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? askButtonBackground,
     Color? partnerButtonBorder,
     Color? postShadow,
+    Color? postBackground,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -151,6 +154,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       askButtonBackground: askButtonBackground ?? this.askButtonBackground,
       partnerButtonBorder: partnerButtonBorder ?? this.partnerButtonBorder,
       postShadow: postShadow ?? this.postShadow,
+      postBackground: postBackground ?? this.postBackground,
     );
   }
 
@@ -228,6 +232,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       partnerButtonBorder:
           Color.lerp(partnerButtonBorder, other.partnerButtonBorder, t)!,
       postShadow: Color.lerp(postShadow, other.postShadow, t)!,
+      postBackground: Color.lerp(postBackground, other.postBackground, t)!,
     );
   }
 
@@ -260,10 +265,11 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         productsPartnersSectionCardShadow: AppColors.black.withOpacity(0.1),
         blogPostBorder: AppColors.blueGrey,
         blogPostBorderHovered: AppColors.indigo,
-        blogPostBackground: AppColors.lightGrey,
+        blogPostBackground: AppColors.lighterGrey,
         askButtonBackground: AppColors.white,
         partnerButtonBorder: AppColors.white,
         postShadow: AppColors.black.withOpacity(0.1),
+        postBackground: AppColors.white,
       );
 
   static get dark => ThemeColors(
@@ -295,9 +301,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         productsPartnersSectionCardShadow: AppColors.black.withOpacity(0.1),
         blogPostBorder: AppColors.blueGrey,
         blogPostBorderHovered: AppColors.indigo,
-        blogPostBackground: AppColors.lightGrey,
+        blogPostBackground: AppColors.lighterGrey,
         askButtonBackground: AppColors.white,
         partnerButtonBorder: AppColors.white,
         postShadow: AppColors.black.withOpacity(0.2),
+        postBackground: AppColors.white,
       );
 }

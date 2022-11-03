@@ -13,20 +13,20 @@ class _PostSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: context.color.postShadow,
-            blurRadius: 30,
-          ),
-        ],
-      ),
-      child: ConstrainedBox(
+    return Align(
+      child: Container(
+        padding: const EdgeInsets.all(20),
         constraints: const BoxConstraints(maxWidth: 1000),
+        decoration: BoxDecoration(
+          color: context.color.postBackground,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: context.color.postShadow,
+              blurRadius: 30,
+            ),
+          ],
+        ),
         child: _HoverablePost(post: examplePost),
       ),
     );
