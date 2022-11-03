@@ -97,20 +97,25 @@ class __HoverablePostState extends State<_HoverablePost> {
                 const SizedBox(height: 20),
                 Text(widget.post.body),
                 const SizedBox(height: 60),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset(
-                      widget.post.imagePath,
-                      height: 150,
-                    ),
-                    _PostLink(
-                      isHovered: _isHovered,
-                      text: "News channel in Telegram",
-                      onTap: () {},
-                    ),
-                  ],
+                SizedBox(
+                  width: double.infinity,
+                  child: Wrap(
+                    alignment: WrapAlignment.spaceBetween,
+                    crossAxisAlignment: WrapCrossAlignment.end,
+                    runSpacing: 20,
+                    spacing: 20,
+                    children: [
+                      Image.asset(
+                        widget.post.imagePath,
+                        height: 150,
+                      ),
+                      _PostLink(
+                        isHovered: _isHovered,
+                        text: "News channel in Telegram",
+                        onTap: () {},
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
