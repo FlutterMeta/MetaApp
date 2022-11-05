@@ -17,8 +17,8 @@ class _BecomePartnerSection extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 30),
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 400),
+            SizedBox(
+              width: 400,
               child: Text(
                 context.localizations.joinAuroraTeam,
                 style: context.text.becomePartnerSectionText,
@@ -26,16 +26,13 @@ class _BecomePartnerSection extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 60),
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 410),
-              child: Wrap(
-                spacing: 10,
-                runSpacing: 20,
-                children: [
-                  _CareServiceButton(onTap: () {}),
-                  _BecomePartnerButton(onTap: () {}),
-                ],
-              ),
+            Wrap(
+              spacing: 10,
+              runSpacing: 20,
+              children: [
+                _CareServiceButton(onTap: () {}),
+                _BecomePartnerButton(onTap: () {}),
+              ],
             ),
           ],
         ),

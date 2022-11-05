@@ -3,8 +3,7 @@ import 'package:locale_emoji_flutter/locale_emoji_flutter.dart' as le;
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
 enum AppLocale {
-  en,
-  ru;
+  en;
 
   const AppLocale();
 
@@ -12,8 +11,6 @@ enum AppLocale {
     switch (this) {
       case AppLocale.en:
         return const Locale('en');
-      case AppLocale.ru:
-        return const Locale('ru');
     }
   }
 
@@ -21,8 +18,6 @@ enum AppLocale {
     switch (this) {
       case AppLocale.en:
         return le.getFlagEmoji(languageCode: 'en');
-      case AppLocale.ru:
-        return le.getFlagEmoji(languageCode: 'ru');
     }
   }
 
@@ -30,8 +25,6 @@ enum AppLocale {
     switch (this) {
       case AppLocale.en:
         return context.localizations.english;
-      case AppLocale.ru:
-        return context.localizations.russian;
     }
   }
 }

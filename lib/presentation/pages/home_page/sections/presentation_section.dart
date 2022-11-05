@@ -10,10 +10,11 @@ class _PresentationSection extends StatelessWidget {
         ? CrossAxisAlignment.center
         : CrossAxisAlignment.start;
 
-    return Align(
-      child: Container(
+    return Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.symmetric(horizontal: 26),
+      child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1270),
-        padding: const EdgeInsets.symmetric(horizontal: 26),
         child: Column(
           crossAxisAlignment: crossAxisAlignment,
           children: [
@@ -63,23 +64,23 @@ class _PresentationSection extends StatelessWidget {
 class _RevelantInfoSection extends StatelessWidget {
   const _RevelantInfoSection({Key? key}) : super(key: key);
 
-  static final info = [
-    "MultiMeta Universe video presentation",
-    "Profitability Programs",
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: context.screenWidth < 780
           ? MainAxisAlignment.center
           : MainAxisAlignment.start,
-      children: info
-          .map((info) => _InfoCard(
-                title: info,
-                onTap: () {},
-              ))
-          .toList(),
+      children: [
+        _InfoCard(
+          title: context.localizations.auroraVideoPresentation,
+          onTap: () {},
+        ),
+        const SizedBox(width: 12),
+        _InfoCard(
+          title: context.localizations.profitibalityPrograms,
+          onTap: () {},
+        ),
+      ],
     );
   }
 }
@@ -97,10 +98,7 @@ class _InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(right: 12),
-      constraints: BoxConstraints(
-        maxWidth: context.screenWidth * 0.28,
-      ),
+      constraints: BoxConstraints(maxWidth: context.screenWidth * 0.28),
       child: Hover(builder: (_) {
         return WebButton(
           onTap: onTap,
