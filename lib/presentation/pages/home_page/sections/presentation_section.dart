@@ -1,9 +1,7 @@
 part of '../home_page.dart';
 
 class _PresentationSection extends StatelessWidget {
-  const _PresentationSection({
-    Key? key,
-  }) : super(key: key);
+  const _PresentationSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,62 +11,58 @@ class _PresentationSection extends StatelessWidget {
         : CrossAxisAlignment.start;
 
     return Container(
-      constraints: const BoxConstraints(maxWidth: 1270),
+      alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(horizontal: 26),
-      child: Column(
-        crossAxisAlignment: crossAxisAlignment,
-        children: [
-          Text(
-            context.localizations.multiMetaUniverse,
-            textAlign: textAlign,
-            style: context.text.multiMetaUniverseTitle,
-          ),
-          GradientText(
-            text: context.localizations.metaverseThatUnites,
-            textAlign: textAlign,
-          ),
-          const SizedBox(height: 16),
-          Text(
-            context.localizations.profitToPartners,
-            textAlign: textAlign,
-            style: context.text.profitToPartnersTitle,
-          ),
-          Text(
-            context.localizations.leadershipBonuses,
-            textAlign: textAlign,
-            style: context.text.leadershipBonusesTitle,
-          ),
-          Text(
-            context.localizations.fromFiftyDollars,
-            textAlign: textAlign,
-            style: context.text.fromFiftyDollarsTitle,
-          ),
-          const SizedBox(height: 36),
-          Text(
-            context.localizations.revelantInfo,
-            textAlign: textAlign,
-            style: context.text.revelantInfoTitle,
-          ),
-          const SizedBox(height: 6),
-          const _RevelantInfoSection(),
-          const SizedBox(height: 10),
-          GradientButton(title: context.localizations.startNow, onTap: () {}),
-          const SizedBox(height: 50),
-        ],
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1270),
+        child: Column(
+          crossAxisAlignment: crossAxisAlignment,
+          children: [
+            Text(
+              context.localizations.auroraUniverse,
+              textAlign: textAlign,
+              style: context.text.multiMetaUniverseTitle,
+            ),
+            GradientText(
+              text: context.localizations.metaverseThatUnites,
+              textAlign: textAlign,
+            ),
+            const SizedBox(height: 16),
+            Text(
+              context.localizations.profitToPartners,
+              textAlign: textAlign,
+              style: context.text.profitToPartnersTitle,
+            ),
+            Text(
+              context.localizations.leadershipBonuses,
+              textAlign: textAlign,
+              style: context.text.leadershipBonusesTitle,
+            ),
+            Text(
+              context.localizations.fromFiftyDollars,
+              textAlign: textAlign,
+              style: context.text.fromFiftyDollarsTitle,
+            ),
+            const SizedBox(height: 36),
+            Text(
+              context.localizations.revelantInfo,
+              textAlign: textAlign,
+              style: context.text.revelantInfoTitle,
+            ),
+            const SizedBox(height: 6),
+            const _RevelantInfoSection(),
+            const SizedBox(height: 10),
+            GradientButton(title: context.localizations.startNow, onTap: () {}),
+            const SizedBox(height: 50),
+          ],
+        ),
       ),
     );
   }
 }
 
 class _RevelantInfoSection extends StatelessWidget {
-  const _RevelantInfoSection({
-    Key? key,
-  }) : super(key: key);
-
-  static final info = [
-    "MultiMeta Universe video presentation",
-    "Profitability Programs",
-  ];
+  const _RevelantInfoSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,12 +70,17 @@ class _RevelantInfoSection extends StatelessWidget {
       mainAxisAlignment: context.screenWidth < 780
           ? MainAxisAlignment.center
           : MainAxisAlignment.start,
-      children: info
-          .map((info) => _InfoCard(
-                title: info,
-                onTap: () {},
-              ))
-          .toList(),
+      children: [
+        _InfoCard(
+          title: context.localizations.auroraVideoPresentation,
+          onTap: () {},
+        ),
+        const SizedBox(width: 12),
+        _InfoCard(
+          title: context.localizations.profitibalityPrograms,
+          onTap: () {},
+        ),
+      ],
     );
   }
 }
@@ -99,10 +98,7 @@ class _InfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 6),
-      constraints: BoxConstraints(
-        maxWidth: context.screenWidth * 0.28,
-      ),
+      constraints: BoxConstraints(maxWidth: context.screenWidth * 0.28),
       child: Hover(builder: (_) {
         return WebButton(
           onTap: onTap,

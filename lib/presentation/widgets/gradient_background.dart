@@ -15,7 +15,7 @@ class GradientBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        gradient: gradient ?? context.gradient.lightPurple,
+        gradient: gradient ?? context.gradient.lightIndigoTurquoise,
       ),
       child: child,
     );

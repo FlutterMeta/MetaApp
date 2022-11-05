@@ -46,7 +46,7 @@ class _FooterNavigation extends StatelessWidget {
         runSpacing: 40,
         children: [
           _NavTab(
-            title: context.localizations.multimeta,
+            title: context.localizations.aurora,
             links: _multimetaLinks(context),
           ),
           _NavTab(
@@ -113,9 +113,7 @@ class _NavTabLinkState extends State<_NavTabLink> {
   bool _isHovered = false;
 
   void _onHover() {
-    setState(() {
-      _isHovered = !_isHovered;
-    });
+    setState(() => _isHovered = !_isHovered);
   }
 
   @override

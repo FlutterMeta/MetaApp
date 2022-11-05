@@ -100,6 +100,7 @@ class _FaqItemState extends State<_FaqItem> {
             collapseIcon: Icons.arrow_downward,
             expandIcon: Icons.arrow_forward,
             iconRotationAngle: pi / 2,
+            useInkWell: false,
           ),
           header: Text(
             widget.question,

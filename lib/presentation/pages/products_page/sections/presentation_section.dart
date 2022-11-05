@@ -20,7 +20,7 @@ class _PresentationSection extends StatelessWidget {
                 children: [
                   const SizedBox(height: 100),
                   Text(
-                    context.localizations.metaPartnersInTerms,
+                    context.localizations.auroraPartnersInTerms,
                     style: context.text.productsHeadline,
                   ),
                   const SizedBox(height: 16),

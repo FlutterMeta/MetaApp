@@ -28,7 +28,7 @@ class _InvestorsSection extends StatelessWidget {
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1270),
         child: Wrap(
-          spacing: 80,
+          spacing: 40,
           runSpacing: 16,
           children: _investors(context),
         ),
@@ -52,8 +52,9 @@ class _InvestorComponent extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 20),
       width: context.screenWidth < 780
-          ? context.screenWidth * 0.66
+          ? context.screenWidth * 0.88
           : context.screenWidth * 0.22,
+      constraints: const BoxConstraints(maxWidth: 350),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

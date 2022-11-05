@@ -90,7 +90,12 @@ class _IncomeSectionExpandedState extends State<_IncomeSectionExpanded> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: context.color.incomeSectionBackground,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(AppAssets.indigoBackground),
+          fit: BoxFit.fill,
+        ),
+      ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
       alignment: Alignment.center,
       child: ConstrainedBox(

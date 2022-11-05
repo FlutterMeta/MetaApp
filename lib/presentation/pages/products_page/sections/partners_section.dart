@@ -48,7 +48,7 @@ class _AdaptiveSectionHeadlines extends StatelessWidget {
     return [
       Expanded(
         child: Text(
-          context.localizations.metaPartners,
+          context.localizations.auroraPartners,
           style: context.text.productsPartnersSectionTitle,
         ),
       ),
@@ -65,7 +65,7 @@ class _AdaptiveSectionHeadlines extends StatelessWidget {
   List<Widget> _getHeadlines(BuildContext context) {
     return [
       Text(
-        context.localizations.metaPartners,
+        context.localizations.auroraPartners,
         style: context.text.productsPartnersSectionTitle,
       ),
       const SizedBox(height: 20),

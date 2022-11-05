@@ -23,7 +23,7 @@ class GradientButton extends StatelessWidget {
           constraints: const BoxConstraints(minWidth: 128),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
-            gradient: gradient ?? context.gradient.purple,
+            gradient: gradient ?? context.gradient.indigoTurquoiseReversed,
           ),
           padding: const EdgeInsets.symmetric(
             vertical: 10,

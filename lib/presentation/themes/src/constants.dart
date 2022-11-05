@@ -32,6 +32,8 @@ abstract class AppColors {
   static const whitePurple = Color(0xFFF5F2FC);
 
   static const indigo = Color(0xFF3F51B5);
+  static const lightIndigo = Color(0xff6E58FC);
+  static const lighterIndigo = Color(0xFF9E8FFD);
   static const darkIndigo = Color(0xFF2E3A59);
   static const turquoise = Color(0xFF00AEC4);
 }

@@ -8,7 +8,7 @@ class _WelcomeSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 100),
       decoration: BoxDecoration(
-        gradient: context.gradient.indigoTurquoise,
+        gradient: context.gradient.indigoTurquoiseDiagonal,
       ),
       alignment: Alignment.center,
       child: ConstrainedBox(
