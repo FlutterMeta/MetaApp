@@ -35,6 +35,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color postShadow;
   final Color postBackground;
   final Color promotionSectionCardBackground;
+  final Color homeAskButtonBorder;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -110,6 +111,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? postShadow,
     Color? postBackground,
     Color? promotionSectionCardBackground,
+    Color? homeAskButtonBorder,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -160,6 +162,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       postBackground: postBackground ?? this.postBackground,
       promotionSectionCardBackground:
           promotionSectionCardBackground ?? this.promotionSectionCardBackground,
+      homeAskButtonBorder: homeAskButtonBorder ?? this.homeAskButtonBorder,
     );
   }
 
@@ -240,6 +243,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       postBackground: Color.lerp(postBackground, other.postBackground, t)!,
       promotionSectionCardBackground: Color.lerp(promotionSectionCardBackground,
           other.promotionSectionCardBackground, t)!,
+      homeAskButtonBorder:
+          Color.lerp(homeAskButtonBorder, other.homeAskButtonBorder, t)!,
     );
   }
 
@@ -278,6 +283,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         postShadow: AppColors.black.withOpacity(0.1),
         postBackground: AppColors.white,
         promotionSectionCardBackground: AppColors.white,
+        homeAskButtonBorder: AppColors.indigo,
       );
 
   static get dark => ThemeColors(
@@ -315,5 +321,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         postShadow: AppColors.black.withOpacity(0.2),
         postBackground: AppColors.white,
         promotionSectionCardBackground: AppColors.white,
+        homeAskButtonBorder: AppColors.indigo,
       );
 }
