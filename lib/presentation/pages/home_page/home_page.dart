@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
@@ -53,6 +54,8 @@ class HomePage extends StatelessWidget {
           ),
           const SliverSizedBox(height: 50),
           const SliverSizedBox(child: _TrustedSection()),
+          const SliverSizedBox(height: 100),
+          const SliverSizedBox(child: _CardsSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: Footer()),
         ],

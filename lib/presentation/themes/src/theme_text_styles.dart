@@ -83,6 +83,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle promotionSectionCardTitle;
   final TextStyle promotionSectionCardSubtitle;
   final TextStyle promotionSectionCardText;
+  final TextStyle homeCardTitle;
+  final TextStyle homeCardSubtitle;
 
   ThemeTextStyles({
     required this.test,
@@ -167,6 +169,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.promotionSectionCardTitle,
     required this.promotionSectionCardSubtitle,
     required this.promotionSectionCardText,
+    required this.homeCardTitle,
+    required this.homeCardSubtitle,
   });
 
   @override
@@ -255,6 +259,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? promotionSectionCardTitle,
     TextStyle? promotionSectionCardSubtitle,
     TextStyle? promotionSectionCardText,
+    TextStyle? homeCardTitle,
+    TextStyle? homeCardSubtitle,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -383,6 +389,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           promotionSectionCardSubtitle ?? this.promotionSectionCardSubtitle,
       promotionSectionCardText:
           promotionSectionCardText ?? this.promotionSectionCardText,
+      homeCardSubtitle: homeCardSubtitle ?? this.homeCardSubtitle,
+      homeCardTitle: homeCardTitle ?? this.homeCardTitle,
     );
   }
 
@@ -562,6 +570,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           promotionSectionCardSubtitle, other.promotionSectionCardSubtitle, t)!,
       promotionSectionCardText: TextStyle.lerp(
           promotionSectionCardText, other.promotionSectionCardText, t)!,
+      homeCardSubtitle:
+          TextStyle.lerp(homeCardSubtitle, other.homeCardSubtitle, t)!,
+      homeCardTitle: TextStyle.lerp(homeCardTitle, other.homeCardTitle, t)!,
     );
   }
 
@@ -881,6 +892,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         promotionSectionCardText: headline3.copyWith(
           color: AppColors.indigo,
         ),
+        homeCardSubtitle: headline1.copyWith(
+          fontSize: 18,
+          color: AppColors.indigo,
+        ),
+        homeCardTitle: headline1.copyWith(
+          fontSize: 40,
+          color: AppColors.indigo,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1197,6 +1216,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.lighterBlack,
         ),
         promotionSectionCardText: headline3.copyWith(
+          color: AppColors.indigo,
+        ),
+        homeCardSubtitle: headline1.copyWith(
+          fontSize: 18,
+          color: AppColors.indigo,
+        ),
+        homeCardTitle: headline1.copyWith(
+          fontSize: 40,
           color: AppColors.indigo,
         ),
       );
