@@ -34,6 +34,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color partnerButtonBorder;
   final Color postShadow;
   final Color postBackground;
+  final Color promotionSectionCardBackground;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -69,6 +70,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.partnerButtonBorder,
     required this.postShadow,
     required this.postBackground,
+    required this.promotionSectionCardBackground,
   });
 
   @override
@@ -107,6 +109,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? partnerButtonBorder,
     Color? postShadow,
     Color? postBackground,
+    Color? promotionSectionCardBackground,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -155,6 +158,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       partnerButtonBorder: partnerButtonBorder ?? this.partnerButtonBorder,
       postShadow: postShadow ?? this.postShadow,
       postBackground: postBackground ?? this.postBackground,
+      promotionSectionCardBackground:
+          promotionSectionCardBackground ?? this.promotionSectionCardBackground,
     );
   }
 
@@ -233,6 +238,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(partnerButtonBorder, other.partnerButtonBorder, t)!,
       postShadow: Color.lerp(postShadow, other.postShadow, t)!,
       postBackground: Color.lerp(postBackground, other.postBackground, t)!,
+      promotionSectionCardBackground: Color.lerp(promotionSectionCardBackground,
+          other.promotionSectionCardBackground, t)!,
     );
   }
 
@@ -270,6 +277,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         partnerButtonBorder: AppColors.white,
         postShadow: AppColors.black.withOpacity(0.1),
         postBackground: AppColors.white,
+        promotionSectionCardBackground: AppColors.white,
       );
 
   static get dark => ThemeColors(
@@ -306,5 +314,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         partnerButtonBorder: AppColors.white,
         postShadow: AppColors.black.withOpacity(0.2),
         postBackground: AppColors.white,
+        promotionSectionCardBackground: AppColors.white,
       );
 }

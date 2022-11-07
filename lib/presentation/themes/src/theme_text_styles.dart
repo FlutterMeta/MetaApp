@@ -78,6 +78,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle partnerButton;
   final TextStyle blogPostLink;
   final TextStyle blogPostLinkHovered;
+  final TextStyle promotionSectionTitle;
+  final TextStyle promotionSectionText;
+  final TextStyle promotionSectionCardTitle;
+  final TextStyle promotionSectionCardSubtitle;
+  final TextStyle promotionSectionCardText;
 
   ThemeTextStyles({
     required this.test,
@@ -157,6 +162,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.partnerButton,
     required this.blogPostLink,
     required this.blogPostLinkHovered,
+    required this.promotionSectionTitle,
+    required this.promotionSectionText,
+    required this.promotionSectionCardTitle,
+    required this.promotionSectionCardSubtitle,
+    required this.promotionSectionCardText,
   });
 
   @override
@@ -240,6 +250,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? partnerButton,
     TextStyle? blogPostLink,
     TextStyle? blogPostLinkHovered,
+    TextStyle? promotionSectionTitle,
+    TextStyle? promotionSectionText,
+    TextStyle? promotionSectionCardTitle,
+    TextStyle? promotionSectionCardSubtitle,
+    TextStyle? promotionSectionCardText,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -360,6 +375,15 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       partnerButton: partnerButton ?? this.partnerButton,
       blogPostLink: blogPostLink ?? this.blogPostLink,
       blogPostLinkHovered: blogPostLinkHovered ?? this.blogPostLinkHovered,
+      promotionSectionTitle:
+          promotionSectionTitle ?? this.promotionSectionTitle,
+      promotionSectionText: promotionSectionText ?? this.promotionSectionText,
+      promotionSectionCardTitle:
+          promotionSectionCardTitle ?? this.promotionSectionCardTitle,
+      promotionSectionCardSubtitle:
+          promotionSectionCardSubtitle ?? this.promotionSectionCardSubtitle,
+      promotionSectionCardText:
+          promotionSectionCardText ?? this.promotionSectionCardText,
     );
   }
 
@@ -531,6 +555,16 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       blogPostLink: TextStyle.lerp(blogPostLink, other.blogPostLink, t)!,
       blogPostLinkHovered:
           TextStyle.lerp(blogPostLinkHovered, other.blogPostLinkHovered, t)!,
+      promotionSectionTitle: TextStyle.lerp(
+          promotionSectionTitle, other.promotionSectionTitle, t)!,
+      promotionSectionText:
+          TextStyle.lerp(promotionSectionText, other.promotionSectionText, t)!,
+      promotionSectionCardTitle: TextStyle.lerp(
+          promotionSectionCardTitle, other.promotionSectionCardTitle, t)!,
+      promotionSectionCardSubtitle: TextStyle.lerp(
+          promotionSectionCardSubtitle, other.promotionSectionCardSubtitle, t)!,
+      promotionSectionCardText: TextStyle.lerp(
+          promotionSectionCardText, other.promotionSectionCardText, t)!,
     );
   }
 
@@ -834,6 +868,22 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 14,
           color: AppColors.darkIndigo,
         ),
+        promotionSectionTitle:
+            headline1.copyWith(fontSize: 54, color: AppColors.lighterBlack),
+        promotionSectionText: headline3.copyWith(
+          color: AppColors.darkestGrey,
+        ),
+        promotionSectionCardTitle: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.darkestGrey,
+        ),
+        promotionSectionCardSubtitle: headline1.copyWith(
+          fontSize: 26,
+          color: AppColors.lighterBlack,
+        ),
+        promotionSectionCardText: headline3.copyWith(
+          color: AppColors.indigo,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1135,6 +1185,22 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         blogPostLinkHovered: headline3.copyWith(
           fontSize: 14,
           color: AppColors.darkIndigo,
+        ),
+        promotionSectionTitle:
+            headline1.copyWith(fontSize: 54, color: AppColors.lighterBlack),
+        promotionSectionText: headline3.copyWith(
+          color: AppColors.darkestGrey,
+        ),
+        promotionSectionCardTitle: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.darkestGrey,
+        ),
+        promotionSectionCardSubtitle: headline1.copyWith(
+          fontSize: 26,
+          color: AppColors.lighterBlack,
+        ),
+        promotionSectionCardText: headline3.copyWith(
+          color: AppColors.indigo,
         ),
       );
 }
