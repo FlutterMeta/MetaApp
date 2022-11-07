@@ -26,7 +26,7 @@ class _CardsSection extends StatelessWidget {
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1270),
         child: Wrap(
-          spacing: 20,
+          spacing: 30,
           runSpacing: 20,
           children: _cards(context),
         ),
