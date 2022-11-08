@@ -54,8 +54,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle productsSubHeadline;
   final TextStyle productsInvestorSectionTitle;
   final TextStyle productsInvestorSectionDescription;
-  final TextStyle productsGradientSectionTitle;
-  final TextStyle productsGradientSectionDescription;
+  final TextStyle trustedSectionTitle;
+  final TextStyle trustedSectionDescription;
   final TextStyle productsFaqSectionItemText;
   final TextStyle productsFaqSectionTitle;
   final TextStyle productsComponentsSectionTitle;
@@ -138,8 +138,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.productsSubHeadline,
     required this.productsInvestorSectionTitle,
     required this.productsInvestorSectionDescription,
-    required this.productsGradientSectionTitle,
-    required this.productsGradientSectionDescription,
+    required this.trustedSectionTitle,
+    required this.trustedSectionDescription,
     required this.productsFaqSectionItemText,
     required this.productsFaqSectionTitle,
     required this.productsComponentsSectionTitle,
@@ -336,10 +336,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           productsInvestorSectionTitle ?? this.productsInvestorSectionTitle,
       productsInvestorSectionDescription: productsInvestorSectionDescription ??
           this.productsInvestorSectionDescription,
-      productsGradientSectionTitle:
-          productsGradientSectionTitle ?? this.productsGradientSectionTitle,
-      productsGradientSectionDescription: productsGradientSectionDescription ??
-          this.productsGradientSectionDescription,
+      trustedSectionTitle:
+          productsGradientSectionTitle ?? this.trustedSectionTitle,
+      trustedSectionDescription:
+          productsGradientSectionDescription ?? this.trustedSectionDescription,
       productsFaqSectionItemText:
           productsFaqSectionItemText ?? this.productsFaqSectionItemText,
       productsFaqSectionTitle:
@@ -497,12 +497,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           productsInvestorSectionDescription,
           other.productsInvestorSectionDescription,
           t)!,
-      productsGradientSectionTitle: TextStyle.lerp(
-          productsGradientSectionTitle, other.productsGradientSectionTitle, t)!,
-      productsGradientSectionDescription: TextStyle.lerp(
-          productsGradientSectionDescription,
-          other.productsGradientSectionDescription,
-          t)!,
+      trustedSectionTitle:
+          TextStyle.lerp(trustedSectionTitle, other.trustedSectionTitle, t)!,
+      trustedSectionDescription: TextStyle.lerp(
+          trustedSectionDescription, other.trustedSectionDescription, t)!,
       productsFaqSectionItemText: TextStyle.lerp(
           productsFaqSectionItemText, other.productsFaqSectionItemText, t)!,
       productsFaqSectionTitle: TextStyle.lerp(
@@ -748,13 +746,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           height: 1.4,
           color: AppColors.darkGrey,
         ),
-        productsGradientSectionTitle: headline3.copyWith(
+        trustedSectionTitle: headline3.copyWith(
           fontSize: 56,
           height: 1.1,
           fontWeight: FontWeight.w500,
           color: AppColors.white,
         ),
-        productsGradientSectionDescription: headline3.copyWith(
+        trustedSectionDescription: headline3.copyWith(
           fontSize: 16,
           fontWeight: FontWeight.w400,
           letterSpacing: .3,
@@ -1066,13 +1064,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           height: 1.4,
           color: AppColors.darkGrey,
         ),
-        productsGradientSectionTitle: headline3.copyWith(
+        trustedSectionTitle: headline3.copyWith(
           fontSize: 56,
           height: 1.1,
           fontWeight: FontWeight.w500,
           color: AppColors.white,
         ),
-        productsGradientSectionDescription: headline3.copyWith(
+        trustedSectionDescription: headline3.copyWith(
           fontSize: 16,
           fontWeight: FontWeight.w400,
           letterSpacing: .3,
