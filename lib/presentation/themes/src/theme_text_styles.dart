@@ -275,7 +275,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? promotionSectionCardText,
     TextStyle? homeCardTitle,
     TextStyle? homeCardSubtitle,
-    TextStyle? homePartnershipCardChip,
+    TextStyle? homePartnershipChip,
     TextStyle? homePartnershipCardHeadline,
     TextStyle? homePartnershipCardLink,
     TextStyle? homeAskButtonText,
@@ -412,7 +412,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           promotionSectionCardText ?? this.promotionSectionCardText,
       homeCardSubtitle: homeCardSubtitle ?? this.homeCardSubtitle,
       homeCardTitle: homeCardTitle ?? this.homeCardTitle,
-      homePartnershipChip: homePartnershipCardChip ?? this.homePartnershipChip,
+      homePartnershipChip: homePartnershipChip ?? this.homePartnershipChip,
       homePartnershipCardHeadline:
           homePartnershipCardHeadline ?? this.homePartnershipCardHeadline,
       homePartnershipCardLink:
