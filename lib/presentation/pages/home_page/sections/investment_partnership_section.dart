@@ -1,7 +1,7 @@
 part of '../home_page.dart';
 
 class _InvestmentPartnershipSection extends StatelessWidget {
-  const _InvestmentPartnershipSection({super.key});
+  const _InvestmentPartnershipSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +22,7 @@ class _InvestmentPartnershipSection extends StatelessWidget {
 }
 
 class _InvestmentCard extends StatelessWidget {
-  const _InvestmentCard({super.key});
-
-  List<Widget> _chips(BuildContext context) {
-    return [
-      _InvestmentCardChip(text: context.localizations.nftMarketplace),
-      _InvestmentCardChip(text: context.localizations.technology),
-      _InvestmentCardChip(text: context.localizations.metaverse),
-      _InvestmentCardChip(text: context.localizations.finance),
-    ];
-  }
+  const _InvestmentCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +32,6 @@ class _InvestmentCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: context.gradient.indigoTurquoiseDiagonal,
         borderRadius: const BorderRadius.all(Radius.circular(20)),
-        color: Colors.black,
       ),
       padding: const EdgeInsets.all(30),
       child: Column(
@@ -53,8 +43,8 @@ class _InvestmentCard extends StatelessWidget {
             children: _chips(context),
           ),
           const SizedBox(height: 20),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 390),
+          SizedBox(
+            width: 390,
             child: AutoSizeText(
               context.localizations.tradePopularNFT,
               style: context.text.homePartnershipCardHeadline,
@@ -70,11 +60,14 @@ class _InvestmentCard extends StatelessWidget {
                 context.localizations.nftMarketplace,
                 style: context.text.homePartnershipCardLink,
               ),
-              const Icon(Icons.arrow_right_alt_sharp, color: Colors.white),
+              Icon(
+                Icons.arrow_right_alt_sharp,
+                color: context.color.homeInvestmentSectionArrow,
+              ),
             ],
           ),
           const Spacer(),
-          const Divider(color: Colors.white),
+          Divider(color: context.color.homeInvestmentSectionDivider),
           const SizedBox(height: 14),
           Text(
             context.localizations.readBlog,
@@ -86,25 +79,40 @@ class _InvestmentCard extends StatelessWidget {
             style: context.text.homePartnershipCardLink,
           ),
           const SizedBox(height: 14),
-          const Icon(Icons.arrow_right_alt_sharp, color: Colors.white),
+          Icon(
+            Icons.arrow_right_alt_sharp,
+            color: context.color.homeInvestmentSectionArrow,
+          ),
           const Spacer(),
         ],
       ),
     );
   }
+
+  List<Widget> _chips(BuildContext context) {
+    return [
+      _InvestmentChip(text: context.localizations.nftMarketplace),
+      _InvestmentChip(text: context.localizations.technology),
+      _InvestmentChip(text: context.localizations.metaverse),
+      _InvestmentChip(text: context.localizations.finance),
+    ];
+  }
 }
 
-class _InvestmentCardChip extends StatelessWidget {
+class _InvestmentChip extends StatelessWidget {
   final String text;
 
-  const _InvestmentCardChip({super.key, required this.text});
+  const _InvestmentChip({
+    required this.text,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(20)),
-        border: Border.all(color: Colors.white),
+        border: Border.all(color: context.color.homeInvestmentChipBorder),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -118,7 +126,7 @@ class _InvestmentCardChip extends StatelessWidget {
 }
 
 class _InvestmentInfo extends StatelessWidget {
-  const _InvestmentInfo({super.key});
+  const _InvestmentInfo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

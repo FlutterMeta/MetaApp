@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/pages/home_page/sections/video_section.dart';
 import 'package:meta_app/presentation/widgets/footer/footer.dart';
 import 'package:meta_app/presentation/widgets/gradient_button.dart';
@@ -55,13 +54,12 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          const SliverSizedBox(height: 50),
-          const SliverSizedBox(child: _TrustedSection()),
           const SliverSizedBox(height: 100),
           const SliverSizedBox(child: _InvestmentPartnershipSection()),
-          const SliverSizedBox(height: 100),
+          const SliverSizedBox(height: 114),
           const SliverSizedBox(child: _CardsSection()),
           const SliverSizedBox(height: 100),
+          const SliverSizedBox(child: _TrustedSection()),
           const SliverToBoxAdapter(child: Footer()),
         ],
       ),

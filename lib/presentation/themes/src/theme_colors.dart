@@ -36,6 +36,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color postBackground;
   final Color promotionSectionCardBackground;
   final Color homeAskButtonBorder;
+  final Color homeInvestmentSectionArrow;
+  final Color homeInvestmentSectionDivider;
+  final Color homeInvestmentChipBorder;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -73,6 +76,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.postBackground,
     required this.promotionSectionCardBackground,
     required this.homeAskButtonBorder,
+    required this.homeInvestmentSectionArrow,
+    required this.homeInvestmentSectionDivider,
+    required this.homeInvestmentChipBorder,
   });
 
   @override
@@ -113,6 +119,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? postBackground,
     Color? promotionSectionCardBackground,
     Color? homeAskButtonBorder,
+    Color? homeInvestmentSectionArrow,
+    Color? homeInvestmentSectionDivider,
+    Color? homeInvestmentChipBorder,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -164,6 +173,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       promotionSectionCardBackground:
           promotionSectionCardBackground ?? this.promotionSectionCardBackground,
       homeAskButtonBorder: homeAskButtonBorder ?? this.homeAskButtonBorder,
+      homeInvestmentSectionArrow:
+          homeInvestmentSectionArrow ?? this.homeInvestmentSectionArrow,
+      homeInvestmentSectionDivider:
+          homeInvestmentSectionDivider ?? this.homeInvestmentSectionDivider,
+      homeInvestmentChipBorder:
+          homeInvestmentChipBorder ?? this.homeInvestmentChipBorder,
     );
   }
 
@@ -246,6 +261,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           other.promotionSectionCardBackground, t)!,
       homeAskButtonBorder:
           Color.lerp(homeAskButtonBorder, other.homeAskButtonBorder, t)!,
+      homeInvestmentSectionArrow: Color.lerp(
+          homeInvestmentSectionArrow, other.homeInvestmentSectionArrow, t)!,
+      homeInvestmentSectionDivider: Color.lerp(
+          homeInvestmentSectionDivider, other.homeInvestmentSectionDivider, t)!,
+      homeInvestmentChipBorder: Color.lerp(
+          homeInvestmentChipBorder, other.homeInvestmentChipBorder, t)!,
     );
   }
 
@@ -285,6 +306,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         postBackground: AppColors.white,
         promotionSectionCardBackground: AppColors.white,
         homeAskButtonBorder: AppColors.indigo,
+        homeInvestmentSectionArrow: AppColors.white,
+        homeInvestmentSectionDivider: AppColors.white,
+        homeInvestmentChipBorder: AppColors.white,
       );
 
   static get dark => ThemeColors(
@@ -323,5 +347,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         postBackground: AppColors.white,
         promotionSectionCardBackground: AppColors.white,
         homeAskButtonBorder: AppColors.indigo,
+        homeInvestmentSectionArrow: AppColors.white,
+        homeInvestmentSectionDivider: AppColors.white,
+        homeInvestmentChipBorder: AppColors.white,
       );
 }
