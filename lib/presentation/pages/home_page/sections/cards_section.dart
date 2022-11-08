@@ -35,7 +35,7 @@ class _CardsSection extends StatelessWidget {
   }
 }
 
-class _Card extends StatefulWidget {
+class _Card extends StatelessWidget {
   final String title;
   final String subtitle;
 
@@ -45,11 +45,6 @@ class _Card extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
-  @override
-  State<_Card> createState() => _CardState();
-}
-
-class _CardState extends State<_Card> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -68,13 +63,13 @@ class _CardState extends State<_Card> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             AutoSizeText(
-              widget.subtitle,
+              subtitle,
               style: context.text.homeCardSubtitle,
               maxLines: 3,
             ),
             const SizedBox(height: 10),
             AutoSizeText(
-              widget.title,
+              title,
               style: context.text.homeCardTitle,
               maxLines: 3,
             ),
