@@ -3,6 +3,20 @@ part of '../home_page.dart';
 class _CardsSection extends StatelessWidget {
   const _CardsSection({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1270),
+        child: Wrap(
+          spacing: 30,
+          runSpacing: 20,
+          children: _cards(context),
+        ),
+      ),
+    );
+  }
+
   List<Widget> _cards(BuildContext context) {
     return [
       _Card(
@@ -18,20 +32,6 @@ class _CardsSection extends StatelessWidget {
         subtitle: context.localizations.offersForNFT,
       ),
     ];
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1270),
-        child: Wrap(
-          spacing: 30,
-          runSpacing: 20,
-          children: _cards(context),
-        ),
-      ),
-    );
   }
 }
 
@@ -61,12 +61,12 @@ class _CardState extends State<_Card> {
         borderRadius: BorderRadius.circular(20),
       ),
       alignment: Alignment.centerLeft,
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 308),
+      child: SizedBox(
+        width: 308,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            const Spacer(),
             AutoSizeText(
               widget.subtitle,
               style: context.text.homeCardSubtitle,

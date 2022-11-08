@@ -13,6 +13,7 @@ import 'package:meta_app/presentation/widgets/web_button.dart';
 
 part 'sections/presentation_section.dart';
 part 'sections/trusted_section.dart';
+part 'sections/cards_section.dart';
 
 class HomePage extends StatelessWidget {
   final _headerKey = GlobalKey();
