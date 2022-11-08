@@ -14,6 +14,7 @@ import 'package:meta_app/presentation/widgets/web_button.dart';
 part 'sections/presentation_section.dart';
 part 'sections/trusted_section.dart';
 part 'sections/cards_section.dart';
+part 'sections/investment_partnership_section.dart';
 
 class HomePage extends StatelessWidget {
   final _headerKey = GlobalKey();
@@ -53,11 +54,12 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          const SliverSizedBox(height: 50),
-          const SliverSizedBox(child: _TrustedSection()),
           const SliverSizedBox(height: 100),
+          const SliverSizedBox(child: _InvestmentPartnershipSection()),
+          const SliverSizedBox(height: 114),
           const SliverSizedBox(child: _CardsSection()),
           const SliverSizedBox(height: 100),
+          const SliverSizedBox(child: _TrustedSection()),
           const SliverToBoxAdapter(child: Footer()),
         ],
       ),

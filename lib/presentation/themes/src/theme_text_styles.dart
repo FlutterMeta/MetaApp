@@ -85,6 +85,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle promotionSectionCardText;
   final TextStyle homeCardTitle;
   final TextStyle homeCardSubtitle;
+  final TextStyle homePartnershipChip;
+  final TextStyle homePartnershipCardHeadline;
+  final TextStyle homePartnershipCardLink;
+  final TextStyle homePartnershipInfoPurpleTitle;
+  final TextStyle homePartnershipInfoHeadline;
+  final TextStyle homePartnershipInfoDescription;
+  final TextStyle homeAskButtonText;
 
   ThemeTextStyles({
     required this.test,
@@ -171,6 +178,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.promotionSectionCardText,
     required this.homeCardTitle,
     required this.homeCardSubtitle,
+    required this.homePartnershipChip,
+    required this.homePartnershipCardHeadline,
+    required this.homePartnershipCardLink,
+    required this.homeAskButtonText,
+    required this.homePartnershipInfoDescription,
+    required this.homePartnershipInfoHeadline,
+    required this.homePartnershipInfoPurpleTitle,
   });
 
   @override
@@ -261,6 +275,13 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? promotionSectionCardText,
     TextStyle? homeCardTitle,
     TextStyle? homeCardSubtitle,
+    TextStyle? homePartnershipChip,
+    TextStyle? homePartnershipCardHeadline,
+    TextStyle? homePartnershipCardLink,
+    TextStyle? homeAskButtonText,
+    TextStyle? homePartnershipInfoHeadline,
+    TextStyle? homePartnershipInfoDescription,
+    TextStyle? homePartnershipInfoPurpleTitle,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -391,6 +412,18 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           promotionSectionCardText ?? this.promotionSectionCardText,
       homeCardSubtitle: homeCardSubtitle ?? this.homeCardSubtitle,
       homeCardTitle: homeCardTitle ?? this.homeCardTitle,
+      homePartnershipChip: homePartnershipChip ?? this.homePartnershipChip,
+      homePartnershipCardHeadline:
+          homePartnershipCardHeadline ?? this.homePartnershipCardHeadline,
+      homePartnershipCardLink:
+          homePartnershipCardLink ?? this.homePartnershipCardLink,
+      homeAskButtonText: homeAskButtonText ?? this.homeAskButtonText,
+      homePartnershipInfoDescription:
+          homePartnershipInfoDescription ?? this.homePartnershipInfoDescription,
+      homePartnershipInfoHeadline:
+          homePartnershipInfoHeadline ?? this.homePartnershipInfoHeadline,
+      homePartnershipInfoPurpleTitle:
+          homePartnershipInfoPurpleTitle ?? this.homePartnershipInfoPurpleTitle,
     );
   }
 
@@ -573,6 +606,24 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       homeCardSubtitle:
           TextStyle.lerp(homeCardSubtitle, other.homeCardSubtitle, t)!,
       homeCardTitle: TextStyle.lerp(homeCardTitle, other.homeCardTitle, t)!,
+      homePartnershipChip:
+          TextStyle.lerp(homePartnershipChip, other.homePartnershipChip, t)!,
+      homePartnershipCardHeadline: TextStyle.lerp(
+          homePartnershipCardHeadline, other.homePartnershipCardHeadline, t)!,
+      homePartnershipCardLink: TextStyle.lerp(
+          homePartnershipCardLink, other.homePartnershipCardLink, t)!,
+      homeAskButtonText:
+          TextStyle.lerp(homeAskButtonText, other.homeAskButtonText, t)!,
+      homePartnershipInfoDescription: TextStyle.lerp(
+          homePartnershipInfoDescription,
+          other.homePartnershipInfoDescription,
+          t)!,
+      homePartnershipInfoHeadline: TextStyle.lerp(
+          homePartnershipInfoHeadline, other.homePartnershipInfoHeadline, t)!,
+      homePartnershipInfoPurpleTitle: TextStyle.lerp(
+          homePartnershipInfoPurpleTitle,
+          other.homePartnershipInfoPurpleTitle,
+          t)!,
     );
   }
 
@@ -900,6 +951,36 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 40,
           color: AppColors.indigo,
         ),
+        homePartnershipChip: headline3.copyWith(
+          fontSize: 13,
+          color: AppColors.white,
+        ),
+        homePartnershipCardHeadline: headline1.copyWith(
+          fontSize: 34,
+          color: AppColors.white,
+        ),
+        homePartnershipCardLink: headline1.copyWith(
+          fontSize: 15,
+          color: AppColors.white,
+        ),
+        homeAskButtonText: headline1.copyWith(
+          fontSize: 14,
+          color: AppColors.indigo,
+        ),
+        homePartnershipInfoDescription: headline1.copyWith(
+          fontSize: 16,
+          color: AppColors.darkGrey,
+          height: 1.16,
+          letterSpacing: .3,
+        ),
+        homePartnershipInfoHeadline: headline1.copyWith(
+          fontSize: 53,
+          color: AppColors.darkBlue,
+        ),
+        homePartnershipInfoPurpleTitle: headline1.copyWith(
+          fontSize: 16,
+          color: AppColors.indigo,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1224,6 +1305,36 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         homeCardTitle: headline1.copyWith(
           fontSize: 40,
+          color: AppColors.indigo,
+        ),
+        homePartnershipChip: headline3.copyWith(
+          fontSize: 13,
+          color: AppColors.white,
+        ),
+        homePartnershipCardHeadline: headline1.copyWith(
+          fontSize: 34,
+          color: AppColors.white,
+        ),
+        homePartnershipCardLink: headline1.copyWith(
+          fontSize: 15,
+          color: AppColors.white,
+        ),
+        homeAskButtonText: headline1.copyWith(
+          fontSize: 14,
+          color: AppColors.indigo,
+        ),
+        homePartnershipInfoDescription: headline1.copyWith(
+          fontSize: 16,
+          color: AppColors.darkGrey,
+          height: 1.16,
+          letterSpacing: .3,
+        ),
+        homePartnershipInfoHeadline: headline1.copyWith(
+          fontSize: 53,
+          color: AppColors.darkBlue,
+        ),
+        homePartnershipInfoPurpleTitle: headline1.copyWith(
+          fontSize: 16,
           color: AppColors.indigo,
         ),
       );
