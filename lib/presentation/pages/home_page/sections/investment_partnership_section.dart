@@ -118,7 +118,7 @@ class _InvestmentChip extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
         child: Text(
           text,
-          style: context.text.homePartnershipCardChip,
+          style: context.text.homePartnershipChip,
         ),
       ),
     );

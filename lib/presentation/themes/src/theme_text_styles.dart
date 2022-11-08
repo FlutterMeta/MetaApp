@@ -85,7 +85,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle promotionSectionCardText;
   final TextStyle homeCardTitle;
   final TextStyle homeCardSubtitle;
-  final TextStyle homePartnershipCardChip;
+  final TextStyle homePartnershipChip;
   final TextStyle homePartnershipCardHeadline;
   final TextStyle homePartnershipCardLink;
   final TextStyle homePartnershipInfoPurpleTitle;
@@ -178,7 +178,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.promotionSectionCardText,
     required this.homeCardTitle,
     required this.homeCardSubtitle,
-    required this.homePartnershipCardChip,
+    required this.homePartnershipChip,
     required this.homePartnershipCardHeadline,
     required this.homePartnershipCardLink,
     required this.homeAskButtonText,
@@ -412,8 +412,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           promotionSectionCardText ?? this.promotionSectionCardText,
       homeCardSubtitle: homeCardSubtitle ?? this.homeCardSubtitle,
       homeCardTitle: homeCardTitle ?? this.homeCardTitle,
-      homePartnershipCardChip:
-          homePartnershipCardChip ?? this.homePartnershipCardChip,
+      homePartnershipChip: homePartnershipCardChip ?? this.homePartnershipChip,
       homePartnershipCardHeadline:
           homePartnershipCardHeadline ?? this.homePartnershipCardHeadline,
       homePartnershipCardLink:
@@ -607,8 +606,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       homeCardSubtitle:
           TextStyle.lerp(homeCardSubtitle, other.homeCardSubtitle, t)!,
       homeCardTitle: TextStyle.lerp(homeCardTitle, other.homeCardTitle, t)!,
-      homePartnershipCardChip: TextStyle.lerp(
-          homePartnershipCardChip, other.homePartnershipCardChip, t)!,
+      homePartnershipChip:
+          TextStyle.lerp(homePartnershipChip, other.homePartnershipChip, t)!,
       homePartnershipCardHeadline: TextStyle.lerp(
           homePartnershipCardHeadline, other.homePartnershipCardHeadline, t)!,
       homePartnershipCardLink: TextStyle.lerp(
@@ -952,7 +951,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 40,
           color: AppColors.indigo,
         ),
-        homePartnershipCardChip: headline3.copyWith(
+        homePartnershipChip: headline3.copyWith(
           fontSize: 13,
           color: AppColors.white,
         ),
@@ -1308,7 +1307,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 40,
           color: AppColors.indigo,
         ),
-        homePartnershipCardChip: headline3.copyWith(
+        homePartnershipChip: headline3.copyWith(
           fontSize: 13,
           color: AppColors.white,
         ),
