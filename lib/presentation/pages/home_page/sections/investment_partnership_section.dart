@@ -31,7 +31,7 @@ class _InvestmentCard extends StatelessWidget {
       width: 600,
       decoration: BoxDecoration(
         gradient: context.gradient.indigoTurquoiseDiagonal,
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        borderRadius: BorderRadius.circular(20),
       ),
       padding: const EdgeInsets.all(30),
       child: Column(
@@ -111,7 +111,7 @@ class _InvestmentChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        borderRadius: BorderRadius.circular(20),
         border: Border.all(color: context.color.homeInvestmentChipBorder),
       ),
       child: Padding(
