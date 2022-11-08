@@ -226,8 +226,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? productsSubHeadline,
     TextStyle? productsInvestorSectionTitle,
     TextStyle? productsInvestorSectionDescription,
-    TextStyle? productsGradientSectionTitle,
-    TextStyle? productsGradientSectionDescription,
+    TextStyle? trustedSectionTitle,
+    TextStyle? trustedSectionDescription,
     TextStyle? productsFaqSectionItemText,
     TextStyle? productsFaqSectionTitle,
     TextStyle? productsComponentsSectionTitle,
@@ -336,10 +336,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           productsInvestorSectionTitle ?? this.productsInvestorSectionTitle,
       productsInvestorSectionDescription: productsInvestorSectionDescription ??
           this.productsInvestorSectionDescription,
-      trustedSectionTitle:
-          productsGradientSectionTitle ?? this.trustedSectionTitle,
+      trustedSectionTitle: trustedSectionTitle ?? this.trustedSectionTitle,
       trustedSectionDescription:
-          productsGradientSectionDescription ?? this.trustedSectionDescription,
+          trustedSectionDescription ?? this.trustedSectionDescription,
       productsFaqSectionItemText:
           productsFaqSectionItemText ?? this.productsFaqSectionItemText,
       productsFaqSectionTitle:
