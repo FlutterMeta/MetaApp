@@ -1,7 +1,7 @@
 part of '../products_page.dart';
 
-class _GradientSection extends StatelessWidget {
-  const _GradientSection({Key? key}) : super(key: key);
+class _TrustedSection extends StatelessWidget {
+  const _TrustedSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,24 +20,24 @@ class _GradientSection extends StatelessWidget {
       ),
     );
   }
-}
 
-List<Widget> _statsInfoBlocks(BuildContext context) {
-  return [
-    _InfoBlock(title: context.localizations.weAreTrusted),
-    _InfoBlock(
-      title: context.localizations.investmentPatrnersNumber,
-      description: context.localizations.investmentPatrners,
-    ),
-    _InfoBlock(
-      title: context.localizations.financialCapitalNumber,
-      description: context.localizations.financialCapital,
-    ),
-    _InfoBlock(
-      title: context.localizations.partnersAuroraNumber,
-      description: context.localizations.partnersAurora,
-    ),
-  ];
+  List<Widget> _statsInfoBlocks(BuildContext context) {
+    return [
+      _InfoBlock(title: context.localizations.weAreTrusted),
+      _InfoBlock(
+        title: context.localizations.investmentPatrnersNumber,
+        description: context.localizations.investmentPatrners,
+      ),
+      _InfoBlock(
+        title: context.localizations.financialCapitalNumber,
+        description: context.localizations.financialCapital,
+      ),
+      _InfoBlock(
+        title: context.localizations.partnersAuroraNumber,
+        description: context.localizations.partnersAurora,
+      ),
+    ];
+  }
 }
 
 class _InfoBlock extends StatelessWidget {
@@ -59,12 +59,12 @@ class _InfoBlock extends StatelessWidget {
         children: [
           Text(
             title,
-            style: context.text.productsGradientSectionTitle,
+            style: context.text.trustedSectionTitle,
           ),
           const SizedBox(height: 10),
           Text(
             description ?? "",
-            style: context.text.productsGradientSectionDescription,
+            style: context.text.trustedSectionDescription,
           ),
         ],
       ),

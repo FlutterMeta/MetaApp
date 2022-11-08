@@ -11,6 +11,7 @@ import 'package:meta_app/presentation/widgets/sliver_sized_box.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 
 part 'sections/presentation_section.dart';
+part 'sections/trusted_section.dart';
 
 class HomePage extends StatelessWidget {
   final _headerKey = GlobalKey();
@@ -50,6 +51,8 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
+          const SliverSizedBox(height: 50),
+          const SliverSizedBox(child: _TrustedSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: Footer()),
         ],

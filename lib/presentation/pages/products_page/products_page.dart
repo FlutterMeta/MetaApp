@@ -15,7 +15,7 @@ import 'package:meta_app/presentation/widgets/sliver_sized_box.dart';
 
 part 'sections/presentation_section.dart';
 part 'sections/investors_section.dart';
-part 'sections/gradient_section.dart';
+part 'sections/trusted_section.dart';
 part 'sections/components_section.dart';
 part 'sections/partners_section.dart';
 part 'sections/faq_section.dart';
@@ -54,7 +54,7 @@ class ProductsPage extends StatelessWidget {
           const SliverSizedBox(height: 20),
           const SliverSizedBox(child: _InvestorsSection()),
           const SliverSizedBox(height: 100),
-          const SliverToBoxAdapter(child: _GradientSection()),
+          const SliverToBoxAdapter(child: _TrustedSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: _ComponentsSection()),
           const SliverSizedBox(height: 100),
