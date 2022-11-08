@@ -20,7 +20,6 @@ class GradientButton extends StatelessWidget {
     return Hover(
       builder: (bool _) {
         return Container(
-          height: 40,
           constraints: const BoxConstraints(minWidth: 128),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
