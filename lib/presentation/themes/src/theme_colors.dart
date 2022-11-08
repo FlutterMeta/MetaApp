@@ -72,6 +72,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.postShadow,
     required this.postBackground,
     required this.promotionSectionCardBackground,
+    required this.homeAskButtonBorder,
   });
 
   @override
