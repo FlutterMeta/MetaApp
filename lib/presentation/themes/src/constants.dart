@@ -8,6 +8,8 @@ abstract class AppColors {
   static const black = Colors.black;
   static const transparent = Colors.transparent;
 
+  static const lighterBlack = Color(0xFF181925);
+
   static const white = Colors.white;
   static const brighterWhite = Color(0xFFFAFAFA);
   static const brightWhite = Color(0xFFEEEEEE);
@@ -17,6 +19,7 @@ abstract class AppColors {
   static const lightGrey = Color(0xFFF9F8FA);
   static const darkerGrey = Color(0xFFDDDDDD);
   static const lighterGrey = Color(0xFFF2F3F8);
+  static const darkestGrey = Color(0xFF5D5E67);
   static const darkGrey = Color(0xFF5D5E67);
 
   static const blue = Colors.blue;

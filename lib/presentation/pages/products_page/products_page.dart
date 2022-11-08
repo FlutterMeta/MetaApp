@@ -19,6 +19,7 @@ part 'sections/gradient_section.dart';
 part 'sections/components_section.dart';
 part 'sections/partners_section.dart';
 part 'sections/faq_section.dart';
+part 'sections/promotion_section.dart';
 
 class ProductsPage extends StatelessWidget {
   final _headerKey = GlobalKey();
@@ -60,7 +61,9 @@ class ProductsPage extends StatelessWidget {
           const SliverToBoxAdapter(child: _PartnersSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: _FaqSection()),
-          const SliverSizedBox(height: 100),
+          const SliverSizedBox(height: 60),
+          const SliverToBoxAdapter(child: _PromotionSection()),
+          const SliverSizedBox(height: 40),
           const SliverToBoxAdapter(child: Footer()),
         ],
       ),
