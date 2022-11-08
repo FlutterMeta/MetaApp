@@ -5,6 +5,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
   final Gradient indigoTurquoiseReversed;
   final Gradient indigoTurquoiseDiagonal;
   final Gradient lightIndigoTurquoise;
+  final Gradient lightIndigoTurquoiseVertical;
   final Gradient indigoVertical;
   final Gradient blackVertical;
 
@@ -15,6 +16,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     required this.lightIndigoTurquoise,
     required this.indigoVertical,
     required this.blackVertical,
+    required this.lightIndigoTurquoiseVertical,
   });
 
   @override
@@ -26,6 +28,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     Gradient? lightPurple,
     Gradient? indigoVertical,
     Gradient? blackVertical,
+    Gradient? lightIndigoTurquoiseVertical,
   }) {
     return ThemeGradients(
       indigoTurquoise: indigoTurquoise ?? this.indigoTurquoise,
@@ -36,6 +39,8 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
       indigoTurquoiseDiagonal:
           indigoTurquoiseDiagonal ?? this.indigoTurquoiseDiagonal,
       lightIndigoTurquoise: lightIndigoTurquoise ?? this.lightIndigoTurquoise,
+      lightIndigoTurquoiseVertical:
+          lightIndigoTurquoiseVertical ?? this.lightIndigoTurquoiseVertical,
     );
   }
 
@@ -62,6 +67,11 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           indigoTurquoiseDiagonal, other.indigoTurquoiseDiagonal, t)!,
       lightIndigoTurquoise:
           Gradient.lerp(lightIndigoTurquoise, other.lightIndigoTurquoise, t)!,
+      lightIndigoTurquoiseVertical: Gradient.lerp(
+        lightIndigoTurquoiseVertical,
+        other.lightIndigoTurquoiseVertical,
+        t,
+      )!,
     );
   }
 
@@ -100,6 +110,14 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           stops: const [0.01, 1],
           colors: [AppColors.black.withOpacity(0.84), AppColors.transparent],
         ),
+        lightIndigoTurquoiseVertical: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          colors: [
+            AppColors.lightIndigo.withOpacity(0.3),
+            AppColors.turquoise.withOpacity(0.1)
+          ],
+        ),
       );
 
   static get dark => ThemeGradients(
@@ -136,6 +154,14 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           end: Alignment.topCenter,
           stops: const [0.01, 1],
           colors: [AppColors.black.withOpacity(0.84), AppColors.transparent],
+        ),
+        lightIndigoTurquoiseVertical: LinearGradient(
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          colors: [
+            AppColors.lightIndigo.withOpacity(0.2),
+            AppColors.turquoise.withOpacity(0.1)
+          ],
         ),
       );
 }
