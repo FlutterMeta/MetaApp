@@ -5,8 +5,8 @@ class _PartnershipSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textAlign = context.screenWidth < 780 ? TextAlign.center : null;
-    final crossAxisAlignment = context.screenWidth < 780
+    final textAlign = context.screenWidth < 600 ? TextAlign.center : null;
+    final crossAxisAlignment = context.screenWidth < 600
         ? CrossAxisAlignment.center
         : CrossAxisAlignment.start;
 

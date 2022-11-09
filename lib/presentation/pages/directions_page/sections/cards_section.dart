@@ -7,13 +7,13 @@ class _CardsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: context.color.directionsCardsSectionBackground,
-      padding: const EdgeInsets.symmetric(vertical: 100),
+      padding: const EdgeInsets.symmetric(vertical: 100, horizontal: 20),
       alignment: Alignment.center,
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1270),
         child: Wrap(
-          runSpacing: 120,
-          spacing: 120,
+          runSpacing: 20,
+          spacing: 150,
           crossAxisAlignment: WrapCrossAlignment.center,
           children: const [
             _DirectionCards(),
