@@ -150,10 +150,11 @@ class _DirectionCard extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 36),
-          Text(
+          AutoSizeText(
             subtitle,
             style: context.text.directionCardDescription,
             textAlign: TextAlign.center,
+            maxLines: 3,
           ),
         ],
       ),
