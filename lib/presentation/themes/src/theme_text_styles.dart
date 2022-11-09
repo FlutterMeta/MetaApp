@@ -98,6 +98,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle revenueSectionNewsCardText;
   final TextStyle revenueSectionRateCard;
   final TextStyle revenueSectionRateCardHighlighted;
+  final TextStyle partnershipSubtitle;
+  final TextStyle partnershipTitle;
+  final TextStyle directionCardTitle;
+  final TextStyle directionCardDescription;
 
   ThemeTextStyles({
     required this.test,
@@ -197,6 +201,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.revenueSectionNewsCardText,
     required this.revenueSectionRateCard,
     required this.revenueSectionRateCardHighlighted,
+    required this.partnershipSubtitle,
+    required this.partnershipTitle,
+    required this.directionCardTitle,
+    required this.directionCardDescription,
   });
 
   @override
@@ -300,6 +308,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? revenueSectionNewsCardText,
     TextStyle? revenueSectionRateCard,
     TextStyle? revenueSectionRateCardHighlighted,
+    TextStyle? partnershipSubtitle,
+    TextStyle? partnershipTitle,
+    TextStyle? directionCardTitle,
+    TextStyle? directionCardDescription,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -453,6 +465,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           revenueSectionRateCard ?? this.revenueSectionRateCard,
       revenueSectionRateCardHighlighted: revenueSectionRateCardHighlighted ??
           this.revenueSectionRateCardHighlighted,
+      partnershipSubtitle: partnershipSubtitle ?? this.partnershipSubtitle,
+      partnershipTitle: partnershipTitle ?? this.partnershipTitle,
+      directionCardDescription:
+          directionCardDescription ?? this.directionCardDescription,
+      directionCardTitle: directionCardTitle ?? this.directionCardTitle,
     );
   }
 
@@ -667,6 +684,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           revenueSectionRateCardHighlighted,
           other.revenueSectionRateCardHighlighted,
           t)!,
+      partnershipSubtitle:
+          TextStyle.lerp(partnershipSubtitle, other.partnershipSubtitle, t)!,
+      partnershipTitle:
+          TextStyle.lerp(partnershipTitle, other.partnershipTitle, t)!,
+      directionCardDescription: TextStyle.lerp(
+          directionCardDescription, other.directionCardDescription, t)!,
+      directionCardTitle:
+          TextStyle.lerp(directionCardTitle, other.directionCardTitle, t)!,
     );
   }
 
@@ -1045,6 +1070,24 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         revenueSectionRateCardHighlighted: headline3.copyWith(
           color: AppColors.indigo,
         ),
+        partnershipSubtitle: headline3.copyWith(
+          color: AppColors.indigo,
+          fontWeight: FontWeight.w300,
+        ),
+        partnershipTitle: headline1.copyWith(
+          fontSize: 64,
+          height: 0.9,
+        ),
+        directionCardDescription: headline3.copyWith(
+          fontSize: 16,
+          color: AppColors.darkerBlueGrey,
+          height: 1.16,
+          letterSpacing: .3,
+        ),
+        directionCardTitle: headline1.copyWith(
+          fontSize: 21,
+          color: AppColors.darkBlue,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1421,6 +1464,24 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         revenueSectionRateCardHighlighted: headline3.copyWith(
           color: AppColors.indigo,
+        ),
+        partnershipSubtitle: headline3.copyWith(
+          color: AppColors.indigo,
+          fontWeight: FontWeight.w300,
+        ),
+        partnershipTitle: headline1.copyWith(
+          fontSize: 64,
+          height: 0.9,
+        ),
+        directionCardDescription: headline3.copyWith(
+          fontSize: 16,
+          color: AppColors.darkerBlueGrey,
+          height: 1.16,
+          letterSpacing: .3,
+        ),
+        directionCardTitle: headline1.copyWith(
+          fontSize: 21,
+          color: AppColors.darkBlue,
         ),
       );
 }
