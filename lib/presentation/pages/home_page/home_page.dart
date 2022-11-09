@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/core/utils/extensions/date_time_ext.dart';
 import 'package:meta_app/presentation/pages/home_page/sections/video_section.dart';
 import 'package:meta_app/presentation/widgets/footer/footer.dart';
 import 'package:meta_app/presentation/widgets/gradient_button.dart';
@@ -15,6 +16,7 @@ part 'sections/presentation_section.dart';
 part 'sections/trusted_section.dart';
 part 'sections/cards_section.dart';
 part 'sections/investment_partnership_section.dart';
+part 'sections/revenue_section.dart';
 
 class HomePage extends StatelessWidget {
   final _headerKey = GlobalKey();
@@ -60,6 +62,9 @@ class HomePage extends StatelessWidget {
           const SliverSizedBox(child: _CardsSection()),
           const SliverSizedBox(height: 100),
           const SliverSizedBox(child: _TrustedSection()),
+          const SliverSizedBox(height: 116),
+          const SliverSizedBox(child: _RevenueSection()),
+          const SliverSizedBox(height: 120),
           const SliverToBoxAdapter(child: Footer()),
         ],
       ),

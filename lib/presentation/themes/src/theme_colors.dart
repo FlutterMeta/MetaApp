@@ -39,6 +39,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color homeInvestmentSectionArrow;
   final Color homeInvestmentSectionDivider;
   final Color homeInvestmentChipBorder;
+  final Color revenueSectionDivider;
+  final Color revenueSectionRateCardBorder;
+  final Color revenueSectionArrowIcon;
+  final Color revenueSectionHoverColor;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -79,6 +83,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.homeInvestmentSectionArrow,
     required this.homeInvestmentSectionDivider,
     required this.homeInvestmentChipBorder,
+    required this.revenueSectionDivider,
+    required this.revenueSectionRateCardBorder,
+    required this.revenueSectionArrowIcon,
+    required this.revenueSectionHoverColor,
   });
 
   @override
@@ -122,6 +130,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? homeInvestmentSectionArrow,
     Color? homeInvestmentSectionDivider,
     Color? homeInvestmentChipBorder,
+    Color? revenueSectionDivider,
+    Color? revenueSectionRateCardBorder,
+    Color? revenueSectionArrowIcon,
+    Color? revenueSectionHoverColor,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -179,6 +191,14 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           homeInvestmentSectionDivider ?? this.homeInvestmentSectionDivider,
       homeInvestmentChipBorder:
           homeInvestmentChipBorder ?? this.homeInvestmentChipBorder,
+      revenueSectionDivider:
+          revenueSectionDivider ?? this.revenueSectionDivider,
+      revenueSectionRateCardBorder:
+          revenueSectionRateCardBorder ?? this.revenueSectionRateCardBorder,
+      revenueSectionArrowIcon:
+          revenueSectionArrowIcon ?? this.revenueSectionArrowIcon,
+      revenueSectionHoverColor:
+          revenueSectionHoverColor ?? this.revenueSectionHoverColor,
     );
   }
 
@@ -267,6 +287,14 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           homeInvestmentSectionDivider, other.homeInvestmentSectionDivider, t)!,
       homeInvestmentChipBorder: Color.lerp(
           homeInvestmentChipBorder, other.homeInvestmentChipBorder, t)!,
+      revenueSectionDivider:
+          Color.lerp(revenueSectionDivider, other.revenueSectionDivider, t)!,
+      revenueSectionRateCardBorder: Color.lerp(
+          revenueSectionRateCardBorder, other.revenueSectionRateCardBorder, t)!,
+      revenueSectionArrowIcon: Color.lerp(
+          revenueSectionArrowIcon, other.revenueSectionArrowIcon, t)!,
+      revenueSectionHoverColor: Color.lerp(
+          revenueSectionHoverColor, other.revenueSectionHoverColor, t)!,
     );
   }
 
@@ -309,6 +337,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         homeInvestmentSectionArrow: AppColors.white,
         homeInvestmentSectionDivider: AppColors.white,
         homeInvestmentChipBorder: AppColors.white,
+        revenueSectionDivider: AppColors.grey,
+        revenueSectionRateCardBorder: AppColors.grey,
+        revenueSectionArrowIcon: AppColors.lighterBlack,
+        revenueSectionHoverColor: AppColors.transparent,
       );
 
   static get dark => ThemeColors(
@@ -350,5 +382,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         homeInvestmentSectionArrow: AppColors.white,
         homeInvestmentSectionDivider: AppColors.white,
         homeInvestmentChipBorder: AppColors.white,
+        revenueSectionDivider: AppColors.grey,
+        revenueSectionRateCardBorder: AppColors.grey,
+        revenueSectionArrowIcon: AppColors.lighterBlack,
+        revenueSectionHoverColor: AppColors.transparent,
       );
 }
