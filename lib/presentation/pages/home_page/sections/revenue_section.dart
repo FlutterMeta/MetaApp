@@ -6,58 +6,56 @@ class _RevenueSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      child: ConstrainedBox(
+      child: Container(
         constraints: const BoxConstraints(maxWidth: 1270),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                context.localizations.revenueMarketing,
-                style: context.text.revenueSectionTitle,
-              ),
-              const SizedBox(height: 28),
-              Wrap(
-                spacing: 20,
-                runSpacing: 20,
-                alignment: WrapAlignment.spaceBetween,
-                children: [
-                  SizedBox(
-                    width: 560,
-                    child: _NewsSection(
-                      title: context.localizations.followAuroraNews,
-                      onTap: () {},
-                      news: [
-                        _News(
-                          date: DateTime(2022, 5, 28),
-                          text: context.localizations.bringingInterest,
-                        ),
-                        _News(
-                          date: DateTime(2022, 8, 28),
-                          text: context.localizations.firstOfTwelfInterest,
-                        ),
-                      ],
-                    ),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              context.localizations.revenueMarketing,
+              style: context.text.revenueSectionTitle,
+            ),
+            const SizedBox(height: 28),
+            Wrap(
+              spacing: 20,
+              runSpacing: 20,
+              alignment: WrapAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 560,
+                  child: _NewsSection(
+                    title: context.localizations.followAuroraNews,
+                    onTap: () {},
+                    news: [
+                      _News(
+                        date: DateTime(2022, 5, 28),
+                        text: context.localizations.bringingInterest,
+                      ),
+                      _News(
+                        date: DateTime(2022, 8, 28),
+                        text: context.localizations.firstOfTwelfInterest,
+                      ),
+                    ],
                   ),
-                  const _RateCard(),
-                  SizedBox(
-                    width: 280,
-                    child: _NewsSection(
-                      title: context.localizations.latestNewsInTelegram,
-                      onTap: () {},
-                      news: [
-                        _News(
-                          date: DateTime(2025, 5, 28),
-                          text: context.localizations.expirationOfAdvertising,
-                        ),
-                      ],
-                    ),
+                ),
+                const _RateCard(),
+                SizedBox(
+                  width: 280,
+                  child: _NewsSection(
+                    title: context.localizations.latestNewsInTelegram,
+                    onTap: () {},
+                    news: [
+                      _News(
+                        date: DateTime(2025, 5, 28),
+                        text: context.localizations.expirationOfAdvertising,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
