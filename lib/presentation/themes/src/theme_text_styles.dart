@@ -92,6 +92,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle homePartnershipInfoHeadline;
   final TextStyle homePartnershipInfoDescription;
   final TextStyle homeAskButtonText;
+  final TextStyle revenueSectionTitle;
+  final TextStyle revenueSectionNewsTitle;
+  final TextStyle revenueSectionNewsCardTitle;
+  final TextStyle revenueSectionNewsCardText;
+  final TextStyle revenueSectionRateCard;
+  final TextStyle revenueSectionRateCardHighlighted;
 
   ThemeTextStyles({
     required this.test,
@@ -185,6 +191,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.homePartnershipInfoDescription,
     required this.homePartnershipInfoHeadline,
     required this.homePartnershipInfoPurpleTitle,
+    required this.revenueSectionTitle,
+    required this.revenueSectionNewsTitle,
+    required this.revenueSectionNewsCardTitle,
+    required this.revenueSectionNewsCardText,
+    required this.revenueSectionRateCard,
+    required this.revenueSectionRateCardHighlighted,
   });
 
   @override
@@ -282,6 +294,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? homePartnershipInfoHeadline,
     TextStyle? homePartnershipInfoDescription,
     TextStyle? homePartnershipInfoPurpleTitle,
+    TextStyle? revenueSectionTitle,
+    TextStyle? revenueSectionNewsTitle,
+    TextStyle? revenueSectionNewsCardTitle,
+    TextStyle? revenueSectionNewsCardText,
+    TextStyle? revenueSectionRateCard,
+    TextStyle? revenueSectionRateCardHighlighted,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -424,6 +442,17 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           homePartnershipInfoHeadline ?? this.homePartnershipInfoHeadline,
       homePartnershipInfoPurpleTitle:
           homePartnershipInfoPurpleTitle ?? this.homePartnershipInfoPurpleTitle,
+      revenueSectionTitle: revenueSectionTitle ?? this.revenueSectionTitle,
+      revenueSectionNewsTitle:
+          revenueSectionNewsTitle ?? this.revenueSectionNewsTitle,
+      revenueSectionNewsCardTitle:
+          revenueSectionNewsCardTitle ?? this.revenueSectionNewsCardTitle,
+      revenueSectionNewsCardText:
+          revenueSectionNewsCardText ?? this.revenueSectionNewsCardText,
+      revenueSectionRateCard:
+          revenueSectionRateCard ?? this.revenueSectionRateCard,
+      revenueSectionRateCardHighlighted: revenueSectionRateCardHighlighted ??
+          this.revenueSectionRateCardHighlighted,
     );
   }
 
@@ -623,6 +652,20 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       homePartnershipInfoPurpleTitle: TextStyle.lerp(
           homePartnershipInfoPurpleTitle,
           other.homePartnershipInfoPurpleTitle,
+          t)!,
+      revenueSectionTitle:
+          TextStyle.lerp(revenueSectionTitle, other.revenueSectionTitle, t)!,
+      revenueSectionNewsTitle: TextStyle.lerp(
+          revenueSectionNewsTitle, other.revenueSectionNewsTitle, t)!,
+      revenueSectionNewsCardTitle: TextStyle.lerp(
+          revenueSectionNewsCardTitle, other.revenueSectionNewsCardTitle, t)!,
+      revenueSectionNewsCardText: TextStyle.lerp(
+          revenueSectionNewsCardText, other.revenueSectionNewsCardText, t)!,
+      revenueSectionRateCard: TextStyle.lerp(
+          revenueSectionRateCard, other.revenueSectionRateCard, t)!,
+      revenueSectionRateCardHighlighted: TextStyle.lerp(
+          revenueSectionRateCardHighlighted,
+          other.revenueSectionRateCardHighlighted,
           t)!,
     );
   }
@@ -981,6 +1024,27 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 16,
           color: AppColors.indigo,
         ),
+        revenueSectionTitle: headline1.copyWith(
+          fontSize: 54,
+          color: AppColors.lighterBlack,
+        ),
+        revenueSectionNewsTitle: headline3.copyWith(
+          color: AppColors.lighterBlack,
+        ),
+        revenueSectionNewsCardTitle: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.darkerBlueGrey,
+        ),
+        revenueSectionNewsCardText: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.lighterBlack,
+        ),
+        revenueSectionRateCard: headline3.copyWith(
+          color: AppColors.lighterBlack,
+        ),
+        revenueSectionRateCardHighlighted: headline3.copyWith(
+          color: AppColors.indigo,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1335,6 +1399,27 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         homePartnershipInfoPurpleTitle: headline1.copyWith(
           fontSize: 16,
+          color: AppColors.indigo,
+        ),
+        revenueSectionTitle: headline1.copyWith(
+          fontSize: 54,
+          color: AppColors.lighterBlack,
+        ),
+        revenueSectionNewsTitle: headline3.copyWith(
+          color: AppColors.lighterBlack,
+        ),
+        revenueSectionNewsCardTitle: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.darkerBlueGrey,
+        ),
+        revenueSectionNewsCardText: headline1.copyWith(
+          fontSize: 22,
+          color: AppColors.lighterBlack,
+        ),
+        revenueSectionRateCard: headline3.copyWith(
+          color: AppColors.lighterBlack,
+        ),
+        revenueSectionRateCardHighlighted: headline3.copyWith(
           color: AppColors.indigo,
         ),
       );

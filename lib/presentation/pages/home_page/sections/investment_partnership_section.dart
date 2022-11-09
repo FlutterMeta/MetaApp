@@ -155,12 +155,9 @@ class _InvestmentInfo extends StatelessWidget {
             spacing: 20,
             runSpacing: 20,
             children: [
-              SizedBox(
-                width: 40,
-                child: GradientButton(
-                  title: context.localizations.investmentOffers,
-                  onTap: () {},
-                ),
+              GradientButton(
+                title: context.localizations.investmentOffers,
+                onTap: () {},
               ),
               _AskButton(onTap: () {}),
             ],
