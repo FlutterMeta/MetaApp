@@ -6,7 +6,7 @@ class _WelcomeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 100),
+      padding: const EdgeInsets.symmetric(vertical: 116),
       decoration: BoxDecoration(
         gradient: context.gradient.indigoTurquoiseDiagonal,
       ),

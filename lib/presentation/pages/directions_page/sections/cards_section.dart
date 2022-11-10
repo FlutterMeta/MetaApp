@@ -27,6 +27,7 @@ class _CardsSection extends StatelessWidget {
 
 class _InfoBlock extends StatelessWidget {
   const _InfoBlock({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -58,7 +59,7 @@ class _DirectionCards extends StatelessWidget {
           const StaggeredGridTile.extent(
             crossAxisCellCount: 1,
             mainAxisExtent: 40,
-            child: SizedBox.shrink(),
+            child: SizedBox(),
           ),
           StaggeredGridTile.extent(
             crossAxisCellCount: 1,
@@ -99,7 +100,7 @@ class _DirectionCards extends StatelessWidget {
           const StaggeredGridTile.extent(
             crossAxisCellCount: 1,
             mainAxisExtent: 40,
-            child: SizedBox.shrink(),
+            child: SizedBox(),
           ),
         ],
       ),

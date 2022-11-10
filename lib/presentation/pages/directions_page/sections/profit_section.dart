@@ -6,7 +6,7 @@ class _ProfitSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 100),
+      padding: const EdgeInsets.symmetric(vertical: 116),
       decoration: BoxDecoration(
         gradient: context.gradient.indigoTurquoiseDiagonal,
       ),
@@ -21,8 +21,8 @@ class _ProfitSection extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 400),
+            SizedBox(
+              width: 400,
               child: Text(
                 context.localizations.getIncomeFromPersonal,
                 style: context.text.blogWelcomeDescription,
