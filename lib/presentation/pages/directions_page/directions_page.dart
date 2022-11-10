@@ -33,7 +33,7 @@ class DirectionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: context.color.directionsScaffoldBackground,
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(

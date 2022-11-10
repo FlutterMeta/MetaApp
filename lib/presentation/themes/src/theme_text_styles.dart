@@ -98,8 +98,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle revenueSectionNewsCardText;
   final TextStyle revenueSectionRateCard;
   final TextStyle revenueSectionRateCardHighlighted;
-  final TextStyle partnershipSubtitle;
-  final TextStyle partnershipTitle;
+  final TextStyle partnershipSectionSubtitle;
+  final TextStyle partnershipSectionTitle;
   final TextStyle directionCardTitle;
   final TextStyle directionCardDescription;
   final TextStyle directionsBenefitsTitle;
@@ -204,8 +204,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.revenueSectionNewsCardText,
     required this.revenueSectionRateCard,
     required this.revenueSectionRateCardHighlighted,
-    required this.partnershipSubtitle,
-    required this.partnershipTitle,
+    required this.partnershipSectionSubtitle,
+    required this.partnershipSectionTitle,
     required this.directionCardTitle,
     required this.directionCardDescription,
     required this.directionsBenefitsTitle,
@@ -314,8 +314,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? revenueSectionNewsCardText,
     TextStyle? revenueSectionRateCard,
     TextStyle? revenueSectionRateCardHighlighted,
-    TextStyle? partnershipSubtitle,
-    TextStyle? partnershipTitle,
+    TextStyle? partnershipSectionSubtitle,
+    TextStyle? partnershipSectionTitle,
     TextStyle? directionCardTitle,
     TextStyle? directionCardDescription,
     TextStyle? directionsBenefitsTitle,
@@ -474,8 +474,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           revenueSectionRateCard ?? this.revenueSectionRateCard,
       revenueSectionRateCardHighlighted: revenueSectionRateCardHighlighted ??
           this.revenueSectionRateCardHighlighted,
-      partnershipSubtitle: partnershipSubtitle ?? this.partnershipSubtitle,
-      partnershipTitle: partnershipTitle ?? this.partnershipTitle,
+      partnershipSectionSubtitle:
+          partnershipSectionSubtitle ?? this.partnershipSectionSubtitle,
+      partnershipSectionTitle:
+          partnershipSectionTitle ?? this.partnershipSectionTitle,
       directionCardDescription:
           directionCardDescription ?? this.directionCardDescription,
       directionCardTitle: directionCardTitle ?? this.directionCardTitle,
@@ -699,10 +701,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           revenueSectionRateCardHighlighted,
           other.revenueSectionRateCardHighlighted,
           t)!,
-      partnershipSubtitle:
-          TextStyle.lerp(partnershipSubtitle, other.partnershipSubtitle, t)!,
-      partnershipTitle:
-          TextStyle.lerp(partnershipTitle, other.partnershipTitle, t)!,
+      partnershipSectionSubtitle: TextStyle.lerp(
+          partnershipSectionSubtitle, other.partnershipSectionSubtitle, t)!,
+      partnershipSectionTitle: TextStyle.lerp(
+          partnershipSectionTitle, other.partnershipSectionTitle, t)!,
       directionCardDescription: TextStyle.lerp(
           directionCardDescription, other.directionCardDescription, t)!,
       directionCardTitle:
@@ -1093,11 +1095,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         revenueSectionRateCardHighlighted: headline3.copyWith(
           color: AppColors.indigo,
         ),
-        partnershipSubtitle: headline3.copyWith(
+        partnershipSectionSubtitle: headline3.copyWith(
           color: AppColors.indigo,
           fontWeight: FontWeight.w300,
         ),
-        partnershipTitle: headline1.copyWith(
+        partnershipSectionTitle: headline1.copyWith(
           fontSize: 64,
           height: 0.9,
         ),
@@ -1503,11 +1505,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         revenueSectionRateCardHighlighted: headline3.copyWith(
           color: AppColors.indigo,
         ),
-        partnershipSubtitle: headline3.copyWith(
+        partnershipSectionSubtitle: headline3.copyWith(
           color: AppColors.indigo,
           fontWeight: FontWeight.w300,
         ),
-        partnershipTitle: headline1.copyWith(
+        partnershipSectionTitle: headline1.copyWith(
           fontSize: 64,
           height: 0.9,
         ),

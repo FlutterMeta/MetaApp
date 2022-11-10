@@ -47,6 +47,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color directionsCardsSectionBackground;
   final Color directionCardIcon;
   final Color directionCardIconBackground;
+  final Color directionsScaffoldBackground;
+  final Color termsButtonFillColor;
+  final Color directionsJoinButtonBorder;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -95,6 +98,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.directionsCardsSectionBackground,
     required this.directionCardIcon,
     required this.directionCardIconBackground,
+    required this.directionsScaffoldBackground,
+    required this.termsButtonFillColor,
+    required this.directionsJoinButtonBorder,
   });
 
   @override
@@ -146,6 +152,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? directionsCardsSectionBackground,
     Color? directionCardIcon,
     Color? directionCardIconBackground,
+    Color? directionsScaffoldBackground,
+    Color? termsButtonFillColor,
+    Color? directionsJoinButtonBorder,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -218,6 +227,11 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       directionCardIcon: directionCardIcon ?? this.directionCardIcon,
       directionCardIconBackground:
           directionCardIconBackground ?? this.directionCardIconBackground,
+      directionsScaffoldBackground:
+          directionsScaffoldBackground ?? this.directionsScaffoldBackground,
+      termsButtonFillColor: termsButtonFillColor ?? this.termsButtonFillColor,
+      directionsJoinButtonBorder:
+          directionsJoinButtonBorder ?? this.directionsJoinButtonBorder,
     );
   }
 
@@ -324,6 +338,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(directionCardIcon, other.directionCardIcon, t)!,
       directionCardIconBackground: Color.lerp(
           directionCardIconBackground, other.directionCardIconBackground, t)!,
+      directionsScaffoldBackground: Color.lerp(
+          directionsScaffoldBackground, other.directionsScaffoldBackground, t)!,
+      termsButtonFillColor:
+          Color.lerp(termsButtonFillColor, other.termsButtonFillColor, t)!,
+      directionsJoinButtonBorder: Color.lerp(
+          directionsJoinButtonBorder, other.directionsJoinButtonBorder, t)!,
     );
   }
 
@@ -374,6 +394,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         directionsCardsSectionBackground: AppColors.lightGrey,
         directionCardIcon: AppColors.indigo,
         directionCardIconBackground: AppColors.white,
+        directionsScaffoldBackground: AppColors.white,
+        termsButtonFillColor: AppColors.white,
+        directionsJoinButtonBorder: AppColors.white,
       );
 
   static get dark => ThemeColors(
@@ -423,5 +446,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         directionsCardsSectionBackground: AppColors.lightGrey,
         directionCardIcon: AppColors.indigo,
         directionCardIconBackground: AppColors.white,
+        directionsScaffoldBackground: AppColors.white,
+        termsButtonFillColor: AppColors.white,
+        directionsJoinButtonBorder: AppColors.white,
       );
 }

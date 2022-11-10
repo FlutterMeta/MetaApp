@@ -29,13 +29,13 @@ class _PartnershipSection extends StatelessWidget {
             Text(
               context.localizations.businessLines,
               textAlign: textAlign,
-              style: context.text.partnershipSubtitle,
+              style: context.text.partnershipSectionSubtitle,
             ),
             const SizedBox(height: 20),
             Text(
               context.localizations.partnershipTools,
               textAlign: textAlign,
-              style: context.text.partnershipTitle,
+              style: context.text.partnershipSectionTitle,
             ),
             const SizedBox(height: 20),
             Text(

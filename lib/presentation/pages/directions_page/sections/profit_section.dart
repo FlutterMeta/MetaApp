@@ -61,7 +61,7 @@ class _TermsButton extends StatelessWidget {
           height: 40,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
-            color: context.color.askButtonBackground,
+            color: context.color.termsButtonFillColor,
           ),
           padding: const EdgeInsets.symmetric(horizontal: 20),
           clipBehavior: Clip.antiAlias,
@@ -95,7 +95,7 @@ class _JoinButton extends StatelessWidget {
           height: 40,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
-            border: Border.all(color: context.color.partnerButtonBorder),
+            border: Border.all(color: context.color.joinButtonBorder),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 20),
           alignment: Alignment.center,
