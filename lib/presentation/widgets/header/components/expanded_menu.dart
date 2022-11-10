@@ -11,12 +11,16 @@ class _ExpandedMenu extends StatelessWidget {
     context.router.navigate(ProductsRoute());
   }
 
+  void _goToDirectionsPage(BuildContext context) {
+    context.router.navigate(DirectionsRoute());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         _NavigationButton(
-          onTap: () {},
+          onTap: () => _goToDirectionsPage(context),
           title: context.localizations.directions,
         ),
         const SizedBox(width: 6),

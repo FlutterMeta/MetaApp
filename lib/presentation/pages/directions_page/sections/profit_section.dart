@@ -1,7 +1,7 @@
-part of '../blog_page.dart';
+part of '../directions_page.dart';
 
-class _WelcomeSection extends StatelessWidget {
-  const _WelcomeSection({Key? key}) : super(key: key);
+class _ProfitSection extends StatelessWidget {
+  const _ProfitSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +16,15 @@ class _WelcomeSection extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              context.localizations.welcomeToTheAuroraUniverse,
+              context.localizations.profitWithAurora,
               style: context.text.blogWelcomeHeadline,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 20),
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 400),
+            SizedBox(
+              width: 400,
               child: Text(
-                context.localizations.earnMoneyBuyingWMAShares,
+                context.localizations.getIncomeFromPersonal,
                 style: context.text.blogWelcomeDescription,
                 textAlign: TextAlign.center,
               ),
@@ -33,9 +33,9 @@ class _WelcomeSection extends StatelessWidget {
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                _AskButton(onTap: () {}),
+                _TermsButton(onTap: () {}),
                 const SizedBox(width: 20),
-                _BecomePartnerButton(onTap: () {}),
+                _JoinButton(onTap: () {}),
               ],
             ),
           ],
@@ -45,10 +45,10 @@ class _WelcomeSection extends StatelessWidget {
   }
 }
 
-class _AskButton extends StatelessWidget {
+class _TermsButton extends StatelessWidget {
   final VoidCallback onTap;
 
-  const _AskButton({
+  const _TermsButton({
     required this.onTap,
     Key? key,
   }) : super(key: key);
@@ -61,7 +61,7 @@ class _AskButton extends StatelessWidget {
           height: 40,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
-            color: context.color.askButtonBackground,
+            color: context.color.termsButtonFillColor,
           ),
           padding: const EdgeInsets.symmetric(horizontal: 20),
           clipBehavior: Clip.antiAlias,
@@ -69,7 +69,7 @@ class _AskButton extends StatelessWidget {
           child: WebButton(
             onTap: onTap,
             child: Text(
-              context.localizations.askQuestion,
+              context.localizations.terms,
               style: context.text.askButton,
             ),
           ),
@@ -79,10 +79,10 @@ class _AskButton extends StatelessWidget {
   }
 }
 
-class _BecomePartnerButton extends StatelessWidget {
+class _JoinButton extends StatelessWidget {
   final VoidCallback onTap;
 
-  const _BecomePartnerButton({
+  const _JoinButton({
     required this.onTap,
     Key? key,
   }) : super(key: key);
@@ -95,7 +95,7 @@ class _BecomePartnerButton extends StatelessWidget {
           height: 40,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
-            border: Border.all(color: context.color.partnerButtonBorder),
+            border: Border.all(color: context.color.joinButtonBorder),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 20),
           alignment: Alignment.center,
@@ -103,7 +103,7 @@ class _BecomePartnerButton extends StatelessWidget {
           child: WebButton(
             onTap: onTap,
             child: Text(
-              context.localizations.becomeAPartner,
+              context.localizations.join,
               style: context.text.partnerButton,
               textAlign: TextAlign.center,
             ),
