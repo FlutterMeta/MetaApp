@@ -63,7 +63,7 @@ class _DirectionCards extends StatelessWidget {
           ),
           StaggeredGridTile.extent(
             crossAxisCellCount: 1,
-            mainAxisExtent: 320,
+            mainAxisExtent: 322,
             child: _DirectionCard(
               icon: Icons.wallet,
               title: context.localizations.hedgeFund,
@@ -81,7 +81,7 @@ class _DirectionCards extends StatelessWidget {
           ),
           StaggeredGridTile.extent(
             crossAxisCellCount: 1,
-            mainAxisExtent: 320,
+            mainAxisExtent: 350,
             child: _DirectionCard(
               icon: Icons.group,
               title: context.localizations.nftMarketplace,
