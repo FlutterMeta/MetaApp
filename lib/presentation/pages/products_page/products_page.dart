@@ -13,6 +13,7 @@ import 'package:meta_app/presentation/widgets/header/header.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/sliver_sized_box.dart';
 
+part 'sections/products_section.dart';
 part 'sections/presentation_section.dart';
 part 'sections/investors_section.dart';
 part 'sections/trusted_section.dart';
@@ -38,6 +39,7 @@ class ProductsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
@@ -48,6 +50,7 @@ class ProductsPage extends StatelessWidget {
             ),
             pinned: true,
           ),
+          const SliverSizedBox(child: _ProductsSection()),
           const SliverSizedBox(child: _PresentationSection()),
           const SliverSizedBox(height: 60),
           const SliverToBoxAdapter(child: _Divider()),

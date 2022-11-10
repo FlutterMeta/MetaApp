@@ -11,17 +11,16 @@ class _PresentationSection extends StatelessWidget {
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1270),
         child: Row(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
               width: 400,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 100),
                   Text(
                     context.localizations.auroraPartnersInTerms,
-                    style: context.text.productsHeadline,
+                    style: context.text.productsSmallerHeadline,
                   ),
                   const SizedBox(height: 16),
                   Text(
@@ -36,7 +35,10 @@ class _PresentationSection extends StatelessWidget {
                 ],
               ),
             ),
-            const Spacer(),
+            Image.asset(
+              AppAssets.productsGraph,
+              height: 400,
+            ),
           ],
         ),
       ),
