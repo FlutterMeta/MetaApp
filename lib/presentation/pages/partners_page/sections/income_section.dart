@@ -19,7 +19,7 @@ class _IncomeSectionCollapsed extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: context.color.incomeSectionBackground,
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 118),
       width: 400,
       alignment: Alignment.center,
       child: Column(
@@ -96,7 +96,7 @@ class _IncomeSectionExpandedState extends State<_IncomeSectionExpanded> {
           fit: BoxFit.fill,
         ),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 100),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 118),
       alignment: Alignment.center,
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1270),

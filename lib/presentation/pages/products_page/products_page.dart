@@ -39,7 +39,7 @@ class ProductsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: context.color.productsScaffoldBackground,
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
@@ -53,7 +53,14 @@ class ProductsPage extends StatelessWidget {
           const SliverSizedBox(child: _ProductsSection()),
           const SliverSizedBox(child: _PresentationSection()),
           const SliverSizedBox(height: 60),
-          const SliverToBoxAdapter(child: _Divider()),
+          const SliverToBoxAdapter(
+            child: Align(
+              child: SizedBox(
+                width: 1270,
+                child: _Divider(),
+              ),
+            ),
+          ),
           const SliverSizedBox(height: 20),
           const SliverSizedBox(child: _InvestorsSection()),
           const SliverSizedBox(height: 100),

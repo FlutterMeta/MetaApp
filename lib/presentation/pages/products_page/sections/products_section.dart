@@ -12,7 +12,7 @@ class _ProductsSection extends StatelessWidget {
           fit: BoxFit.fill,
         ),
       ),
-      padding: const EdgeInsets.symmetric(vertical: 200, horizontal: 16),
+      padding: const EdgeInsets.symmetric(vertical: 246, horizontal: 16),
       alignment: Alignment.center,
       child: Container(
         constraints: const BoxConstraints(maxWidth: 1270),
