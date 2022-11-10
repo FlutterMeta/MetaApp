@@ -50,6 +50,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color directionsScaffoldBackground;
   final Color termsButtonFillColor;
   final Color directionsJoinButtonBorder;
+  final Color productsScaffoldBackground;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -101,6 +102,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.directionsScaffoldBackground,
     required this.termsButtonFillColor,
     required this.directionsJoinButtonBorder,
+    required this.productsScaffoldBackground,
   });
 
   @override
@@ -155,6 +157,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? directionsScaffoldBackground,
     Color? termsButtonFillColor,
     Color? directionsJoinButtonBorder,
+    Color? productsScaffoldBackground,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -232,6 +235,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       termsButtonFillColor: termsButtonFillColor ?? this.termsButtonFillColor,
       directionsJoinButtonBorder:
           directionsJoinButtonBorder ?? this.directionsJoinButtonBorder,
+      productsScaffoldBackground:
+          productsScaffoldBackground ?? this.productsScaffoldBackground,
     );
   }
 
@@ -344,6 +349,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           Color.lerp(termsButtonFillColor, other.termsButtonFillColor, t)!,
       directionsJoinButtonBorder: Color.lerp(
           directionsJoinButtonBorder, other.directionsJoinButtonBorder, t)!,
+      productsScaffoldBackground: Color.lerp(
+          productsScaffoldBackground, other.productsScaffoldBackground, t)!,
     );
   }
 
@@ -397,6 +404,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         directionsScaffoldBackground: AppColors.white,
         termsButtonFillColor: AppColors.white,
         directionsJoinButtonBorder: AppColors.white,
+        productsScaffoldBackground: AppColors.white,
       );
 
   static get dark => ThemeColors(
@@ -449,5 +457,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         directionsScaffoldBackground: AppColors.white,
         termsButtonFillColor: AppColors.white,
         directionsJoinButtonBorder: AppColors.white,
+        productsScaffoldBackground: AppColors.white,
       );
 }

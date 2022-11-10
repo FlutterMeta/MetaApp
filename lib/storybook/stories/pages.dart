@@ -29,4 +29,8 @@ List<Story> get _pages => [
         name: 'Pages/Blog',
         builder: (context) => BlogPage(),
       ),
+      Story(
+        name: 'Pages/Directions',
+        builder: (context) => DirectionsPage(),
+      ),
     ];

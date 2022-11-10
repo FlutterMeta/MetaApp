@@ -50,6 +50,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle partnerTableSectionReferralCell;
   final TextStyle partnerPdfSectionTitle;
   final TextStyle partnerPdfSectionSubtitle;
+  final TextStyle productsSmallerHeadline;
   final TextStyle productsHeadline;
   final TextStyle productsSubHeadline;
   final TextStyle productsInvestorSectionTitle;
@@ -156,7 +157,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.partnerTableSectionReferralCell,
     required this.partnerPdfSectionTitle,
     required this.partnerPdfSectionSubtitle,
-    required this.productsHeadline,
+    required this.productsSmallerHeadline,
     required this.productsSubHeadline,
     required this.productsInvestorSectionTitle,
     required this.productsInvestorSectionDescription,
@@ -211,6 +212,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.directionsBenefitsTitle,
     required this.directionsBenefitsDescription,
     required this.directionsBenefitsSubtitle,
+    required this.productsHeadline,
   });
 
   @override
@@ -264,9 +266,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? partnerTableSectionReferralCell,
     TextStyle? partnerPdfSectionTitle,
     TextStyle? partnerPdfSectionSubtitle,
-    TextStyle? productsHeadlineBig,
-    TextStyle? productsHeadline,
-    TextStyle? productsHeadlineSmall,
+    TextStyle? productsSmallerHeadline,
     TextStyle? productsSubHeadline,
     TextStyle? productsInvestorSectionTitle,
     TextStyle? productsInvestorSectionDescription,
@@ -321,6 +321,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? directionsBenefitsTitle,
     TextStyle? directionsBenefitsDescription,
     TextStyle? directionsBenefitsSubtitle,
+    TextStyle? productsHeadline,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -396,7 +397,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           partnerPdfSectionTitle ?? this.partnerPdfSectionTitle,
       partnerPdfSectionSubtitle:
           partnerPdfSectionSubtitle ?? this.partnerPdfSectionSubtitle,
-      productsHeadline: productsHeadline ?? this.productsHeadline,
+      productsSmallerHeadline:
+          productsSmallerHeadline ?? this.productsSmallerHeadline,
       productsSubHeadline: productsSubHeadline ?? this.productsSubHeadline,
       productsInvestorSectionTitle:
           productsInvestorSectionTitle ?? this.productsInvestorSectionTitle,
@@ -487,6 +489,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           directionsBenefitsTitle ?? this.directionsBenefitsTitle,
       directionsBenefitsSubtitle:
           directionsBenefitsSubtitle ?? this.directionsBenefitsSubtitle,
+      productsHeadline: productsHeadline ?? this.productsHeadline,
     );
   }
 
@@ -590,8 +593,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           partnerPdfSectionTitle, other.partnerPdfSectionTitle, t)!,
       partnerPdfSectionSubtitle: TextStyle.lerp(
           partnerPdfSectionSubtitle, other.partnerPdfSectionSubtitle, t)!,
-      productsHeadline:
-          TextStyle.lerp(productsHeadline, other.productsHeadline, t)!,
+      productsSmallerHeadline: TextStyle.lerp(
+          productsSmallerHeadline, other.productsSmallerHeadline, t)!,
       productsSubHeadline:
           TextStyle.lerp(productsSubHeadline, other.productsSubHeadline, t)!,
       productsInvestorSectionTitle: TextStyle.lerp(
@@ -717,6 +720,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           directionsBenefitsSubtitle, other.directionsBenefitsSubtitle, t)!,
       directionsBenefitsTitle: TextStyle.lerp(
           directionsBenefitsTitle, other.directionsBenefitsTitle, t)!,
+      productsHeadline:
+          TextStyle.lerp(productsHeadline, other.productsHeadline, t)!,
     );
   }
 
@@ -828,8 +833,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.darkIndigo,
         ),
         incomeSectionTitle: headline1.copyWith(
-          fontSize: 60,
-          fontWeight: FontWeight.w600,
+          fontSize: 63,
+          height: .94,
         ),
         incomeSectionText: headline3.copyWith(),
         joinButton: headline3.copyWith(
@@ -878,7 +883,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         partnerPdfSectionSubtitle: headline3.copyWith(
           fontSize: 24,
         ),
-        productsHeadline: headline1.copyWith(
+        productsSmallerHeadline: headline1.copyWith(
           fontSize: 40,
           height: 1.5,
         ),
@@ -1127,6 +1132,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 16,
           height: 1.12,
           color: AppColors.indigo,
+        ),
+        productsHeadline: headline1.copyWith(
+          fontSize: 63,
+          height: .94,
+          color: AppColors.darkBlue,
         ),
       );
 
@@ -1238,8 +1248,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.darkIndigo,
         ),
         incomeSectionTitle: headline1.copyWith(
-          fontSize: 60,
-          fontWeight: FontWeight.w600,
+          fontSize: 63,
+          height: .94,
         ),
         incomeSectionText: headline3.copyWith(),
         joinButton: headline3.copyWith(
@@ -1288,7 +1298,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         partnerPdfSectionSubtitle: headline3.copyWith(
           fontSize: 24,
         ),
-        productsHeadline: headline1.copyWith(
+        productsSmallerHeadline: headline1.copyWith(
           fontSize: 40,
           height: 1.5,
         ),
@@ -1537,6 +1547,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 16,
           height: 1.12,
           color: AppColors.indigo,
+        ),
+        productsHeadline: headline1.copyWith(
+          fontSize: 63,
+          height: .94,
+          color: AppColors.darkBlue,
         ),
       );
 }
