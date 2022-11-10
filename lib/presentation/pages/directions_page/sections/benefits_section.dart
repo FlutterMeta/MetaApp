@@ -3,8 +3,8 @@ part of "../directions_page.dart";
 class _BenefitsSection extends StatelessWidget {
   const _BenefitsSection({Key? key}) : super(key: key);
 
-  @override
   //TODO: replace this void area with images
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
