@@ -102,6 +102,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle partnershipTitle;
   final TextStyle directionCardTitle;
   final TextStyle directionCardDescription;
+  final TextStyle directionsBenefitsTitle;
+  final TextStyle directionsBenefitsDescription;
+  final TextStyle directionsBenefitsSubtitle;
 
   ThemeTextStyles({
     required this.test,
@@ -205,6 +208,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.partnershipTitle,
     required this.directionCardTitle,
     required this.directionCardDescription,
+    required this.directionsBenefitsTitle,
+    required this.directionsBenefitsDescription,
+    required this.directionsBenefitsSubtitle,
   });
 
   @override
@@ -312,6 +318,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? partnershipTitle,
     TextStyle? directionCardTitle,
     TextStyle? directionCardDescription,
+    TextStyle? directionsBenefitsTitle,
+    TextStyle? directionsBenefitsDescription,
+    TextStyle? directionsBenefitsSubtitle,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -470,6 +479,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       directionCardDescription:
           directionCardDescription ?? this.directionCardDescription,
       directionCardTitle: directionCardTitle ?? this.directionCardTitle,
+      directionsBenefitsDescription:
+          directionsBenefitsDescription ?? this.directionsBenefitsDescription,
+      directionsBenefitsTitle:
+          directionsBenefitsTitle ?? this.directionsBenefitsTitle,
+      directionsBenefitsSubtitle:
+          directionsBenefitsSubtitle ?? this.directionsBenefitsSubtitle,
     );
   }
 
@@ -692,6 +707,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           directionCardDescription, other.directionCardDescription, t)!,
       directionCardTitle:
           TextStyle.lerp(directionCardTitle, other.directionCardTitle, t)!,
+      directionsBenefitsDescription: TextStyle.lerp(
+          directionsBenefitsDescription,
+          other.directionsBenefitsDescription,
+          t)!,
+      directionsBenefitsSubtitle: TextStyle.lerp(
+          directionsBenefitsSubtitle, other.directionsBenefitsSubtitle, t)!,
+      directionsBenefitsTitle: TextStyle.lerp(
+          directionsBenefitsTitle, other.directionsBenefitsTitle, t)!,
     );
   }
 
@@ -1088,6 +1111,21 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 21,
           color: AppColors.darkBlue,
         ),
+        directionsBenefitsDescription: headline3.copyWith(
+          fontSize: 16,
+          color: AppColors.darkGrey,
+          height: 1.16,
+          letterSpacing: .3,
+        ),
+        directionsBenefitsTitle: headline1.copyWith(
+          fontSize: 53,
+          color: AppColors.darkBlue,
+        ),
+        directionsBenefitsSubtitle: headline3.copyWith(
+          fontSize: 16,
+          height: 1.12,
+          color: AppColors.indigo,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1482,6 +1520,21 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         directionCardTitle: headline1.copyWith(
           fontSize: 21,
           color: AppColors.darkBlue,
+        ),
+        directionsBenefitsDescription: headline3.copyWith(
+          fontSize: 16,
+          color: AppColors.darkGrey,
+          height: 1.16,
+          letterSpacing: .3,
+        ),
+        directionsBenefitsTitle: headline1.copyWith(
+          fontSize: 53,
+          color: AppColors.darkBlue,
+        ),
+        directionsBenefitsSubtitle: headline3.copyWith(
+          fontSize: 16,
+          height: 1.12,
+          color: AppColors.indigo,
         ),
       );
 }
