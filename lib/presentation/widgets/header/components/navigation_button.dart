@@ -10,6 +10,16 @@ class _NavigationButton extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  String currentPageName(BuildContext context) {
+    var route = ModalRoute.of(context);
+    String currentPageName = "";
+    if (route != null) {
+      currentPageName = route.settings.name?.replaceAll('Route', '') ?? "";
+    }
+
+    return currentPageName;
+  }
+
   @override
   Widget build(BuildContext context) {
     return WebButton(
@@ -18,7 +28,12 @@ class _NavigationButton extends StatelessWidget {
       hoverColor: context.color.navButtonHover,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-        child: Text(title),
+        child: Text(
+          title,
+          style: currentPageName(context) == title
+              ? context.text.headerNavItemHovered
+              : null,
+        ),
       ),
     );
   }
