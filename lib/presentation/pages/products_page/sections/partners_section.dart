@@ -142,7 +142,7 @@ class _PartnersSliderState extends State<_PartnersSlider> {
         items: [
           _PartnerCards(
             infoCardChild: _PartnerInfoCard(
-              logo: AppAssets.logo,
+              logo: AppAssets.decentralandLogo,
               description: context.localizations.welcomeToDecentraland,
             ),
             imageCardChild: _PartnerImageCard(

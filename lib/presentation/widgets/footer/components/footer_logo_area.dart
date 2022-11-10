@@ -17,7 +17,7 @@ class _FooterLogoArea extends StatelessWidget {
               const MediaButtons(),
               const SizedBox(width: 60),
               const Spacer(),
-              Image.asset(AppAssets.logo, height: 66),
+              Image.asset(AppAssets.auroraLogo, height: 66),
               const Spacer(),
               if (screenWidth > 550)
                 Text(

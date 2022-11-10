@@ -94,7 +94,7 @@ class Header extends SliverPersistentHeaderDelegate {
                 children: [
                   InkWell(
                     onTap: () => _goToHomePage(context),
-                    child: Image.asset(AppAssets.logo, height: 76),
+                    child: Image.asset(AppAssets.auroraLogo, height: 76),
                   ),
                   if (width > 780) const _ExpandedMenu(),
                   if (width <= 780) _CompactMenu(headerYOffset: headerYOffset),

@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/mixins/validator.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/widgets/auth_button.dart';
 import 'package:meta_app/presentation/widgets/auth_field.dart';
 import 'package:meta_app/presentation/widgets/code_verification_section.dart';
@@ -56,11 +55,6 @@ class _RegistrationPageState extends State<RegistrationPage> with Validator {
                 key: _formKey,
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 66,
-                      child: Image.asset(AppAssets.logo),
-                    ),
-                    const SizedBox(height: 16),
                     Text(
                       context.localizations.createAccount,
                       style: context.text.registrationFormTitle,
