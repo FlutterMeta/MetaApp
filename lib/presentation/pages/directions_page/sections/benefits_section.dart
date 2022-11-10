@@ -25,7 +25,8 @@ class _BenefitsSection extends StatelessWidget {
             style: context.text.directionsBenefitsDescription,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: 400), //TODO: replace this void area with images
+          const SizedBox(
+              height: 400), //TODO: replace this void area with images
         ],
       ),
     );
