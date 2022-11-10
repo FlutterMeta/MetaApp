@@ -1,7 +1,7 @@
 part of "../directions_page.dart";
 
 class _BenefitsSection extends StatelessWidget {
-  const _BenefitsSection({super.key});
+  const _BenefitsSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +25,7 @@ class _BenefitsSection extends StatelessWidget {
             style: context.text.directionsBenefitsDescription,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(
-              height: 400), //TODO: replace this void area with images
+          const SizedBox(height: 400), //TODO: replace this void area with images
         ],
       ),
     );
