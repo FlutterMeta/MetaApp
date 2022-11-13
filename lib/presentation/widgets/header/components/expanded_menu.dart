@@ -20,18 +20,21 @@ class _ExpandedMenu extends StatelessWidget {
     return Row(
       children: [
         _NavigationButton(
-          onTap: () => _goToDirectionsPage(context),
           title: context.localizations.directions,
+          routeName: DirectionsRoute.name,
+          onTap: () => _goToDirectionsPage(context),
         ),
         const SizedBox(width: 6),
         _NavigationButton(
-          onTap: () => _goToProductsPage(context),
           title: context.localizations.products,
+          routeName: ProductsRoute.name,
+          onTap: () => _goToProductsPage(context),
         ),
         const SizedBox(width: 6),
         _NavigationButton(
-          onTap: () => _goToPartnersPage(context),
           title: context.localizations.partners,
+          routeName: PartnersRoute.name,
+          onTap: () => _goToPartnersPage(context),
         ),
         const MediaButtons(),
       ],

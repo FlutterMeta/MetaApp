@@ -2,22 +2,21 @@ part of '../header.dart';
 
 class _NavigationButton extends StatelessWidget {
   final String title;
+  final String routeName;
   final VoidCallback onTap;
 
   const _NavigationButton({
     required this.title,
+    required this.routeName,
     required this.onTap,
     Key? key,
   }) : super(key: key);
 
-  String currentPageName(BuildContext context) {
-    var route = ModalRoute.of(context);
-    String currentPageName = "";
-    if (route != null) {
-      currentPageName = route.settings.name?.replaceAll('Route', '') ?? "";
-    }
+  String currentRouteName(BuildContext context) {
+    final route = ModalRoute.of(context);
+    final routeName = route?.settings.name ?? "";
 
-    return currentPageName;
+    return routeName;
   }
 
   @override
@@ -30,7 +29,7 @@ class _NavigationButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         child: Text(
           title,
-          style: currentPageName(context) == title
+          style: currentRouteName(context) == routeName
               ? context.text.headerNavItemHovered
               : null,
         ),
