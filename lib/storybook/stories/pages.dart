@@ -1,36 +1,44 @@
 part of "../storybook_app.dart";
 
 List<Story> get _pages => [
-      Story(
+      RouterAwareStory(
         name: 'Pages/Home',
-        builder: (context) => HomePage(),
+        initialRoutes: [HomeRoute()],
+        router: AppRouter(),
       ),
-      Story(
+      RouterAwareStory(
         name: 'Pages/LogIn',
-        builder: (context) => const LoginPage(),
+        initialRoutes: const [LoginRoute()],
+        router: AppRouter(),
       ),
-      Story(
+      RouterAwareStory(
         name: 'Pages/Registration',
-        builder: (context) => const RegistrationPage(),
+        initialRoutes: const [RegistrationRoute()],
+        router: AppRouter(),
       ),
-      Story(
+      RouterAwareStory(
         name: 'Pages/ForgotPassword',
-        builder: (context) => const ForgotPasswordPage(),
+        initialRoutes: const [ForgotPasswordRoute()],
+        router: AppRouter(),
       ),
-      Story(
+      RouterAwareStory(
         name: 'Pages/Products',
-        builder: (context) => ProductsPage(),
+        initialRoutes: [ProductsRoute()],
+        router: AppRouter(),
       ),
-      Story(
+      RouterAwareStory(
         name: 'Pages/Partners',
-        builder: (context) => PartnersPage(),
+        initialRoutes: [PartnersRoute()],
+        router: AppRouter(),
       ),
-      Story(
+      RouterAwareStory(
         name: 'Pages/Blog',
-        builder: (context) => BlogPage(),
+        initialRoutes: [BlogRoute()],
+        router: AppRouter(),
       ),
-      Story(
+      RouterAwareStory(
         name: 'Pages/Directions',
-        builder: (context) => DirectionsPage(),
+        initialRoutes: [DirectionsRoute()],
+        router: AppRouter(),
       ),
     ];
