@@ -3,23 +3,28 @@ part of "../storybook_app.dart";
 List<Story> get _buttons => [
       Story(
         name: "Buttons/AuthButton",
-        builder: (context) => Container(
-          color: Colors.black,
-          alignment: Alignment.center,
-          child: SizedBox(
-            width: 300,
-            child: AuthButton(
-              text: context.knobs.text(
-                label: "Text",
-                initial: "Login",
+        wrapperBuilder: (context, child) =>
+            CustomMaterialAppWrapper(child: child as Widget),
+        builder: (context) => Scaffold(
+          body: Container(
+            alignment: Alignment.center,
+            child: SizedBox(
+              width: 300,
+              child: AuthButton(
+                text: context.knobs.text(
+                  label: "Text",
+                  initial: "Login",
+                ),
+                onPressed: () {},
               ),
-              onPressed: () {},
             ),
           ),
         ),
       ),
       Story(
         name: "Buttons/GradientButton",
+        wrapperBuilder: (context, child) =>
+            CustomMaterialAppWrapper(child: child as Widget),
         builder: (context) => Scaffold(
           body: Container(
             alignment: Alignment.center,
@@ -39,6 +44,8 @@ List<Story> get _buttons => [
       ),
       Story(
         name: "Buttons/MediaButtons",
+        wrapperBuilder: (context, child) =>
+            CustomMaterialAppWrapper(child: child as Widget),
         builder: (context) {
           return Scaffold(
             body: Container(
