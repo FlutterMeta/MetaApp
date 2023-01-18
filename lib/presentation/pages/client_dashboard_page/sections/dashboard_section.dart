@@ -73,7 +73,7 @@ class DashboardSection extends StatelessWidget {
 }
 
 class _LevelCards extends StatelessWidget {
-  const _LevelCards({super.key});
+  const _LevelCards({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,11 @@ class _LevelCard extends StatelessWidget {
   final int level;
   final double reward;
 
-  const _LevelCard({super.key, required this.level, required this.reward});
+  const _LevelCard({
+    required this.level,
+    required this.reward,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
