@@ -99,18 +99,17 @@ class _LevelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 88,
-      width: context.screenWidth * 0.16,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: AppColors.indigo.withOpacity(0.1),
-      ),
-      padding: const EdgeInsets.all(20),
-      clipBehavior: Clip.antiAlias,
-      alignment: Alignment.center,
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(minWidth: 200),
+    return ConstrainedBox(
+      constraints: const BoxConstraints(minWidth: 200, maxWidth: 500),
+      child: Container(
+        height: 88,
+        width: context.screenWidth * 0.16,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: AppColors.indigo.withOpacity(0.1),
+        ),
+        padding: const EdgeInsets.all(20),
+        clipBehavior: Clip.antiAlias,
         child: Column(
           children: [
             Text(
