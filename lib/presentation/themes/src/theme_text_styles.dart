@@ -106,6 +106,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle directionsBenefitsTitle;
   final TextStyle directionsBenefitsDescription;
   final TextStyle directionsBenefitsSubtitle;
+  final TextStyle dashboardSideMenuSelectedLable;
+  final TextStyle dashboardSideMenuUnselectedLable;
 
   ThemeTextStyles({
     required this.test,
@@ -213,6 +215,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.directionsBenefitsDescription,
     required this.directionsBenefitsSubtitle,
     required this.productsHeadline,
+    required this.dashboardSideMenuSelectedLable,
+    required this.dashboardSideMenuUnselectedLable,
   });
 
   @override
@@ -322,6 +326,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? directionsBenefitsDescription,
     TextStyle? directionsBenefitsSubtitle,
     TextStyle? productsHeadline,
+    TextStyle? dashboardSideMenuSelectedLable,
+    TextStyle? dashboardSideMenuUnselectedLable,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -490,6 +496,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       directionsBenefitsSubtitle:
           directionsBenefitsSubtitle ?? this.directionsBenefitsSubtitle,
       productsHeadline: productsHeadline ?? this.productsHeadline,
+      dashboardSideMenuSelectedLable:
+          dashboardSideMenuSelectedLable ?? this.dashboardSideMenuSelectedLable,
+      dashboardSideMenuUnselectedLable: dashboardSideMenuUnselectedLable ??
+          this.dashboardSideMenuUnselectedLable,
     );
   }
 
@@ -722,6 +732,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           directionsBenefitsTitle, other.directionsBenefitsTitle, t)!,
       productsHeadline:
           TextStyle.lerp(productsHeadline, other.productsHeadline, t)!,
+      dashboardSideMenuSelectedLable: TextStyle.lerp(
+          dashboardSideMenuSelectedLable,
+          other.dashboardSideMenuSelectedLable,
+          t)!,
+      dashboardSideMenuUnselectedLable: TextStyle.lerp(
+          dashboardSideMenuUnselectedLable,
+          other.dashboardSideMenuUnselectedLable,
+          t)!,
     );
   }
 
@@ -1138,6 +1156,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           height: .94,
           color: AppColors.darkBlue,
         ),
+        dashboardSideMenuSelectedLable: headline3.copyWith(
+          fontSize: 18,
+          color: AppColors.black,
+        ),
+        dashboardSideMenuUnselectedLable: headline3.copyWith(
+          fontSize: 18,
+          color: AppColors.greyish,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1552,6 +1578,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 63,
           height: .94,
           color: AppColors.darkBlue,
+        ),
+        dashboardSideMenuSelectedLable: headline3.copyWith(
+          fontSize: 18,
+          color: AppColors.black,
+        ),
+        dashboardSideMenuUnselectedLable: headline3.copyWith(
+          fontSize: 18,
+          color: AppColors.greyish,
         ),
       );
 }

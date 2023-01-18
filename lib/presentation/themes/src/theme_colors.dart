@@ -51,6 +51,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color termsButtonFillColor;
   final Color directionsJoinButtonBorder;
   final Color productsScaffoldBackground;
+  final Color dashboardSideMenuSelectedItem;
+  final Color dashboardSideMenuUnselectedItem;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -103,6 +105,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.termsButtonFillColor,
     required this.directionsJoinButtonBorder,
     required this.productsScaffoldBackground,
+    required this.dashboardSideMenuSelectedItem,
+    required this.dashboardSideMenuUnselectedItem,
   });
 
   @override
@@ -158,6 +162,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? termsButtonFillColor,
     Color? directionsJoinButtonBorder,
     Color? productsScaffoldBackground,
+    Color? dashboardSideMenuSelectedItem,
+    Color? dashboardSideMenuUnselectedItem,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -237,6 +243,10 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           directionsJoinButtonBorder ?? this.directionsJoinButtonBorder,
       productsScaffoldBackground:
           productsScaffoldBackground ?? this.productsScaffoldBackground,
+      dashboardSideMenuSelectedItem:
+          dashboardSideMenuSelectedItem ?? this.dashboardSideMenuSelectedItem,
+      dashboardSideMenuUnselectedItem: dashboardSideMenuUnselectedItem ??
+          this.dashboardSideMenuUnselectedItem,
     );
   }
 
@@ -351,6 +361,12 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           directionsJoinButtonBorder, other.directionsJoinButtonBorder, t)!,
       productsScaffoldBackground: Color.lerp(
           productsScaffoldBackground, other.productsScaffoldBackground, t)!,
+      dashboardSideMenuSelectedItem: Color.lerp(dashboardSideMenuSelectedItem,
+          other.dashboardSideMenuSelectedItem, t)!,
+      dashboardSideMenuUnselectedItem: Color.lerp(
+          dashboardSideMenuUnselectedItem,
+          other.dashboardSideMenuUnselectedItem,
+          t)!,
     );
   }
 
@@ -405,6 +421,8 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         termsButtonFillColor: AppColors.white,
         directionsJoinButtonBorder: AppColors.white,
         productsScaffoldBackground: AppColors.white,
+        dashboardSideMenuSelectedItem: AppColors.black,
+        dashboardSideMenuUnselectedItem: AppColors.greyish,
       );
 
   static get dark => ThemeColors(
@@ -458,5 +476,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         termsButtonFillColor: AppColors.white,
         directionsJoinButtonBorder: AppColors.white,
         productsScaffoldBackground: AppColors.white,
+        dashboardSideMenuSelectedItem: AppColors.black,
+        dashboardSideMenuUnselectedItem: AppColors.greyish,
       );
 }
