@@ -8,6 +8,7 @@ class DashboardHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const double menuIconSize = 36;
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -17,21 +18,22 @@ class DashboardHeader extends StatelessWidget {
               AppAssets.auroraLogo,
               height: 78,
             ),
-            SizedBox(
-              width: context.screenWidth * 0.02,
-            ),
+            SizedBox(width: context.screenWidth * 0.02),
             IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.menu_rounded),
+              iconSize: menuIconSize,
+              icon: ShaderMask(
+                shaderCallback: (Rect bounds) =>
+                    context.gradient.indigoTurquoise.createShader(bounds),
+                child: const Icon(Icons.menu_rounded),
+              ),
             ),
             const Spacer(),
             IconButton(
               onPressed: () {},
               icon: const Icon(Icons.chat_bubble_outline_rounded),
             ),
-            SizedBox(
-              width: context.screenWidth * 0.08,
-            ),
+            SizedBox(width: context.screenWidth * 0.08),
             const _UserInfo(
               userName: "Bobr123",
               email: "adwdawdwa@gmail.com",

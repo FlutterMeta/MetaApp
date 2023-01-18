@@ -10,6 +10,7 @@ class ClientDashboardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFFFFFFF),
       appBar: const PreferredSize(
         preferredSize: Size(double.infinity, 120),
         child: DashboardHeader(),

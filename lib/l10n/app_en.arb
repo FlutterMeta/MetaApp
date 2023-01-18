@@ -203,5 +203,17 @@
     "getIncomeFromPersonal": "Get income from personal investments. Build a team and become a level 15 leader. Proposals for regional development.",
     "terms": "Terms",
     "@_DASHBOARD_PAGE": {},
-    "welcome": "Welcome, "
+    "welcome": "Welcome, ",
+    "yourActivity": "Your activity",
+    "referralCodeForPartners": "Referral code for partners:",
+    "copyCode": "Copy code",
+    "rank": "Rank",
+    "partnerIncomeLevel": "Partner income level",
+    "externalWallet": "External wallet USDT",
+    "enterWalletAddress": "Enter wallet address",
+    "chooseNetwork": "Choose a network",
+    "chooseAmount": "Choose an amount to withdraw",
+    "requestWithdraw": "Request a withdrawal",
+    "level": "Level",
+    "reward": "Reward"
 }

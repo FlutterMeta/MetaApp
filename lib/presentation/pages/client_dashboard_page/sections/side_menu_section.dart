@@ -15,6 +15,7 @@ class _SideMenuSectionState extends State<SideMenuSection> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: const Color(0xFFFFFFFF),
       elevation: 0,
       child: Padding(
         padding: const EdgeInsets.all(16),
