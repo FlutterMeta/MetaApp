@@ -258,7 +258,7 @@ class _InformationPanelState extends State<_InformationPanel>
 class _PopupNotification extends StatelessWidget {
   final Animation<double>? animation;
 
-  const _PopupNotification({super.key, required this.animation});
+  const _PopupNotification({ required this.animation, Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
