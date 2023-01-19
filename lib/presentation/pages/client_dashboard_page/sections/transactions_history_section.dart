@@ -145,30 +145,39 @@ class _TransactionInfo extends StatelessWidget {
             ),
           ],
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              transaction.date,
-              style: _transactionTextStyle,
-            ),
-            const SizedBox(height: 5),
-            Text(
-              context.localizations.operationDate,
-              style: const TextStyle(
-                fontSize: 13,
-                color: AppColors.greyish,
+        SizedBox(
+          width: 200,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                transaction.date,
+                style: _transactionTextStyle,
               ),
-            ),
-          ],
+              const SizedBox(height: 5),
+              Text(
+                context.localizations.operationDate,
+                style: const TextStyle(
+                  fontSize: 13,
+                  color: AppColors.greyish,
+                ),
+              ),
+            ],
+          ),
         ),
-        Text(
-          transaction.amount,
-          style: _transactionTextStyle,
+        SizedBox(
+          width: 100,
+          child: Text(
+            transaction.amount,
+            style: _transactionTextStyle,
+          ),
         ),
-        Text(
-          transaction.type,
-          style: _transactionTextStyle,
+        SizedBox(
+          width: 80,
+          child: Text(
+            transaction.type,
+            style: _transactionTextStyle,
+          ),
         ),
         _StatusChip(status: parse(transaction.status)),
       ],
