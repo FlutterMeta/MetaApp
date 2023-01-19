@@ -147,44 +147,26 @@ class _InformationPanelState extends State<_InformationPanel>
   OverlayEntry? _overlayEntry;
   Animation<double>? _animation;
 
-  void showOverlay(BuildContext context, {required String text}) async {
+  void showOverlay(BuildContext context) async {
     OverlayState? overlayState = Overlay.of(context);
     _overlayEntry = OverlayEntry(builder: (context) {
       return Positioned(
         right: 10,
         bottom: 10,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Material(
-            color: Colors.red,
-            child: FadeTransition(
-              opacity: _animation as Animation<double>,
-              child: Container(
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(10),
-                width: 300,
-                height: 60,
-                child: Text(
-                  text,
-                  style: const TextStyle(color: Colors.black),
-                ),
-              ),
-            ),
-          ),
-        ),
+        child: _PopupNotification(animation: _animation),
       );
     });
 
     _overlayEntry?.let((entry) {
-      if (_overlayEntry?.mounted ?? false) _animationController.forward();
-
       overlayState?.insert(entry);
+
+      _animationController.forward();
     });
 
-    await Future.delayed(const Duration(seconds: 3)).whenComplete(() =>
-        _animationController
-            .reverse()
-            .whenCompleteOrCancel(() => _overlayEntry?.remove()));
+    await Future.delayed(const Duration(seconds: 3));
+    if (_overlayEntry?.mounted ?? false) {
+      _animationController.reverse().then((value) => _overlayEntry?.remove());
+    }
   }
 
   @override
@@ -192,7 +174,7 @@ class _InformationPanelState extends State<_InformationPanel>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 500),
     );
     _animation = CurveTween(curve: Curves.linear).animate(_animationController);
   }
@@ -262,13 +244,40 @@ class _InformationPanelState extends State<_InformationPanel>
           color: context.color.roadmapCardBackground,
           onTap: () {
             Clipboard.setData(const ClipboardData(text: _referralCode));
-            showOverlay(
-              context,
-              text: context.localizations.copied,
-            );
+            showOverlay(context);
           },
         ),
       ],
+    );
+  }
+}
+
+class _PopupNotification extends StatelessWidget {
+  final Animation<double>? animation;
+
+  const _PopupNotification({super.key, required this.animation});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: context.color.localeDropdownOpacity,
+      child: FadeTransition(
+        opacity: animation as Animation<double>,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: context.color.faqItemArrowFill,
+          ),
+          padding: const EdgeInsets.all(10),
+          alignment: Alignment.center,
+          width: 300,
+          height: 60,
+          child: Text(
+            context.localizations.copied,
+            style: const TextStyle(color: Colors.white, fontSize: 16),
+          ),
+        ),
+      ),
     );
   }
 }
