@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
+import 'package:useful_extensions/useful_extensions.dart';
 
 class DashboardSection extends StatelessWidget {
   const DashboardSection({super.key});
@@ -132,8 +134,74 @@ class _LevelCard extends StatelessWidget {
   }
 }
 
-class _InformationPanel extends StatelessWidget {
+class _InformationPanel extends StatefulWidget {
   const _InformationPanel({Key? key}) : super(key: key);
+
+  @override
+  State<_InformationPanel> createState() => _InformationPanelState();
+}
+
+class _InformationPanelState extends State<_InformationPanel>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  OverlayEntry? _overlayEntry;
+  Animation<double>? _animation;
+
+  void showOverlay(BuildContext context, {required String text}) async {
+    OverlayState? overlayState = Overlay.of(context);
+    _overlayEntry = OverlayEntry(builder: (context) {
+      return Positioned(
+        right: 10,
+        bottom: 10,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: Material(
+            color: Colors.red,
+            child: FadeTransition(
+              opacity: _animation as Animation<double>,
+              child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(10),
+                width: 300,
+                height: 60,
+                child: Text(
+                  text,
+                  style: const TextStyle(color: Colors.black),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    });
+
+    _overlayEntry?.let((entry) {
+      if (_overlayEntry?.mounted ?? false) _animationController.forward();
+
+      overlayState?.insert(entry);
+    });
+
+    await Future.delayed(const Duration(seconds: 3)).whenComplete(() =>
+        _animationController
+            .reverse()
+            .whenCompleteOrCancel(() => _overlayEntry?.remove()));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1500),
+    );
+    _animation = CurveTween(curve: Curves.linear).animate(_animationController);
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   static const _activityTextStyle = TextStyle(fontSize: 30);
   static final _auroraUniverseTextStyle = TextStyle(
@@ -192,7 +260,13 @@ class _InformationPanel extends StatelessWidget {
         ColoredButton(
           title: context.localizations.copyCode,
           color: context.color.roadmapCardBackground,
-          onTap: () {},
+          onTap: () {
+            Clipboard.setData(const ClipboardData(text: _referralCode));
+            showOverlay(
+              context,
+              text: context.localizations.copied,
+            );
+          },
         ),
       ],
     );

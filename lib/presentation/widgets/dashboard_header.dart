@@ -3,7 +3,7 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
-class DashboardHeader extends StatelessWidget {
+class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
   const DashboardHeader({super.key});
 
   @override
@@ -43,6 +43,9 @@ class DashboardHeader extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  Size get preferredSize => const Size(double.infinity, 120);
 }
 
 class _UserInfo extends StatelessWidget {
