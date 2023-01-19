@@ -14,10 +14,6 @@ List<Story> get _pages => [
         builder: (context) => const RegistrationPage(),
       ),
       Story(
-        name: 'Pages/ForgotPassword',
-        builder: (context) => const ForgotPasswordPage(),
-      ),
-      Story(
         name: 'Pages/Products',
         builder: (context) => ProductsPage(),
       ),
@@ -32,5 +28,13 @@ List<Story> get _pages => [
       Story(
         name: 'Pages/Directions',
         builder: (context) => DirectionsPage(),
+      ),
+      Story(
+        name: "Reset Password",
+        builder: (context) => const ResetPasswordPage(),
+      ),
+      Story(
+        name: "Reset Access",
+        builder: (context) => const ResetAccessPage(),
       ),
     ];

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:meta_app/core/mixins/validator.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/navigation/app_router.gr.dart';
-import 'package:meta_app/presentation/pages/reset_access_page.dart';
 import 'package:meta_app/presentation/widgets/auth_field.dart';
 import 'package:meta_app/presentation/widgets/auth_button.dart';
 import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_view.dart';

@@ -10,6 +10,8 @@ abstract class AppColors {
 
   static const lighterBlack = Color(0xFF181925);
 
+  static const orangeRed = Color(0xFFff7f50);
+
   static const white = Colors.white;
   static const brighterWhite = Color(0xFFFAFAFA);
   static const brightWhite = Color(0xFFEEEEEE);
