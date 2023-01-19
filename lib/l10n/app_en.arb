@@ -216,5 +216,12 @@
     "chooseAmount": "Choose an amount to withdraw",
     "requestWithdraw": "Request a withdrawal",
     "level": "Level",
-    "reward": "Reward"
+    "reward": "Reward",
+    "historyOfTransactions": "History of transactions and operations on the account",
+    "timeOfPayments": "The time of payment transactions is specified in Greenwich Mean Time",
+    "paymentSystem": "Payment system",
+    "operationDate": "Date of operation",
+    "deposit": "Deposit",
+    "withdrawal": "Withdrawal",
+    "pendingPayment": "Pending payment"
 }

@@ -14,10 +14,12 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           children: [
-          Responsive.isDesktop(context) ?  Image.asset(
-              AppAssets.auroraLogo,
-              height: 78,
-            ) : const SizedBox(),
+            Responsive.isDesktop(context)
+                ? Image.asset(
+                    AppAssets.auroraLogo,
+                    height: 78,
+                  )
+                : const SizedBox(),
             SizedBox(width: context.screenWidth * 0.02),
             IconButton(
               onPressed: () {},

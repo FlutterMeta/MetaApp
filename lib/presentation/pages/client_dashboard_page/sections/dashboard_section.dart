@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/pages/client_dashboard_page/sections/transactions_history_section.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
@@ -66,6 +67,8 @@ class DashboardSection extends StatelessWidget {
                   }
                 },
               ),
+              const SizedBox(height: 20),
+              const TransactionsHistorySection(),
             ],
           ),
         ),
