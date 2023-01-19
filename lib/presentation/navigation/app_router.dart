@@ -7,6 +7,8 @@ import 'package:meta_app/presentation/pages/login_page.dart';
 import 'package:meta_app/presentation/pages/partners_page/partners_page.dart';
 import 'package:meta_app/presentation/pages/products_page/products_page.dart';
 import 'package:meta_app/presentation/pages/registration_page.dart';
+import 'package:meta_app/presentation/pages/reset_access_page.dart';
+import 'package:meta_app/presentation/pages/reset_password_page.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -14,11 +16,12 @@ import 'package:meta_app/presentation/pages/registration_page.dart';
     AutoRoute(page: HomePage, path: "/home", initial: true),
     AutoRoute(page: LoginPage, path: "/login"),
     AutoRoute(page: RegistrationPage, path: "/registration"),
-    AutoRoute(page: ForgotPasswordPage, path: "/forgot-password"),
     AutoRoute(page: ProductsPage, path: "/products"),
     AutoRoute(page: PartnersPage, path: "/partners"),
     AutoRoute(page: BlogPage, path: "/blog"),
     AutoRoute(page: DirectionsPage, path: "/directions"),
+    AutoRoute(page: ResetPasswordPage, path: "/reset-password"),
+    AutoRoute(page: ResetAccessPage, path: "/reset-access"),
   ],
 )
 class $AppRouter {}
