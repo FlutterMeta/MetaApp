@@ -6,8 +6,31 @@ import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:provider/provider.dart';
 
-class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
+class DashboardHeader extends StatefulWidget implements PreferredSizeWidget {
   const DashboardHeader({super.key});
+
+  @override
+  State<DashboardHeader> createState() => _DashboardHeaderState();
+
+  @override
+  Size get preferredSize => const Size(double.infinity, 120);
+}
+
+class _DashboardHeaderState extends State<DashboardHeader> {
+  @override
+  void didChangeDependencies() {
+    final menu = context.read<ClientProfileManager>();
+
+    if (Responsive.isMobile(context) && menu.isCollapsed) {
+      menu.changeCollapsedState();
+    }
+    context
+        .read<ClientProfileManager>()
+        .scaffoldKey
+        .currentState
+        ?.closeDrawer();
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +40,10 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
         return Padding(
           padding: menu.isCollapsed
               ? const EdgeInsets.only(right: 10)
-              : const EdgeInsets.only(left: 60, right: 10),
+              : EdgeInsets.only(
+                  left: Responsive.isMobile(context) ? 10 : 60,
+                  right: 10,
+                ),
           child: Row(
             children: [
               Responsive.isDesktop(context)
@@ -44,7 +70,9 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                   }
                 },
                 iconSize: menuIconSize,
-                icon: const _AnimatedMenuIcon(),
+                icon: Responsive.isMobile(context)
+                    ? const Icon(Icons.menu_rounded)
+                    : const _AnimatedMenuIcon(),
               ),
               const Spacer(),
               IconButton(
@@ -62,9 +90,6 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
       }),
     );
   }
-
-  @override
-  Size get preferredSize => const Size(double.infinity, 120);
 }
 
 class _UserInfo extends StatelessWidget {
@@ -112,7 +137,7 @@ class _UserInfo extends StatelessWidget {
 }
 
 class _AnimatedMenuIcon extends StatefulWidget {
-  const _AnimatedMenuIcon({super.key});
+  const _AnimatedMenuIcon({Key? key}) : super(key: key);
 
   @override
   State<_AnimatedMenuIcon> createState() => __AnimatedMenuIconState();
@@ -137,18 +162,20 @@ class __AnimatedMenuIconState extends State<_AnimatedMenuIcon>
     super.dispose();
   }
 
+  void _changeState() {
+    final menu = context.read<ClientProfileManager>();
+    if (menu.isCollapsed) {
+      _controller.reverse();
+    } else {
+      _controller.forward();
+    }
+    menu.changeCollapsedState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        final menu = context.read<ClientProfileManager>();
-        if (menu.isCollapsed) {
-          _controller.reverse();
-        } else {
-          _controller.forward();
-        }
-        menu.changeCollapsedState();
-      },
+      onTap: _changeState,
       child: AnimatedIcon(
         icon: AnimatedIcons.arrow_menu,
         progress: _controller,
