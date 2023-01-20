@@ -81,6 +81,7 @@ class __DrawerListTileState extends State<_DrawerListTile> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       onTap: () => widget.onTap(widget.index),
       leading: Icon(
         widget.icon,

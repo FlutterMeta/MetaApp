@@ -22,7 +22,7 @@ class BotsTab extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
-        alignment: Alignment.topLeft,
+        alignment: Alignment.center,
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
@@ -85,6 +85,7 @@ class BotsTab extends StatelessWidget {
                 ),
               ],
             ),
+             const SizedBox(height: 260),
             const SizedBox(height: 60),
             Text(
               context.localizations.allRightsReserved,
