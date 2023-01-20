@@ -45,16 +45,10 @@ class _TabsBox extends StatelessWidget {
       builder: (context, tabManager, child) {
         return AnimatedSwitcher(
           transitionBuilder: (child, animation) {
-            return SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(1, 0),
-                end: Offset.zero,
-              ).animate(animation),
-              child: child,
-            );
+            return FadeTransition(opacity: animation, child: child);
           },
-          duration: const Duration(seconds: 1),
-          child: tabManager.currentIndex == 1
+          duration: const Duration(milliseconds: 500),
+          child: tabManager.currentIndex == 0
               ? const DashboardTab()
               : const BotsTab(),
         );
