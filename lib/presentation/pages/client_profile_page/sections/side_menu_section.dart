@@ -67,8 +67,8 @@ class _DrawerListTile extends StatefulWidget {
     required this.onTap,
     required this.index,
     required this.currentIndex,
-    Key? key,
     required this.icon,
+    Key? key,
   }) : super(key: key);
 
   @override
