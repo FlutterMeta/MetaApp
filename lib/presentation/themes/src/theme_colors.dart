@@ -421,7 +421,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         termsButtonFillColor: AppColors.white,
         directionsJoinButtonBorder: AppColors.white,
         productsScaffoldBackground: AppColors.white,
-        dashboardSideMenuSelectedItem: AppColors.black,
+        dashboardSideMenuSelectedItem: AppColors.indigo,
         dashboardSideMenuUnselectedItem: AppColors.greyish,
       );
 
@@ -476,7 +476,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         termsButtonFillColor: AppColors.white,
         directionsJoinButtonBorder: AppColors.white,
         productsScaffoldBackground: AppColors.white,
-        dashboardSideMenuSelectedItem: AppColors.black,
+        dashboardSideMenuSelectedItem: AppColors.indigo,
         dashboardSideMenuUnselectedItem: AppColors.greyish,
       );
 }

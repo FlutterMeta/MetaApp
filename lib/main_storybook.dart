@@ -3,7 +3,7 @@ import 'package:meta_app/core/di/configuration.dart';
 import 'package:meta_app/storybook/storybook_app.dart';
 import 'package:provider/provider.dart';
 
-import 'presentation/pages/client_profile_page/client_tabs_manager.dart';
+import 'presentation/pages/client_profile_page/client_profile_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,7 +12,7 @@ void main() async {
 
   runApp(MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (context) => ClientTabsManager()),
+      ChangeNotifierProvider(create: (context) => ClientProfileManager()),
     ],
     child: const StorybookApp(),
   ));

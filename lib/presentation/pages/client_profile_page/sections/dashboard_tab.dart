@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/client_profile_manager.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
+import 'package:provider/provider.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 
 class DashboardTab extends StatelessWidget {
@@ -17,24 +19,43 @@ class DashboardTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
-        decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
-        alignment: Alignment.topLeft,
-        padding: const EdgeInsets.all(20),
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1200),
-          child: Column(
-            children: [
-              const _InformationPanel(),
-              const SizedBox(height: 20),
-              LayoutBuilder(
-                builder: (context, constraints) {
-                  if (Responsive.isDesktop(context) ||
-                      Responsive.isTablet(context)) {
-                    return Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
+      child: Consumer<ClientProfileManager>(
+        builder: (context, menu, _) {
+          return Container(
+            decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
+            alignment:
+                menu.isCollapsed ? Alignment.topCenter : Alignment.topLeft,
+            padding: const EdgeInsets.all(20),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 1200),
+              child: Column(
+                children: [
+                  const _InformationPanel(),
+                  const SizedBox(height: 20),
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      if (Responsive.isDesktop(context) ||
+                          Responsive.isTablet(context)) {
+                        return Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Column(
+                              children: const [
+                                _RankCard(
+                                  partnerIncomeLevel: 0,
+                                  rank: _userRank,
+                                  reward: _userReward,
+                                ),
+                                SizedBox(height: 20),
+                                _WalletCard(),
+                              ],
+                            ),
+                            const SizedBox(width: 20),
+                            const Expanded(child: _LevelCards()),
+                          ],
+                        );
+                      } else {
+                        return Column(
                           children: const [
                             _RankCard(
                               partnerIncomeLevel: 0,
@@ -43,39 +64,25 @@ class DashboardTab extends StatelessWidget {
                             ),
                             SizedBox(height: 20),
                             _WalletCard(),
+                            SizedBox(height: 20),
+                            _LevelCards(),
                           ],
-                        ),
-                        const SizedBox(width: 20),
-                        const Expanded(child: _LevelCards()),
-                      ],
-                    );
-                  } else {
-                    return Column(
-                      children: const [
-                        _RankCard(
-                          partnerIncomeLevel: 0,
-                          rank: _userRank,
-                          reward: _userReward,
-                        ),
-                        SizedBox(height: 20),
-                        _WalletCard(),
-                        SizedBox(height: 20),
-                        _LevelCards(),
-                      ],
-                    );
-                  }
-                },
+                        );
+                      }
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  const _TransactionsHistorySection(),
+                  const SizedBox(height: 60),
+                  Text(
+                    context.localizations.allRightsReserved,
+                    style: context.text.allRightsReserved,
+                  ),
+                ],
               ),
-              const SizedBox(height: 20),
-              const _TransactionsHistorySection(),
-              const SizedBox(height: 60),
-              Text(
-                context.localizations.allRightsReserved,
-                style: context.text.allRightsReserved,
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }

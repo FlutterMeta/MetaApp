@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/client_tabs_manager.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/client_profile_manager.dart';
+import 'package:meta_app/presentation/themes/theme.dart';
+import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:provider/provider.dart';
 
 class SideMenuSection extends StatefulWidget {
@@ -14,43 +16,49 @@ class _SideMenuSectionState extends State<SideMenuSection> {
   int _currentIndex = 0;
 
   void _onLabelTap(int index) {
-    Provider.of<ClientTabsManager>(context, listen: false).changeIndex(index);
+    Provider.of<ClientProfileManager>(context, listen: false)
+        .changeIndex(index);
     setState(() => _currentIndex = index);
   }
 
   @override
   void initState() {
     _currentIndex =
-        Provider.of<ClientTabsManager>(context, listen: false).currentIndex;
+        Provider.of<ClientProfileManager>(context, listen: false).currentIndex;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      backgroundColor: const Color(0xFFFFFFFF),
-      elevation: 0,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: ListView(
-          children: [
-            _DrawerListTile(
-              index: 0,
-              currentIndex: _currentIndex,
-              icon: Icons.account_circle,
-              label: "Account",
-              onTap: _onLabelTap,
+    return Consumer<ClientProfileManager>(
+      builder: (context, menu, child) {
+        return Drawer(
+          backgroundColor:
+              menu.isCollapsed ? AppColors.indigo : AppColors.white,
+          elevation: 0,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: ListView(
+              children: [
+                _DrawerListTile(
+                  index: 0,
+                  currentIndex: _currentIndex,
+                  icon: Icons.account_circle,
+                  label: "Account",
+                  onTap: _onLabelTap,
+                ),
+                _DrawerListTile(
+                  index: 1,
+                  currentIndex: _currentIndex,
+                  icon: Icons.adb_outlined,
+                  label: "Bots",
+                  onTap: _onLabelTap,
+                ),
+              ],
             ),
-            _DrawerListTile(
-              index: 1,
-              currentIndex: _currentIndex,
-              icon: Icons.adb_outlined,
-              label: "Bots",
-              onTap: _onLabelTap,
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
@@ -80,22 +88,45 @@ class __DrawerListTileState extends State<_DrawerListTile> {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      onTap: () => widget.onTap(widget.index),
-      leading: Icon(
-        widget.icon,
-        size: 34,
-        color: _isSelected
-            ? context.color.dashboardSideMenuSelectedItem
-            : context.color.dashboardSideMenuUnselectedItem,
-      ),
-      title: Text(
-        widget.label,
-        style: _isSelected
-            ? context.text.dashboardSideMenuSelectedLable
-            : context.text.dashboardSideMenuUnselectedLable,
-      ),
+    return Consumer<ClientProfileManager>(
+      builder: (context, menu, child) {
+        return InkWell(
+          onTap: () {
+            widget.onTap(widget.index);
+            if (Responsive.isMobile(context)) Navigator.pop(context);
+          },
+          borderRadius: BorderRadius.circular(12),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                CircleAvatar(
+                  radius: 28,
+                  backgroundColor: _isSelected && menu.isCollapsed
+                      ? AppColors.white
+                      : AppColors.transparent,
+                  child: Icon(
+                    widget.icon,
+                    size: 34,
+                    color: _isSelected
+                        ? context.color.dashboardSideMenuSelectedItem
+                        : context.color.dashboardSideMenuUnselectedItem,
+                  ),
+                ),
+                SizedBox(width: menu.isCollapsed ? 0 : 8),
+                menu.isCollapsed
+                    ? const SizedBox()
+                    : Text(
+                        widget.label,
+                        style: _isSelected
+                            ? context.text.dashboardSideMenuSelectedLable
+                            : context.text.dashboardSideMenuUnselectedLable,
+                      ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

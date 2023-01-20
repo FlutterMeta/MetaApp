@@ -1164,7 +1164,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         dashboardSideMenuSelectedLable: headline3.copyWith(
           fontSize: 18,
-          color: AppColors.black,
+          color: AppColors.darkIndigo,
         ),
         dashboardSideMenuUnselectedLable: headline3.copyWith(
           fontSize: 18,
