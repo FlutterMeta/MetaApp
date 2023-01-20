@@ -223,5 +223,6 @@
     "operationDate": "Date of operation",
     "deposit": "Deposit",
     "withdrawal": "Withdrawal",
-    "pendingPayment": "Pending payment"
+    "pendingPayment": "Pending payment",
+    "bots": "Bots"
 }

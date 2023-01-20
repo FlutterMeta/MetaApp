@@ -15,7 +15,7 @@ import 'package:auto_route/auto_route.dart' as _i10;
 import 'package:flutter/material.dart' as _i11;
 
 import '../pages/blog_page.dart/blog_page.dart' as _i7;
-import '../pages/client_dashboard_page/client_dashboard_page.dart' as _i9;
+import '../pages/client_profile_page/client_profile_page.dart' as _i9;
 import '../pages/directions_page/directions_page.dart' as _i8;
 import '../pages/forgot_password_page.dart' as _i4;
 import '../pages/home_page/home_page.dart' as _i1;
@@ -88,10 +88,10 @@ class AppRouter extends _i10.RootStackRouter {
         child: _i8.DirectionsPage(key: args.key),
       );
     },
-    ClientDashboardRoute.name: (routeData) {
+    ClientProfileRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i9.ClientDashboardPage(),
+        child: const _i9.ClientProfilePage(),
       );
     },
   };
@@ -101,7 +101,7 @@ class AppRouter extends _i10.RootStackRouter {
         _i10.RouteConfig(
           '/#redirect',
           path: '/',
-          redirectTo: '/client-dashboard',
+          redirectTo: '/client-profile',
           fullMatch: true,
         ),
         _i10.RouteConfig(
@@ -137,8 +137,8 @@ class AppRouter extends _i10.RootStackRouter {
           path: '/directions',
         ),
         _i10.RouteConfig(
-          ClientDashboardRoute.name,
-          path: '/client-dashboard',
+          ClientProfileRoute.name,
+          path: '/client-profile',
         ),
       ];
 }
@@ -300,13 +300,13 @@ class DirectionsRouteArgs {
 }
 
 /// generated route for
-/// [_i9.ClientDashboardPage]
-class ClientDashboardRoute extends _i10.PageRouteInfo<void> {
-  const ClientDashboardRoute()
+/// [_i9.ClientProfilePage]
+class ClientProfileRoute extends _i10.PageRouteInfo<void> {
+  const ClientProfileRoute()
       : super(
-          ClientDashboardRoute.name,
-          path: '/client-dashboard',
+          ClientProfileRoute.name,
+          path: '/client-profile',
         );
 
-  static const String name = 'ClientDashboardRoute';
+  static const String name = 'ClientProfileRoute';
 }

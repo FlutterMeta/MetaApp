@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/client_tabs_manager.dart';
+import 'package:provider/provider.dart';
 
 class SideMenuSection extends StatefulWidget {
   const SideMenuSection({Key? key}) : super(key: key);
@@ -10,7 +12,18 @@ class SideMenuSection extends StatefulWidget {
 
 class _SideMenuSectionState extends State<SideMenuSection> {
   int _currentIndex = 0;
-  void _onLabelTap(int index) => setState(() => _currentIndex = index);
+
+  void _onLabelTap(int index) {
+    Provider.of<ClientTabsManager>(context, listen: false).changeIndex(index);
+    setState(() => _currentIndex = index);
+  }
+
+  @override
+  void initState() {
+    int _currentIndex =
+        Provider.of<ClientTabsManager>(context, listen: false).currentIndex;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
