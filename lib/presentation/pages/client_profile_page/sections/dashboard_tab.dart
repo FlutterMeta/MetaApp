@@ -189,6 +189,7 @@ class _InformationPanelState extends State<_InformationPanel>
   @override
   void dispose() {
     _animationController.dispose();
+    _overlayEntry?.remove();
     super.dispose();
   }
 
