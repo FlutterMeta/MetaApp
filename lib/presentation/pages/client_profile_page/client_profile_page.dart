@@ -41,23 +41,20 @@ class _TabsBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*  return AnimatedSwitcher(
-      duration: const Duration(seconds: 6),
-      child: Consumer<ClientTabsManager>(
-        builder: (context, tabManager, child) {
-          if (tabManager.currentIndex == 0) {
-            return DashboardTab();
-          } else {
-            return BotsTab();
-          }
-        },
-      ),
-    );*/
     return Consumer<ClientTabsManager>(
       builder: (context, tabManager, child) {
         return AnimatedSwitcher(
+          transitionBuilder: (child, animation) {
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(1, 0),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            );
+          },
           duration: const Duration(seconds: 1),
-          child: tabManager.currentIndex == 0
+          child: tabManager.currentIndex == 1
               ? const DashboardTab()
               : const BotsTab(),
         );

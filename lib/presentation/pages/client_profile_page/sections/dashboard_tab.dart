@@ -68,6 +68,11 @@ class DashboardTab extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               const _TransactionsHistorySection(),
+              const SizedBox(height: 60),
+              Text(
+                context.localizations.allRightsReserved,
+                style: context.text.allRightsReserved,
+              ),
             ],
           ),
         ),

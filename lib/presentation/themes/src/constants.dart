@@ -35,6 +35,7 @@ abstract class AppColors {
   static const lighterIndigo = Color(0xFF9E8FFD);
   static const extremelyLightIndigo = Color(0xFFF7F7FF);
   static const darkIndigo = Color(0xFF2E3A59);
+  
   static const turquoise = Color(0xFF00AEC4);
   static const seaGreen = Color(0xFF26A69A);
   static const aquamarine = Color(0xFF3DC6FC);

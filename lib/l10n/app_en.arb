@@ -224,5 +224,7 @@
     "deposit": "Deposit",
     "withdrawal": "Withdrawal",
     "pendingPayment": "Pending payment",
-    "bots": "Bots"
+    "bots": "Bots",
+    "getStarted": "Get started",
+    "allRightsReserved": "© All rights reserved Aurora Universe 1998-2023"
 }

@@ -108,6 +108,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle directionsBenefitsSubtitle;
   final TextStyle dashboardSideMenuSelectedLable;
   final TextStyle dashboardSideMenuUnselectedLable;
+  final TextStyle allRightsReserved;
 
   ThemeTextStyles({
     required this.test,
@@ -217,6 +218,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.productsHeadline,
     required this.dashboardSideMenuSelectedLable,
     required this.dashboardSideMenuUnselectedLable,
+    required this.allRightsReserved,
   });
 
   @override
@@ -328,6 +330,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? productsHeadline,
     TextStyle? dashboardSideMenuSelectedLable,
     TextStyle? dashboardSideMenuUnselectedLable,
+    TextStyle? allRightsReserved,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -500,6 +503,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           dashboardSideMenuSelectedLable ?? this.dashboardSideMenuSelectedLable,
       dashboardSideMenuUnselectedLable: dashboardSideMenuUnselectedLable ??
           this.dashboardSideMenuUnselectedLable,
+      allRightsReserved: allRightsReserved ?? this.allRightsReserved,
     );
   }
 
@@ -740,6 +744,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           dashboardSideMenuUnselectedLable,
           other.dashboardSideMenuUnselectedLable,
           t)!,
+      allRightsReserved:
+          TextStyle.lerp(allRightsReserved, other.allRightsReserved, t)!,
     );
   }
 
@@ -1164,6 +1170,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 18,
           color: AppColors.greyish,
         ),
+        allRightsReserved: headline1.copyWith(
+          fontSize: 16,
+          color: AppColors.greyish,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1585,6 +1595,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         dashboardSideMenuUnselectedLable: headline3.copyWith(
           fontSize: 18,
+          color: AppColors.greyish,
+        ),
+        allRightsReserved: headline1.copyWith(
+          fontSize: 16,
           color: AppColors.greyish,
         ),
       );
