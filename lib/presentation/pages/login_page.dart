@@ -24,8 +24,13 @@ class _LoginPageState extends State<LoginPage> with Validator {
 
   final _formKey = GlobalKey<FormState>();
 
+  void _goToProfilePage(BuildContext context) {
+    context.router.push(const ClientProfileRoute());
+  }
+
   void _onLoginButtonPressed() {
     _formKey.currentState?.validate();
+    _goToProfilePage(context);
   }
 
   void _goToForgotPasswordPage() {

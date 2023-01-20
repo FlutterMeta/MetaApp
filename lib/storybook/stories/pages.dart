@@ -33,4 +33,8 @@ List<Story> get _pages => [
         name: 'Pages/Directions',
         builder: (context) => DirectionsPage(),
       ),
+      Story(
+        name: 'Pages/ClientProfile',
+        builder: (context) => const ClientProfilePage(),
+      ),
     ];

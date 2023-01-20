@@ -101,7 +101,7 @@ class AppRouter extends _i10.RootStackRouter {
         _i10.RouteConfig(
           '/#redirect',
           path: '/',
-          redirectTo: '/client-profile',
+          redirectTo: '/home',
           fullMatch: true,
         ),
         _i10.RouteConfig(

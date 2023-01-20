@@ -20,9 +20,7 @@ class ClientProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (Responsive.isDesktop(context))
-              const Expanded(
-                child: SideMenuSection(),
-              ),
+              const Expanded(child: SideMenuSection()),
             const Expanded(
               flex: 5,
               child: _TabsBox(),

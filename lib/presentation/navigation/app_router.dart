@@ -12,7 +12,11 @@ import 'package:meta_app/presentation/pages/registration_page.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: HomePage, path: "/home"),
+    AutoRoute(
+      page: HomePage,
+      path: "/home",
+      initial: true,
+    ),
     AutoRoute(page: LoginPage, path: "/login"),
     AutoRoute(page: RegistrationPage, path: "/registration"),
     AutoRoute(page: ForgotPasswordPage, path: "/forgot-password"),
@@ -20,11 +24,7 @@ import 'package:meta_app/presentation/pages/registration_page.dart';
     AutoRoute(page: PartnersPage, path: "/partners"),
     AutoRoute(page: BlogPage, path: "/blog"),
     AutoRoute(page: DirectionsPage, path: "/directions"),
-    AutoRoute(
-      page: ClientProfilePage,
-      path: "/client-profile",
-      initial: true,
-    ),
+    AutoRoute(page: ClientProfilePage, path: "/client-profile"),
   ],
 )
 class $AppRouter {}
