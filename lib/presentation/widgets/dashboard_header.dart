@@ -56,10 +56,10 @@ class _DashboardHeaderState extends State<DashboardHeader> {
                   ? const SizedBox()
                   : SizedBox(width: context.screenWidth * 0.02),
               IconButton(
-                splashColor: AppColors.turquoise.withOpacity(0.4),
-                splashRadius: 24,
-                highlightColor: AppColors.turquoise.withOpacity(0.2),
+                splashColor: AppColors.transparent,
+                highlightColor: AppColors.transparent,
                 hoverColor: AppColors.transparent,
+                splashRadius: 24,
                 onPressed: () {
                   if (Responsive.isMobile(context)) {
                     context
