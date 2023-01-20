@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/client_tabs_manager.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/bots_tab.dart';

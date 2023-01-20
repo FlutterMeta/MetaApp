@@ -20,7 +20,7 @@ class _SideMenuSectionState extends State<SideMenuSection> {
 
   @override
   void initState() {
-    int _currentIndex =
+    _currentIndex =
         Provider.of<ClientTabsManager>(context, listen: false).currentIndex;
     super.initState();
   }

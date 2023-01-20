@@ -85,7 +85,7 @@ class BotsTab extends StatelessWidget {
                 ),
               ],
             ),
-             const SizedBox(height: 260),
+            const SizedBox(height: 260),
             const SizedBox(height: 60),
             Text(
               context.localizations.allRightsReserved,
@@ -226,7 +226,7 @@ class _BotDemoCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
             color: AppColors.indigo.withOpacity(0.1),
