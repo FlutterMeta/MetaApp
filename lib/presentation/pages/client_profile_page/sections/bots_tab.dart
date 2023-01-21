@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
+import 'package:meta_app/presentation/widgets/responsive.dart';
 
 class BotsTab extends StatelessWidget {
   const BotsTab({super.key});
@@ -307,10 +308,12 @@ class _GetStartedButton extends StatelessWidget {
 class _FunctionalityComparisonTable extends StatelessWidget {
   const _FunctionalityComparisonTable({Key? key}) : super(key: key);
 
-  static const _defaultCellTextStyle = TextStyle(
-    fontSize: 17,
-    color: AppColors.darkIndigo,
-  );
+  TextStyle _defaultCellTextStyle(BuildContext context) {
+    return TextStyle(
+      fontSize: Responsive.isMobile(context) ? 14 : 17,
+      color: AppColors.darkIndigo,
+    );
+  }
 
   static final _fourChecks = [
     const _TableRowCell(child: _GreenCheck()),
@@ -362,7 +365,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                 _TableRowCell(
                   child: Text(
                     context.localizations.availableOnAllExchanges,
-                    style: _defaultCellTextStyle,
+                    style: _defaultCellTextStyle(context),
                   ),
                 ),
                 ...List.generate(
@@ -370,7 +373,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                   (index) => _TableRowCell(
                     child: Text(
                       context.localizations.allExchanges,
-                      style: _defaultCellTextStyle,
+                      style: _defaultCellTextStyle(context),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -382,7 +385,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                 _TableRowCell(
                   child: Text(
                     context.localizations.liveTradingTerminal,
-                    style: _defaultCellTextStyle,
+                    style: _defaultCellTextStyle(context),
                   ),
                 ),
                 ..._fourChecks,
@@ -393,7 +396,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                 _TableRowCell(
                   child: Text(
                     context.localizations.portfolioManagement,
-                    style: _defaultCellTextStyle,
+                    style: _defaultCellTextStyle(context),
                   ),
                 ),
                 ..._fourChecks,
@@ -404,7 +407,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                 _TableRowCell(
                   child: Text(
                     context.localizations.manualTrading,
-                    style: _defaultCellTextStyle,
+                    style: _defaultCellTextStyle(context),
                   ),
                 ),
                 ..._fourChecks,
@@ -415,7 +418,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                 _TableRowCell(
                   child: Text(
                     context.localizations.syncingPositions,
-                    style: _defaultCellTextStyle,
+                    style: _defaultCellTextStyle(context),
                   ),
                 ),
                 ..._fourChecks,
@@ -426,7 +429,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                 _TableRowCell(
                   child: Text(
                     context.localizations.reservePositions,
-                    style: _defaultCellTextStyle,
+                    style: _defaultCellTextStyle(context),
                   ),
                 ),
                 ..._fourChecks,
@@ -437,7 +440,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                 _TableRowCell(
                   child: Text(
                     context.localizations.personalStats,
-                    style: _defaultCellTextStyle,
+                    style: _defaultCellTextStyle(context),
                   ),
                 ),
                 ..._fourChecks,
@@ -448,7 +451,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                 _TableRowCell(
                   child: Text(
                     context.localizations.globalStats,
-                    style: _defaultCellTextStyle,
+                    style: _defaultCellTextStyle(context),
                   ),
                 ),
                 ..._fourChecks,
@@ -459,7 +462,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                 _TableRowCell(
                   child: Text(
                     context.localizations.strategyBuilder,
-                    style: _defaultCellTextStyle,
+                    style: _defaultCellTextStyle(context),
                   ),
                 ),
                 ..._fourChecks,
@@ -497,18 +500,24 @@ class _TableHeaderRowCell extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  static final _headerTableRowTextStyle = TextStyle(
-    fontSize: 15,
-    fontWeight: FontWeight.w200,
-    color: AppColors.darkIndigo.withOpacity(0.5),
-  );
+  TextStyle _headerTableRowTextStyle(BuildContext context) {
+    return TextStyle(
+      fontSize: Responsive.isMobile(context) ? 12 : 15,
+      fontWeight: FontWeight.w200,
+      color: AppColors.darkIndigo.withOpacity(0.5),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       constraints: const BoxConstraints(maxWidth: 100),
       padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Text(text, style: _headerTableRowTextStyle, textAlign: textAlign),
+      child: Text(
+        text,
+        style: _headerTableRowTextStyle(context),
+        textAlign: textAlign,
+      ),
     );
   }
 }
@@ -520,8 +529,10 @@ class _GreenCheck extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       backgroundColor: AppColors.seaGreen.withOpacity(0.1),
-      child: const Icon(
+      radius:  Responsive.isMobile(context) ? 10 : 25,
+      child: Icon(
         Icons.check,
+        size: Responsive.isMobile(context) ? 16 : 25,
         color: AppColors.seaGreen,
       ),
     );
