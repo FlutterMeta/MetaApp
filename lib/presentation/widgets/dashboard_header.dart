@@ -34,7 +34,6 @@ class _DashboardHeaderState extends State<DashboardHeader> {
 
   @override
   Widget build(BuildContext context) {
-    const double menuIconSize = 36;
     return SafeArea(
       child: Consumer<ClientProfileManager>(builder: (context, menu, _) {
         return Padding(
@@ -69,7 +68,7 @@ class _DashboardHeaderState extends State<DashboardHeader> {
                         ?.openDrawer();
                   }
                 },
-                iconSize: menuIconSize,
+                iconSize: 36,
                 icon: Responsive.isMobile(context)
                     ? const Icon(Icons.menu_rounded)
                     : const _AnimatedMenuIcon(),
