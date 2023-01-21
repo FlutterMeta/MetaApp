@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
 
   void _goToRegistrationPage() =>
       context.router.push(const RegistrationRoute());
-      
+
   void _onLoginButtonPressed() {
     _formKey.currentState?.validate();
     _goToProfilePage(context);
