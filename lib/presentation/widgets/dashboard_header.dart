@@ -24,6 +24,7 @@ class _DashboardHeaderState extends State<DashboardHeader> {
     if (Responsive.isMobile(context) && menu.isCollapsed) {
       menu.changeCollapsedState();
     }
+
     context
         .read<ClientProfileManager>()
         .scaffoldKey
@@ -60,7 +61,8 @@ class _DashboardHeaderState extends State<DashboardHeader> {
                 hoverColor: AppColors.transparent,
                 splashRadius: 24,
                 onPressed: () {
-                  if (Responsive.isMobile(context)) {
+                  if (Responsive.isMobile(context) ||
+                      Responsive.isTablet(context)) {
                     context
                         .read<ClientProfileManager>()
                         .scaffoldKey
@@ -69,9 +71,10 @@ class _DashboardHeaderState extends State<DashboardHeader> {
                   }
                 },
                 iconSize: 36,
-                icon: Responsive.isMobile(context)
-                    ? const Icon(Icons.menu_rounded)
-                    : const _AnimatedMenuIcon(),
+                icon:
+                    Responsive.isMobile(context) || Responsive.isTablet(context)
+                        ? const Icon(Icons.menu_rounded)
+                        : const _AnimatedMenuIcon(),
               ),
               const Spacer(),
               IconButton(

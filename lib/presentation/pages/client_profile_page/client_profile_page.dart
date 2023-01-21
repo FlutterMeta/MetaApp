@@ -20,15 +20,14 @@ class ClientProfilePage extends StatelessWidget {
       drawer: const SideMenuSection(),
       body: SafeArea(
         child: Consumer<ClientProfileManager>(
-          builder: (context, pageManager, child) {
+          builder: (context, menu, child) {
             return Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if (Responsive.isDesktop(context) &&
-                    !pageManager.isCollapsed) ...[
+                if (Responsive.isDesktop(context) && !menu.isCollapsed) ...[
                   const Expanded(child: SideMenuSection()),
                 ] else if (Responsive.isDesktop(context) &&
-                    pageManager.isCollapsed) ...[
+                    menu.isCollapsed) ...[
                   const SizedBox(width: 104, child: SideMenuSection()),
                 ],
                 const Expanded(
