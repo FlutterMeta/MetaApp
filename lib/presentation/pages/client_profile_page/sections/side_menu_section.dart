@@ -110,7 +110,9 @@ class __DrawerListTileState extends State<_DrawerListTile> {
                     size: 34,
                     color: _isSelected
                         ? context.color.dashboardSideMenuSelectedItem
-                        :(menu.isCollapsed? AppColors.darkIndigo : context.color.dashboardSideMenuUnselectedItem),
+                        : (menu.isCollapsed
+                            ? AppColors.darkIndigo
+                            : context.color.dashboardSideMenuUnselectedItem),
                   ),
                 ),
                 SizedBox(width: menu.isCollapsed ? 0 : 8),
