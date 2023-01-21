@@ -21,7 +21,8 @@ class _DashboardHeaderState extends State<DashboardHeader> {
   void didChangeDependencies() {
     final menu = context.read<ClientProfileManager>();
 
-    if (Responsive.isMobile(context) && menu.isCollapsed) {
+    if ((Responsive.isMobile(context) || Responsive.isTablet(context)) &&
+        menu.isCollapsed) {
       menu.changeCollapsedState();
     }
 
