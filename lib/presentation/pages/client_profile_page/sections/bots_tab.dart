@@ -57,35 +57,36 @@ class BotsTab extends StatelessWidget {
               alignment: WrapAlignment.spaceBetween,
               runAlignment: WrapAlignment.spaceBetween,
               crossAxisAlignment: WrapCrossAlignment.center,
-              children: const [
+              children: [
                 _BotDemoCard(
-                  title: "Pioneer",
+                  title: context.localizations.pioneer,
                   price: 1500,
                   benefits: _basicBenefits,
                 ),
                 _BotDemoCard(
-                  title: "Adventurer",
+                  title: context.localizations.adventurer,
                   price: 3000,
                   benefits: _basicBenefits,
                 ),
                 _BotDemoCard(
-                  title: " Hero",
+                  title: context.localizations.hero,
                   price: 5000,
                   benefits: _advancedBenefits,
                 ),
                 _BotDemoCard(
-                  title: "Adventurer",
+                  title: context.localizations.pioneer,
                   price: 3000,
                   benefits: _advancedBenefits,
                 ),
                 _BotDemoCard(
-                  title: "Hero",
+                  title: context.localizations.adventurer,
                   price: 5000,
                   benefits: _advancedBenefits,
                 ),
               ],
             ),
-            const SizedBox(height: 260),
+            const SizedBox(height: 30),
+            const _FunctionalityComparisonTable(),
             const SizedBox(height: 60),
             Text(
               context.localizations.allRightsReserved,
@@ -298,6 +299,230 @@ class _GetStartedButton extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _FunctionalityComparisonTable extends StatelessWidget {
+  const _FunctionalityComparisonTable({Key? key}) : super(key: key);
+
+  static const _defaultCellTextStyle = TextStyle(
+    fontSize: 17,
+    color: AppColors.darkIndigo,
+  );
+
+  static final _fourChecks = [
+    const _TableRowCell(child: _GreenCheck()),
+    const _TableRowCell(child: _GreenCheck()),
+    const _TableRowCell(child: _GreenCheck()),
+    const _TableRowCell(child: _GreenCheck()),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(30),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.indigo.withOpacity(0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
+      ),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1200),
+        child: Table(
+          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+          children: [
+            TableRow(
+              children: [
+                _TableHeaderRowCell(
+                  text: context.localizations.features,
+                  textAlign: TextAlign.start,
+                ),
+                _TableHeaderRowCell(text: context.localizations.pioneer),
+                _TableHeaderRowCell(text: context.localizations.explorer),
+                _TableHeaderRowCell(text: context.localizations.adventurer),
+                _TableHeaderRowCell(text: context.localizations.hero),
+              ],
+            ),
+            TableRow(
+              children: List.generate(
+                5,
+                (index) => const Divider(),
+              ),
+            ),
+            TableRow(
+              children: [
+                _TableRowCell(
+                  child: Text(
+                    context.localizations.availableOnAllExchanges,
+                    style: _defaultCellTextStyle,
+                  ),
+                ),
+                ...List.generate(
+                  4,
+                  (index) => _TableRowCell(
+                    child: Text(
+                      context.localizations.allExchanges,
+                      style: _defaultCellTextStyle,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                _TableRowCell(
+                  child: Text(
+                    context.localizations.liveTradingTerminal,
+                    style: _defaultCellTextStyle,
+                  ),
+                ),
+                ..._fourChecks,
+              ],
+            ),
+            TableRow(
+              children: [
+                _TableRowCell(
+                  child: Text(
+                    context.localizations.portfolioManagement,
+                    style: _defaultCellTextStyle,
+                  ),
+                ),
+                ..._fourChecks,
+              ],
+            ),
+            TableRow(
+              children: [
+                _TableRowCell(
+                  child: Text(
+                    context.localizations.manualTrading,
+                    style: _defaultCellTextStyle,
+                  ),
+                ),
+                ..._fourChecks,
+              ],
+            ),
+            TableRow(
+              children: [
+                _TableRowCell(
+                  child: Text(
+                    context.localizations.syncingPositions,
+                    style: _defaultCellTextStyle,
+                  ),
+                ),
+                ..._fourChecks,
+              ],
+            ),
+            TableRow(
+              children: [
+                _TableRowCell(
+                  child: Text(
+                    context.localizations.reservePositions,
+                    style: _defaultCellTextStyle,
+                  ),
+                ),
+                ..._fourChecks,
+              ],
+            ),
+            TableRow(
+              children: [
+                _TableRowCell(
+                  child: Text(
+                    context.localizations.personalStats,
+                    style: _defaultCellTextStyle,
+                  ),
+                ),
+                ..._fourChecks,
+              ],
+            ),
+            TableRow(
+              children: [
+                _TableRowCell(
+                  child: Text(
+                    context.localizations.globalStats,
+                    style: _defaultCellTextStyle,
+                  ),
+                ),
+                ..._fourChecks,
+              ],
+            ),
+            TableRow(
+              children: [
+                _TableRowCell(
+                  child: Text(
+                    context.localizations.strategyBuilder,
+                    style: _defaultCellTextStyle,
+                  ),
+                ),
+                ..._fourChecks,
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _TableRowCell extends StatelessWidget {
+  final Widget child;
+
+  const _TableRowCell({required this.child, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 100),
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: child,
+    );
+  }
+}
+
+class _TableHeaderRowCell extends StatelessWidget {
+  final String text;
+  final TextAlign? textAlign;
+
+  const _TableHeaderRowCell({
+    required this.text,
+    this.textAlign = TextAlign.center,
+    Key? key,
+  }) : super(key: key);
+
+  static final _headerTableRowTextStyle = TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w200,
+    color: AppColors.darkIndigo.withOpacity(0.5),
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 100),
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: Text(text, style: _headerTableRowTextStyle, textAlign: textAlign),
+    );
+  }
+}
+
+class _GreenCheck extends StatelessWidget {
+  const _GreenCheck({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      backgroundColor: AppColors.seaGreen.withOpacity(0.1),
+      child: const Icon(
+        Icons.check,
+        color: AppColors.seaGreen,
       ),
     );
   }

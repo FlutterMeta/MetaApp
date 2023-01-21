@@ -225,6 +225,21 @@
     "withdrawal": "Withdrawal",
     "pendingPayment": "Pending payment",
     "bots": "Bots",
+    "pioneer": "Pioneer",
+    "hero": "Hero",
+    "explorer": "Explorer",
+    "adventurer": "Adventurer",
     "getStarted": "Get started",
-    "allRightsReserved": "© All rights reserved Aurora Universe 1998-2023"
+    "manualTrading": "Manual trading",
+    "availableOnAllExchanges": "Available on all exchanges",
+    "allExchanges": "All exchanges",
+    "liveTradingTerminal": "Live trading terminal",
+    "portfolioManagement": "Portfolio management",
+    "syncingPositions": "Syncing positions",
+    "reservePositions": "Reserve positions",
+    "personalStats": "Personal stats",
+    "globalStats": "Global stats",
+    "strategyBuilder": "Strategy builder",
+    "allRightsReserved": "© All rights reserved Aurora Universe 1998-2023",
+    "features": "Features"
 }
