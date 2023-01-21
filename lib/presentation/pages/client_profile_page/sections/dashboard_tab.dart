@@ -13,9 +13,6 @@ import 'package:useful_extensions/useful_extensions.dart';
 class DashboardTab extends StatelessWidget {
   const DashboardTab({super.key});
 
-  static const _userRank = "Newbie";
-  static const _userReward = 1337.0;
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -32,45 +29,7 @@ class DashboardTab extends StatelessWidget {
                 children: [
                   const _InformationPanel(),
                   const SizedBox(height: 20),
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      if (Responsive.isDesktop(context) ||
-                          Responsive.isTablet(context)) {
-                        return Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Column(
-                              children: const [
-                                _RankCard(
-                                  partnerIncomeLevel: 0,
-                                  rank: _userRank,
-                                  reward: _userReward,
-                                ),
-                                SizedBox(height: 20),
-                                _WalletCard(),
-                              ],
-                            ),
-                            const SizedBox(width: 20),
-                            const Expanded(child: _LevelCards()),
-                          ],
-                        );
-                      } else {
-                        return Column(
-                          children: const [
-                            _RankCard(
-                              partnerIncomeLevel: 0,
-                              rank: _userRank,
-                              reward: _userReward,
-                            ),
-                            SizedBox(height: 20),
-                            _WalletCard(),
-                            SizedBox(height: 20),
-                            _LevelCards(),
-                          ],
-                        );
-                      }
-                    },
-                  ),
+                  const _AdaptiveMainContent(),
                   const SizedBox(height: 20),
                   const _TransactionsHistorySection(),
                   const SizedBox(height: 60),
@@ -84,6 +43,55 @@ class DashboardTab extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class _AdaptiveMainContent extends StatelessWidget {
+  const _AdaptiveMainContent({Key? key}) : super(key: key);
+
+  static const _userRank = "Newbie";
+  static const _userReward = 1337.0;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (Responsive.isDesktop(context) || Responsive.isTablet(context)) {
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                children: const [
+                  _RankCard(
+                    partnerIncomeLevel: 0,
+                    rank: _userRank,
+                    reward: _userReward,
+                  ),
+                  SizedBox(height: 20),
+                  _WalletCard(),
+                ],
+              ),
+              const SizedBox(width: 20),
+              const Expanded(child: _LevelCards()),
+            ],
+          );
+        } else {
+          return Column(
+            children: const [
+              _RankCard(
+                partnerIncomeLevel: 0,
+                rank: _userRank,
+                reward: _userReward,
+              ),
+              SizedBox(height: 20),
+              _WalletCard(),
+              SizedBox(height: 20),
+              _LevelCards(),
+            ],
+          );
+        }
+      },
     );
   }
 }
@@ -173,7 +181,6 @@ class _InformationPanelState extends State<_InformationPanel>
 
     _overlayEntry?.let((entry) {
       overlayState?.insert(entry);
-
       _animationController.forward();
     });
 
@@ -630,7 +637,7 @@ class _TransactionInfo extends StatelessWidget {
                   transaction.network,
                   style: _transactionTextStyle,
                 ),
-                const SizedBox(height: 5),
+                const SizedBox(height: 6),
                 Text(
                   context.localizations.paymentSystem,
                   style: const TextStyle(
@@ -651,7 +658,7 @@ class _TransactionInfo extends StatelessWidget {
                 transaction.date,
                 style: _transactionTextStyle,
               ),
-              const SizedBox(height: 5),
+              const SizedBox(height: 6),
               Text(
                 context.localizations.operationDate,
                 style: const TextStyle(

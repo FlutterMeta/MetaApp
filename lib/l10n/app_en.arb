@@ -202,7 +202,7 @@
     "profitWithAurora": "Profit with Aurora",
     "getIncomeFromPersonal": "Get income from personal investments. Build a team and become a level 15 leader. Proposals for regional development.",
     "terms": "Terms",
-    "@_DASHBOARD_PAGE": {},
+    "@_CLIENT_PROFILE_PAGE": {},
     "welcome": "Welcome, ",
     "yourActivity": "Your activity",
     "referralCodeForPartners": "Referral code for partners:",
@@ -241,5 +241,10 @@
     "globalStats": "Global stats",
     "strategyBuilder": "Strategy builder",
     "allRightsReserved": "© All rights reserved Aurora Universe 1998-2023",
-    "features": "Features"
+    "features": "Features",
+    "twentyPositions": "20+ positions",
+    "allCoinsForSignals": "all coins for signals",
+    "allAvailableExchanges": "all available exchanges",
+    "marketArbitrage": "market arbitrage",
+    "algorithmIntelligence": "algorithm intelligence"
 }

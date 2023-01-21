@@ -5,18 +5,24 @@ import 'package:meta_app/presentation/widgets/responsive.dart';
 
 class BotsTab extends StatelessWidget {
   const BotsTab({super.key});
-  static const List<String> _basicBenefits = [
-    "20 positions",
-    "portfolio management",
-    "manual trading",
-    "all available exchanges",
-  ];
-  static const List<String> _advancedBenefits = [
-    ..._basicBenefits,
-    "all coins for signals",
-    "market arbitrage",
-    "algorithm intelligence",
-  ];
+
+  List<String> _basicBenefits(BuildContext context) {
+    return [
+      context.localizations.twentyPositions,
+      context.localizations.portfolioManagement,
+      context.localizations.manualTrading,
+      context.localizations.allAvailableExchanges,
+    ];
+  }
+
+  List<String> _advancedBenefits(BuildContext context) {
+    return [
+      ..._basicBenefits(context),
+      context.localizations.allCoinsForSignals,
+      context.localizations.marketArbitrage,
+      context.localizations.algorithmIntelligence,
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,62 +33,52 @@ class BotsTab extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            Wrap(
-              spacing: 20,
-              runSpacing: 16,
-              alignment: WrapAlignment.spaceBetween,
-              runAlignment: WrapAlignment.spaceBetween,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: const [
+            _CardsDefaultWrap(
+              children: [
                 _BotProfitCard(
-                  title: "Binance Futures Pioneer",
+                  title: "Binance Futures ${context.localizations.pioneer}",
                   price: 1500,
                   roi: 40,
                 ),
                 _BotProfitCard(
-                  title: "Binance Futures Adventurer",
+                  title: "Binance Futures ${context.localizations.adventurer}",
                   price: 3000,
                   roi: 60,
                 ),
                 _BotProfitCard(
-                  title: "Binance Futures Hero",
+                  title: "Binance Futures ${context.localizations.hero}",
                   price: 5000,
                   roi: 80,
                 ),
               ],
             ),
             const SizedBox(height: 20),
-            Wrap(
-              spacing: 20,
-              runSpacing: 16,
-              alignment: WrapAlignment.spaceBetween,
-              runAlignment: WrapAlignment.spaceBetween,
-              crossAxisAlignment: WrapCrossAlignment.center,
+            _CardsDefaultWrap(
               children: [
                 _BotDemoCard(
                   title: context.localizations.pioneer,
                   price: 1500,
-                  benefits: _basicBenefits,
+                  benefits: _basicBenefits(context),
                 ),
                 _BotDemoCard(
                   title: context.localizations.adventurer,
                   price: 3000,
-                  benefits: _basicBenefits,
+                  benefits: _basicBenefits(context),
                 ),
                 _BotDemoCard(
                   title: context.localizations.hero,
                   price: 5000,
-                  benefits: _advancedBenefits,
+                  benefits: _advancedBenefits(context),
                 ),
                 _BotDemoCard(
                   title: context.localizations.pioneer,
                   price: 3000,
-                  benefits: _advancedBenefits,
+                  benefits: _advancedBenefits(context),
                 ),
                 _BotDemoCard(
                   title: context.localizations.adventurer,
                   price: 5000,
-                  benefits: _advancedBenefits,
+                  benefits: _advancedBenefits(context),
                 ),
               ],
             ),
@@ -96,6 +92,23 @@ class BotsTab extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _CardsDefaultWrap extends StatelessWidget {
+  final List<Widget> children;
+  const _CardsDefaultWrap({required this.children, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Wrap(
+      spacing: 20,
+      runSpacing: 16,
+      alignment: WrapAlignment.spaceBetween,
+      runAlignment: WrapAlignment.spaceBetween,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: children,
     );
   }
 }
@@ -281,6 +294,7 @@ class _GetStartedButton extends StatelessWidget {
   const _GetStartedButton({required this.onTap, Key? key}) : super(key: key);
 
   static const _buttonTextStyle = TextStyle(fontSize: 16);
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -529,7 +543,7 @@ class _GreenCheck extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       backgroundColor: AppColors.seaGreen.withOpacity(0.1),
-      radius:  Responsive.isMobile(context) ? 10 : 25,
+      radius: Responsive.isMobile(context) ? 10 : 25,
       child: Icon(
         Icons.check,
         size: Responsive.isMobile(context) ? 16 : 25,
