@@ -252,7 +252,7 @@ class _ProfileMenu extends StatelessWidget {
   }
 }
 
-class _MenuItem extends StatelessWidget {
+class _MenuItem extends StatefulWidget {
   final String title;
   final IconData icon;
   final Color color;
@@ -267,19 +267,35 @@ class _MenuItem extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<_MenuItem> createState() => _MenuItemState();
+}
+
+class _MenuItemState extends State<_MenuItem> {
+  bool _isHovered = false;
+
+  @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Padding(
+    return InkWell(
+      onTap: widget.onTap,
+      onHover: (isHovered) => setState(() => _isHovered = isHovered),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: _isHovered ? widget.color : AppColors.white,
+        ),
+        constraints: const BoxConstraints(minWidth: 140),
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
           children: [
-            Icon(icon, color: color),
+            Icon(
+              widget.icon,
+              color: _isHovered ? AppColors.white : widget.color,
+            ),
             const SizedBox(width: 6),
             Text(
-              title,
+              widget.title,
               style: TextStyle(
-                color: color,
+                color: _isHovered ? AppColors.white : widget.color,
                 fontSize: 16,
               ),
             ),
