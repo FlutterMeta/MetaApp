@@ -12,7 +12,7 @@ import 'package:meta_app/presentation/pages/reset_password_page.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: HomePage, path: "/home", initial: true),
+    AutoRoute(page: HomePage, path: "/home"),
     AutoRoute(page: LoginPage, path: "/login"),
     AutoRoute(page: RegistrationPage, path: "/registration"),
     AutoRoute(page: ProductsPage, path: "/products"),
