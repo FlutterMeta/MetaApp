@@ -246,5 +246,7 @@
     "allCoinsForSignals": "all coins for signals",
     "allAvailableExchanges": "all available exchanges",
     "marketArbitrage": "market arbitrage",
+    "signOut": "Sign out",
+    "closeMenu": "Close menu",
     "algorithmIntelligence": "algorithm intelligence"
 }

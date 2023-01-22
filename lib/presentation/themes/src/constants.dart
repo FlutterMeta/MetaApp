@@ -29,6 +29,8 @@ abstract class AppColors {
   static const blueGrey = Color(0xFFCACBDF);
   static const darkerBlueGrey = Color(0xFF9596AF);
 
+  static const red = Color(0xFFE74C3C);
+
   static const indigo = Color(0xFF3F51B5);
   static const lightIndigo = Color(0xff6E58FC);
 
