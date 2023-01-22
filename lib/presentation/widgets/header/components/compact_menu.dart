@@ -157,7 +157,7 @@ class _MenuTabs extends StatelessWidget {
         _NavigationButton(
           title: context.localizations.directions,
           routeName: DirectionsRoute.name,
-          onTap: () {},
+          onTap: () => _goToDirectionsPage(context),
         ),
         const SizedBox(height: 26),
         _NavigationButton(
