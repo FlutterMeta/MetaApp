@@ -106,6 +106,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle directionsBenefitsTitle;
   final TextStyle directionsBenefitsDescription;
   final TextStyle directionsBenefitsSubtitle;
+  final TextStyle headerNavItemHovered;
 
   ThemeTextStyles({
     required this.test,
@@ -213,6 +214,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.directionsBenefitsDescription,
     required this.directionsBenefitsSubtitle,
     required this.productsHeadline,
+    required this.headerNavItemHovered,
   });
 
   @override
@@ -322,6 +324,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? directionsBenefitsDescription,
     TextStyle? directionsBenefitsSubtitle,
     TextStyle? productsHeadline,
+    TextStyle? headerNavItemHovered,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -490,6 +493,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       directionsBenefitsSubtitle:
           directionsBenefitsSubtitle ?? this.directionsBenefitsSubtitle,
       productsHeadline: productsHeadline ?? this.productsHeadline,
+      headerNavItemHovered: headerNavItemHovered ?? this.headerNavItemHovered,
     );
   }
 
@@ -722,6 +726,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           directionsBenefitsTitle, other.directionsBenefitsTitle, t)!,
       productsHeadline:
           TextStyle.lerp(productsHeadline, other.productsHeadline, t)!,
+      headerNavItemHovered:
+          TextStyle.lerp(headerNavItemHovered, other.headerNavItemHovered, t)!,
     );
   }
 
@@ -1138,6 +1144,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           height: .94,
           color: AppColors.darkBlue,
         ),
+        headerNavItemHovered: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.indigo,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1552,6 +1562,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 63,
           height: .94,
           color: AppColors.darkBlue,
+        ),
+        headerNavItemHovered: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.indigo,
         ),
       );
 }
