@@ -229,7 +229,6 @@ class _ProfileMenu extends StatelessWidget {
           child: ConstrainedBox(
             constraints: const BoxConstraints(minWidth: 160),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _MenuItem(
                   onTap: () {},
