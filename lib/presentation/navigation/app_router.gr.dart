@@ -92,12 +92,6 @@ class AppRouter extends _i9.RootStackRouter {
   @override
   List<_i9.RouteConfig> get routes => [
         _i9.RouteConfig(
-          '/#redirect',
-          path: '/',
-          redirectTo: '/home',
-          fullMatch: true,
-        ),
-        _i9.RouteConfig(
           HomeRoute.name,
           path: '/home',
         ),

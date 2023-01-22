@@ -70,13 +70,11 @@ class _CompactMenuState extends State<_CompactMenu>
       if (mounted && context.screenWidth > 780) _removeOverlay();
     });
 
-    try {
-      _observer =
-          RouterScope.of(context).firstObserverOfType<AutoRouteObserver>();
-      if (_observer != null) {
-        _observer?.subscribe(this, context.routeData);
-      }
-    } catch (_) {}
+    _observer =
+        RouterScope.of(context).firstObserverOfType<AutoRouteObserver>();
+    if (_observer != null) {
+      _observer?.subscribe(this, context.routeData);
+    }
   }
 
   @override
@@ -147,6 +145,10 @@ class _MenuTabs extends StatelessWidget {
     context.router.navigate(ProductsRoute());
   }
 
+  void _goToDirectionsPage(BuildContext context) {
+    context.router.navigate(DirectionsRoute());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -155,7 +157,7 @@ class _MenuTabs extends StatelessWidget {
         _NavigationButton(
           title: context.localizations.directions,
           routeName: DirectionsRoute.name,
-          onTap: () {},
+          onTap: () => _goToDirectionsPage(context),
         ),
         const SizedBox(height: 26),
         _NavigationButton(
