@@ -17,18 +17,23 @@ class ResetPasswordPage extends StatefulWidget {
 
 class _ResetPasswordPageState extends State<ResetPasswordPage> with Validator {
   final _emailController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
 
   void _onRestoreButtonPressed() {
-    bool? result = _formKey.currentState?.validate();
-    if (result == true) {
+    bool? isFormValid = _formKey.currentState?.validate();
+    if (isFormValid ?? false) {
       _goToResetAccessPage();
     }
   }
 
   void _goToResetAccessPage() {
     context.router.replace(const ResetAccessRoute());
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
   }
 
   @override
@@ -44,6 +49,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> with Validator {
                 borderRadius: BorderRadius.circular(6),
                 gradient: context.gradient.indigoTurquoise,
               ),
+              margin: const EdgeInsets.all(20),
               constraints: const BoxConstraints(maxWidth: 550),
               padding: const EdgeInsets.symmetric(horizontal: 44, vertical: 60),
               child: Form(

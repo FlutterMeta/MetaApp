@@ -17,10 +17,17 @@ class _ResetAccessPageState extends State<ResetAccessPage> with Validator {
   final _emailCodeController = TextEditingController();
   final _newPasswordController = TextEditingController();
   final _repeatPasswordController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
 
   void _onRestoreButtonPressed() => _formKey.currentState?.validate();
+
+  @override
+  void dispose() {
+    _emailCodeController.dispose();
+    _newPasswordController.dispose();
+    _repeatPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +44,7 @@ class _ResetAccessPageState extends State<ResetAccessPage> with Validator {
               ),
               constraints: const BoxConstraints(maxWidth: 550),
               padding: const EdgeInsets.symmetric(horizontal: 44, vertical: 60),
+              margin: const EdgeInsets.all(20),
               child: Form(
                 key: _formKey,
                 child: Column(

@@ -97,8 +97,8 @@ class AppRouter extends _i10.RootStackRouter {
   };
 
   @override
-  List<_i9.RouteConfig> get routes => [
-        _i9.RouteConfig(
+  List<_i10.RouteConfig> get routes => [
+        _i10.RouteConfig(
           HomeRoute.name,
           path: '/home',
         ),

@@ -17,11 +17,6 @@ List<Story> get _pages => [
         router: AppRouter(),
       ),
       RouterAwareStory(
-        name: 'Pages/ForgotPassword',
-        initialRoutes: const [ForgotPasswordRoute()],
-        router: AppRouter(),
-      ),
-      RouterAwareStory(
         name: 'Pages/Products',
         initialRoutes: [ProductsRoute()],
         router: AppRouter(),
@@ -41,12 +36,14 @@ List<Story> get _pages => [
         initialRoutes: [DirectionsRoute()],
         router: AppRouter(),
       ),
-      Story(
-        name: "Reset Password",
-        builder: (context) => const ResetPasswordPage(),
+      RouterAwareStory(
+        name: "Pages/ResetPassword",
+        initialRoutes: const [ResetPasswordRoute()],
+        router: AppRouter(),
       ),
-      Story(
-        name: "Reset Access",
-        builder: (context) => const ResetAccessPage(),
+      RouterAwareStory(
+        name: "Pages/ResetAccess",
+        initialRoutes: const [ResetAccessRoute()],
+        router: AppRouter(),
       ),
     ];
