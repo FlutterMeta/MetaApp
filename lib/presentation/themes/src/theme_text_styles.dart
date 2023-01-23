@@ -111,6 +111,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle allRightsReserved;
   final TextStyle body;
   final TextStyle inverseBody;
+  final TextStyle clientDashboardReferralCodeItself;
+  final TextStyle clientDashboardTip;
 
   ThemeTextStyles({
     required this.test,
@@ -223,6 +225,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.allRightsReserved,
     required this.body,
     required this.inverseBody,
+    required this.clientDashboardReferralCodeItself,
+    required this.clientDashboardTip,
   });
 
   @override
@@ -337,6 +341,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? allRightsReserved,
     TextStyle? body,
     TextStyle? inverseBody,
+    TextStyle? clientDashboardReferralCodeItself,
+    TextStyle? clientDashboardTip,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -512,6 +518,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       allRightsReserved: allRightsReserved ?? this.allRightsReserved,
       body: body ?? this.body,
       inverseBody: inverseBody ?? this.inverseBody,
+      clientDashboardReferralCodeItself: clientDashboardReferralCodeItself ??
+          this.clientDashboardReferralCodeItself,
+      clientDashboardTip: clientDashboardTip ?? this.clientDashboardTip,
     );
   }
 
@@ -756,6 +765,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(allRightsReserved, other.allRightsReserved, t)!,
       body: TextStyle.lerp(body, other.body, t)!,
       inverseBody: TextStyle.lerp(inverseBody, other.inverseBody, t)!,
+      clientDashboardReferralCodeItself: TextStyle.lerp(
+          clientDashboardReferralCodeItself,
+          other.clientDashboardReferralCodeItself,
+          t)!,
+      clientDashboardTip:
+          TextStyle.lerp(clientDashboardTip, other.clientDashboardTip, t)!,
     );
   }
 
@@ -1186,6 +1201,15 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         body: headline3.copyWith(),
         inverseBody: headline1.copyWith(color: AppColors.white),
+        clientDashboardReferralCodeItself: headline1.copyWith(
+          fontSize: 18,
+          color: AppColors.steelBlue,
+          fontWeight: FontWeight.w700,
+        ),
+        clientDashboardTip: headline3.copyWith(
+          fontSize: 13,
+          color: AppColors.greyish,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1615,5 +1639,14 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         body: headline3.copyWith(),
         inverseBody: headline3.copyWith(color: AppColors.white),
+        clientDashboardReferralCodeItself: headline1.copyWith(
+          fontSize: 18,
+          color: AppColors.steelBlue,
+          fontWeight: FontWeight.w700,
+        ),
+        clientDashboardTip: headline3.copyWith(
+          fontSize: 13,
+          color: AppColors.greyish,
+        ),
       );
 }

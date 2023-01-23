@@ -207,12 +207,12 @@ class _InformationPanelState extends State<_InformationPanel>
     super.dispose();
   }
 
-  static const _referralCodeItselfTextStyle = TextStyle(
-    fontSize: 18,
-    color: AppColors.steelBlue,
-    fontWeight: FontWeight.w700,
-  );
   static const _referralCode = "Aurora_Bobr12360914";
+
+  void onCopyButtonTap() {
+    Clipboard.setData(const ClipboardData(text: _referralCode));
+    showOverlay(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -254,19 +254,16 @@ class _InformationPanelState extends State<_InformationPanel>
               ),
             ),
             const TextSpan(text: "  "),
-            const TextSpan(
+            TextSpan(
               text: _referralCode,
-              style: _referralCodeItselfTextStyle,
+              style: context.text.clientDashboardReferralCodeItself,
             ),
           ]),
         ),
         ColoredButton(
           title: context.localizations.copyCode,
           color: context.color.roadmapCardBackground,
-          onTap: () {
-            Clipboard.setData(const ClipboardData(text: _referralCode));
-            showOverlay(context);
-          },
+          onTap: () => onCopyButtonTap(),
         ),
       ],
     );
@@ -493,11 +490,6 @@ class _RequestWithdrawButton extends StatelessWidget {
 class _TransactionsHistorySection extends StatelessWidget {
   const _TransactionsHistorySection({Key? key}) : super(key: key);
 
-  static const _timeTextStyle = TextStyle(
-    fontSize: 13,
-    color: AppColors.greyish,
-  );
-
   static final _transactions = [
     Transaction(
       'Tether (TRC20)',
@@ -541,7 +533,7 @@ class _TransactionsHistorySection extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               context.localizations.timeOfPayments,
-              style: _timeTextStyle,
+              style: context.text.clientDashboardTip,
             ),
             const SizedBox(height: 30),
             Column(
@@ -624,10 +616,7 @@ class _TransactionInfo extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   context.localizations.paymentSystem,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    color: AppColors.greyish,
-                  ),
+                  style: context.text.clientDashboardTip,
                 ),
               ],
             ),

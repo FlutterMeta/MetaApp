@@ -60,6 +60,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color secondary;
   final Color secondaryVariant;
   final Color transparent;
+  final Color greyish;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -121,6 +122,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.secondaryVariant,
     required this.onBackground,
     required this.transparent,
+    required this.greyish,
   });
 
   @override
@@ -185,6 +187,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? secondaryVariant,
     Color? onBackground,
     Color? transparent,
+    Color? greyish,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -275,6 +278,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       secondaryVariant: secondaryVariant ?? this.secondaryVariant,
       onBackground: onBackground ?? this.onBackground,
       transparent: transparent ?? this.transparent,
+      greyish: greyish ?? this.greyish,
     );
   }
 
@@ -403,6 +407,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       secondary: Color.lerp(secondary, other.secondary, t)!,
       transparent: Color.lerp(transparent, other.transparent, t)!,
       background: Color.lerp(background, other.background, t)!,
+      greyish: Color.lerp(greyish, other.greyish, t)!,
     );
   }
 
@@ -466,6 +471,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         transparent: AppColors.transparent,
         background: AppColors.white,
         onBackground: AppColors.black,
+        greyish: AppColors.greyish,
       );
 
   static get dark => ThemeColors(
@@ -528,5 +534,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         transparent: AppColors.transparent,
         background: AppColors.white,
         onBackground: AppColors.black,
+        greyish: AppColors.greyish,
       );
 }

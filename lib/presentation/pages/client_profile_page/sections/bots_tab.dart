@@ -142,11 +142,11 @@ class _BotProfitCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: context.color.background,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: AppColors.indigo.withOpacity(0.1),
+            color: context.color.primary.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -162,11 +162,11 @@ class _BotProfitCard extends StatelessWidget {
               width: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: AppColors.indigo.withOpacity(0.1),
+                color: context.color.primary.withOpacity(0.1),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.attach_money,
-                color: Colors.indigo,
+                color: context.color.primary,
               ),
             ),
             const SizedBox(width: 20),
@@ -187,7 +187,7 @@ class _BotProfitCard extends StatelessWidget {
                     const SizedBox(width: 10),
                     Container(
                       decoration: BoxDecoration(
-                        color: AppColors.seaGreen,
+                        color: context.color.secondaryVariant,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       padding: const EdgeInsets.symmetric(
@@ -240,11 +240,11 @@ class _BotDemoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: context.color.background,
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: AppColors.indigo.withOpacity(0.1),
+            color: context.color.primary.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -301,7 +301,7 @@ class _GetStartedButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: AppColors.greyish),
+          border: Border.all(color: context.color.greyish),
           borderRadius: BorderRadius.circular(12),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
@@ -341,11 +341,11 @@ class _FunctionalityComparisonTable extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: context.color.background,
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: AppColors.indigo.withOpacity(0.1),
+            color: context.color.primary.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -542,12 +542,12 @@ class _GreenCheck extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: AppColors.seaGreen.withOpacity(0.1),
+      backgroundColor: context.color.secondaryVariant.withOpacity(0.1),
       radius: Responsive.isMobile(context) ? 10 : 25,
       child: Icon(
         Icons.check,
         size: Responsive.isMobile(context) ? 16 : 25,
-        color: AppColors.seaGreen,
+        color: context.color.secondaryVariant,
       ),
     );
   }
