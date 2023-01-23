@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/client_profile_manager.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/bots_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/dashboard_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/side_menu_section.dart';
-import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/dashboard_header.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +14,7 @@ class ClientProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: context.color.background,
       key: context.read<ClientProfileManager>().scaffoldKey,
       appBar: const DashboardHeader(),
       drawer: const SideMenuSection(),

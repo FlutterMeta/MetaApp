@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/client_profile_manager.dart';
-import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:provider/provider.dart';
 
@@ -33,8 +32,9 @@ class _SideMenuSectionState extends State<SideMenuSection> {
     return Consumer<ClientProfileManager>(
       builder: (context, menu, child) {
         return Drawer(
-          backgroundColor:
-              menu.isCollapsed ? AppColors.indigo : AppColors.white,
+          backgroundColor: menu.isCollapsed
+              ? context.color.primary
+              : context.color.background,
           elevation: 0,
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -44,14 +44,14 @@ class _SideMenuSectionState extends State<SideMenuSection> {
                   index: 0,
                   currentIndex: _currentIndex,
                   icon: Icons.account_circle,
-                  label: "Account",
+                  label: context.localizations.account,
                   onTap: _onLabelTap,
                 ),
                 _DrawerListTile(
                   index: 1,
                   currentIndex: _currentIndex,
                   icon: Icons.adb_outlined,
-                  label: "Bots",
+                  label: context.localizations.bots,
                   onTap: _onLabelTap,
                 ),
               ],
@@ -103,15 +103,15 @@ class __DrawerListTileState extends State<_DrawerListTile> {
                 CircleAvatar(
                   radius: 28,
                   backgroundColor: _isSelected && menu.isCollapsed
-                      ? AppColors.white
-                      : AppColors.transparent,
+                      ? context.color.background
+                      : context.color.transparent,
                   child: Icon(
                     widget.icon,
                     size: 34,
                     color: _isSelected
                         ? context.color.dashboardSideMenuSelectedItem
                         : (menu.isCollapsed
-                            ? AppColors.darkIndigo
+                            ? context.color.primaryVariant
                             : context.color.dashboardSideMenuUnselectedItem),
                   ),
                 ),
