@@ -46,6 +46,17 @@ class ClientProfilePage extends StatelessWidget {
 class _TabsBox extends StatelessWidget {
   const _TabsBox({Key? key}) : super(key: key);
 
+  Widget showPage(int index) {
+    switch (index) {
+      case 0:
+        return const DashboardTab();
+      case 1:
+        return const BotsTab();
+      default:
+        return const DashboardTab();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ClientProfileManager>(
@@ -55,9 +66,7 @@ class _TabsBox extends StatelessWidget {
             return FadeTransition(opacity: animation, child: child);
           },
           duration: const Duration(milliseconds: 500),
-          child: tabManager.currentIndex == 0
-              ? const DashboardTab()
-              : const BotsTab(),
+          child: showPage(tabManager.currentIndex),
         );
       },
     );
