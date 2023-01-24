@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/client_profile_manager.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
+import 'package:provider/provider.dart';
 
 class BotsTab extends StatelessWidget {
   const BotsTab({super.key});
@@ -225,6 +227,11 @@ class _BotDemoCard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  void _onTap(BuildContext context, int index) {
+    Provider.of<ClientProfileManager>(context, listen: false)
+        .changeIndex(index);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -269,7 +276,7 @@ class _BotDemoCard extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            _GetStartedButton(onTap: () {}),
+            _GetStartedButton(onTap: () => _onTap(context, 2)),
           ],
         ),
       ),

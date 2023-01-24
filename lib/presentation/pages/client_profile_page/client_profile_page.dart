@@ -4,6 +4,7 @@ import 'package:meta_app/presentation/pages/client_profile_page/client_profile_m
 import 'package:meta_app/presentation/pages/client_profile_page/sections/bots_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/dashboard_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/side_menu_section.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/sections/transaction_tab.dart';
 import 'package:meta_app/presentation/widgets/dashboard_header.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:provider/provider.dart';
@@ -49,6 +50,8 @@ class _TabsBox extends StatelessWidget {
         return const DashboardTab();
       case 1:
         return const BotsTab();
+      case 2:
+        return const TransactionTab();
       default:
         return const DashboardTab();
     }
