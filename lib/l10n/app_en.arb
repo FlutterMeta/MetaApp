@@ -249,5 +249,21 @@
     "signOut": "Sign out",
     "closeMenu": "Close menu",
     "algorithmIntelligence": "algorithm intelligence",
-    "futures": "Futures"
+    "futures": "Futures",
+    "payment": "Payment",
+    "lastRequestDateTime": "Time and date of the last request update",
+    "requestStatus": "Request status",
+    "cancel": "Cancel",
+    "status": "Status",
+    "date": "Date",
+    "requisites": "Requisites",
+    "price": "Price",
+    "contacts": "Contacts",
+    "tax": "Tax",
+    "clientAccount": "Client account",
+    "requestAmount": "Request amount",
+    "commision": "Commission",
+    "includedBill": "included in the bill",
+    "telegramSupport": "Telegram support",
+    "emailForQuestions": "Email for questions"
 }

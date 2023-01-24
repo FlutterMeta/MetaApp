@@ -46,11 +46,11 @@ class _TabsBox extends StatelessWidget {
 
   Widget showTab(int index) {
     switch (index) {
-      case 0:
+      case 2:
         return const DashboardTab();
       case 1:
         return const BotsTab();
-      case 2:
+      case 0:
         return const TransactionTab();
       default:
         return const DashboardTab();

@@ -227,7 +227,7 @@ class _BotDemoCard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  void _onTap(BuildContext context, int index) {
+  void _pushTransactionTab(BuildContext context, int index) {
     Provider.of<ClientProfileManager>(context, listen: false)
         .changeIndex(index);
   }
@@ -276,7 +276,7 @@ class _BotDemoCard extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            _GetStartedButton(onTap: () => _onTap(context, 2)),
+            _GetStartedButton(onTap: () => _pushTransactionTab(context, 2)),
           ],
         ),
       ),
