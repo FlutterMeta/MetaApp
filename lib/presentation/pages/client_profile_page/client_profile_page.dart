@@ -18,26 +18,23 @@ class ClientProfilePage extends StatelessWidget {
       drawer: const SideMenuSection(),
       backgroundColor: context.color.background,
       key: context.read<ClientProfileManager>().scaffoldKey,
-      body: SafeArea(
-        child: Consumer<ClientProfileManager>(
-          builder: (context, menu, child) {
-            return Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (Responsive.isDesktop(context) && !menu.isCollapsed) ...[
-                  const Expanded(child: SideMenuSection()),
-                ] else if (Responsive.isDesktop(context) &&
-                    menu.isCollapsed) ...[
-                  const SizedBox(width: 104, child: SideMenuSection()),
-                ],
-                const Expanded(
-                  flex: 5,
-                  child: _TabsBox(),
-                ),
+      body: Consumer<ClientProfileManager>(
+        builder: (context, menu, child) {
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (Responsive.isDesktop(context) && !menu.isCollapsed) ...[
+                const Expanded(child: SideMenuSection()),
+              ] else if (Responsive.isDesktop(context) && menu.isCollapsed) ...[
+                const SizedBox(width: 104, child: SideMenuSection()),
               ],
-            );
-          },
-        ),
+              const Expanded(
+                flex: 5,
+                child: _TabsBox(),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
