@@ -168,7 +168,6 @@ class UserInfoState extends State<_UserInfo>
 
   @override
   Widget build(BuildContext context) {
-    const emailStyle = TextStyle(fontSize: 12, color: Color(0xFF464A53));
     final userNameStyle =
         context.text.body.copyWith(fontSize: 16, fontWeight: FontWeight.bold);
 
@@ -193,7 +192,7 @@ class UserInfoState extends State<_UserInfo>
                   ],
                 ),
                 const SizedBox(height: 4),
-                Text(widget.email, style: emailStyle),
+                Text(widget.email, style: context.text.profileHeaderSubtitle),
               ],
             ),
           ] else

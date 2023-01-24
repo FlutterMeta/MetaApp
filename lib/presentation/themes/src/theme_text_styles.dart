@@ -114,6 +114,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle clientDashboardReferralCodeItself;
   final TextStyle clientPageSubtitle;
   final TextStyle clientBotsDefault;
+  final TextStyle profileHeaderSubtitle;
 
   ThemeTextStyles({
     required this.test,
@@ -229,6 +230,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.clientDashboardReferralCodeItself,
     required this.clientPageSubtitle,
     required this.clientBotsDefault,
+    required this.profileHeaderSubtitle,
   });
 
   @override
@@ -346,6 +348,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? clientDashboardReferralCodeItself,
     TextStyle? clientPageSubtitle,
     TextStyle? clientBotsDefault,
+    TextStyle? profileHeaderSubtitle,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -525,6 +528,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           this.clientDashboardReferralCodeItself,
       clientPageSubtitle: clientPageSubtitle ?? this.clientPageSubtitle,
       clientBotsDefault: clientBotsDefault ?? this.clientBotsDefault,
+      profileHeaderSubtitle: profileHeaderSubtitle ?? this.profileHeaderSubtitle,
     );
   }
 
@@ -777,6 +781,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(clientPageSubtitle, other.clientPageSubtitle, t)!,
       clientBotsDefault:
           TextStyle.lerp(clientBotsDefault, other.clientBotsDefault, t)!,
+      profileHeaderSubtitle: TextStyle.lerp(profileHeaderSubtitle, other.profileHeaderSubtitle, t)!,
     );
   }
 
@@ -1217,6 +1222,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.greyish,
         ),
         clientBotsDefault: headline1.copyWith(color: AppColors.darkIndigo),
+        profileHeaderSubtitle: headline1.copyWith(
+          fontSize: 12,
+          color: AppColors.greyishIndigo,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1656,5 +1665,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.greyish,
         ),
         clientBotsDefault: headline1.copyWith(color: AppColors.darkIndigo),
+        profileHeaderSubtitle: headline1.copyWith(
+          fontSize: 12,
+          color: AppColors.greyishIndigo,
+        ),
       );
 }
