@@ -280,7 +280,10 @@ class _BotDemoCard extends StatelessWidget {
 class _GetStartedButton extends StatelessWidget {
   final VoidCallback onTap;
 
-  const _GetStartedButton({required this.onTap, Key? key}) : super(key: key);
+  const _GetStartedButton({
+    required this.onTap,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

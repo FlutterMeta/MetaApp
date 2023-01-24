@@ -528,7 +528,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           this.clientDashboardReferralCodeItself,
       clientPageSubtitle: clientPageSubtitle ?? this.clientPageSubtitle,
       clientBotsDefault: clientBotsDefault ?? this.clientBotsDefault,
-      profileHeaderSubtitle: profileHeaderSubtitle ?? this.profileHeaderSubtitle,
+      profileHeaderSubtitle:
+          profileHeaderSubtitle ?? this.profileHeaderSubtitle,
     );
   }
 
@@ -781,7 +782,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(clientPageSubtitle, other.clientPageSubtitle, t)!,
       clientBotsDefault:
           TextStyle.lerp(clientBotsDefault, other.clientBotsDefault, t)!,
-      profileHeaderSubtitle: TextStyle.lerp(profileHeaderSubtitle, other.profileHeaderSubtitle, t)!,
+      profileHeaderSubtitle: TextStyle.lerp(
+          profileHeaderSubtitle, other.profileHeaderSubtitle, t)!,
     );
   }
 

@@ -140,8 +140,10 @@ class UserInfoState extends State<_UserInfo>
     });
   }
 
-  removeOverlay() =>
-      _animationController.reverse().then((value) => _overlayEntry?.remove());
+  void removeOverlay() async {
+    await _animationController.reverse();
+    _overlayEntry?.remove();
+  }
 
   @override
   void initState() {

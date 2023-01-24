@@ -22,9 +22,9 @@ class _SideMenuSectionState extends State<SideMenuSection> {
 
   @override
   void initState() {
+    super.initState();
     _currentIndex =
         Provider.of<ClientProfileManager>(context, listen: false).currentIndex;
-    super.initState();
   }
 
   @override
