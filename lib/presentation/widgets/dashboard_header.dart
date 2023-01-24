@@ -58,9 +58,9 @@ class _DashboardHeaderState extends State<DashboardHeader> {
                   ? const SizedBox()
                   : SizedBox(width: context.screenWidth * 0.02),
               IconButton(
-                splashColor: AppColors.transparent,
-                highlightColor: AppColors.transparent,
-                hoverColor: AppColors.transparent,
+                splashColor: context.color.transparent,
+                highlightColor: context.color.transparent,
+                hoverColor: context.color.transparent,
                 splashRadius: 24,
                 onPressed: () {
                   if (Responsive.isMobile(context) ||
@@ -168,9 +168,9 @@ class UserInfoState extends State<_UserInfo>
 
   @override
   Widget build(BuildContext context) {
-    const welcomeStyle = TextStyle(fontSize: 16);
     const emailStyle = TextStyle(fontSize: 12, color: Color(0xFF464A53));
-    const userNameStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
+    final userNameStyle =
+        context.text.body.copyWith(fontSize: 16, fontWeight: FontWeight.bold);
 
     return GestureDetector(
       onTap: () => showOverlay(context),
@@ -182,8 +182,14 @@ class UserInfoState extends State<_UserInfo>
               children: [
                 Row(
                   children: [
-                    Text(context.localizations.welcome, style: welcomeStyle),
-                    Text(widget.userName, style: userNameStyle),
+                    Text(
+                      context.localizations.welcome,
+                      style: context.text.body.copyWith(fontSize: 16),
+                    ),
+                    Text(
+                      widget.userName,
+                      style: userNameStyle,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 4),
@@ -222,7 +228,7 @@ class _ProfileMenu extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: AppColors.white,
+            color: context.color.background,
           ),
           padding: const EdgeInsets.all(10),
           alignment: Alignment.center,
@@ -234,13 +240,13 @@ class _ProfileMenu extends StatelessWidget {
                   onTap: () {},
                   title: context.localizations.signOut,
                   icon: Icons.output_rounded,
-                  color: AppColors.red,
+                  color: context.color.error,
                 ),
                 _MenuItem(
                   onTap: () => onCloseItemTap(),
                   title: context.localizations.closeMenu,
                   icon: Icons.close_rounded,
-                  color: AppColors.greyish,
+                  color: context.color.greyish,
                 ),
               ],
             ),
@@ -280,7 +286,7 @@ class _MenuItemState extends State<_MenuItem> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: _isHovered ? widget.color : AppColors.white,
+          color: _isHovered ? widget.color : context.color.background,
         ),
         constraints: const BoxConstraints(minWidth: 140),
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -288,13 +294,13 @@ class _MenuItemState extends State<_MenuItem> {
           children: [
             Icon(
               widget.icon,
-              color: _isHovered ? AppColors.white : widget.color,
+              color: _isHovered ? context.color.background : widget.color,
             ),
             const SizedBox(width: 6),
             Text(
               widget.title,
               style: TextStyle(
-                color: _isHovered ? AppColors.white : widget.color,
+                color: _isHovered ? context.color.background : widget.color,
                 fontSize: 16,
               ),
             ),
