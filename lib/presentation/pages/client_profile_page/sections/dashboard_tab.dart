@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/client_profile_manager.dart';
-import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';

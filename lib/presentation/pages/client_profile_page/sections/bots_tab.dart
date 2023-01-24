@@ -315,12 +315,10 @@ class _FunctionalityComparisonTable extends StatelessWidget {
     );
   }
 
-  static final _fourChecks = [
-    const _TableRowCell(child: _GreenCheck()),
-    const _TableRowCell(child: _GreenCheck()),
-    const _TableRowCell(child: _GreenCheck()),
-    const _TableRowCell(child: _GreenCheck()),
-  ];
+  static final _fourChecks = List.generate(
+    4,
+    (index) => const _TableRowCell(child: _GreenCheck()),
+  );
 
   @override
   Widget build(BuildContext context) {
