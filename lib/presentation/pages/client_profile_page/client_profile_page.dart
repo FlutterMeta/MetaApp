@@ -14,10 +14,10 @@ class ClientProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.color.background,
-      key: context.read<ClientProfileManager>().scaffoldKey,
       appBar: const DashboardHeader(),
       drawer: const SideMenuSection(),
+      backgroundColor: context.color.background,
+      key: context.read<ClientProfileManager>().scaffoldKey,
       body: SafeArea(
         child: Consumer<ClientProfileManager>(
           builder: (context, menu, child) {
@@ -46,7 +46,7 @@ class ClientProfilePage extends StatelessWidget {
 class _TabsBox extends StatelessWidget {
   const _TabsBox({Key? key}) : super(key: key);
 
-  Widget showPage(int index) {
+  Widget showTab(int index) {
     switch (index) {
       case 0:
         return const DashboardTab();
@@ -62,11 +62,8 @@ class _TabsBox extends StatelessWidget {
     return Consumer<ClientProfileManager>(
       builder: (context, tabManager, child) {
         return AnimatedSwitcher(
-          transitionBuilder: (child, animation) {
-            return FadeTransition(opacity: animation, child: child);
-          },
           duration: const Duration(milliseconds: 500),
-          child: showPage(tabManager.currentIndex),
+          child: showTab(tabManager.currentIndex),
         );
       },
     );
