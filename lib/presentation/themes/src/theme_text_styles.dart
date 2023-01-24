@@ -115,6 +115,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle clientPageSubtitle;
   final TextStyle clientBotsDefault;
   final TextStyle profileHeaderSubtitle;
+  final TextStyle warning;
 
   ThemeTextStyles({
     required this.test,
@@ -231,6 +232,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.clientPageSubtitle,
     required this.clientBotsDefault,
     required this.profileHeaderSubtitle,
+    required this.warning,
   });
 
   @override
@@ -349,6 +351,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? clientPageSubtitle,
     TextStyle? clientBotsDefault,
     TextStyle? profileHeaderSubtitle,
+    TextStyle? warning,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -530,6 +533,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       clientBotsDefault: clientBotsDefault ?? this.clientBotsDefault,
       profileHeaderSubtitle:
           profileHeaderSubtitle ?? this.profileHeaderSubtitle,
+      warning: warning ?? this.warning,
     );
   }
 
@@ -784,6 +788,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(clientBotsDefault, other.clientBotsDefault, t)!,
       profileHeaderSubtitle: TextStyle.lerp(
           profileHeaderSubtitle, other.profileHeaderSubtitle, t)!,
+      warning: TextStyle.lerp(warning, other.warning, t)!,
     );
   }
 
@@ -1228,6 +1233,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 12,
           color: AppColors.greyishIndigo,
         ),
+        warning: headline1.copyWith(
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+          color: AppColors.yellow,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1670,6 +1680,12 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         profileHeaderSubtitle: headline1.copyWith(
           fontSize: 12,
           color: AppColors.greyishIndigo,
+        ),
+        warning: headline1.copyWith(
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+          height: 1.16,
+          color: AppColors.yellow,
         ),
       );
 }

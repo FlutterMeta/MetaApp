@@ -14,10 +14,16 @@ class TransactionTab extends StatelessWidget {
         decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
         alignment: Alignment.center,
         padding: const EdgeInsets.all(20),
+        constraints: BoxConstraints(minHeight: context.screenHeight-120),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(context.localizations.payment),
+            Text(
+              context.localizations.payment,
+              style: context.text.body
+                  .copyWith(fontSize: 27, fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 20),
             const _TransactionWindow(
               date: 'today, 13:02',
               lastRequestDateTime: '15:02:48 12-01-22',
@@ -72,10 +78,12 @@ class _TransactionWindow extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          const SizedBox(height: 10),
           _RequestStatus(
             lastRequestDateTime: lastRequestDateTime,
             status: status,
           ),
+          const SizedBox(height: 20),
           const Divider(),
           const SizedBox(height: 20),
           const _GeneralInfo(
@@ -83,6 +91,8 @@ class _TransactionWindow extends StatelessWidget {
             accountName: _accountName,
             price: '100.000000',
           ),
+          const SizedBox(height: 20),
+          const _WarningWindow(),
           const SizedBox(height: 40),
           _DetailsTable(
             date: date,
@@ -117,27 +127,46 @@ class _RequestStatus extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      alignment: Responsive.isMobile(context)
-          ? WrapAlignment.center
-          : WrapAlignment.spaceBetween,
-      runAlignment: WrapAlignment.spaceBetween,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      spacing: 10,
-      runSpacing: 10,
-      children: [
-        Text(context.localizations.lastRequestDateTime),
-        Text(lastRequestDateTime),
-        RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            children: [
-              TextSpan(text: " ${context.localizations.requestStatus}: "),
-              TextSpan(text: status),
-            ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Wrap(
+        alignment: Responsive.isMobile(context)
+            ? WrapAlignment.center
+            : WrapAlignment.spaceBetween,
+        runAlignment: WrapAlignment.spaceBetween,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 10,
+        runSpacing: 10,
+        children: [
+          Text(
+            context.localizations.lastRequestDateTime,
+            style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
           ),
-        ),
-      ],
+          Text(
+            lastRequestDateTime,
+            style: context.text.clientPageSubtitle
+                .copyWith(fontSize: 16, fontWeight: FontWeight.w700),
+          ),
+          RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: " ${context.localizations.requestStatus}: ",
+                  style: context.text.clientPageSubtitle.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                TextSpan(
+                  text: status,
+                  style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -157,85 +186,157 @@ class _GeneralInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      alignment: WrapAlignment.spaceBetween,
-      runAlignment: WrapAlignment.spaceBetween,
+      alignment: Responsive.isMobile(context)
+          ? WrapAlignment.center
+          : WrapAlignment.spaceBetween,
+      runAlignment: WrapAlignment.center,
       crossAxisAlignment: WrapCrossAlignment.center,
-      spacing: 10,
+      spacing: 20,
       runSpacing: 10,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        Wrap(
+          spacing: 30,
+          runSpacing: 20,
           children: [
-            Text(context.localizations.contacts),
-            Text("${context.localizations.telegramSupport}: @auroracare"),
-            Text("${context.localizations.emailForQuestions}: care@aurora.com"),
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(context.localizations.clientAccount),
-            Text(accountName),
-            Text(accountEmail),
-          ],
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(
-              AppAssets.auroraLogo,
-              width: 100,
-              height: 100,
-            ),
-            Text(context.localizations.requestAmount),
-            Text("$price USDT"),
-            const SizedBox(height: 10),
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(text: "${context.localizations.commision}: "),
-                  TextSpan(
-                    text: "0.5% \n${context.localizations.includedBill} ",
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  context.localizations.contacts,
+                  style: context.text.clientPageSubtitle.copyWith(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  "${context.localizations.telegramSupport}: @auroracare",
+                  style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  "${context.localizations.emailForQuestions}: care@aurora.com",
+                  style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
+                ),
+              ],
             ),
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(text: "${context.localizations.tax}: "),
-                  TextSpan(
-                    text: "12.5% \n${context.localizations.includedBill} ",
-                  ),
-                ],
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  context.localizations.clientAccount,
+                  style: context.text.clientBotsDefault.copyWith(fontSize: 16),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  accountName,
+                  style: context.text.clientPageSubtitle
+                      .copyWith(fontSize: 16, fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  accountEmail,
+                  style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
+                ),
+              ],
             ),
           ],
         ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [],
+        Padding(
+          padding: EdgeInsets.only(
+            right:
+                Responsive.isMobile(context) ? 0 : context.screenWidth * 0.06,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(
+                AppAssets.auroraLogo,
+                height: 68,
+              ),
+              Text(
+                context.localizations.requestAmount,
+                style: context.text.clientPageSubtitle
+                    .copyWith(fontSize: 16, height: 1.3),
+              ),
+              Text(
+                "$price USDT",
+                style: context.text.clientPageSubtitle.copyWith(
+                  fontSize: 16,
+                  height: 1.3,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 10),
+              RichText(
+                text: TextSpan(
+                  style: context.text.clientPageSubtitle
+                      .copyWith(fontSize: 16, height: 1.3),
+                  children: [
+                    TextSpan(text: "${context.localizations.commision}: "),
+                    TextSpan(
+                      text: "0.5% \n${context.localizations.includedBill} ",
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 4),
+              RichText(
+                text: TextSpan(
+                  style: context.text.clientPageSubtitle
+                      .copyWith(fontSize: 16, height: 1.3),
+                  children: [
+                    TextSpan(text: "${context.localizations.tax}: "),
+                    TextSpan(
+                      text: "12.5% \n${context.localizations.includedBill} ",
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );
   }
 }
-/* 
-class _InfoElement extends StatelessWidget {
-  const _InfoElement({super.key});
+
+class _WarningWindow extends StatelessWidget {
+  const _WarningWindow({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 160),
-      child: Column(
-        children: [
-
-        ],
+    final localization = context.localizations;
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: context.color.warning.withOpacity(0.1),
+      ),
+      padding: const EdgeInsets.all(20),
+      child: Text.rich(
+        TextSpan(
+          children: [
+            WidgetSpan(
+              child: Icon(
+                Icons.warning_rounded,
+                color: context.color.warning,
+              ),
+            ),
+            TextSpan(
+              text: " ${localization.warning} ",
+              style: context.text.warning
+                  .copyWith(fontWeight: FontWeight.w800, fontSize: 15),
+            ),
+            TextSpan(
+              text: localization.transactionWarningMessage,
+              style: TextStyle(color: context.color.warning),
+            ),
+          ],
+        ),
       ),
     );
   }
-} */
+}
 
 class _DetailsTable extends StatelessWidget {
   final String status;

@@ -265,5 +265,7 @@
     "commision": "Commission",
     "includedBill": "included in the bill",
     "telegramSupport": "Telegram support",
-    "emailForQuestions": "Email for questions"
+    "emailForQuestions": "Email for questions",
+    "transactionWarningMessage": "Funds are credited automatically when transferring the payment amount according to the specified payment data in the \"Details for payment\" field. Check if the translation means belongs to the corresponding Blockchain (TRC, ERC, BEP, etc.)",
+    "warning": "Warning!"
 }

@@ -62,6 +62,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color transparent;
   final Color greyish;
   final Color error;
+  final Color warning;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -125,6 +126,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.transparent,
     required this.greyish,
     required this.error,
+    required this.warning,
   });
 
   @override
@@ -191,6 +193,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? transparent,
     Color? greyish,
     Color? error,
+    Color? warning,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -283,6 +286,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       transparent: transparent ?? this.transparent,
       greyish: greyish ?? this.greyish,
       error: error ?? this.error,
+      warning: warning ?? this.warning,
     );
   }
 
@@ -413,6 +417,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
       background: Color.lerp(background, other.background, t)!,
       greyish: Color.lerp(greyish, other.greyish, t)!,
       error: Color.lerp(error, other.error, t)!,
+      warning: Color.lerp(warning, other.warning, t)!,
     );
   }
 
@@ -478,6 +483,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         onBackground: AppColors.black,
         greyish: AppColors.greyish,
         error: AppColors.red,
+        warning: AppColors.yellow,
       );
 
   static get dark => ThemeColors(
@@ -542,5 +548,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         onBackground: AppColors.black,
         greyish: AppColors.greyish,
         error: AppColors.red,
+        warning: AppColors.yellow,
       );
 }
