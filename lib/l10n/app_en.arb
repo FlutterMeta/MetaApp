@@ -248,5 +248,6 @@
     "marketArbitrage": "market arbitrage",
     "signOut": "Sign out",
     "closeMenu": "Close menu",
-    "algorithmIntelligence": "algorithm intelligence"
+    "algorithmIntelligence": "algorithm intelligence",
+    "futures": "Futures"
 }

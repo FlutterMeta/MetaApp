@@ -112,7 +112,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle body;
   final TextStyle inverseBody;
   final TextStyle clientDashboardReferralCodeItself;
-  final TextStyle clientDashboardTip;
+  final TextStyle clientPageSubtitle;
+  final TextStyle clientBotsDefault;
 
   ThemeTextStyles({
     required this.test,
@@ -226,7 +227,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.body,
     required this.inverseBody,
     required this.clientDashboardReferralCodeItself,
-    required this.clientDashboardTip,
+    required this.clientPageSubtitle,
+    required this.clientBotsDefault,
   });
 
   @override
@@ -342,7 +344,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? body,
     TextStyle? inverseBody,
     TextStyle? clientDashboardReferralCodeItself,
-    TextStyle? clientDashboardTip,
+    TextStyle? clientPageSubtitle,
+    TextStyle? clientBotsDefault,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -520,7 +523,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       inverseBody: inverseBody ?? this.inverseBody,
       clientDashboardReferralCodeItself: clientDashboardReferralCodeItself ??
           this.clientDashboardReferralCodeItself,
-      clientDashboardTip: clientDashboardTip ?? this.clientDashboardTip,
+      clientPageSubtitle: clientPageSubtitle ?? this.clientPageSubtitle,
+      clientBotsDefault: clientBotsDefault ?? this.clientBotsDefault,
     );
   }
 
@@ -769,8 +773,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           clientDashboardReferralCodeItself,
           other.clientDashboardReferralCodeItself,
           t)!,
-      clientDashboardTip:
-          TextStyle.lerp(clientDashboardTip, other.clientDashboardTip, t)!,
+      clientPageSubtitle:
+          TextStyle.lerp(clientPageSubtitle, other.clientPageSubtitle, t)!,
+      clientBotsDefault:
+          TextStyle.lerp(clientBotsDefault, other.clientBotsDefault, t)!,
     );
   }
 
@@ -1206,10 +1212,11 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.steelBlue,
           fontWeight: FontWeight.w700,
         ),
-        clientDashboardTip: headline3.copyWith(
+        clientPageSubtitle: headline3.copyWith(
           fontSize: 13,
           color: AppColors.greyish,
         ),
+        clientBotsDefault: headline1.copyWith(color: AppColors.darkIndigo),
       );
 
   static get dark => ThemeTextStyles(
@@ -1644,9 +1651,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.steelBlue,
           fontWeight: FontWeight.w700,
         ),
-        clientDashboardTip: headline3.copyWith(
+        clientPageSubtitle: headline3.copyWith(
           fontSize: 13,
           color: AppColors.greyish,
         ),
+        clientBotsDefault: headline1.copyWith(color: AppColors.darkIndigo),
       );
 }

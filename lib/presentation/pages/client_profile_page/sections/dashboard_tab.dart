@@ -7,6 +7,7 @@ import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
+import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import 'package:provider/provider.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 
@@ -26,17 +27,14 @@ class DashboardTab extends StatelessWidget {
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 1200),
               child: Column(
-                children: [
-                  const _InformationPanel(),
-                  const SizedBox(height: 20),
-                  const _AdaptiveMainContent(),
-                  const SizedBox(height: 20),
-                  const _TransactionsHistorySection(),
-                  const SizedBox(height: 60),
-                  Text(
-                    context.localizations.allRightsReserved,
-                    style: context.text.allRightsReserved,
-                  ),
+                children: const [
+                  _InformationPanel(),
+                  SizedBox(height: 20),
+                  _AdaptiveMainContent(),
+                  SizedBox(height: 20),
+                  _TransactionsHistorySection(),
+                  SizedBox(height: 60),
+                  RightsReservedFooter(),
                 ],
               ),
             ),
@@ -533,7 +531,7 @@ class _TransactionsHistorySection extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               context.localizations.timeOfPayments,
-              style: context.text.clientDashboardTip,
+              style: context.text.clientPageSubtitle,
             ),
             const SizedBox(height: 30),
             Column(
@@ -548,9 +546,9 @@ class _TransactionsHistorySection extends StatelessWidget {
                     );
                   },
                   separatorBuilder: (_, __) {
-                    return const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Divider(color: AppColors.greyish),
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: Divider(color: context.color.greyish),
                     );
                   },
                 ),
@@ -616,7 +614,7 @@ class _TransactionInfo extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   context.localizations.paymentSystem,
-                  style: context.text.clientDashboardTip,
+                  style: context.text.clientPageSubtitle,
                 ),
               ],
             ),
@@ -634,10 +632,7 @@ class _TransactionInfo extends StatelessWidget {
               const SizedBox(height: 6),
               Text(
                 context.localizations.operationDate,
-                style: const TextStyle(
-                  fontSize: 13,
-                  color: AppColors.greyish,
-                ),
+                style: context.text.clientPageSubtitle,
               ),
             ],
           ),
