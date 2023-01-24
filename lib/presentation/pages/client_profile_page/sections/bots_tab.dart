@@ -287,7 +287,10 @@ class _BotDemoCard extends StatelessWidget {
 class _GetStartedButton extends StatelessWidget {
   final VoidCallback onTap;
 
-  const _GetStartedButton({required this.onTap, Key? key}) : super(key: key);
+  const _GetStartedButton({
+    required this.onTap,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -322,12 +325,10 @@ class _FunctionalityComparisonTable extends StatelessWidget {
     );
   }
 
-  static final _fourChecks = [
-    const _TableRowCell(child: _GreenCheck()),
-    const _TableRowCell(child: _GreenCheck()),
-    const _TableRowCell(child: _GreenCheck()),
-    const _TableRowCell(child: _GreenCheck()),
-  ];
+  static final _fourChecks = List.generate(
+    4,
+    (index) => const _TableRowCell(child: _GreenCheck()),
+  );
 
   @override
   Widget build(BuildContext context) {

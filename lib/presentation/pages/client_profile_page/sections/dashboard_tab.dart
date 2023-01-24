@@ -292,7 +292,7 @@ class _PopupNotification extends StatelessWidget {
           width: 300,
           height: 60,
           child: Text(
-            context.localizations.copied,
+            context.localizations.refferalCodeCopied,
             style: context.text.inverseBody.copyWith(fontSize: 16),
           ),
         ),
@@ -387,8 +387,10 @@ class _WalletCardState extends State<_WalletCard> {
           children: [
             Text(
               context.localizations.externalWallet,
-              style: context.text.inverseBody
-                  .copyWith(fontSize: 34, fontWeight: FontWeight.w700),
+              style: context.text.inverseBody.copyWith(
+                fontSize: 34,
+                fontWeight: FontWeight.w700,
+              ),
             ),
             const SizedBox(height: 56),
             Text(
@@ -401,14 +403,20 @@ class _WalletCardState extends State<_WalletCard> {
               controller: TextEditingController(),
             ),
             const SizedBox(height: 32),
-            Text(context.localizations.chooseNetwork, style: labelTextStyle),
+            Text(
+              context.localizations.chooseNetwork,
+              style: labelTextStyle,
+            ),
             const SizedBox(height: 6),
             _FilledTextField(
               hintText: "USDT(TRC20)",
               controller: TextEditingController(),
             ),
             const SizedBox(height: 32),
-            Text(context.localizations.chooseAmount, style: labelTextStyle),
+            Text(
+              context.localizations.chooseAmount,
+              style: labelTextStyle,
+            ),
             const SizedBox(height: 6),
             _FilledTextField(
               hintText: "1000 \$",

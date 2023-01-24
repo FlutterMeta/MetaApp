@@ -12,11 +12,7 @@ import 'package:meta_app/presentation/pages/registration_page.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(
-      page: HomePage,
-      path: "/home",
-      initial: true,
-    ),
+    AutoRoute(page: HomePage, path: "/home", initial: true),
     AutoRoute(page: LoginPage, path: "/login"),
     AutoRoute(page: RegistrationPage, path: "/registration"),
     AutoRoute(page: ForgotPasswordPage, path: "/forgot-password"),
