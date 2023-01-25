@@ -753,7 +753,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         authFormHint: headline1.copyWith(fontSize: 14),
         authFormError: headline3.copyWith(
-          color: AppColors.lighterIndigo,
+          color: AppColors.orangeRed,
           fontWeight: FontWeight.w400,
         ),
         multiMetaUniverseTitle: headline1.copyWith(fontSize: 62),
@@ -1172,7 +1172,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         authFormHint: headline1.copyWith(fontSize: 14),
         authFormError: headline3.copyWith(
-          color: AppColors.lighterIndigo,
+          color: AppColors.white,
           fontWeight: FontWeight.w400,
         ),
         multiMetaUniverseTitle: headline1.copyWith(fontSize: 62),
