@@ -115,6 +115,17 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.termsButtonFillColor,
     required this.directionsJoinButtonBorder,
     required this.productsScaffoldBackground,
+    required this.dashboardSideMenuSelectedItem,
+    required this.dashboardSideMenuUnselectedItem,
+    required this.clientPageBackground,
+    required this.clientPageAboveBackground,
+    required this.clientPagePrimary,
+    required this.clientPagePrimaryVariant,
+    required this.clientPageSecondary,
+    required this.clientPageSecondaryVariant,
+    required this.clientPageTransparent,
+    required this.clientPageError,
+    required this.greyish,
     required this.warning,
   });
 
@@ -171,6 +182,17 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? termsButtonFillColor,
     Color? directionsJoinButtonBorder,
     Color? productsScaffoldBackground,
+    Color? dashboardSideMenuSelectedItem,
+    Color? dashboardSideMenuUnselectedItem,
+    Color? clientPageBackground,
+    Color? clientPageAboveBackground,
+    Color? clientPagePrimary,
+    Color? clientPagePrimaryVariant,
+    Color? clientPageSecondary,
+    Color? clientPageSecondaryVariant,
+    Color? clientPageTransparent,
+    Color? clientPageError,
+    Color? greyish,
     Color? warning,
   }) {
     return ThemeColors(
@@ -251,7 +273,24 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           directionsJoinButtonBorder ?? this.directionsJoinButtonBorder,
       productsScaffoldBackground:
           productsScaffoldBackground ?? this.productsScaffoldBackground,
+      dashboardSideMenuSelectedItem:
+          dashboardSideMenuSelectedItem ?? this.dashboardSideMenuSelectedItem,
       warning: warning ?? this.warning,
+      dashboardSideMenuUnselectedItem: dashboardSideMenuUnselectedItem ??
+          this.dashboardSideMenuUnselectedItem,
+      clientPageBackground: clientPageBackground ?? this.clientPageBackground,
+      clientPageAboveBackground:
+          clientPageAboveBackground ?? this.clientPageAboveBackground,
+      clientPagePrimary: clientPagePrimary ?? this.clientPagePrimary,
+      clientPagePrimaryVariant:
+          clientPagePrimaryVariant ?? this.clientPagePrimaryVariant,
+      clientPageSecondary: clientPageSecondary ?? this.clientPageSecondary,
+      clientPageSecondaryVariant:
+          clientPageSecondaryVariant ?? this.clientPageSecondaryVariant,
+      clientPageTransparent:
+          clientPageTransparent ?? this.clientPageTransparent,
+      clientPageError: clientPageError ?? this.clientPageError,
+      greyish: greyish ?? this.greyish,
     );
   }
 
@@ -366,7 +405,29 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           directionsJoinButtonBorder, other.directionsJoinButtonBorder, t)!,
       productsScaffoldBackground: Color.lerp(
           productsScaffoldBackground, other.productsScaffoldBackground, t)!,
+      clientPageError: Color.lerp(clientPageError, other.clientPageError, t)!,
+      clientPageAboveBackground: Color.lerp(
+          clientPageAboveBackground, other.clientPageAboveBackground, t)!,
+      clientPageBackground:
+          Color.lerp(clientPageBackground, other.clientPageBackground, t)!,
+      clientPagePrimary:
+          Color.lerp(clientPagePrimary, other.clientPagePrimary, t)!,
+      clientPagePrimaryVariant: Color.lerp(
+          clientPagePrimaryVariant, other.clientPagePrimaryVariant, t)!,
+      clientPageSecondary:
+          Color.lerp(clientPageSecondary, other.clientPageSecondary, t)!,
+      clientPageSecondaryVariant: Color.lerp(
+          clientPageSecondaryVariant, other.clientPageSecondaryVariant, t)!,
+      clientPageTransparent:
+          Color.lerp(clientPageTransparent, other.clientPageTransparent, t)!,
       warning: Color.lerp(warning, other.warning, t)!,
+      dashboardSideMenuSelectedItem: Color.lerp(dashboardSideMenuSelectedItem,
+          other.dashboardSideMenuSelectedItem, t)!,
+      dashboardSideMenuUnselectedItem: Color.lerp(
+          dashboardSideMenuUnselectedItem,
+          other.dashboardSideMenuUnselectedItem,
+          t)!,
+      greyish: Color.lerp(greyish, other.greyish, t)!,
     );
   }
 
@@ -421,6 +482,17 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         termsButtonFillColor: AppColors.white,
         directionsJoinButtonBorder: AppColors.white,
         productsScaffoldBackground: AppColors.white,
+        dashboardSideMenuSelectedItem: AppColors.indigo,
+        dashboardSideMenuUnselectedItem: AppColors.greyish,
+        greyish: AppColors.greyish,
+        clientPageError: AppColors.red,
+        clientPageAboveBackground: AppColors.black,
+        clientPageBackground: AppColors.white,
+        clientPagePrimary: AppColors.indigo,
+        clientPagePrimaryVariant: AppColors.darkIndigo,
+        clientPageSecondary: AppColors.turquoise,
+        clientPageSecondaryVariant: AppColors.seaGreen,
+        clientPageTransparent: AppColors.transparent,
         warning: AppColors.yellow,
       );
 
@@ -475,6 +547,17 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         termsButtonFillColor: AppColors.white,
         directionsJoinButtonBorder: AppColors.white,
         productsScaffoldBackground: AppColors.white,
+        clientPageError: AppColors.red,
+        clientPageAboveBackground: AppColors.black,
+        clientPageBackground: AppColors.white,
+        clientPagePrimary: AppColors.indigo,
+        clientPagePrimaryVariant: AppColors.darkIndigo,
+        clientPageSecondary: AppColors.turquoise,
+        clientPageSecondaryVariant: AppColors.seaGreen,
+        clientPageTransparent: AppColors.transparent,
+        dashboardSideMenuSelectedItem: AppColors.indigo,
+        dashboardSideMenuUnselectedItem: AppColors.grey,
+        greyish: AppColors.greyish,
         warning: AppColors.yellow,
       );
 }

@@ -20,7 +20,7 @@ class TransactionTab extends StatelessWidget {
           children: [
             Text(
               context.localizations.payment,
-              style: context.text.body
+              style: context.text.clientPageBody
                   .copyWith(fontSize: 27, fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 20),
@@ -64,11 +64,11 @@ class _TransactionWindow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: context.color.background,
+        color: context.color.clientPageBackground,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: context.color.primary.withOpacity(0.1),
+            color: context.color.clientPagePrimary.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -105,7 +105,7 @@ class _TransactionWindow extends StatelessWidget {
           Align(
             child: ColoredButton(
               title: context.localizations.cancel,
-              color: context.color.error,
+              color: context.color.clientPageError,
               onTap: () {},
             ),
           ),
@@ -399,8 +399,8 @@ class _DetailsTableRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: index % 2 == 0
-          ? context.color.primary.withOpacity(0.1)
-          : context.color.background,
+          ? context.color.clientPagePrimary.withOpacity(0.1)
+          : context.color.clientPageBackground,
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Wrap(
         spacing: 20,
@@ -423,7 +423,7 @@ class _DetailsTableRow extends StatelessWidget {
             width: 420,
             child: SelectableText(
               value,
-              style: context.text.body.copyWith(
+              style: context.text.clientPageBody.copyWith(
                 fontSize: 16,
                 fontWeight: index == 0 ? FontWeight.bold : null,
               ),

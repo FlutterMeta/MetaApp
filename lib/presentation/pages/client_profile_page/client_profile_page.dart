@@ -18,7 +18,7 @@ class ClientProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: const ProfileHeader(),
       drawer: const SideMenuSection(),
-      backgroundColor: context.color.background,
+      backgroundColor: context.color.clientPageBackground,
       key: context.read<MenuCubit>().state.scaffoldKey,
       body: BlocBuilder<MenuCubit, MenuState>(
         builder: (context, menu) {

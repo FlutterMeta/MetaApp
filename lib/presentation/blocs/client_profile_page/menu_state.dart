@@ -16,7 +16,4 @@ class MenuState {
       : tabIndex = 0,
         isCollapsed = false,
         scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  List<Object> get props => [tabIndex, isCollapsed];
 }

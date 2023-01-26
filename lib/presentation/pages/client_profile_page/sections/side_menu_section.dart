@@ -16,8 +16,6 @@ class _SideMenuSectionState extends State<SideMenuSection> {
   int _currentIndex = 0;
 
   void _onLabelTap(int index) {
-    /*   Provider.of<ClientProfileManager>(context, listen: false)
-        .changeIndex(index); */
     context.read<MenuCubit>().changeTabIndex(index);
     setState(() => _currentIndex = index);
   }
@@ -39,8 +37,8 @@ class _SideMenuSectionState extends State<SideMenuSection> {
       builder: (context, menu) {
         return Drawer(
           backgroundColor: menu.isCollapsed
-              ? context.color.primary
-              : context.color.background,
+              ? context.color.clientPagePrimary
+              : context.color.clientPageBackground,
           elevation: 0,
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -109,15 +107,15 @@ class __DrawerListTileState extends State<_DrawerListTile> {
                 CircleAvatar(
                   radius: 28,
                   backgroundColor: _isSelected && menu.isCollapsed
-                      ? context.color.background
-                      : context.color.transparent,
+                      ? context.color.clientPageBackground
+                      : context.color.clientPageTransparent,
                   child: Icon(
                     widget.icon,
                     size: 34,
                     color: _isSelected
                         ? context.color.dashboardSideMenuSelectedItem
                         : (menu.isCollapsed
-                            ? context.color.primaryVariant
+                            ? context.color.clientPagePrimaryVariant
                             : context.color.dashboardSideMenuUnselectedItem),
                   ),
                 ),
