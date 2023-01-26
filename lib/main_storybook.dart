@@ -6,5 +6,10 @@ void main() async {
 
   await configureDependencies();
 
-  runApp(const StorybookApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => ClientProfileManager()),
+    ],
+    child: const StorybookApp(),
+  ));
 }

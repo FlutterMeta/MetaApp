@@ -45,7 +45,7 @@ mixin Validator {
 
   String? validateEmail(String? email, BuildContext context) {
     if (email.isEmailValid().not()) {
-      return context.localizations.incorrectLogin;
+      return context.localizations.incorrectEmail;
     }
     return null;
   }
@@ -56,7 +56,7 @@ mixin Validator {
     BuildContext context,
   ) {
     if (password != repeatPassword) {
-      return context.localizations.forgotPassword;
+      return context.localizations.repeatedPasswordDoesntMatch;
     }
     return null;
   }
