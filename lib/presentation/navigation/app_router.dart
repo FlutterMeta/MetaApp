@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:meta_app/presentation/pages/blog_page.dart/blog_page.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/client_profile_page.dart';
 import 'package:meta_app/presentation/pages/directions_page/directions_page.dart';
 import 'package:meta_app/presentation/pages/home_page/home_page.dart';
 import 'package:meta_app/presentation/pages/login_page.dart';
@@ -21,6 +22,7 @@ import 'package:meta_app/presentation/pages/reset_password_page.dart';
     AutoRoute(page: DirectionsPage, path: "/directions"),
     AutoRoute(page: ResetPasswordPage, path: "/reset-password"),
     AutoRoute(page: ResetAccessPage, path: "/reset-access"),
+    AutoRoute(page: ClientProfilePage, path: "/client-profile"),
   ],
 )
 class $AppRouter {}

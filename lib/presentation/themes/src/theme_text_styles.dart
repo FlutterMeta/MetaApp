@@ -106,6 +106,15 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle directionsBenefitsTitle;
   final TextStyle directionsBenefitsDescription;
   final TextStyle directionsBenefitsSubtitle;
+  final TextStyle dashboardSideMenuSelectedLable;
+  final TextStyle dashboardSideMenuUnselectedLable;
+  final TextStyle allRightsReserved;
+  final TextStyle clientPageBody;
+  final TextStyle clientPageInverseBody;
+  final TextStyle clientDashboardReferralCodeItself;
+  final TextStyle clientPageSubtitle;
+  final TextStyle clientBotsDefault;
+  final TextStyle profileHeaderSubtitle;
   final TextStyle headerNavItemHovered;
 
   ThemeTextStyles({
@@ -214,6 +223,15 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.directionsBenefitsDescription,
     required this.directionsBenefitsSubtitle,
     required this.productsHeadline,
+    required this.dashboardSideMenuSelectedLable,
+    required this.dashboardSideMenuUnselectedLable,
+    required this.allRightsReserved,
+    required this.clientPageBody,
+    required this.clientPageInverseBody,
+    required this.clientDashboardReferralCodeItself,
+    required this.clientPageSubtitle,
+    required this.clientBotsDefault,
+    required this.profileHeaderSubtitle,
     required this.headerNavItemHovered,
   });
 
@@ -324,6 +342,15 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? directionsBenefitsDescription,
     TextStyle? directionsBenefitsSubtitle,
     TextStyle? productsHeadline,
+    TextStyle? dashboardSideMenuSelectedLable,
+    TextStyle? dashboardSideMenuUnselectedLable,
+    TextStyle? allRightsReserved,
+    TextStyle? clientPageBody,
+    TextStyle? clientPageInverseBody,
+    TextStyle? clientDashboardReferralCodeItself,
+    TextStyle? clientPageSubtitle,
+    TextStyle? clientBotsDefault,
+    TextStyle? profileHeaderSubtitle,
     TextStyle? headerNavItemHovered,
   }) {
     return ThemeTextStyles(
@@ -493,6 +520,20 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       directionsBenefitsSubtitle:
           directionsBenefitsSubtitle ?? this.directionsBenefitsSubtitle,
       productsHeadline: productsHeadline ?? this.productsHeadline,
+      dashboardSideMenuSelectedLable:
+          dashboardSideMenuSelectedLable ?? this.dashboardSideMenuSelectedLable,
+      dashboardSideMenuUnselectedLable: dashboardSideMenuUnselectedLable ??
+          this.dashboardSideMenuUnselectedLable,
+      allRightsReserved: allRightsReserved ?? this.allRightsReserved,
+      clientPageBody: clientPageBody ?? this.clientPageBody,
+      clientPageInverseBody:
+          clientPageInverseBody ?? this.clientPageInverseBody,
+      clientDashboardReferralCodeItself: clientDashboardReferralCodeItself ??
+          this.clientDashboardReferralCodeItself,
+      clientPageSubtitle: clientPageSubtitle ?? this.clientPageSubtitle,
+      clientBotsDefault: clientBotsDefault ?? this.clientBotsDefault,
+      profileHeaderSubtitle:
+          profileHeaderSubtitle ?? this.profileHeaderSubtitle,
       headerNavItemHovered: headerNavItemHovered ?? this.headerNavItemHovered,
     );
   }
@@ -726,6 +767,29 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           directionsBenefitsTitle, other.directionsBenefitsTitle, t)!,
       productsHeadline:
           TextStyle.lerp(productsHeadline, other.productsHeadline, t)!,
+      dashboardSideMenuSelectedLable: TextStyle.lerp(
+          dashboardSideMenuSelectedLable,
+          other.dashboardSideMenuSelectedLable,
+          t)!,
+      dashboardSideMenuUnselectedLable: TextStyle.lerp(
+          dashboardSideMenuUnselectedLable,
+          other.dashboardSideMenuUnselectedLable,
+          t)!,
+      allRightsReserved:
+          TextStyle.lerp(allRightsReserved, other.allRightsReserved, t)!,
+      clientPageBody: TextStyle.lerp(clientPageBody, other.clientPageBody, t)!,
+      clientPageInverseBody: TextStyle.lerp(
+          clientPageInverseBody, other.clientPageInverseBody, t)!,
+      clientDashboardReferralCodeItself: TextStyle.lerp(
+          clientDashboardReferralCodeItself,
+          other.clientDashboardReferralCodeItself,
+          t)!,
+      clientPageSubtitle:
+          TextStyle.lerp(clientPageSubtitle, other.clientPageSubtitle, t)!,
+      clientBotsDefault:
+          TextStyle.lerp(clientBotsDefault, other.clientBotsDefault, t)!,
+      profileHeaderSubtitle: TextStyle.lerp(
+          profileHeaderSubtitle, other.profileHeaderSubtitle, t)!,
       headerNavItemHovered:
           TextStyle.lerp(headerNavItemHovered, other.headerNavItemHovered, t)!,
     );
@@ -1143,6 +1207,34 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 63,
           height: .94,
           color: AppColors.darkBlue,
+        ),
+        dashboardSideMenuSelectedLable: headline3.copyWith(
+          fontSize: 18,
+          color: AppColors.darkIndigo,
+        ),
+        dashboardSideMenuUnselectedLable: headline3.copyWith(
+          fontSize: 18,
+          color: AppColors.greyish,
+        ),
+        allRightsReserved: headline1.copyWith(
+          fontSize: 16,
+          color: AppColors.greyish,
+        ),
+        clientPageBody: headline3.copyWith(),
+        clientPageInverseBody: headline1.copyWith(color: AppColors.white),
+        clientDashboardReferralCodeItself: headline1.copyWith(
+          fontSize: 18,
+          color: AppColors.steelBlue,
+          fontWeight: FontWeight.w700,
+        ),
+        clientPageSubtitle: headline3.copyWith(
+          fontSize: 13,
+          color: AppColors.greyish,
+        ),
+        clientBotsDefault: headline1.copyWith(color: AppColors.darkIndigo),
+        profileHeaderSubtitle: headline1.copyWith(
+          fontSize: 12,
+          color: AppColors.mako,
         ),
         headerNavItemHovered: headline3.copyWith(
           fontSize: 14,
@@ -1562,6 +1654,34 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 63,
           height: .94,
           color: AppColors.darkBlue,
+        ),
+        dashboardSideMenuSelectedLable: headline3.copyWith(
+          fontSize: 18,
+          color: AppColors.black,
+        ),
+        dashboardSideMenuUnselectedLable: headline3.copyWith(
+          fontSize: 18,
+          color: AppColors.greyish,
+        ),
+        allRightsReserved: headline1.copyWith(
+          fontSize: 16,
+          color: AppColors.greyish,
+        ),
+        clientPageBody: headline3.copyWith(),
+        clientPageInverseBody: headline3.copyWith(color: AppColors.white),
+        clientDashboardReferralCodeItself: headline1.copyWith(
+          fontSize: 18,
+          color: AppColors.steelBlue,
+          fontWeight: FontWeight.w700,
+        ),
+        clientPageSubtitle: headline3.copyWith(
+          fontSize: 13,
+          color: AppColors.greyish,
+        ),
+        clientBotsDefault: headline1.copyWith(color: AppColors.darkIndigo),
+        profileHeaderSubtitle: headline1.copyWith(
+          fontSize: 12,
+          color: AppColors.mako,
         ),
         headerNavItemHovered: headline3.copyWith(
           fontSize: 14,

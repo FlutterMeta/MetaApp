@@ -5,6 +5,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
   final Gradient indigoTurquoiseReversed;
   final Gradient indigoTurquoiseDiagonal;
   final Gradient lightIndigoTurquoise;
+  final Gradient lightIndigo;
   final Gradient lightIndigoTurquoiseVertical;
   final Gradient indigoVertical;
   final Gradient blackVertical;
@@ -17,6 +18,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     required this.indigoVertical,
     required this.blackVertical,
     required this.lightIndigoTurquoiseVertical,
+    required this.lightIndigo,
   });
 
   @override
@@ -29,6 +31,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
     Gradient? indigoVertical,
     Gradient? blackVertical,
     Gradient? lightIndigoTurquoiseVertical,
+    Gradient? lightIndigo,
   }) {
     return ThemeGradients(
       indigoTurquoise: indigoTurquoise ?? this.indigoTurquoise,
@@ -41,6 +44,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
       lightIndigoTurquoise: lightIndigoTurquoise ?? this.lightIndigoTurquoise,
       lightIndigoTurquoiseVertical:
           lightIndigoTurquoiseVertical ?? this.lightIndigoTurquoiseVertical,
+      lightIndigo: lightIndigo ?? this.lightIndigo,
     );
   }
 
@@ -72,6 +76,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
         other.lightIndigoTurquoiseVertical,
         t,
       )!,
+      lightIndigo: Gradient.lerp(lightIndigo, other.lightIndigo, t)!,
     );
   }
 
@@ -118,6 +123,11 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
             AppColors.turquoise.withOpacity(0.1)
           ],
         ),
+        lightIndigo: const LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [AppColors.white, AppColors.extremelyLightIndigo],
+        ),
       );
 
   static get dark => ThemeGradients(
@@ -162,6 +172,11 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
             AppColors.lightIndigo.withOpacity(0.2),
             AppColors.turquoise.withOpacity(0.1)
           ],
+        ),
+        lightIndigo: const LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [AppColors.white, AppColors.extremelyLightIndigo],
         ),
       );
 }

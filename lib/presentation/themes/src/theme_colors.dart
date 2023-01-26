@@ -51,6 +51,17 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color termsButtonFillColor;
   final Color directionsJoinButtonBorder;
   final Color productsScaffoldBackground;
+  final Color dashboardSideMenuSelectedItem;
+  final Color dashboardSideMenuUnselectedItem;
+  final Color clientPageBackground;
+  final Color clientPageAboveBackground;
+  final Color clientPagePrimary;
+  final Color clientPagePrimaryVariant;
+  final Color clientPageSecondary;
+  final Color clientPageSecondaryVariant;
+  final Color clientPageTransparent;
+  final Color greyish;
+  final Color clientPageError;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -103,6 +114,17 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.termsButtonFillColor,
     required this.directionsJoinButtonBorder,
     required this.productsScaffoldBackground,
+    required this.dashboardSideMenuSelectedItem,
+    required this.dashboardSideMenuUnselectedItem,
+    required this.clientPageBackground,
+    required this.clientPagePrimary,
+    required this.clientPageSecondary,
+    required this.clientPagePrimaryVariant,
+    required this.clientPageSecondaryVariant,
+    required this.clientPageAboveBackground,
+    required this.clientPageTransparent,
+    required this.greyish,
+    required this.clientPageError,
   });
 
   @override
@@ -158,6 +180,17 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? termsButtonFillColor,
     Color? directionsJoinButtonBorder,
     Color? productsScaffoldBackground,
+    Color? dashboardSideMenuSelectedItem,
+    Color? dashboardSideMenuUnselectedItem,
+    Color? clientPageBackground,
+    Color? clientPageAboveBackground,
+    Color? clientPageTransparent,
+    Color? clientPagePrimary,
+    Color? clientPageSecondary,
+    Color? clientPagePrimaryVariant,
+    Color? clientPageSecondaryVariant,
+    Color? greyish,
+    Color? clientPageError,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -237,6 +270,23 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           directionsJoinButtonBorder ?? this.directionsJoinButtonBorder,
       productsScaffoldBackground:
           productsScaffoldBackground ?? this.productsScaffoldBackground,
+      dashboardSideMenuSelectedItem:
+          dashboardSideMenuSelectedItem ?? this.dashboardSideMenuSelectedItem,
+      dashboardSideMenuUnselectedItem: dashboardSideMenuUnselectedItem ??
+          this.dashboardSideMenuUnselectedItem,
+      clientPagePrimary: clientPagePrimary ?? this.clientPagePrimary,
+      clientPageSecondary: clientPageSecondary ?? this.clientPageSecondary,
+      clientPagePrimaryVariant:
+          clientPagePrimaryVariant ?? this.clientPagePrimaryVariant,
+      clientPageSecondaryVariant:
+          clientPageSecondaryVariant ?? this.clientPageSecondaryVariant,
+      clientPageBackground: clientPageBackground ?? this.clientPageBackground,
+      clientPageTransparent:
+          clientPageTransparent ?? this.clientPageTransparent,
+      clientPageAboveBackground:
+          clientPageAboveBackground ?? this.clientPageAboveBackground,
+      greyish: greyish ?? this.greyish,
+      clientPageError: clientPageError ?? this.clientPageError,
     );
   }
 
@@ -351,6 +401,28 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           directionsJoinButtonBorder, other.directionsJoinButtonBorder, t)!,
       productsScaffoldBackground: Color.lerp(
           productsScaffoldBackground, other.productsScaffoldBackground, t)!,
+      dashboardSideMenuSelectedItem: Color.lerp(dashboardSideMenuSelectedItem,
+          other.dashboardSideMenuSelectedItem, t)!,
+      dashboardSideMenuUnselectedItem: Color.lerp(
+          dashboardSideMenuUnselectedItem,
+          other.dashboardSideMenuUnselectedItem,
+          t)!,
+      clientPagePrimary:
+          Color.lerp(clientPagePrimary, other.clientPagePrimary, t)!,
+      clientPagePrimaryVariant: Color.lerp(
+          clientPagePrimaryVariant, other.clientPagePrimaryVariant, t)!,
+      clientPageSecondaryVariant: Color.lerp(
+          clientPageSecondaryVariant, other.clientPageSecondaryVariant, t)!,
+      clientPageSecondary:
+          Color.lerp(clientPageSecondary, other.clientPageSecondary, t)!,
+      clientPageBackground:
+          Color.lerp(clientPageBackground, other.clientPageBackground, t)!,
+      clientPageAboveBackground: Color.lerp(
+          clientPageAboveBackground, other.clientPageAboveBackground, t)!,
+      clientPageTransparent:
+          Color.lerp(clientPageTransparent, other.clientPageTransparent, t)!,
+      greyish: Color.lerp(greyish, other.greyish, t)!,
+      clientPageError: Color.lerp(clientPageError, other.clientPageError, t)!,
     );
   }
 
@@ -405,6 +477,17 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         termsButtonFillColor: AppColors.white,
         directionsJoinButtonBorder: AppColors.white,
         productsScaffoldBackground: AppColors.white,
+        dashboardSideMenuSelectedItem: AppColors.indigo,
+        dashboardSideMenuUnselectedItem: AppColors.greyish,
+        clientPagePrimary: AppColors.indigo,
+        clientPagePrimaryVariant: AppColors.darkIndigo,
+        clientPageSecondary: AppColors.turquoise,
+        clientPageSecondaryVariant: AppColors.seaGreen,
+        clientPageTransparent: AppColors.transparent,
+        clientPageBackground: AppColors.white,
+        clientPageAboveBackground: AppColors.black,
+        greyish: AppColors.greyish,
+        clientPageError: AppColors.red,
       );
 
   static get dark => ThemeColors(
@@ -458,5 +541,16 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         termsButtonFillColor: AppColors.white,
         directionsJoinButtonBorder: AppColors.white,
         productsScaffoldBackground: AppColors.white,
+        dashboardSideMenuSelectedItem: AppColors.indigo,
+        dashboardSideMenuUnselectedItem: AppColors.greyish,
+        clientPagePrimary: AppColors.indigo,
+        clientPagePrimaryVariant: AppColors.darkIndigo,
+        clientPageSecondary: AppColors.turquoise,
+        clientPageSecondaryVariant: AppColors.seaGreen,
+        clientPageTransparent: AppColors.transparent,
+        clientPageBackground: AppColors.white,
+        clientPageAboveBackground: AppColors.black,
+        greyish: AppColors.greyish,
+        clientPageError: AppColors.red,
       );
 }

@@ -5,8 +5,8 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/datasources/local/shared_prefs.dart';
 import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/locale_manager.dart';
-import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/navigation/app_router.gr.dart';
+import 'package:meta_app/presentation/widgets/return_home_logo.dart';
 import 'package:meta_app/presentation/widgets/media_buttons.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 import 'package:useful_extensions/useful_extensions.dart';
@@ -27,10 +27,6 @@ class Header extends SliverPersistentHeaderDelegate {
     required this.screenWidth,
     required this.headerYOffset,
   });
-
-  void _goToHomePage(BuildContext context) {
-    context.router.navigate(HomeRoute());
-  }
 
   @override
   double get minExtent => screenWidth > 780 ? 190 : 120;
@@ -92,10 +88,7 @@ class Header extends SliverPersistentHeaderDelegate {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  InkWell(
-                    onTap: () => _goToHomePage(context),
-                    child: Image.asset(AppAssets.auroraLogo, height: 76),
-                  ),
+                  const ReturnHomeLogo(height: 76),
                   if (width > 780)
                     const Material(
                       color: Colors.transparent,
