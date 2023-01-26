@@ -115,6 +115,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle clientPageSubtitle;
   final TextStyle clientBotsDefault;
   final TextStyle profileHeaderSubtitle;
+  final TextStyle headerNavItemHovered;
 
   ThemeTextStyles({
     required this.test,
@@ -231,6 +232,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.clientPageSubtitle,
     required this.clientBotsDefault,
     required this.profileHeaderSubtitle,
+    required this.headerNavItemHovered,
   });
 
   @override
@@ -349,6 +351,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? clientPageSubtitle,
     TextStyle? clientBotsDefault,
     TextStyle? profileHeaderSubtitle,
+    TextStyle? headerNavItemHovered,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -531,6 +534,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       clientBotsDefault: clientBotsDefault ?? this.clientBotsDefault,
       profileHeaderSubtitle:
           profileHeaderSubtitle ?? this.profileHeaderSubtitle,
+      headerNavItemHovered: headerNavItemHovered ?? this.headerNavItemHovered,
     );
   }
 
@@ -786,6 +790,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           TextStyle.lerp(clientBotsDefault, other.clientBotsDefault, t)!,
       profileHeaderSubtitle: TextStyle.lerp(
           profileHeaderSubtitle, other.profileHeaderSubtitle, t)!,
+      headerNavItemHovered:
+          TextStyle.lerp(headerNavItemHovered, other.headerNavItemHovered, t)!,
     );
   }
 
@@ -811,7 +817,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         authFormHint: headline1.copyWith(fontSize: 14),
         authFormError: headline3.copyWith(
-          color: AppColors.lighterIndigo,
+          color: AppColors.orangeRed,
           fontWeight: FontWeight.w400,
         ),
         multiMetaUniverseTitle: headline1.copyWith(fontSize: 62),
@@ -1230,6 +1236,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 12,
           color: AppColors.mako,
         ),
+        headerNavItemHovered: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.indigo,
+        ),
       );
 
   static get dark => ThemeTextStyles(
@@ -1254,7 +1264,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         authFormHint: headline1.copyWith(fontSize: 14),
         authFormError: headline3.copyWith(
-          color: AppColors.lighterIndigo,
+          color: AppColors.white,
           fontWeight: FontWeight.w400,
         ),
         multiMetaUniverseTitle: headline1.copyWith(fontSize: 62),
@@ -1672,6 +1682,10 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         profileHeaderSubtitle: headline1.copyWith(
           fontSize: 12,
           color: AppColors.mako,
+        ),
+        headerNavItemHovered: headline3.copyWith(
+          fontSize: 14,
+          color: AppColors.indigo,
         ),
       );
 }

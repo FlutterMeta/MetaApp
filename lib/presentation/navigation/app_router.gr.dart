@@ -14,15 +14,15 @@
 import 'package:auto_route/auto_route.dart' as _i10;
 import 'package:flutter/material.dart' as _i11;
 
-import '../pages/blog_page.dart/blog_page.dart' as _i7;
-import '../pages/client_profile_page/client_profile_page.dart' as _i9;
-import '../pages/directions_page/directions_page.dart' as _i8;
-import '../pages/forgot_password_page.dart' as _i4;
+import '../pages/blog_page.dart/blog_page.dart' as _i6;
+import '../pages/directions_page/directions_page.dart' as _i7;
 import '../pages/home_page/home_page.dart' as _i1;
 import '../pages/login_page.dart' as _i2;
-import '../pages/partners_page/partners_page.dart' as _i6;
-import '../pages/products_page/products_page.dart' as _i5;
+import '../pages/partners_page/partners_page.dart' as _i5;
+import '../pages/products_page/products_page.dart' as _i4;
 import '../pages/registration_page.dart' as _i3;
+import '../pages/reset_access_page.dart' as _i9;
+import '../pages/reset_password_page.dart' as _i8;
 
 class AppRouter extends _i10.RootStackRouter {
   AppRouter([_i11.GlobalKey<_i11.NavigatorState>? navigatorKey])
@@ -50,18 +50,12 @@ class AppRouter extends _i10.RootStackRouter {
         child: const _i3.RegistrationPage(),
       );
     },
-    ForgotPasswordRoute.name: (routeData) {
-      return _i10.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i4.ForgotPasswordPage(),
-      );
-    },
     ProductsRoute.name: (routeData) {
       final args = routeData.argsAs<ProductsRouteArgs>(
           orElse: () => const ProductsRouteArgs());
       return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i5.ProductsPage(key: args.key),
+        child: _i4.ProductsPage(key: args.key),
       );
     },
     PartnersRoute.name: (routeData) {
@@ -69,7 +63,7 @@ class AppRouter extends _i10.RootStackRouter {
           orElse: () => const PartnersRouteArgs());
       return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i6.PartnersPage(key: args.key),
+        child: _i5.PartnersPage(key: args.key),
       );
     },
     BlogRoute.name: (routeData) {
@@ -77,7 +71,7 @@ class AppRouter extends _i10.RootStackRouter {
           routeData.argsAs<BlogRouteArgs>(orElse: () => const BlogRouteArgs());
       return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i7.BlogPage(key: args.key),
+        child: _i6.BlogPage(key: args.key),
       );
     },
     DirectionsRoute.name: (routeData) {
@@ -85,25 +79,25 @@ class AppRouter extends _i10.RootStackRouter {
           orElse: () => const DirectionsRouteArgs());
       return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i8.DirectionsPage(key: args.key),
+        child: _i7.DirectionsPage(key: args.key),
       );
     },
-    ClientProfileRoute.name: (routeData) {
+    ResetPasswordRoute.name: (routeData) {
       return _i10.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i9.ClientProfilePage(),
+        child: const _i8.ResetPasswordPage(),
+      );
+    },
+    ResetAccessRoute.name: (routeData) {
+      return _i10.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i9.ResetAccessPage(),
       );
     },
   };
 
   @override
   List<_i10.RouteConfig> get routes => [
-        _i10.RouteConfig(
-          '/#redirect',
-          path: '/',
-          redirectTo: '/home',
-          fullMatch: true,
-        ),
         _i10.RouteConfig(
           HomeRoute.name,
           path: '/home',
@@ -115,10 +109,6 @@ class AppRouter extends _i10.RootStackRouter {
         _i10.RouteConfig(
           RegistrationRoute.name,
           path: '/registration',
-        ),
-        _i10.RouteConfig(
-          ForgotPasswordRoute.name,
-          path: '/forgot-password',
         ),
         _i10.RouteConfig(
           ProductsRoute.name,
@@ -137,8 +127,12 @@ class AppRouter extends _i10.RootStackRouter {
           path: '/directions',
         ),
         _i10.RouteConfig(
-          ClientProfileRoute.name,
-          path: '/client-profile',
+          ResetPasswordRoute.name,
+          path: '/reset-password',
+        ),
+        _i10.RouteConfig(
+          ResetAccessRoute.name,
+          path: '/reset-access',
         ),
       ];
 }
@@ -192,19 +186,7 @@ class RegistrationRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.ForgotPasswordPage]
-class ForgotPasswordRoute extends _i10.PageRouteInfo<void> {
-  const ForgotPasswordRoute()
-      : super(
-          ForgotPasswordRoute.name,
-          path: '/forgot-password',
-        );
-
-  static const String name = 'ForgotPasswordRoute';
-}
-
-/// generated route for
-/// [_i5.ProductsPage]
+/// [_i4.ProductsPage]
 class ProductsRoute extends _i10.PageRouteInfo<ProductsRouteArgs> {
   ProductsRoute({_i11.Key? key})
       : super(
@@ -228,7 +210,7 @@ class ProductsRouteArgs {
 }
 
 /// generated route for
-/// [_i6.PartnersPage]
+/// [_i5.PartnersPage]
 class PartnersRoute extends _i10.PageRouteInfo<PartnersRouteArgs> {
   PartnersRoute({_i11.Key? key})
       : super(
@@ -252,7 +234,7 @@ class PartnersRouteArgs {
 }
 
 /// generated route for
-/// [_i7.BlogPage]
+/// [_i6.BlogPage]
 class BlogRoute extends _i10.PageRouteInfo<BlogRouteArgs> {
   BlogRoute({_i11.Key? key})
       : super(
@@ -276,7 +258,7 @@ class BlogRouteArgs {
 }
 
 /// generated route for
-/// [_i8.DirectionsPage]
+/// [_i7.DirectionsPage]
 class DirectionsRoute extends _i10.PageRouteInfo<DirectionsRouteArgs> {
   DirectionsRoute({_i11.Key? key})
       : super(
@@ -300,13 +282,25 @@ class DirectionsRouteArgs {
 }
 
 /// generated route for
-/// [_i9.ClientProfilePage]
-class ClientProfileRoute extends _i10.PageRouteInfo<void> {
-  const ClientProfileRoute()
+/// [_i8.ResetPasswordPage]
+class ResetPasswordRoute extends _i10.PageRouteInfo<void> {
+  const ResetPasswordRoute()
       : super(
-          ClientProfileRoute.name,
-          path: '/client-profile',
+          ResetPasswordRoute.name,
+          path: '/reset-password',
         );
 
-  static const String name = 'ClientProfileRoute';
+  static const String name = 'ResetPasswordRoute';
+}
+
+/// generated route for
+/// [_i9.ResetAccessPage]
+class ResetAccessRoute extends _i10.PageRouteInfo<void> {
+  const ResetAccessRoute()
+      : super(
+          ResetAccessRoute.name,
+          path: '/reset-access',
+        );
+
+  static const String name = 'ResetAccessRoute';
 }

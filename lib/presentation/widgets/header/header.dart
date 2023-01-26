@@ -96,8 +96,13 @@ class Header extends SliverPersistentHeaderDelegate {
                     onTap: () => _goToHomePage(context),
                     child: Image.asset(AppAssets.auroraLogo, height: 76),
                   ),
-                  if (width > 780) const _ExpandedMenu(),
-                  if (width <= 780) _CompactMenu(headerYOffset: headerYOffset),
+                  if (width > 780)
+                    const Material(
+                      color: Colors.transparent,
+                      child: _ExpandedMenu(),
+                    ),
+                  if (width <= 780)
+                    Material(child: _CompactMenu(headerYOffset: headerYOffset)),
                 ],
               ),
             ),
