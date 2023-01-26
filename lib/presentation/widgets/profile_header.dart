@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/blocs/client_profile_page/menu_state.dart';
-import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
+import 'package:meta_app/presentation/widgets/return_home_logo.dart';
 
 import 'package:useful_extensions/useful_extensions.dart';
 
@@ -48,10 +48,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
             child: Row(
               children: [
                 Responsive.isDesktop(context)
-                    ? Image.asset(
-                        AppAssets.auroraLogo,
-                        height: 68,
-                      )
+                    ? const ReturnHomeLogo(height: 68)
                     : const SizedBox(),
                 menu.isCollapsed
                     ? const SizedBox()

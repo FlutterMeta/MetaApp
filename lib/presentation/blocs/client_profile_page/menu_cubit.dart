@@ -11,13 +11,11 @@ class MenuCubit extends Cubit<MenuState> {
         ));
 
   void changeTabIndex(int index) {
-    emit(state.tabIndex == index
-        ? MenuState.empty()
-        : MenuState(
-            tabIndex: index,
-            isCollapsed: state.isCollapsed,
-            scaffoldKey: state.scaffoldKey,
-          ));
+    emit(MenuState(
+      tabIndex: index,
+      isCollapsed: state.isCollapsed,
+      scaffoldKey: state.scaffoldKey,
+    ));
   }
 
   void changeCollapsedState() {

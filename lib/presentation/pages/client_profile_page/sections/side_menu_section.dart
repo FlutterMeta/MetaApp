@@ -27,11 +27,6 @@ class _SideMenuSectionState extends State<SideMenuSection> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<MenuCubit, MenuState>(
       builder: (context, menu) {

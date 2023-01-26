@@ -45,7 +45,7 @@ class ClientProfilePage extends StatelessWidget {
 class _TabsBox extends StatelessWidget {
   const _TabsBox({Key? key}) : super(key: key);
 
-  Widget showTab(int index) {
+  Widget chooseTab(int index) {
     switch (index) {
       case 0:
         return const DashboardTab();
@@ -61,10 +61,11 @@ class _TabsBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MenuCubit, MenuState>(
+      buildWhen: (previous, current) => previous.tabIndex != current.tabIndex,
       builder: (context, menu) {
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
-          child: showTab(menu.tabIndex),
+          child: chooseTab(menu.tabIndex),
         );
       },
     );
