@@ -22,21 +22,24 @@ class DashboardTab extends StatelessWidget {
         builder: (context, menu) {
           return Container(
             decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
-            alignment:
-                menu.isCollapsed ? Alignment.topCenter : Alignment.topLeft,
             padding: const EdgeInsets.all(20),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1200),
-              child: Column(
-                children: const [
-                  _InformationPanel(),
-                  SizedBox(height: 20),
-                  _AdaptiveMainContent(),
-                  SizedBox(height: 20),
-                  _TransactionsHistorySection(),
-                  SizedBox(height: 60),
-                  RightsReservedFooter(),
-                ],
+            child: AnimatedAlign(
+              duration: const Duration(milliseconds: 600),
+              alignment:
+                  menu.isCollapsed ? Alignment.topCenter : Alignment.topLeft,
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 1200),
+                child: Column(
+                  children: const [
+                    _InformationPanel(),
+                    SizedBox(height: 20),
+                    _AdaptiveMainContent(),
+                    SizedBox(height: 20),
+                    _TransactionsHistorySection(),
+                    SizedBox(height: 60),
+                    RightsReservedFooter(),
+                  ],
+                ),
               ),
             ),
           );

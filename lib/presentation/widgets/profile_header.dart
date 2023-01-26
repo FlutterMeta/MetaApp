@@ -9,17 +9,17 @@ import 'package:useful_extensions/useful_extensions.dart';
 
 import '../blocs/client_profile_page/menu_cubit.dart';
 
-class DashboardHeader extends StatefulWidget implements PreferredSizeWidget {
-  const DashboardHeader({super.key});
+class ProfileHeader extends StatefulWidget implements PreferredSizeWidget {
+  const ProfileHeader({super.key});
 
   @override
-  State<DashboardHeader> createState() => _DashboardHeaderState();
+  State<ProfileHeader> createState() => _ProfileHeaderState();
 
   @override
   Size get preferredSize => const Size(double.infinity, 120);
 }
 
-class _DashboardHeaderState extends State<DashboardHeader> {
+class _ProfileHeaderState extends State<ProfileHeader> {
   @override
   void didChangeDependencies() {
     final menuCubit = context.read<MenuCubit>();
