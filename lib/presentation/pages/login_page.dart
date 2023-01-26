@@ -27,9 +27,6 @@ class _LoginPageState extends State<LoginPage> with Validator {
   void _goToProfilePage(BuildContext context) =>
       context.router.push(const ClientProfileRoute());
 
-  void _goToForgotPasswordPage() =>
-      context.router.replace(const ForgotPasswordRoute());
-
   void _goToRegistrationPage() =>
       context.router.push(const RegistrationRoute());
 
@@ -38,13 +35,8 @@ class _LoginPageState extends State<LoginPage> with Validator {
     _goToProfilePage(context);
   }
 
-  void _goToResetPasswordPage() {
-    context.router.replace(const ResetPasswordRoute());
-  }
-
-  void _goToRegistrationPage() {
-    context.router.push(const RegistrationRoute());
-  }
+  void _goToResetPasswordPage() =>
+      context.router.replace(const ResetPasswordRoute());
 
   @override
   Widget build(BuildContext context) {

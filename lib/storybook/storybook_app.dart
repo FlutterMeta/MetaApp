@@ -6,6 +6,7 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/l10n/l10n.dart';
 import 'package:meta_app/presentation/navigation/app_router.gr.dart';
 import 'package:meta_app/presentation/navigation/router_observer.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/client_profile_page.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/auth_button.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
