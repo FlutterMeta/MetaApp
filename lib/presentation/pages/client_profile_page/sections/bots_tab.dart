@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/client_profile_manager.dart';
+import 'package:meta_app/presentation/blocs/client_profile_page/menu_cubit.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
-import 'package:provider/provider.dart';
 
 class BotsTab extends StatelessWidget {
   const BotsTab({super.key});
@@ -228,8 +228,9 @@ class _BotDemoCard extends StatelessWidget {
   }) : super(key: key);
 
   void _pushTransactionTab(BuildContext context, int index) {
-    Provider.of<ClientProfileManager>(context, listen: false)
-        .changeIndex(index);
+    /*  Provider.of<ClientProfileManager>(context, listen: false)
+        .changeIndex(index); */
+    context.read<MenuCubit>().changeTabIndex(index);
   }
 
   @override

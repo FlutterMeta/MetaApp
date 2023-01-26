@@ -14,7 +14,7 @@ class TransactionTab extends StatelessWidget {
         decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
         alignment: Alignment.center,
         padding: const EdgeInsets.all(20),
-        constraints: BoxConstraints(minHeight: context.screenHeight-120),
+        constraints: BoxConstraints(minHeight: context.screenHeight - 120),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

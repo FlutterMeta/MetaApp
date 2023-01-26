@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/client_profile_manager.dart';
+import 'package:meta_app/presentation/blocs/client_profile_page/menu_cubit.dart';
+import 'package:meta_app/presentation/blocs/client_profile_page/menu_state.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
-import 'package:provider/provider.dart';
 
 class SideMenuSection extends StatefulWidget {
   const SideMenuSection({Key? key}) : super(key: key);
@@ -15,22 +16,27 @@ class _SideMenuSectionState extends State<SideMenuSection> {
   int _currentIndex = 0;
 
   void _onLabelTap(int index) {
-    Provider.of<ClientProfileManager>(context, listen: false)
-        .changeIndex(index);
+    /*   Provider.of<ClientProfileManager>(context, listen: false)
+        .changeIndex(index); */
+    context.read<MenuCubit>().changeTabIndex(index);
     setState(() => _currentIndex = index);
   }
 
   @override
   void initState() {
     super.initState();
-    _currentIndex =
-        Provider.of<ClientProfileManager>(context, listen: false).currentIndex;
+    _currentIndex = context.read<MenuCubit>().state.tabIndex;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ClientProfileManager>(
-      builder: (context, menu, child) {
+    return BlocBuilder<MenuCubit, MenuState>(
+      builder: (context, menu) {
         return Drawer(
           backgroundColor: menu.isCollapsed
               ? context.color.primary
@@ -88,8 +94,8 @@ class __DrawerListTileState extends State<_DrawerListTile> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ClientProfileManager>(
-      builder: (context, menu, child) {
+    return BlocBuilder<MenuCubit, MenuState>(
+      builder: (context, menu) {
         return InkWell(
           onTap: () {
             widget.onTap(widget.index);

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/client_profile_manager.dart';
+import 'package:meta_app/presentation/blocs/client_profile_page/menu_cubit.dart';
+import 'package:meta_app/presentation/blocs/client_profile_page/menu_state.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/bots_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/dashboard_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/side_menu_section.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/transaction_tab.dart';
 import 'package:meta_app/presentation/widgets/dashboard_header.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
-import 'package:provider/provider.dart';
 
 class ClientProfilePage extends StatelessWidget {
   const ClientProfilePage({super.key});
@@ -18,9 +19,9 @@ class ClientProfilePage extends StatelessWidget {
       appBar: const DashboardHeader(),
       drawer: const SideMenuSection(),
       backgroundColor: context.color.background,
-      key: context.read<ClientProfileManager>().scaffoldKey,
-      body: Consumer<ClientProfileManager>(
-        builder: (context, menu, child) {
+      /* key: context.read<ClientProfileManager>().scaffoldKey, */
+      body: BlocBuilder<MenuCubit, MenuState>(
+        builder: (context, menu) {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -59,11 +60,11 @@ class _TabsBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ClientProfileManager>(
-      builder: (context, tabManager, child) {
+    return BlocBuilder<MenuCubit, MenuState>(
+      builder: (context, menu) {
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
-          child: showTab(tabManager.currentIndex),
+          child: showTab(menu.tabIndex),
         );
       },
     );
