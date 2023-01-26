@@ -189,7 +189,7 @@ class _BotProfitCard extends StatelessWidget {
                       ),
                       padding: const EdgeInsets.symmetric(
                         horizontal: 10,
-                        vertical: 5,
+                        vertical: 6,
                       ),
                       child: Text(
                         "ROI: $roi%",
@@ -319,10 +319,12 @@ class _FunctionalityComparisonTable extends StatelessWidget {
     );
   }
 
-  static final _fourChecks = List.generate(
-    4,
-    (index) => const _TableRowCell(child: _GreenCheck()),
-  );
+  List<Widget> _fourChecks() {
+    return List.generate(
+      4,
+      (index) => const _TableRowCell(child: _GreenCheck()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -390,7 +392,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                     style: _defaultCellTextStyle(context),
                   ),
                 ),
-                ..._fourChecks,
+                ..._fourChecks(),
               ],
             ),
             TableRow(
@@ -401,7 +403,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                     style: _defaultCellTextStyle(context),
                   ),
                 ),
-                ..._fourChecks,
+                ..._fourChecks(),
               ],
             ),
             TableRow(
@@ -412,7 +414,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                     style: _defaultCellTextStyle(context),
                   ),
                 ),
-                ..._fourChecks,
+                ..._fourChecks(),
               ],
             ),
             TableRow(
@@ -423,7 +425,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                     style: _defaultCellTextStyle(context),
                   ),
                 ),
-                ..._fourChecks,
+                ..._fourChecks(),
               ],
             ),
             TableRow(
@@ -434,7 +436,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                     style: _defaultCellTextStyle(context),
                   ),
                 ),
-                ..._fourChecks,
+                ..._fourChecks(),
               ],
             ),
             TableRow(
@@ -445,7 +447,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                     style: _defaultCellTextStyle(context),
                   ),
                 ),
-                ..._fourChecks,
+                ..._fourChecks(),
               ],
             ),
             TableRow(
@@ -456,7 +458,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                     style: _defaultCellTextStyle(context),
                   ),
                 ),
-                ..._fourChecks,
+                ..._fourChecks(),
               ],
             ),
             TableRow(
@@ -467,7 +469,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
                     style: _defaultCellTextStyle(context),
                   ),
                 ),
-                ..._fourChecks,
+                ..._fourChecks(),
               ],
             ),
           ],
