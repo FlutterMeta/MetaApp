@@ -5,7 +5,6 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/datasources/local/shared_prefs.dart';
 import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/locale_manager.dart';
-import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/navigation/app_router.gr.dart';
 import 'package:meta_app/presentation/widgets/return_home_logo.dart';
 import 'package:meta_app/presentation/widgets/media_buttons.dart';
@@ -28,10 +27,6 @@ class Header extends SliverPersistentHeaderDelegate {
     required this.screenWidth,
     required this.headerYOffset,
   });
-
-  void _goToHomePage(BuildContext context) {
-    context.router.navigate(HomeRoute());
-  }
 
   @override
   double get minExtent => screenWidth > 780 ? 190 : 120;
