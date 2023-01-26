@@ -28,12 +28,8 @@ class _DashboardHeaderState extends State<DashboardHeader> {
         menuCubit.state.isCollapsed) {
       menuCubit.changeCollapsedState();
     }
-/* 
-    context
-        .read<ClientProfileManager>()
-        .scaffoldKey
-        .currentState
-        ?.closeDrawer(); */
+
+    context.read<MenuCubit>().state.scaffoldKey.currentState?.closeDrawer();
     super.didChangeDependencies();
   }
 
@@ -68,11 +64,13 @@ class _DashboardHeaderState extends State<DashboardHeader> {
                   onPressed: () {
                     if (Responsive.isMobile(context) ||
                         Responsive.isTablet(context)) {
-                      /*   context
-                          .read<ClientProfileManager>()
+                      context
+                          .read<MenuCubit>()
+                          .state
                           .scaffoldKey
                           .currentState
-                          ?.openDrawer(); */
+                          ?.openDrawer();
+                      ;
                     }
                   },
                   iconSize: 36,

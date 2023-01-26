@@ -4,15 +4,18 @@ import 'package:flutter/material.dart';
 class MenuState {
   final int tabIndex;
   final bool isCollapsed;
+  final GlobalKey<ScaffoldState> scaffoldKey;
 
   const MenuState({
     required this.tabIndex,
     required this.isCollapsed,
+    required this.scaffoldKey,
   });
 
-  const MenuState.empty()
+  MenuState.empty()
       : tabIndex = 0,
-        isCollapsed = false;
+        isCollapsed = false,
+        scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   List<Object> get props => [tabIndex, isCollapsed];

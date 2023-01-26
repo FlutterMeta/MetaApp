@@ -228,8 +228,6 @@ class _BotDemoCard extends StatelessWidget {
   }) : super(key: key);
 
   void _pushTransactionTab(BuildContext context, int index) {
-    /*  Provider.of<ClientProfileManager>(context, listen: false)
-        .changeIndex(index); */
     context.read<MenuCubit>().changeTabIndex(index);
   }
 
