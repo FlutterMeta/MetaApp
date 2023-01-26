@@ -70,7 +70,6 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                           .scaffoldKey
                           .currentState
                           ?.openDrawer();
-                      ;
                     }
                   },
                   iconSize: 36,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/blocs/client_profile_page/menu_cubit.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 
@@ -220,6 +222,10 @@ class _BotDemoCard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  void _pushTransactionTab(BuildContext context) {
+    context.read<MenuCubit>().changeTabIndex(2);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -270,7 +276,7 @@ class _BotDemoCard extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            _GetStartedButton(onTap: () {}),
+            _GetStartedButton(onTap: () => _pushTransactionTab(context)),
           ],
         ),
       ),
