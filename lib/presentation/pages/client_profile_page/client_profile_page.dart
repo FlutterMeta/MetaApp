@@ -16,7 +16,7 @@ class ClientProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: const DashboardHeader(),
       drawer: const SideMenuSection(),
-      backgroundColor: context.color.background,
+      backgroundColor: context.color.clientPageBackground,
       key: context.read<ClientProfileManager>().scaffoldKey,
       body: Consumer<ClientProfileManager>(
         builder: (context, menu, child) {

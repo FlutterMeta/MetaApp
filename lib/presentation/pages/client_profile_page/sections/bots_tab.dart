@@ -101,18 +101,6 @@ class BotsTab extends StatelessWidget {
   }
 }
 
-abstract class CardShadow {
-  static List<BoxShadow> defaultShadow(BuildContext context) {
-    return [
-      BoxShadow(
-        color: context.color.primary.withOpacity(0.1),
-        blurRadius: 20,
-        offset: const Offset(0, 10),
-      ),
-    ];
-  }
-}
-
 class _CardsWrap extends StatelessWidget {
   final List<Widget> children;
 
@@ -150,9 +138,15 @@ class _BotProfitCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: context.color.background,
+        color: context.color.clientPageBackground,
         borderRadius: BorderRadius.circular(20),
-        boxShadow: CardShadow.defaultShadow(context),
+        boxShadow: [
+          BoxShadow(
+            color: context.color.clientPagePrimary.withOpacity(0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
       ),
       padding: const EdgeInsets.all(20),
       child: ConstrainedBox(
@@ -164,11 +158,11 @@ class _BotProfitCard extends StatelessWidget {
               width: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: context.color.primary.withOpacity(0.1),
+                color: context.color.clientPagePrimary.withOpacity(0.1),
               ),
               child: Icon(
                 Icons.attach_money,
-                color: context.color.primary,
+                color: context.color.clientPagePrimary,
               ),
             ),
             const SizedBox(width: 20),
@@ -190,7 +184,7 @@ class _BotProfitCard extends StatelessWidget {
                     const SizedBox(width: 10),
                     Container(
                       decoration: BoxDecoration(
-                        color: context.color.secondaryVariant,
+                        color: context.color.clientPageSecondaryVariant,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       padding: const EdgeInsets.symmetric(
@@ -199,7 +193,8 @@ class _BotProfitCard extends StatelessWidget {
                       ),
                       child: Text(
                         "ROI: $roi%",
-                        style: context.text.inverseBody.copyWith(fontSize: 11),
+                        style: context.text.clientPageInverseBody
+                            .copyWith(fontSize: 12),
                       ),
                     ),
                   ],
@@ -229,9 +224,15 @@ class _BotDemoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: context.color.background,
+        color: context.color.clientPageBackground,
         borderRadius: BorderRadius.circular(30),
-        boxShadow: CardShadow.defaultShadow(context),
+        boxShadow: [
+          BoxShadow(
+            color: context.color.clientPagePrimary.withOpacity(0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
       ),
       padding: const EdgeInsets.all(20),
       child: ConstrainedBox(
@@ -300,7 +301,7 @@ class _GetStartedButton extends StatelessWidget {
           children: [
             Text(
               context.localizations.getStarted,
-              style: context.text.body.copyWith(fontSize: 16),
+              style: context.text.clientPageBody.copyWith(fontSize: 16),
             ),
           ],
         ),
@@ -314,7 +315,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
 
   TextStyle _defaultCellTextStyle(BuildContext context) {
     return context.text.clientBotsDefault.copyWith(
-      fontSize: Responsive.isMobile(context) ? 14 : 17,
+      fontSize: Responsive.isMobile(context) ? 14 : 18,
     );
   }
 
@@ -328,9 +329,15 @@ class _FunctionalityComparisonTable extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: context.color.background,
+        color: context.color.clientPageBackground,
         borderRadius: BorderRadius.circular(30),
-        boxShadow: CardShadow.defaultShadow(context),
+        boxShadow: [
+          BoxShadow(
+            color: context.color.clientPagePrimary.withOpacity(0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
       ),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1200),
@@ -501,7 +508,7 @@ class _TableHeaderRowCell extends StatelessWidget {
     return text.clientBotsDefault.copyWith(
       color: text.clientBotsDefault.color?.withOpacity(0.5),
       fontWeight: FontWeight.w200,
-      fontSize: Responsive.isMobile(context) ? 12 : 15,
+      fontSize: Responsive.isMobile(context) ? 12 : 16,
     );
   }
 
@@ -525,12 +532,13 @@ class _GreenCheck extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: context.color.secondaryVariant.withOpacity(0.1),
-      radius: Responsive.isMobile(context) ? 10 : 25,
+      backgroundColor:
+          context.color.clientPageSecondaryVariant.withOpacity(0.1),
+      radius: Responsive.isMobile(context) ? 10 : 24,
       child: Icon(
         Icons.check,
-        size: Responsive.isMobile(context) ? 16 : 25,
-        color: context.color.secondaryVariant,
+        size: Responsive.isMobile(context) ? 16 : 24,
+        color: context.color.clientPageSecondaryVariant,
       ),
     );
   }

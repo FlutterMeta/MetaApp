@@ -109,8 +109,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle dashboardSideMenuSelectedLable;
   final TextStyle dashboardSideMenuUnselectedLable;
   final TextStyle allRightsReserved;
-  final TextStyle body;
-  final TextStyle inverseBody;
+  final TextStyle clientPageBody;
+  final TextStyle clientPageInverseBody;
   final TextStyle clientDashboardReferralCodeItself;
   final TextStyle clientPageSubtitle;
   final TextStyle clientBotsDefault;
@@ -225,8 +225,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.dashboardSideMenuSelectedLable,
     required this.dashboardSideMenuUnselectedLable,
     required this.allRightsReserved,
-    required this.body,
-    required this.inverseBody,
+    required this.clientPageBody,
+    required this.clientPageInverseBody,
     required this.clientDashboardReferralCodeItself,
     required this.clientPageSubtitle,
     required this.clientBotsDefault,
@@ -343,8 +343,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? dashboardSideMenuSelectedLable,
     TextStyle? dashboardSideMenuUnselectedLable,
     TextStyle? allRightsReserved,
-    TextStyle? body,
-    TextStyle? inverseBody,
+    TextStyle? clientPageBody,
+    TextStyle? clientPageInverseBody,
     TextStyle? clientDashboardReferralCodeItself,
     TextStyle? clientPageSubtitle,
     TextStyle? clientBotsDefault,
@@ -522,8 +522,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       dashboardSideMenuUnselectedLable: dashboardSideMenuUnselectedLable ??
           this.dashboardSideMenuUnselectedLable,
       allRightsReserved: allRightsReserved ?? this.allRightsReserved,
-      body: body ?? this.body,
-      inverseBody: inverseBody ?? this.inverseBody,
+      clientPageBody: clientPageBody ?? this.clientPageBody,
+      clientPageInverseBody:
+          clientPageInverseBody ?? this.clientPageInverseBody,
       clientDashboardReferralCodeItself: clientDashboardReferralCodeItself ??
           this.clientDashboardReferralCodeItself,
       clientPageSubtitle: clientPageSubtitle ?? this.clientPageSubtitle,
@@ -772,8 +773,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           t)!,
       allRightsReserved:
           TextStyle.lerp(allRightsReserved, other.allRightsReserved, t)!,
-      body: TextStyle.lerp(body, other.body, t)!,
-      inverseBody: TextStyle.lerp(inverseBody, other.inverseBody, t)!,
+      clientPageBody: TextStyle.lerp(clientPageBody, other.clientPageBody, t)!,
+      clientPageInverseBody: TextStyle.lerp(
+          clientPageInverseBody, other.clientPageInverseBody, t)!,
       clientDashboardReferralCodeItself: TextStyle.lerp(
           clientDashboardReferralCodeItself,
           other.clientDashboardReferralCodeItself,
@@ -1212,8 +1214,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 16,
           color: AppColors.greyish,
         ),
-        body: headline3.copyWith(),
-        inverseBody: headline1.copyWith(color: AppColors.white),
+        clientPageBody: headline3.copyWith(),
+        clientPageInverseBody: headline1.copyWith(color: AppColors.white),
         clientDashboardReferralCodeItself: headline1.copyWith(
           fontSize: 18,
           color: AppColors.steelBlue,
@@ -1226,7 +1228,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         clientBotsDefault: headline1.copyWith(color: AppColors.darkIndigo),
         profileHeaderSubtitle: headline1.copyWith(
           fontSize: 12,
-          color: AppColors.greyishIndigo,
+          color: AppColors.mako,
         ),
       );
 
@@ -1655,8 +1657,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 16,
           color: AppColors.greyish,
         ),
-        body: headline3.copyWith(),
-        inverseBody: headline3.copyWith(color: AppColors.white),
+        clientPageBody: headline3.copyWith(),
+        clientPageInverseBody: headline3.copyWith(color: AppColors.white),
         clientDashboardReferralCodeItself: headline1.copyWith(
           fontSize: 18,
           color: AppColors.steelBlue,
@@ -1669,7 +1671,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         clientBotsDefault: headline1.copyWith(color: AppColors.darkIndigo),
         profileHeaderSubtitle: headline1.copyWith(
           fontSize: 12,
-          color: AppColors.greyishIndigo,
+          color: AppColors.mako,
         ),
       );
 }

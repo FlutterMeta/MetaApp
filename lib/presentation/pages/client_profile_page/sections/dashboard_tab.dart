@@ -131,7 +131,7 @@ class _LevelCard extends StatelessWidget {
         width: context.screenWidth * 0.16,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: context.color.primary.withOpacity(0.1),
+          color: context.color.clientPagePrimary.withOpacity(0.1),
         ),
         padding: const EdgeInsets.all(20),
         clipBehavior: Clip.antiAlias,
@@ -225,12 +225,12 @@ class _InformationPanelState extends State<_InformationPanel>
           text: TextSpan(children: [
             TextSpan(
               text: context.localizations.yourActivity,
-              style: context.text.body.copyWith(fontSize: 30),
+              style: context.text.clientPageBody.copyWith(fontSize: 30),
             ),
             const TextSpan(text: "  "),
             TextSpan(
               text: context.localizations.auroraUniverse,
-              style: context.text.body.copyWith(
+              style: context.text.clientPageBody.copyWith(
                 fontSize: 30,
                 fontFamily: GoogleFonts.poppins(
                   fontWeight: FontWeight.w900,
@@ -244,9 +244,9 @@ class _InformationPanelState extends State<_InformationPanel>
           TextSpan(children: [
             TextSpan(
               text: context.localizations.referralCodeForPartners,
-              style: context.text.body.copyWith(
+              style: context.text.clientPageBody.copyWith(
                 fontSize: 18,
-                color: context.color.secondaryVariant,
+                color: context.color.clientPageSecondaryVariant,
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -292,7 +292,7 @@ class _PopupNotification extends StatelessWidget {
           height: 60,
           child: Text(
             context.localizations.refferalCodeCopied,
-            style: context.text.inverseBody.copyWith(fontSize: 16),
+            style: context.text.clientPageInverseBody.copyWith(fontSize: 16),
           ),
         ),
       ),
@@ -327,12 +327,12 @@ class _RankCard extends StatelessWidget {
           children: [
             Text(
               "${context.localizations.rank}: $rank",
-              style: context.text.inverseBody.copyWith(fontSize: 20),
+              style: context.text.clientPageInverseBody.copyWith(fontSize: 20),
             ),
             const SizedBox(height: 26),
             Text(
               "${context.localizations.reward}: \$${reward.toStringAsFixed(2)}",
-              style: context.text.inverseBody.copyWith(fontSize: 36),
+              style: context.text.clientPageInverseBody.copyWith(fontSize: 36),
             ),
             const SizedBox(height: 32),
             Row(
@@ -340,14 +340,16 @@ class _RankCard extends StatelessWidget {
               children: [
                 Text(
                   "${context.localizations.partnerIncomeLevel}:",
-                  style: context.text.inverseBody.copyWith(
+                  style: context.text.clientPageInverseBody.copyWith(
                     fontSize: 14,
-                    color: context.text.inverseBody.color?.withOpacity(0.6),
+                    color: context.text.clientPageInverseBody.color
+                        ?.withOpacity(0.6),
                   ),
                 ),
                 Text(
                   "$partnerIncomeLevel ${context.localizations.level.toLowerCase()}",
-                  style: context.text.inverseBody.copyWith(fontSize: 16),
+                  style:
+                      context.text.clientPageInverseBody.copyWith(fontSize: 16),
                 ),
               ],
             ),
@@ -368,9 +370,9 @@ class _WalletCard extends StatefulWidget {
 class _WalletCardState extends State<_WalletCard> {
   @override
   Widget build(BuildContext context) {
-    final labelTextStyle = context.text.inverseBody.copyWith(
+    final labelTextStyle = context.text.clientPageInverseBody.copyWith(
       fontSize: 14,
-      color: context.text.inverseBody.color?.withOpacity(0.6),
+      color: context.text.clientPageInverseBody.color?.withOpacity(0.6),
     );
 
     return Container(
@@ -386,7 +388,7 @@ class _WalletCardState extends State<_WalletCard> {
           children: [
             Text(
               context.localizations.externalWallet,
-              style: context.text.inverseBody.copyWith(
+              style: context.text.clientPageInverseBody.copyWith(
                 fontSize: 34,
                 fontWeight: FontWeight.w700,
               ),
@@ -447,8 +449,8 @@ class _FilledTextField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         filled: true,
-        fillColor: context.color.background,
-        hintStyle: context.text.body.copyWith(fontSize: 16),
+        fillColor: context.color.clientPageBackground,
+        hintStyle: context.text.clientPageBody.copyWith(fontSize: 16),
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(4),
@@ -522,7 +524,7 @@ class _TransactionsHistorySection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: context.color.background,
+        color: context.color.clientPageBackground,
         borderRadius: BorderRadius.circular(20),
       ),
       padding: const EdgeInsets.all(30),
@@ -533,7 +535,7 @@ class _TransactionsHistorySection extends StatelessWidget {
           children: [
             Text(
               context.localizations.historyOfTransactions,
-              style: context.text.body.copyWith(fontSize: 20),
+              style: context.text.clientPageBody.copyWith(fontSize: 20),
             ),
             const SizedBox(height: 10),
             Text(
@@ -584,7 +586,7 @@ class _TransactionInfo extends StatelessWidget {
   }
 
   TextStyle transactionTextStyle(BuildContext context) {
-    return context.text.body.copyWith(
+    return context.text.clientPageBody.copyWith(
       fontSize: 16,
       fontWeight: FontWeight.bold,
     );
@@ -607,7 +609,7 @@ class _TransactionInfo extends StatelessWidget {
               width: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: context.color.onBackground,
+                color: context.color.clientPageAboveBackground,
               ),
             ),
             const SizedBox(width: 20),
@@ -698,7 +700,7 @@ class _StatusChip extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Text(
           status.value,
-          style: context.text.body.copyWith(
+          style: context.text.clientPageBody.copyWith(
             fontSize: 13,
             color: _chipColor,
           ),
