@@ -48,7 +48,7 @@ List<Story> get _pages => [
       ),
       RouterAwareStory(
         name: "Pages/ClientProfile",
-        initialRoutes: const [ClientProfileRoute()],
+        initialRoutes: [ClientProfileRoute()],
         router: AppRouter(),
       ),
     ];
