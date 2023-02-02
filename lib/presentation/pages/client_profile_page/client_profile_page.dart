@@ -27,11 +27,17 @@ class ClientProfilePage extends StatelessWidget {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (Responsive.isDesktop(context) && !isCollapsed) ...[
+              /*  if (Responsive.isDesktop(context) && !isCollapsed) ...[
                 const Expanded(child: SideMenuSection()),
               ] else if (Responsive.isDesktop(context) && isCollapsed) ...[
                 const SizedBox(width: 104, child: SideMenuSection()),
-              ],
+              ], */
+              if (Responsive.isDesktop(context))
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  width: isCollapsed ? 104 : 280,
+                  child: const SideMenuSection(),
+                ),
               const Expanded(
                 flex: 5,
                 child: _TabsBox(),
@@ -48,11 +54,7 @@ class _TabsBox extends StatelessWidget {
   const _TabsBox({Key? key}) : super(key: key);
 
   Widget getTab(int index) {
-    const tabs = [
-      DashboardTab(),
-      BotsTab(),
-      TransactionTab(),
-    ];
+    const tabs = [DashboardTab(), BotsTab(), TransactionTab()];
     return tabs[index];
   }
 

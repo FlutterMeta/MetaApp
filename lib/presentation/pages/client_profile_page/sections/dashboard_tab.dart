@@ -23,7 +23,7 @@ class DashboardTab extends StatelessWidget {
             decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
             padding: const EdgeInsets.all(20),
             child: AnimatedAlign(
-              duration: const Duration(milliseconds: 600),
+              duration: const Duration(milliseconds: 500),
               alignment: isCollapsed ? Alignment.topCenter : Alignment.topLeft,
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 1200),
