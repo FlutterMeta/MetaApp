@@ -9,6 +9,7 @@ class RightsReservedFooter extends StatelessWidget {
     return Text(
       context.localizations.allRightsReserved,
       style: context.text.allRightsReserved,
+      textAlign: TextAlign.center,
     );
   }
 }

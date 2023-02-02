@@ -30,17 +30,17 @@ class BotsTab extends StatelessWidget {
 
     return [
       _BotProfitCard(
-        title: "Binance ${localization.futures} ${localization.pioneer}",
+        title: "${localization.futures} ${localization.pioneer}",
         price: 1500,
         roi: 40,
       ),
       _BotProfitCard(
-        title: "Binance ${localization.futures} ${localization.adventurer}",
+        title: "${localization.futures} ${localization.adventurer}",
         price: 3000,
         roi: 60,
       ),
       _BotProfitCard(
-        title: "Binance ${localization.futures} ${localization.hero}",
+        title: "${localization.futures} ${localization.hero}",
         price: 5000,
         roi: 80,
       ),
@@ -135,6 +135,17 @@ class _BotProfitCard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  List<Widget> _getRewardItems(BuildContext context) {
+    return [
+      Text(
+        "\$$price",
+        style: context.text.profileBotsDefault.copyWith(fontSize: 24),
+      ),
+      const SizedBox(width: 10, height: 10),
+      ROIChip(roi: roi),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -170,41 +181,65 @@ class _BotProfitCard extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style:
-                      context.text.profilePageSubtitle.copyWith(fontSize: 16),
+                Text.rich(
+                  TextSpan(
+                    style: context.text.profilePageSubtitle.copyWith(
+                      fontSize: Responsive.isMobile(context) ? 12 : 16,
+                    ),
+                    children: [
+                      const TextSpan(text: "Binance "),
+                      TextSpan(text: title),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      "\$$price",
-                      style: context.text.profileBotsDefault
-                          .copyWith(fontSize: 24),
-                    ),
-                    const SizedBox(width: 10),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: context.color.profilePageSecondaryVariant,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 6,
-                      ),
-                      child: Text(
-                        "${context.localizations.roiPerMonth} $roi%",
-                        style: context.text.profilePageInverseBody
-                            .copyWith(fontSize: 12),
-                      ),
-                    ),
-                  ],
+                Builder(
+                  builder: (context) {
+                    if (context.screenWidth < 500) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: _getRewardItems(context),
+                      );
+                    } else {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: _getRewardItems(context),
+                      );
+                    }
+                  },
                 ),
               ],
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ROIChip extends StatelessWidget {
+  final int roi;
+
+  const ROIChip({
+    required this.roi,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: context.color.profilePageSecondaryVariant,
+        borderRadius: BorderRadius.circular(30),
+      ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 6,
+      ),
+      child: Text(
+        "${context.localizations.roiPerMonth} $roi%",
+        style: context.text.profilePageInverseBody.copyWith(fontSize: 12),
       ),
     );
   }
