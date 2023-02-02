@@ -56,9 +56,9 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                     ? const SizedBox()
                     : SizedBox(width: context.screenWidth * 0.02),
                 IconButton(
-                  splashColor: context.color.clientPageTransparent,
-                  highlightColor: context.color.clientPageTransparent,
-                  hoverColor: context.color.clientPageTransparent,
+                  splashColor: context.color.profilePageTransparent,
+                  highlightColor: context.color.profilePageTransparent,
+                  hoverColor: context.color.profilePageTransparent,
                   splashRadius: 24,
                   onPressed: () {
                     if (Responsive.isMobile(context) ||
@@ -177,11 +177,12 @@ class UserInfoState extends State<_UserInfo>
                   children: [
                     Text(
                       context.localizations.welcome,
-                      style: context.text.clientPageBody.copyWith(fontSize: 16),
+                      style:
+                          context.text.profilePageBody.copyWith(fontSize: 16),
                     ),
                     Text(
                       widget.userName,
-                      style: context.text.clientPageBody
+                      style: context.text.profilePageBody
                           .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -193,7 +194,7 @@ class UserInfoState extends State<_UserInfo>
           ] else
             Text(
               widget.userName,
-              style: context.text.clientPageBody
+              style: context.text.profilePageBody
                   .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           Icon(
@@ -226,7 +227,7 @@ class _ProfileMenu extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: context.color.clientPageBackground,
+            color: context.color.profilePageBackground,
           ),
           padding: const EdgeInsets.all(10),
           alignment: Alignment.center,
@@ -238,7 +239,7 @@ class _ProfileMenu extends StatelessWidget {
                   onTap: () {},
                   title: context.localizations.signOut,
                   icon: Icons.output_rounded,
-                  color: context.color.clientPageError,
+                  color: context.color.profilePageError,
                 ),
                 _MenuItem(
                   onTap: () => onCloseItemTap(),
@@ -284,7 +285,8 @@ class _MenuItemState extends State<_MenuItem> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: _isHovered ? widget.color : context.color.clientPageBackground,
+          color:
+              _isHovered ? widget.color : context.color.profilePageBackground,
         ),
         constraints: const BoxConstraints(minWidth: 140),
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -293,7 +295,7 @@ class _MenuItemState extends State<_MenuItem> {
             Icon(
               widget.icon,
               color: _isHovered
-                  ? context.color.clientPageBackground
+                  ? context.color.profilePageBackground
                   : widget.color,
             ),
             const SizedBox(width: 6),
@@ -301,7 +303,7 @@ class _MenuItemState extends State<_MenuItem> {
               widget.title,
               style: TextStyle(
                 color: _isHovered
-                    ? context.color.clientPageBackground
+                    ? context.color.profilePageBackground
                     : widget.color,
                 fontSize: 16,
               ),

@@ -31,8 +31,8 @@ class _SideMenuSectionState extends State<SideMenuSection> {
       builder: (context, isCollapsed, child) {
         return Drawer(
           backgroundColor: isCollapsed
-              ? context.color.clientPagePrimary
-              : context.color.clientPageBackground,
+              ? context.color.profilePagePrimary
+              : context.color.profilePageBackground,
           elevation: 0,
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -102,15 +102,15 @@ class __DrawerListTileState extends State<_DrawerListTile> {
                 CircleAvatar(
                   radius: 28,
                   backgroundColor: _isSelected && isCollapsed
-                      ? context.color.clientPageBackground
-                      : context.color.clientPageTransparent,
+                      ? context.color.profilePageBackground
+                      : context.color.profilePageTransparent,
                   child: Icon(
                     widget.icon,
                     size: 34,
                     color: _isSelected
                         ? context.color.dashboardSideMenuSelectedItem
                         : (isCollapsed
-                            ? context.color.clientPagePrimaryVariant
+                            ? context.color.profilePagePrimaryVariant
                             : context.color.dashboardSideMenuUnselectedItem),
                   ),
                 ),

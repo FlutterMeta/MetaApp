@@ -53,17 +53,17 @@ class BotsTab extends StatelessWidget {
     return [
       _BotDemoCard(
         title: localization.pioneer,
-        price: 1500,
+        price: 20.39,
         benefits: _basicBenefits(context),
       ),
       _BotDemoCard(
         title: localization.adventurer,
-        price: 3000,
+        price: 40.22,
         benefits: _basicBenefits(context),
       ),
       _BotDemoCard(
         title: localization.hero,
-        price: 5000,
+        price: 78.25,
         benefits: _advancedBenefits(context),
       ),
       _BotDemoCard(
@@ -139,11 +139,11 @@ class _BotProfitCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: context.color.clientPageBackground,
+        color: context.color.profilePageBackground,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: context.color.clientPagePrimary.withOpacity(0.1),
+            color: context.color.profilePagePrimary.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -159,11 +159,11 @@ class _BotProfitCard extends StatelessWidget {
               width: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: context.color.clientPagePrimary.withOpacity(0.1),
+                color: context.color.profilePagePrimary.withOpacity(0.1),
               ),
               child: Icon(
                 Icons.attach_money,
-                color: context.color.clientPagePrimary,
+                color: context.color.profilePagePrimary,
               ),
             ),
             const SizedBox(width: 20),
@@ -172,20 +172,21 @@ class _BotProfitCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
+                  style:
+                      context.text.profilePageSubtitle.copyWith(fontSize: 16),
                 ),
                 const SizedBox(height: 10),
                 Row(
                   children: [
                     Text(
                       "\$$price",
-                      style:
-                          context.text.clientBotsDefault.copyWith(fontSize: 24),
+                      style: context.text.profileBotsDefault
+                          .copyWith(fontSize: 24),
                     ),
                     const SizedBox(width: 10),
                     Container(
                       decoration: BoxDecoration(
-                        color: context.color.clientPageSecondaryVariant,
+                        color: context.color.profilePageSecondaryVariant,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       padding: const EdgeInsets.symmetric(
@@ -193,8 +194,8 @@ class _BotProfitCard extends StatelessWidget {
                         vertical: 6,
                       ),
                       child: Text(
-                        "ROI: $roi%",
-                        style: context.text.clientPageInverseBody
+                        "${context.localizations.roiPerMonth} $roi%",
+                        style: context.text.profilePageInverseBody
                             .copyWith(fontSize: 12),
                       ),
                     ),
@@ -211,7 +212,7 @@ class _BotProfitCard extends StatelessWidget {
 
 class _BotDemoCard extends StatelessWidget {
   final String title;
-  final int price;
+  final double price;
   final List<String> benefits;
 
   const _BotDemoCard({
@@ -230,11 +231,11 @@ class _BotDemoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: context.color.clientPageBackground,
+        color: context.color.profilePageBackground,
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: context.color.clientPagePrimary.withOpacity(0.1),
+            color: context.color.profilePagePrimary.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -247,12 +248,36 @@ class _BotDemoCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
+              style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             ),
             const SizedBox(height: 10),
-            Text(
-              "\$$price",
-              style: context.text.clientBotsDefault.copyWith(fontSize: 24),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 18,
+                  alignment: Alignment.bottomCenter,
+                  child: Text(
+                    "\$",
+                    style:
+                        context.text.profileBotsDefault.copyWith(fontSize: 12),
+                  ),
+                ),
+                Text(
+                  "$price",
+                  style: context.text.profileBotsDefault.copyWith(fontSize: 24),
+                ),
+                Container(
+                  height: 26,
+                  alignment: Alignment.bottomCenter,
+                  child: Text(
+                    "/${context.localizations.monthShortened}",
+                    style:
+                        context.text.profileBotsDefault.copyWith(fontSize: 12),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             ...benefits.map(
@@ -265,7 +290,7 @@ class _BotDemoCard extends StatelessWidget {
                       width: 200,
                       child: Text(
                         benefit,
-                        style: context.text.clientBotsDefault.copyWith(
+                        style: context.text.profileBotsDefault.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w200,
                         ),
@@ -307,7 +332,7 @@ class _GetStartedButton extends StatelessWidget {
           children: [
             Text(
               context.localizations.getStarted,
-              style: context.text.clientPageBody.copyWith(fontSize: 16),
+              style: context.text.profilePageBody.copyWith(fontSize: 16),
             ),
           ],
         ),
@@ -320,7 +345,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
   const _FunctionalityComparisonTable({Key? key}) : super(key: key);
 
   TextStyle _defaultCellTextStyle(BuildContext context) {
-    return context.text.clientBotsDefault.copyWith(
+    return context.text.profileBotsDefault.copyWith(
       fontSize: Responsive.isMobile(context) ? 14 : 18,
     );
   }
@@ -337,11 +362,11 @@ class _FunctionalityComparisonTable extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: context.color.clientPageBackground,
+        color: context.color.profilePageBackground,
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: context.color.clientPagePrimary.withOpacity(0.1),
+            color: context.color.profilePagePrimary.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -513,8 +538,8 @@ class _TableHeaderRowCell extends StatelessWidget {
   TextStyle _headerTableRowTextStyle(BuildContext context) {
     final text = context.text;
 
-    return text.clientBotsDefault.copyWith(
-      color: text.clientBotsDefault.color?.withOpacity(0.5),
+    return text.profileBotsDefault.copyWith(
+      color: text.profileBotsDefault.color?.withOpacity(0.5),
       fontWeight: FontWeight.w200,
       fontSize: Responsive.isMobile(context) ? 12 : 16,
     );
@@ -541,12 +566,12 @@ class _GreenCheck extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       backgroundColor:
-          context.color.clientPageSecondaryVariant.withOpacity(0.1),
+          context.color.profilePageSecondaryVariant.withOpacity(0.1),
       radius: Responsive.isMobile(context) ? 10 : 24,
       child: Icon(
         Icons.check,
         size: Responsive.isMobile(context) ? 16 : 24,
-        color: context.color.clientPageSecondaryVariant,
+        color: context.color.profilePageSecondaryVariant,
       ),
     );
   }

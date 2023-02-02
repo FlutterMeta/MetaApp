@@ -19,7 +19,7 @@ class ClientProfilePage extends StatelessWidget {
     return Scaffold(
       appBar: ProfileHeader(scaffoldKey: _scaffoldKey),
       drawer: const SideMenuSection(),
-      backgroundColor: context.color.clientPageBackground,
+      backgroundColor: context.color.profilePageBackground,
       key: _scaffoldKey,
       body: ValueListenableBuilder(
         valueListenable: MenuState.isCollapsed,
@@ -27,15 +27,10 @@ class ClientProfilePage extends StatelessWidget {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /*  if (Responsive.isDesktop(context) && !isCollapsed) ...[
-                const Expanded(child: SideMenuSection()),
-              ] else if (Responsive.isDesktop(context) && isCollapsed) ...[
-                const SizedBox(width: 104, child: SideMenuSection()),
-              ], */
               if (Responsive.isDesktop(context))
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
-                  width: isCollapsed ? 104 : 280,
+                  width: isCollapsed ? 104 : context.screenWidth * 0.18,
                   child: const SideMenuSection(),
                 ),
               const Expanded(

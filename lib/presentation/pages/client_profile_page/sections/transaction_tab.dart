@@ -23,7 +23,7 @@ class TransactionTab extends StatelessWidget {
           children: [
             Text(
               context.localizations.payment,
-              style: context.text.clientPageBody
+              style: context.text.profilePageBody
                   .copyWith(fontSize: 27, fontWeight: FontWeight.w700),
             ),
             const SizedBox(height: 20),
@@ -67,11 +67,11 @@ class _TransactionWindow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: context.color.clientPageBackground,
+        color: context.color.profilePageBackground,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: context.color.clientPagePrimary.withOpacity(0.1),
+            color: context.color.profilePagePrimary.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -108,7 +108,7 @@ class _TransactionWindow extends StatelessWidget {
           Align(
             child: ColoredButton(
               title: context.localizations.cancel,
-              color: context.color.clientPageError,
+              color: context.color.profilePageError,
               onTap: () {},
             ),
           ),
@@ -143,11 +143,11 @@ class _RequestStatus extends StatelessWidget {
         children: [
           Text(
             context.localizations.lastRequestDateTime,
-            style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
+            style: context.text.profilePageSubtitle.copyWith(fontSize: 16),
           ),
           Text(
             lastRequestDateTime,
-            style: context.text.clientPageSubtitle
+            style: context.text.profilePageSubtitle
                 .copyWith(fontSize: 16, fontWeight: FontWeight.w700),
           ),
           RichText(
@@ -156,14 +156,15 @@ class _RequestStatus extends StatelessWidget {
               children: [
                 TextSpan(
                   text: " ${context.localizations.requestStatus}: ",
-                  style: context.text.clientPageSubtitle.copyWith(
+                  style: context.text.profilePageSubtitle.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 TextSpan(
                   text: status,
-                  style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
+                  style:
+                      context.text.profilePageSubtitle.copyWith(fontSize: 16),
                 ),
               ],
             ),
@@ -206,7 +207,7 @@ class _GeneralInfo extends StatelessWidget {
               children: [
                 Text(
                   context.localizations.contacts,
-                  style: context.text.clientPageSubtitle.copyWith(
+                  style: context.text.profilePageSubtitle.copyWith(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                   ),
@@ -214,12 +215,14 @@ class _GeneralInfo extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   "${context.localizations.telegramSupport}: @auroracare",
-                  style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
+                  style:
+                      context.text.profilePageSubtitle.copyWith(fontSize: 16),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   "${context.localizations.emailForQuestions}: care@aurora.com",
-                  style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
+                  style:
+                      context.text.profilePageSubtitle.copyWith(fontSize: 16),
                 ),
               ],
             ),
@@ -228,18 +231,19 @@ class _GeneralInfo extends StatelessWidget {
               children: [
                 Text(
                   context.localizations.clientAccount,
-                  style: context.text.clientBotsDefault.copyWith(fontSize: 16),
+                  style: context.text.profileBotsDefault.copyWith(fontSize: 16),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   accountName,
-                  style: context.text.clientPageSubtitle
+                  style: context.text.profilePageSubtitle
                       .copyWith(fontSize: 16, fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   accountEmail,
-                  style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
+                  style:
+                      context.text.profilePageSubtitle.copyWith(fontSize: 16),
                 ),
               ],
             ),
@@ -259,12 +263,12 @@ class _GeneralInfo extends StatelessWidget {
               ),
               Text(
                 context.localizations.requestAmount,
-                style: context.text.clientPageSubtitle
+                style: context.text.profilePageSubtitle
                     .copyWith(fontSize: 16, height: 1.3),
               ),
               Text(
                 "$price USDT",
-                style: context.text.clientPageSubtitle.copyWith(
+                style: context.text.profilePageSubtitle.copyWith(
                   fontSize: 16,
                   height: 1.3,
                   fontWeight: FontWeight.bold,
@@ -273,7 +277,7 @@ class _GeneralInfo extends StatelessWidget {
               const SizedBox(height: 10),
               RichText(
                 text: TextSpan(
-                  style: context.text.clientPageSubtitle
+                  style: context.text.profilePageSubtitle
                       .copyWith(fontSize: 16, height: 1.3),
                   children: [
                     TextSpan(text: "${context.localizations.commision}: "),
@@ -286,7 +290,7 @@ class _GeneralInfo extends StatelessWidget {
               const SizedBox(height: 4),
               RichText(
                 text: TextSpan(
-                  style: context.text.clientPageSubtitle
+                  style: context.text.profilePageSubtitle
                       .copyWith(fontSize: 16, height: 1.3),
                   children: [
                     TextSpan(text: "${context.localizations.tax}: "),
@@ -402,8 +406,8 @@ class _DetailsTableRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: index % 2 == 0
-          ? context.color.clientPagePrimary.withOpacity(0.1)
-          : context.color.clientPageBackground,
+          ? context.color.profilePagePrimary.withOpacity(0.1)
+          : context.color.profilePageBackground,
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Wrap(
         spacing: 20,
@@ -426,7 +430,7 @@ class _DetailsTableRow extends StatelessWidget {
             width: 420,
             child: SelectableText(
               value,
-              style: context.text.clientPageBody.copyWith(
+              style: context.text.profilePageBody.copyWith(
                 fontSize: 16,
                 fontWeight: index == 0 ? FontWeight.bold : null,
               ),
