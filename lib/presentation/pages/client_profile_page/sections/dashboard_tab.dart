@@ -583,7 +583,7 @@ class _TransactionInfo extends StatelessWidget {
 
   TransactionStatus parse(String value) {
     return TransactionStatus.values.firstWhere(
-      (element) => element.value == value,
+      (element) => element.name == value,
       orElse: () => TransactionStatus.pending,
     );
   }
@@ -702,7 +702,7 @@ class _StatusChip extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16),
         child: Text(
-          status.value,
+          status.name,
           style: context.text.clientPageBody.copyWith(
             fontSize: 13,
             color: _chipColor,

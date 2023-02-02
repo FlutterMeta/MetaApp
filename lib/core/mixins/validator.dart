@@ -17,7 +17,7 @@ mixin Validator {
   ]) {
     if (password.isNullOrEmpty) {
       return context.localizations.fieldMustNotBeEmpty;
-    } else if ((password ?? '')
+    } else if (password!
         .trim()
         .isPasswordLengthLonger(length: minPasswordLength)
         .not()) {

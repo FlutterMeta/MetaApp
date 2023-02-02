@@ -52,20 +52,16 @@ class ClientProfilePage extends StatelessWidget {
 
 class _TabsBox extends StatelessWidget {
   const _TabsBox({Key? key}) : super(key: key);
-
-  Widget getTab(int index) {
-    const tabs = [DashboardTab(), BotsTab(), TransactionTab()];
-    return tabs[index];
-  }
+  static const _tabs = [DashboardTab(), BotsTab(), TransactionTab()];
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: MenuState.tabIndex,
-      builder: (context, tabIndex, child) {
+      builder: (context, index, child) {
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
-          child: getTab(tabIndex),
+          child: _tabs[index],
         );
       },
     );

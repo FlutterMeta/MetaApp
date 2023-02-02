@@ -165,9 +165,6 @@ class UserInfoState extends State<_UserInfo>
 
   @override
   Widget build(BuildContext context) {
-    final userNameStyle = context.text.clientPageBody
-        .copyWith(fontSize: 16, fontWeight: FontWeight.bold);
-
     return GestureDetector(
       onTap: () => showOverlay(context),
       child: Row(
@@ -184,7 +181,8 @@ class UserInfoState extends State<_UserInfo>
                     ),
                     Text(
                       widget.userName,
-                      style: userNameStyle,
+                      style: context.text.clientPageBody
+                          .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -193,7 +191,11 @@ class UserInfoState extends State<_UserInfo>
               ],
             ),
           ] else
-            Text(widget.userName, style: userNameStyle),
+            Text(
+              widget.userName,
+              style: context.text.clientPageBody
+                  .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
           Icon(
             Icons.account_circle,
             size: Responsive.isDesktop(context) ? 80 : 50,

@@ -9,10 +9,7 @@ class Transaction {
 }
 
 enum TransactionStatus {
-  completed("Completed"),
-  pending("Pending"),
-  canceled("Cancelled");
-
-  final String value;
-  const TransactionStatus(this.value);
+  completed,
+  pending,
+  canceled;
 }
