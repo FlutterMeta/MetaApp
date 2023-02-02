@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/menu_state.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/menu_controller.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/bots_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/dashboard_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/side_menu_section.dart';
@@ -22,7 +22,7 @@ class ClientProfilePage extends StatelessWidget {
       backgroundColor: context.color.profilePageBackground,
       key: _scaffoldKey,
       body: ValueListenableBuilder(
-        valueListenable: MenuState.isCollapsed,
+        valueListenable: MenuController.isCollapsed,
         builder: (context, isCollapsed, child) {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,7 +52,7 @@ class _TabsBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: MenuState.tabIndex,
+      valueListenable: MenuController.tabIndex,
       builder: (context, index, child) {
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),

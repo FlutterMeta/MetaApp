@@ -3,7 +3,7 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/return_home_logo.dart';
 import 'package:useful_extensions/useful_extensions.dart';
-import '../pages/client_profile_page/menu_state.dart';
+import '../pages/client_profile_page/menu_controller.dart';
 
 class ProfileHeader extends StatefulWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
@@ -23,11 +23,11 @@ class ProfileHeader extends StatefulWidget implements PreferredSizeWidget {
 class _ProfileHeaderState extends State<ProfileHeader> {
   @override
   void didChangeDependencies() {
-    final menuCollapsedState = MenuState.isCollapsed.value;
+    final menuCollapsedState = MenuController.isCollapsed.value;
 
     if ((Responsive.isMobile(context) || Responsive.isTablet(context)) &&
         menuCollapsedState) {
-      MenuState.isCollapsed.value = false;
+      MenuController.isCollapsed.value = false;
     }
 
     widget.scaffoldKey.currentState?.closeDrawer();
@@ -38,7 +38,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: ValueListenableBuilder(
-        valueListenable: MenuState.isCollapsed,
+        valueListenable: MenuController.isCollapsed,
         builder: (context, isCollapsed, child) {
           return Padding(
             padding: isCollapsed
@@ -345,7 +345,7 @@ class __AnimatedMenuIconState extends State<_AnimatedMenuIcon>
   }
 
   void _changeState() {
-    final menuCollapsedState = MenuState.isCollapsed;
+    final menuCollapsedState = MenuController.isCollapsed;
 
     if (menuCollapsedState.value) {
       _controller.reverse();

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/menu_state.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/menu_controller.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/transaction.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
@@ -17,7 +17,7 @@ class DashboardTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: ValueListenableBuilder(
-        valueListenable: MenuState.isCollapsed,
+        valueListenable: MenuController.isCollapsed,
         builder: (context, isCollapsed, child) {
           return Container(
             decoration: BoxDecoration(gradient: context.gradient.lightIndigo),

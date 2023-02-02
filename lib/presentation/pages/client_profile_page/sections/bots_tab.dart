@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/menu_state.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/menu_controller.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 
@@ -259,7 +259,7 @@ class _BotDemoCard extends StatelessWidget {
 
   void _pushTransactionTab() {
     const int transactionTabIndex = 2;
-    MenuState.tabIndex.value = transactionTabIndex;
+    MenuController.tabIndex.value = transactionTabIndex;
   }
 
   @override

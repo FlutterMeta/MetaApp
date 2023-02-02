@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/menu_state.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/menu_controller.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
 class SideMenuSection extends StatefulWidget {
@@ -14,20 +14,20 @@ class _SideMenuSectionState extends State<SideMenuSection> {
   int _currentIndex = 0;
 
   void _onLabelTap(int index) {
-    MenuState.tabIndex.value = index;
+    MenuController.tabIndex.value = index;
     setState(() => _currentIndex = index);
   }
 
   @override
   void initState() {
-    _currentIndex = MenuState.tabIndex.value;
+    _currentIndex = MenuController.tabIndex.value;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: MenuState.isCollapsed,
+      valueListenable: MenuController.isCollapsed,
       builder: (context, isCollapsed, child) {
         return Drawer(
           backgroundColor: isCollapsed
@@ -87,7 +87,7 @@ class __DrawerListTileState extends State<_DrawerListTile> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: MenuState.isCollapsed,
+      valueListenable: MenuController.isCollapsed,
       builder: (context, isCollapsed, child) {
         return InkWell(
           onTap: () {
