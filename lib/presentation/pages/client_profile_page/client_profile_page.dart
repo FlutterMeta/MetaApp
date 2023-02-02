@@ -9,10 +9,9 @@ import 'package:meta_app/presentation/widgets/profile_header.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
 class ClientProfilePage extends StatelessWidget {
-  const ClientProfilePage({super.key});
+  ClientProfilePage({super.key});
 
-  static final GlobalKey<ScaffoldState> _scaffoldKey =
-      GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +46,12 @@ class ClientProfilePage extends StatelessWidget {
 
 class _TabsBox extends StatelessWidget {
   const _TabsBox({Key? key}) : super(key: key);
-  static const _tabs = [DashboardTab(), BotsTab(), TransactionTab()];
+
+  static final _tabs = [
+    const DashboardTab(),
+    const BotsTab(),
+    const TransactionTab(),
+  ];
 
   @override
   Widget build(BuildContext context) {

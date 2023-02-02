@@ -96,9 +96,11 @@ class AppRouter extends _i11.RootStackRouter {
       );
     },
     ClientProfileRoute.name: (routeData) {
+      final args = routeData.argsAs<ClientProfileRouteArgs>(
+          orElse: () => const ClientProfileRouteArgs());
       return _i11.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i10.ClientProfilePage(),
+        child: _i10.ClientProfilePage(key: args.key),
       );
     },
   };
@@ -318,12 +320,24 @@ class ResetAccessRoute extends _i11.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.ClientProfilePage]
-class ClientProfileRoute extends _i11.PageRouteInfo<void> {
-  const ClientProfileRoute()
+class ClientProfileRoute extends _i11.PageRouteInfo<ClientProfileRouteArgs> {
+  ClientProfileRoute({_i12.Key? key})
       : super(
           ClientProfileRoute.name,
           path: '/client-profile',
+          args: ClientProfileRouteArgs(key: key),
         );
 
   static const String name = 'ClientProfileRoute';
+}
+
+class ClientProfileRouteArgs {
+  const ClientProfileRouteArgs({this.key});
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'ClientProfileRouteArgs{key: $key}';
+  }
 }

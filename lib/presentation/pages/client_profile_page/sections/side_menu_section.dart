@@ -11,18 +11,7 @@ class SideMenuSection extends StatefulWidget {
 }
 
 class _SideMenuSectionState extends State<SideMenuSection> {
-  int _currentIndex = 0;
-
-  void _onLabelTap(int index) {
-    MenuController.tabIndex.value = index;
-    setState(() => _currentIndex = index);
-  }
-
-  @override
-  void initState() {
-    _currentIndex = MenuController.tabIndex.value;
-    super.initState();
-  }
+  void _onLabelTap(int index) => MenuController.tabIndex.value = index;
 
   @override
   Widget build(BuildContext context) {
@@ -36,23 +25,28 @@ class _SideMenuSectionState extends State<SideMenuSection> {
           elevation: 0,
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: ListView(
-              children: [
-                _DrawerListTile(
-                  index: 0,
-                  currentIndex: _currentIndex,
-                  icon: Icons.account_circle,
-                  label: context.localizations.account,
-                  onTap: _onLabelTap,
-                ),
-                _DrawerListTile(
-                  index: 1,
-                  currentIndex: _currentIndex,
-                  icon: Icons.adb_outlined,
-                  label: context.localizations.bots,
-                  onTap: _onLabelTap,
-                ),
-              ],
+            child: ValueListenableBuilder(
+              valueListenable: MenuController.tabIndex,
+              builder: (context, index, child) {
+                return ListView(
+                  children: [
+                    _DrawerListTile(
+                      index: 0,
+                      currentIndex: index,
+                      icon: Icons.account_circle,
+                      label: context.localizations.account,
+                      onTap: _onLabelTap,
+                    ),
+                    _DrawerListTile(
+                      index: 1,
+                      currentIndex: index,
+                      icon: Icons.adb_outlined,
+                      label: context.localizations.bots,
+                      onTap: _onLabelTap,
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         );

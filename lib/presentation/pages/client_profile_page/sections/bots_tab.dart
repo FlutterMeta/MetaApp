@@ -336,7 +336,7 @@ class _BotDemoCard extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            _GetStartedButton(onTap: () => _pushTransactionTab()),
+            _GetStartedButton(onTap: _pushTransactionTab),
           ],
         ),
       ),
