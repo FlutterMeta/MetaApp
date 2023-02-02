@@ -69,7 +69,10 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                   iconSize: 36,
                   icon: Responsive.isMobile(context) ||
                           Responsive.isTablet(context)
-                      ? const Icon(Icons.menu_rounded)
+                      ? Icon(
+                          Icons.menu_rounded,
+                          color: context.color.profilePagePrimary,
+                        )
                       : const _AnimatedMenuIcon(),
                 ),
                 const Spacer(),
@@ -358,6 +361,7 @@ class __AnimatedMenuIconState extends State<_AnimatedMenuIcon>
       onTap: _changeState,
       child: AnimatedIcon(
         icon: AnimatedIcons.arrow_menu,
+        color: context.color.profilePageSecondary,
         progress: _controller,
         size: 36,
       ),
