@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/blocs/client_profile_page/menu_cubit.dart';
-import 'package:meta_app/presentation/blocs/client_profile_page/menu_state.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/menu_state.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
 class SideMenuSection extends StatefulWidget {
@@ -16,22 +14,23 @@ class _SideMenuSectionState extends State<SideMenuSection> {
   int _currentIndex = 0;
 
   void _onLabelTap(int index) {
-    context.read<MenuCubit>().changeTabIndex(index);
+    MenuState.tabIndex.value = index;
     setState(() => _currentIndex = index);
   }
 
   @override
   void initState() {
+    _currentIndex = MenuState.tabIndex.value;
     super.initState();
-    _currentIndex = context.read<MenuCubit>().state.tabIndex;
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MenuCubit, MenuState>(
-      builder: (context, menu) {
+    return ValueListenableBuilder(
+      valueListenable: MenuState.isCollapsed,
+      builder: (context, isCollapsed, child) {
         return Drawer(
-          backgroundColor: menu.isCollapsed
+          backgroundColor: isCollapsed
               ? context.color.clientPagePrimary
               : context.color.clientPageBackground,
           elevation: 0,
@@ -87,8 +86,9 @@ class __DrawerListTileState extends State<_DrawerListTile> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MenuCubit, MenuState>(
-      builder: (context, menu) {
+    return ValueListenableBuilder(
+      valueListenable: MenuState.isCollapsed,
+      builder: (context, isCollapsed, child) {
         return InkWell(
           onTap: () {
             widget.onTap(widget.index);
@@ -101,7 +101,7 @@ class __DrawerListTileState extends State<_DrawerListTile> {
               children: [
                 CircleAvatar(
                   radius: 28,
-                  backgroundColor: _isSelected && menu.isCollapsed
+                  backgroundColor: _isSelected && isCollapsed
                       ? context.color.clientPageBackground
                       : context.color.clientPageTransparent,
                   child: Icon(
@@ -109,13 +109,13 @@ class __DrawerListTileState extends State<_DrawerListTile> {
                     size: 34,
                     color: _isSelected
                         ? context.color.dashboardSideMenuSelectedItem
-                        : (menu.isCollapsed
+                        : (isCollapsed
                             ? context.color.clientPagePrimaryVariant
                             : context.color.dashboardSideMenuUnselectedItem),
                   ),
                 ),
-                SizedBox(width: menu.isCollapsed ? 0 : 8),
-                menu.isCollapsed
+                SizedBox(width: isCollapsed ? 0 : 8),
+                isCollapsed
                     ? const SizedBox()
                     : Text(
                         widget.label,

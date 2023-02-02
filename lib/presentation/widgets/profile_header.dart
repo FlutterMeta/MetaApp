@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/blocs/client_profile_page/menu_state.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/return_home_logo.dart';
-
 import 'package:useful_extensions/useful_extensions.dart';
-
-import '../blocs/client_profile_page/menu_cubit.dart';
+import '../pages/client_profile_page/menu_state.dart';
 
 class ProfileHeader extends StatefulWidget implements PreferredSizeWidget {
-  const ProfileHeader({super.key});
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
+  const ProfileHeader({
+    required this.scaffoldKey,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<ProfileHeader> createState() => _ProfileHeaderState();
@@ -22,24 +23,25 @@ class ProfileHeader extends StatefulWidget implements PreferredSizeWidget {
 class _ProfileHeaderState extends State<ProfileHeader> {
   @override
   void didChangeDependencies() {
-    final menuCubit = context.read<MenuCubit>();
+    final menuCollapsedState = MenuState.isCollapsed.value;
 
     if ((Responsive.isMobile(context) || Responsive.isTablet(context)) &&
-        menuCubit.state.isCollapsed) {
-      menuCubit.changeCollapsedState();
+        menuCollapsedState) {
+      MenuState.isCollapsed.value = false;
     }
 
-    context.read<MenuCubit>().state.scaffoldKey.currentState?.closeDrawer();
+    widget.scaffoldKey.currentState?.closeDrawer();
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: BlocBuilder<MenuCubit, MenuState>(
-        builder: (context, menu) {
+      child: ValueListenableBuilder(
+        valueListenable: MenuState.isCollapsed,
+        builder: (context, isCollapsed, child) {
           return Padding(
-            padding: menu.isCollapsed
+            padding: isCollapsed
                 ? const EdgeInsets.only(right: 10)
                 : EdgeInsets.only(
                     left: Responsive.isMobile(context) ? 10 : 60,
@@ -50,7 +52,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                 Responsive.isDesktop(context)
                     ? const ReturnHomeLogo(height: 68)
                     : const SizedBox(),
-                menu.isCollapsed
+                isCollapsed
                     ? const SizedBox()
                     : SizedBox(width: context.screenWidth * 0.02),
                 IconButton(
@@ -61,12 +63,7 @@ class _ProfileHeaderState extends State<ProfileHeader> {
                   onPressed: () {
                     if (Responsive.isMobile(context) ||
                         Responsive.isTablet(context)) {
-                      context
-                          .read<MenuCubit>()
-                          .state
-                          .scaffoldKey
-                          .currentState
-                          ?.openDrawer();
+                      widget.scaffoldKey.currentState?.openDrawer();
                     }
                   },
                   iconSize: 36,
@@ -341,14 +338,14 @@ class __AnimatedMenuIconState extends State<_AnimatedMenuIcon>
   }
 
   void _changeState() {
-    final menuCubit = context.read<MenuCubit>();
+    final menuCollapsedState = MenuState.isCollapsed;
 
-    if (menuCubit.state.isCollapsed) {
+    if (menuCollapsedState.value) {
       _controller.reverse();
     } else {
       _controller.forward();
     }
-    menuCubit.changeCollapsedState();
+    menuCollapsedState.value = !menuCollapsedState.value;
   }
 
   @override

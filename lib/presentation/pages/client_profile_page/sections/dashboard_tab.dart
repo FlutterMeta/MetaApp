@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/blocs/client_profile_page/menu_cubit.dart';
-import 'package:meta_app/presentation/blocs/client_profile_page/menu_state.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/menu_state.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/transaction.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
@@ -18,15 +16,15 @@ class DashboardTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: BlocBuilder<MenuCubit, MenuState>(
-        builder: (context, menu) {
+      child: ValueListenableBuilder(
+        valueListenable: MenuState.isCollapsed,
+        builder: (context, isCollapsed, child) {
           return Container(
             decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
             padding: const EdgeInsets.all(20),
             child: AnimatedAlign(
               duration: const Duration(milliseconds: 600),
-              alignment:
-                  menu.isCollapsed ? Alignment.topCenter : Alignment.topLeft,
+              alignment: isCollapsed ? Alignment.topCenter : Alignment.topLeft,
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 1200),
                 child: Column(
