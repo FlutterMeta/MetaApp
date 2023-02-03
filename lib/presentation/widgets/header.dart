@@ -321,6 +321,13 @@ class Menu extends StatelessWidget {
               children: [
                 ...items(context, onCloseItemTap),
                 _MenuItem(
+                  onTap: () => context.router.push(const LoginRoute()),
+                  closeMenuCallback: onCloseItemTap,
+                  title: context.localizations.signOut,
+                  icon: Icons.logout_rounded,
+                  color: context.color.profilePageError,
+                ),
+                _MenuItem(
                   onTap: () => onCloseItemTap(),
                   title: context.localizations.closeMenu,
                   icon: Icons.close_rounded,
@@ -336,21 +343,6 @@ class Menu extends StatelessWidget {
 }
 
 class _ProfileMenu extends Menu {
-  static List<Widget> _clientMenuItems(
-    BuildContext context,
-    VoidCallback closeOnTap,
-  ) {
-    return [
-      _MenuItem(
-        onTap: () => context.router.push(HomeRoute()),
-        closeMenuCallback: closeOnTap,
-        title: context.localizations.signOut,
-        icon: Icons.logout_rounded,
-        color: context.color.profilePageError,
-      ),
-    ];
-  }
-
   static List<Widget> _adminMenuItems(
     BuildContext context,
     VoidCallback closeOnTap,
@@ -361,42 +353,35 @@ class _ProfileMenu extends Menu {
         closeMenuCallback: closeOnTap,
         title: context.localizations.updateBlog,
         icon: Icons.table_chart_rounded,
-        color: context.color.greyish,
+        color: context.color.profilePagePrimaryVariant,
       ),
       _MenuItem(
         onTap: () => context.router.push(const TransactionsRoute()),
         closeMenuCallback: closeOnTap,
         title: context.localizations.allTransactions,
         icon: Icons.list_alt,
-        color: context.color.greyish,
+        color: context.color.profilePagePrimaryVariant,
       ),
       _MenuItem(
         onTap: () => context.router.push(const FinancialIndicatorsRoute()),
         title: context.localizations.financialResults,
         closeMenuCallback: closeOnTap,
         icon: Icons.pie_chart_rounded,
-        color: context.color.greyish,
+        color: context.color.profilePagePrimaryVariant,
       ),
       _MenuItem(
         onTap: () => context.router.push(HomeRoute()),
         title: context.localizations.requisites,
         closeMenuCallback: closeOnTap,
         icon: Icons.request_page,
-        color: context.color.greyish,
+        color: context.color.profilePagePrimaryVariant,
       ),
       _MenuItem(
         onTap: () => context.router.push(HomeRoute()),
         closeMenuCallback: closeOnTap,
         title: context.localizations.createAdmin,
-        icon: Icons.admin_panel_settings_rounded,
-        color: context.color.greyish,
-      ),
-      _MenuItem(
-        onTap: () => context.router.push(const LoginRoute()),
-        closeMenuCallback: closeOnTap,
-        title: context.localizations.signOut,
-        icon: Icons.logout_rounded,
-        color: context.color.profilePageError,
+        icon: Icons.edit_rounded,
+        color: context.color.profilePagePrimaryVariant,
       ),
     ];
   }
@@ -419,7 +404,7 @@ class _ProfileMenu extends Menu {
     Key? key,
   }) =>
       _ProfileMenu(
-        items: _clientMenuItems,
+        items: (_, __) => [],
         animation: animation,
         onCloseItemTap: onCloseItemTap,
         key: key,
@@ -482,7 +467,7 @@ class _MenuItemState extends State<_MenuItem> {
           color:
               _isHovered ? widget.color : context.color.profilePageBackground,
         ),
-        constraints: const BoxConstraints(minWidth: 140),
+        constraints: const BoxConstraints(minWidth: 190),
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
           children: [
