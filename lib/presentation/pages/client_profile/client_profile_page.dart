@@ -5,7 +5,7 @@ import 'package:meta_app/presentation/pages/client_profile/sections/bots_tab.dar
 import 'package:meta_app/presentation/pages/client_profile/sections/dashboard_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile/sections/side_menu_section.dart';
 import 'package:meta_app/presentation/pages/client_profile/sections/transaction_tab.dart';
-import 'package:meta_app/presentation/widgets/header.dart';
+import 'package:meta_app/presentation/widgets/profile_header/header.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
 class ClientProfilePage extends StatelessWidget {

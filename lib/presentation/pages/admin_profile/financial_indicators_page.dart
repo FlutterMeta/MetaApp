@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/widgets/header.dart';
+import 'package:meta_app/presentation/widgets/profile_header/header.dart';
 
 class FinancialIndicatorsPage extends StatelessWidget {
   const FinancialIndicatorsPage({super.key});
