@@ -3,7 +3,7 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/return_home_logo.dart';
 import 'package:useful_extensions/useful_extensions.dart';
-import '../pages/client_profile_page/menu_controller.dart';
+import '../pages/client_profile/menu_controller.dart';
 
 class Header extends StatefulWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState>? scaffoldKey;
