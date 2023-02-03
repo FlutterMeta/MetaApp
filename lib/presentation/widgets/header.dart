@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/navigation/app_router.gr.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/return_home_logo.dart';
 import 'package:useful_extensions/useful_extensions.dart';
@@ -80,45 +82,48 @@ class ProfileHeader extends Header {
 
   factory ProfileHeader.client({
     required GlobalKey<ScaffoldState> scaffoldKey,
-    Widget? supportIcon,
-    Widget? searchBar,
-    Widget? menuIcon,
-    Key? key,
   }) =>
       ProfileHeader(
         scaffoldKey: scaffoldKey,
-        searchBar: searchBar,
+        menuIcon: _SideMenuIcon(scaffoldKey: scaffoldKey),
         supportIcon: const _SupportChatIcon(),
-        menuIcon: const _AnimatedMenuIcon(),
-        key: key,
       );
 
-  factory ProfileHeader.admin({
-    GlobalKey<ScaffoldState>? scaffoldKey,
-    Widget? supportIcon,
-    Widget? searchBar,
-    Widget? menuIcon,
-    Key? key,
-  }) =>
-      ProfileHeader(
-        scaffoldKey: scaffoldKey,
-        searchBar: searchBar,
-        supportIcon: supportIcon,
-        menuIcon: menuIcon,
-        key: key,
-      );
+  factory ProfileHeader.admin() => const ProfileHeader();
 
-  factory ProfileHeader.adminSearch({
-    GlobalKey<ScaffoldState>? scaffoldKey,
-    Widget? menuIcon,
+  factory ProfileHeader.adminSearch() =>
+      const ProfileHeader(searchBar: _SearchBar());
+}
+
+class _SideMenuIcon extends StatelessWidget {
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
+  const _SideMenuIcon({
+    required this.scaffoldKey,
     Key? key,
-  }) =>
-      ProfileHeader(
-        scaffoldKey: scaffoldKey,
-        searchBar: const _SearchBar(),
-        menuIcon: menuIcon,
-        key: key,
-      );
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      splashColor: context.color.profilePageTransparent,
+      highlightColor: context.color.profilePageTransparent,
+      hoverColor: context.color.profilePageTransparent,
+      splashRadius: 24,
+      onPressed: () {
+        if (Responsive.isMobile(context) || Responsive.isTablet(context)) {
+          scaffoldKey.currentState?.openDrawer();
+        }
+      },
+      iconSize: 36,
+      icon: Responsive.isMobile(context) || Responsive.isTablet(context)
+          ? Icon(
+              Icons.menu_rounded,
+              color: context.color.profilePagePrimary,
+            )
+          : const _AnimatedMenuIcon(),
+    );
+  }
 }
 
 class _SupportChatIcon extends StatelessWidget {
@@ -149,7 +154,7 @@ class _SearchBar extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           border: InputBorder.none,
-          hintText: "Search for clients",
+          hintText: context.localizations.userSearch,
           hintStyle: context.text.headerNavItemHovered
               .copyWith(fontWeight: FontWeight.bold),
           prefixIcon: Padding(
@@ -195,7 +200,7 @@ class UserInfoState extends State<_UserInfo>
       return Positioned(
         top: offset.dy + size.height,
         right: 10,
-        child: _ProfileMenu(
+        child: _ProfileMenu.admin(
           animation: _animation,
           onCloseItemTap: removeOverlay,
         ),
@@ -282,11 +287,13 @@ class UserInfoState extends State<_UserInfo>
   }
 }
 
-class _ProfileMenu extends StatelessWidget {
+class Menu extends StatelessWidget {
+  final List<Widget> Function(BuildContext context) items;
   final Animation<double>? animation;
   final VoidCallback onCloseItemTap;
 
-  const _ProfileMenu({
+  const Menu({
+    required this.items,
     required this.animation,
     required this.onCloseItemTap,
     Key? key,
@@ -306,15 +313,11 @@ class _ProfileMenu extends StatelessWidget {
           padding: const EdgeInsets.all(10),
           alignment: Alignment.center,
           child: ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: 160),
+            constraints: const BoxConstraints(minWidth: 200),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _MenuItem(
-                  onTap: () {},
-                  title: context.localizations.signOut,
-                  icon: Icons.output_rounded,
-                  color: context.color.profilePageError,
-                ),
+                ...items(context),
                 _MenuItem(
                   onTap: () => onCloseItemTap(),
                   title: context.localizations.closeMenu,
@@ -328,6 +331,96 @@ class _ProfileMenu extends StatelessWidget {
       ),
     );
   }
+}
+
+class _ProfileMenu extends Menu {
+  static List<Widget> _clientMenuItems(BuildContext context) {
+    return [
+      _MenuItem(
+        onTap: () => context.router.push(HomeRoute()),
+        title: context.localizations.signOut,
+        icon: Icons.logout_rounded,
+        color: context.color.profilePageError,
+      ),
+    ];
+  }
+
+  static List<Widget> _adminMenuItems(BuildContext context) {
+    return [
+      _MenuItem(
+        onTap: () => context.router.push(HomeRoute()),
+        title: context.localizations.updateBlog,
+        icon: Icons.table_chart_rounded,
+        color: context.color.greyish,
+      ),
+      _MenuItem(
+        onTap: () => context.router.push(HomeRoute()),
+        title: context.localizations.allTransactions,
+        icon: Icons.list_alt,
+        color: context.color.greyish,
+      ),
+      _MenuItem(
+        onTap: () => context.router.push(HomeRoute()),
+        title: context.localizations.financialResults,
+        icon: Icons.pie_chart_rounded,
+        color: context.color.greyish,
+      ),
+      _MenuItem(
+        onTap: () => context.router.push(HomeRoute()),
+        title: context.localizations.requisites,
+        icon: Icons.request_page,
+        color: context.color.greyish,
+      ),
+      _MenuItem(
+        onTap: () => context.router.push(HomeRoute()),
+        title: context.localizations.createAdmin,
+        icon: Icons.admin_panel_settings_rounded,
+        color: context.color.greyish,
+      ),
+      _MenuItem(
+        onTap: () => context.router.push(HomeRoute()),
+        title: context.localizations.signOut,
+        icon: Icons.logout_rounded,
+        color: context.color.profilePageError,
+      ),
+    ];
+  }
+
+  const _ProfileMenu({
+    required List<Widget> Function(BuildContext) items,
+    required Animation<double>? animation,
+    required VoidCallback onCloseItemTap,
+    Key? key,
+  }) : super(
+          items: items,
+          animation: animation,
+          onCloseItemTap: onCloseItemTap,
+          key: key,
+        );
+
+  factory _ProfileMenu.client({
+    required Animation<double>? animation,
+    required VoidCallback onCloseItemTap,
+    Key? key,
+  }) =>
+      _ProfileMenu(
+        items: _clientMenuItems,
+        animation: animation,
+        onCloseItemTap: onCloseItemTap,
+        key: key,
+      );
+
+  factory _ProfileMenu.admin({
+    required Animation<double>? animation,
+    required VoidCallback onCloseItemTap,
+    Key? key,
+  }) =>
+      _ProfileMenu(
+        items: _adminMenuItems,
+        animation: animation,
+        onCloseItemTap: onCloseItemTap,
+        key: key,
+      );
 }
 
 class _MenuItem extends StatefulWidget {
@@ -366,6 +459,7 @@ class _MenuItemState extends State<_MenuItem> {
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
           children: [
+            const SizedBox(width: 6),
             Icon(
               widget.icon,
               color: _isHovered

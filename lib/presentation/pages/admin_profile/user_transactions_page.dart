@@ -6,8 +6,8 @@ class UserTransactionsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: ProfileHeader(),
+    return Scaffold(
+      appBar: ProfileHeader.admin(),
     );
   }
 }

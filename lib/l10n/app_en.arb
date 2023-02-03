@@ -276,5 +276,11 @@
     "roiPerMonth": "ROI per month",
     "monthShortened": "mo",
     "transactionWarningMessage": "Funds are credited automatically when transferring the payment amount according to the specified payment data in the \"Details for payment\" field. Check if the translation means belongs to the corresponding Blockchain (TRC, ERC, BEP, etc.)",
-    "warning": "Warning!"
+    "warning": "Warning!",
+    "@_ADMIN_PAGE": {},
+    "userSearch": "User search",
+    "updateBlog": "Update blog",
+    "allTransactions": "All transactions",
+    "financialResults": "Financial results",
+    "createAdmin": "Create admin"
 }

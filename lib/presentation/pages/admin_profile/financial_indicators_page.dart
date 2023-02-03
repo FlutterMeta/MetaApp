@@ -8,7 +8,7 @@ class FinancialIndicatorsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ProfileHeader.adminSearch(),
+      appBar: ProfileHeader.admin(),
       backgroundColor: context.color.profilePageBackground,
       body: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
