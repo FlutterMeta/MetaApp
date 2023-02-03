@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/menu_controller.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 
@@ -29,17 +30,17 @@ class BotsTab extends StatelessWidget {
 
     return [
       _BotProfitCard(
-        title: "Binance ${localization.futures} ${localization.pioneer}",
+        title: "${localization.futures} ${localization.pioneer}",
         price: 1500,
         roi: 40,
       ),
       _BotProfitCard(
-        title: "Binance ${localization.futures} ${localization.adventurer}",
+        title: "${localization.futures} ${localization.adventurer}",
         price: 3000,
         roi: 60,
       ),
       _BotProfitCard(
-        title: "Binance ${localization.futures} ${localization.hero}",
+        title: "${localization.futures} ${localization.hero}",
         price: 5000,
         roi: 80,
       ),
@@ -52,17 +53,17 @@ class BotsTab extends StatelessWidget {
     return [
       _BotDemoCard(
         title: localization.pioneer,
-        price: 1500,
+        price: 20.39,
         benefits: _basicBenefits(context),
       ),
       _BotDemoCard(
         title: localization.adventurer,
-        price: 3000,
+        price: 40.22,
         benefits: _basicBenefits(context),
       ),
       _BotDemoCard(
         title: localization.hero,
-        price: 5000,
+        price: 78.25,
         benefits: _advancedBenefits(context),
       ),
       _BotDemoCard(
@@ -134,15 +135,26 @@ class _BotProfitCard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  List<Widget> _getRewardItems(BuildContext context) {
+    return [
+      Text(
+        "\$$price",
+        style: context.text.profileBotsDefault.copyWith(fontSize: 24),
+      ),
+      const SizedBox(width: 10, height: 10),
+      ROIChip(roi: roi),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: context.color.clientPageBackground,
+        color: context.color.profilePageBackground,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: context.color.clientPagePrimary.withOpacity(0.1),
+            color: context.color.profilePagePrimary.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -158,46 +170,44 @@ class _BotProfitCard extends StatelessWidget {
               width: 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(100),
-                color: context.color.clientPagePrimary.withOpacity(0.1),
+                color: context.color.profilePagePrimary.withOpacity(0.1),
               ),
               child: Icon(
                 Icons.attach_money,
-                color: context.color.clientPagePrimary,
+                color: context.color.profilePagePrimary,
               ),
             ),
             const SizedBox(width: 20),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
+                Text.rich(
+                  TextSpan(
+                    style: context.text.profilePageSubtitle.copyWith(
+                      fontSize: Responsive.isMobile(context) ? 12 : 16,
+                    ),
+                    children: [
+                      const TextSpan(text: "Binance "),
+                      TextSpan(text: title),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      "\$$price",
-                      style:
-                          context.text.clientBotsDefault.copyWith(fontSize: 24),
-                    ),
-                    const SizedBox(width: 10),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: context.color.clientPageSecondaryVariant,
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 6,
-                      ),
-                      child: Text(
-                        "ROI: $roi%",
-                        style: context.text.clientPageInverseBody
-                            .copyWith(fontSize: 12),
-                      ),
-                    ),
-                  ],
+                Builder(
+                  builder: (context) {
+                    if (context.screenWidth < 500) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: _getRewardItems(context),
+                      );
+                    } else {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: _getRewardItems(context),
+                      );
+                    }
+                  },
                 ),
               ],
             ),
@@ -208,9 +218,36 @@ class _BotProfitCard extends StatelessWidget {
   }
 }
 
+class ROIChip extends StatelessWidget {
+  final int roi;
+
+  const ROIChip({
+    required this.roi,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: context.color.profilePageSecondaryVariant,
+        borderRadius: BorderRadius.circular(30),
+      ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 6,
+      ),
+      child: Text(
+        "${context.localizations.roiPerMonth} $roi%",
+        style: context.text.profilePageInverseBody.copyWith(fontSize: 12),
+      ),
+    );
+  }
+}
+
 class _BotDemoCard extends StatelessWidget {
   final String title;
-  final int price;
+  final double price;
   final List<String> benefits;
 
   const _BotDemoCard({
@@ -220,15 +257,20 @@ class _BotDemoCard extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  void _pushTransactionTab() {
+    const int transactionTabIndex = 2;
+    MenuController.tabIndex.value = transactionTabIndex;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: context.color.clientPageBackground,
+        color: context.color.profilePageBackground,
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: context.color.clientPagePrimary.withOpacity(0.1),
+            color: context.color.profilePagePrimary.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -241,12 +283,36 @@ class _BotDemoCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: context.text.clientPageSubtitle.copyWith(fontSize: 16),
+              style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             ),
             const SizedBox(height: 10),
-            Text(
-              "\$$price",
-              style: context.text.clientBotsDefault.copyWith(fontSize: 24),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: 18,
+                  alignment: Alignment.bottomCenter,
+                  child: Text(
+                    "\$",
+                    style:
+                        context.text.profileBotsDefault.copyWith(fontSize: 12),
+                  ),
+                ),
+                Text(
+                  "$price",
+                  style: context.text.profileBotsDefault.copyWith(fontSize: 24),
+                ),
+                Container(
+                  height: 26,
+                  alignment: Alignment.bottomCenter,
+                  child: Text(
+                    "/${context.localizations.monthShortened}",
+                    style:
+                        context.text.profileBotsDefault.copyWith(fontSize: 12),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             ...benefits.map(
@@ -259,7 +325,7 @@ class _BotDemoCard extends StatelessWidget {
                       width: 200,
                       child: Text(
                         benefit,
-                        style: context.text.clientBotsDefault.copyWith(
+                        style: context.text.profileBotsDefault.copyWith(
                           fontSize: 16,
                           fontWeight: FontWeight.w200,
                         ),
@@ -270,7 +336,7 @@ class _BotDemoCard extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            _GetStartedButton(onTap: () {}),
+            _GetStartedButton(onTap: _pushTransactionTab),
           ],
         ),
       ),
@@ -301,7 +367,7 @@ class _GetStartedButton extends StatelessWidget {
           children: [
             Text(
               context.localizations.getStarted,
-              style: context.text.clientPageBody.copyWith(fontSize: 16),
+              style: context.text.profilePageBody.copyWith(fontSize: 16),
             ),
           ],
         ),
@@ -314,7 +380,7 @@ class _FunctionalityComparisonTable extends StatelessWidget {
   const _FunctionalityComparisonTable({Key? key}) : super(key: key);
 
   TextStyle _defaultCellTextStyle(BuildContext context) {
-    return context.text.clientBotsDefault.copyWith(
+    return context.text.profileBotsDefault.copyWith(
       fontSize: Responsive.isMobile(context) ? 14 : 18,
     );
   }
@@ -331,11 +397,11 @@ class _FunctionalityComparisonTable extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: context.color.clientPageBackground,
+        color: context.color.profilePageBackground,
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: context.color.clientPagePrimary.withOpacity(0.1),
+            color: context.color.profilePagePrimary.withOpacity(0.1),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -507,8 +573,8 @@ class _TableHeaderRowCell extends StatelessWidget {
   TextStyle _headerTableRowTextStyle(BuildContext context) {
     final text = context.text;
 
-    return text.clientBotsDefault.copyWith(
-      color: text.clientBotsDefault.color?.withOpacity(0.5),
+    return text.profileBotsDefault.copyWith(
+      color: text.profileBotsDefault.color?.withOpacity(0.5),
       fontWeight: FontWeight.w200,
       fontSize: Responsive.isMobile(context) ? 12 : 16,
     );
@@ -535,12 +601,12 @@ class _GreenCheck extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       backgroundColor:
-          context.color.clientPageSecondaryVariant.withOpacity(0.1),
+          context.color.profilePageSecondaryVariant.withOpacity(0.1),
       radius: Responsive.isMobile(context) ? 10 : 24,
       child: Icon(
         Icons.check,
         size: Responsive.isMobile(context) ? 16 : 24,
-        color: context.color.clientPageSecondaryVariant,
+        color: context.color.profilePageSecondaryVariant,
       ),
     );
   }

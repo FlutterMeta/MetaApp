@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/client_profile_manager.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/menu_controller.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
-import 'package:provider/provider.dart';
 
 class SideMenuSection extends StatefulWidget {
   const SideMenuSection({Key? key}) : super(key: key);
@@ -12,49 +11,42 @@ class SideMenuSection extends StatefulWidget {
 }
 
 class _SideMenuSectionState extends State<SideMenuSection> {
-  int _currentIndex = 0;
-
-  void _onLabelTap(int index) {
-    Provider.of<ClientProfileManager>(context, listen: false)
-        .changeIndex(index);
-    setState(() => _currentIndex = index);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _currentIndex =
-        Provider.of<ClientProfileManager>(context, listen: false).currentIndex;
-  }
+  void _onLabelTap(int index) => MenuController.tabIndex.value = index;
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ClientProfileManager>(
-      builder: (context, menu, child) {
+    return ValueListenableBuilder(
+      valueListenable: MenuController.isCollapsed,
+      builder: (context, isCollapsed, child) {
         return Drawer(
-          backgroundColor: menu.isCollapsed
-              ? context.color.clientPagePrimary
-              : context.color.clientPageBackground,
+          backgroundColor: isCollapsed
+              ? context.color.profilePagePrimary
+              : context.color.profilePageBackground,
           elevation: 0,
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: ListView(
-              children: [
-                _DrawerListTile(
-                  index: 0,
-                  currentIndex: _currentIndex,
-                  icon: Icons.account_circle,
-                  label: context.localizations.account,
-                  onTap: _onLabelTap,
-                ),
-                _DrawerListTile(
-                  index: 1,
-                  currentIndex: _currentIndex,
-                  icon: Icons.adb_outlined,
-                  label: context.localizations.bots,
-                  onTap: _onLabelTap,
-                ),
-              ],
+            child: ValueListenableBuilder(
+              valueListenable: MenuController.tabIndex,
+              builder: (context, index, child) {
+                return ListView(
+                  children: [
+                    _DrawerListTile(
+                      index: 0,
+                      currentIndex: index,
+                      icon: Icons.account_circle,
+                      label: context.localizations.account,
+                      onTap: _onLabelTap,
+                    ),
+                    _DrawerListTile(
+                      index: 1,
+                      currentIndex: index,
+                      icon: Icons.adb_outlined,
+                      label: context.localizations.bots,
+                      onTap: _onLabelTap,
+                    ),
+                  ],
+                );
+              },
             ),
           ),
         );
@@ -88,8 +80,9 @@ class __DrawerListTileState extends State<_DrawerListTile> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ClientProfileManager>(
-      builder: (context, menu, child) {
+    return ValueListenableBuilder(
+      valueListenable: MenuController.isCollapsed,
+      builder: (context, isCollapsed, child) {
         return InkWell(
           onTap: () {
             widget.onTap(widget.index);
@@ -102,21 +95,21 @@ class __DrawerListTileState extends State<_DrawerListTile> {
               children: [
                 CircleAvatar(
                   radius: 28,
-                  backgroundColor: _isSelected && menu.isCollapsed
-                      ? context.color.clientPageBackground
-                      : context.color.clientPageTransparent,
+                  backgroundColor: _isSelected && isCollapsed
+                      ? context.color.profilePageBackground
+                      : context.color.profilePageTransparent,
                   child: Icon(
                     widget.icon,
                     size: 34,
                     color: _isSelected
                         ? context.color.dashboardSideMenuSelectedItem
-                        : (menu.isCollapsed
-                            ? context.color.clientPagePrimaryVariant
+                        : (isCollapsed
+                            ? context.color.profilePagePrimaryVariant
                             : context.color.dashboardSideMenuUnselectedItem),
                   ),
                 ),
-                SizedBox(width: menu.isCollapsed ? 0 : 8),
-                menu.isCollapsed
+                SizedBox(width: isCollapsed ? 0 : 8),
+                isCollapsed
                     ? const SizedBox()
                     : Text(
                         widget.label,

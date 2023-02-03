@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
   final _formKey = GlobalKey<FormState>();
 
   void _goToProfilePage(BuildContext context) =>
-      context.router.push(const ClientProfileRoute());
+      context.router.push(ClientProfileRoute());
 
   void _goToRegistrationPage() =>
       context.router.push(const RegistrationRoute());

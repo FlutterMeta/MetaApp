@@ -46,8 +46,9 @@ List<Story> get _pages => [
         initialRoutes: const [ResetAccessRoute()],
         router: AppRouter(),
       ),
-      Story(
-        name: 'Pages/ClientProfile',
-        builder: (context) => const ClientProfilePage(),
+      RouterAwareStory(
+        name: "Pages/ClientProfile",
+        initialRoutes: [ClientProfileRoute()],
+        router: AppRouter(),
       ),
     ];

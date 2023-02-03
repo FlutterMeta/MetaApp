@@ -1,33 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/client_profile_manager.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/menu_controller.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/bots_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/dashboard_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/side_menu_section.dart';
-import 'package:meta_app/presentation/widgets/dashboard_header.dart';
+import 'package:meta_app/presentation/pages/client_profile_page/sections/transaction_tab.dart';
+import 'package:meta_app/presentation/widgets/profile_header.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
-import 'package:provider/provider.dart';
 
 class ClientProfilePage extends StatelessWidget {
-  const ClientProfilePage({super.key});
+  ClientProfilePage({super.key});
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const DashboardHeader(),
+      appBar: ProfileHeader(scaffoldKey: _scaffoldKey),
       drawer: const SideMenuSection(),
-      backgroundColor: context.color.clientPageBackground,
-      key: context.read<ClientProfileManager>().scaffoldKey,
-      body: Consumer<ClientProfileManager>(
-        builder: (context, menu, child) {
+      backgroundColor: context.color.profilePageBackground,
+      key: _scaffoldKey,
+      body: ValueListenableBuilder(
+        valueListenable: MenuController.isCollapsed,
+        builder: (context, isCollapsed, child) {
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (Responsive.isDesktop(context) && !menu.isCollapsed) ...[
-                const Expanded(child: SideMenuSection()),
-              ] else if (Responsive.isDesktop(context) && menu.isCollapsed) ...[
-                const SizedBox(width: 104, child: SideMenuSection()),
-              ],
+              if (Responsive.isDesktop(context))
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  width: isCollapsed ? 104 : context.screenWidth * 0.18,
+                  child: const SideMenuSection(),
+                ),
               const Expanded(
                 flex: 5,
                 child: _TabsBox(),
@@ -43,24 +47,20 @@ class ClientProfilePage extends StatelessWidget {
 class _TabsBox extends StatelessWidget {
   const _TabsBox({Key? key}) : super(key: key);
 
-  Widget showTab(int index) {
-    switch (index) {
-      case 0:
-        return const DashboardTab();
-      case 1:
-        return const BotsTab();
-      default:
-        return const DashboardTab();
-    }
-  }
+  static final _tabs = [
+    const DashboardTab(),
+    const BotsTab(),
+    const TransactionTab(),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ClientProfileManager>(
-      builder: (context, tabManager, child) {
+    return ValueListenableBuilder(
+      valueListenable: MenuController.tabIndex,
+      builder: (context, index, child) {
         return AnimatedSwitcher(
           duration: const Duration(milliseconds: 500),
-          child: showTab(tabManager.currentIndex),
+          child: _tabs[index],
         );
       },
     );

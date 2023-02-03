@@ -1,93 +1,95 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/client_profile_manager.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/return_home_logo.dart';
-import 'package:provider/provider.dart';
 import 'package:useful_extensions/useful_extensions.dart';
+import '../pages/client_profile_page/menu_controller.dart';
 
-class DashboardHeader extends StatefulWidget implements PreferredSizeWidget {
-  const DashboardHeader({super.key});
+class ProfileHeader extends StatefulWidget implements PreferredSizeWidget {
+  final GlobalKey<ScaffoldState> scaffoldKey;
+
+  const ProfileHeader({
+    required this.scaffoldKey,
+    Key? key,
+  }) : super(key: key);
 
   @override
-  State<DashboardHeader> createState() => _DashboardHeaderState();
+  State<ProfileHeader> createState() => _ProfileHeaderState();
 
   @override
   Size get preferredSize => const Size(double.infinity, 120);
 }
 
-class _DashboardHeaderState extends State<DashboardHeader> {
+class _ProfileHeaderState extends State<ProfileHeader> {
   @override
   void didChangeDependencies() {
-    final menu = context.read<ClientProfileManager>();
+    final menuCollapsedState = MenuController.isCollapsed.value;
 
     if ((Responsive.isMobile(context) || Responsive.isTablet(context)) &&
-        menu.isCollapsed) {
-      menu.changeCollapsedState();
+        menuCollapsedState) {
+      MenuController.isCollapsed.value = false;
     }
 
-    context
-        .read<ClientProfileManager>()
-        .scaffoldKey
-        .currentState
-        ?.closeDrawer();
+    widget.scaffoldKey.currentState?.closeDrawer();
     super.didChangeDependencies();
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Consumer<ClientProfileManager>(builder: (context, menu, _) {
-        return Padding(
-          padding: menu.isCollapsed
-              ? const EdgeInsets.only(right: 10)
-              : EdgeInsets.only(
-                  left: Responsive.isMobile(context) ? 10 : 60,
-                  right: 10,
+      child: ValueListenableBuilder(
+        valueListenable: MenuController.isCollapsed,
+        builder: (context, isCollapsed, child) {
+          return Padding(
+            padding: isCollapsed
+                ? const EdgeInsets.only(right: 10)
+                : EdgeInsets.only(
+                    left: Responsive.isMobile(context) ? 10 : 60,
+                    right: 10,
+                  ),
+            child: Row(
+              children: [
+                Responsive.isDesktop(context)
+                    ? const ReturnHomeLogo(height: 68)
+                    : const SizedBox(),
+                isCollapsed
+                    ? const SizedBox()
+                    : SizedBox(width: context.screenWidth * 0.02),
+                IconButton(
+                  splashColor: context.color.profilePageTransparent,
+                  highlightColor: context.color.profilePageTransparent,
+                  hoverColor: context.color.profilePageTransparent,
+                  splashRadius: 24,
+                  onPressed: () {
+                    if (Responsive.isMobile(context) ||
+                        Responsive.isTablet(context)) {
+                      widget.scaffoldKey.currentState?.openDrawer();
+                    }
+                  },
+                  iconSize: 36,
+                  icon: Responsive.isMobile(context) ||
+                          Responsive.isTablet(context)
+                      ? Icon(
+                          Icons.menu_rounded,
+                          color: context.color.profilePagePrimary,
+                        )
+                      : const _AnimatedMenuIcon(),
                 ),
-          child: Row(
-            children: [
-              Responsive.isDesktop(context)
-                  ? const ReturnHomeLogo(height: 68)
-                  : const SizedBox(),
-              menu.isCollapsed
-                  ? const SizedBox()
-                  : SizedBox(width: context.screenWidth * 0.02),
-              IconButton(
-                splashColor: context.color.clientPageTransparent,
-                highlightColor: context.color.clientPageTransparent,
-                hoverColor: context.color.clientPageTransparent,
-                splashRadius: 24,
-                onPressed: () {
-                  if (Responsive.isMobile(context) ||
-                      Responsive.isTablet(context)) {
-                    context
-                        .read<ClientProfileManager>()
-                        .scaffoldKey
-                        .currentState
-                        ?.openDrawer();
-                  }
-                },
-                iconSize: 36,
-                icon:
-                    Responsive.isMobile(context) || Responsive.isTablet(context)
-                        ? const Icon(Icons.menu_rounded)
-                        : const _AnimatedMenuIcon(),
-              ),
-              const Spacer(),
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.chat_bubble_outline_rounded),
-              ),
-              SizedBox(width: context.screenWidth * 0.08),
-              const _UserInfo(
-                userName: "Bobr123",
-                email: "adwdawdwa@gmail.com",
-              ),
-            ],
-          ),
-        );
-      }),
+                const Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.chat_bubble_outline_rounded),
+                ),
+                SizedBox(width: context.screenWidth * 0.08),
+                const _UserInfo(
+                  userName: "Bobr123",
+                  email: "adwdawdwa@gmail.com",
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -178,11 +180,12 @@ class UserInfoState extends State<_UserInfo>
                   children: [
                     Text(
                       context.localizations.welcome,
-                      style: context.text.clientPageBody.copyWith(fontSize: 16),
+                      style:
+                          context.text.profilePageBody.copyWith(fontSize: 16),
                     ),
                     Text(
                       widget.userName,
-                      style: context.text.clientPageBody
+                      style: context.text.profilePageBody
                           .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -194,7 +197,7 @@ class UserInfoState extends State<_UserInfo>
           ] else
             Text(
               widget.userName,
-              style: context.text.clientPageBody
+              style: context.text.profilePageBody
                   .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           Icon(
@@ -227,7 +230,7 @@ class _ProfileMenu extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: context.color.clientPageBackground,
+            color: context.color.profilePageBackground,
           ),
           padding: const EdgeInsets.all(10),
           alignment: Alignment.center,
@@ -239,7 +242,7 @@ class _ProfileMenu extends StatelessWidget {
                   onTap: () {},
                   title: context.localizations.signOut,
                   icon: Icons.output_rounded,
-                  color: context.color.clientPageError,
+                  color: context.color.profilePageError,
                 ),
                 _MenuItem(
                   onTap: () => onCloseItemTap(),
@@ -285,7 +288,8 @@ class _MenuItemState extends State<_MenuItem> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: _isHovered ? widget.color : context.color.clientPageBackground,
+          color:
+              _isHovered ? widget.color : context.color.profilePageBackground,
         ),
         constraints: const BoxConstraints(minWidth: 140),
         padding: const EdgeInsets.symmetric(vertical: 10),
@@ -294,7 +298,7 @@ class _MenuItemState extends State<_MenuItem> {
             Icon(
               widget.icon,
               color: _isHovered
-                  ? context.color.clientPageBackground
+                  ? context.color.profilePageBackground
                   : widget.color,
             ),
             const SizedBox(width: 6),
@@ -302,7 +306,7 @@ class _MenuItemState extends State<_MenuItem> {
               widget.title,
               style: TextStyle(
                 color: _isHovered
-                    ? context.color.clientPageBackground
+                    ? context.color.profilePageBackground
                     : widget.color,
                 fontSize: 16,
               ),
@@ -341,13 +345,14 @@ class __AnimatedMenuIconState extends State<_AnimatedMenuIcon>
   }
 
   void _changeState() {
-    final menu = context.read<ClientProfileManager>();
-    if (menu.isCollapsed) {
+    final menuCollapsedState = MenuController.isCollapsed;
+
+    if (menuCollapsedState.value) {
       _controller.reverse();
     } else {
       _controller.forward();
     }
-    menu.changeCollapsedState();
+    menuCollapsedState.value = !menuCollapsedState.value;
   }
 
   @override
@@ -356,6 +361,7 @@ class __AnimatedMenuIconState extends State<_AnimatedMenuIcon>
       onTap: _changeState,
       child: AnimatedIcon(
         icon: AnimatedIcons.arrow_menu,
+        color: context.color.profilePageSecondary,
         progress: _controller,
         size: 36,
       ),
