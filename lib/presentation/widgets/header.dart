@@ -5,22 +5,28 @@ import 'package:meta_app/presentation/widgets/return_home_logo.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 import '../pages/client_profile_page/menu_controller.dart';
 
-class ProfileHeader extends StatefulWidget implements PreferredSizeWidget {
+class Header extends StatefulWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
+  final Widget? searchBar;
+  final Widget? supportIcon;
+  final Widget? menuIcon;
 
-  const ProfileHeader({
+  const Header({
     required this.scaffoldKey,
+    this.searchBar,
+    this.supportIcon,
+    this.menuIcon,
     Key? key,
   }) : super(key: key);
 
   @override
-  State<ProfileHeader> createState() => _ProfileHeaderState();
+  State<Header> createState() => _HeaderState();
 
   @override
   Size get preferredSize => const Size(double.infinity, 120);
 }
 
-class _ProfileHeaderState extends State<ProfileHeader> {
+class _HeaderState extends State<Header> {
   @override
   void didChangeDependencies() {
     final menuCollapsedState = MenuController.isCollapsed.value;
@@ -36,59 +42,121 @@ class _ProfileHeaderState extends State<ProfileHeader> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: ValueListenableBuilder(
-        valueListenable: MenuController.isCollapsed,
-        builder: (context, isCollapsed, child) {
-          return Padding(
-            padding: isCollapsed
-                ? const EdgeInsets.only(right: 10)
-                : EdgeInsets.only(
-                    left: Responsive.isMobile(context) ? 10 : 60,
-                    right: 10,
-                  ),
-            child: Row(
-              children: [
-                Responsive.isDesktop(context)
-                    ? const ReturnHomeLogo(height: 68)
-                    : const SizedBox(),
-                isCollapsed
-                    ? const SizedBox()
-                    : SizedBox(width: context.screenWidth * 0.02),
-                IconButton(
-                  splashColor: context.color.profilePageTransparent,
-                  highlightColor: context.color.profilePageTransparent,
-                  hoverColor: context.color.profilePageTransparent,
-                  splashRadius: 24,
-                  onPressed: () {
-                    if (Responsive.isMobile(context) ||
-                        Responsive.isTablet(context)) {
-                      widget.scaffoldKey.currentState?.openDrawer();
-                    }
-                  },
-                  iconSize: 36,
-                  icon: Responsive.isMobile(context) ||
-                          Responsive.isTablet(context)
-                      ? Icon(
-                          Icons.menu_rounded,
-                          color: context.color.profilePagePrimary,
-                        )
-                      : const _AnimatedMenuIcon(),
-                ),
-                const Spacer(),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.chat_bubble_outline_rounded),
-                ),
-                SizedBox(width: context.screenWidth * 0.08),
-                const _UserInfo(
-                  userName: "Bobr123",
-                  email: "adwdawdwa@gmail.com",
-                ),
-              ],
+    return Row(
+      children: [
+        const ReturnHomeLogo(height: 68),
+        widget.menuIcon ?? const SizedBox(),
+        const Spacer(),
+        widget.searchBar ?? const SizedBox(),
+        const Spacer(),
+        widget.supportIcon ?? const SizedBox(),
+        const SizedBox(width: 10),
+        const _UserInfo(
+          userName: "Bobr123",
+          email: "adwdawdwa@gmail.com",
+        ),
+      ],
+    );
+  }
+}
+
+class ProfileHeader extends Header {
+  const ProfileHeader({
+    required GlobalKey<ScaffoldState> scaffoldKey,
+    Widget? searchBar,
+    Widget? supportIcon,
+    Widget? menuIcon,
+    Key? key,
+  }) : super(
+          scaffoldKey: scaffoldKey,
+          searchBar: searchBar,
+          supportIcon: supportIcon,
+          menuIcon: menuIcon,
+          key: key,
+        );
+
+  factory ProfileHeader.client({
+    required GlobalKey<ScaffoldState> scaffoldKey,
+    Widget? supportIcon,
+    Widget? searchBar,
+    Widget? menuIcon,
+    Key? key,
+  }) =>
+      ProfileHeader(
+        scaffoldKey: scaffoldKey,
+        searchBar: searchBar,
+        supportIcon: const _SupportChatIcon(),
+        menuIcon: const _AnimatedMenuIcon(),
+        key: key,
+      );
+
+  factory ProfileHeader.admin({
+    required GlobalKey<ScaffoldState> scaffoldKey,
+    Widget? supportIcon,
+    Widget? searchBar,
+    Widget? menuIcon,
+    Key? key,
+  }) =>
+      ProfileHeader(
+        scaffoldKey: scaffoldKey,
+        searchBar: searchBar,
+        supportIcon: supportIcon,
+        menuIcon: menuIcon,
+        key: key,
+      );
+
+  factory ProfileHeader.adminSearch({
+    required GlobalKey<ScaffoldState> scaffoldKey,
+    Widget? menuIcon,
+    Key? key,
+  }) =>
+      ProfileHeader(
+        scaffoldKey: scaffoldKey,
+        searchBar: const _SearchBar(),
+        menuIcon: menuIcon,
+        key: key,
+      );
+}
+
+class _SupportChatIcon extends StatelessWidget {
+  const _SupportChatIcon({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () {},
+      icon: const Icon(Icons.chat_bubble_outline_rounded),
+    );
+  }
+}
+
+class _SearchBar extends StatelessWidget {
+  const _SearchBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: context.color.profilePagePrimary.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      width: Responsive.isDesktop(context)
+          ? context.screenWidth * 0.4
+          : context.screenWidth * 0.5,
+      child: TextField(
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: "Search for clients",
+          hintStyle: context.text.headerNavItemHovered
+              .copyWith(fontWeight: FontWeight.bold),
+          prefixIcon: Padding(
+            padding: const EdgeInsets.only(left: 14, right: 16),
+            child: Icon(
+              Icons.search_rounded,
+              color: context.color.profilePagePrimary,
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }

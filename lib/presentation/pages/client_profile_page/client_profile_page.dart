@@ -5,7 +5,7 @@ import 'package:meta_app/presentation/pages/client_profile_page/sections/bots_ta
 import 'package:meta_app/presentation/pages/client_profile_page/sections/dashboard_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/side_menu_section.dart';
 import 'package:meta_app/presentation/pages/client_profile_page/sections/transaction_tab.dart';
-import 'package:meta_app/presentation/widgets/profile_header.dart';
+import 'package:meta_app/presentation/widgets/header.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
 class ClientProfilePage extends StatelessWidget {
@@ -16,7 +16,7 @@ class ClientProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ProfileHeader(scaffoldKey: _scaffoldKey),
+      appBar: ProfileHeader.client(scaffoldKey: _scaffoldKey),
       drawer: const SideMenuSection(),
       backgroundColor: context.color.profilePageBackground,
       key: _scaffoldKey,
