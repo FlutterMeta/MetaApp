@@ -167,10 +167,7 @@ class _MenuItemState extends State<_MenuItem> {
     if (widget.closeMenuCallback != null) {
       widget.closeMenuCallback!();
     }
-    Timer(
-      const Duration(milliseconds: 300),
-      () => widget.onTap(),
-    );
+    Timer(const Duration(milliseconds: 300), () => widget.onTap());
   }
 
   @override

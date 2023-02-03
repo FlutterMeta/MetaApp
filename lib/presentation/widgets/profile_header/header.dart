@@ -46,20 +46,26 @@ class _HeaderState extends State<Header> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        if (Responsive.isDesktop(context)) const ReturnHomeLogo(height: 68),
-        widget.menuIcon ?? const SizedBox(),
-        const Spacer(),
-        widget.searchBar ?? const SizedBox(),
-        const Spacer(),
-        widget.supportIcon ?? const SizedBox(),
-        const SizedBox(width: 10),
-        const _UserInfo(
-          userName: "Bobr123",
-          email: "adwdawdwa@gmail.com",
-        ),
-      ],
+    return ValueListenableBuilder(
+      valueListenable: MenuController.isCollapsed,
+      builder: (context, isCollapsed, child) {
+        return Row(
+          children: [
+            if (!isCollapsed) SizedBox(width: context.screenWidth * 0.02),
+            if (Responsive.isDesktop(context)) const ReturnHomeLogo(height: 68),
+            widget.menuIcon ?? const SizedBox(),
+            const Spacer(),
+            widget.searchBar ?? const SizedBox(),
+            const Spacer(),
+            widget.supportIcon ?? const SizedBox(),
+            const SizedBox(width: 10),
+            const _UserInfo(
+              userName: "Bobr123",
+              email: "adwdawdwa@gmail.com",
+            ),
+          ],
+        );
+      },
     );
   }
 }
