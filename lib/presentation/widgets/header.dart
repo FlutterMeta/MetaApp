@@ -6,13 +6,13 @@ import 'package:useful_extensions/useful_extensions.dart';
 import '../pages/client_profile_page/menu_controller.dart';
 
 class Header extends StatefulWidget implements PreferredSizeWidget {
-  final GlobalKey<ScaffoldState> scaffoldKey;
+  final GlobalKey<ScaffoldState>? scaffoldKey;
   final Widget? searchBar;
   final Widget? supportIcon;
   final Widget? menuIcon;
 
   const Header({
-    required this.scaffoldKey,
+    this.scaffoldKey,
     this.searchBar,
     this.supportIcon,
     this.menuIcon,
@@ -36,7 +36,10 @@ class _HeaderState extends State<Header> {
       MenuController.isCollapsed.value = false;
     }
 
-    widget.scaffoldKey.currentState?.closeDrawer();
+    if (widget.scaffoldKey != null) {
+      widget.scaffoldKey?.currentState?.closeDrawer();
+    }
+
     super.didChangeDependencies();
   }
 
@@ -44,7 +47,7 @@ class _HeaderState extends State<Header> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const ReturnHomeLogo(height: 68),
+        if (Responsive.isDesktop(context)) const ReturnHomeLogo(height: 68),
         widget.menuIcon ?? const SizedBox(),
         const Spacer(),
         widget.searchBar ?? const SizedBox(),
@@ -62,7 +65,7 @@ class _HeaderState extends State<Header> {
 
 class ProfileHeader extends Header {
   const ProfileHeader({
-    required GlobalKey<ScaffoldState> scaffoldKey,
+    GlobalKey<ScaffoldState>? scaffoldKey,
     Widget? searchBar,
     Widget? supportIcon,
     Widget? menuIcon,
@@ -91,7 +94,7 @@ class ProfileHeader extends Header {
       );
 
   factory ProfileHeader.admin({
-    required GlobalKey<ScaffoldState> scaffoldKey,
+    GlobalKey<ScaffoldState>? scaffoldKey,
     Widget? supportIcon,
     Widget? searchBar,
     Widget? menuIcon,
@@ -106,7 +109,7 @@ class ProfileHeader extends Header {
       );
 
   factory ProfileHeader.adminSearch({
-    required GlobalKey<ScaffoldState> scaffoldKey,
+    GlobalKey<ScaffoldState>? scaffoldKey,
     Widget? menuIcon,
     Key? key,
   }) =>
