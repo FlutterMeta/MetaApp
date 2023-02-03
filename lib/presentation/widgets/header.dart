@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
@@ -288,7 +290,7 @@ class UserInfoState extends State<_UserInfo>
 }
 
 class Menu extends StatelessWidget {
-  final List<Widget> Function(BuildContext context) items;
+  final List<Widget> Function(BuildContext context, VoidCallback) items;
   final Animation<double>? animation;
   final VoidCallback onCloseItemTap;
 
@@ -317,7 +319,7 @@ class Menu extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ...items(context),
+                ...items(context, onCloseItemTap),
                 _MenuItem(
                   onTap: () => onCloseItemTap(),
                   title: context.localizations.closeMenu,
@@ -334,10 +336,14 @@ class Menu extends StatelessWidget {
 }
 
 class _ProfileMenu extends Menu {
-  static List<Widget> _clientMenuItems(BuildContext context) {
+  static List<Widget> _clientMenuItems(
+    BuildContext context,
+    VoidCallback closeOnTap,
+  ) {
     return [
       _MenuItem(
         onTap: () => context.router.push(HomeRoute()),
+        closeMenuCallback: closeOnTap,
         title: context.localizations.signOut,
         icon: Icons.logout_rounded,
         color: context.color.profilePageError,
@@ -345,40 +351,49 @@ class _ProfileMenu extends Menu {
     ];
   }
 
-  static List<Widget> _adminMenuItems(BuildContext context) {
+  static List<Widget> _adminMenuItems(
+    BuildContext context,
+    VoidCallback closeOnTap,
+  ) {
     return [
       _MenuItem(
-        onTap: () => context.router.push(HomeRoute()),
+        onTap: () => context.router.push(BlogRoute()),
+        closeMenuCallback: closeOnTap,
         title: context.localizations.updateBlog,
         icon: Icons.table_chart_rounded,
         color: context.color.greyish,
       ),
       _MenuItem(
-        onTap: () => context.router.push(HomeRoute()),
+        onTap: () => context.router.push(const TransactionsRoute()),
+        closeMenuCallback: closeOnTap,
         title: context.localizations.allTransactions,
         icon: Icons.list_alt,
         color: context.color.greyish,
       ),
       _MenuItem(
-        onTap: () => context.router.push(HomeRoute()),
+        onTap: () => context.router.push(const FinancialIndicatorsRoute()),
         title: context.localizations.financialResults,
+        closeMenuCallback: closeOnTap,
         icon: Icons.pie_chart_rounded,
         color: context.color.greyish,
       ),
       _MenuItem(
         onTap: () => context.router.push(HomeRoute()),
         title: context.localizations.requisites,
+        closeMenuCallback: closeOnTap,
         icon: Icons.request_page,
         color: context.color.greyish,
       ),
       _MenuItem(
         onTap: () => context.router.push(HomeRoute()),
+        closeMenuCallback: closeOnTap,
         title: context.localizations.createAdmin,
         icon: Icons.admin_panel_settings_rounded,
         color: context.color.greyish,
       ),
       _MenuItem(
-        onTap: () => context.router.push(HomeRoute()),
+        onTap: () => context.router.push(const LoginRoute()),
+        closeMenuCallback: closeOnTap,
         title: context.localizations.signOut,
         icon: Icons.logout_rounded,
         color: context.color.profilePageError,
@@ -387,7 +402,7 @@ class _ProfileMenu extends Menu {
   }
 
   const _ProfileMenu({
-    required List<Widget> Function(BuildContext) items,
+    required List<Widget> Function(BuildContext, VoidCallback) items,
     required Animation<double>? animation,
     required VoidCallback onCloseItemTap,
     Key? key,
@@ -428,12 +443,14 @@ class _MenuItem extends StatefulWidget {
   final IconData icon;
   final Color color;
   final VoidCallback onTap;
+  final VoidCallback? closeMenuCallback;
 
   const _MenuItem({
     required this.title,
     required this.icon,
     required this.color,
     required this.onTap,
+    this.closeMenuCallback,
     Key? key,
   }) : super(key: key);
 
@@ -444,10 +461,20 @@ class _MenuItem extends StatefulWidget {
 class _MenuItemState extends State<_MenuItem> {
   bool _isHovered = false;
 
+  void handleTap() {
+    if (widget.closeMenuCallback != null) {
+      widget.closeMenuCallback!();
+    }
+    Timer(
+      const Duration(milliseconds: 300),
+      () => widget.onTap(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: widget.onTap,
+      onTap: handleTap,
       onHover: (isHovered) => setState(() => _isHovered = isHovered),
       child: Container(
         decoration: BoxDecoration(
