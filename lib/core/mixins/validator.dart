@@ -17,10 +17,10 @@ mixin Validator {
   ]) {
     if (password.isNullOrEmpty) {
       return context.localizations.fieldMustNotBeEmpty;
-    } else if (password!
-        .trim()
-        .isPasswordLengthLonger(length: minPasswordLength)
-        .not()) {
+    } else if (password
+            ?.trim()
+            .isPasswordLengthLonger(length: minPasswordLength)
+            .not() as bool) {
       return context.localizations.passwordMustBeLonger(minPasswordLength);
     }
     return null;
