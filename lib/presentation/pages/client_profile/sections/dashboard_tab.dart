@@ -5,6 +5,7 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/pages/client_profile/menu_controller.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
+import 'package:meta_app/presentation/widgets/level_card.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import 'package:useful_extensions/useful_extensions.dart';
@@ -103,50 +104,9 @@ class _LevelCards extends StatelessWidget {
       runSpacing: 16,
       children: List.generate(
         15,
-        (index) => _LevelCard(
+        (index) => LevelCard(
           level: index + 1,
           reward: index % 2 == 0 ? 300 : 500,
-        ),
-      ),
-    );
-  }
-}
-
-class _LevelCard extends StatelessWidget {
-  final int level;
-  final double reward;
-
-  const _LevelCard({
-    required this.level,
-    required this.reward,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minWidth: 200, maxWidth: 500),
-      child: Container(
-        height: 88,
-        width: context.screenWidth * 0.16,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: context.color.profilePagePrimary.withOpacity(0.1),
-        ),
-        padding: const EdgeInsets.all(20),
-        clipBehavior: Clip.antiAlias,
-        child: Column(
-          children: [
-            Text(
-              "${context.localizations.level} $level",
-              style: context.text.askButton,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              "${context.localizations.reward}: $reward\$",
-              style: context.text.askButton,
-            ),
-          ],
         ),
       ),
     );

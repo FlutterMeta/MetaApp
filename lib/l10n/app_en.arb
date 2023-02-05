@@ -282,5 +282,6 @@
     "updateBlog": "Update blog",
     "allTransactions": "All transactions",
     "financialResults": "Financial results",
-    "createAdmin": "Create admin"
+    "createAdmin": "Create admin",
+    "auroraUniverseReferralReward": "Aurora Universe Referral Reward Management"
 }
