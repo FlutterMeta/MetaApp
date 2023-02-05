@@ -4,10 +4,10 @@ import 'package:meta_app/presentation/widgets/profile_header/menu.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/return_home_logo.dart';
 import 'package:useful_extensions/useful_extensions.dart';
-import '../../pages/client_profile/menu_controller.dart';
+import '../pages/client_profile/menu_controller.dart';
 
 class Header extends StatefulWidget implements PreferredSizeWidget {
-  final GlobalKey<ScaffoldState>? scaffoldKey;
+  final GlobalKey<ScaffoldState> Function()? scaffoldKey;
   final Widget? searchBar;
   final Widget? supportIcon;
   final Widget? menuIcon;
@@ -38,7 +38,7 @@ class _HeaderState extends State<Header> {
     }
 
     if (widget.scaffoldKey != null) {
-      widget.scaffoldKey?.currentState?.closeDrawer();
+      widget.scaffoldKey?.call().currentState?.closeDrawer();
     }
 
     super.didChangeDependencies();
@@ -66,111 +66,6 @@ class _HeaderState extends State<Header> {
           ],
         );
       },
-    );
-  }
-}
-
-class ProfileHeader extends Header {
-  const ProfileHeader({
-    GlobalKey<ScaffoldState>? scaffoldKey,
-    Widget? searchBar,
-    Widget? supportIcon,
-    Widget? menuIcon,
-    Key? key,
-  }) : super(
-          scaffoldKey: scaffoldKey,
-          searchBar: searchBar,
-          supportIcon: supportIcon,
-          menuIcon: menuIcon,
-          key: key,
-        );
-
-  factory ProfileHeader.client({
-    required GlobalKey<ScaffoldState> scaffoldKey,
-  }) =>
-      ProfileHeader(
-        scaffoldKey: scaffoldKey,
-        menuIcon: _SideMenuIcon(scaffoldKey: scaffoldKey),
-        supportIcon: const _SupportChatIcon(),
-      );
-
-  factory ProfileHeader.admin() => const ProfileHeader();
-
-  factory ProfileHeader.adminSearch() =>
-      const ProfileHeader(searchBar: _SearchBar());
-}
-
-class _SideMenuIcon extends StatelessWidget {
-  final GlobalKey<ScaffoldState> scaffoldKey;
-
-  const _SideMenuIcon({
-    required this.scaffoldKey,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      splashColor: context.color.profilePageTransparent,
-      highlightColor: context.color.profilePageTransparent,
-      hoverColor: context.color.profilePageTransparent,
-      splashRadius: 24,
-      onPressed: () {
-        if (Responsive.isMobile(context) || Responsive.isTablet(context)) {
-          scaffoldKey.currentState?.openDrawer();
-        }
-      },
-      iconSize: 36,
-      icon: Responsive.isMobile(context) || Responsive.isTablet(context)
-          ? Icon(
-              Icons.menu_rounded,
-              color: context.color.profilePagePrimary,
-            )
-          : const _AnimatedMenuIcon(),
-    );
-  }
-}
-
-class _SupportChatIcon extends StatelessWidget {
-  const _SupportChatIcon({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {},
-      icon: const Icon(Icons.chat_bubble_outline_rounded),
-    );
-  }
-}
-
-class _SearchBar extends StatelessWidget {
-  const _SearchBar({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: context.color.profilePagePrimary.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      width: Responsive.isDesktop(context)
-          ? context.screenWidth * 0.4
-          : context.screenWidth * 0.5,
-      child: TextField(
-        decoration: InputDecoration(
-          border: InputBorder.none,
-          hintText: context.localizations.userSearch,
-          hintStyle: context.text.headerNavItemHovered
-              .copyWith(fontWeight: FontWeight.bold),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.only(left: 14, right: 16),
-            child: Icon(
-              Icons.search_rounded,
-              color: context.color.profilePagePrimary,
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
@@ -287,57 +182,6 @@ class UserInfoState extends State<_UserInfo>
             color: context.color.partnersCardBackground,
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _AnimatedMenuIcon extends StatefulWidget {
-  const _AnimatedMenuIcon({Key? key}) : super(key: key);
-
-  @override
-  State<_AnimatedMenuIcon> createState() => __AnimatedMenuIconState();
-}
-
-class __AnimatedMenuIconState extends State<_AnimatedMenuIcon>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 200),
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void _changeState() {
-    final menuCollapsedState = MenuController.isCollapsed;
-
-    if (menuCollapsedState.value) {
-      _controller.reverse();
-    } else {
-      _controller.forward();
-    }
-    menuCollapsedState.value = !menuCollapsedState.value;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _changeState,
-      child: AnimatedIcon(
-        icon: AnimatedIcons.arrow_menu,
-        color: context.color.profilePageSecondary,
-        progress: _controller,
-        size: 36,
       ),
     );
   }

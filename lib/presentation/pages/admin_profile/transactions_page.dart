@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meta_app/presentation/widgets/profile_header/header.dart';
+import '../../widgets/profile_header/profile_header.dart';
 
 class TransactionsPage extends StatelessWidget {
   const TransactionsPage({super.key});
