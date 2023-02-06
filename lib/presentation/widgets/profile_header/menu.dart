@@ -7,7 +7,8 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import '../../navigation/app_router.gr.dart';
 
 class Menu extends StatelessWidget {
-  final List<Widget> Function(BuildContext context, VoidCallback) items;
+  final List<Widget> Function(BuildContext context, VoidCallback closeOnTap)
+      items;
   final Animation<double>? animation;
   final VoidCallback onCloseItemTap;
 
@@ -167,7 +168,7 @@ class _MenuItemState extends State<_MenuItem> {
     if (widget.closeMenuCallback != null) {
       widget.closeMenuCallback?.call();
     }
-    Timer(const Duration(milliseconds: 300), () => widget.onTap());
+    Future.delayed(const Duration(milliseconds: 300), () => widget.onTap());
   }
 
   @override
