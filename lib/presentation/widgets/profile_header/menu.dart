@@ -29,6 +29,13 @@ class Menu extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: context.color.profilePageBackground,
+            boxShadow: [
+              BoxShadow(
+                color: context.color.profilePagePrimary.withOpacity(0.1),
+                blurRadius: 10,
+                offset: const Offset(0, 10),
+              ),
+            ],
           ),
           padding: const EdgeInsets.all(10),
           alignment: Alignment.center,
