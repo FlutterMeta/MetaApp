@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/menu_controller.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/sections/bots_tab.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/sections/dashboard_tab.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/sections/side_menu_section.dart';
-import 'package:meta_app/presentation/pages/client_profile_page/sections/transaction_tab.dart';
-import 'package:meta_app/presentation/widgets/profile_header.dart';
+import 'package:meta_app/presentation/pages/client_profile/menu_controller.dart';
+import 'package:meta_app/presentation/pages/client_profile/sections/bots_tab.dart';
+import 'package:meta_app/presentation/pages/client_profile/sections/dashboard_tab.dart';
+import 'package:meta_app/presentation/pages/client_profile/sections/side_menu_section.dart';
+import 'package:meta_app/presentation/pages/client_profile/sections/transaction_tab.dart';
+import 'package:meta_app/presentation/widgets/profile_header/profile_header.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
 class ClientProfilePage extends StatelessWidget {
@@ -13,10 +13,12 @@ class ClientProfilePage extends StatelessWidget {
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  GlobalKey<ScaffoldState> _getScaffoldKey() => _scaffoldKey;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ProfileHeader(scaffoldKey: _scaffoldKey),
+      appBar: ProfileHeader.client(scaffoldKey: _getScaffoldKey),
       drawer: const SideMenuSection(),
       backgroundColor: context.color.profilePageBackground,
       key: _scaffoldKey,
