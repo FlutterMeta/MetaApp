@@ -86,8 +86,9 @@ class __DrawerListTileState extends State<_DrawerListTile> {
         return InkWell(
           onTap: () {
             widget.onTap(widget.index);
-            if (Responsive.isMobile(context) || Responsive.isTablet(context))
+            if (Responsive.isMobile(context) || Responsive.isTablet(context)) {
               Navigator.pop(context);
+            }
           },
           borderRadius: BorderRadius.circular(12),
           child: Padding(
