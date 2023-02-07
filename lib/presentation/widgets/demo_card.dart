@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/pages/client_profile/menu_controller.dart';
 import 'package:meta_app/presentation/widgets/simple_outlined_button.dart';
+import 'editing_field.dart';
 
 class DemoCard extends StatefulWidget {
   final String title;
@@ -28,6 +29,12 @@ class _DemoCardState extends State<DemoCard> {
   void _pushTransactionTab() {
     const int transactionTabIndex = 2;
     MenuController.tabIndex.value = transactionTabIndex;
+  }
+
+  void _onConfirm() {
+    _priceController.text;
+    _priceController.clear();
+    setState(() => _isEditing = false);
   }
 
   @override
@@ -70,11 +77,7 @@ class _DemoCardState extends State<DemoCard> {
             if (widget.editable) ...[
               _isEditing
                   ? SimpleOutlinedButton(
-                      onTap: () {
-                        _priceController.text; //do something with the new price
-                        _priceController.clear();
-                        setState(() => _isEditing = !_isEditing);
-                      },
+                      onTap: _onConfirm,
                       label: context.localizations.confirmChanges,
                     )
                   : SimpleOutlinedButton(
@@ -116,8 +119,9 @@ class _PriceSection extends StatelessWidget {
           ),
         ),
         isEditing
-            ? _EditingField(
-                price: price,
+            ? EditingField(
+                value: price,
+                width: 80,
                 controller: controller,
               )
             : Text(
@@ -133,43 +137,6 @@ class _PriceSection extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class _EditingField extends StatelessWidget {
-  final double price;
-  final TextEditingController controller;
-
-  const _EditingField({
-    required this.price,
-    required this.controller,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        fillColor: context.color.profilePagePrimary.withOpacity(0.2),
-        filled: true,
-        hintText: "$price",
-        hintStyle: context.text.profileBotsDefault.copyWith(fontSize: 24),
-        constraints: const BoxConstraints(
-          maxWidth: 80,
-          maxHeight: 30,
-        ),
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 4,
-          horizontal: 6,
-        ),
-      ),
-      style: context.text.profileBotsDefault.copyWith(fontSize: 24),
     );
   }
 }
