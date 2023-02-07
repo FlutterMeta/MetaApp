@@ -121,6 +121,7 @@ class _BotDemoCards extends StatelessWidget {
       child: Align(
         child: ListView.separated(
           shrinkWrap: true,
+          clipBehavior: Clip.none,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => _demoCards(context).elementAt(index),
           itemCount: _demoCards(context).length,
