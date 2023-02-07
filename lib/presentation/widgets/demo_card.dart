@@ -54,39 +54,10 @@ class _DemoCardState extends State<DemoCard> {
               style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             ),
             const SizedBox(height: 10),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  height: 18,
-                  alignment: Alignment.bottomCenter,
-                  child: Text(
-                    "\$",
-                    style:
-                        context.text.profileBotsDefault.copyWith(fontSize: 12),
-                  ),
-                ),
-                _isEditing
-                    ? _EditingField(
-                        price: widget.price,
-                        controller: _priceController,
-                      )
-                    : Text(
-                        "${widget.price}",
-                        style: context.text.profileBotsDefault
-                            .copyWith(fontSize: 24),
-                      ),
-                Container(
-                  height: 26,
-                  alignment: Alignment.bottomCenter,
-                  child: Text(
-                    "/${context.localizations.monthShortened}",
-                    style:
-                        context.text.profileBotsDefault.copyWith(fontSize: 12),
-                  ),
-                ),
-              ],
+            _PriceSection(
+              price: widget.price,
+              isEditing: _isEditing,
+              controller: _priceController,
             ),
             const SizedBox(height: 20),
             _BenefitSection(benefits: widget.benefits),
@@ -116,6 +87,54 @@ class _DemoCardState extends State<DemoCard> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _PriceSection extends StatelessWidget {
+  final double price;
+  final bool isEditing;
+  final TextEditingController controller;
+
+  const _PriceSection({
+    required this.price,
+    required this.isEditing,
+    required this.controller,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          height: 18,
+          alignment: Alignment.bottomCenter,
+          child: Text(
+            "\$",
+            style: context.text.profileBotsDefault.copyWith(fontSize: 12),
+          ),
+        ),
+        isEditing
+            ? _EditingField(
+                price: price,
+                controller: controller,
+              )
+            : Text(
+                "$price",
+                style: context.text.profileBotsDefault.copyWith(fontSize: 24),
+              ),
+        Container(
+          height: 26,
+          alignment: Alignment.bottomCenter,
+          child: Text(
+            "/${context.localizations.monthShortened}",
+            style: context.text.profileBotsDefault.copyWith(fontSize: 12),
+          ),
+        ),
+      ],
     );
   }
 }
