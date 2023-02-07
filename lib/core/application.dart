@@ -27,6 +27,7 @@ class Application extends StatelessWidget {
       child: StoreConnector<AppState, _ViewModel>(
         vm: () => _Factory(this),
         builder: (BuildContext context, _ViewModel vm) => MaterialApp.router(
+          scrollBehavior: WebScrollBehaviour(),
           locale: vm.appLocale.locale,
           supportedLocales: L10n.all,
           localizationsDelegates: const [
