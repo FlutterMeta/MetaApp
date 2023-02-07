@@ -52,6 +52,7 @@ class _LevelCardState extends State<LevelCard> {
         visible: _isTapped,
         portalFollower: AdminWindow(
           title: context.localizations.levelReward,
+          confirmText: context.localizations.approve,
           content: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,

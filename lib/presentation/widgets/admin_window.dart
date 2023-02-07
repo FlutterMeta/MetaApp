@@ -4,6 +4,7 @@ import 'package:meta_app/presentation/widgets/colored_button.dart';
 
 class AdminWindow extends StatelessWidget {
   final String title;
+  final String confirmText;
   final Widget content;
   final VoidCallback onConfirm;
   final VoidCallback onCancel;
@@ -11,6 +12,7 @@ class AdminWindow extends StatelessWidget {
   const AdminWindow({
     required this.title,
     required this.content,
+    required this.confirmText,
     required this.onConfirm,
     required this.onCancel,
     Key? key,
@@ -38,21 +40,21 @@ class AdminWindow extends StatelessWidget {
             title,
             style: context.text.profileBotsDefault.copyWith(fontSize: 20),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 16),
           content,
-          const SizedBox(height: 30),
+          const SizedBox(height: 16),
           Row(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ColoredButton(
-                title: "Confirm",
+                title: confirmText,
                 onTap: onConfirm,
                 color: context.color.profilePageSecondaryVariant,
               ),
               const SizedBox(width: 20),
               ColoredButton(
-                title: "Cancel",
+                title: context.localizations.cancel,
                 onTap: onCancel,
                 color: context.color.profilePageError,
               ),
