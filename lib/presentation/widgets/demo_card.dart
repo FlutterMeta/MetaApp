@@ -78,9 +78,7 @@ class _DemoCardState extends State<DemoCard> {
                       label: context.localizations.confirmChanges,
                     )
                   : SimpleOutlinedButton(
-                      onTap: () {
-                        setState(() => _isEditing = !_isEditing);
-                      },
+                      onTap: () => setState(() => _isEditing = !_isEditing),
                       label: context.localizations.edit,
                     ),
             ],
