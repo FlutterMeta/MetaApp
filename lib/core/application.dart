@@ -9,6 +9,7 @@ import 'package:meta_app/presentation/navigation/app_router.gr.dart';
 import 'package:meta_app/presentation/navigation/router_observer.dart';
 import 'package:meta_app/presentation/redux/app_state.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
+import 'package:meta_app/presentation/widgets/web_scroll_behaviour.dart';
 
 class Application extends StatelessWidget {
   final Store<AppState> store;
