@@ -37,7 +37,6 @@ class LevelCard extends StatelessWidget {
           color: context.color.profilePagePrimary.withOpacity(0.1),
         ),
         padding: const EdgeInsets.all(20),
-        clipBehavior: Clip.antiAlias,
         child: Column(
           children: [
             Text(
