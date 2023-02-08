@@ -23,7 +23,6 @@ class SimpleCard extends StatefulWidget {
 
 class _SimpleCardState extends State<SimpleCard> {
   bool _isTapped = false;
-
   final _priceController = TextEditingController();
 
   void _onConfirm() {
