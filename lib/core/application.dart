@@ -11,8 +11,6 @@ import 'package:meta_app/presentation/redux/app_state.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/web_scroll_behaviour.dart';
 
-import '../presentation/widgets/web_scroll_behaviour.dart';
-
 class Application extends StatelessWidget {
   final Store<AppState> store;
   final AppRouter appRouter;
