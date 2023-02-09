@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/pages/client_profile/sections/dashboard_tab.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
+import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import '../../widgets/profile_header/profile_header.dart';
 import '../../widgets/responsive.dart';
 
@@ -14,7 +15,16 @@ class DashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ProfileHeader.adminSearch(),
-      body: const SingleChildScrollView(child: _TableSection()),
+      body: SingleChildScrollView(
+        child: Column(
+          children: const [
+            _UserTable(),
+            SizedBox(height: 60),
+            RightsReservedFooter(),
+            SizedBox(height: 20),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -34,8 +44,8 @@ final List<User> users = List.generate(
   ),
 );
 
-class _TableSection extends StatelessWidget {
-  const _TableSection({Key? key}) : super(key: key);
+class _UserTable extends StatelessWidget {
+  const _UserTable({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -93,29 +103,16 @@ class _UserInformationPanel extends StatelessWidget {
         spacing: 20,
         runSpacing: 20,
         children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                Icons.account_circle,
-                size: Responsive.isDesktop(context) ? 80 : 50,
-                color: context.color.partnersCardBackground,
-              ),
-              _TableCell(
-                title: context.localizations.nickname,
-                content: Text(user.name, style: context.text.profilePageBody),
-              ),
-            ],
-          ),
+          _AvatarCell(user: user),
           _TableCell(
             title: context.localizations.email,
-            content: Text(user.email, style: context.text.profilePageBody),
+            content: Text(user.email, style: context.text.adminUserTableLabel),
           ),
           _TableCell(
             title: context.localizations.referralLevel,
             content: Text(
               user.referralLevel.toString(),
-              style: context.text.profilePageBody,
+              style: context.text.adminUserTableLabel,
             ),
           ),
           _TableCell(
@@ -128,6 +125,34 @@ class _UserInformationPanel extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _AvatarCell extends StatelessWidget {
+  final User user;
+
+  const _AvatarCell({
+    required this.user,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(
+          Icons.account_circle,
+          size: Responsive.isDesktop(context) ? 80 : 50,
+          color: context.color.partnersCardBackground,
+        ),
+        const SizedBox(width: 8),
+        _TableCell(
+          title: context.localizations.nickname,
+          content: Text(user.name, style: context.text.adminUserTableLabel),
+        ),
+      ],
     );
   }
 }
@@ -155,7 +180,7 @@ class _ManageUserPanel extends StatelessWidget {
             title: context.localizations.availableBalance,
             content: Text(
               '${user.availableBalance.toStringAsFixed(0)} \$',
-              style: context.text.profilePageBody,
+              style: context.text.headerNavItemHovered.copyWith(fontSize: 15),
             ),
           ),
           _TableCell(
@@ -196,13 +221,13 @@ class _PendingTransactionsRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 140),
+      constraints: const BoxConstraints(maxWidth: 110),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             user.pendingTransactions.length.toString(),
-            style: context.text.profilePageBody,
+            style: context.text.headerNavItemHovered.copyWith(fontSize: 15),
           ),
           const SizedBox(width: 10),
           _ShowText(onTap: () {}),
@@ -229,7 +254,7 @@ class _TableCell extends StatelessWidget {
       children: [
         Text(
           title,
-          style: context.text.partnerTableSectionCellTitle,
+          style: context.text.adminUserTableLabel.copyWith(fontSize: 12),
         ),
         const SizedBox(height: 10),
         content,
@@ -281,7 +306,7 @@ class _ShowTextState extends State<_ShowText> {
           ),
           child: Text(
             context.localizations.show,
-            style: context.text.profilePageBody
+            style: context.text.adminUserTableLabel
                 .copyWith(color: _getTextColor(context)),
           ),
         ),

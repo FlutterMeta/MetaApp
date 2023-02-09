@@ -117,6 +117,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
   final TextStyle profileHeaderSubtitle;
   final TextStyle headerNavItemHovered;
   final TextStyle warning;
+  final TextStyle adminUserTableLabel;
 
   ThemeTextStyles({
     required this.test,
@@ -235,6 +236,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     required this.profileHeaderSubtitle,
     required this.headerNavItemHovered,
     required this.warning,
+    required this.adminUserTableLabel,
   });
 
   @override
@@ -355,6 +357,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
     TextStyle? profileHeaderSubtitle,
     TextStyle? headerNavItemHovered,
     TextStyle? warning,
+    TextStyle? adminUserTableLabel,
   }) {
     return ThemeTextStyles(
       test: test ?? this.test,
@@ -539,6 +542,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           profileHeaderSubtitle ?? this.profileHeaderSubtitle,
       headerNavItemHovered: headerNavItemHovered ?? this.headerNavItemHovered,
       warning: warning ?? this.warning,
+      adminUserTableLabel: adminUserTableLabel ?? this.adminUserTableLabel,
     );
   }
 
@@ -798,6 +802,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
       headerNavItemHovered:
           TextStyle.lerp(headerNavItemHovered, other.headerNavItemHovered, t)!,
       warning: TextStyle.lerp(warning, other.warning, t)!,
+      adminUserTableLabel:
+          TextStyle.lerp(adminUserTableLabel, other.adminUserTableLabel, t)!,
     );
   }
 
@@ -1251,6 +1257,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w700,
           color: AppColors.yellow,
         ),
+        adminUserTableLabel: headline1.copyWith(fontSize: 15),
       );
 
   static get dark => ThemeTextStyles(
@@ -1704,5 +1711,6 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           height: 1.16,
           color: AppColors.yellow,
         ),
+        adminUserTableLabel: headline1.copyWith(fontSize: 15),
       );
 }
