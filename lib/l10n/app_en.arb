@@ -303,5 +303,6 @@
     "transactionHistory": "Transaction history",
     "availableAccountBalance": "Available account balance",
     "create": "Create",
-    "password": "Password"
+    "password": "Password",
+    "wallet": "Wallet"
 }

@@ -6,7 +6,6 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 
 import '../../navigation/app_router.gr.dart';
-import '../responsive.dart';
 
 class Menu extends StatelessWidget {
   final List<Widget> Function(BuildContext context, VoidCallback closeOnTap)
@@ -96,13 +95,7 @@ class ProfileMenu extends Menu {
         icon: Icons.pie_chart_rounded,
         color: context.color.profilePagePrimaryVariant,
       ),
-      _MenuItem(
-        onTap: () => context.router.push(HomeRoute()),
-        title: context.localizations.requisites,
-        closeMenuCallback: closeOnTap,
-        icon: Icons.request_page,
-        color: context.color.profilePagePrimaryVariant,
-      ),
+      _EditRequisitesMenuItem(closeMenuCallback: closeOnTap),
       _CreateAdminMenuItem(closeMenuCallback: closeOnTap),
     ];
   }
@@ -171,48 +164,26 @@ class _CreateAdminMenuItemState extends State<_CreateAdminMenuItem> {
     widget.closeMenuCallback.call();
     showDialog(
       context: context,
-      builder: (context) => Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        insetPadding: const EdgeInsets.all(10),
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: context.screenWidth < 400 ? 16 : 30,
-            vertical: 30,
-          ),
-          constraints: const BoxConstraints(maxWidth: 600),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                context.localizations.createAdmin,
-                style: context.text.profileBotsDefault.copyWith(fontSize: 20),
-              ),
-              const SizedBox(height: 20),
-              _AdminCreationFields(
-                mailController: _mailController,
-                nameController: _nameController,
-                passwordController: _passwordController,
-              ),
-              const SizedBox(height: 40),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ColoredButton(
-                    title: context.localizations.create,
-                    onTap: _onConfirm,
-                    color: context.color.profilePageSecondaryVariant,
-                  ),
-                  const SizedBox(width: 10),
-                  ColoredButton(
-                    title: context.localizations.cancel,
-                    onTap: () => Navigator.pop(context),
-                    color: context.color.profilePageError,
-                  ),
-                ],
-              ),
-            ],
-          ),
+      builder: (context) => _AdminDialog(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              context.localizations.createAdmin,
+              style: context.text.profileBotsDefault.copyWith(fontSize: 20),
+            ),
+            const SizedBox(height: 20),
+            _AdminCreationFields(
+              mailController: _mailController,
+              nameController: _nameController,
+              passwordController: _passwordController,
+            ),
+            const SizedBox(height: 40),
+            _AdminDialogButtons(
+              onConfirm: _onConfirm,
+              onCancel: () => Navigator.of(context).pop(),
+            ),
+          ],
         ),
       ),
     );
@@ -221,10 +192,182 @@ class _CreateAdminMenuItemState extends State<_CreateAdminMenuItem> {
   @override
   Widget build(BuildContext context) {
     return _MenuItem(
-      onTap: () => _showDialog(),
+      onTap: _showDialog,
       title: context.localizations.createAdmin,
       icon: Icons.edit_rounded,
       color: context.color.profilePagePrimaryVariant,
+    );
+  }
+}
+
+class _AdminDialog extends StatelessWidget {
+  final Widget child;
+
+  const _AdminDialog({required this.child, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      insetPadding: const EdgeInsets.all(10),
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.screenWidth < 400 ? 16 : 30,
+          vertical: 30,
+        ),
+        constraints: const BoxConstraints(maxWidth: 600),
+        child: child,
+      ),
+    );
+  }
+}
+
+class _AdminDialogButtons extends StatelessWidget {
+  final VoidCallback onConfirm;
+  final VoidCallback onCancel;
+
+  const _AdminDialogButtons({
+    required this.onConfirm,
+    required this.onCancel,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ColoredButton(
+          title: context.localizations.create,
+          onTap: onConfirm,
+          color: context.color.profilePageSecondaryVariant,
+        ),
+        const SizedBox(width: 10),
+        ColoredButton(
+          title: context.localizations.cancel,
+          onTap: onCancel,
+          color: context.color.profilePageError,
+        ),
+      ],
+    );
+  }
+}
+
+class _EditRequisitesMenuItem extends StatefulWidget {
+  final VoidCallback closeMenuCallback;
+
+  const _EditRequisitesMenuItem({
+    required this.closeMenuCallback,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<_EditRequisitesMenuItem> createState() =>
+      _EditRequisitesMenuItemState();
+}
+
+final List<String> _mockWallets = [
+  "Tw9a8zmv6c4u2rk1w3o0f12c63hs2saq",
+  "15LXEMoaAw63TKUkob3QWzrMzmgDA7Vpex",
+  "1LQoWist8KkaUXSPKZHNvEyfrEkPHzSsCd",
+  "TBia4uHnb3oSSZm5isP284cA7Np1v15Vhi",
+];
+
+class _EditRequisitesMenuItemState extends State<_EditRequisitesMenuItem> {
+  final _walletController1 = TextEditingController(text: _mockWallets.first);
+  final _walletController2 = TextEditingController(text: _mockWallets[1]);
+  final _walletController3 = TextEditingController(text: _mockWallets[2]);
+  final _walletController4 = TextEditingController(text: _mockWallets.last);
+
+  void _onConfirm() {
+    _walletController1.text;
+    _walletController2.text;
+    _walletController3.text;
+    _walletController4.text;
+  }
+
+  void _showDialog() {
+    widget.closeMenuCallback.call();
+    showDialog(
+      context: context,
+      builder: (context) => _AdminDialog(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              context.localizations.requisites,
+              style: context.text.profileBotsDefault.copyWith(fontSize: 20),
+            ),
+            const SizedBox(height: 20),
+            _RequisitesFields(
+              walletController1: _walletController1,
+              walletController2: _walletController2,
+              walletController3: _walletController3,
+              walletController4: _walletController4,
+            ),
+            const SizedBox(height: 40),
+            _AdminDialogButtons(
+              onConfirm: _onConfirm,
+              onCancel: () => Navigator.pop(context),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _MenuItem(
+      onTap: _showDialog,
+      title: context.localizations.requisites,
+      icon: Icons.account_balance_wallet_rounded,
+      color: context.color.profilePagePrimaryVariant,
+    );
+  }
+}
+
+class _RequisitesFields extends StatelessWidget {
+  final TextEditingController walletController1;
+  final TextEditingController walletController2;
+  final TextEditingController walletController3;
+  final TextEditingController walletController4;
+
+  const _RequisitesFields({
+    required this.walletController1,
+    required this.walletController2,
+    required this.walletController3,
+    required this.walletController4,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _LabeledField(
+          controller: walletController1,
+          label: '${context.localizations.wallet} 1',
+        ),
+        const SizedBox(height: 16),
+        _LabeledField(
+          controller: walletController2,
+          label: '${context.localizations.wallet} 2',
+        ),
+        const SizedBox(height: 16),
+        _LabeledField(
+          controller: walletController3,
+          label: '${context.localizations.wallet} 3',
+        ),
+        const SizedBox(height: 16),
+        _LabeledField(
+          controller: walletController4,
+          label: '${context.localizations.wallet} 4',
+        ),
+      ],
     );
   }
 }
