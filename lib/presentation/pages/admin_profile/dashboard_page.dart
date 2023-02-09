@@ -70,6 +70,7 @@ class _UserTable extends StatelessWidget {
             const SizedBox(height: 60),
             ListView.separated(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (_, index) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
