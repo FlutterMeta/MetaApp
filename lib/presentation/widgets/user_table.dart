@@ -233,7 +233,7 @@ class _ChangeBalanceButtonState extends State<_ChangeBalanceButton> {
       child: PortalTarget(
         anchor: const Aligned(
           follower: Alignment.topCenter,
-          target: Alignment.bottomCenter,
+          target: Alignment.bottomRight,
         ),
         visible: widget.isWindowVisible,
         portalFollower: widget.window,

@@ -6,6 +6,7 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 
 import '../../navigation/app_router.gr.dart';
+import '../responsive.dart';
 
 class Menu extends StatelessWidget {
   final List<Widget> Function(BuildContext context, VoidCallback closeOnTap)
@@ -172,9 +173,13 @@ class _CreateAdminMenuItemState extends State<_CreateAdminMenuItem> {
       context: context,
       builder: (context) => Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        insetPadding: const EdgeInsets.all(10),
         child: Container(
-          padding: const EdgeInsets.all(30),
-          constraints: const BoxConstraints(minWidth: 400),
+          padding: EdgeInsets.symmetric(
+            horizontal: context.screenWidth < 400 ? 16 : 30,
+            vertical: 30,
+          ),
+          constraints: const BoxConstraints(maxWidth: 600),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -278,7 +283,7 @@ class _LabeledField extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         SizedBox(
-          width: 100,
+          width: 80,
           child: Text(
             "$label:",
             style: context.text.profileBotsDefault.copyWith(fontSize: 16),
@@ -286,7 +291,7 @@ class _LabeledField extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         SizedBox(
-          width: 300,
+          width: context.screenWidth < 600 ? 200 : 300,
           child: TextField(
             controller: controller,
             style: context.text.profileBotsDefault.copyWith(fontSize: 16),
