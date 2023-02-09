@@ -300,5 +300,6 @@
     "nickname": "Nickname",
     "userProfile": "User profile",
     "referrals": "Referrals",
-    "transactionHistory": "Transaction history"
+    "transactionHistory": "Transaction history",
+    "availableAccountBalance": "Available account balance"
 }

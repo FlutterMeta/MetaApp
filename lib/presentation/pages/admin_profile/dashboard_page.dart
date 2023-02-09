@@ -1,10 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/pages/client_profile/sections/dashboard_tab.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
+import '../../widgets/admin_window.dart';
+import '../../widgets/editing_field.dart';
 import '../../widgets/profile_header/profile_header.dart';
 import '../../widgets/responsive.dart';
 
@@ -16,13 +19,15 @@ class DashboardPage extends StatelessWidget {
     return Scaffold(
       appBar: ProfileHeader.adminSearch(),
       body: SingleChildScrollView(
-        child: Column(
-          children: const [
-            _UserTable(),
-            SizedBox(height: 60),
-            RightsReservedFooter(),
-            SizedBox(height: 20),
-          ],
+        child: Portal(
+          child: Column(
+            children: const [
+              _UserTable(),
+              SizedBox(height: 60),
+              RightsReservedFooter(),
+              SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );
@@ -157,13 +162,27 @@ class _AvatarCell extends StatelessWidget {
   }
 }
 
-class _ManageUserPanel extends StatelessWidget {
+class _ManageUserPanel extends StatefulWidget {
   final User user;
 
   const _ManageUserPanel({
     required this.user,
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<_ManageUserPanel> createState() => _ManageUserPanelState();
+}
+
+class _ManageUserPanelState extends State<_ManageUserPanel> {
+  bool _isTapped = false;
+  final _priceController = TextEditingController();
+
+  void _onConfirm() {
+    if (_priceController.text.isEmpty) return;
+    _priceController.clear();
+    setState(() => _isTapped = false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -179,33 +198,116 @@ class _ManageUserPanel extends StatelessWidget {
           _TableCell(
             title: context.localizations.availableBalance,
             content: Text(
-              '${user.availableBalance.toStringAsFixed(0)} \$',
+              '${widget.user.availableBalance.toStringAsFixed(0)} \$',
               style: context.text.headerNavItemHovered.copyWith(fontSize: 15),
             ),
           ),
           _TableCell(
             title: context.localizations.pendingTransactions,
-            content: _PendingTransactionsRow(user: user),
+            content: _PendingTransactionsRow(user: widget.user),
           ),
           _TableCell(
             title: context.localizations.changeOfBalance,
-            content: ColoredButton(
+            content: _ChangeBalanceButton(
+              isWindowVisible: _isTapped,
+              onTap: () => setState(() => _isTapped = true),
               title: context.localizations.change,
               color: context.color.profilePagePrimary,
-              onTap: () {},
+              window: AdminWindow(
+                title: "${context.localizations.availableBalance}:",
+                content: _BalanceEditField(
+                  availableBalance: widget.user.availableBalance,
+                  priceController: _priceController,
+                ),
+                confirmText: context.localizations.change,
+                onConfirm: _onConfirm,
+                onCancel: () => setState(() => _isTapped = false),
+              ),
             ),
           ),
           SizedBox(width: context.screenWidth * 0.01),
           _TableCell(
             title: context.localizations.userProfile,
             content: ColoredButton(
-              title: context.localizations.delete,
-              color: context.color.profilePagePrimary,
               onTap: () {},
+              color: context.color.profilePagePrimary,
+              title: context.localizations.delete,
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class _ChangeBalanceButton extends StatefulWidget {
+  final String title;
+  final Color color;
+  final VoidCallback onTap;
+  final bool isWindowVisible;
+  final Widget window;
+
+  const _ChangeBalanceButton({
+    required this.title,
+    required this.color,
+    required this.onTap,
+    required this.isWindowVisible,
+    required this.window,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<_ChangeBalanceButton> createState() => _ChangeBalanceButtonState();
+}
+
+class _ChangeBalanceButtonState extends State<_ChangeBalanceButton> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: PortalTarget(
+        anchor: const Aligned(
+          follower: Alignment.topCenter,
+          target: Alignment.bottomCenter,
+        ),
+        visible: widget.isWindowVisible,
+        portalFollower: widget.window,
+        child: ColoredButton(
+          title: widget.title,
+          color: widget.color,
+          onTap: widget.onTap,
+        ),
+      ),
+    );
+  }
+}
+
+class _BalanceEditField extends StatelessWidget {
+  final double availableBalance;
+  final TextEditingController priceController;
+
+  const _BalanceEditField({
+    required this.availableBalance,
+    required this.priceController,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        EditingField(
+          value: availableBalance.toStringAsFixed(0),
+          width: 120,
+          controller: priceController,
+        ),
+        Icon(
+          Icons.attach_money_rounded,
+          color: context.color.profilePagePrimaryVariant,
+        ),
+      ],
     );
   }
 }
