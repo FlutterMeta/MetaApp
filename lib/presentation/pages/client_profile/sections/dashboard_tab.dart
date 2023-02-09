@@ -678,6 +678,12 @@ class Transaction {
   final String type;
 
   Transaction(this.network, this.amount, this.date, this.status, this.type);
+  Transaction.empty()
+      : network = '',
+        amount = '',
+        date = '',
+        status = '',
+        type = '';
 }
 
 enum TransactionStatus {

@@ -287,5 +287,18 @@
     "edit": "Edit",
     "confirmChanges": "Confirm changes",
     "levelReward": "Level reward",
-    "approve": "Approve"
+    "approve": "Approve",
+    "@_ADMIN_DASHBOARD_PAGE": {},
+    "userTable": "User table",
+    "change": "Change",
+    "delete": "Delete",
+    "show": "Show",
+    "availableBalance": "Available balance",
+    "pendingTransactions": "Pending transactions",
+    "changeOfBalance": "Change of balance",
+    "referralLevel": "Referral level",
+    "nickname": "Nickname",
+    "userProfile": "User profile",
+    "referrals": "Referrals",
+    "transactionHistory": "Transaction history"
 }
