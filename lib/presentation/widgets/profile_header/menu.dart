@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/widgets/colored_button.dart';
 
 import '../../navigation/app_router.gr.dart';
 
@@ -101,13 +102,7 @@ class ProfileMenu extends Menu {
         icon: Icons.request_page,
         color: context.color.profilePagePrimaryVariant,
       ),
-      _MenuItem(
-        onTap: () => context.router.push(HomeRoute()),
-        closeMenuCallback: closeOnTap,
-        title: context.localizations.createAdmin,
-        icon: Icons.edit_rounded,
-        color: context.color.profilePagePrimaryVariant,
-      ),
+      _CreateAdminMenuItem(closeMenuCallback: closeOnTap),
     ];
   }
 
@@ -146,6 +141,168 @@ class ProfileMenu extends Menu {
         onCloseItemTap: onCloseItemTap,
         key: key,
       );
+}
+
+class _CreateAdminMenuItem extends StatefulWidget {
+  final VoidCallback closeMenuCallback;
+
+  const _CreateAdminMenuItem({
+    required this.closeMenuCallback,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<_CreateAdminMenuItem> createState() => _CreateAdminMenuItemState();
+}
+
+class _CreateAdminMenuItemState extends State<_CreateAdminMenuItem> {
+  final _mailController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  void _onConfirm() {
+    _mailController.text;
+    _nameController.text;
+    _passwordController.text;
+  }
+
+  void _showDialog() {
+    widget.closeMenuCallback.call();
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        child: Container(
+          padding: const EdgeInsets.all(30),
+          constraints: const BoxConstraints(minWidth: 400),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                context.localizations.createAdmin,
+                style: context.text.profileBotsDefault.copyWith(fontSize: 20),
+              ),
+              const SizedBox(height: 20),
+              _AdminCreationFields(
+                mailController: _mailController,
+                nameController: _nameController,
+                passwordController: _passwordController,
+              ),
+              const SizedBox(height: 40),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ColoredButton(
+                    title: context.localizations.create,
+                    onTap: _onConfirm,
+                    color: context.color.profilePageSecondaryVariant,
+                  ),
+                  const SizedBox(width: 10),
+                  ColoredButton(
+                    title: context.localizations.cancel,
+                    onTap: () => Navigator.pop(context),
+                    color: context.color.profilePageError,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _MenuItem(
+      onTap: () => _showDialog(),
+      title: context.localizations.createAdmin,
+      icon: Icons.edit_rounded,
+      color: context.color.profilePagePrimaryVariant,
+    );
+  }
+}
+
+class _AdminCreationFields extends StatelessWidget {
+  final TextEditingController mailController;
+  final TextEditingController nameController;
+  final TextEditingController passwordController;
+
+  const _AdminCreationFields({
+    required this.mailController,
+    required this.nameController,
+    required this.passwordController,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _LabeledField(
+          controller: mailController,
+          label: context.localizations.email,
+        ),
+        const SizedBox(height: 16),
+        _LabeledField(
+          controller: nameController,
+          label: context.localizations.nickname,
+        ),
+        const SizedBox(height: 16),
+        _LabeledField(
+          controller: passwordController,
+          label: context.localizations.password,
+        ),
+      ],
+    );
+  }
+}
+
+class _LabeledField extends StatelessWidget {
+  final String label;
+  final TextEditingController controller;
+
+  const _LabeledField({
+    required this.label,
+    required this.controller,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: 100,
+          child: Text(
+            "$label:",
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+          ),
+        ),
+        const SizedBox(width: 10),
+        SizedBox(
+          width: 300,
+          child: TextField(
+            controller: controller,
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: context.color.profilePagePrimary.withOpacity(0.2),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: BorderSide.none,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 class _MenuItem extends StatefulWidget {

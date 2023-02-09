@@ -301,5 +301,7 @@
     "userProfile": "User profile",
     "referrals": "Referrals",
     "transactionHistory": "Transaction history",
-    "availableAccountBalance": "Available account balance"
+    "availableAccountBalance": "Available account balance",
+    "create": "Create",
+    "password": "Password"
 }
