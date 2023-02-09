@@ -18,7 +18,7 @@ class DashboardPage extends StatelessWidget {
           child: Column(
             children: [
               UserTable(users: usersExampleList),
-              const SizedBox(height: 60),
+              const SizedBox(height: 70),
               const RightsReservedFooter(),
               const SizedBox(height: 20),
             ],
