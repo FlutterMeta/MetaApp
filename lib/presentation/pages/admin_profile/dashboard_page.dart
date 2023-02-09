@@ -140,7 +140,7 @@ class _ManageUserPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: context.color.referralBonusCell,
+      color: context.color.profilePageSecondaryVariant.withOpacity(0.1),
       padding: const EdgeInsets.only(top: 6, bottom: 20, left: 20, right: 20),
       child: Wrap(
         alignment: WrapAlignment.spaceBetween,
@@ -222,15 +222,60 @@ class _TableShowCell extends StatelessWidget {
           style: context.text.partnerTableSectionCellTitle,
         ),
         const SizedBox(height: 10),
-        GestureDetector(
-          onTap: onTap,
+        _ShowText(onTap: onTap),
+      ],
+    );
+  }
+}
+
+class _ShowText extends StatefulWidget {
+  final VoidCallback onTap;
+
+  const _ShowText({
+    required this.onTap,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<_ShowText> createState() => _ShowTextState();
+}
+
+class _ShowTextState extends State<_ShowText> {
+  bool _isHovered = false;
+
+  Color _getTextColor(BuildContext context) {
+    if (_isHovered) {
+      return context.color.profilePagePrimary.withOpacity(0.7);
+    } else {
+      return context.color.profilePagePrimary;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: widget.onTap,
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        onEnter: (_) => setState(() => _isHovered = true),
+        onExit: (_) => setState(() => _isHovered = false),
+        child: Container(
+          padding: const EdgeInsets.only(bottom: 2),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                color: _getTextColor(context),
+                width: 1,
+              ),
+            ),
+          ),
           child: Text(
             context.localizations.show,
-            style: context.text.partnerTableSectionIncomeCell
-                .copyWith(decoration: TextDecoration.underline),
+            style: context.text.profilePageBody
+                .copyWith(color: _getTextColor(context)),
           ),
         ),
-      ],
+      ),
     );
   }
 }
