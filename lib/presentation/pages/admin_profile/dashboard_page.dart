@@ -103,25 +103,28 @@ class _UserInformationPanel extends StatelessWidget {
               ),
               _TableCell(
                 title: context.localizations.nickname,
-                value: user.name,
+                content: Text(user.name, style: context.text.profilePageBody),
               ),
             ],
           ),
           _TableCell(
             title: context.localizations.email,
-            value: user.email,
+            content: Text(user.email, style: context.text.profilePageBody),
           ),
           _TableCell(
             title: context.localizations.referralLevel,
-            value: user.referralLevel.toString(),
+            content: Text(
+              user.referralLevel.toString(),
+              style: context.text.profilePageBody,
+            ),
           ),
-          _TableShowCell(
+          _TableCell(
             title: context.localizations.referrals,
-            onTap: () {},
+            content: _ShowText(onTap: () {}),
           ),
-          _TableShowCell(
+          _TableCell(
             title: context.localizations.transactionHistory,
-            onTap: () {},
+            content: _ShowText(onTap: () {}),
           ),
         ],
       ),
@@ -150,23 +153,59 @@ class _ManageUserPanel extends StatelessWidget {
         children: [
           _TableCell(
             title: context.localizations.availableBalance,
-            value: '${user.availableBalance.toStringAsFixed(0)} \$',
+            content: Text(
+              '${user.availableBalance.toStringAsFixed(0)} \$',
+              style: context.text.profilePageBody,
+            ),
           ),
           _TableCell(
             title: context.localizations.pendingTransactions,
-            value: user.pendingTransactions.length.toString(),
+            content: _PendingTransactionsRow(user: user),
           ),
-          _TableButtonCell(
+          _TableCell(
             title: context.localizations.changeOfBalance,
-            buttonLabel: context.localizations.change,
-            onTap: () {},
+            content: ColoredButton(
+              title: context.localizations.change,
+              color: context.color.profilePagePrimary,
+              onTap: () {},
+            ),
           ),
           SizedBox(width: context.screenWidth * 0.01),
-          _TableButtonCell(
+          _TableCell(
             title: context.localizations.userProfile,
-            buttonLabel: context.localizations.delete,
-            onTap: () {},
+            content: ColoredButton(
+              title: context.localizations.delete,
+              color: context.color.profilePagePrimary,
+              onTap: () {},
+            ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PendingTransactionsRow extends StatelessWidget {
+  final User user;
+
+  const _PendingTransactionsRow({
+    required this.user,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ConstrainedBox(
+      constraints: const BoxConstraints(maxWidth: 140),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            user.pendingTransactions.length.toString(),
+            style: context.text.profilePageBody,
+          ),
+          const SizedBox(width: 10),
+          _ShowText(onTap: () {}),
         ],
       ),
     );
@@ -175,11 +214,11 @@ class _ManageUserPanel extends StatelessWidget {
 
 class _TableCell extends StatelessWidget {
   final String title;
-  final String value;
+  final Widget content;
 
   const _TableCell({
     required this.title,
-    required this.value,
+    required this.content,
     Key? key,
   }) : super(key: key);
 
@@ -193,36 +232,7 @@ class _TableCell extends StatelessWidget {
           style: context.text.partnerTableSectionCellTitle,
         ),
         const SizedBox(height: 10),
-        Text(
-          value,
-          style: context.text.partnerTableSectionIncomeCell,
-        ),
-      ],
-    );
-  }
-}
-
-class _TableShowCell extends StatelessWidget {
-  final String title;
-  final VoidCallback onTap;
-
-  const _TableShowCell({
-    required this.title,
-    required this.onTap,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: context.text.partnerTableSectionCellTitle,
-        ),
-        const SizedBox(height: 10),
-        _ShowText(onTap: onTap),
+        content,
       ],
     );
   }
@@ -276,38 +286,6 @@ class _ShowTextState extends State<_ShowText> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _TableButtonCell extends StatelessWidget {
-  final String title;
-  final VoidCallback onTap;
-  final String buttonLabel;
-
-  const _TableButtonCell({
-    required this.title,
-    required this.onTap,
-    required this.buttonLabel,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: context.text.partnerTableSectionCellTitle,
-        ),
-        const SizedBox(height: 10),
-        ColoredButton(
-          onTap: onTap,
-          color: context.color.profilePagePrimary,
-          title: buttonLabel,
-        ),
-      ],
     );
   }
 }
