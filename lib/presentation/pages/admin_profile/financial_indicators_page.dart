@@ -88,27 +88,27 @@ class _BotDemoCards extends StatelessWidget {
     final localization = context.localizations;
 
     return [
-      BotDemoCard.admin(
+      EditableBotDemoCard(
         title: localization.pioneer,
         price: 20.39,
         benefits: _basicBenefits(context),
       ),
-      BotDemoCard.admin(
+      EditableBotDemoCard(
         title: localization.adventurer,
         price: 40.22,
         benefits: _basicBenefits(context),
       ),
-      BotDemoCard.admin(
+      EditableBotDemoCard(
         title: localization.hero,
         price: 78.25,
         benefits: _advancedBenefits(context),
       ),
-      BotDemoCard.admin(
+      EditableBotDemoCard(
         title: localization.pioneer,
         price: 3000,
         benefits: _advancedBenefits(context),
       ),
-      BotDemoCard.admin(
+      EditableBotDemoCard(
         title: localization.adventurer,
         price: 5000,
         benefits: _advancedBenefits(context),
