@@ -310,7 +310,9 @@ class _PendingTransactionsRow extends StatelessWidget {
             style: context.text.headerNavItemHovered.copyWith(fontSize: 15),
           ),
           const SizedBox(width: 10),
-          _ShowText(onTap: () {}),
+          _ShowText(
+            onTap: () => context.router.push(UserTransactionsRoute(user: user)),
+          ),
         ],
       ),
     );
