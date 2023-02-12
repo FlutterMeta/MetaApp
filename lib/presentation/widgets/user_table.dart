@@ -1,6 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/navigation/app_router.gr.dart';
+import 'package:meta_app/presentation/pages/admin_profile/user_refferals_page.dart';
+import 'package:meta_app/presentation/pages/admin_profile/user_transactions_page.dart';
 import 'package:meta_app/presentation/widgets/admin_window.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/editing_field.dart';
@@ -87,11 +91,16 @@ class _UserInformationPanel extends StatelessWidget {
           ),
           _TableCell(
             title: context.localizations.referrals,
-            content: _ShowText(onTap: () {}),
+            content: _ShowText(
+              onTap: () => context.router.push(UserRefferalsRoute(user: user)),
+            ),
           ),
           _TableCell(
             title: context.localizations.transactionHistory,
-            content: _ShowText(onTap: () {}),
+            content: _ShowText(
+              onTap: () =>
+                  context.router.push(UserTransactionsRoute(user: user)),
+            ),
           ),
         ],
       ),
@@ -140,8 +149,8 @@ class _ManageUserPanel extends StatefulWidget {
 }
 
 class _ManageUserPanelState extends State<_ManageUserPanel> {
-  bool _isTapped = false;
   final _priceController = TextEditingController();
+  bool _isTapped = false;
 
   void _onConfirm() {
     if (_priceController.text.isEmpty) return;

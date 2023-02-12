@@ -29,6 +29,7 @@ import '../pages/products_page/products_page.dart' as _i4;
 import '../pages/registration_page.dart' as _i3;
 import '../pages/reset_access_page.dart' as _i9;
 import '../pages/reset_password_page.dart' as _i8;
+import '../widgets/user_table.dart' as _i18;
 
 class AppRouter extends _i16.RootStackRouter {
   AppRouter([_i17.GlobalKey<_i17.NavigatorState>? navigatorKey])
@@ -115,9 +116,13 @@ class AppRouter extends _i16.RootStackRouter {
       );
     },
     UserTransactionsRoute.name: (routeData) {
+      final args = routeData.argsAs<UserTransactionsRouteArgs>();
       return _i16.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i12.UserTransactionsPage(),
+        child: _i12.UserTransactionsPage(
+          user: args.user,
+          key: args.key,
+        ),
       );
     },
     DashboardRoute.name: (routeData) {
@@ -133,9 +138,13 @@ class AppRouter extends _i16.RootStackRouter {
       );
     },
     UserRefferalsRoute.name: (routeData) {
+      final args = routeData.argsAs<UserRefferalsRouteArgs>();
       return _i16.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i15.UserRefferalsPage(),
+        child: _i15.UserRefferalsPage(
+          user: args.user,
+          key: args.key,
+        ),
       );
     },
   };
@@ -411,14 +420,37 @@ class FinancialIndicatorsRoute extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i12.UserTransactionsPage]
-class UserTransactionsRoute extends _i16.PageRouteInfo<void> {
-  const UserTransactionsRoute()
-      : super(
+class UserTransactionsRoute
+    extends _i16.PageRouteInfo<UserTransactionsRouteArgs> {
+  UserTransactionsRoute({
+    required _i18.User user,
+    _i17.Key? key,
+  }) : super(
           UserTransactionsRoute.name,
           path: '/admin-profile/user-transactions',
+          args: UserTransactionsRouteArgs(
+            user: user,
+            key: key,
+          ),
         );
 
   static const String name = 'UserTransactionsRoute';
+}
+
+class UserTransactionsRouteArgs {
+  const UserTransactionsRouteArgs({
+    required this.user,
+    this.key,
+  });
+
+  final _i18.User user;
+
+  final _i17.Key? key;
+
+  @override
+  String toString() {
+    return 'UserTransactionsRouteArgs{user: $user, key: $key}';
+  }
 }
 
 /// generated route for
@@ -447,12 +479,34 @@ class TransactionsRoute extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i15.UserRefferalsPage]
-class UserRefferalsRoute extends _i16.PageRouteInfo<void> {
-  const UserRefferalsRoute()
-      : super(
+class UserRefferalsRoute extends _i16.PageRouteInfo<UserRefferalsRouteArgs> {
+  UserRefferalsRoute({
+    required _i18.User user,
+    _i17.Key? key,
+  }) : super(
           UserRefferalsRoute.name,
           path: '/admin-profile/user-refferals',
+          args: UserRefferalsRouteArgs(
+            user: user,
+            key: key,
+          ),
         );
 
   static const String name = 'UserRefferalsRoute';
+}
+
+class UserRefferalsRouteArgs {
+  const UserRefferalsRouteArgs({
+    required this.user,
+    this.key,
+  });
+
+  final _i18.User user;
+
+  final _i17.Key? key;
+
+  @override
+  String toString() {
+    return 'UserRefferalsRouteArgs{user: $user, key: $key}';
+  }
 }
