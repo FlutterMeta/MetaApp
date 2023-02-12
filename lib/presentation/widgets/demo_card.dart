@@ -23,8 +23,8 @@ class DemoCard extends StatefulWidget {
 }
 
 class _DemoCardState extends State<DemoCard> {
-  bool _isEditing = false;
   final _priceController = TextEditingController();
+  bool _isEditing = false;
 
   void _pushTransactionTab() {
     const int transactionTabIndex = 2;
@@ -35,6 +35,12 @@ class _DemoCardState extends State<DemoCard> {
     _priceController.text;
     _priceController.clear();
     setState(() => _isEditing = false);
+  }
+
+  @override
+  dispose() {
+    _priceController.dispose();
+    super.dispose();
   }
 
   @override
@@ -120,7 +126,7 @@ class _PriceSection extends StatelessWidget {
         ),
         isEditing
             ? EditingField(
-                value: price,
+                value: price.toString(),
                 width: 80,
                 controller: controller,
               )
