@@ -150,6 +150,12 @@ class _ManageUserPanelState extends State<_ManageUserPanel> {
   }
 
   @override
+  void dispose() {
+    _priceController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       color: context.color.profilePageSecondaryVariant.withOpacity(0.1),

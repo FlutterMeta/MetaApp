@@ -190,6 +190,14 @@ class _CreateAdminMenuItemState extends State<_CreateAdminMenuItem> {
   }
 
   @override
+  void dispose() {
+    _mailController.dispose();
+    _nameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return _MenuItem(
       onTap: _showDialog,
@@ -275,16 +283,16 @@ final List<String> _mockWallets = [
 ];
 
 class _EditRequisitesMenuItemState extends State<_EditRequisitesMenuItem> {
-  final _walletController1 = TextEditingController(text: _mockWallets.first);
-  final _walletController2 = TextEditingController(text: _mockWallets[1]);
-  final _walletController3 = TextEditingController(text: _mockWallets[2]);
-  final _walletController4 = TextEditingController(text: _mockWallets.last);
+  final _wallet1Controller = TextEditingController(text: _mockWallets.first);
+  final _wallet2Controller = TextEditingController(text: _mockWallets[1]);
+  final _wallet3Controller = TextEditingController(text: _mockWallets[2]);
+  final _wallet4Controller = TextEditingController(text: _mockWallets.last);
 
   void _onConfirm() {
-    _walletController1.text;
-    _walletController2.text;
-    _walletController3.text;
-    _walletController4.text;
+    _wallet1Controller.text;
+    _wallet2Controller.text;
+    _wallet3Controller.text;
+    _wallet4Controller.text;
   }
 
   void _showDialog() {
@@ -301,10 +309,10 @@ class _EditRequisitesMenuItemState extends State<_EditRequisitesMenuItem> {
             ),
             const SizedBox(height: 20),
             _RequisitesFields(
-              walletController1: _walletController1,
-              walletController2: _walletController2,
-              walletController3: _walletController3,
-              walletController4: _walletController4,
+              wallet1Controller: _wallet1Controller,
+              wallet2Controller: _wallet2Controller,
+              wallet3Controller: _wallet3Controller,
+              wallet4Controller: _wallet4Controller,
             ),
             const SizedBox(height: 40),
             _AdminDialogButtons(
@@ -315,6 +323,15 @@ class _EditRequisitesMenuItemState extends State<_EditRequisitesMenuItem> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _wallet1Controller.dispose();
+    _wallet2Controller.dispose();
+    _wallet3Controller.dispose();
+    _wallet4Controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -329,16 +346,16 @@ class _EditRequisitesMenuItemState extends State<_EditRequisitesMenuItem> {
 }
 
 class _RequisitesFields extends StatelessWidget {
-  final TextEditingController walletController1;
-  final TextEditingController walletController2;
-  final TextEditingController walletController3;
-  final TextEditingController walletController4;
+  final TextEditingController wallet1Controller;
+  final TextEditingController wallet2Controller;
+  final TextEditingController wallet3Controller;
+  final TextEditingController wallet4Controller;
 
   const _RequisitesFields({
-    required this.walletController1,
-    required this.walletController2,
-    required this.walletController3,
-    required this.walletController4,
+    required this.wallet1Controller,
+    required this.wallet2Controller,
+    required this.wallet3Controller,
+    required this.wallet4Controller,
     Key? key,
   }) : super(key: key);
 
@@ -349,22 +366,22 @@ class _RequisitesFields extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _LabeledField(
-          controller: walletController1,
+          controller: wallet1Controller,
           label: '${context.localizations.wallet} 1',
         ),
         const SizedBox(height: 16),
         _LabeledField(
-          controller: walletController2,
+          controller: wallet2Controller,
           label: '${context.localizations.wallet} 2',
         ),
         const SizedBox(height: 16),
         _LabeledField(
-          controller: walletController3,
+          controller: wallet3Controller,
           label: '${context.localizations.wallet} 3',
         ),
         const SizedBox(height: 16),
         _LabeledField(
-          controller: walletController4,
+          controller: wallet4Controller,
           label: '${context.localizations.wallet} 4',
         ),
       ],
