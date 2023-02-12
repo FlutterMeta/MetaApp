@@ -190,14 +190,6 @@ class _CreateAdminMenuItemState extends State<_CreateAdminMenuItem> {
   }
 
   @override
-  void dispose() {
-    _mailController.dispose();
-    _nameController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return _MenuItem(
       onTap: _showDialog,
@@ -323,15 +315,6 @@ class _EditRequisitesMenuItemState extends State<_EditRequisitesMenuItem> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _wallet1Controller.dispose();
-    _wallet2Controller.dispose();
-    _wallet3Controller.dispose();
-    _wallet4Controller.dispose();
-    super.dispose();
   }
 
   @override
