@@ -104,7 +104,7 @@ class _LevelCards extends StatelessWidget {
       runSpacing: 16,
       children: List.generate(
         15,
-        (index) => LevelCard.client(
+        (index) => LevelCard(
           level: index + 1,
           reward: index % 2 == 0 ? 300 : 500,
         ),

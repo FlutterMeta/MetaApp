@@ -10,18 +10,11 @@ class BotDemoCard extends StatefulWidget {
   final List<String> benefits;
 
   const BotDemoCard({
-    required String title,
-    required double price,
-    required List<String> benefits,
-    required bool editable,
+    required this.title,
+    required this.price,
+    required this.benefits,
     Key? key,
-  }) : super(
-          title: title,
-          price: price,
-          benefits: benefits,
-          editable: editable,
-          key: key,
-        );
+  }) : super(key: key);
 
   @override
   State<BotDemoCard> createState() => _BotDemoCardState();

@@ -5,18 +5,15 @@ import 'package:meta_app/presentation/widgets/admin_window.dart';
 import 'package:meta_app/presentation/widgets/editing_field.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
-class LevelCard extends SimpleCard {
+class LevelCard extends StatelessWidget {
+  final int level;
+  final double reward;
+
   const LevelCard({
-    required int level,
-    required double reward,
-    required bool editable,
+    required this.level,
+    required this.reward,
     Key? key,
-  }) : super(
-          level: level,
-          reward: reward,
-          editable: editable,
-          key: key,
-        );
+  }) : super(key: key);
 
   double _cardWidth(BuildContext context) {
     if (Responsive.isMobile(context)) {
@@ -127,17 +124,6 @@ class _EditableLevelCardState extends State<EditableLevelCard> {
           );
         },
       ),
-    );
-  }
-
-  factory LevelCard.admin({
-    required int level,
-    required double reward,
-  }) {
-    return LevelCard(
-      level: level,
-      reward: reward,
-      editable: true,
     );
   }
 }

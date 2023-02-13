@@ -120,7 +120,7 @@ class _PriceSection extends StatelessWidget {
         ),
         isEditing
             ? EditingField(
-                value: price,
+                value: price.toString(),
                 width: 80,
                 controller: controller,
               )
