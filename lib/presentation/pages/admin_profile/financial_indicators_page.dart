@@ -88,27 +88,27 @@ class _BotDemoCards extends StatelessWidget {
     final localization = context.localizations;
 
     return [
-      BotDemoCard.admin(
+      EditableBotDemoCard(
         title: localization.pioneer,
         price: 20.39,
         benefits: _basicBenefits(context),
       ),
-      BotDemoCard.admin(
+      EditableBotDemoCard(
         title: localization.adventurer,
         price: 40.22,
         benefits: _basicBenefits(context),
       ),
-      BotDemoCard.admin(
+      EditableBotDemoCard(
         title: localization.hero,
         price: 78.25,
         benefits: _advancedBenefits(context),
       ),
-      BotDemoCard.admin(
+      EditableBotDemoCard(
         title: localization.pioneer,
         price: 3000,
         benefits: _advancedBenefits(context),
       ),
-      BotDemoCard.admin(
+      EditableBotDemoCard(
         title: localization.adventurer,
         price: 5000,
         benefits: _advancedBenefits(context),
@@ -145,7 +145,7 @@ class _LevelCards extends StatelessWidget {
       runSpacing: 16,
       children: List.generate(
         15,
-        (index) => LevelCard.admin(
+        (index) => EditableLevelCard(
           level: index + 1,
           reward: index % 2 == 0 ? 300 : 500,
         ),

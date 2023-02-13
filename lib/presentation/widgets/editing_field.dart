@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
 class EditingField extends StatelessWidget {
-  final dynamic value;
+  final String value;
   final double width;
   final TextEditingController controller;
 
@@ -25,7 +25,7 @@ class EditingField extends StatelessWidget {
         ),
         fillColor: context.color.profilePagePrimary.withOpacity(0.2),
         filled: true,
-        hintText: "$value",
+        hintText: value,
         hintStyle: context.text.profileBotsDefault.copyWith(fontSize: 24),
         constraints: BoxConstraints(
           maxWidth: width,
