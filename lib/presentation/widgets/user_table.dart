@@ -75,7 +75,7 @@ class _UserInformationPanel extends StatelessWidget {
         spacing: 20,
         runSpacing: 20,
         children: [
-          _AvatarCell(user: user),
+          _AvatarCell(userName: user.name),
           _TableCell(
             title: context.localizations.email,
             content: Text(user.email, style: context.text.adminUserTableLabel),
@@ -107,10 +107,10 @@ class _UserInformationPanel extends StatelessWidget {
 }
 
 class _AvatarCell extends StatelessWidget {
-  final User user;
+  final String userName;
 
   const _AvatarCell({
-    required this.user,
+    required this.userName,
     Key? key,
   }) : super(key: key);
 
@@ -127,7 +127,7 @@ class _AvatarCell extends StatelessWidget {
         const SizedBox(width: 8),
         _TableCell(
           title: context.localizations.nickname,
-          content: Text(user.name, style: context.text.adminUserTableLabel),
+          content: Text(userName, style: context.text.adminUserTableLabel),
         ),
       ],
     );
@@ -177,7 +177,7 @@ class _ManageUserPanelState extends State<_ManageUserPanel> {
             title: context.localizations.availableBalance,
             content: Text(
               '${widget.user.availableBalance.toStringAsFixed(0)} \$',
-              style: context.text.headerNavItemHovered.copyWith(fontSize: 15),
+              style: context.text.headerNavItemHovered.copyWith(fontSize: 16),
             ),
           ),
           _TableCell(
@@ -203,7 +203,7 @@ class _ManageUserPanelState extends State<_ManageUserPanel> {
               ),
             ),
           ),
-          SizedBox(width: context.screenWidth * 0.01),
+          const SizedBox(),
           _TableCell(
             title: context.localizations.userProfile,
             content: ColoredButton(
@@ -307,7 +307,7 @@ class _PendingTransactionsRow extends StatelessWidget {
         children: [
           Text(
             user.pendingTransactions.length.toString(),
-            style: context.text.headerNavItemHovered.copyWith(fontSize: 15),
+            style: context.text.headerNavItemHovered.copyWith(fontSize: 16),
           ),
           const SizedBox(width: 10),
           _ShowText(
