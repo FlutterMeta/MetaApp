@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/bot_demo_card.dart';
 import 'package:meta_app/presentation/widgets/level_card.dart';
@@ -13,20 +14,22 @@ class FinancialIndicatorsPage extends StatelessWidget {
     return Scaffold(
       appBar: ProfileHeader.admin(),
       backgroundColor: context.color.profilePageBackground,
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            gradient: context.gradient.lightIndigo,
-          ),
-          child: Column(
-            children: const [
-              _BotDemoCards(),
-              SizedBox(height: 40),
-              _ReferralRewards(),
-              SizedBox(height: 80),
-              RightsReservedFooter(),
-            ],
+      body: Portal(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              gradient: context.gradient.lightIndigo,
+            ),
+            child: Column(
+              children: const [
+                _BotDemoCards(),
+                SizedBox(height: 40),
+                _ReferralRewards(),
+                SizedBox(height: 160),
+                RightsReservedFooter(),
+              ],
+            ),
           ),
         ),
       ),
@@ -85,27 +88,27 @@ class _BotDemoCards extends StatelessWidget {
     final localization = context.localizations;
 
     return [
-      BotDemoCard(
+      EditableBotDemoCard(
         title: localization.pioneer,
         price: 20.39,
         benefits: _basicBenefits(context),
       ),
-      BotDemoCard(
+      EditableBotDemoCard(
         title: localization.adventurer,
         price: 40.22,
         benefits: _basicBenefits(context),
       ),
-      BotDemoCard(
+      EditableBotDemoCard(
         title: localization.hero,
         price: 78.25,
         benefits: _advancedBenefits(context),
       ),
-      BotDemoCard(
+      EditableBotDemoCard(
         title: localization.pioneer,
         price: 3000,
         benefits: _advancedBenefits(context),
       ),
-      BotDemoCard(
+      EditableBotDemoCard(
         title: localization.adventurer,
         price: 5000,
         benefits: _advancedBenefits(context),
@@ -121,6 +124,7 @@ class _BotDemoCards extends StatelessWidget {
       child: Align(
         child: ListView.separated(
           shrinkWrap: true,
+          clipBehavior: Clip.none,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) => _demoCards(context).elementAt(index),
           itemCount: _demoCards(context).length,
@@ -141,7 +145,7 @@ class _LevelCards extends StatelessWidget {
       runSpacing: 16,
       children: List.generate(
         15,
-        (index) => LevelCard(
+        (index) => EditableLevelCard(
           level: index + 1,
           reward: index % 2 == 0 ? 300 : 500,
         ),

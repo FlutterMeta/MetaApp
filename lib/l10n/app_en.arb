@@ -283,5 +283,9 @@
     "allTransactions": "All transactions",
     "financialResults": "Financial results",
     "createAdmin": "Create admin",
-    "auroraUniverseReferralReward": "Aurora Universe Referral Reward Management"
+    "auroraUniverseReferralReward": "Aurora Universe Referral Reward Management",
+    "edit": "Edit",
+    "confirmChanges": "Confirm changes",
+    "levelReward": "Level reward",
+    "approve": "Approve"
 }
