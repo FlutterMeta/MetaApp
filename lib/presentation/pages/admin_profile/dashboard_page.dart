@@ -5,7 +5,7 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/pages/client_profile/sections/dashboard_tab.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import '../../widgets/profile_header/profile_header.dart';
-import '../../widgets/user_table.dart';
+import '../../widgets/user_table/user_table.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -34,7 +34,7 @@ class DashboardPage extends StatelessWidget {
 }
 
 class _HeaderText extends StatelessWidget {
-  const _HeaderText({super.key});
+  const _HeaderText({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

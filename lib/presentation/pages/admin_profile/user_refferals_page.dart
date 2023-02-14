@@ -3,7 +3,7 @@ import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import '../../widgets/profile_header/profile_header.dart';
 import '../../widgets/rights_reserved_footer.dart';
-import '../../widgets/user_table.dart';
+import '../../widgets/user_table/user_table.dart';
 
 class UserRefferalsPage extends StatelessWidget {
   final User user;
@@ -28,7 +28,7 @@ class UserRefferalsPage extends StatelessWidget {
                   const SizedBox(height: 20),
                   const _HeaderText(),
                   const SizedBox(height: 60),
-                  UserSummaryInfo(user: user),
+                  UserGeneralInfoPanel(user: user),
                   UserTable(users: user.referrals),
                   const SizedBox(height: 100),
                   const RightsReservedFooter(),
@@ -44,7 +44,7 @@ class UserRefferalsPage extends StatelessWidget {
 }
 
 class _HeaderText extends StatelessWidget {
-  const _HeaderText({super.key});
+  const _HeaderText({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
