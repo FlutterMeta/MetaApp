@@ -121,6 +121,7 @@ class AppRouter extends _i16.RootStackRouter {
         routeData: routeData,
         child: _i12.UserTransactionsPage(
           user: args.user,
+          userName: args.userName,
           key: args.key,
         ),
       );
@@ -143,6 +144,7 @@ class AppRouter extends _i16.RootStackRouter {
         routeData: routeData,
         child: _i15.UserRefferalsPage(
           user: args.user,
+          userName: args.userName,
           key: args.key,
         ),
       );
@@ -197,7 +199,7 @@ class AppRouter extends _i16.RootStackRouter {
         ),
         _i16.RouteConfig(
           UserTransactionsRoute.name,
-          path: '/admin-profile/user-transactions',
+          path: '/admin-profile/user-transactions/:userName',
         ),
         _i16.RouteConfig(
           DashboardRoute.name,
@@ -209,7 +211,7 @@ class AppRouter extends _i16.RootStackRouter {
         ),
         _i16.RouteConfig(
           UserRefferalsRoute.name,
-          path: '/admin-profile/user-refferals',
+          path: '/admin-profile/user-refferals/:userName',
         ),
       ];
 }
@@ -424,14 +426,17 @@ class UserTransactionsRoute
     extends _i16.PageRouteInfo<UserTransactionsRouteArgs> {
   UserTransactionsRoute({
     required _i18.User user,
+    required String userName,
     _i17.Key? key,
   }) : super(
           UserTransactionsRoute.name,
-          path: '/admin-profile/user-transactions',
+          path: '/admin-profile/user-transactions/:userName',
           args: UserTransactionsRouteArgs(
             user: user,
+            userName: userName,
             key: key,
           ),
+          rawPathParams: {'userName': userName},
         );
 
   static const String name = 'UserTransactionsRoute';
@@ -440,16 +445,19 @@ class UserTransactionsRoute
 class UserTransactionsRouteArgs {
   const UserTransactionsRouteArgs({
     required this.user,
+    required this.userName,
     this.key,
   });
 
   final _i18.User user;
 
+  final String userName;
+
   final _i17.Key? key;
 
   @override
   String toString() {
-    return 'UserTransactionsRouteArgs{user: $user, key: $key}';
+    return 'UserTransactionsRouteArgs{user: $user, userName: $userName, key: $key}';
   }
 }
 
@@ -482,14 +490,17 @@ class TransactionsRoute extends _i16.PageRouteInfo<void> {
 class UserRefferalsRoute extends _i16.PageRouteInfo<UserRefferalsRouteArgs> {
   UserRefferalsRoute({
     required _i18.User user,
+    required String userName,
     _i17.Key? key,
   }) : super(
           UserRefferalsRoute.name,
-          path: '/admin-profile/user-refferals',
+          path: '/admin-profile/user-refferals/:userName',
           args: UserRefferalsRouteArgs(
             user: user,
+            userName: userName,
             key: key,
           ),
+          rawPathParams: {'userName': userName},
         );
 
   static const String name = 'UserRefferalsRoute';
@@ -498,15 +509,18 @@ class UserRefferalsRoute extends _i16.PageRouteInfo<UserRefferalsRouteArgs> {
 class UserRefferalsRouteArgs {
   const UserRefferalsRouteArgs({
     required this.user,
+    required this.userName,
     this.key,
   });
 
   final _i18.User user;
 
+  final String userName;
+
   final _i17.Key? key;
 
   @override
   String toString() {
-    return 'UserRefferalsRouteArgs{user: $user, key: $key}';
+    return 'UserRefferalsRouteArgs{user: $user, userName: $userName, key: $key}';
   }
 }

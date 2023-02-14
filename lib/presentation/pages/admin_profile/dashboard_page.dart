@@ -66,7 +66,7 @@ final List<User> usersExampleList = List.generate(
     referrals: List.generate(
       3,
       (index) => User(
-        name: 'Referali Italiano $index',
+        name: 'Referali$index',
         email: 'referalimail$index@mail.com',
         referralLevel: index + 2,
         availableBalance: Random().nextDouble() * 100000 + 100,
