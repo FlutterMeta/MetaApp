@@ -150,28 +150,6 @@ class _CreateAdminMenuItem extends StatefulWidget {
 }
 
 class _CreateAdminMenuItemState extends State<_CreateAdminMenuItem> {
-  final _mailController = TextEditingController();
-  final _nameController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  void _onConfirm() {
-    _mailController.text;
-    _nameController.text;
-    _passwordController.text;
-    _disposeControllers();
-  }
-
-  void _onCancel() {
-    Navigator.pop(context);
-    _disposeControllers();
-  }
-
-  void _disposeControllers() {
-    _mailController.dispose();
-    _nameController.dispose();
-    _passwordController.dispose();
-  }
-
   void _showDialog() {
     widget.closeMenuCallback.call();
     showDialog(
@@ -185,16 +163,8 @@ class _CreateAdminMenuItemState extends State<_CreateAdminMenuItem> {
               style: context.text.profileBotsDefault.copyWith(fontSize: 20),
             ),
             const SizedBox(height: 20),
-            _AdminCreationFields(
-              mailController: _mailController,
-              nameController: _nameController,
-              passwordController: _passwordController,
-            ),
+            const _AdminCreationFields(),
             const SizedBox(height: 40),
-            _AdminDialogButtons(
-              onConfirm: _onConfirm,
-              onCancel: _onCancel,
-            ),
           ],
         ),
       ),
@@ -287,31 +257,6 @@ final List<String> _mockWallets = [
 ];
 
 class _EditRequisitesMenuItemState extends State<_EditRequisitesMenuItem> {
-  final _wallet1Controller = TextEditingController(text: _mockWallets.first);
-  final _wallet2Controller = TextEditingController(text: _mockWallets[1]);
-  final _wallet3Controller = TextEditingController(text: _mockWallets[2]);
-  final _wallet4Controller = TextEditingController(text: _mockWallets.last);
-
-  void _onConfirm() {
-    _wallet1Controller.text;
-    _wallet2Controller.text;
-    _wallet3Controller.text;
-    _wallet4Controller.text;
-    _disposeControllers();
-  }
-
-  void _onCancel() {
-    Navigator.pop(context);
-    _disposeControllers();
-  }
-
-  void _disposeControllers() {
-    _wallet1Controller.dispose();
-    _wallet2Controller.dispose();
-    _wallet3Controller.dispose();
-    _wallet4Controller.dispose();
-  }
-
   void _showDialog() {
     widget.closeMenuCallback.call();
     showDialog(
@@ -325,17 +270,7 @@ class _EditRequisitesMenuItemState extends State<_EditRequisitesMenuItem> {
               style: context.text.profileBotsDefault.copyWith(fontSize: 20),
             ),
             const SizedBox(height: 20),
-            _RequisitesFields(
-              wallet1Controller: _wallet1Controller,
-              wallet2Controller: _wallet2Controller,
-              wallet3Controller: _wallet3Controller,
-              wallet4Controller: _wallet4Controller,
-            ),
-            const SizedBox(height: 40),
-            _AdminDialogButtons(
-              onConfirm: _onConfirm,
-              onCancel: _onCancel,
-            ),
+            const _RequisitesFields(),
           ],
         ),
       ),
@@ -353,19 +288,34 @@ class _EditRequisitesMenuItemState extends State<_EditRequisitesMenuItem> {
   }
 }
 
-class _RequisitesFields extends StatelessWidget {
-  final TextEditingController wallet1Controller;
-  final TextEditingController wallet2Controller;
-  final TextEditingController wallet3Controller;
-  final TextEditingController wallet4Controller;
+class _RequisitesFields extends StatefulWidget {
+  const _RequisitesFields({Key? key}) : super(key: key);
 
-  const _RequisitesFields({
-    required this.wallet1Controller,
-    required this.wallet2Controller,
-    required this.wallet3Controller,
-    required this.wallet4Controller,
-    Key? key,
-  }) : super(key: key);
+  @override
+  State<_RequisitesFields> createState() => _RequisitesFieldsState();
+}
+
+class _RequisitesFieldsState extends State<_RequisitesFields> {
+  final _wallet1Controller = TextEditingController(text: _mockWallets.first);
+  final _wallet2Controller = TextEditingController(text: _mockWallets[1]);
+  final _wallet3Controller = TextEditingController(text: _mockWallets[2]);
+  final _wallet4Controller = TextEditingController(text: _mockWallets.last);
+
+  void _onConfirm() {
+    _wallet1Controller.text;
+    _wallet2Controller.text;
+    _wallet3Controller.text;
+    _wallet4Controller.text;
+  }
+
+  @override
+  void dispose() {
+    _wallet1Controller.dispose();
+    _wallet2Controller.dispose();
+    _wallet3Controller.dispose();
+    _wallet4Controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -374,40 +324,59 @@ class _RequisitesFields extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _LabeledField(
-          controller: wallet1Controller,
+          controller: _wallet1Controller,
           label: '${context.localizations.wallet} 1',
         ),
         const SizedBox(height: 16),
         _LabeledField(
-          controller: wallet2Controller,
+          controller: _wallet2Controller,
           label: '${context.localizations.wallet} 2',
         ),
         const SizedBox(height: 16),
         _LabeledField(
-          controller: wallet3Controller,
+          controller: _wallet3Controller,
           label: '${context.localizations.wallet} 3',
         ),
         const SizedBox(height: 16),
         _LabeledField(
-          controller: wallet4Controller,
+          controller: _wallet4Controller,
           label: '${context.localizations.wallet} 4',
+        ),
+        const SizedBox(height: 40),
+        _AdminDialogButtons(
+          onConfirm: _onConfirm,
+          onCancel: () => Navigator.pop(context),
         ),
       ],
     );
   }
 }
 
-class _AdminCreationFields extends StatelessWidget {
-  final TextEditingController mailController;
-  final TextEditingController nameController;
-  final TextEditingController passwordController;
+class _AdminCreationFields extends StatefulWidget {
+  const _AdminCreationFields({Key? key}) : super(key: key);
 
-  const _AdminCreationFields({
-    required this.mailController,
-    required this.nameController,
-    required this.passwordController,
-    Key? key,
-  }) : super(key: key);
+  @override
+  State<_AdminCreationFields> createState() => _AdminCreationFieldsState();
+}
+
+class _AdminCreationFieldsState extends State<_AdminCreationFields> {
+  final _mailController = TextEditingController();
+  final _nameController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  void _onConfirm() {
+    _mailController.text;
+    _nameController.text;
+    _passwordController.text;
+  }
+
+  @override
+  void dispose() {
+    _mailController.dispose();
+    _nameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -416,18 +385,23 @@ class _AdminCreationFields extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _LabeledField(
-          controller: mailController,
+          controller: _mailController,
           label: context.localizations.email,
         ),
         const SizedBox(height: 16),
         _LabeledField(
-          controller: nameController,
+          controller: _nameController,
           label: context.localizations.nickname,
         ),
         const SizedBox(height: 16),
         _LabeledField(
-          controller: passwordController,
+          controller: _passwordController,
           label: context.localizations.password,
+        ),
+        const SizedBox(height: 16),
+        _AdminDialogButtons(
+          onConfirm: _onConfirm,
+          onCancel: () => Navigator.pop(context),
         ),
       ],
     );
