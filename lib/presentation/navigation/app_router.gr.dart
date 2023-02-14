@@ -14,6 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i16;
 import 'package:flutter/material.dart' as _i17;
 
+import '../../data/models/user.dart' as _i18;
 import '../pages/admin_profile/dashboard_page.dart' as _i13;
 import '../pages/admin_profile/financial_indicators_page.dart' as _i11;
 import '../pages/admin_profile/transactions_page.dart' as _i14;
@@ -29,7 +30,6 @@ import '../pages/products_page/products_page.dart' as _i4;
 import '../pages/registration_page.dart' as _i3;
 import '../pages/reset_access_page.dart' as _i9;
 import '../pages/reset_password_page.dart' as _i8;
-import '../widgets/user_table.dart' as _i18;
 
 class AppRouter extends _i16.RootStackRouter {
   AppRouter([_i17.GlobalKey<_i17.NavigatorState>? navigatorKey])

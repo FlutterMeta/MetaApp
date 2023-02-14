@@ -158,6 +158,18 @@ class _CreateAdminMenuItemState extends State<_CreateAdminMenuItem> {
     _mailController.text;
     _nameController.text;
     _passwordController.text;
+    _disposeControllers();
+  }
+
+  void _onCancel() {
+    Navigator.pop(context);
+    _disposeControllers();
+  }
+
+  void _disposeControllers() {
+    _mailController.dispose();
+    _nameController.dispose();
+    _passwordController.dispose();
   }
 
   void _showDialog() {
@@ -181,7 +193,7 @@ class _CreateAdminMenuItemState extends State<_CreateAdminMenuItem> {
             const SizedBox(height: 40),
             _AdminDialogButtons(
               onConfirm: _onConfirm,
-              onCancel: () => Navigator.of(context).pop(),
+              onCancel: _onCancel,
             ),
           ],
         ),
@@ -285,6 +297,19 @@ class _EditRequisitesMenuItemState extends State<_EditRequisitesMenuItem> {
     _wallet2Controller.text;
     _wallet3Controller.text;
     _wallet4Controller.text;
+    _disposeControllers();
+  }
+
+  void _onCancel() {
+    Navigator.pop(context);
+    _disposeControllers();
+  }
+
+  void _disposeControllers() {
+    _wallet1Controller.dispose();
+    _wallet2Controller.dispose();
+    _wallet3Controller.dispose();
+    _wallet4Controller.dispose();
   }
 
   void _showDialog() {
@@ -309,7 +334,7 @@ class _EditRequisitesMenuItemState extends State<_EditRequisitesMenuItem> {
             const SizedBox(height: 40),
             _AdminDialogButtons(
               onConfirm: _onConfirm,
-              onCancel: () => Navigator.pop(context),
+              onCancel: _onCancel,
             ),
           ],
         ),
