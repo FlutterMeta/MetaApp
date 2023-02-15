@@ -14,7 +14,7 @@ class SearchBar extends StatelessWidget {
       ),
       width: Responsive.isDesktop(context)
           ? context.screenWidth * 0.4
-          : context.screenWidth * 0.5,
+          : context.screenWidth * 0.58,
       child: TextField(
         decoration: InputDecoration(
           border: InputBorder.none,

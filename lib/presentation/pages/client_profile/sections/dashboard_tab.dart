@@ -10,6 +10,8 @@ import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 
+import '../../../../data/models/transaction.dart';
+
 class DashboardTab extends StatelessWidget {
   const DashboardTab({super.key});
 
@@ -668,20 +670,4 @@ class _StatusChip extends StatelessWidget {
       ),
     );
   }
-}
-
-class Transaction {
-  final String network;
-  final String amount;
-  final String date;
-  final String status;
-  final String type;
-
-  Transaction(this.network, this.amount, this.date, this.status, this.type);
-}
-
-enum TransactionStatus {
-  completed,
-  pending,
-  canceled;
 }
