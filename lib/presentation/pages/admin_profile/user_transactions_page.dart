@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import '../../../data/models/user.dart';
 import '../../widgets/profile_header/profile_header.dart';
 import '../../widgets/user_table/user_table.dart';
 
