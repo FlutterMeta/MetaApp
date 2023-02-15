@@ -31,26 +31,21 @@ class UserTable extends StatelessWidget {
       alignment: Alignment.center,
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1270),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (_, index) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    _UserInformationPanel(user: users[index]),
-                    const Divider(),
-                    _ManageUserPanel(user: users[index]),
-                  ],
-                );
-              },
-              separatorBuilder: (_, __) => const Divider(),
-              itemCount: users.length,
-            ),
-          ],
+        child: ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (_, index) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _UserInformationPanel(user: users[index]),
+                const Divider(),
+                _ManageUserPanel(user: users[index]),
+              ],
+            );
+          },
+          separatorBuilder: (_, __) => const Divider(),
+          itemCount: users.length,
         ),
       ),
     );
