@@ -2,8 +2,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile/sections/dashboard_tab.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
+import '../../../data/models/transaction.dart';
+import '../../../data/models/user.dart';
 import '../../widgets/profile_header/profile_header.dart';
 import '../../widgets/user_table/user_table.dart';
 

@@ -8,7 +8,7 @@ import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/editing_field.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
-import '../../pages/client_profile/sections/dashboard_tab.dart';
+import '../../../data/models/user.dart';
 
 part 'components/user_information_panel.dart';
 part 'components/avatar_cell.dart';
@@ -55,24 +55,4 @@ class UserTable extends StatelessWidget {
       ),
     );
   }
-}
-
-class User {
-  final String name;
-  final String email;
-  final int referralLevel;
-  final double availableBalance;
-  final List<Transaction> pendingTransactions;
-  final List<Transaction> transactionsHistory;
-  final List<User> referrals;
-
-  const User({
-    required this.name,
-    required this.email,
-    required this.referralLevel,
-    required this.availableBalance,
-    required this.pendingTransactions,
-    required this.transactionsHistory,
-    required this.referrals,
-  });
 }
