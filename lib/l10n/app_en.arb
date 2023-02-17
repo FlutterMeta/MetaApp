@@ -306,5 +306,7 @@
     "password": "Password",
     "wallet": "Wallet",
     "@_USER_REFERRALS_PAGE": {},
-    "userReferrals": "User referrals"
+    "userReferrals": "User referrals",
+    "@_TRANSACTIIONS_PAGE": {},
+    "allSystemTransactions": "All system transactions"
 }
