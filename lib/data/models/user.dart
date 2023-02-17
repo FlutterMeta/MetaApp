@@ -18,4 +18,13 @@ class User {
     required this.transactionsHistory,
     required this.referrals,
   });
+
+  User.empty()
+      : name = '',
+        email = '',
+        referralLevel = 0,
+        availableBalance = 0,
+        pendingTransactions = [],
+        transactionsHistory = [],
+        referrals = [];
 }

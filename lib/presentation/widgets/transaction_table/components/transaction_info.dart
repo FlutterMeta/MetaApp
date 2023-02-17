@@ -1,52 +1,12 @@
-import 'package:flutter/material.dart';
-import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-
-import '../../data/models/transaction.dart';
-
-class TransactionTable extends StatelessWidget {
-  final List<Transaction> transactions;
-
-  const TransactionTable({
-    required this.transactions,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: context.color.profilePageBackground,
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
-      ),
-      constraints: const BoxConstraints(maxWidth: 1200),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-      child: Column(
-        children: [
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: transactions.length,
-            itemBuilder: (_, index) {
-              return _TransactionInfo(transaction: transactions[index]);
-            },
-            separatorBuilder: (_, __) {
-              return const Padding(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: SizedBox(),
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
+part of '../transaction_table.dart';
 
 class _TransactionInfo extends StatelessWidget {
+  final Widget leading;
   final Transaction transaction;
 
   const _TransactionInfo({
     required this.transaction,
+    required this.leading,
     Key? key,
   }) : super(key: key);
 
@@ -73,34 +33,7 @@ class _TransactionInfo extends StatelessWidget {
       spacing: 10,
       runSpacing: 10,
       children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: context.color.profilePageAboveBackground,
-              ),
-            ),
-            const SizedBox(width: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  transaction.network,
-                  style: transactionTextStyle(context),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  context.localizations.paymentSystem,
-                  style: context.text.profilePageSubtitle,
-                ),
-              ],
-            ),
-          ],
-        ),
+        leading,
         SizedBox(
           width: 200,
           child: Column(

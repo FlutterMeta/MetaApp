@@ -8,10 +8,11 @@ import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/level_card.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
-import 'package:meta_app/presentation/widgets/transaction_table.dart';
+import 'package:meta_app/presentation/widgets/transaction_table/transaction_table.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 
 import '../../../../data/models/transaction.dart';
+import '../../../../data/models/user.dart';
 
 class DashboardTab extends StatelessWidget {
   const DashboardTab({super.key});
@@ -462,25 +463,28 @@ class _TransactionsHistorySection extends StatelessWidget {
 
   static final _transactions = [
     Transaction(
-      'Tether (TRC20)',
-      '1000.000',
-      '12 October 2022, 19:23',
-      'completed',
-      'Deposit',
+      network: 'Tether (TRC20)',
+      amount: '1000.000',
+      user: User.empty(),
+      date: '12 October 2020, 19:23',
+      status: 'completed',
+      type: 'Deposit',
     ),
     Transaction(
-      'Tether (TRC20)',
-      '11.000',
-      '1 January 2023, 10:23',
-      'pending',
-      'Withdraw',
+      network: 'Tether (TRC20)',
+      amount: '1000.000',
+      user: User.empty(),
+      date: '12 October 2020, 19:23',
+      status: 'canceled',
+      type: 'Deposit',
     ),
     Transaction(
-      'Tether (TRC20)',
-      '1000.000',
-      '12 October 2020, 19:23',
-      'canceled',
-      'Deposit',
+      network: 'Tether (TRC20)',
+      amount: '1000.000',
+      user: User.empty(),
+      date: '12 October 2020, 19:23',
+      status: 'pending',
+      type: 'Deposit',
     ),
   ];
   @override
@@ -498,7 +502,7 @@ class _TransactionsHistorySection extends StatelessWidget {
           style: context.text.profilePageSubtitle,
         ),
         const SizedBox(height: 30),
-        TransactionTable(transactions: _transactions),
+        TransactionTable.user(transactions: _transactions),
       ],
     );
   }
