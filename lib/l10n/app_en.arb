@@ -314,5 +314,6 @@
     "userTransactions": "User transactions",
     "operation": "Operation",
     "paySystem": "Pay. system",
-    "note": "Note"
+    "note": "Note",
+    "pending": "Pending"
 }

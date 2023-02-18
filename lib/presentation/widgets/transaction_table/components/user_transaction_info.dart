@@ -43,7 +43,7 @@ class _PaymentLeading extends StatelessWidget {
           width: 50,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
-            color: context.color.profilePageAboveBackground,
+            color: context.color.profilePageSecondaryVariant,
           ),
         ),
         const SizedBox(width: 20),
