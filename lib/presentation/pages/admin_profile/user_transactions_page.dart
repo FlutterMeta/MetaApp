@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/user_table/user_table.dart';
 import '../../../data/models/transaction.dart';
@@ -169,6 +170,18 @@ class _FilterWindow extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  void _clearFields() {
+    operationFieldController.clear();
+    statusFieldController.clear();
+    paymentSystemFieldController.clear();
+    noteFieldController.clear();
+  }
+
+  void _handleShowAllButtonTap() {
+    _clearFields();
+    onFieldChanged();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -233,6 +246,14 @@ class _FilterWindow extends StatelessWidget {
                   controller: noteFieldController,
                 ),
               ],
+            ),
+          ),
+          const _Divider(),
+          Align(
+            child: ColoredButton(
+              title: context.localizations.showAll,
+              color: context.color.profilePageSecondaryVariant,
+              onTap: _handleShowAllButtonTap,
             ),
           ),
         ],

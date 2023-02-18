@@ -315,5 +315,6 @@
     "operation": "Operation",
     "paySystem": "Pay. system",
     "note": "Note",
-    "pending": "Pending"
+    "pending": "Pending",
+    "showAll": "Show all"
 }
