@@ -13,10 +13,12 @@ import '../../widgets/transaction_table/transaction_table.dart';
 class UserTransactionsPage extends StatelessWidget {
   final User user;
   final String userName;
+  final bool? showPendingTransactions;
 
   const UserTransactionsPage({
     required this.user,
     @PathParam('userName') required this.userName,
+    this.showPendingTransactions,
     Key? key,
   }) : super(key: key);
 
@@ -46,6 +48,7 @@ class UserTransactionsPage extends StatelessWidget {
                   UserGeneralInfoPanel(user: user),
                   const SizedBox(height: 20),
                   _TransactionTableWithFilter(
+                    showPendingTransactions: showPendingTransactions ?? false,
                     transactionsHistory: user.transactionsHistory,
                   ),
                   const SizedBox(height: 40),
@@ -66,9 +69,11 @@ class UserTransactionsPage extends StatelessWidget {
 
 class _TransactionTableWithFilter extends StatefulWidget {
   final List<Transaction> transactionsHistory;
+  final bool showPendingTransactions;
 
   const _TransactionTableWithFilter({
     required this.transactionsHistory,
+    required this.showPendingTransactions,
     Key? key,
   }) : super(key: key);
 
@@ -101,9 +106,21 @@ class __TransactionTableWithFilterState
     setState(() => transactionsHistory = result);
   }
 
+  List<Transaction> _getPendingTransactions() {
+    return widget.transactionsHistory.where((transaction) {
+      return transaction.status.toLowerCase() == 'pending';
+    }).toList();
+  }
+
   @override
   void initState() {
-    transactionsHistory = widget.transactionsHistory;
+    if (widget.showPendingTransactions) {
+      transactionsHistory = _getPendingTransactions();
+      _statusFieldController.text = 'Pending';
+    } else {
+      widget.transactionsHistory;
+    }
+
     super.initState();
   }
 

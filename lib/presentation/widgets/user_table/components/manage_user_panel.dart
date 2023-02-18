@@ -177,8 +177,11 @@ class _PendingTransactionsRow extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           _ShowTextButton(
-            onTap: () => context.router
-                .push(UserTransactionsRoute(user: user, userName: user.name)),
+            onTap: () => context.router.push(UserTransactionsRoute(
+              user: user,
+              userName: user.name,
+              showPendingTransactions: true,
+            )),
           ),
         ],
       ),

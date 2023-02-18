@@ -84,7 +84,7 @@ List<Transaction> _generateTransactions() {
   return List.generate(
     10,
     (index) => Transaction(
-      network: 'Tether (TRC20)',
+      network: index % 2 == 0 ? 'Tether (TRC20)' : 'Tron (TRX)',
       amount: Random().nextDouble() * 100000 + 100,
       user: User.empty(),
       date: '',
