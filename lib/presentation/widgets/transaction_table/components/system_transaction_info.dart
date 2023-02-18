@@ -30,8 +30,13 @@ class _SystemTransactionInfoState extends State<_SystemTransactionInfo> {
         onTap: () => setState(() => isPopupVisible = !isPopupVisible),
         child: PortalTarget(
           visible: isPopupVisible,
+          anchor: const Aligned(
+            follower: Alignment.topRight,
+            target: Alignment.topLeft,
+          ),
           portalFollower: _PopupDialog(
             onConfirm: () {},
+            transaction: widget.transaction,
             onCancel: () => setState(() => isPopupVisible = false),
           ),
           child: _StatusChip(status: parse(widget.transaction.status)),
@@ -45,21 +50,68 @@ class _SystemTransactionInfoState extends State<_SystemTransactionInfo> {
 class _PopupDialog extends StatelessWidget {
   final VoidCallback onConfirm;
   final VoidCallback onCancel;
+  final Transaction transaction;
 
   const _PopupDialog({
     required this.onConfirm,
     required this.onCancel,
+    required this.transaction,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AdminWindow(
-      title: context.localizations.aboutAurora,
-      content: Column(),
-      confirmText: context.localizations.aboutAurora,
-      onConfirm: onConfirm,
-      onCancel: onCancel,
+    return ConstrainedBox(
+      constraints:
+          BoxConstraints(maxWidth: Responsive.isMobile(context) ? 340 : 400),
+      child: AdminWindow(
+        title: context.localizations.requestAwaitingPayment,
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _TextTile(
+              title: context.localizations.walletAdress,
+              value: transaction.destinationAddress.toString(),
+            ),
+            _TextTile(
+              title: context.localizations.network,
+              value: transaction.network,
+            ),
+            _TextTile(
+              title: context.localizations.transactionAmount,
+              value: "${transaction.amount.toStringAsFixed(2)} \$",
+            ),
+          ],
+        ),
+        confirmText: context.localizations.confirmRequest,
+        onConfirm: onConfirm,
+        onCancel: onCancel,
+      ),
+    );
+  }
+}
+
+class _TextTile extends StatelessWidget {
+  final String title;
+  final String value;
+
+  const _TextTile({
+    required this.title,
+    required this.value,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Wrap(
+        alignment: WrapAlignment.spaceBetween,
+        children: [
+          SizedBox(width: 120, child: Text(title)),
+          SizedBox(width: 240, child: Text(value)),
+        ],
+      ),
     );
   }
 }

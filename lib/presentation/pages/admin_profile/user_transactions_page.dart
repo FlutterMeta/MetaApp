@@ -5,6 +5,7 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/user_table/user_table.dart';
+
 import '../../../data/models/transaction.dart';
 import '../../../data/models/user.dart';
 import '../../widgets/profile_header/profile_header.dart';
@@ -52,7 +53,7 @@ class UserTransactionsPage extends StatelessWidget {
                     showPendingTransactions: showPendingTransactions ?? false,
                     transactionsHistory: user.transactionsHistory,
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 140),
                   const Align(
                     alignment: Alignment.center,
                     child: RightsReservedFooter(),

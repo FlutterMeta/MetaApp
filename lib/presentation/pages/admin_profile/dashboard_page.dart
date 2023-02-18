@@ -57,7 +57,7 @@ final List<User> usersExampleList = List.generate(
   10,
   (index) {
     final transactions = _generateTransactions();
-    
+
     return User(
       name: 'shookones$index',
       email: 'usermail$index@mail.com',
@@ -92,6 +92,7 @@ List<Transaction> _generateTransactions() {
       user: User.empty(),
       date: '',
       note: '$index',
+      destinationAddress: "Tw9a8zmv6c4u2rk1w3o0f12c63hs2saq",
       status: Random().nextBool() ? 'pending' : 'completed',
       type: index % 2 == 0 ? 'withdraw' : 'deposit',
     ),

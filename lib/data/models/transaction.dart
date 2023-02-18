@@ -7,6 +7,7 @@ class Transaction {
   final String status;
   final String type;
   final String note;
+  final String destinationAddress;
   final User user;
 
   Transaction({
@@ -16,6 +17,7 @@ class Transaction {
     required this.date,
     required this.status,
     required this.note,
+    required this.destinationAddress,
     required this.type,
   });
 
@@ -25,6 +27,7 @@ class Transaction {
         amount = 0.0,
         date = '',
         status = '',
+        destinationAddress = '',
         note = '',
         type = '';
 }

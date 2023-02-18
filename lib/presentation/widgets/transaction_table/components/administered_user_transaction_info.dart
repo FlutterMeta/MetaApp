@@ -24,16 +24,27 @@ class _AdministeredUserTransactionInfoState
     );
   }
 
+  void _handleTap() {
+    if (widget.transaction.status == "pending") {
+      setState(() => isPopupVisible = !isPopupVisible);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return _TransactionInfo(
       transaction: widget.transaction,
       trailing: GestureDetector(
-        onTap: () => setState(() => isPopupVisible = !isPopupVisible),
+        onTap: _handleTap,
         child: PortalTarget(
           visible: isPopupVisible,
+          anchor: const Aligned(
+            follower: Alignment.topRight,
+            target: Alignment.topRight,
+          ),
           portalFollower: _PopupDialog(
             onConfirm: () {},
+            transaction: widget.transaction,
             onCancel: () => setState(() => isPopupVisible = false),
           ),
           child: _StatusChip(status: parse(widget.transaction.status)),

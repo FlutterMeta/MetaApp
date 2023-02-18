@@ -63,12 +63,14 @@ final mockTransactions = [
     ),
     note: "",
     date: '12 October 2020, 19:23',
+    destinationAddress: "0x000000000",
     status: 'completed',
     type: 'Deposit',
   ),
   Transaction(
     network: 'Tether (TRC20)',
     amount: 1000.000,
+    destinationAddress: "0x000000000",
     user: const User(
       name: ' ',
       email: 'awdawdawd@mail.com',

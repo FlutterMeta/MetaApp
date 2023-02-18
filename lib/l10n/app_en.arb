@@ -316,5 +316,9 @@
     "paySystem": "Pay. system",
     "note": "Note",
     "pending": "Pending",
-    "showAll": "Show all"
+    "showAll": "Show all",
+    "requestAwaitingPayment": "Request awaiting payment",
+    "walletAdress": "Wallet adress",
+    "transactionAmount": "Transaction amount",
+    "network": "Network"
 }
