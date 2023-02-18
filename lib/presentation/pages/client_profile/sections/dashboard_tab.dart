@@ -468,6 +468,7 @@ class _TransactionsHistorySection extends StatelessWidget {
       user: User.empty(),
       date: '12 October 2020, 19:23',
       status: 'completed',
+      note: "",
       type: 'Deposit',
     ),
     Transaction(
@@ -476,6 +477,7 @@ class _TransactionsHistorySection extends StatelessWidget {
       user: User.empty(),
       date: '12 October 2020, 19:23',
       status: 'canceled',
+      note: "",
       type: 'Deposit',
     ),
     Transaction(
@@ -484,6 +486,7 @@ class _TransactionsHistorySection extends StatelessWidget {
       user: User.empty(),
       date: '12 October 2020, 19:23',
       status: 'pending',
+      note: "",
       type: 'Deposit',
     ),
   ];

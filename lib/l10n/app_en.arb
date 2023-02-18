@@ -311,5 +311,8 @@
     "allSystemTransactions": "All system transactions",
     "confirmRequest": "Confirm request",
     "declineRequest": "Decline request",
-    "userTransactions": "User transactions"
+    "userTransactions": "User transactions",
+    "operation": "Operation",
+    "paySystem": "Pay. system",
+    "note": "Note"
 }

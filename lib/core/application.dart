@@ -42,7 +42,7 @@ class Application extends StatelessWidget {
           themeMode: vm.themeMode,
           routerDelegate: AutoRouterDelegate(
             appRouter,
-            initialRoutes: const [TransactionsRoute()],
+            initialRoutes: const [DashboardRoute()],
             navigatorObservers: () => [RouterObserver()],
           ),
           routeInformationParser: appRouter.defaultRouteParser(),
