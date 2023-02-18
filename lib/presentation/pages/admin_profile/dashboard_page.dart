@@ -55,29 +55,32 @@ class _HeaderText extends StatelessWidget {
 
 final List<User> usersExampleList = List.generate(
   10,
-  (index) => User(
-    name: 'shookones$index',
-    email: 'usermail$index@mail.com',
-    referralLevel: index,
-    availableBalance: Random().nextDouble() * 100000 + 100,
-    pendingTransactions:
-        List.generate(Random().nextInt(4), (_) => Transaction.empty()),
-    transactionsHistory: _generateTransactions(),
-    referrals: List.generate(
-      3,
-      (index) => User(
-        name: 'Referali$index',
-        email: 'referalimail$index@mail.com',
-        referralLevel: index + 2,
-        availableBalance: Random().nextDouble() * 100000 + 100,
-        pendingTransactions:
-            List.generate(Random().nextInt(4), (_) => Transaction.empty()),
-        transactionsHistory:
-            List.generate(Random().nextInt(10), (_) => Transaction.empty()),
-        referrals: [],
+  (index) {
+    final transactions = _generateTransactions();
+    
+    return User(
+      name: 'shookones$index',
+      email: 'usermail$index@mail.com',
+      referralLevel: index,
+      availableBalance: Random().nextDouble() * 100000 + 100,
+      pendingTransactions:
+          transactions.where((element) => element.status == 'pending').toList(),
+      transactionsHistory: transactions,
+      referrals: List.generate(
+        3,
+        (index) => User(
+          name: 'Referali$index',
+          email: 'referalimail$index@mail.com',
+          referralLevel: index + 2,
+          availableBalance: Random().nextDouble() * 100000 + 100,
+          pendingTransactions: [],
+          transactionsHistory:
+              List.generate(Random().nextInt(10), (_) => Transaction.empty()),
+          referrals: [],
+        ),
       ),
-    ),
-  ),
+    );
+  },
 );
 
 List<Transaction> _generateTransactions() {
@@ -89,7 +92,7 @@ List<Transaction> _generateTransactions() {
       user: User.empty(),
       date: '',
       note: '$index',
-      status: index % 2 == 0 ? 'pending' : 'completed',
+      status: Random().nextBool() ? 'pending' : 'completed',
       type: index % 2 == 0 ? 'withdraw' : 'deposit',
     ),
   );
