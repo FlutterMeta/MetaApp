@@ -66,8 +66,6 @@ class _TransactionInfo extends StatelessWidget {
   }
 }
 
-
-
 class _StatusChip extends StatelessWidget {
   final TransactionStatus status;
 

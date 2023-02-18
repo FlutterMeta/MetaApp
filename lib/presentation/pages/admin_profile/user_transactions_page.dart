@@ -209,7 +209,7 @@ class _FilterWindow extends StatelessWidget {
 }
 
 class _Divider extends StatelessWidget {
-  const _Divider({super.key});
+  const _Divider({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
