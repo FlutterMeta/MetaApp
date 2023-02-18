@@ -22,12 +22,18 @@ class _SystemTransactionInfoState extends State<_SystemTransactionInfo> {
     );
   }
 
+  void _handleTap() {
+    if (widget.transaction.status == "pending") {
+      setState(() => isPopupVisible = !isPopupVisible);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return _TransactionInfo(
       transaction: widget.transaction,
       trailing: GestureDetector(
-        onTap: () => setState(() => isPopupVisible = !isPopupVisible),
+        onTap: _handleTap,
         child: PortalTarget(
           visible: isPopupVisible,
           anchor: const Aligned(

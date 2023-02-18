@@ -26,7 +26,7 @@ class Transaction {
         user = User.empty(),
         amount = 0.0,
         date = '',
-        status = '',
+        status = 'pending',
         destinationAddress = '',
         note = '',
         type = '';

@@ -1,8 +1,10 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
+
 import '../../../data/models/transaction.dart';
 import '../../../data/models/user.dart';
 import '../../widgets/profile_header/profile_header.dart';
@@ -45,7 +47,7 @@ class _HeaderText extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: Text(
           context.localizations.userTable,
-          style: context.text.partnerTableSectionTitle,
+          style: context.text.partnerTableSectionTitle.copyWith(fontSize: 28),
           textAlign: TextAlign.center,
         ),
       ),

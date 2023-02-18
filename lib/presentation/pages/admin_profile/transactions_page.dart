@@ -22,6 +22,7 @@ class TransactionsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  const SizedBox(height: 20),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
@@ -32,7 +33,7 @@ class TransactionsPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   TransactionTable.system(transactions: mockTransactions),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 140),
                   const Align(
                     alignment: Alignment.center,
                     child: RightsReservedFooter(),
