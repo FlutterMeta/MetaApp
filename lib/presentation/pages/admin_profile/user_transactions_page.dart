@@ -83,19 +83,28 @@ class __TransactionTableWithFilterState
   final _statusFieldController = TextEditingController();
   final _paymentSystemFieldController = TextEditingController();
   final _noteFieldController = TextEditingController();
+  late List<Transaction> transactionsHistory;
 
-  List<Transaction> _getFilteredTransactions() {
-    return widget.transactionsHistory.where((transaction) {
-      final operation = _operationFieldController.text;
-      final status = _statusFieldController.text;
-      final paymentSystem = _paymentSystemFieldController.text;
-      final note = _noteFieldController.text;
+  void _getFilteredTransactions() {
+    final result = widget.transactionsHistory.where((transaction) {
+      final operation = _operationFieldController.text.toLowerCase();
+      final status = _statusFieldController.text.toLowerCase();
+      final paymentSystem = _paymentSystemFieldController.text.toLowerCase();
+      final note = _noteFieldController.text.toLowerCase();
 
-      return transaction.type.contains(operation) &&
-          transaction.status.contains(status) &&
-          transaction.network.contains(paymentSystem) &&
-          transaction.note.contains(note);
+      return transaction.type.toLowerCase().contains(operation) &&
+          transaction.status.toLowerCase().contains(status) &&
+          transaction.network.toLowerCase().contains(paymentSystem) &&
+          transaction.note.toLowerCase().contains(note);
     }).toList();
+
+    setState(() => transactionsHistory = result);
+  }
+
+  @override
+  void initState() {
+    transactionsHistory = widget.transactionsHistory;
+    super.initState();
   }
 
   @override
@@ -116,10 +125,11 @@ class __TransactionTableWithFilterState
           statusFieldController: _statusFieldController,
           paymentSystemFieldController: _paymentSystemFieldController,
           noteFieldController: _noteFieldController,
+          onFieldChanged: _getFilteredTransactions,
         ),
         const SizedBox(height: 20),
         TransactionTable.administeredUser(
-          transactions: _getFilteredTransactions(),
+          transactions: transactionsHistory,
         ),
       ],
     );
@@ -131,12 +141,14 @@ class _FilterWindow extends StatelessWidget {
   final TextEditingController statusFieldController;
   final TextEditingController paymentSystemFieldController;
   final TextEditingController noteFieldController;
+  final VoidCallback onFieldChanged;
 
   const _FilterWindow({
     required this.operationFieldController,
     required this.statusFieldController,
     required this.paymentSystemFieldController,
     required this.noteFieldController,
+    required this.onFieldChanged,
     Key? key,
   }) : super(key: key);
 
@@ -174,10 +186,12 @@ class _FilterWindow extends StatelessWidget {
               runSpacing: 20,
               children: [
                 _FilterField(
+                  onFieldChanged: onFieldChanged,
                   title: context.localizations.operation,
                   controller: operationFieldController,
                 ),
                 _FilterField(
+                  onFieldChanged: onFieldChanged,
                   title: context.localizations.paySystem,
                   controller: paymentSystemFieldController,
                 ),
@@ -192,10 +206,12 @@ class _FilterWindow extends StatelessWidget {
               alignment: WrapAlignment.spaceBetween,
               children: [
                 _FilterField(
+                  onFieldChanged: onFieldChanged,
                   title: context.localizations.status,
                   controller: statusFieldController,
                 ),
                 _FilterField(
+                  onFieldChanged: onFieldChanged,
                   title: context.localizations.note,
                   controller: noteFieldController,
                 ),
@@ -225,11 +241,13 @@ class _Divider extends StatelessWidget {
 
 class _FilterField extends StatelessWidget {
   final String title;
+  final VoidCallback onFieldChanged;
   final TextEditingController controller;
 
   const _FilterField({
     required this.title,
     required this.controller,
+    required this.onFieldChanged,
     Key? key,
   }) : super(key: key);
 
@@ -246,6 +264,7 @@ class _FilterField extends StatelessWidget {
               : context.screenWidth * 0.24,
           constraints: const BoxConstraints(maxWidth: 400),
           child: TextField(
+            onChanged: (_) => onFieldChanged(),
             controller: controller,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(

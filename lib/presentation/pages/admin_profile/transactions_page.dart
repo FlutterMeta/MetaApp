@@ -51,7 +51,7 @@ class TransactionsPage extends StatelessWidget {
 final mockTransactions = [
   Transaction(
     network: 'Tether (TRC20)',
-    amount: '1000.000',
+    amount: 1000.000,
     user: const User(
       name: ' ',
       email: 'usermail@mail.com',
@@ -68,7 +68,7 @@ final mockTransactions = [
   ),
   Transaction(
     network: 'Tether (TRC20)',
-    amount: '1000.000',
+    amount: 1000.000,
     user: const User(
       name: ' ',
       email: 'awdawdawd@mail.com',

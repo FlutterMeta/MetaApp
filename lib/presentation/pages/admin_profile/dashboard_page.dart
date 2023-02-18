@@ -62,8 +62,7 @@ final List<User> usersExampleList = List.generate(
     availableBalance: Random().nextDouble() * 100000 + 100,
     pendingTransactions:
         List.generate(Random().nextInt(4), (_) => Transaction.empty()),
-    transactionsHistory:
-        List.generate(Random().nextInt(10), (_) => Transaction.empty()),
+    transactionsHistory: _generateTransactions(),
     referrals: List.generate(
       3,
       (index) => User(
@@ -80,3 +79,18 @@ final List<User> usersExampleList = List.generate(
     ),
   ),
 );
+
+List<Transaction> _generateTransactions() {
+  return List.generate(
+    10,
+    (index) => Transaction(
+      network: 'Tether (TRC20)',
+      amount: Random().nextDouble() * 100000 + 100,
+      user: User.empty(),
+      date: '',
+      note: '$index',
+      status: index % 2 == 0 ? 'pending' : 'completed',
+      type: index % 2 == 0 ? 'withdraw' : 'deposit',
+    ),
+  );
+}

@@ -49,7 +49,7 @@ class _TransactionInfo extends StatelessWidget {
         SizedBox(
           width: 100,
           child: Text(
-            transaction.amount,
+            transaction.amount.toStringAsFixed(2),
             style: transactionTextStyle(context),
           ),
         ),

@@ -464,7 +464,7 @@ class _TransactionsHistorySection extends StatelessWidget {
   static final _transactions = [
     Transaction(
       network: 'Tether (TRC20)',
-      amount: '1000.000',
+      amount: 1000.000,
       user: User.empty(),
       date: '12 October 2020, 19:23',
       status: 'completed',
@@ -473,7 +473,7 @@ class _TransactionsHistorySection extends StatelessWidget {
     ),
     Transaction(
       network: 'Tether (TRC20)',
-      amount: '1000.000',
+      amount: 1000.000,
       user: User.empty(),
       date: '12 October 2020, 19:23',
       status: 'canceled',
@@ -482,7 +482,7 @@ class _TransactionsHistorySection extends StatelessWidget {
     ),
     Transaction(
       network: 'Tether (TRC20)',
-      amount: '1000.000',
+      amount: 1000.000,
       user: User.empty(),
       date: '12 October 2020, 19:23',
       status: 'pending',

@@ -2,7 +2,7 @@ import 'package:meta_app/data/models/user.dart';
 
 class Transaction {
   final String network;
-  final String amount;
+  final double amount;
   final String date;
   final String status;
   final String type;
@@ -22,7 +22,7 @@ class Transaction {
   Transaction.empty()
       : network = '',
         user = User.empty(),
-        amount = '',
+        amount = 0.0,
         date = '',
         status = '',
         note = '',
