@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
 import '../../../data/models/transaction.dart';
+import '../admin_window.dart';
 part 'components/transaction_info.dart';
 part 'components/system_transaction_info.dart';
 part 'components/user_transaction_info.dart';
+part 'components/administered_user_transaction_info.dart';
 
 class TransactionTable extends _TransactionTable {
   const TransactionTable({
     required List<Transaction> transactions,
-    required bool isSystem,
+    required bool isAcceptable,
+    required bool isPaymentLeading,
     Key? key,
-  }) : super(transactions: transactions, isSystem: isSystem, key: key);
+  }) : super(
+          transactions: transactions,
+          isPaymentLeading: isPaymentLeading,
+          isAcceptable: isAcceptable,
+          key: key,
+        );
 
   factory TransactionTable.user({
     required List<Transaction> transactions,
@@ -19,7 +28,8 @@ class TransactionTable extends _TransactionTable {
   }) =>
       TransactionTable(
         transactions: transactions,
-        isSystem: false,
+        isPaymentLeading: true,
+        isAcceptable: false,
         key: key,
       );
 
@@ -29,18 +39,32 @@ class TransactionTable extends _TransactionTable {
   }) =>
       TransactionTable(
         transactions: transactions,
-        isSystem: true,
+        isPaymentLeading: false,
+        isAcceptable: true,
+        key: key,
+      );
+
+  factory TransactionTable.administeredUser({
+    required List<Transaction> transactions,
+    Key? key,
+  }) =>
+      TransactionTable(
+        transactions: transactions,
+        isPaymentLeading: true,
+        isAcceptable: true,
         key: key,
       );
 }
 
 class _TransactionTable extends StatelessWidget {
   final List<Transaction> transactions;
-  final bool isSystem;
+  final bool isPaymentLeading;
+  final bool isAcceptable;
 
   const _TransactionTable({
     required this.transactions,
-    required this.isSystem,
+    required this.isPaymentLeading,
+    required this.isAcceptable,
     Key? key,
   }) : super(key: key);
 
@@ -68,9 +92,18 @@ class _TransactionTable extends StatelessWidget {
             itemCount: transactions.length,
             itemBuilder: (_, index) {
               final transaction = transactions[index];
-              return isSystem
-                  ? _SystemTransactionInfo(transaction: transaction)
-                  : _UserTransactionInfo(transaction: transaction);
+
+              if (isAcceptable) {
+                if (isPaymentLeading) {
+                  return _AdministeredUserTransactionInfo(
+                    transaction: transaction,
+                  );
+                } else {
+                  return _SystemTransactionInfo(transaction: transaction);
+                }
+              } else {
+                return _UserTransactionInfo(transaction: transaction);
+              }
             },
             separatorBuilder: (_, __) => const SizedBox(height: 20),
           ),

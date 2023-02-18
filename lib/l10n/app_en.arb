@@ -307,6 +307,9 @@
     "wallet": "Wallet",
     "@_USER_REFERRALS_PAGE": {},
     "userReferrals": "User referrals",
-    "@_TRANSACTIIONS_PAGE": {},
-    "allSystemTransactions": "All system transactions"
+    "@_TRANSACTIONS_PAGE": {},
+    "allSystemTransactions": "All system transactions",
+    "confirmRequest": "Confirm request",
+    "declineRequest": "Decline request",
+    "userTransactions": "User transactions"
 }

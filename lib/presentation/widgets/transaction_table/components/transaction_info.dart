@@ -2,20 +2,15 @@ part of '../transaction_table.dart';
 
 class _TransactionInfo extends StatelessWidget {
   final Widget leading;
+  final Widget trailing;
   final Transaction transaction;
 
   const _TransactionInfo({
     required this.transaction,
+    required this.trailing,
     required this.leading,
     Key? key,
   }) : super(key: key);
-
-  TransactionStatus parse(String value) {
-    return TransactionStatus.values.firstWhere(
-      (element) => element.name == value,
-      orElse: () => TransactionStatus.pending,
-    );
-  }
 
   TextStyle transactionTextStyle(BuildContext context) {
     return context.text.profilePageBody.copyWith(
@@ -65,11 +60,13 @@ class _TransactionInfo extends StatelessWidget {
             style: transactionTextStyle(context),
           ),
         ),
-        _StatusChip(status: parse(transaction.status)),
+        trailing,
       ],
     );
   }
 }
+
+
 
 class _StatusChip extends StatelessWidget {
   final TransactionStatus status;

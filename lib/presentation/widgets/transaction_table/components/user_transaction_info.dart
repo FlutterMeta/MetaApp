@@ -8,10 +8,18 @@ class _UserTransactionInfo extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
+  TransactionStatus parse(String value) {
+    return TransactionStatus.values.firstWhere(
+      (element) => element.name == value,
+      orElse: () => TransactionStatus.pending,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return _TransactionInfo(
       transaction: transaction,
+      trailing: _StatusChip(status: parse(transaction.status)),
       leading: _PaymentLeading(transactionNetwork: transaction.network),
     );
   }
