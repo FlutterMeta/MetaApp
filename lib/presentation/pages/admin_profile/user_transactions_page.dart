@@ -117,12 +117,18 @@ class __TransactionTableWithFilterState
   void initState() {
     if (widget.showPendingTransactions) {
       transactionsHistory = _getPendingTransactions();
-      _statusFieldController.text = context.localizations.pending;
     } else {
       transactionsHistory = widget.transactionsHistory;
     }
-
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (widget.showPendingTransactions) {
+      _statusFieldController.text = context.localizations.pending;
+    }
+    super.didChangeDependencies();
   }
 
   @override
