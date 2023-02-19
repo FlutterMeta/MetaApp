@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 
+import '../../../data/models/mock_wallets.dart';
 import '../../navigation/app_router.gr.dart';
 
 part 'menu_components/create_admin_menu_item.dart';
