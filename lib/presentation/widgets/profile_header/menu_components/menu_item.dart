@@ -24,10 +24,8 @@ class _MenuItemState extends State<_MenuItem> {
   bool _isHovered = false;
 
   void handleTap() {
-    if (widget.closeMenuCallback != null) {
-      widget.closeMenuCallback?.call();
-    }
-    Future.delayed(const Duration(milliseconds: 300), () => widget.onTap());
+    widget.closeMenuCallback?.call();
+    Future.delayed(const Duration(milliseconds: 300), widget.onTap);
   }
 
   @override

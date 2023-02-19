@@ -52,18 +52,26 @@ class _RequisitesFields extends StatefulWidget {
   State<_RequisitesFields> createState() => _RequisitesFieldsState();
 }
 
-final List<String> _mockWallets = [
-  "Tw9a8zmv6c4u2rk1w3o0f12c63hs2saq",
-  "15LXEMoaAw63TKUkob3QWzrMzmgDA7Vpex",
-  "1LQoWist8KkaUXSPKZHNvEyfrEkPHzSsCd",
-  "TBia4uHnb3oSSZm5isP284cA7Np1v15Vhi",
-];
+class _MockWallets {
+  String getWallet(int index) => _mockWallets[index];
+
+  final List<String> _mockWallets = [
+    "Tw9a8zmv6c4u2rk1w3o0f12c63hs2saq",
+    "15LXEMoaAw63TKUkob3QWzrMzmgDA7Vpex",
+    "1LQoWist8KkaUXSPKZHNvEyfrEkPHzSsCd",
+    "TBia4uHnb3oSSZm5isP284cA7Np1v15Vhi",
+  ];
+}
 
 class _RequisitesFieldsState extends State<_RequisitesFields> {
-  final _wallet1Controller = TextEditingController(text: _mockWallets.first);
-  final _wallet2Controller = TextEditingController(text: _mockWallets[1]);
-  final _wallet3Controller = TextEditingController(text: _mockWallets[2]);
-  final _wallet4Controller = TextEditingController(text: _mockWallets.last);
+  final _wallet1Controller =
+      TextEditingController(text: _MockWallets().getWallet(0));
+  final _wallet2Controller =
+      TextEditingController(text: _MockWallets().getWallet(1));
+  final _wallet3Controller =
+      TextEditingController(text: _MockWallets().getWallet(2));
+  final _wallet4Controller =
+      TextEditingController(text: _MockWallets().getWallet(3));
 
   void _onConfirm() {
     _wallet1Controller.text;
