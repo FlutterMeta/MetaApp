@@ -93,12 +93,12 @@ class __TransactionTableWithFilterState
   late List<Transaction> transactionsHistory;
 
   void _filterTransactions() {
-    final result = widget.transactionsHistory.where((transaction) {
-      final operation = _operationFieldController.text.toLowerCase();
-      final status = _statusFieldController.text.toLowerCase();
-      final paymentSystem = _paymentSystemFieldController.text.toLowerCase();
-      final note = _noteFieldController.text.toLowerCase();
+    final operation = _operationFieldController.text.toLowerCase();
+    final status = _statusFieldController.text.toLowerCase();
+    final paymentSystem = _paymentSystemFieldController.text.toLowerCase();
+    final note = _noteFieldController.text.toLowerCase();
 
+    final result = widget.transactionsHistory.where((transaction) {
       return transaction.type.toLowerCase().contains(operation) &&
           transaction.status.toLowerCase().contains(status) &&
           transaction.network.toLowerCase().contains(paymentSystem) &&
