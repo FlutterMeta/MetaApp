@@ -25,7 +25,7 @@ class _AdministeredUserTransactionInfoState
   }
 
   void _handleTap() {
-    if (widget.transaction.status == "pending") {
+    if (widget.transaction.status == TransactionStatus.pending.name) {
       setState(() => isPopupVisible = !isPopupVisible);
     }
   }
