@@ -30,6 +30,7 @@ import '../pages/products_page/products_page.dart' as _i4;
 import '../pages/registration_page.dart' as _i3;
 import '../pages/reset_access_page.dart' as _i9;
 import '../pages/reset_password_page.dart' as _i8;
+import '../widgets/user_table/user_table.dart' as _i18;
 
 class AppRouter extends _i16.RootStackRouter {
   AppRouter([_i17.GlobalKey<_i17.NavigatorState>? navigatorKey])
