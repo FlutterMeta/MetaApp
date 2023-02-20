@@ -92,7 +92,7 @@ class __TransactionTableWithFilterState
   final _noteFieldController = TextEditingController();
   late List<Transaction> transactionsHistory;
 
-  void _getFilteredTransactions() {
+  void _filterTransactions() {
     final result = widget.transactionsHistory.where((transaction) {
       final operation = _operationFieldController.text.toLowerCase();
       final status = _statusFieldController.text.toLowerCase();
@@ -150,7 +150,7 @@ class __TransactionTableWithFilterState
           statusFieldController: _statusFieldController,
           paymentSystemFieldController: _paymentSystemFieldController,
           noteFieldController: _noteFieldController,
-          onFieldChanged: _getFilteredTransactions,
+          onFieldChanged: _filterTransactions,
         ),
         const SizedBox(height: 20),
         TransactionTable.administeredUser(
