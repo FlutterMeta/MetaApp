@@ -46,15 +46,32 @@ class __EditablePostAreaState extends State<_EditablePostArea> {
     return SliverSizedBox(
       child: Column(
         children: [
+          Text(
+            context.localizations.editing.toUpperCase(),
+            style: context.text.profilePageBody.copyWith(fontSize: 30),
+          ),
+          const SizedBox(height: 20),
           _EditablePostSection(
             titleController: _titleController,
             bodyController: _bodyController,
           ),
           const SizedBox(height: 20),
-          ColoredButton(
-            title: context.localizations.addBlogArticle,
-            onTap: _handleTap,
-            color: context.color.profilePagePrimary,
+          Wrap(
+            spacing: 20,
+            runSpacing: 20,
+            children: [
+              ColoredButton(
+                title: context.localizations.addBlogArticle,
+                onTap: _handleTap,
+                color: context.color.profilePagePrimary,
+              ),
+              ColoredButton(
+                title: context.localizations.cancel,
+                onTap: () =>
+                    AdminBlogController.mode.value = AdminBlogMode.show,
+                color: context.color.profilePageError,
+              ),
+            ],
           ),
         ],
       ),

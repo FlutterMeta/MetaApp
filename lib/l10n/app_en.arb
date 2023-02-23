@@ -311,5 +311,7 @@
     "blogTitle": "Title..",
     "blogBody": "Body..",
     "approveBlogArticle": "Approve blog article",
-    "addBlogArticle": "Add blog article"
+    "addBlogArticle": "Add blog article",
+    "preview": "Preview",
+    "editing": "Editing"
 }
