@@ -1,15 +1,19 @@
 part of "../blog_page.dart";
 
-class _PostSection extends StatelessWidget {
-  final examplePost = _Post(
-    title: "Office program for regional development leaders Aurora Universe",
-    body:
-        "Due to the positive trend in the development of investment products from Meta Investments and the investment direction on the MultiMeta Universe NFT platform in particular, we announce the launch of a regional development program to popularize the direction of the metaverse product by opening consulting centers, representative branches, regional centers, and from February 2023 - VR stores with branded branded products from MultiMeta Universe in the Meta Investments ecosystem. \n- We present you an office program of regional development for active leaders with a priority development of investment products in the offline direction.",
-    date: DateTime.now(),
-    imagePath: AppAssets.starAtlasImage,
-  );
+final examplePost = Post(
+  title: "Office program for regional development leaders Aurora Universe",
+  body:
+      "Due to the positive trend in the development of investment products from Meta Investments and the investment direction on the MultiMeta Universe NFT platform in particular, we announce the launch of a regional development program to popularize the direction of the metaverse product by opening consulting centers, representative branches, regional centers, and from February 2023 - VR stores with branded branded products from MultiMeta Universe in the Meta Investments ecosystem. \n- We present you an office program of regional development for active leaders with a priority development of investment products in the offline direction.",
+  date: DateTime.now(),
+);
 
-  _PostSection({Key? key}) : super(key: key);
+class _PostSection extends StatelessWidget {
+  final Post post;
+
+  _PostSection({
+    required this.post,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,28 +31,77 @@ class _PostSection extends StatelessWidget {
             ),
           ],
         ),
-        child: _HoverablePost(post: examplePost),
+        child: _HoverablePost(post: post),
       ),
     );
   }
 }
 
-class _Post {
-  final String title;
-  final String body;
-  final String imagePath;
-  final DateTime date;
+class _EditablePostSection extends StatefulWidget {
+  final TextEditingController titleController;
+  final TextEditingController bodyController;
 
-  _Post({
-    required this.title,
-    required this.body,
-    required this.imagePath,
-    required this.date,
-  });
+  const _EditablePostSection({
+    required this.titleController,
+    required this.bodyController,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<_EditablePostSection> createState() => __EditablePostSectionState();
+}
+
+class __EditablePostSectionState extends State<_EditablePostSection> {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        constraints: const BoxConstraints(maxWidth: 1000),
+        decoration: BoxDecoration(
+          color: context.color.postBackground,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: context.color.postShadow,
+              blurRadius: 30,
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 10),
+            TextField(
+              controller: widget.titleController,
+              style: context.text.blogPostHeadline,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: context.localizations.blogTitle,
+                hintStyle: context.text.profilePageBody.copyWith(fontSize: 24),
+              ),
+            ),
+            const SizedBox(height: 20),
+            TextField(
+              controller: widget.bodyController,
+              minLines: 16,
+              maxLines: 30,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: context.localizations.blogBody,
+                hintStyle: context.text.profilePageBody.copyWith(fontSize: 16),
+              ),
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class _HoverablePost extends StatefulWidget {
-  final _Post post;
+  final Post post;
 
   const _HoverablePost({
     required this.post,
@@ -105,10 +158,7 @@ class __HoverablePostState extends State<_HoverablePost> {
                     runSpacing: 20,
                     spacing: 20,
                     children: [
-                      Image.asset(
-                        widget.post.imagePath,
-                        height: 150,
-                      ),
+                      const SizedBox(),
                       _PostLink(
                         isHovered: _isHovered,
                         text: context.localizations.newsChannelInTelegram,
