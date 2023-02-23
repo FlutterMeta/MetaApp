@@ -7,10 +7,10 @@ final examplePost = Post(
   date: DateTime.now(),
 );
 
-class _PostSection extends StatelessWidget {
+class _PostWindow extends StatelessWidget {
   final Post post;
 
-  const _PostSection({
+  const _PostWindow({
     required this.post,
     Key? key,
   }) : super(key: key);
@@ -146,7 +146,7 @@ class __HoverablePostState extends State<_HoverablePost> {
                 ),
                 const SizedBox(height: 10),
                 Container(
-                  alignment: Alignment.center,
+                  alignment: Alignment.centerLeft,
                   constraints: const BoxConstraints(maxWidth: 800),
                   child: Text(
                     widget.post.title,

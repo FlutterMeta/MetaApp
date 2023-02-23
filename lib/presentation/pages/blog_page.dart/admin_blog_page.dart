@@ -18,50 +18,157 @@ class AdminBlogPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.color.profilePageBackground,
-      body: ValueListenableBuilder(
-        valueListenable: AdminBlogController.mode,
-        builder: (context, value, child) {
-          return CustomScrollView(
-            slivers: [
-              SliverPersistentHeader(
-                key: _headerKey,
-                delegate: Header(
-                  headerYOffset: _getHeaderYOffset,
-                  screenWidth: context.screenWidth,
-                ),
-                pinned: true,
-              ),
-              const SliverSizedBox(height: 70),
-              const SliverSizedBox(child: _PresentationSection()),
-              const SliverSizedBox(height: 20),
-              if (AdminBlogController.mode.value == AdminBlogMode.show)
-                const _ShowPostArea(),
-              if (AdminBlogController.mode.value == AdminBlogMode.edit)
-                const _EditablePostArea(),
-              if (AdminBlogController.mode.value == AdminBlogMode.preview)
-                const _PreviewPostArea(),
-              const SliverSizedBox(height: 40),
-              const SliverToBoxAdapter(child: Footer()),
-            ],
-          );
-        },
+      body: CustomScrollView(
+        slivers: [
+          SliverPersistentHeader(
+            key: _headerKey,
+            delegate: Header(
+              headerYOffset: _getHeaderYOffset,
+              screenWidth: context.screenWidth,
+            ),
+            pinned: true,
+          ),
+          const SliverSizedBox(height: 70),
+          const SliverSizedBox(child: _PresentationSection()),
+          const SliverSizedBox(height: 20),
+          const SliverSizedBox(child: _CreatePostSection()),
+          const SliverSizedBox(height: 20),
+          const SliverSizedBox(child: _PostsArea()),
+          const SliverSizedBox(height: 40),
+          const SliverToBoxAdapter(child: Footer()),
+        ],
       ),
     );
   }
 }
 
-class _MockPost {
-  _MockPost._();
-  static Post? previewPost;
-  static Post post = Post(
-    title: "Office program for regional development leaders Aurora Universe",
-    body:
-        "Due to the positive trend in the development of investment products from Meta Investments and the investment direction on the MultiMeta Universe NFT platform in particular, we announce the launch of a regional development program to popularize the direction of the metaverse product by opening consulting centers, representative branches, regional centers, and from February 2023 - VR stores with branded branded products from MultiMeta Universe in the Meta Investments ecosystem. \n- We present you an office program of regional development for active leaders with a priority development of investment products in the offline direction.",
-    date: DateTime.now(),
-  );
+class _CreatePostSection extends StatefulWidget {
+  const _CreatePostSection({Key? key}) : super(key: key);
 
-  static Post getPost() => post;
-  static Post? getPreviewPost() => previewPost;
-  static void writePost(Post newPost) => post = newPost;
-  static void writePreviewPost(Post newPost) => previewPost = newPost;
+  @override
+  State<_CreatePostSection> createState() => _CreatePostSectionState();
+}
+
+class _CreatePostSectionState extends State<_CreatePostSection> {
+  final _titleController = TextEditingController();
+  final _bodyController = TextEditingController();
+
+  Future<void> _pushDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          child: _BlankPost(
+            titleController: _titleController,
+            bodyController: _bodyController,
+            onAddTap: _onAddTap,
+            onCancelTap: () => Navigator.of(context).pop(),
+          ),
+        );
+      },
+    );
+  }
+
+  void _onAddTap() {
+    _writePost();
+    _clearControllers();
+    _MockPosts.mockController.value++;
+    Navigator.of(context).pop();
+  }
+
+  void _writePost() {
+    _MockPosts().addPost(
+      Post(
+        title: _titleController.text,
+        body: _bodyController.text,
+        date: DateTime.now(),
+      ),
+    );
+  }
+
+  void _clearControllers() {
+    _titleController.clear();
+    _bodyController.clear();
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _bodyController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: 200),
+        child: ColoredButton(
+          color: context.color.profilePagePrimary,
+          title: context.localizations.addBlogArticle,
+          onTap: () => _pushDialog(context),
+        ),
+      ),
+    );
+  }
+}
+
+class _MockPosts {
+  factory _MockPosts() => _singleton;
+  static final _MockPosts _singleton = _MockPosts._internal();
+  _MockPosts._internal();
+
+  List<Post> get posts => _posts;
+  void addPost(Post post) => _posts.add(post);
+
+  static ValueNotifier<int> mockController = ValueNotifier(0);
+
+  final List<Post> _posts = [
+    Post(
+      title: 'Post 1',
+      body: 'Lorem Ipsum Content 1' * 30,
+      date: DateTime.now(),
+    ),
+    Post(
+      title: 'Post 2',
+      body: 'Lorem Ipsum Content 2' * 30,
+      date: DateTime.now(),
+    ),
+    Post(
+      title: 'Post 3',
+      body: 'Lorem Ipsum Content 3' * 30,
+      date: DateTime.now(),
+    ),
+  ];
+}
+
+class _PostsArea extends StatefulWidget {
+  const _PostsArea({Key? key}) : super(key: key);
+
+  @override
+  State<_PostsArea> createState() => __PostsAreaState();
+}
+
+class __PostsAreaState extends State<_PostsArea> {
+  List<Post> posts = _MockPosts().posts;
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: _MockPosts.mockController,
+      builder: (_, __, ___) {
+        return ListView.separated(
+          reverse: true,
+          shrinkWrap: true,
+          itemCount: posts.length,
+          itemBuilder: (_, index) {
+            return _PostWindow(post: posts[index]);
+          },
+          separatorBuilder: (_, __) {
+            return const SizedBox(height: 40);
+          },
+        );
+      },
+    );
+  }
 }
