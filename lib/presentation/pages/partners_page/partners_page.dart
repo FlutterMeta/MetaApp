@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
-import 'package:meta_app/presentation/pages/client_profile/client_profile_page.dart';
 import 'package:meta_app/presentation/widgets/footer/footer.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 import 'package:meta_app/presentation/widgets/gradient_button.dart';
@@ -15,7 +14,6 @@ import 'package:video_player/video_player.dart';
 
 import '../../navigation/app_router.gr.dart';
 import '../../widgets/bot_demo_card.dart';
-import '../../widgets/responsive.dart';
 import '../client_profile/menu_controller.dart';
 
 part 'sections/cards_section.dart';

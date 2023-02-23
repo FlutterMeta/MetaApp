@@ -44,51 +44,73 @@ class _BotCardsSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: maxWidth),
-        child: Wrap(
-          spacing: 20,
-          runSpacing: 20,
+        child: Column(
           children: [
-            Container(
-              width: _getCardWidth(context),
-              constraints: const BoxConstraints(minWidth: 400),
-              child: BotDemoCard(
-                benefits: [
-                  "300% ${context.localizations.roiPerMonth}",
-                  "20 ${context.localizations.positions}",
-                  ..._basicBenefits(context),
-                ],
-                price: 20.39,
-                title: context.localizations.pioneer,
-                onTap: () => _handleTap(context),
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 1000),
+              child: Text(
+                context.localizations.botsBonusProgramWithLeadership,
+                style: context.text.partnerTableSectionTitle,
+                textAlign: TextAlign.center,
               ),
             ),
-            Container(
-              width: _getCardWidth(context),
-              constraints: const BoxConstraints(minWidth: 400),
-              child: BotDemoCard(
-                benefits: [
-                  "600% ${context.localizations.roiPerMonth}",
-                  "80 ${context.localizations.positions}",
-                  ..._basicBenefits(context),
-                ],
-                price: 81.67,
-                title: context.localizations.adventurer,
-                onTap: () => _handleTap(context),
+            const SizedBox(height: 20),
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 1200),
+              child: Text(
+                context.localizations.getFinancialRewards,
+                style: context.text.partnerTableSectionText,
+                textAlign: TextAlign.center,
               ),
             ),
-            Container(
-              width: _getCardWidth(context),
-              constraints: const BoxConstraints(minWidth: 400),
-              child: BotDemoCard(
-                benefits: [
-                  "1000% ${context.localizations.roiPerMonth}",
-                  "160 ${context.localizations.positions}",
-                  ..._basicBenefits(context),
-                ],
-                price: 160.88,
-                title: context.localizations.hero,
-                onTap: () => _handleTap(context),
-              ),
+            const SizedBox(height: 100),
+            Wrap(
+              spacing: 20,
+              runSpacing: 20,
+              children: [
+                Container(
+                  width: _getCardWidth(context),
+                  constraints: const BoxConstraints(minWidth: 400),
+                  child: BotDemoCard(
+                    benefits: [
+                      "300% ${context.localizations.roiPerMonth}",
+                      "20 ${context.localizations.positions}",
+                      ..._basicBenefits(context),
+                    ],
+                    price: 20.39,
+                    title: context.localizations.pioneer,
+                    onTap: () => _handleTap(context),
+                  ),
+                ),
+                Container(
+                  width: _getCardWidth(context),
+                  constraints: const BoxConstraints(minWidth: 400),
+                  child: BotDemoCard(
+                    benefits: [
+                      "600% ${context.localizations.roiPerMonth}",
+                      "80 ${context.localizations.positions}",
+                      ..._basicBenefits(context),
+                    ],
+                    price: 81.67,
+                    title: context.localizations.adventurer,
+                    onTap: () => _handleTap(context),
+                  ),
+                ),
+                Container(
+                  width: _getCardWidth(context),
+                  constraints: const BoxConstraints(minWidth: 400),
+                  child: BotDemoCard(
+                    benefits: [
+                      "1000% ${context.localizations.roiPerMonth}",
+                      "160 ${context.localizations.positions}",
+                      ..._basicBenefits(context),
+                    ],
+                    price: 160.88,
+                    title: context.localizations.hero,
+                    onTap: () => _handleTap(context),
+                  ),
+                ),
+              ],
             ),
           ],
         ),
