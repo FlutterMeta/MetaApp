@@ -11,11 +11,13 @@ import 'package:meta_app/presentation/widgets/sliver_sized_box.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 
 import '../../../data/models/post.dart';
+import '../../widgets/responsive.dart';
 
 part 'sections/presentation_section.dart';
-part 'sections/post_window.dart';
+part 'sections/single_post_card.dart';
 part 'sections/welcome_section.dart';
 part 'sections/blank_post.dart';
+part 'sections/posts_section.dart';
 part './admin_blog_page.dart';
 
 class BlogPage extends StatelessWidget {
@@ -49,7 +51,7 @@ class BlogPage extends StatelessWidget {
           const SliverSizedBox(height: 70),
           const SliverSizedBox(child: _PresentationSection()),
           const SliverSizedBox(height: 20),
-          SliverSizedBox(child: _PostWindow(post: examplePost)),
+          const SliverSizedBox(child: _PostsSection()),
           const SliverSizedBox(height: 40),
           const SliverSizedBox(child: _WelcomeSection()),
           const SliverToBoxAdapter(child: Footer()),

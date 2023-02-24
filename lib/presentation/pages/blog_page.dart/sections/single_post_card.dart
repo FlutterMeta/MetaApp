@@ -7,10 +7,10 @@ final examplePost = Post(
   date: DateTime.now(),
 );
 
-class _PostWindow extends StatelessWidget {
+class _SinglePostCard extends StatelessWidget {
   final Post post;
 
-  const _PostWindow({
+  const _SinglePostCard({
     required this.post,
     Key? key,
   }) : super(key: key);
@@ -32,69 +32,6 @@ class _PostWindow extends StatelessWidget {
           ],
         ),
         child: _HoverablePost(post: post),
-      ),
-    );
-  }
-}
-
-class _EditablePostSection extends StatefulWidget {
-  final TextEditingController titleController;
-  final TextEditingController bodyController;
-
-  const _EditablePostSection({
-    required this.titleController,
-    required this.bodyController,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<_EditablePostSection> createState() => __EditablePostSectionState();
-}
-
-class __EditablePostSectionState extends State<_EditablePostSection> {
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        constraints: const BoxConstraints(maxWidth: 1000),
-        decoration: BoxDecoration(
-          color: context.color.postBackground,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              color: context.color.postShadow,
-              blurRadius: 30,
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 10),
-            TextField(
-              controller: widget.titleController,
-              style: context.text.blogPostHeadline,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: context.localizations.blogTitle,
-                hintStyle: context.text.profilePageBody.copyWith(fontSize: 24),
-              ),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: widget.bodyController,
-              minLines: 16,
-              maxLines: 30,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: context.localizations.blogBody,
-                hintStyle: context.text.profilePageBody.copyWith(fontSize: 16),
-              ),
-            ),
-            const SizedBox(height: 10),
-          ],
-        ),
       ),
     );
   }

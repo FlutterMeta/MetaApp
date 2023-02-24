@@ -33,7 +33,7 @@ class AdminBlogPage extends StatelessWidget {
           const SliverSizedBox(height: 20),
           const SliverSizedBox(child: _CreatePostSection()),
           const SliverSizedBox(height: 20),
-          const SliverSizedBox(child: _PostsArea()),
+          const SliverSizedBox(child: _PostsSection()),
           const SliverSizedBox(height: 40),
           const SliverToBoxAdapter(child: Footer()),
         ],
@@ -58,6 +58,9 @@ class _CreatePostSectionState extends State<_CreatePostSection> {
       context: context,
       builder: (context) {
         return Dialog(
+          insetPadding: Responsive.isMobile(context)
+              ? const EdgeInsets.all(10)
+              : const EdgeInsets.symmetric(horizontal: 100),
           child: _BlankPost(
             titleController: _titleController,
             bodyController: _bodyController,
@@ -102,7 +105,7 @@ class _CreatePostSectionState extends State<_CreatePostSection> {
   Widget build(BuildContext context) {
     return Align(
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: 200),
+        constraints: const BoxConstraints(maxWidth: 200),
         child: ColoredButton(
           color: context.color.profilePagePrimary,
           title: context.localizations.addBlogArticle,
@@ -140,35 +143,4 @@ class _MockPosts {
       date: DateTime.now(),
     ),
   ];
-}
-
-class _PostsArea extends StatefulWidget {
-  const _PostsArea({Key? key}) : super(key: key);
-
-  @override
-  State<_PostsArea> createState() => __PostsAreaState();
-}
-
-class __PostsAreaState extends State<_PostsArea> {
-  List<Post> posts = _MockPosts().posts;
-
-  @override
-  Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: _MockPosts.mockController,
-      builder: (_, __, ___) {
-        return ListView.separated(
-          reverse: true,
-          shrinkWrap: true,
-          itemCount: posts.length,
-          itemBuilder: (_, index) {
-            return _PostWindow(post: posts[index]);
-          },
-          separatorBuilder: (_, __) {
-            return const SizedBox(height: 40);
-          },
-        );
-      },
-    );
-  }
 }
