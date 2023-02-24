@@ -312,6 +312,6 @@
     "blogBody": "Body..",
     "approveBlogArticle": "Approve blog article",
     "addBlogArticle": "Add blog article",
-    "preview": "Preview",
-    "editing": "Editing"
+    "editing": "Editing",
+    "createBlog": "Create blog"
 }

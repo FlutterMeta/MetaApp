@@ -25,7 +25,7 @@ class _BlankPost extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            context.localizations.create,
+            context.localizations.createBlog,
             style: context.text.profilePageBody.copyWith(fontSize: 30),
           ),
           const SizedBox(height: 20),
