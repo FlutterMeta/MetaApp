@@ -1,12 +1,5 @@
 part of "../blog_page.dart";
 
-final examplePost = Post(
-  title: "Office program for regional development leaders Aurora Universe",
-  body:
-      "Due to the positive trend in the development of investment products from Meta Investments and the investment direction on the MultiMeta Universe NFT platform in particular, we announce the launch of a regional development program to popularize the direction of the metaverse product by opening consulting centers, representative branches, regional centers, and from February 2023 - VR stores with branded branded products from MultiMeta Universe in the Meta Investments ecosystem. \n- We present you an office program of regional development for active leaders with a priority development of investment products in the offline direction.",
-  date: DateTime.now(),
-);
-
 class _SinglePostCard extends StatelessWidget {
   final Post post;
 
