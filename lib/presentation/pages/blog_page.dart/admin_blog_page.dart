@@ -62,6 +62,9 @@ class _CreatePostSectionState extends State<_CreatePostSection> {
             insetPadding: Responsive.isMobile(context)
                 ? const EdgeInsets.all(10)
                 : const EdgeInsets.all(100),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
             child: _BlankPost(
               titleController: _titleController,
               bodyController: _bodyController,
