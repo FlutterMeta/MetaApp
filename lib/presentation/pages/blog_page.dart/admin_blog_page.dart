@@ -57,15 +57,17 @@ class _CreatePostSectionState extends State<_CreatePostSection> {
     return showDialog(
       context: context,
       builder: (context) {
-        return Dialog(
-          insetPadding: Responsive.isMobile(context)
-              ? const EdgeInsets.all(10)
-              : const EdgeInsets.symmetric(horizontal: 100),
-          child: _BlankPost(
-            titleController: _titleController,
-            bodyController: _bodyController,
-            onAddTap: _onAddTap,
-            onCancelTap: () => Navigator.of(context).pop(),
+        return SingleChildScrollView(
+          child: Dialog(
+            insetPadding: Responsive.isMobile(context)
+                ? const EdgeInsets.all(10)
+                : const EdgeInsets.all(100),
+            child: _BlankPost(
+              titleController: _titleController,
+              bodyController: _bodyController,
+              onAddTap: _onAddTap,
+              onCancelTap: () => Navigator.of(context).pop(),
+            ),
           ),
         );
       },
