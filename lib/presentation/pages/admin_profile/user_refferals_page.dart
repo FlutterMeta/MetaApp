@@ -31,7 +31,7 @@ class UserRefferalsPage extends StatelessWidget {
                 const _HeaderText(),
                 const SizedBox(height: 60),
                 UserGeneralInfoPanel(user: user),
-                UserTable(users: user.referrals),
+                UserTable(users: user.referrals.userList),
                 const SizedBox(height: 100),
                 const RightsReservedFooter(),
                 const SizedBox(height: 10),

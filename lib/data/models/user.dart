@@ -1,23 +1,24 @@
 import 'package:meta_app/data/models/pending_transactions.dart';
+import 'package:meta_app/data/models/referrals.dart';
 import 'package:meta_app/data/models/transaction_history.dart';
 
 class User {
   final String name;
   final String email;
   final int referralLevel;
+  final Referrals referrals;
   final double availableBalance;
   final TransactionHistory transactionHistory;
   final PendingTransactions pendingTransactions;
-  final List<User> referrals;
 
   const User({
     required this.name,
     required this.email,
+    required this.referrals,
     required this.referralLevel,
     required this.availableBalance,
-    required this.pendingTransactions,
     required this.transactionHistory,
-    required this.referrals,
+    required this.pendingTransactions,
   });
 
   User.empty()
@@ -25,7 +26,7 @@ class User {
         email = '',
         referralLevel = 0,
         availableBalance = 0,
-        pendingTransactions = PendingTransactions.empty(),
+        referrals = Referrals.empty(),
         transactionHistory = TransactionHistory.empty(),
-        referrals = [];
+        pendingTransactions = PendingTransactions.empty();
 }

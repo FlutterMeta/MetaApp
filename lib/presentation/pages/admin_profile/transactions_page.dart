@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/models/pending_transactions.dart';
+import 'package:meta_app/data/models/referrals.dart';
 import 'package:meta_app/data/models/transaction_history.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import 'package:meta_app/presentation/widgets/transaction_table/transaction_table.dart';
@@ -63,7 +64,7 @@ class MockTransactions {
         availableBalance: 0,
         pendingTransactions: PendingTransactions.empty(),
         transactionHistory: TransactionHistory.empty(),
-        referrals: [],
+        referrals: Referrals.empty(),
       ),
       note: "",
       date: '12 October 2020, 19:23',
@@ -82,7 +83,7 @@ class MockTransactions {
         availableBalance: 0,
         pendingTransactions: PendingTransactions.empty(),
         transactionHistory: TransactionHistory.empty(),
-        referrals: [],
+        referrals: Referrals.empty(),
       ),
       note: "",
       date: '12 October 2020, 19:23',

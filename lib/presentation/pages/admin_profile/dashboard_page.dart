@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/data/models/referrals.dart';
 import 'package:meta_app/data/models/transaction_history.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 
@@ -72,21 +73,23 @@ final List<User> usersExampleList = List.generate(
             .toList(),
       ),
       transactionHistory: TransactionHistory(transactions: transactions),
-      referrals: List.generate(
-        3,
-        (index) => User(
-          name: 'Referali$index',
-          email: 'referalimail$index@mail.com',
-          referralLevel: index + 2,
-          availableBalance: Random().nextDouble() * 100000 + 100,
-          pendingTransactions: PendingTransactions.empty(),
-          transactionHistory: TransactionHistory(
-            transactions: List.generate(
-              Random().nextInt(10),
-              (_) => Transaction.empty(),
+      referrals: Referrals(
+        userList: List.generate(
+          3,
+          (index) => User(
+            name: 'Referali$index',
+            email: 'referalimail$index@mail.com',
+            referralLevel: index + 2,
+            availableBalance: Random().nextDouble() * 100000 + 100,
+            pendingTransactions: PendingTransactions.empty(),
+            transactionHistory: TransactionHistory(
+              transactions: List.generate(
+                Random().nextInt(10),
+                (_) => Transaction.empty(),
+              ),
             ),
+            referrals: Referrals.empty(),
           ),
-          referrals: [],
         ),
       ),
     );
