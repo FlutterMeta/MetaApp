@@ -8,7 +8,7 @@ class _PostsSection extends StatefulWidget {
 }
 
 class __PostsSectionState extends State<_PostsSection> {
-  List<Post> posts = _MockPosts().posts;
+  List<Post> posts = _MockPosts.instance.posts;
 
   @override
   Widget build(BuildContext context) {

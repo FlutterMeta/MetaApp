@@ -80,12 +80,12 @@ class _CreatePostSectionState extends State<_CreatePostSection> {
   void _onAddTap() {
     _writePost();
     _clearControllers();
-    _MockPosts.mockController.value++;
+    _MockPosts._mockController.value++;
     Navigator.of(context).pop();
   }
 
   void _writePost() {
-    _MockPosts().addPost(
+    _MockPosts.instance.addPost(
       Post(
         title: _titleController.text,
         body: _bodyController.text,
@@ -122,14 +122,15 @@ class _CreatePostSectionState extends State<_CreatePostSection> {
 }
 
 class _MockPosts {
-  factory _MockPosts() => _singleton;
+  static _MockPosts get instance => _singleton;
   static final _MockPosts _singleton = _MockPosts._internal();
   _MockPosts._internal();
 
+  static final ValueNotifier<int> _mockController = ValueNotifier(0);
+  static ValueNotifier<int> get mockController => _mockController;
+
   List<Post> get posts => _posts;
   void addPost(Post post) => _posts.add(post);
-
-  static ValueNotifier<int> mockController = ValueNotifier(0);
 
   final List<Post> _posts = [
     Post(
