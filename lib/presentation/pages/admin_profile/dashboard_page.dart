@@ -2,8 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/data/models/transaction_history.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 
+import '../../../data/models/pending_transactions.dart';
 import '../../../data/models/transaction.dart';
 import '../../../data/models/user.dart';
 import '../../widgets/profile_header/profile_header.dart';
@@ -62,10 +64,14 @@ final List<User> usersExampleList = List.generate(
       email: 'usermail$index@mail.com',
       referralLevel: index,
       availableBalance: Random().nextDouble() * 100000 + 100,
-      pendingTransactions: transactions
-          .where((element) => element.status == TransactionStatus.pending.name)
-          .toList(),
-      transactionsHistory: transactions,
+      pendingTransactions: PendingTransactions(
+        transactions: transactions
+            .where(
+              (element) => element.status == TransactionStatus.pending.name,
+            )
+            .toList(),
+      ),
+      transactionHistory: TransactionHistory(transactions: transactions),
       referrals: List.generate(
         3,
         (index) => User(
@@ -73,9 +79,13 @@ final List<User> usersExampleList = List.generate(
           email: 'referalimail$index@mail.com',
           referralLevel: index + 2,
           availableBalance: Random().nextDouble() * 100000 + 100,
-          pendingTransactions: [],
-          transactionsHistory:
-              List.generate(Random().nextInt(10), (_) => Transaction.empty()),
+          pendingTransactions: PendingTransactions.empty(),
+          transactionHistory: TransactionHistory(
+            transactions: List.generate(
+              Random().nextInt(10),
+              (_) => Transaction.empty(),
+            ),
+          ),
           referrals: [],
         ),
       ),

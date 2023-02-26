@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/data/models/pending_transactions.dart';
+import 'package:meta_app/data/models/transaction_history.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import 'package:meta_app/presentation/widgets/transaction_table/transaction_table.dart';
 import '../../../data/models/transaction.dart';
@@ -54,13 +56,13 @@ class MockTransactions {
     Transaction(
       network: 'Tether (TRC20)',
       amount: 1000.000,
-      user: const User(
+      user: User(
         name: ' ',
         email: 'usermail@mail.com',
         referralLevel: 0,
         availableBalance: 0,
-        pendingTransactions: [],
-        transactionsHistory: [],
+        pendingTransactions: PendingTransactions.empty(),
+        transactionHistory: TransactionHistory.empty(),
         referrals: [],
       ),
       note: "",
@@ -73,13 +75,13 @@ class MockTransactions {
       network: 'Tether (TRC20)',
       amount: 1000.000,
       destinationAddress: "0x000000000",
-      user: const User(
+      user: User(
         name: ' ',
         email: 'awdawdawd@mail.com',
         referralLevel: 0,
         availableBalance: 0,
-        pendingTransactions: [],
-        transactionsHistory: [],
+        pendingTransactions: PendingTransactions.empty(),
+        transactionHistory: TransactionHistory.empty(),
         referrals: [],
       ),
       note: "",

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/data/models/transaction_history.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/user_table/user_table.dart';
@@ -49,7 +50,8 @@ class UserTransactionsPage extends StatelessWidget {
                 const SizedBox(height: 20),
                 _TransactionTableWithFilter(
                   showPendingTransactions: showPendingTransactions ?? false,
-                  transactionsHistory: user.transactionsHistory,
+                  transactionsHistory:
+                      TransactionHistory(transactions: user.transactionHistory.transactions),
                 ),
                 const SizedBox(height: 140),
                 const Align(
@@ -67,7 +69,7 @@ class UserTransactionsPage extends StatelessWidget {
 }
 
 class _TransactionTableWithFilter extends StatefulWidget {
-  final List<Transaction> transactionsHistory;
+  final TransactionHistory transactionsHistory;
   final bool showPendingTransactions;
 
   const _TransactionTableWithFilter({
@@ -96,7 +98,7 @@ class __TransactionTableWithFilterState
     final paymentSystem = _paymentSystemFieldController.text.toLowerCase();
     final note = _noteFieldController.text.toLowerCase();
 
-    final result = widget.transactionsHistory.where((transaction) {
+    final result = widget.transactionsHistory.transactions.where((transaction) {
       return transaction.type.toLowerCase().contains(operation) &&
           transaction.status.toLowerCase().contains(status) &&
           transaction.network.toLowerCase().contains(paymentSystem) &&
@@ -107,7 +109,7 @@ class __TransactionTableWithFilterState
   }
 
   List<Transaction> _getPendingTransactions() {
-    return widget.transactionsHistory.where((transaction) {
+    return widget.transactionsHistory.transactions.where((transaction) {
       return transaction.status.toLowerCase() == TransactionStatus.pending.name;
     }).toList();
   }
@@ -119,7 +121,7 @@ class __TransactionTableWithFilterState
     if (widget.showPendingTransactions) {
       transactionsHistory = _getPendingTransactions();
     } else {
-      transactionsHistory = widget.transactionsHistory;
+      transactionsHistory = widget.transactionsHistory.transactions;
     }
   }
 
