@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
@@ -20,7 +19,7 @@ class UserTransactionsPage extends StatelessWidget {
   const UserTransactionsPage({
     required this.user,
     @PathParam('userName') required this.userName,
-    this.showPendingTransactions,
+    this.showPendingTransactions = false,
     Key? key,
   }) : super(key: key);
 
@@ -28,39 +27,37 @@ class UserTransactionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ProfileHeader.admin(),
-      body: Portal(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            alignment: Alignment.center,
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1200),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      context.localizations.userTransactions,
-                      style: context.text.partnerTableSectionTitle
-                          .copyWith(fontSize: 28),
-                    ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          alignment: Alignment.center,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1200),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    context.localizations.userTransactions,
+                    style: context.text.partnerTableSectionTitle
+                        .copyWith(fontSize: 28),
                   ),
-                  const SizedBox(height: 20),
-                  UserGeneralInfoPanel(user: user),
-                  const SizedBox(height: 20),
-                  _TransactionTableWithFilter(
-                    showPendingTransactions: showPendingTransactions ?? false,
-                    transactionsHistory: user.transactionsHistory,
-                  ),
-                  const SizedBox(height: 140),
-                  const Align(
-                    alignment: Alignment.center,
-                    child: RightsReservedFooter(),
-                  ),
-                  const SizedBox(height: 20),
-                ],
-              ),
+                ),
+                const SizedBox(height: 20),
+                UserGeneralInfoPanel(user: user),
+                const SizedBox(height: 20),
+                _TransactionTableWithFilter(
+                  showPendingTransactions: showPendingTransactions ?? false,
+                  transactionsHistory: user.transactionsHistory,
+                ),
+                const SizedBox(height: 140),
+                const Align(
+                  alignment: Alignment.center,
+                  child: RightsReservedFooter(),
+                ),
+                const SizedBox(height: 20),
+              ],
             ),
           ),
         ),
@@ -90,6 +87,7 @@ class __TransactionTableWithFilterState
   final _statusFieldController = TextEditingController();
   final _paymentSystemFieldController = TextEditingController();
   final _noteFieldController = TextEditingController();
+
   late List<Transaction> transactionsHistory;
 
   void _filterTransactions() {
@@ -110,18 +108,19 @@ class __TransactionTableWithFilterState
 
   List<Transaction> _getPendingTransactions() {
     return widget.transactionsHistory.where((transaction) {
-      return transaction.status.toLowerCase() == 'pending';
+      return transaction.status.toLowerCase() == TransactionStatus.pending.name;
     }).toList();
   }
 
   @override
   void initState() {
+    super.initState();
+
     if (widget.showPendingTransactions) {
       transactionsHistory = _getPendingTransactions();
     } else {
       transactionsHistory = widget.transactionsHistory;
     }
-    super.initState();
   }
 
   @override

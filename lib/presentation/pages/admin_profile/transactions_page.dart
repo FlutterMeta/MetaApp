@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portal/flutter_portal.dart';
+
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import 'package:meta_app/presentation/widgets/transaction_table/transaction_table.dart';
@@ -14,33 +14,33 @@ class TransactionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ProfileHeader.adminSearch(),
-      body: Portal(
-        child: SingleChildScrollView(
-          child: Align(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1200),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SizedBox(height: 20),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      context.localizations.allSystemTransactions,
-                      style: context.text.partnerTableSectionTitle
-                          .copyWith(fontSize: 28),
-                    ),
+      body: SingleChildScrollView(
+        child: Align(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1200),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 20),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    context.localizations.allSystemTransactions,
+                    style: context.text.partnerTableSectionTitle
+                        .copyWith(fontSize: 28),
                   ),
-                  const SizedBox(height: 20),
-                  TransactionTable.system(transactions: mockTransactions),
-                  const SizedBox(height: 140),
-                  const Align(
-                    alignment: Alignment.center,
-                    child: RightsReservedFooter(),
-                  ),
-                  const SizedBox(height: 20),
-                ],
-              ),
+                ),
+                const SizedBox(height: 20),
+                TransactionTable.system(
+                  transactions: MockTransactions.getTransactions,
+                ),
+                const SizedBox(height: 140),
+                const Align(
+                  alignment: Alignment.center,
+                  child: RightsReservedFooter(),
+                ),
+                const SizedBox(height: 20),
+              ],
             ),
           ),
         ),
@@ -49,42 +49,46 @@ class TransactionsPage extends StatelessWidget {
   }
 }
 
-final mockTransactions = [
-  Transaction(
-    network: 'Tether (TRC20)',
-    amount: 1000.000,
-    user: const User(
-      name: ' ',
-      email: 'usermail@mail.com',
-      referralLevel: 0,
-      availableBalance: 0,
-      pendingTransactions: [],
-      transactionsHistory: [],
-      referrals: [],
+class MockTransactions {
+  static final _mockTransactions = [
+    Transaction(
+      network: 'Tether (TRC20)',
+      amount: 1000.000,
+      user: const User(
+        name: ' ',
+        email: 'usermail@mail.com',
+        referralLevel: 0,
+        availableBalance: 0,
+        pendingTransactions: [],
+        transactionsHistory: [],
+        referrals: [],
+      ),
+      note: "",
+      date: '12 October 2020, 19:23',
+      destinationAddress: "0x000000000",
+      status: 'completed',
+      type: 'Deposit',
     ),
-    note: "",
-    date: '12 October 2020, 19:23',
-    destinationAddress: "0x000000000",
-    status: 'completed',
-    type: 'Deposit',
-  ),
-  Transaction(
-    network: 'Tether (TRC20)',
-    amount: 1000.000,
-    destinationAddress: "0x000000000",
-    user: const User(
-      name: ' ',
-      email: 'awdawdawd@mail.com',
-      referralLevel: 0,
-      availableBalance: 0,
-      pendingTransactions: [],
-      transactionsHistory: [],
-      referrals: [],
+    Transaction(
+      network: 'Tether (TRC20)',
+      amount: 1000.000,
+      destinationAddress: "0x000000000",
+      user: const User(
+        name: ' ',
+        email: 'awdawdawd@mail.com',
+        referralLevel: 0,
+        availableBalance: 0,
+        pendingTransactions: [],
+        transactionsHistory: [],
+        referrals: [],
+      ),
+      note: "",
+      date: '12 October 2020, 19:23',
+      status: 'canceled',
+      type: 'Deposit',
     ),
-    note: "",
-    date: '12 October 2020, 19:23',
-    status: 'canceled',
-    type: 'Deposit',
-  ),
-  ...List.generate(10, (index) => Transaction.empty()),
-];
+    ...List.generate(10, (index) => Transaction.empty()),
+  ];
+
+  static List<Transaction> get getTransactions => _mockTransactions;
+}

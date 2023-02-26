@@ -12,7 +12,7 @@ class _TransactionInfo extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  TextStyle transactionTextStyle(BuildContext context) {
+  TextStyle _transactionTextStyle(BuildContext context) {
     return context.text.profilePageBody.copyWith(
       fontSize: 16,
       fontWeight: FontWeight.bold,
@@ -36,7 +36,7 @@ class _TransactionInfo extends StatelessWidget {
             children: [
               Text(
                 transaction.date,
-                style: transactionTextStyle(context),
+                style: _transactionTextStyle(context),
               ),
               const SizedBox(height: 6),
               Text(
@@ -50,14 +50,14 @@ class _TransactionInfo extends StatelessWidget {
           width: 100,
           child: Text(
             transaction.amount.toStringAsFixed(2),
-            style: transactionTextStyle(context),
+            style: _transactionTextStyle(context),
           ),
         ),
         SizedBox(
           width: 80,
           child: Text(
             transaction.type,
-            style: transactionTextStyle(context),
+            style: _transactionTextStyle(context),
           ),
         ),
         trailing,

@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 
@@ -18,18 +17,16 @@ class DashboardPage extends StatelessWidget {
     return Scaffold(
       appBar: ProfileHeader.adminSearch(),
       body: SingleChildScrollView(
-        child: Portal(
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              const _HeaderText(),
-              const SizedBox(height: 60),
-              UserTable(users: usersExampleList),
-              const SizedBox(height: 70),
-              const RightsReservedFooter(),
-              const SizedBox(height: 20),
-            ],
-          ),
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            const _HeaderText(),
+            const SizedBox(height: 60),
+            UserTable(users: usersExampleList),
+            const SizedBox(height: 70),
+            const RightsReservedFooter(),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );
@@ -65,8 +62,9 @@ final List<User> usersExampleList = List.generate(
       email: 'usermail$index@mail.com',
       referralLevel: index,
       availableBalance: Random().nextDouble() * 100000 + 100,
-      pendingTransactions:
-          transactions.where((element) => element.status == 'pending').toList(),
+      pendingTransactions: transactions
+          .where((element) => element.status == TransactionStatus.pending.name)
+          .toList(),
       transactionsHistory: transactions,
       referrals: List.generate(
         3,
