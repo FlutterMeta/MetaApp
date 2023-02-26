@@ -50,9 +50,6 @@ class _CreatePostSection extends StatefulWidget {
 }
 
 class _CreatePostSectionState extends State<_CreatePostSection> {
-  final _titleController = TextEditingController();
-  final _bodyController = TextEditingController();
-
   Future<void> _pushDialog(BuildContext context) {
     return showDialog(
       context: context,
@@ -65,45 +62,11 @@ class _CreatePostSectionState extends State<_CreatePostSection> {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
-            child: _BlankPost(
-              titleController: _titleController,
-              bodyController: _bodyController,
-              onAddTap: _onAddTap,
-              onCancelTap: () => Navigator.of(context).pop(),
-            ),
+            child: const _BlankPost(),
           ),
         );
       },
     );
-  }
-
-  void _onAddTap() {
-    _writePost();
-    _clearControllers();
-    _MockPosts._mockController.value++;
-    Navigator.of(context).pop();
-  }
-
-  void _writePost() {
-    _MockPosts.instance.addPost(
-      Post(
-        title: _titleController.text,
-        body: _bodyController.text,
-        date: DateTime.now(),
-      ),
-    );
-  }
-
-  void _clearControllers() {
-    _titleController.clear();
-    _bodyController.clear();
-  }
-
-  @override
-  void dispose() {
-    _titleController.dispose();
-    _bodyController.dispose();
-    super.dispose();
   }
 
   @override

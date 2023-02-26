@@ -1,18 +1,44 @@
 part of "../blog_page.dart";
 
-class _BlankPost extends StatelessWidget {
-  final TextEditingController titleController;
-  final TextEditingController bodyController;
-  final VoidCallback onCancelTap;
-  final VoidCallback onAddTap;
+class _BlankPost extends StatefulWidget {
+  const _BlankPost({Key? key}) : super(key: key);
 
-  const _BlankPost({
-    required this.titleController,
-    required this.bodyController,
-    required this.onCancelTap,
-    required this.onAddTap,
-    Key? key,
-  }) : super(key: key);
+  @override
+  State<_BlankPost> createState() => _BlankPostState();
+}
+
+class _BlankPostState extends State<_BlankPost> {
+  final _titleController = TextEditingController();
+  final _bodyController = TextEditingController();
+
+  void _onAddTap() {
+    _writePost();
+    _clearControllers();
+    _MockPosts._mockController.value++;
+    Navigator.of(context).pop();
+  }
+
+  void _writePost() {
+    _MockPosts.instance.addPost(
+      Post(
+        title: _titleController.text,
+        body: _bodyController.text,
+        date: DateTime.now(),
+      ),
+    );
+  }
+
+  void _clearControllers() {
+    _titleController.clear();
+    _bodyController.clear();
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _bodyController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +56,8 @@ class _BlankPost extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           _EditablePostFields(
-            titleController: titleController,
-            bodyController: bodyController,
+            titleController: _titleController,
+            bodyController: _bodyController,
           ),
           const SizedBox(height: 20),
           Wrap(
@@ -40,12 +66,12 @@ class _BlankPost extends StatelessWidget {
             children: [
               ColoredButton(
                 title: context.localizations.approveBlogArticle,
-                onTap: onAddTap,
+                onTap: _onAddTap,
                 color: context.color.profilePageSecondaryVariant,
               ),
               ColoredButton(
                 title: context.localizations.cancel,
-                onTap: onCancelTap,
+                onTap: () => Navigator.of(context).pop(),
                 color: context.color.profilePageError,
               ),
             ],
