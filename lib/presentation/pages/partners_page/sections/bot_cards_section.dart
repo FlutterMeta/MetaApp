@@ -37,13 +37,11 @@ class _BotCardsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double maxWidth = 1600;
-
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: maxWidth),
+        constraints: const BoxConstraints(maxWidth: 1600),
         child: Column(
           children: [
             ConstrainedBox(
