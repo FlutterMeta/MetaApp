@@ -45,12 +45,6 @@ class _HoverablePost extends StatefulWidget {
 class __HoverablePostState extends State<_HoverablePost> {
   bool _isHovered = false;
 
-  String _formatDate(DateTime date) {
-    final DateFormat formatter = DateFormat("d MMM y, hh:mm");
-    final String formatted = formatter.format(date);
-    return formatted;
-  }
-
   @override
   Widget build(BuildContext context) {
     return _HoveredPost(
@@ -71,7 +65,7 @@ class __HoverablePostState extends State<_HoverablePost> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${_formatDate(widget.post.date)} ${context.localizations.publicationDate}",
+                  "${widget.post.date._format()} ${context.localizations.publicationDate}",
                   style: context.text.blogPostSubHeadline,
                 ),
                 const SizedBox(height: 10),
