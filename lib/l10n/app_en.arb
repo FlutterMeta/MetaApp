@@ -305,8 +305,6 @@
     "create": "Create",
     "password": "Password",
     "wallet": "Wallet",
-    "@_USER_REFERRALS_PAGE": {},
-    "userReferrals": "User referrals",
     "@_TRANSACTIONS_PAGE": {},
     "allSystemTransactions": "All system transactions",
     "confirmRequest": "Confirm request",
@@ -320,7 +318,7 @@
     "requestAwaitingPayment": "Request awaiting payment",
     "walletAdress": "Wallet adress",
     "transactionAmount": "Transaction amount",
-    "network": "Network"
+    "network": "Network",
     "userReferrals": "User referrals",
     "@_ADMIN_BLOG_PAGE": {},
     "blogTitle": "Title..",
