@@ -1,8 +1,12 @@
 import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/data/models/referrals.dart';
+import 'package:meta_app/data/models/transaction_history.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
+
+import '../../../data/models/pending_transactions.dart';
 import '../../../data/models/transaction.dart';
 import '../../../data/models/user.dart';
 import '../../widgets/profile_header/profile_header.dart';
@@ -16,18 +20,16 @@ class DashboardPage extends StatelessWidget {
     return Scaffold(
       appBar: ProfileHeader.adminSearch(),
       body: SingleChildScrollView(
-        child: Portal(
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              const _HeaderText(),
-              const SizedBox(height: 60),
-              UserTable(users: usersExampleList),
-              const SizedBox(height: 70),
-              const RightsReservedFooter(),
-              const SizedBox(height: 20),
-            ],
-          ),
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            const _HeaderText(),
+            const SizedBox(height: 60),
+            UserTable(users: usersExampleList),
+            const SizedBox(height: 70),
+            const RightsReservedFooter(),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );
@@ -45,7 +47,7 @@ class _HeaderText extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: Text(
           context.localizations.userTable,
-          style: context.text.partnerTableSectionTitle,
+          style: context.text.partnerTableSectionTitle.copyWith(fontSize: 28),
           textAlign: TextAlign.center,
         ),
       ),
@@ -55,28 +57,57 @@ class _HeaderText extends StatelessWidget {
 
 final List<User> usersExampleList = List.generate(
   10,
-  (index) => User(
-    name: 'shookones$index',
-    email: 'usermail$index@mail.com',
-    referralLevel: index,
-    availableBalance: Random().nextDouble() * 100000 + 100,
-    pendingTransactions:
-        List.generate(Random().nextInt(4), (_) => Transaction.empty()),
-    transactionsHistory:
-        List.generate(Random().nextInt(10), (_) => Transaction.empty()),
-    referrals: List.generate(
-      3,
-      (index) => User(
-        name: 'Referali$index',
-        email: 'referalimail$index@mail.com',
-        referralLevel: index + 2,
-        availableBalance: Random().nextDouble() * 100000 + 100,
-        pendingTransactions:
-            List.generate(Random().nextInt(4), (_) => Transaction.empty()),
-        transactionsHistory:
-            List.generate(Random().nextInt(10), (_) => Transaction.empty()),
-        referrals: [],
+  (index) {
+    final transactions = _generateTransactions();
+
+    return User(
+      name: 'shookones$index',
+      email: 'usermail$index@mail.com',
+      referralLevel: index,
+      availableBalance: Random().nextDouble() * 100000 + 100,
+      pendingTransactions: PendingTransactions(
+        transactions: transactions
+            .where(
+              (element) => element.status == TransactionStatus.pending.name,
+            )
+            .toList(),
       ),
-    ),
-  ),
+      transactionHistory: TransactionHistory(transactions: transactions),
+      referrals: Referrals(
+        userList: List.generate(
+          3,
+          (index) => User(
+            name: 'Referali$index',
+            email: 'referalimail$index@mail.com',
+            referralLevel: index + 2,
+            availableBalance: Random().nextDouble() * 100000 + 100,
+            pendingTransactions: PendingTransactions.empty(),
+            transactionHistory: TransactionHistory(
+              transactions: List.generate(
+                Random().nextInt(10),
+                (_) => Transaction.empty(),
+              ),
+            ),
+            referrals: Referrals.empty(),
+          ),
+        ),
+      ),
+    );
+  },
 );
+
+List<Transaction> _generateTransactions() {
+  return List.generate(
+    10,
+    (index) => Transaction(
+      network: index % 2 == 0 ? 'Tether (TRC20)' : 'Tron (TRX)',
+      amount: Random().nextDouble() * 100000 + 100,
+      user: User.empty(),
+      date: '',
+      note: '$index',
+      destinationAddress: "Tw9a8zmv6c4u2rk1w3o0f12c63hs2saq",
+      status: Random().nextBool() ? 'pending' : 'completed',
+      type: index % 2 == 0 ? 'withdraw' : 'deposit',
+    ),
+  );
+}

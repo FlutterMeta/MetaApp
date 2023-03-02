@@ -172,13 +172,18 @@ class _PendingTransactionsRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            user.pendingTransactions.length.toString(),
+            user.pendingTransactions.transactions.length.toString(),
             style: context.text.headerNavItemHovered.copyWith(fontSize: 16),
           ),
           const SizedBox(width: 10),
           _ShowTextButton(
-            onTap: () => context.router
-                .push(UserTransactionsRoute(user: user, userName: user.name)),
+            onTap: () => context.router.push(
+              UserTransactionsRoute(
+                user: user,
+                userName: user.name,
+                showPendingTransactions: true,
+              ),
+            ),
           ),
         ],
       ),
