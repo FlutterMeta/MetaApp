@@ -42,6 +42,7 @@ import '../pages/admin_profile/financial_indicators_page.dart';
       page: UserRefferalsPage,
       path: "/admin-profile/user-refferals/:userName",
     ),
+    AutoRoute(page: AdminBlogPage, path: "/admin-blog"),
   ],
 )
 class $AppRouter {}

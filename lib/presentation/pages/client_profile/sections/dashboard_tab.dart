@@ -8,9 +8,11 @@ import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/level_card.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
+import 'package:meta_app/presentation/widgets/transaction_table/transaction_table.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 
 import '../../../../data/models/transaction.dart';
+import '../../../../data/models/user.dart';
 
 class DashboardTab extends StatelessWidget {
   const DashboardTab({super.key});
@@ -461,213 +463,53 @@ class _TransactionsHistorySection extends StatelessWidget {
 
   static final _transactions = [
     Transaction(
-      'Tether (TRC20)',
-      '1000.000',
-      '12 October 2022, 19:23',
-      'completed',
-      'Deposit',
+      network: 'Tether (TRC20)',
+      amount: 1000.000,
+      user: User.empty(),
+      date: '12 October 2020, 19:23',
+      status: 'completed',
+      destinationAddress: "0x000000000",
+      note: "",
+      type: 'Deposit',
     ),
     Transaction(
-      'Tether (TRC20)',
-      '11.000',
-      '1 January 2023, 10:23',
-      'pending',
-      'Withdraw',
+      network: 'Tether (TRC20)',
+      amount: 1000.000,
+      user: User.empty(),
+      destinationAddress: "0x000000000",
+      date: '12 October 2020, 19:23',
+      status: 'canceled',
+      note: "",
+      type: 'Deposit',
     ),
     Transaction(
-      'Tether (TRC20)',
-      '1000.000',
-      '12 October 2020, 19:23',
-      'canceled',
-      'Deposit',
+      network: 'Tether (TRC20)',
+      amount: 1000.000,
+      user: User.empty(),
+      destinationAddress: "0x000000000",
+      date: '12 October 2020, 19:23',
+      status: 'pending',
+      note: "",
+      type: 'Deposit',
     ),
   ];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: context.color.profilePageBackground,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      padding: const EdgeInsets.all(30),
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1200),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              context.localizations.historyOfTransactions,
-              style: context.text.profilePageBody.copyWith(fontSize: 20),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              context.localizations.timeOfPayments,
-              style: context.text.profilePageSubtitle,
-            ),
-            const SizedBox(height: 30),
-            Column(
-              children: [
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: _transactions.length,
-                  itemBuilder: (_, index) {
-                    return _TransactionInfo(
-                      transaction: _transactions[index],
-                    );
-                  },
-                  separatorBuilder: (_, __) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Divider(color: context.color.greyish),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _TransactionInfo extends StatelessWidget {
-  final Transaction transaction;
-
-  const _TransactionInfo({
-    required this.transaction,
-    Key? key,
-  }) : super(key: key);
-
-  TransactionStatus parse(String value) {
-    return TransactionStatus.values.firstWhere(
-      (element) => element.name == value,
-      orElse: () => TransactionStatus.pending,
-    );
-  }
-
-  TextStyle transactionTextStyle(BuildContext context) {
-    return context.text.profilePageBody.copyWith(
-      fontSize: 16,
-      fontWeight: FontWeight.bold,
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      alignment: WrapAlignment.spaceBetween,
-      runAlignment: WrapAlignment.spaceBetween,
-      crossAxisAlignment: WrapCrossAlignment.center,
-      spacing: 10,
-      runSpacing: 10,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Container(
-              height: 50,
-              width: 50,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(100),
-                color: context.color.profilePageAboveBackground,
-              ),
-            ),
-            const SizedBox(width: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  transaction.network,
-                  style: transactionTextStyle(context),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  context.localizations.paymentSystem,
-                  style: context.text.profilePageSubtitle,
-                ),
-              ],
-            ),
-          ],
+        Text(
+          context.localizations.historyOfTransactions,
+          style: context.text.profilePageBody.copyWith(fontSize: 20),
         ),
-        SizedBox(
-          width: 200,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                transaction.date,
-                style: transactionTextStyle(context),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                context.localizations.operationDate,
-                style: context.text.profilePageSubtitle,
-              ),
-            ],
-          ),
+        const SizedBox(height: 10),
+        Text(
+          context.localizations.timeOfPayments,
+          style: context.text.profilePageSubtitle,
         ),
-        SizedBox(
-          width: 100,
-          child: Text(
-            transaction.amount,
-            style: transactionTextStyle(context),
-          ),
-        ),
-        SizedBox(
-          width: 80,
-          child: Text(
-            transaction.type,
-            style: transactionTextStyle(context),
-          ),
-        ),
-        _StatusChip(status: parse(transaction.status)),
+        const SizedBox(height: 30),
+        TransactionTable.user(transactions: _transactions),
       ],
-    );
-  }
-}
-
-class _StatusChip extends StatelessWidget {
-  final TransactionStatus status;
-
-  const _StatusChip({
-    required this.status,
-    Key? key,
-  }) : super(key: key);
-
-  Color get _chipColor {
-    switch (status) {
-      case TransactionStatus.completed:
-        return Colors.green;
-      case TransactionStatus.pending:
-        return Colors.yellow;
-      case TransactionStatus.canceled:
-        return Colors.red;
-      default:
-        return Colors.green;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: _chipColor),
-        borderRadius: BorderRadius.circular(100),
-      ),
-      width: 90,
-      alignment: Alignment.center,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        child: Text(
-          status.name,
-          style: context.text.profilePageBody.copyWith(
-            fontSize: 13,
-            color: _chipColor,
-          ),
-        ),
-      ),
     );
   }
 }

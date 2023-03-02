@@ -1,15 +1,12 @@
 part of "../blog_page.dart";
 
-class _PostSection extends StatelessWidget {
-  final examplePost = _Post(
-    title: "Office program for regional development leaders Aurora Universe",
-    body:
-        "Due to the positive trend in the development of investment products from Meta Investments and the investment direction on the MultiMeta Universe NFT platform in particular, we announce the launch of a regional development program to popularize the direction of the metaverse product by opening consulting centers, representative branches, regional centers, and from February 2023 - VR stores with branded branded products from MultiMeta Universe in the Meta Investments ecosystem. \n- We present you an office program of regional development for active leaders with a priority development of investment products in the offline direction.",
-    date: DateTime.now(),
-    imagePath: AppAssets.starAtlasImage,
-  );
+class _SinglePostCard extends StatelessWidget {
+  final Post post;
 
-  _PostSection({Key? key}) : super(key: key);
+  const _SinglePostCard({
+    required this.post,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,28 +24,14 @@ class _PostSection extends StatelessWidget {
             ),
           ],
         ),
-        child: _HoverablePost(post: examplePost),
+        child: _HoverablePost(post: post),
       ),
     );
   }
 }
 
-class _Post {
-  final String title;
-  final String body;
-  final String imagePath;
-  final DateTime date;
-
-  _Post({
-    required this.title,
-    required this.body,
-    required this.imagePath,
-    required this.date,
-  });
-}
-
 class _HoverablePost extends StatefulWidget {
-  final _Post post;
+  final Post post;
 
   const _HoverablePost({
     required this.post,
@@ -82,12 +65,12 @@ class __HoverablePostState extends State<_HoverablePost> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "${widget.post.date} ${context.localizations.publicationDate}",
+                  "${widget.post.date._format()} ${context.localizations.publicationDate}",
                   style: context.text.blogPostSubHeadline,
                 ),
                 const SizedBox(height: 10),
                 Container(
-                  alignment: Alignment.center,
+                  alignment: Alignment.centerLeft,
                   constraints: const BoxConstraints(maxWidth: 800),
                   child: Text(
                     widget.post.title,
@@ -105,10 +88,7 @@ class __HoverablePostState extends State<_HoverablePost> {
                     runSpacing: 20,
                     spacing: 20,
                     children: [
-                      Image.asset(
-                        widget.post.imagePath,
-                        height: 150,
-                      ),
+                      const SizedBox(),
                       _PostLink(
                         isHovered: _isHovered,
                         text: context.localizations.newsChannelInTelegram,

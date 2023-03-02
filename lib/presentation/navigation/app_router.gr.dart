@@ -30,7 +30,6 @@ import '../pages/products_page/products_page.dart' as _i4;
 import '../pages/registration_page.dart' as _i3;
 import '../pages/reset_access_page.dart' as _i9;
 import '../pages/reset_password_page.dart' as _i8;
-import '../widgets/user_table/user_table.dart' as _i18;
 
 class AppRouter extends _i16.RootStackRouter {
   AppRouter([_i17.GlobalKey<_i17.NavigatorState>? navigatorKey])
@@ -123,6 +122,7 @@ class AppRouter extends _i16.RootStackRouter {
         child: _i12.UserTransactionsPage(
           user: args.user,
           userName: args.userName,
+          showPendingTransactions: args.showPendingTransactions,
           key: args.key,
         ),
       );
@@ -148,6 +148,14 @@ class AppRouter extends _i16.RootStackRouter {
           userName: args.userName,
           key: args.key,
         ),
+      );
+    },
+    AdminBlogRoute.name: (routeData) {
+      final args = routeData.argsAs<AdminBlogRouteArgs>(
+          orElse: () => const AdminBlogRouteArgs());
+      return _i16.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: _i6.AdminBlogPage(key: args.key),
       );
     },
   };
@@ -213,6 +221,10 @@ class AppRouter extends _i16.RootStackRouter {
         _i16.RouteConfig(
           UserRefferalsRoute.name,
           path: '/admin-profile/user-refferals/:userName',
+        ),
+        _i16.RouteConfig(
+          AdminBlogRoute.name,
+          path: '/admin-blog',
         ),
       ];
 }
@@ -428,6 +440,7 @@ class UserTransactionsRoute
   UserTransactionsRoute({
     required _i18.User user,
     required String userName,
+    bool? showPendingTransactions,
     _i17.Key? key,
   }) : super(
           UserTransactionsRoute.name,
@@ -435,6 +448,7 @@ class UserTransactionsRoute
           args: UserTransactionsRouteArgs(
             user: user,
             userName: userName,
+            showPendingTransactions: showPendingTransactions,
             key: key,
           ),
           rawPathParams: {'userName': userName},
@@ -447,6 +461,7 @@ class UserTransactionsRouteArgs {
   const UserTransactionsRouteArgs({
     required this.user,
     required this.userName,
+    this.showPendingTransactions,
     this.key,
   });
 
@@ -454,11 +469,13 @@ class UserTransactionsRouteArgs {
 
   final String userName;
 
+  final bool? showPendingTransactions;
+
   final _i17.Key? key;
 
   @override
   String toString() {
-    return 'UserTransactionsRouteArgs{user: $user, userName: $userName, key: $key}';
+    return 'UserTransactionsRouteArgs{user: $user, userName: $userName, showPendingTransactions: $showPendingTransactions, key: $key}';
   }
 }
 
@@ -523,5 +540,29 @@ class UserRefferalsRouteArgs {
   @override
   String toString() {
     return 'UserRefferalsRouteArgs{user: $user, userName: $userName, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i6.AdminBlogPage]
+class AdminBlogRoute extends _i16.PageRouteInfo<AdminBlogRouteArgs> {
+  AdminBlogRoute({_i17.Key? key})
+      : super(
+          AdminBlogRoute.name,
+          path: '/admin-blog',
+          args: AdminBlogRouteArgs(key: key),
+        );
+
+  static const String name = 'AdminBlogRoute';
+}
+
+class AdminBlogRouteArgs {
+  const AdminBlogRouteArgs({this.key});
+
+  final _i17.Key? key;
+
+  @override
+  String toString() {
+    return 'AdminBlogRouteArgs{key: $key}';
   }
 }
