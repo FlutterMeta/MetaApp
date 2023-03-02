@@ -122,6 +122,7 @@ class AppRouter extends _i16.RootStackRouter {
         child: _i12.UserTransactionsPage(
           user: args.user,
           userName: args.userName,
+          showPendingTransactions: args.showPendingTransactions,
           key: args.key,
         ),
       );
@@ -439,6 +440,7 @@ class UserTransactionsRoute
   UserTransactionsRoute({
     required _i18.User user,
     required String userName,
+    bool? showPendingTransactions,
     _i17.Key? key,
   }) : super(
           UserTransactionsRoute.name,
@@ -446,6 +448,7 @@ class UserTransactionsRoute
           args: UserTransactionsRouteArgs(
             user: user,
             userName: userName,
+            showPendingTransactions: showPendingTransactions,
             key: key,
           ),
           rawPathParams: {'userName': userName},
@@ -458,6 +461,7 @@ class UserTransactionsRouteArgs {
   const UserTransactionsRouteArgs({
     required this.user,
     required this.userName,
+    this.showPendingTransactions,
     this.key,
   });
 
@@ -465,11 +469,13 @@ class UserTransactionsRouteArgs {
 
   final String userName;
 
+  final bool? showPendingTransactions;
+
   final _i17.Key? key;
 
   @override
   String toString() {
-    return 'UserTransactionsRouteArgs{user: $user, userName: $userName, key: $key}';
+    return 'UserTransactionsRouteArgs{user: $user, userName: $userName, showPendingTransactions: $showPendingTransactions, key: $key}';
   }
 }
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/bot_demo_card.dart';
 import 'package:meta_app/presentation/widgets/level_card.dart';
@@ -14,22 +13,20 @@ class FinancialIndicatorsPage extends StatelessWidget {
     return Scaffold(
       appBar: ProfileHeader.admin(),
       backgroundColor: context.color.profilePageBackground,
-      body: Portal(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              gradient: context.gradient.lightIndigo,
-            ),
-            child: Column(
-              children: const [
-                _BotDemoCards(),
-                SizedBox(height: 40),
-                _ReferralRewards(),
-                SizedBox(height: 160),
-                RightsReservedFooter(),
-              ],
-            ),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            gradient: context.gradient.lightIndigo,
+          ),
+          child: Column(
+            children: const [
+              _BotDemoCards(),
+              SizedBox(height: 40),
+              _ReferralRewards(),
+              SizedBox(height: 160),
+              RightsReservedFooter(),
+            ],
           ),
         ),
       ),

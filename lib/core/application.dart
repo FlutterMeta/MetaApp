@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/l10n.dart';
 import 'package:meta_app/presentation/navigation/app_router.gr.dart';
@@ -27,25 +28,27 @@ class Application extends StatelessWidget {
       store: store,
       child: StoreConnector<AppState, _ViewModel>(
         vm: () => _Factory(this),
-        builder: (BuildContext context, _ViewModel vm) => MaterialApp.router(
-          scrollBehavior: WebScrollBehaviour(),
-          locale: vm.appLocale.locale,
-          supportedLocales: L10n.all,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-          ],
-          theme: createLightTheme(),
-          darkTheme: createDarkTheme(),
-          themeMode: vm.themeMode,
-          routerDelegate: AutoRouterDelegate(
-            appRouter,
-            initialRoutes: [HomeRoute()],
-            navigatorObservers: () => [RouterObserver()],
+        builder: (BuildContext context, _ViewModel vm) => Portal(
+          child: MaterialApp.router(
+            scrollBehavior: WebScrollBehaviour(),
+            locale: vm.appLocale.locale,
+            supportedLocales: L10n.all,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
+            theme: createLightTheme(),
+            darkTheme: createDarkTheme(),
+            themeMode: vm.themeMode,
+            routerDelegate: AutoRouterDelegate(
+              appRouter,
+              initialRoutes: [HomeRoute()],
+              navigatorObservers: () => [RouterObserver()],
+            ),
+            routeInformationParser: appRouter.defaultRouteParser(),
           ),
-          routeInformationParser: appRouter.defaultRouteParser(),
         ),
       ),
     );
