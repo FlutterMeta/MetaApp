@@ -4,6 +4,8 @@ import 'package:meta_app/presentation/widgets/bot_demo_card.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 
+import '../menu_controller.dart';
+
 class BotsTab extends StatelessWidget {
   const BotsTab({super.key});
 
@@ -23,6 +25,11 @@ class BotsTab extends StatelessWidget {
       context.localizations.marketArbitrage,
       context.localizations.algorithmIntelligence,
     ];
+  }
+
+  void _pushTransactionTab() {
+    const int transactionTabIndex = 2;
+    MenuController.tabIndex.value = transactionTabIndex;
   }
 
   List<Widget> _profitCards(BuildContext context) {
@@ -55,26 +62,31 @@ class BotsTab extends StatelessWidget {
         title: localization.pioneer,
         price: 20.39,
         benefits: _basicBenefits(context),
+        onTap: _pushTransactionTab,
       ),
       BotDemoCard(
         title: localization.adventurer,
         price: 40.22,
         benefits: _basicBenefits(context),
+        onTap: _pushTransactionTab,
       ),
       BotDemoCard(
         title: localization.hero,
         price: 78.25,
         benefits: _advancedBenefits(context),
+        onTap: _pushTransactionTab,
       ),
       BotDemoCard(
         title: localization.pioneer,
         price: 3000,
         benefits: _advancedBenefits(context),
+        onTap: _pushTransactionTab,
       ),
       BotDemoCard(
         title: localization.adventurer,
         price: 5000,
         benefits: _advancedBenefits(context),
+        onTap: _pushTransactionTab,
       ),
     ];
   }

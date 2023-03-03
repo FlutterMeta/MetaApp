@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
@@ -11,10 +12,14 @@ import 'package:meta_app/presentation/widgets/sliver_sized_box.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../navigation/app_router.gr.dart';
+import '../../widgets/bot_demo_card.dart';
+import '../client_profile/menu_controller.dart';
+
 part 'sections/cards_section.dart';
 part 'sections/income_section.dart';
 part 'sections/become_partner_section.dart';
-part 'sections/table_section.dart';
+part 'sections/bot_cards_section.dart';
 part 'sections/pdf_section.dart';
 
 class PartnersPage extends StatelessWidget {
@@ -50,7 +55,7 @@ class PartnersPage extends StatelessWidget {
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: _PdfSection()),
           const SliverSizedBox(height: 180),
-          const SliverToBoxAdapter(child: _TableSection()),
+          const SliverToBoxAdapter(child: _BotCardsSection()),
           const SliverSizedBox(height: 100),
           const SliverToBoxAdapter(child: _BecomePartnerSection()),
           const SliverToBoxAdapter(child: Footer()),

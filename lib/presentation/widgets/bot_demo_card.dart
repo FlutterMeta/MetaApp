@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile/menu_controller.dart';
 import 'package:meta_app/presentation/widgets/simple_outlined_button.dart';
 import 'editing_field.dart';
 
@@ -8,11 +7,13 @@ class BotDemoCard extends StatefulWidget {
   final String title;
   final double price;
   final List<String> benefits;
+  final VoidCallback onTap;
 
   const BotDemoCard({
     required this.title,
     required this.price,
     required this.benefits,
+    required this.onTap,
     Key? key,
   }) : super(key: key);
 
@@ -22,11 +23,6 @@ class BotDemoCard extends StatefulWidget {
 
 class _BotDemoCardState extends State<BotDemoCard> {
   final _priceController = TextEditingController();
-
-  void _pushTransactionTab() {
-    const int transactionTabIndex = 2;
-    MenuController.tabIndex.value = transactionTabIndex;
-  }
 
   @override
   dispose() {
@@ -52,7 +48,7 @@ class _BotDemoCardState extends State<BotDemoCard> {
           _BenefitSection(benefits: widget.benefits),
           const Spacer(),
           SimpleOutlinedButton(
-            onTap: _pushTransactionTab,
+            onTap: widget.onTap,
             label: context.localizations.getStarted,
           ),
         ],
