@@ -21,7 +21,7 @@ class FilterableUserTableState extends State<FilterableUserTable> {
   late List<User> users;
 
   void _filter() {
-    final searchBarValue = SearchBarController.userMame.value;
+    final searchBarValue = SearchBarController.userName.value;
     setState(
       () => users = widget.users
           .where((user) =>
@@ -32,14 +32,14 @@ class FilterableUserTableState extends State<FilterableUserTable> {
 
   @override
   void initState() {
-    users = widget.users;
-    SearchBarController.userMame.addListener(_filter);
     super.initState();
+    users = widget.users;
+    SearchBarController.userName.addListener(_filter);
   }
 
   @override
   void dispose() {
-    SearchBarController.userMame.removeListener(_filter);
+    SearchBarController.userName.removeListener(_filter);
     super.dispose();
   }
 
@@ -66,7 +66,7 @@ class NoUserWidget extends StatelessWidget {
           children: [
             const TextSpan(text: ' '),
             TextSpan(
-              text: SearchBarController.userMame.value,
+              text: SearchBarController.userName.value,
               style: context.text.profilePageBody
                   .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
             ),

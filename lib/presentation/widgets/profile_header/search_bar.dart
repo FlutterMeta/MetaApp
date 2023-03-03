@@ -12,15 +12,6 @@ class SearchBar extends StatefulWidget {
 }
 
 class _SearchBarState extends State<SearchBar> {
-  final TextEditingController _controller =
-      TextEditingController(text: SearchBarController.userMame.value);
-
-      @override
-  void didChangeDependencies() {
-     super.didChangeDependencies();
-    _controller.text = SearchBarController.userMame.value;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,8 +23,7 @@ class _SearchBarState extends State<SearchBar> {
           ? context.screenWidth * 0.4
           : context.screenWidth * 0.58,
       child: TextField(
-        onChanged: (value) => SearchBarController.userMame.value = value,
-        controller: _controller,
+        onChanged: (value) => SearchBarController.userName.value = value,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: context.localizations.userSearch,
