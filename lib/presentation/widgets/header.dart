@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/profile_header/menu.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/return_home_logo.dart';
-import 'package:useful_extensions/useful_extensions.dart';
 import '../pages/client_profile/menu_controller.dart';
 
 class Header extends StatefulWidget implements PreferredSizeWidget {
@@ -90,102 +90,73 @@ class _UserInfo extends StatefulWidget {
 
 class UserInfoState extends State<_UserInfo>
     with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  OverlayEntry? _overlayEntry;
-  Animation<double>? _animation;
-
-  void showOverlay(BuildContext context) async {
-    OverlayState? overlayState = Overlay.of(context);
-    final renderBox = context.findRenderObject() as RenderBox;
-    final size = renderBox.size;
-    final offset = renderBox.localToGlobal(Offset.zero);
-
-    _overlayEntry = OverlayEntry(builder: (context) {
-      return Positioned(
-        top: offset.dy + size.height,
-        right: 10,
-        child: ProfileMenu.admin(
-          animation: _animation,
-          onCloseItemTap: removeOverlay,
-        ),
-      );
-    });
-
-    _overlayEntry?.let((entry) {
-      WidgetsBinding.instance
-          .addPostFrameCallback((_) => overlayState?.insert(entry));
-      _animationController.forward();
-    });
-  }
-
-  void removeOverlay() async {
-    await _animationController.reverse();
-    _overlayEntry?.remove();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-    _animation = CurveTween(curve: Curves.linear).animate(_animationController);
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    removeOverlay();
-    super.dispose();
-  }
-
-  @override
-  void didChangeDependencies() {
-    removeOverlay();
-    super.didChangeDependencies();
-  }
+  bool _isMenuVisible = false;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => showOverlay(context),
-      child: Row(
-        children: [
-          if (Responsive.isDesktop(context)) ...[
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      context.localizations.welcome,
-                      style:
-                          context.text.profilePageBody.copyWith(fontSize: 16),
-                    ),
-                    Text(
-                      widget.userName,
-                      style: context.text.profilePageBody
-                          .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 4),
-                Text(widget.email, style: context.text.profileHeaderSubtitle),
-              ],
+      onTap: () => setState(() => _isMenuVisible = !_isMenuVisible),
+      child: PortalTarget(
+        visible: _isMenuVisible,
+        closeDuration: kThemeAnimationDuration,
+        anchor: Aligned(
+          follower: Alignment.topCenter,
+          target: Responsive.isDesktop(context)
+              ? Alignment.bottomCenter
+              : Alignment.bottomLeft,
+        ),
+        portalFollower: TweenAnimationBuilder<double>(
+          tween: Tween<double>(begin: 0, end: 1),
+          duration: kThemeAnimationDuration,
+          builder: (context, animation, child) {
+            return AnimatedOpacity(
+              opacity: animation,
+              duration: kThemeAnimationDuration,
+              child: ProfileMenu.admin(
+                onCloseItemTap: () => setState(() => _isMenuVisible = false),
+              ),
+            );
+          },
+        ),
+        child: Row(
+          children: [
+            if (Responsive.isDesktop(context)) ...[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        context.localizations.welcome,
+                        style:
+                            context.text.profilePageBody.copyWith(fontSize: 16),
+                      ),
+                      Text(
+                        widget.userName,
+                        style: context.text.profilePageBody.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Text(widget.email, style: context.text.profileHeaderSubtitle),
+                ],
+              ),
+            ] else
+              Text(
+                widget.userName,
+                style: context.text.profilePageBody
+                    .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            Icon(
+              Icons.account_circle,
+              size: Responsive.isDesktop(context) ? 80 : 50,
+              color: context.color.partnersCardBackground,
             ),
-          ] else
-            Text(
-              widget.userName,
-              style: context.text.profilePageBody
-                  .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-          Icon(
-            Icons.account_circle,
-            size: Responsive.isDesktop(context) ? 80 : 50,
-            color: context.color.partnersCardBackground,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
