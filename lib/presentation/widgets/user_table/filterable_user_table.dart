@@ -46,8 +46,7 @@ class FilterableUserTableState extends State<FilterableUserTable> {
   @override
   Widget build(BuildContext context) {
     if (users.isEmpty) {
-      // ignore: prefer_const_constructors
-      return NoUserWidget();
+      return const NoUserWidget();
     }
     return UserTable(users: users);
   }
@@ -59,24 +58,29 @@ class NoUserWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text.rich(
-        TextSpan(
-          text: context.localizations.noUserWithName,
-          style: context.text.profilePageBody.copyWith(fontSize: 16),
-          children: [
-            const TextSpan(text: ' '),
+      child: ValueListenableBuilder(
+        valueListenable: SearchBarController.userName,
+        builder: (context, userName, child) {
+          return Text.rich(
             TextSpan(
-              text: SearchBarController.userName.value,
-              style: context.text.profilePageBody
-                  .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
-            ),
-            const TextSpan(text: ' '),
-            TextSpan(
-              text: context.localizations.found.toLowerCase(),
+              text: context.localizations.noUserWithName,
               style: context.text.profilePageBody.copyWith(fontSize: 16),
+              children: [
+                const TextSpan(text: ' '),
+                TextSpan(
+                  text: userName,
+                  style: context.text.profilePageBody
+                      .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const TextSpan(text: ' '),
+                TextSpan(
+                  text: context.localizations.found.toLowerCase(),
+                  style: context.text.profilePageBody.copyWith(fontSize: 16),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
