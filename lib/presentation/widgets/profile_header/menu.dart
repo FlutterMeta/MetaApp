@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/blog_page.dart/blog_page.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 
 import '../../../data/models/mock_wallets.dart';
