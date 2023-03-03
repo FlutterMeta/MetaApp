@@ -46,7 +46,7 @@ class Header extends SliverPersistentHeaderDelegate {
   ) {
     final width = context.screenWidth;
 
-  return PointerInterceptor(
+    return PointerInterceptor(
       child: Container(
         decoration: BoxDecoration(
           color: context.color.headerBackground,
