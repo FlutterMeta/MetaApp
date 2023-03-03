@@ -23,7 +23,7 @@ class _SearchBarState extends State<SearchBar> {
           ? context.screenWidth * 0.4
           : context.screenWidth * 0.58,
       child: TextField(
-        onChanged: (value) => SearchBarController.userName.value = value,
+        onChanged: (value) => SearchBarController.searchInput.value = value,
         decoration: InputDecoration(
           border: InputBorder.none,
           hintText: context.localizations.userSearch,
