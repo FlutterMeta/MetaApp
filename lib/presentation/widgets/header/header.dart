@@ -9,6 +9,7 @@ import 'package:meta_app/presentation/navigation/app_router.gr.dart';
 import 'package:meta_app/presentation/widgets/return_home_logo.dart';
 import 'package:meta_app/presentation/widgets/media_buttons.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 
 part 'components/account_button.dart';
@@ -45,62 +46,66 @@ class Header extends SliverPersistentHeaderDelegate {
   ) {
     final width = context.screenWidth;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: context.color.headerBackground,
-        boxShadow: [
-          BoxShadow(
-            color: context.color.headerShadow,
-            spreadRadius: 4,
-            blurRadius: 6,
-          ),
-        ],
-      ),
-      alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1270),
-        child: Column(
-          children: [
-            if (width > 780) ...[
+    return PointerInterceptor(
+      child: Container(
+        decoration: BoxDecoration(
+          color: context.color.headerBackground,
+          boxShadow: [
+            BoxShadow(
+              color: context.color.headerShadow,
+              spreadRadius: 4,
+              blurRadius: 6,
+            ),
+          ],
+        ),
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(vertical: 6),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1270),
+          child: Column(
+            children: [
+              if (width > 780) ...[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      _SpecialInfoComponent(),
+                      Spacer(),
+                      _BlogButton(),
+                      SizedBox(width: 10),
+                      _AccountButton(),
+                      SizedBox(width: 24),
+                      _LocaleDropdown(),
+                      SizedBox(width: 90),
+                    ],
+                  ),
+                ),
+                const Divider(),
+              ],
+              const SizedBox(height: 18),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
-                  mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    _SpecialInfoComponent(),
-                    Spacer(),
-                    _BlogButton(),
-                    SizedBox(width: 10),
-                    _AccountButton(),
-                    SizedBox(width: 24),
-                    _LocaleDropdown(),
-                    SizedBox(width: 90),
+                  children: [
+                    const ReturnHomeLogo(height: 76),
+                    if (width > 780)
+                      const Material(
+                        color: Colors.transparent,
+                        child: _ExpandedMenu(),
+                      ),
+                    if (width <= 780)
+                      Material(
+                        child: _CompactMenu(headerYOffset: headerYOffset),
+                      ),
                   ],
                 ),
               ),
-              const Divider(),
+              const SizedBox(height: 10),
             ],
-            const SizedBox(height: 18),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const ReturnHomeLogo(height: 76),
-                  if (width > 780)
-                    const Material(
-                      color: Colors.transparent,
-                      child: _ExpandedMenu(),
-                    ),
-                  if (width <= 780)
-                    Material(child: _CompactMenu(headerYOffset: headerYOffset)),
-                ],
-              ),
-            ),
-            const SizedBox(height: 10),
-          ],
+          ),
         ),
       ),
     );
