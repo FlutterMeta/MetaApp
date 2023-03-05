@@ -327,5 +327,7 @@
     "approveBlogArticle": "Approve blog article",
     "addBlogArticle": "Add blog article",
     "editing": "Editing",
-    "createBlog": "Create blog"
+    "createBlog": "Create blog",
+    "noUserWithName": "No user with name",
+    "found": "Found"
 }
