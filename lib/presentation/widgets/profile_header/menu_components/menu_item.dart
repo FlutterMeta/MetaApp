@@ -5,14 +5,12 @@ class _MenuItem extends StatefulWidget {
   final IconData icon;
   final Color color;
   final VoidCallback onTap;
-  final VoidCallback? closeMenuCallback;
 
   const _MenuItem({
     required this.title,
     required this.icon,
     required this.color,
     required this.onTap,
-    this.closeMenuCallback,
     Key? key,
   }) : super(key: key);
 
@@ -23,15 +21,10 @@ class _MenuItem extends StatefulWidget {
 class _MenuItemState extends State<_MenuItem> {
   bool _isHovered = false;
 
-  void handleTap() {
-    widget.closeMenuCallback?.call();
-    Future.delayed(const Duration(milliseconds: 300), widget.onTap);
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: handleTap,
+      onTap: widget.onTap,
       onHover: (isHovered) => setState(() => _isHovered = isHovered),
       child: Container(
         decoration: BoxDecoration(
@@ -42,6 +35,7 @@ class _MenuItemState extends State<_MenuItem> {
         constraints: const BoxConstraints(minWidth: 190),
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             const SizedBox(width: 6),
             Icon(
