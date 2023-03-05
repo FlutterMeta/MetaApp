@@ -2,15 +2,15 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/data/models/referrals.dart';
-import 'package:meta_app/data/models/transaction_history.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 
 import '../../../data/models/pending_transactions.dart';
+import '../../../data/models/referrals.dart';
 import '../../../data/models/transaction.dart';
+import '../../../data/models/transaction_history.dart';
 import '../../../data/models/user.dart';
 import '../../widgets/profile_header/profile_header.dart';
-import '../../widgets/user_table/user_table.dart';
+import '../../widgets/user_table/filterable_user_table.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -25,7 +25,7 @@ class DashboardPage extends StatelessWidget {
             const SizedBox(height: 20),
             const _HeaderText(),
             const SizedBox(height: 60),
-            UserTable(users: usersExampleList),
+            FilterableUserTable(users: usersExampleList),
             const SizedBox(height: 70),
             const RightsReservedFooter(),
             const SizedBox(height: 20),

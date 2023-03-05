@@ -5,6 +5,7 @@ import '../../../data/models/user.dart';
 import '../../widgets/profile_header/profile_header.dart';
 import '../../widgets/rights_reserved_footer.dart';
 import '../../widgets/user_table/user_table.dart';
+import '../../widgets/user_table/filterable_user_table.dart';
 
 class UserRefferalsPage extends StatelessWidget {
   final User user;
@@ -31,7 +32,7 @@ class UserRefferalsPage extends StatelessWidget {
                 const _HeaderText(),
                 const SizedBox(height: 60),
                 UserGeneralInfoPanel(user: user),
-                UserTable(users: user.referrals.userList),
+                FilterableUserTable(users: user.referrals.userList),
                 const SizedBox(height: 100),
                 const RightsReservedFooter(),
                 const SizedBox(height: 10),
