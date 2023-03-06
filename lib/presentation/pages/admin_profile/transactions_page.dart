@@ -9,6 +9,7 @@ import 'package:meta_app/presentation/widgets/transaction_table/transaction_tabl
 import '../../../data/models/transaction.dart';
 import '../../../data/models/user.dart';
 import '../../widgets/profile_header/profile_header.dart';
+import '../../widgets/transaction_table/filterable_transaction_table.dart';
 
 class TransactionsPage extends StatelessWidget {
   const TransactionsPage({super.key});
@@ -34,7 +35,7 @@ class TransactionsPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                TransactionTable.system(
+                FilterableTransactionTable(
                   transactions: MockTransactions.getTransactions,
                 ),
                 const SizedBox(height: 140),

@@ -33,15 +33,19 @@ class _UserInformationPanel extends StatelessWidget {
           _TableCell(
             title: context.localizations.referrals,
             content: _ShowTextButton(
-              onTap: () => context.router.popAndPush(
-                  UserRefferalsRoute(user: user, userName: user.name)),
+              onTap: () => context.router.popAndPush(UserRefferalsRoute(
+                user: user,
+                userName: user.name,
+              )),
             ),
           ),
           _TableCell(
             title: context.localizations.transactionHistory,
             content: _ShowTextButton(
-              onTap: () => context.router.popAndPush(
-                  UserTransactionsRoute(user: user, userName: user.name)),
+              onTap: () => context.router.popAndPush(UserTransactionsRoute(
+                user: user,
+                userName: user.name,
+              )),
             ),
           ),
         ],
