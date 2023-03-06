@@ -5,7 +5,6 @@ import 'package:meta_app/data/models/pending_transactions.dart';
 import 'package:meta_app/data/models/referrals.dart';
 import 'package:meta_app/data/models/transaction_history.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
-import 'package:meta_app/presentation/widgets/transaction_table/transaction_table.dart';
 import '../../../data/models/transaction.dart';
 import '../../../data/models/user.dart';
 import '../../widgets/profile_header/profile_header.dart';
