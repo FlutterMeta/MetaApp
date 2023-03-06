@@ -5,7 +5,6 @@ import 'package:meta_app/presentation/widgets/responsive.dart';
 
 import '../../../data/models/transaction.dart';
 import '../admin_window.dart';
-import '../profile_header/search_bar_controller.dart';
 part 'components/transaction_info.dart';
 part 'components/system_transaction_info.dart';
 part 'components/user_transaction_info.dart';
@@ -58,7 +57,7 @@ class TransactionTable extends _TransactionTable {
       );
 }
 
-class _TransactionTable extends StatefulWidget {
+class _TransactionTable extends StatelessWidget {
   final List<Transaction> transactions;
   final bool isPaymentLeading;
   final bool isAcceptable;
@@ -69,38 +68,6 @@ class _TransactionTable extends StatefulWidget {
     required this.isAcceptable,
     Key? key,
   }) : super(key: key);
-
-  @override
-  State<_TransactionTable> createState() => _TransactionTableState();
-}
-
-class _TransactionTableState extends State<_TransactionTable> {
-  late List<Transaction> _transactions;
-
-  void _filter() {
-    final searchBarValue = SearchBarController.searchInput.value;
-
-    setState(
-      () => _transactions = widget.transactions
-          .where((transaction) => transaction.user.email
-              .toLowerCase()
-              .contains(searchBarValue.toLowerCase()))
-          .toList(),
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _transactions = widget.transactions;
-    SearchBarController.searchInput.addListener(_filter);
-  }
-
-  @override
-  void dispose() {
-    SearchBarController.searchInput.removeListener(_filter);
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,12 +90,12 @@ class _TransactionTableState extends State<_TransactionTable> {
           ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: _transactions.length,
+            itemCount: transactions.length,
             itemBuilder: (_, index) {
-              final transaction = _transactions[index];
+              final transaction = transactions[index];
 
-              if (widget.isAcceptable) {
-                if (widget.isPaymentLeading) {
+              if (isAcceptable) {
+                if (isPaymentLeading) {
                   return _AdministeredUserTransactionInfo(
                     transaction: transaction,
                   );
