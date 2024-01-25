@@ -329,5 +329,6 @@
     "editing": "Editing",
     "createBlog": "Create blog",
     "noUserWithName": "No user with name",
-    "found": "Found"
+    "found": "Found",
+    "profile": "Profile"
 }

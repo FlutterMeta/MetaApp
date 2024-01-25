@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/pages/client_profile/client_profile_page.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 
 import '../../../data/models/mock_wallets.dart';
@@ -70,6 +71,12 @@ class ProfileMenu extends Menu {
     VoidCallback closeOnTap,
   ) {
     return [
+      _MenuItem(
+        onTap: () => context.router.push(ClientProfileRoute()),
+        title: context.localizations.profile,
+        icon: Icons.person_outline_rounded,
+        color: context.color.profilePagePrimaryVariant,
+      ),
       _MenuItem(
         onTap: () => context.router.push(AdminBlogRoute()),
         title: context.localizations.updateBlog,
