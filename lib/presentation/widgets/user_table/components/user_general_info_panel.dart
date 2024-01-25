@@ -10,7 +10,7 @@ class UserGeneralInfoPanel extends StatelessWidget {
 
   List<Widget> getCells(BuildContext context) {
     return [
-      _AvatarCell(userName: user.name),
+      _AvatarCell(userName: user.login),
       const SizedBox(width: 10, height: 10),
       _TableCell(
         title: context.localizations.email,

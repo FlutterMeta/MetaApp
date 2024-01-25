@@ -27,33 +27,37 @@ mixin _$AppState {
 /// @nodoc
 abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
-      _$AppStateCopyWithImpl<$Res>;
+      _$AppStateCopyWithImpl<$Res, AppState>;
+  @useResult
   $Res call({ThemeMode themeMode, AppLocale appLocale});
 }
 
 /// @nodoc
-class _$AppStateCopyWithImpl<$Res> implements $AppStateCopyWith<$Res> {
+class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
+    implements $AppStateCopyWith<$Res> {
   _$AppStateCopyWithImpl(this._value, this._then);
 
-  final AppState _value;
   // ignore: unused_field
-  final $Res Function(AppState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? themeMode = freezed,
-    Object? appLocale = freezed,
+    Object? themeMode = null,
+    Object? appLocale = null,
   }) {
     return _then(_value.copyWith(
-      themeMode: themeMode == freezed
+      themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
-      appLocale: appLocale == freezed
+      appLocale: null == appLocale
           ? _value.appLocale
           : appLocale // ignore: cast_nullable_to_non_nullable
               as AppLocale,
-    ));
+    ) as $Val);
   }
 }
 
@@ -63,30 +67,30 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
           _$_AppState value, $Res Function(_$_AppState) then) =
       __$$_AppStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({ThemeMode themeMode, AppLocale appLocale});
 }
 
 /// @nodoc
-class __$$_AppStateCopyWithImpl<$Res> extends _$AppStateCopyWithImpl<$Res>
+class __$$_AppStateCopyWithImpl<$Res>
+    extends _$AppStateCopyWithImpl<$Res, _$_AppState>
     implements _$$_AppStateCopyWith<$Res> {
   __$$_AppStateCopyWithImpl(
       _$_AppState _value, $Res Function(_$_AppState) _then)
-      : super(_value, (v) => _then(v as _$_AppState));
+      : super(_value, _then);
 
-  @override
-  _$_AppState get _value => super._value as _$_AppState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? themeMode = freezed,
-    Object? appLocale = freezed,
+    Object? themeMode = null,
+    Object? appLocale = null,
   }) {
     return _then(_$_AppState(
-      themeMode: themeMode == freezed
+      themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
-      appLocale: appLocale == freezed
+      appLocale: null == appLocale
           ? _value.appLocale
           : appLocale // ignore: cast_nullable_to_non_nullable
               as AppLocale,
@@ -114,18 +118,18 @@ class _$_AppState implements _AppState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AppState &&
-            const DeepCollectionEquality().equals(other.themeMode, themeMode) &&
-            const DeepCollectionEquality().equals(other.appLocale, appLocale));
+            (identical(other.themeMode, themeMode) ||
+                other.themeMode == themeMode) &&
+            (identical(other.appLocale, appLocale) ||
+                other.appLocale == appLocale));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(themeMode),
-      const DeepCollectionEquality().hash(appLocale));
+  int get hashCode => Object.hash(runtimeType, themeMode, appLocale);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_AppStateCopyWith<_$_AppState> get copyWith =>
       __$$_AppStateCopyWithImpl<_$_AppState>(this, _$identity);
 }

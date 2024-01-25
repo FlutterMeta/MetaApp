@@ -25,7 +25,7 @@ class FilterableUserTableState extends State<FilterableUserTable> {
     setState(
       () => users = widget.users
           .where((user) =>
-              user.name.toLowerCase().contains(searchBarValue.toLowerCase()))
+              user.login.toLowerCase().contains(searchBarValue.toLowerCase()))
           .toList(),
     );
   }

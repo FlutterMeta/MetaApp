@@ -18,7 +18,7 @@ class _UserInformationPanel extends StatelessWidget {
         spacing: 20,
         runSpacing: 20,
         children: [
-          _AvatarCell(userName: user.name),
+          _AvatarCell(userName: user.login),
           _TableCell(
             title: context.localizations.email,
             content: Text(user.email, style: context.text.adminUserTableLabel),
@@ -26,7 +26,7 @@ class _UserInformationPanel extends StatelessWidget {
           _TableCell(
             title: context.localizations.referralLevel,
             content: Text(
-              user.referralLevel.toString(),
+              user.level.toString(),
               style: context.text.adminUserTableLabel,
             ),
           ),
@@ -35,7 +35,7 @@ class _UserInformationPanel extends StatelessWidget {
             content: _ShowTextButton(
               onTap: () => context.router.popAndPush(UserRefferalsRoute(
                 user: user,
-                userName: user.name,
+                userName: user.login,
               )),
             ),
           ),
@@ -44,7 +44,7 @@ class _UserInformationPanel extends StatelessWidget {
             content: _ShowTextButton(
               onTap: () => context.router.popAndPush(UserTransactionsRoute(
                 user: user,
-                userName: user.name,
+                userName: user.login,
               )),
             ),
           ),

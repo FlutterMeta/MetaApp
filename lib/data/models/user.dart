@@ -1,32 +1,42 @@
-import 'package:meta_app/data/models/pending_transactions.dart';
-import 'package:meta_app/data/models/referrals.dart';
-import 'package:meta_app/data/models/transaction_history.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:meta_app/data/models/product.dart';
+import 'package:meta_app/data/models/transaction.dart';
 
+part 'user.g.dart';
+
+@JsonSerializable()
 class User {
-  final String name;
+  final String id;
+  final String login;
   final String email;
-  final int referralLevel;
-  final Referrals referrals;
-  final double availableBalance;
-  final TransactionHistory transactionHistory;
-  final PendingTransactions pendingTransactions;
+  final int level;
+  final String phoneNumber;
+  final double balance;
+  final List<Transaction> transactions;
+  final List<Product> products;
 
   const User({
-    required this.name,
+    required this.id,
+    required this.login,
     required this.email,
-    required this.referrals,
-    required this.referralLevel,
-    required this.availableBalance,
-    required this.transactionHistory,
-    required this.pendingTransactions,
+    required this.level,
+    required this.phoneNumber,
+    required this.balance,
+    required this.transactions,
+    required this.products,
   });
 
   User.empty()
-      : name = '',
-        email = '',
-        referralLevel = 0,
-        availableBalance = 0,
-        referrals = Referrals.empty(),
-        transactionHistory = TransactionHistory.empty(),
-        pendingTransactions = PendingTransactions.empty();
+      : email = '',
+        level = 0,
+        balance = 0.0,
+        id = '',
+        login = '',
+        phoneNumber = '',
+        transactions = const [],
+        products = const [];
+
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserToJson(this);
 }

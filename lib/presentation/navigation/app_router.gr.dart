@@ -440,7 +440,7 @@ class UserTransactionsRoute
   UserTransactionsRoute({
     required _i18.User user,
     required String userName,
-    bool? showPendingTransactions,
+    bool? showPendingTransactions = false,
     _i17.Key? key,
   }) : super(
           UserTransactionsRoute.name,
@@ -461,7 +461,7 @@ class UserTransactionsRouteArgs {
   const UserTransactionsRouteArgs({
     required this.user,
     required this.userName,
-    this.showPendingTransactions,
+    this.showPendingTransactions = false,
     this.key,
   });
 

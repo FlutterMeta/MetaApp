@@ -61,37 +61,14 @@ final List<User> usersExampleList = List.generate(
     final transactions = _generateTransactions();
 
     return User(
-      name: 'shookones$index',
+      id: "$index",
+      login: 'shookones$index',
       email: 'usermail$index@mail.com',
-      referralLevel: index,
-      availableBalance: Random().nextDouble() * 100000 + 100,
-      pendingTransactions: PendingTransactions(
-        transactions: transactions
-            .where(
-              (element) => element.status == TransactionStatus.pending.name,
-            )
-            .toList(),
-      ),
-      transactionHistory: TransactionHistory(transactions: transactions),
-      referrals: Referrals(
-        userList: List.generate(
-          3,
-          (index) => User(
-            name: 'Referali$index',
-            email: 'referalimail$index@mail.com',
-            referralLevel: index + 2,
-            availableBalance: Random().nextDouble() * 100000 + 100,
-            pendingTransactions: PendingTransactions.empty(),
-            transactionHistory: TransactionHistory(
-              transactions: List.generate(
-                Random().nextInt(10),
-                (_) => Transaction.empty(),
-              ),
-            ),
-            referrals: Referrals.empty(),
-          ),
-        ),
-      ),
+      level: index,
+      balance: Random().nextDouble() * 100000 + 100,
+      transactions: transactions,
+      products: [],
+      phoneNumber: '+380123456789',
     );
   },
 );

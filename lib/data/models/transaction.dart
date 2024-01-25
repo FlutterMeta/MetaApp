@@ -1,5 +1,9 @@
+import 'package:json_annotation/json_annotation.dart';
 import 'package:meta_app/data/models/user.dart';
 
+part 'transaction.g.dart';
+
+@JsonSerializable()
 class Transaction {
   final String network;
   final double amount;
@@ -30,6 +34,11 @@ class Transaction {
         destinationAddress = '',
         note = '',
         type = '';
+
+  factory Transaction.fromJson(Map<String, dynamic> json) =>
+      _$TransactionFromJson(json);
+
+  Map<String, dynamic> toJson() => _$TransactionToJson(this);
 }
 
 enum TransactionStatus {

@@ -42,7 +42,7 @@ class _ManageUserPanelState extends State<_ManageUserPanel> {
           _TableCell(
             title: context.localizations.availableBalance,
             content: Text(
-              '${widget.user.availableBalance.toStringAsFixed(0)} \$',
+              '${widget.user.balance.toStringAsFixed(0)} \$',
               style: context.text.headerNavItemHovered.copyWith(fontSize: 16),
             ),
           ),
@@ -60,7 +60,7 @@ class _ManageUserPanelState extends State<_ManageUserPanel> {
               window: AdminWindow(
                 title: "${context.localizations.availableBalance}:",
                 content: _BalanceEditField(
-                  availableBalance: widget.user.availableBalance,
+                  availableBalance: widget.user.balance,
                   priceController: _priceController,
                 ),
                 confirmText: context.localizations.change,
@@ -172,7 +172,7 @@ class _PendingTransactionsRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            user.pendingTransactions.transactions.length.toString(),
+            user.transactions.length.toString(),
             style: context.text.headerNavItemHovered.copyWith(fontSize: 16),
           ),
           const SizedBox(width: 10),
@@ -180,7 +180,7 @@ class _PendingTransactionsRow extends StatelessWidget {
             onTap: () => context.router.push(
               UserTransactionsRoute(
                 user: user,
-                userName: user.name,
+                userName: user.login,
                 showPendingTransactions: true,
               ),
             ),
