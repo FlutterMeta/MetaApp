@@ -1,10 +1,13 @@
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/profile_header/menu.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/return_home_logo.dart';
+import '../../data/models/user.dart';
 import '../pages/client_profile/menu_controller.dart';
+import '../redux/app_state.dart';
 
 class Header extends StatefulWidget implements PreferredSizeWidget {
   final GlobalKey<ScaffoldState> Function()? scaffoldKey;
@@ -46,30 +49,35 @@ class _HeaderState extends State<Header> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4),
-      child: ValueListenableBuilder(
-        valueListenable: MenuController.isCollapsed,
-        builder: (context, isCollapsed, child) {
-          return Row(
-            children: [
-              if (!isCollapsed) SizedBox(width: context.screenWidth * 0.02),
-              if (Responsive.isDesktop(context))
-                const ReturnHomeLogo(height: 68),
-              widget.menuIcon ?? const SizedBox(),
-              const Spacer(),
-              widget.searchBar ?? const SizedBox(),
-              const Spacer(),
-              widget.supportIcon ?? const SizedBox(),
-              const SizedBox(width: 10),
-              const _UserInfo(
-                userName: "Bobr123",
-                email: "adwdawdwa@gmail.com",
-              ),
-            ],
-          );
-        },
-      ),
+    return StoreConnector<AppState, User?>(
+      converter: (store) => store.state.currentUser,
+      builder: (context, currentUser) {
+        return Padding(
+          padding: const EdgeInsets.all(4),
+          child: ValueListenableBuilder(
+            valueListenable: MenuController.isCollapsed,
+            builder: (context, isCollapsed, child) {
+              return Row(
+                children: [
+                  if (!isCollapsed) SizedBox(width: context.screenWidth * 0.02),
+                  if (Responsive.isDesktop(context))
+                    const ReturnHomeLogo(height: 68),
+                  widget.menuIcon ?? const SizedBox(),
+                  const Spacer(),
+                  widget.searchBar ?? const SizedBox(),
+                  const Spacer(),
+                  widget.supportIcon ?? const SizedBox(),
+                  const SizedBox(width: 10),
+                  _UserInfo(
+                    userName: currentUser?.login ?? "User",
+                    email: currentUser?.email ?? "email@example.com",
+                  ),
+                ],
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

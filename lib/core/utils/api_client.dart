@@ -42,8 +42,11 @@ class ApiClient {
     return dio.get(endpoint);
   }
 
-  Future<Response<dynamic>> post(String endpoint,
-      {dynamic body, bool isFormData = false}) async {
+  Future<Response<dynamic>> post(
+    String endpoint, {
+    dynamic body,
+    bool isFormData = false,
+  }) async {
     // Check if the body should be sent as FormData
     final data = isFormData ? FormData.fromMap(body) : body;
 
@@ -52,15 +55,19 @@ class ApiClient {
     print('Sending POST request to $endpoint with $contentType: $body');
 
     // Perform a POST request with the appropriate content type
-    return dio.post(endpoint,
-        data: data,
-        options: Options(
-          contentType: isFormData ? 'multipart/form-data' : 'application/json',
-        ));
+    return dio.post(
+      endpoint,
+      data: data,
+      options: Options(
+        contentType: isFormData ? 'multipart/form-data' : 'application/json',
+      ),
+    );
   }
 
-  Future<Response<dynamic>> put(String endpoint,
-      {required dynamic body}) async {
+  Future<Response<dynamic>> put(
+    String endpoint, {
+    required dynamic body,
+  }) async {
     // Perform a PUT request
     return dio.put(endpoint, data: body);
   }

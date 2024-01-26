@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:async_redux/async_redux.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,9 @@ import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 import 'package:meta_app/data/repositories/api_repository_impl.dart';
 import '../../core/utils/api_client.dart';
+import '../../data/models/user.dart';
+import '../redux/app_state.dart';
+import '../redux/authorization/actions/login_user_action.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -23,7 +27,7 @@ class LoginPage extends StatefulWidget {
 
 var baseUrl = 'http://localhost:8080';
 var token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ2aXRhbGlpLnBldHJ1bkBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZlOWE0ZTAzLTAwNGEtNGRmYi05N2E5LWJiNDc1MjQ5YTk4QiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkYW0iLCJleHAiOjE3MDg1NDI5MjYsImlzcyI6IkF1cm9yYUFQSSJ9.h5-iGIC05c6JMTBLASG9wqV7tQUF2-_mfQkr7yh9fdA';
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ2aXRhbGlpLnBldHJ1bkBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZlOWE0ZTAzLTAwNGEtNGRmYi05N2E5LWJiNDc1MjQ5YTk4QiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkYW0iLCJleHAiOjE3MDg4NjEyNDgsImlzcyI6IkF1cm9yYUFQSSJ9.mmz-X1nJ5vOYCY7fcwUo-Ku8r6L_HCiBEuIZF30uSf0';
 final _apiClient = ApiClient(
   baseUrl: baseUrl,
   token: token,
@@ -43,17 +47,18 @@ class _LoginPageState extends State<LoginPage> with Validator {
   void _goToRegistrationPage() =>
       context.router.push(const RegistrationRoute());
 
+  void _loginAction(BuildContext context, User user) {
+    StoreProvider.of<AppState>(context, null).dispatch(LoginUserAction(user));
+  }
+
   Future<bool> login() async {
     try {
       var response = await _apiRepository.login(
         _loginController.text,
         _passwordController.text,
       );
-      if (response != 200 && response != 201 && response != 204) {
-        return false;
-      }
       debugPrint(response.toString());
-      context.router.push(ClientProfileRoute());
+      return response;
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -63,7 +68,20 @@ class _LoginPageState extends State<LoginPage> with Validator {
   void _onLoginButtonPressed() async {
     if (_formKey.currentState?.validate() == false) return;
     bool response = await login();
-    if (response) _goToProfilePage(context);
+    if (response) {
+      User user = User(
+        id: Random().nextInt(100).toString(),
+        login: _loginController.text,
+        email: _loginController.text,
+        phoneNumber: _loginController.text,
+        level: 1,
+        balance: 0,
+        transactions: [],
+        products: [],
+      );
+      _loginAction(context, user);
+      _goToProfilePage(context);
+    }
   }
 
   void _goToResetPasswordPage() =>

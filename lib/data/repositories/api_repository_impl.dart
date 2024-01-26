@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/data/models/registration.dart';
 
@@ -13,11 +14,15 @@ class ApiRepositoryImpl implements ApiRepository {
   @override
   Future<bool> login(String login, String password) async {
     try {
-      var response = await apiClient.post(
+      Response response = await apiClient.post(
         '/Account/Login',
         body: {'Login': login, 'Password': password},
         isFormData: true,
       );
+      if (response.statusCode != 200 && response.statusCode != 202) {
+        print('Error: ${response.statusCode}');
+        return false;
+      }
       debugPrint(response.toString());
     } catch (e) {
       debugPrint(e.toString());

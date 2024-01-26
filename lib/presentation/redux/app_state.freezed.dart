@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AppState {
   ThemeMode get themeMode => throw _privateConstructorUsedError;
   AppLocale get appLocale => throw _privateConstructorUsedError;
+  User? get currentUser => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $AppStateCopyWith<AppState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $AppStateCopyWith<$Res> {
   factory $AppStateCopyWith(AppState value, $Res Function(AppState) then) =
       _$AppStateCopyWithImpl<$Res, AppState>;
   @useResult
-  $Res call({ThemeMode themeMode, AppLocale appLocale});
+  $Res call({ThemeMode themeMode, AppLocale appLocale, User? currentUser});
 }
 
 /// @nodoc
@@ -47,6 +48,7 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
   $Res call({
     Object? themeMode = null,
     Object? appLocale = null,
+    Object? currentUser = freezed,
   }) {
     return _then(_value.copyWith(
       themeMode: null == themeMode
@@ -57,6 +59,10 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
           ? _value.appLocale
           : appLocale // ignore: cast_nullable_to_non_nullable
               as AppLocale,
+      currentUser: freezed == currentUser
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as User?,
     ) as $Val);
   }
 }
@@ -68,7 +74,7 @@ abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
       __$$_AppStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ThemeMode themeMode, AppLocale appLocale});
+  $Res call({ThemeMode themeMode, AppLocale appLocale, User? currentUser});
 }
 
 /// @nodoc
@@ -84,6 +90,7 @@ class __$$_AppStateCopyWithImpl<$Res>
   $Res call({
     Object? themeMode = null,
     Object? appLocale = null,
+    Object? currentUser = freezed,
   }) {
     return _then(_$_AppState(
       themeMode: null == themeMode
@@ -94,6 +101,10 @@ class __$$_AppStateCopyWithImpl<$Res>
           ? _value.appLocale
           : appLocale // ignore: cast_nullable_to_non_nullable
               as AppLocale,
+      currentUser: freezed == currentUser
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as User?,
     ));
   }
 }
@@ -101,16 +112,19 @@ class __$$_AppStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AppState implements _AppState {
-  const _$_AppState({required this.themeMode, required this.appLocale});
+  const _$_AppState(
+      {required this.themeMode, required this.appLocale, this.currentUser});
 
   @override
   final ThemeMode themeMode;
   @override
   final AppLocale appLocale;
+  @override
+  final User? currentUser;
 
   @override
   String toString() {
-    return 'AppState(themeMode: $themeMode, appLocale: $appLocale)';
+    return 'AppState(themeMode: $themeMode, appLocale: $appLocale, currentUser: $currentUser)';
   }
 
   @override
@@ -121,11 +135,14 @@ class _$_AppState implements _AppState {
             (identical(other.themeMode, themeMode) ||
                 other.themeMode == themeMode) &&
             (identical(other.appLocale, appLocale) ||
-                other.appLocale == appLocale));
+                other.appLocale == appLocale) &&
+            (identical(other.currentUser, currentUser) ||
+                other.currentUser == currentUser));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, themeMode, appLocale);
+  int get hashCode =>
+      Object.hash(runtimeType, themeMode, appLocale, currentUser);
 
   @JsonKey(ignore: true)
   @override
@@ -137,12 +154,15 @@ class _$_AppState implements _AppState {
 abstract class _AppState implements AppState {
   const factory _AppState(
       {required final ThemeMode themeMode,
-      required final AppLocale appLocale}) = _$_AppState;
+      required final AppLocale appLocale,
+      final User? currentUser}) = _$_AppState;
 
   @override
   ThemeMode get themeMode;
   @override
   AppLocale get appLocale;
+  @override
+  User? get currentUser;
   @override
   @JsonKey(ignore: true)
   _$$_AppStateCopyWith<_$_AppState> get copyWith =>
