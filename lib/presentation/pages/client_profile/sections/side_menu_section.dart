@@ -20,9 +20,18 @@ class _SideMenuSectionState extends State<SideMenuSection> {
       builder: (context, isCollapsed, child) {
         return Drawer(
           backgroundColor: isCollapsed
-              ? context.color.profilePagePrimary
+              ? context.color.profilePageSecondary
               : context.color.profilePageBackground,
           elevation: 0,
+          // make rounded only right side
+          shape: isCollapsed
+              ? const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(32),
+                    bottomRight: Radius.circular(32),
+                  ),
+                )
+              : null,
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: ValueListenableBuilder(

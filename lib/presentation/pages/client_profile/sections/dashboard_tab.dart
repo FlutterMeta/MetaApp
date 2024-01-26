@@ -1,3 +1,4 @@
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,6 +14,7 @@ import 'package:useful_extensions/useful_extensions.dart';
 
 import '../../../../data/models/transaction.dart';
 import '../../../../data/models/user.dart';
+import '../../../redux/app_state.dart';
 
 class DashboardTab extends StatelessWidget {
   const DashboardTab({super.key});
@@ -57,42 +59,47 @@ class _AdaptiveMainContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (Responsive.isDesktop(context) || Responsive.isTablet(context)) {
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                children: const [
+    return StoreConnector<AppState, User?>(
+      converter: (store) => store.state.currentUser,
+      builder: (context, currentUser) {
+        return LayoutBuilder(
+          builder: (context, constraints) {
+            if (Responsive.isDesktop(context) || Responsive.isTablet(context)) {
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    children: [
+                      _RankCard(
+                        partnerIncomeLevel: 0,
+                        rank: _userRank,
+                        reward: currentUser?.balance ?? 0,
+                      ),
+                      SizedBox(height: 20),
+                      _WalletCard(),
+                    ],
+                  ),
+                  const SizedBox(width: 20),
+                  const Expanded(child: _LevelCards()),
+                ],
+              );
+            } else {
+              return Column(
+                children: [
                   _RankCard(
                     partnerIncomeLevel: 0,
                     rank: _userRank,
-                    reward: _userReward,
+                    reward: currentUser?.balance ?? 0,
                   ),
-                  SizedBox(height: 20),
-                  _WalletCard(),
+                  const SizedBox(height: 20),
+                  const _WalletCard(),
+                  const SizedBox(height: 20),
+                  const _LevelCards(),
                 ],
-              ),
-              const SizedBox(width: 20),
-              const Expanded(child: _LevelCards()),
-            ],
-          );
-        } else {
-          return Column(
-            children: const [
-              _RankCard(
-                partnerIncomeLevel: 0,
-                rank: _userRank,
-                reward: _userReward,
-              ),
-              SizedBox(height: 20),
-              _WalletCard(),
-              SizedBox(height: 20),
-              _LevelCards(),
-            ],
-          );
-        }
+              );
+            }
+          },
+        );
       },
     );
   }
@@ -203,23 +210,28 @@ class _InformationPanelState extends State<_InformationPanel>
             ),
           ]),
         ),
-        SelectableText.rich(
-          textAlign: TextAlign.center,
-          TextSpan(children: [
-            TextSpan(
-              text: context.localizations.referralCodeForPartners,
-              style: context.text.profilePageBody.copyWith(
-                fontSize: 18,
-                color: context.color.profilePageSecondaryVariant,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            const TextSpan(text: "  "),
-            TextSpan(
-              text: _referralCode,
-              style: context.text.profileDashboardReferralCodeItself,
-            ),
-          ]),
+        StoreConnector<AppState, User?>(
+          converter: (store) => store.state.currentUser,
+          builder: (context, currentUser) {
+            return SelectableText.rich(
+              textAlign: TextAlign.center,
+              TextSpan(children: [
+                TextSpan(
+                  text: context.localizations.referralCodeForPartners,
+                  style: context.text.profilePageBody.copyWith(
+                    fontSize: 18,
+                    color: context.color.profilePageSecondaryVariant,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                const TextSpan(text: "  "),
+                TextSpan(
+                  text: currentUser?.id ?? " ",
+                  style: context.text.profileDashboardReferralCodeItself,
+                ),
+              ]),
+            );
+          },
         ),
         ColoredButton(
           title: context.localizations.copyCode,
