@@ -2,9 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/mixins/validator.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/data/models/pending_transactions.dart';
 import 'package:meta_app/data/models/registration.dart';
-import 'package:meta_app/data/models/user.dart';
 import 'package:meta_app/data/repositories/api_repository_impl.dart';
 import 'package:meta_app/presentation/widgets/auth_button.dart';
 import 'package:meta_app/presentation/widgets/auth_field.dart';
@@ -13,7 +11,6 @@ import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 
 import '../../core/utils/api_client.dart';
-import '../../data/models/transaction_history.dart';
 
 var baseUrl = 'http://localhost:8080';
 var token =

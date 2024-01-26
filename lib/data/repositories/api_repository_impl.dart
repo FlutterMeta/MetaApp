@@ -11,17 +11,35 @@ class ApiRepositoryImpl implements ApiRepository {
   ApiRepositoryImpl({required this.apiClient});
 
   @override
-  Future<void> login(String email, String password) async {
-    var response = await apiClient
-        .post('/Account/Login', body: {'email': email, 'password': password});
-    debugPrint(response.toString());
+  Future<bool> login(String login, String password) async {
+    try {
+      var response = await apiClient.post(
+        '/Account/Login',
+        body: {'Login': login, 'Password': password},
+        isFormData: true,
+      );
+      debugPrint(response.toString());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return true;
   }
 
   @override
-  Future<void> register(Registration registration) async {
-    var response =
-        await apiClient.post('/Account/Register', body: registration.toJson());
-    debugPrint(response.toString());
+  Future<bool> register(Registration registration) async {
+    try {
+      var response = await apiClient.post('/Account/Register', body: {
+        'login': registration.login,
+        'email': registration.email,
+        'phoneNumber': registration.phoneNumber,
+        'password': registration.password,
+        'referal': registration.referal,
+      });
+      debugPrint(response.toString());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return true;
   }
 
   // ... implement the other methods

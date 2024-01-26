@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +11,8 @@ import 'package:meta_app/presentation/widgets/auth_button.dart';
 import 'package:meta_app/presentation/widgets/code_verification_section.dart';
 import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_view.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
+import 'package:meta_app/data/repositories/api_repository_impl.dart';
+import '../../core/utils/api_client.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,6 +20,15 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
+
+var baseUrl = 'http://localhost:8080';
+var token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ2aXRhbGlpLnBldHJ1bkBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZlOWE0ZTAzLTAwNGEtNGRmYi05N2E5LWJiNDc1MjQ5YTk4QiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkYW0iLCJleHAiOjE3MDg1NDI5MjYsImlzcyI6IkF1cm9yYUFQSSJ9.h5-iGIC05c6JMTBLASG9wqV7tQUF2-_mfQkr7yh9fdA';
+final _apiClient = ApiClient(
+  baseUrl: baseUrl,
+  token: token,
+);
+final _apiRepository = ApiRepositoryImpl(apiClient: _apiClient);
 
 class _LoginPageState extends State<LoginPage> with Validator {
   final _loginController = TextEditingController();
@@ -30,9 +43,27 @@ class _LoginPageState extends State<LoginPage> with Validator {
   void _goToRegistrationPage() =>
       context.router.push(const RegistrationRoute());
 
-  void _onLoginButtonPressed() {
-    _formKey.currentState?.validate();
-    _goToProfilePage(context);
+  Future<bool> login() async {
+    try {
+      var response = await _apiRepository.login(
+        _loginController.text,
+        _passwordController.text,
+      );
+      if (response != 200 && response != 201 && response != 204) {
+        return false;
+      }
+      debugPrint(response.toString());
+      context.router.push(ClientProfileRoute());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return true;
+  }
+
+  void _onLoginButtonPressed() async {
+    if (_formKey.currentState?.validate() == false) return;
+    bool response = await login();
+    if (response) _goToProfilePage(context);
   }
 
   void _goToResetPasswordPage() =>
@@ -67,14 +98,14 @@ class _LoginPageState extends State<LoginPage> with Validator {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        context.localizations.yourLogin,
+                        context.localizations.enterYourEmail,
                         style: context.text.loginFormText,
                       ),
                     ),
                     const SizedBox(height: 10),
                     AuthField(
-                      validator: (login) => validateLogin(login, context),
-                      hint: context.localizations.yourLoginWithTip,
+                      validator: (email) => validateEmail(email, context),
+                      hint: context.localizations.enterYourEmail,
                       controller: _loginController,
                     ),
                     const SizedBox(height: 20),

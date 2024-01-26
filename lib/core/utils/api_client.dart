@@ -25,11 +25,13 @@ class ApiClient {
         // Log the response
         print('Response status: ${response.statusCode}');
         print('Response body: ${response.data}');
+        print('Response text: ${response.statusMessage}');
         return handler.next(response); // continue
       },
       onError: (DioError e, handler) {
         // Log the error
         print('Error: ${e.message}');
+        print('Error response: ${e.response}');
         return handler.next(e); //continue
       },
     ));
@@ -41,10 +43,20 @@ class ApiClient {
   }
 
   Future<Response<dynamic>> post(String endpoint,
-      {required dynamic body}) async {
-    // Perform a POST request
-    print('Sending POST request to $endpoint with body: $body');
-    return dio.post(endpoint, data: body);
+      {dynamic body, bool isFormData = false}) async {
+    // Check if the body should be sent as FormData
+    final data = isFormData ? FormData.fromMap(body) : body;
+
+    // Log the request type
+    final contentType = isFormData ? 'FormData/multipart' : 'JSON';
+    print('Sending POST request to $endpoint with $contentType: $body');
+
+    // Perform a POST request with the appropriate content type
+    return dio.post(endpoint,
+        data: data,
+        options: Options(
+          contentType: isFormData ? 'multipart/form-data' : 'application/json',
+        ));
   }
 
   Future<Response<dynamic>> put(String endpoint,
