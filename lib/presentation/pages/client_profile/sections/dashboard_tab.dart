@@ -175,10 +175,10 @@ class _InformationPanelState extends State<_InformationPanel>
     super.dispose();
   }
 
-  static const _referralCode = "Aurora_Bobr12360914";
+  var referralCode = "Aurora_Bobr12360914";
 
   void onCopyButtonTap() {
-    Clipboard.setData(const ClipboardData(text: _referralCode));
+    Clipboard.setData(ClipboardData(text: referralCode));
     showOverlay(context);
   }
 
@@ -213,6 +213,7 @@ class _InformationPanelState extends State<_InformationPanel>
         StoreConnector<AppState, User?>(
           converter: (store) => store.state.currentUser,
           builder: (context, currentUser) {
+            referralCode = currentUser?.id ?? " ";
             return SelectableText.rich(
               textAlign: TextAlign.center,
               TextSpan(children: [
