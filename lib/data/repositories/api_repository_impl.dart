@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/data/models/registration.dart';
+import 'dart:html' as html;
 
 import '../../core/utils/api_client.dart';
 import '../../domain/repositories/api_repository.dart';
@@ -19,6 +20,7 @@ class ApiRepositoryImpl implements ApiRepository {
         body: {'Login': login, 'Password': password},
         isFormData: true,
       );
+      html.window.localStorage["token"] = response.data["token"];
       if (response.statusCode != 200 && response.statusCode != 202) {
         print('Error: ${response.statusCode}');
         return false;
@@ -47,5 +49,26 @@ class ApiRepositoryImpl implements ApiRepository {
     return true;
   }
 
+  @override
+  Future<User> userProfile() async {
+    try {
+      var response = await apiClient.get('/User/Profile');
+      debugPrint(response.toString());
+      return User(
+        id: response.data['id'],
+        key: response.data['key'],
+        login: response.data['login'],
+        email: response.data['email'],
+        level: response.data['level'],
+        phoneNumber: response.data['phoneNumber'],
+        balance: response.data['balance'],
+        transactions: response.data['transactions'],
+        products: response.data['products'],
+      );
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return User.empty();
+  }
   // ... implement the other methods
 }

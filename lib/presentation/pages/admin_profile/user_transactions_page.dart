@@ -51,7 +51,7 @@ class UserTransactionsPage extends StatelessWidget {
                 _TransactionTableWithFilter(
                   showPendingTransactions: showPendingTransactions ?? false,
                   transactionsHistory: TransactionHistory(
-                    transactions: user.transactions,
+                    transactions: user.transactions ?? [],
                   ),
                 ),
                 const SizedBox(height: 140),

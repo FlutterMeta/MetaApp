@@ -7,14 +7,25 @@ class _AccountButton extends StatelessWidget {
     context.router.push(const LoginRoute());
   }
 
+  void _goToClientProfilePage(BuildContext context) {
+    context.router.push(ClientProfileRoute());
+  }
+
   @override
   Widget build(BuildContext context) {
-    return WebButton(
-      onTap: () => _goToLoginPage(context),
-      child: Text(
-        context.localizations.account,
-        style: context.text.homePagePurpleBodyText,
-      ),
+    return StoreConnector<AppState, User?>(
+      converter: (store) => store.state.currentUser,
+      builder: (context, user) {
+        return WebButton(
+          onTap: () => user == null
+              ? _goToLoginPage(context)
+              : _goToClientProfilePage(context),
+          child: Text(
+            context.localizations.account,
+            style: context.text.homePagePurpleBodyText,
+          ),
+        );
+      },
     );
   }
 }

@@ -62,6 +62,7 @@ final List<User> usersExampleList = List.generate(
 
     return User(
       id: "$index",
+      key: "s",
       login: 'shookones$index',
       email: 'usermail$index@mail.com',
       level: index,

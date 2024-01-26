@@ -7,16 +7,18 @@ part 'user.g.dart';
 @JsonSerializable()
 class User {
   final String id;
+  final String? key;
   final String login;
   final String email;
   final int level;
   final String phoneNumber;
   final double balance;
-  final List<Transaction> transactions;
-  final List<Product> products;
+  final List<Transaction>? transactions;
+  final List<Product>? products;
 
   const User({
     required this.id,
+    required this.key,
     required this.login,
     required this.email,
     required this.level,
@@ -29,6 +31,7 @@ class User {
   User.empty()
       : email = '',
         level = 0,
+        key = '',
         balance = 0.0,
         id = '',
         login = '',

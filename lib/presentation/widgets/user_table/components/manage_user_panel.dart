@@ -172,7 +172,7 @@ class _PendingTransactionsRow extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            user.transactions.length.toString(),
+            user.transactions?.length.toString() ?? '0',
             style: context.text.headerNavItemHovered.copyWith(fontSize: 16),
           ),
           const SizedBox(width: 10),

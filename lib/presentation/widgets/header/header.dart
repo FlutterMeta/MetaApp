@@ -1,3 +1,4 @@
+import 'package:async_redux/async_redux.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/di/locator.dart';
@@ -11,7 +12,9 @@ import 'package:meta_app/presentation/widgets/media_buttons.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:useful_extensions/useful_extensions.dart';
-
+import 'package:async_redux/async_redux.dart';
+import '../../../data/models/user.dart';
+import '../../redux/app_state.dart';
 part 'components/account_button.dart';
 part 'components/compact_menu.dart';
 part 'components/expanded_menu.dart';

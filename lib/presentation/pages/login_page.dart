@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:html' as html;
 
 import 'package:async_redux/async_redux.dart';
 import 'package:auto_route/auto_route.dart';
@@ -69,16 +70,10 @@ class _LoginPageState extends State<LoginPage> with Validator {
     if (_formKey.currentState?.validate() == false) return;
     bool response = await login();
     if (response) {
-      User user = User(
-        id: Random().nextInt(100).toString(),
-        login: _loginController.text,
-        email: _loginController.text,
-        phoneNumber: _loginController.text,
-        level: 1,
-        balance: 0,
-        transactions: [],
-        products: [],
-      );
+      String key = html.window.localStorage["token"] ?? "";
+      ApiClient apiClient = ApiClient(baseUrl: baseUrl, token: key);
+      ApiRepositoryImpl apiRepository = ApiRepositoryImpl(apiClient: apiClient);
+      User user = await apiRepository.userProfile();
       _loginAction(context, user);
       _goToProfilePage(context);
     }
