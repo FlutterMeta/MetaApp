@@ -70,5 +70,41 @@ class ApiRepositoryImpl implements ApiRepository {
     }
     return User.empty();
   }
-  // ... implement the other methods
+
+  @override
+  Future<bool> forgotPassword(String email) async {
+    try {
+      var response = await apiClient.post(
+        '/Account/ForgotPassword',
+        body: {
+          'email': email,
+        },
+        isFormData: true,
+      );
+      debugPrint(response.toString());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return true;
+  }
+
+  @override
+  Future<bool> resetPassword(String email, int code, String password) async {
+    try {
+      var response = await apiClient.post(
+        '/Account/ResetPassword',
+        body: {
+          'email': email,
+          'code': code,
+          'password': password,
+          "confirmPassword": password,
+        },
+        isFormData: true,
+      );
+      debugPrint(response.toString());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return true;
+  }
 }

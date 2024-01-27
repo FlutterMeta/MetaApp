@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/pages/client_profile/client_profile_page.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
-
+import 'dart:html' as html;
 import '../../../data/models/mock_wallets.dart';
 import '../../navigation/app_router.gr.dart';
 
@@ -47,7 +47,10 @@ class Menu extends StatelessWidget {
           children: [
             ...items(context, onCloseItemTap),
             _MenuItem(
-              onTap: () => context.router.push(const LoginRoute()),
+              onTap: () {
+                html.window.localStorage["token"] = "";
+                context.router.push(const LoginRoute());
+              },
               title: context.localizations.signOut,
               icon: Icons.logout_rounded,
               color: context.color.profilePageError,

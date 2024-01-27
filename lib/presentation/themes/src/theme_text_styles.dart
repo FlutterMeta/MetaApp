@@ -829,8 +829,9 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         authFormHint: headline1.copyWith(fontSize: 14),
         authFormError: headline3.copyWith(
+          fontSize: 16,
           color: AppColors.orangeRed,
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w700,
         ),
         multiMetaUniverseTitle: headline1.copyWith(fontSize: 62),
         metaverseThatUnitesTitle: headline1.copyWith(fontSize: 52),

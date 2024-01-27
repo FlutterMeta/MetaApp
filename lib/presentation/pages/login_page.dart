@@ -62,13 +62,14 @@ class _LoginPageState extends State<LoginPage> with Validator {
       return response;
     } catch (e) {
       debugPrint(e.toString());
+      return false;
     }
-    return true;
   }
 
   void _onLoginButtonPressed() async {
-    if (_formKey.currentState?.validate() == false) return;
+    //if (_formKey.currentState?.validate() == false) return;
     bool response = await login();
+    print(response);
     if (response) {
       String key = html.window.localStorage["token"] ?? "";
       ApiClient apiClient = ApiClient(baseUrl: baseUrl, token: key);
@@ -130,10 +131,9 @@ class _LoginPageState extends State<LoginPage> with Validator {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    AuthField(
+                    PasswordField(
                       validator: (password) =>
                           validatePassword(password, context),
-                      obscureText: true,
                       hint: context.localizations.yourPassword,
                       controller: _passwordController,
                     ),

@@ -330,5 +330,11 @@
     "createBlog": "Create blog",
     "noUserWithName": "No user with name",
     "found": "Found",
-    "profile": "Profile"
+    "profile": "Profile",
+    "incorrectPhoneNumber": "Incorrect phone number",
+    "enterYourPhoneNumber": "Enter your phone number",
+    "yourPhoneNumber": "Your phone number",
+    "ok": "Ok",
+    "resetPasswordSuccess": "Password reset successfully",
+    "resetPasswordError": "Password reset error"
 }
