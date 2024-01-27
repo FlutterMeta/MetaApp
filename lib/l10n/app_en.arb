@@ -336,5 +336,6 @@
     "yourPhoneNumber": "Your phone number",
     "ok": "Ok",
     "resetPasswordSuccess": "Password reset successfully",
-    "resetPasswordError": "Password reset error"
+    "resetPasswordError": "Password reset error",
+    "registrationSuccess": "Registration completed successfully"
 }

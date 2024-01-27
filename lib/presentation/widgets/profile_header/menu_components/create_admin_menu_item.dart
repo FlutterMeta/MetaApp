@@ -52,7 +52,7 @@ class _AdminCreationFields extends StatefulWidget {
 }
 
 class _AdminCreationFieldsState extends State<_AdminCreationFields>
-    with Validator {
+    with Validator, MessageOverlay {
   final _mailController = TextEditingController();
   final _nameController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -67,39 +67,12 @@ class _AdminCreationFieldsState extends State<_AdminCreationFields>
     apiRepository.registerAdmin(register);
   }
 
-  void _showSuccessMessage() {
-    final overlay = Overlay.of(context);
-    final overlayEntry = OverlayEntry(
-      builder: (context) => Positioned(
-        top: MediaQuery.of(context).size.height *
-            0.1, // Adjust the position as needed
-        left: MediaQuery.of(context).size.width * 0.1,
-        child: Material(
-          elevation: 10.0,
-          borderRadius: BorderRadius.circular(8),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            color: Colors.green, // You can style this as you want
-            child: const Text(
-              'Admin added successfully',
-              style: TextStyle(
-                  color: Colors.white), // And style this text as you want
-            ),
-          ),
-        ),
-      ),
-    );
-
-    overlay?.insert(overlayEntry);
-
-    // Automatically remove the overlay after 2 seconds
-    Future.delayed(const Duration(seconds: 2))
-        .then((value) => overlayEntry.remove());
-  }
-
   void _onConfirm() {
     if (_formKey.currentState?.validate() ?? false) {
-      _showSuccessMessage();
+      showMessage(
+        context.localizations.registrationSuccess,
+        Colors.green,
+      );
       _registerAdmin();
     }
   }

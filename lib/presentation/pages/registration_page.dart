@@ -11,6 +11,7 @@ import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 
 import '../../core/global.dart';
+import '../../core/mixins/success_message_overlay.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);
@@ -19,7 +20,8 @@ class RegistrationPage extends StatefulWidget {
   State<StatefulWidget> createState() => _RegistrationPageState();
 }
 
-class _RegistrationPageState extends State<RegistrationPage> with Validator {
+class _RegistrationPageState extends State<RegistrationPage>
+    with Validator, MessageOverlay {
   final _loginController = TextEditingController();
   final _emailController = TextEditingController();
   final _telegramController = TextEditingController();
@@ -53,40 +55,13 @@ class _RegistrationPageState extends State<RegistrationPage> with Validator {
 
     bool response = await _register();
     if (response) {
-      _showSuccessMessage();
-      await Future.delayed(const Duration(seconds: 2)); // wait for 2 seconds
+      showMessage(
+        context.localizations.registrationSuccess,
+        Colors.green,
+      );
+      await Future.delayed(const Duration(seconds: 2));
       _goToLoginPage();
     }
-  }
-
-  void _showSuccessMessage() {
-    final overlay = Overlay.of(context);
-    final overlayEntry = OverlayEntry(
-      builder: (context) => Positioned(
-        top: MediaQuery.of(context).size.height *
-            0.1, // Adjust the position as needed
-        left: MediaQuery.of(context).size.width * 0.1,
-        child: Material(
-          elevation: 10.0,
-          borderRadius: BorderRadius.circular(8),
-          child: Container(
-            padding: EdgeInsets.all(16),
-            color: Colors.green, // You can style this as you want
-            child: Text(
-              'Successful registration! Redirecting to Login page',
-              style: TextStyle(
-                  color: Colors.white), // And style this text as you want
-            ),
-          ),
-        ),
-      ),
-    );
-
-    overlay?.insert(overlayEntry);
-
-    // Automatically remove the overlay after 2 seconds
-    Future.delayed(const Duration(seconds: 2))
-        .then((value) => overlayEntry.remove());
   }
 
   void _goToLoginPage() {
