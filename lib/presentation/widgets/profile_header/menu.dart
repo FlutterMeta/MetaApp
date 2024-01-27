@@ -1,19 +1,27 @@
+import 'package:async_redux/async_redux.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile/client_profile_page.dart';
+import 'package:meta_app/data/models/registration.dart';
+import 'package:meta_app/presentation/redux/authorization/actions/logout_user_action.dart';
+import 'package:meta_app/presentation/widgets/auth_field.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'dart:html' as html;
+import '../../../core/di/locator.dart';
+import '../../../core/global.dart';
+import '../../../core/utils/api_client.dart';
 import '../../../data/models/mock_wallets.dart';
+import '../../../data/repositories/api_repository_impl.dart';
 import '../../navigation/app_router.gr.dart';
-
+import '../../redux/app_state.dart';
+import 'package:meta_app/core/mixins/validator.dart';
 part 'menu_components/create_admin_menu_item.dart';
 part 'menu_components/edit_requisites_menu_item.dart';
 part 'menu_components/menu_item.dart';
 part 'menu_components/admin_dialog.dart';
 part 'menu_components/labeled_field.dart';
 
-class Menu extends StatelessWidget {
+class Menu extends StatefulWidget {
   final List<Widget> Function(BuildContext context, VoidCallback closeOnTap)
       items;
   final VoidCallback onCloseItemTap;
@@ -23,6 +31,15 @@ class Menu extends StatelessWidget {
     required this.onCloseItemTap,
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<Menu> createState() => _MenuState();
+}
+
+class _MenuState extends State<Menu> {
+  void _logoutAction(BuildContext context) {
+    StoreProvider.of<AppState>(context, null).dispatch(LogoutUserAction());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +62,11 @@ class Menu extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            ...items(context, onCloseItemTap),
+            ...widget.items(context, widget.onCloseItemTap),
             _MenuItem(
               onTap: () {
                 html.window.localStorage["token"] = "";
+                _logoutAction(context);
                 context.router.push(const LoginRoute());
               },
               title: context.localizations.signOut,
@@ -56,7 +74,7 @@ class Menu extends StatelessWidget {
               color: context.color.profilePageError,
             ),
             _MenuItem(
-              onTap: () => onCloseItemTap(),
+              onTap: () => widget.onCloseItemTap(),
               title: context.localizations.closeMenu,
               icon: Icons.close_rounded,
               color: context.color.greyish,

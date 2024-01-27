@@ -8,8 +8,7 @@ import 'package:meta_app/presentation/widgets/auth_button.dart';
 import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_view.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 
-import '../../core/utils/api_client.dart';
-import '../../data/repositories/api_repository_impl.dart';
+import '../../core/global.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({super.key});
@@ -18,15 +17,6 @@ class ResetPasswordPage extends StatefulWidget {
   State<ResetPasswordPage> createState() => _ResetPasswordPageState();
 }
 
-var baseUrl = 'http://localhost:8080';
-var token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ2aXRhbGlpLnBldHJ1bkBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZlOWE0ZTAzLTAwNGEtNGRmYi05N2E5LWJiNDc1MjQ5YTk4QiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkYW0iLCJleHAiOjE3MDg1NDI5MjYsImlzcyI6IkF1cm9yYUFQSSJ9.h5-iGIC05c6JMTBLASG9wqV7tQUF2-_mfQkr7yh9fdA';
-final _apiClient = ApiClient(
-  baseUrl: baseUrl,
-  token: token,
-);
-final _apiRepository = ApiRepositoryImpl(apiClient: _apiClient);
-
 class _ResetPasswordPageState extends State<ResetPasswordPage> with Validator {
   final _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -34,7 +24,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> with Validator {
   void _onRestoreButtonPressed() async {
     bool? isFormValid = _formKey.currentState?.validate();
     if (isFormValid ?? false) {
-      var response = await _apiRepository.forgotPassword(_emailController.text);
+      var response = await apiRepository.forgotPassword(_emailController.text);
       if (response) {
         _goToResetAccessPage();
       }

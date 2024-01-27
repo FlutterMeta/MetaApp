@@ -52,7 +52,7 @@ class _RequisitesFields extends StatefulWidget {
   State<_RequisitesFields> createState() => _RequisitesFieldsState();
 }
 
-class _RequisitesFieldsState extends State<_RequisitesFields> {
+class _RequisitesFieldsState extends State<_RequisitesFields> with Validator {
   final _wallet1Controller =
       TextEditingController(text: MockWallets().getWallet(0));
   final _wallet2Controller =
@@ -85,21 +85,25 @@ class _RequisitesFieldsState extends State<_RequisitesFields> {
       children: [
         _LabeledField(
           controller: _wallet1Controller,
+          validator: (p0) => validateField(p0, context),
           label: '${context.localizations.wallet} 1',
         ),
         const SizedBox(height: 16),
         _LabeledField(
           controller: _wallet2Controller,
+          validator: (p0) => validateField(p0, context),
           label: '${context.localizations.wallet} 2',
         ),
         const SizedBox(height: 16),
         _LabeledField(
           controller: _wallet3Controller,
+          validator: (p0) => validateField(p0, context),
           label: '${context.localizations.wallet} 3',
         ),
         const SizedBox(height: 16),
         _LabeledField(
           controller: _wallet4Controller,
+          validator: (p0) => validateField(p0, context),
           label: '${context.localizations.wallet} 4',
         ),
         const SizedBox(height: 40),

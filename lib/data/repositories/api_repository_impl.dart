@@ -12,6 +12,10 @@ class ApiRepositoryImpl implements ApiRepository {
 
   ApiRepositoryImpl({required this.apiClient});
 
+  bool _isSuccessfulStatusCode(int? statusCode) {
+    return statusCode != null && statusCode >= 200 && statusCode < 300;
+  }
+
   @override
   Future<bool> login(String login, String password) async {
     try {
@@ -21,8 +25,8 @@ class ApiRepositoryImpl implements ApiRepository {
         isFormData: true,
       );
       html.window.localStorage["token"] = response.data["token"];
-      if (response.statusCode != 200 && response.statusCode != 202) {
-        print('Error: ${response.statusCode}');
+      if (!_isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
         return false;
       }
       debugPrint(response.toString());
@@ -35,13 +39,17 @@ class ApiRepositoryImpl implements ApiRepository {
   @override
   Future<bool> register(Registration registration) async {
     try {
-      var response = await apiClient.post('/Account/Register', body: {
+      Response response = await apiClient.post('/Account/Register', body: {
         'login': registration.login,
         'email': registration.email,
         'phoneNumber': registration.phoneNumber,
         'password': registration.password,
         'referal': registration.referal,
       });
+      if (!_isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+        return false;
+      }
       debugPrint(response.toString());
     } catch (e) {
       debugPrint(e.toString());
@@ -52,7 +60,11 @@ class ApiRepositoryImpl implements ApiRepository {
   @override
   Future<User> userProfile() async {
     try {
-      var response = await apiClient.get('/User/Profile');
+      Response response = await apiClient.get('/User/Profile');
+      if (!_isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+        return User.empty();
+      }
       debugPrint(response.toString());
       return User(
         id: response.data['id'],
@@ -74,13 +86,17 @@ class ApiRepositoryImpl implements ApiRepository {
   @override
   Future<bool> forgotPassword(String email) async {
     try {
-      var response = await apiClient.post(
+      Response response = await apiClient.post(
         '/Account/ForgotPassword',
         body: {
           'email': email,
         },
         isFormData: true,
       );
+      if (!_isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+        return false;
+      }
       debugPrint(response.toString());
     } catch (e) {
       debugPrint(e.toString());
@@ -91,7 +107,7 @@ class ApiRepositoryImpl implements ApiRepository {
   @override
   Future<bool> resetPassword(String email, int code, String password) async {
     try {
-      var response = await apiClient.post(
+      Response response = await apiClient.post(
         '/Account/ResetPassword',
         body: {
           'email': email,
@@ -101,9 +117,40 @@ class ApiRepositoryImpl implements ApiRepository {
         },
         isFormData: true,
       );
+      if (!_isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+        return false;
+      }
       debugPrint(response.toString());
     } catch (e) {
       debugPrint(e.toString());
+    }
+    return true;
+  }
+
+  @override
+  Future<bool> deleteAccount() {
+    // TODO: implement deleteAccount
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> registerAdmin(Registration registration) async {
+    try {
+      Response response = await apiClient.post('/Account/RegisterAdmin', body: {
+        'login': registration.login,
+        'email': registration.email,
+        'phoneNumber': registration.phoneNumber,
+        'password': registration.password,
+        'referal': registration.referal,
+      });
+      if (!_isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+        return false;
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return false;
     }
     return true;
   }

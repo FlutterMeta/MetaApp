@@ -14,6 +14,7 @@ import 'package:meta_app/presentation/widgets/code_verification_section.dart';
 import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_view.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 import 'package:meta_app/data/repositories/api_repository_impl.dart';
+import '../../core/global.dart';
 import '../../core/utils/api_client.dart';
 import '../../data/models/user.dart';
 import '../redux/app_state.dart';
@@ -25,15 +26,6 @@ class LoginPage extends StatefulWidget {
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
-
-var baseUrl = 'http://localhost:8080';
-var token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ2aXRhbGlpLnBldHJ1bkBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImZlOWE0ZTAzLTAwNGEtNGRmYi05N2E5LWJiNDc1MjQ5YTk4QiIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkYW0iLCJleHAiOjE3MDg4NjEyNDgsImlzcyI6IkF1cm9yYUFQSSJ9.mmz-X1nJ5vOYCY7fcwUo-Ku8r6L_HCiBEuIZF30uSf0';
-final _apiClient = ApiClient(
-  baseUrl: baseUrl,
-  token: token,
-);
-final _apiRepository = ApiRepositoryImpl(apiClient: _apiClient);
 
 class _LoginPageState extends State<LoginPage> with Validator {
   final _loginController = TextEditingController();
@@ -54,7 +46,7 @@ class _LoginPageState extends State<LoginPage> with Validator {
 
   Future<bool> login() async {
     try {
-      var response = await _apiRepository.login(
+      var response = await apiRepository.login(
         _loginController.text,
         _passwordController.text,
       );
