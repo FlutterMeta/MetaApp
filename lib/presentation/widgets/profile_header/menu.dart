@@ -133,7 +133,7 @@ class ProfileMenu extends Menu {
         );
 
   factory ProfileMenu.client({
-    required Animation<double>? animation,
+    Animation<double>? animation,
     required VoidCallback onCloseItemTap,
     Key? key,
   }) =>

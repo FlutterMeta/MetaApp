@@ -120,8 +120,20 @@ class UserInfoState extends State<_UserInfo>
             return AnimatedOpacity(
               opacity: animation,
               duration: kThemeAnimationDuration,
-              child: ProfileMenu.admin(
-                onCloseItemTap: () => setState(() => _isMenuVisible = false),
+              child: StoreConnector<AppState, User?>(
+                converter: (store) => store.state.currentUser,
+                builder: (context, user) {
+                  if (user?.role == UserRole.user) {
+                    return ProfileMenu.client(
+                      onCloseItemTap: () =>
+                          setState(() => _isMenuVisible = false),
+                    );
+                  }
+                  return ProfileMenu.admin(
+                    onCloseItemTap: () =>
+                        setState(() => _isMenuVisible = false),
+                  );
+                },
               ),
             );
           },
