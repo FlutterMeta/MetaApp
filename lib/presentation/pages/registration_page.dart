@@ -76,135 +76,140 @@ class _RegistrationPageState extends State<RegistrationPage>
       body: FillViewportSingleChildScrollView(
         child: GradientBackground(
           gradient: context.gradient.lightIndigoTurquoise,
-          child: Align(
-            alignment: Alignment.center,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                gradient: context.gradient.indigoTurquoise,
-              ),
-              constraints: const BoxConstraints(
-                maxWidth: 550,
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 44, vertical: 60),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    Text(
-                      context.localizations.createAccount,
-                      style: context.text.registrationFormTitle,
-                    ),
-                    const SizedBox(height: 30),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        context.localizations.accountName,
-                        style: context.text.registrationFormText,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20),
+            child: Align(
+              alignment: Alignment.center,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(6),
+                  gradient: context.gradient.indigoTurquoise,
+                ),
+                constraints: const BoxConstraints(
+                  maxWidth: 550,
+                ),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 44, vertical: 60),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Text(
+                        context.localizations.createAccount,
+                        style: context.text.registrationFormTitle,
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    AuthField(
-                      validator: (login) => validateField(login, context),
-                      hint: context.localizations.accountName,
-                      controller: _loginController,
-                    ),
-                    const SizedBox(height: 30),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        context.localizations.enterYourEmail,
-                        style: context.text.registrationFormText,
+                      const SizedBox(height: 30),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          context.localizations.accountName,
+                          style: context.text.registrationFormText,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    AuthField(
-                      validator: (email) => validateEmail(email, context),
-                      hint: context.localizations.enterYourEmail,
-                      controller: _emailController,
-                    ),
-                    const SizedBox(height: 20),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        context.localizations.yourPhoneNumber,
-                        style: context.text.registrationFormText,
+                      const SizedBox(height: 10),
+                      AuthField(
+                        validator: (login) => validateField(login, context),
+                        hint: context.localizations.accountName,
+                        controller: _loginController,
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    AuthField(
-                      validator: (email) => validatePhoneNumber(email, context),
-                      hint: context.localizations.enterYourPhoneNumber,
-                      controller: _telegramController,
-                    ),
-                    const SizedBox(height: 20),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        context.localizations.createAccountPassword,
-                        style: context.text.registrationFormText,
+                      const SizedBox(height: 30),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          context.localizations.enterYourEmail,
+                          style: context.text.registrationFormText,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    PasswordField(
-                      validator: (password) =>
-                          validatePassword(password, context),
-                      hint: context.localizations.createAccountPassword,
-                      controller: _passwordController,
-                    ),
-                    const SizedBox(height: 20),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        context.localizations.repeatPassword,
-                        style: context.text.registrationFormText,
+                      const SizedBox(height: 10),
+                      AuthField(
+                        validator: (email) => validateEmail(email, context),
+                        hint: context.localizations.enterYourEmail,
+                        controller: _emailController,
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    PasswordField(
-                      validator: (repeatPassword) => validateRepeatPassword(
-                        repeatPassword,
-                        _passwordController.text,
-                        context,
+                      const SizedBox(height: 20),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          context.localizations.yourPhoneNumber,
+                          style: context.text.registrationFormText,
+                        ),
                       ),
-                      hint: context.localizations.repeatPassword,
-                      controller: _repeatPasswordController,
-                    ),
-                    const SizedBox(height: 20),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        context.localizations.enterInvitationCode,
-                        style: context.text.registrationFormText,
+                      const SizedBox(height: 10),
+                      AuthField(
+                        validator: (email) =>
+                            validatePhoneNumber(email, context),
+                        hint: context.localizations.enterYourPhoneNumber,
+                        controller: _telegramController,
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    AuthField(
-                      validator: (code) => validateReferalCode(code),
-                      hint: context.localizations.enterInvitationCode,
-                      controller: _inviteCodeController,
-                    ),
-                    const SizedBox(height: 20),
-                    CodeVerificationSection(
-                      child: AuthField(
-                        validator: (code) => validateCode(code, context),
-                        controller: _imageCodeController,
+                      const SizedBox(height: 20),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          context.localizations.createAccountPassword,
+                          style: context.text.registrationFormText,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 30),
-                    AuthButton(
-                      text: context.localizations.createAccount,
-                      onPressed: _onRegisterButtonPressed,
-                    ),
-                    const SizedBox(height: 20),
-                    TextButton(
-                      onPressed: _goToLoginPage,
-                      child: Text(
-                        context.localizations.alreadyHaveAccount,
-                        style: context.text.haveAnAccount,
+                      const SizedBox(height: 10),
+                      PasswordField(
+                        validator: (password) =>
+                            validatePassword(password, context),
+                        hint: context.localizations.createAccountPassword,
+                        controller: _passwordController,
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 20),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          context.localizations.repeatPassword,
+                          style: context.text.registrationFormText,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      PasswordField(
+                        validator: (repeatPassword) => validateRepeatPassword(
+                          repeatPassword,
+                          _passwordController.text,
+                          context,
+                        ),
+                        hint: context.localizations.repeatPassword,
+                        controller: _repeatPasswordController,
+                      ),
+                      const SizedBox(height: 20),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          context.localizations.enterInvitationCode,
+                          style: context.text.registrationFormText,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      AuthField(
+                        validator: (code) => validateReferalCode(code),
+                        hint: context.localizations.enterInvitationCode,
+                        controller: _inviteCodeController,
+                      ),
+                      const SizedBox(height: 20),
+                      CodeVerificationSection(
+                        child: AuthField(
+                          validator: (code) => validateCode(code, context),
+                          controller: _imageCodeController,
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                      AuthButton(
+                        text: context.localizations.createAccount,
+                        onPressed: _onRegisterButtonPressed,
+                      ),
+                      const SizedBox(height: 20),
+                      TextButton(
+                        onPressed: _goToLoginPage,
+                        child: Text(
+                          context.localizations.alreadyHaveAccount,
+                          style: context.text.haveAnAccount,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

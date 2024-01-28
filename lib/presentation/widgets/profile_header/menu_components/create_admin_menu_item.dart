@@ -67,13 +67,15 @@ class _AdminCreationFieldsState extends State<_AdminCreationFields>
     apiRepository.registerAdmin(register);
   }
 
-  void _onConfirm() {
+  void _onConfirm() async {
     if (_formKey.currentState?.validate() ?? false) {
       showMessage(
         context.localizations.registrationSuccess,
         Colors.green,
       );
       _registerAdmin();
+      await Future.delayed(const Duration(seconds: 2));
+      Navigator.of(context).pop();
     }
   }
 

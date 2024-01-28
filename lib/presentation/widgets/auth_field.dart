@@ -6,10 +6,12 @@ class AuthField extends StatelessWidget {
   final String? hint;
   final bool obscureText;
   final String? Function(String?) validator;
+  final Iterable<String>? autofillHints;
 
   const AuthField({
     required this.controller,
     this.hint,
+    this.autofillHints,
     this.obscureText = false,
     required this.validator,
     Key? key,
@@ -21,6 +23,7 @@ class AuthField extends StatelessWidget {
       validator: validator,
       controller: controller,
       obscureText: obscureText,
+      autofillHints: autofillHints,
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: context.text.authFormHint,
@@ -59,6 +62,7 @@ class _PasswordFieldState extends State<PasswordField> {
       validator: widget.validator,
       controller: widget.controller,
       obscureText: _isObscured,
+      autofillHints: const [AutofillHints.password],
       decoration: InputDecoration(
         hintText: widget.hint,
         hintStyle: context.text.authFormHint,

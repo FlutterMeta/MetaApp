@@ -4,6 +4,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import "package:meta_app/core/utils/extensions/build_context_ext.dart";
 import 'package:meta_app/core/mixins/validator.dart';
@@ -76,6 +77,7 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
           context.localizations.loginSuccess,
           Colors.green,
         );
+        TextInput.finishAutofillContext();
         _loginAction(context, user);
         _goToProfilePage(context);
       }
@@ -109,60 +111,63 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
               padding: const EdgeInsets.symmetric(horizontal: 44, vertical: 60),
               child: Form(
                 key: _formKey,
-                child: Column(
-                  children: [
-                    Text(
-                      context.localizations.authorization,
-                      style: context.text.loginFormTitle,
-                    ),
-                    const SizedBox(height: 30),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        context.localizations.enterYourEmail,
-                        style: context.text.loginFormText,
+                child: AutofillGroup(
+                  child: Column(
+                    children: [
+                      Text(
+                        context.localizations.authorization,
+                        style: context.text.loginFormTitle,
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    AuthField(
-                      validator: (email) => validateEmail(email, context),
-                      hint: context.localizations.enterYourEmail,
-                      controller: _loginController,
-                    ),
-                    const SizedBox(height: 20),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        context.localizations.yourPassword,
-                        style: context.text.loginFormText,
+                      const SizedBox(height: 30),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          context.localizations.enterYourEmail,
+                          style: context.text.loginFormText,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    PasswordField(
-                      validator: (password) =>
-                          validatePassword(password, context),
-                      hint: context.localizations.yourPassword,
-                      controller: _passwordController,
-                    ),
-                    const SizedBox(height: 20),
-                    CodeVerificationSection(
-                      child: AuthField(
-                        validator: (code) => validateCode(code, context),
-                        controller: _codeController,
+                      const SizedBox(height: 10),
+                      AuthField(
+                        autofillHints: const [AutofillHints.email],
+                        validator: (email) => validateEmail(email, context),
+                        hint: context.localizations.enterYourEmail,
+                        controller: _loginController,
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    _ForgotPasswordSection(onTap: _goToResetPasswordPage),
-                    const SizedBox(height: 30),
-                    AuthButton(
-                      text: context.localizations.login,
-                      onPressed: _onLoginButtonPressed,
-                    ),
-                    const SizedBox(height: 16),
-                    const Divider(),
-                    const SizedBox(height: 20),
-                    _SignUpSection(onTap: _goToRegistrationPage),
-                  ],
+                      const SizedBox(height: 20),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          context.localizations.yourPassword,
+                          style: context.text.loginFormText,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      PasswordField(
+                        validator: (password) =>
+                            validatePassword(password, context),
+                        hint: context.localizations.yourPassword,
+                        controller: _passwordController,
+                      ),
+                      const SizedBox(height: 20),
+                      CodeVerificationSection(
+                        child: AuthField(
+                          validator: (code) => validateCode(code, context),
+                          controller: _codeController,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      _ForgotPasswordSection(onTap: _goToResetPasswordPage),
+                      const SizedBox(height: 30),
+                      AuthButton(
+                        text: context.localizations.login,
+                        onPressed: _onLoginButtonPressed,
+                      ),
+                      const SizedBox(height: 16),
+                      const Divider(),
+                      const SizedBox(height: 20),
+                      _SignUpSection(onTap: _goToRegistrationPage),
+                    ],
+                  ),
                 ),
               ),
             ),
