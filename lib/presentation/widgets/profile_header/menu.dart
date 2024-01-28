@@ -64,7 +64,7 @@ class _MenuState extends State<Menu> {
               onTap: () {
                 html.window.localStorage["token"] = "";
                 _logoutAction(context);
-                context.router.push(const LoginRoute());
+                context.router.push(HomeRoute());
               },
               title: context.localizations.signOut,
               icon: Icons.logout_rounded,

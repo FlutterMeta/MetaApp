@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/mixins/validator.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/auth_field.dart';
@@ -19,6 +21,7 @@ class ResetAccessPage extends StatefulWidget {
 
 class _ResetAccessPageState extends State<ResetAccessPage>
     with Validator, MessageOverlay {
+  final _emailController = TextEditingController();
   final _emailCodeController = TextEditingController();
   final _newPasswordController = TextEditingController();
   final _repeatPasswordController = TextEditingController();
@@ -26,6 +29,28 @@ class _ResetAccessPageState extends State<ResetAccessPage>
 
   void _onRestoreButtonPressed() async {
     if (_formKey.currentState?.validate() ?? false) {
+      Response response;
+      try {
+        response = await apiRepository.resetPassword(
+          _emailController.text,
+          _emailCodeController.text,
+          _newPasswordController.text,
+        );
+        if (!apiRepository.isSuccessfulStatusCode(response.statusCode)) {
+          debugPrint('Error: ${response.statusCode}');
+          showMessage(
+            context.localizations.resetPasswordError,
+            Colors.red,
+          );
+          return;
+        }
+      } catch (e) {
+        showMessage(
+          context.localizations.resetPasswordError,
+          Colors.red,
+        );
+        return;
+      }
       showMessage(
         context.localizations.resetPasswordSuccess,
         Colors.green,
@@ -68,6 +93,20 @@ class _ResetAccessPageState extends State<ResetAccessPage>
                     Text(
                       context.localizations.resetAccess,
                       style: context.text.loginFormTitle,
+                    ),
+                    const SizedBox(height: 30),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        context.localizations.email,
+                        style: context.text.loginFormText,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    AuthField(
+                      validator: (login) => validateEmail(login, context),
+                      hint: context.localizations.enterYourEmail,
+                      controller: _emailController,
                     ),
                     const SizedBox(height: 30),
                     Align(

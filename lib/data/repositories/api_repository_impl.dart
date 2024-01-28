@@ -35,8 +35,7 @@ class ApiRepositoryImpl implements ApiRepository {
     } catch (e) {
       debugPrint(e.toString());
     }
-    print("------------------");
-    print(response.data);
+
     return response;
   }
 
@@ -115,7 +114,7 @@ class ApiRepositoryImpl implements ApiRepository {
   @override
   Future<Response> resetPassword(
     String email,
-    int code,
+    String code,
     String password,
   ) async {
     late Response response;
@@ -124,8 +123,8 @@ class ApiRepositoryImpl implements ApiRepository {
       response = await apiClient.post(
         '/Account/ResetPassword',
         body: {
-          'email': email,
-          'code': code,
+          'UserEmail': email,
+          'AuthenticationCode': code,
           'password': password,
           "confirmPassword": password,
         },

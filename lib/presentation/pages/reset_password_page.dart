@@ -10,6 +10,7 @@ import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 
 import '../../core/global.dart';
+import '../../core/mixins/message_overlay.dart';
 
 class ResetPasswordPage extends StatefulWidget {
   const ResetPasswordPage({super.key});
@@ -18,7 +19,8 @@ class ResetPasswordPage extends StatefulWidget {
   State<ResetPasswordPage> createState() => _ResetPasswordPageState();
 }
 
-class _ResetPasswordPageState extends State<ResetPasswordPage> with Validator {
+class _ResetPasswordPageState extends State<ResetPasswordPage>
+    with Validator, MessageOverlay {
   final _emailController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
@@ -28,6 +30,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> with Validator {
       Response response =
           await apiRepository.forgotPassword(_emailController.text);
       if (apiRepository.isSuccessfulStatusCode(response.statusCode)) {
+        showMessage(context.localizations.codeWasSent, Colors.green);
         _goToResetAccessPage();
       }
       _showDialog(apiRepository.isSuccessfulStatusCode(response.statusCode));
