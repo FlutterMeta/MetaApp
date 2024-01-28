@@ -11,7 +11,7 @@ import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 
 import '../../core/global.dart';
-import '../../core/mixins/success_message_overlay.dart';
+import '../../core/mixins/message_overlay.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);

@@ -9,7 +9,7 @@ import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'dart:html' as html;
 import '../../../core/di/locator.dart';
 import '../../../core/global.dart';
-import '../../../core/mixins/success_message_overlay.dart';
+import '../../../core/mixins/message_overlay.dart';
 import '../../../core/utils/api_client.dart';
 import '../../../data/models/mock_wallets.dart';
 import '../../../data/repositories/api_repository_impl.dart';

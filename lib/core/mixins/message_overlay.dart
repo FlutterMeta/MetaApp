@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 mixin MessageOverlay<T extends StatefulWidget> on State<T> {
-  void showMessage(String message, Color color) {
+  void showMessage(String message, Color color) async {
     final overlay = Overlay.of(context);
     final overlayEntry = OverlayEntry(
       builder: (context) => Positioned(
@@ -29,7 +29,7 @@ mixin MessageOverlay<T extends StatefulWidget> on State<T> {
     overlay?.insert(overlayEntry);
 
     // Automatically remove the overlay after 3 seconds
-    Future.delayed(const Duration(seconds: 4))
-        .then((value) => overlayEntry.remove());
+    await Future.delayed(const Duration(seconds: 4));
+    overlayEntry.remove();
   }
 }

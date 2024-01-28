@@ -7,7 +7,7 @@ import 'package:meta_app/presentation/widgets/auth_button.dart';
 import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_view.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 
-import '../../core/mixins/success_message_overlay.dart';
+import '../../core/mixins/message_overlay.dart';
 import '../../core/utils/api_client.dart';
 import '../../data/repositories/api_repository_impl.dart';
 import '../navigation/app_router.gr.dart';

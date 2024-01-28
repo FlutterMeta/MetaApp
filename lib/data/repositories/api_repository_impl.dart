@@ -5,6 +5,7 @@ import 'dart:html' as html;
 
 import '../../core/utils/api_client.dart';
 import '../../domain/repositories/api_repository.dart';
+import '../models/role_list.dart';
 import '../models/user.dart';
 
 class ApiRepositoryImpl implements ApiRepository {
@@ -66,17 +67,16 @@ class ApiRepositoryImpl implements ApiRepository {
         return User.empty();
       }
       debugPrint(response.toString());
-      return User(
-        id: response.data['id'],
-        key: response.data['key'],
-        login: response.data['login'],
-        email: response.data['email'],
-        level: response.data['level'],
-        phoneNumber: response.data['phoneNumber'],
-        balance: response.data['balance'],
-        transactions: response.data['transactions'],
-        products: response.data['products'],
-      );
+      final rolesList =
+          RoleList.fromJson(response.data['roles'] as Map<String, dynamic>);
+
+      if (rolesList.values.isNotEmpty) {
+        response.data['roles'] = rolesList.values.first; // Use the first role
+      } else {
+        response.data['roles'] = 'User'; // Default role
+      }
+
+      return User.fromJson(response.data);
     } catch (e) {
       debugPrint(e.toString());
     }

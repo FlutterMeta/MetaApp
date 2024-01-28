@@ -13,6 +13,9 @@ class User {
   final int level;
   final String phoneNumber;
   final double balance;
+  @JsonEnum()
+  @JsonKey(name: 'roles')
+  final UserRole role;
   final List<Transaction>? transactions;
   final List<Product>? products;
 
@@ -24,6 +27,7 @@ class User {
     required this.level,
     required this.phoneNumber,
     required this.balance,
+    required this.role,
     required this.transactions,
     required this.products,
   });
@@ -36,10 +40,20 @@ class User {
         id = '',
         login = '',
         phoneNumber = '',
+        role = UserRole.user,
         transactions = const [],
         products = const [];
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
+}
+
+enum UserRole {
+  @JsonValue('User')
+  user,
+  @JsonValue('Admin')
+  admin,
+  @JsonValue('Adam')
+  adam,
 }

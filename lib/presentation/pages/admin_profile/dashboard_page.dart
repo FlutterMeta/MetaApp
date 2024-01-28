@@ -68,6 +68,7 @@ final List<User> usersExampleList = List.generate(
       level: index,
       balance: Random().nextDouble() * 100000 + 100,
       transactions: transactions,
+      role: UserRole.user,
       products: [],
       phoneNumber: '+380123456789',
     );
