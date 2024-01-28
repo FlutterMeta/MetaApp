@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/data/models/pending_transactions.dart';
-import 'package:meta_app/data/models/referrals.dart';
-import 'package:meta_app/data/models/transaction_history.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import '../../../data/models/transaction.dart';
 import '../../../data/models/user.dart';

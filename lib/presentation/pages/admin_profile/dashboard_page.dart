@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 
-import '../../../data/models/pending_transactions.dart';
-import '../../../data/models/referrals.dart';
 import '../../../data/models/transaction.dart';
-import '../../../data/models/transaction_history.dart';
 import '../../../data/models/user.dart';
 import '../../widgets/profile_header/profile_header.dart';
 import '../../widgets/user_table/filterable_user_table.dart';

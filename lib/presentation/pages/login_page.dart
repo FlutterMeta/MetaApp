@@ -61,7 +61,6 @@ class _LoginPageState extends State<LoginPage> with Validator {
   void _onLoginButtonPressed() async {
     //if (_formKey.currentState?.validate() == false) return;
     bool response = await login();
-    print(response);
     if (response) {
       String key = html.window.localStorage["token"] ?? "";
       ApiClient apiClient = ApiClient(baseUrl: baseUrl, token: key);

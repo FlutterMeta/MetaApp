@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/widgets.dart';
 
 class ApiClient {
   final String baseUrl;
@@ -16,22 +17,22 @@ class ApiClient {
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (RequestOptions options, handler) {
         // Log the request
-        print('Sending request: ${options.method} ${options.path}');
-        print('Request headers: ${options.headers}');
-        print('Request body: ${options.data}');
+        debugPrint('Sending request: ${options.method} ${options.path}');
+        debugPrint('Request headers: ${options.headers}');
+        debugPrint('Request body: ${options.data}');
         return handler.next(options); //continue
       },
       onResponse: (Response response, handler) {
         // Log the response
-        print('Response status: ${response.statusCode}');
-        print('Response body: ${response.data}');
-        print('Response text: ${response.statusMessage}');
+        debugPrint('Response status: ${response.statusCode}');
+        debugPrint('Response body: ${response.data}');
+        debugPrint('Response text: ${response.statusMessage}');
         return handler.next(response); // continue
       },
       onError: (DioError e, handler) {
         // Log the error
-        print('Error: ${e.message}');
-        print('Error response: ${e.response}');
+        debugPrint('Error: ${e.message}');
+        debugPrint('Error response: ${e.response}');
         return handler.next(e); //continue
       },
     ));
@@ -52,7 +53,7 @@ class ApiClient {
 
     // Log the request type
     final contentType = isFormData ? 'FormData/multipart' : 'JSON';
-    print('Sending POST request to $endpoint with $contentType: $body');
+    debugPrint('Sending POST request to $endpoint with $contentType: $body');
 
     // Perform a POST request with the appropriate content type
     return dio.post(
