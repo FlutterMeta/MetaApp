@@ -55,7 +55,6 @@ class _AdaptiveMainContent extends StatelessWidget {
   const _AdaptiveMainContent({Key? key}) : super(key: key);
 
   static const _userRank = "Newbie";
-  static const _userReward = 1337.0;
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +74,8 @@ class _AdaptiveMainContent extends StatelessWidget {
                         rank: _userRank,
                         reward: currentUser?.balance ?? 0,
                       ),
-                      SizedBox(height: 20),
-                      _WalletCard(),
+                      const SizedBox(height: 20),
+                      const _WalletCard(),
                     ],
                   ),
                   const SizedBox(width: 20),

@@ -337,5 +337,7 @@
     "ok": "Ok",
     "resetPasswordSuccess": "Password reset successfully",
     "resetPasswordError": "Password reset error",
-    "registrationSuccess": "Registration completed successfully"
+    "registrationSuccess": "Registration completed successfully",
+    "loginSuccess": "Login completed successfully",
+    "loginFailed": "Login failed"
 }

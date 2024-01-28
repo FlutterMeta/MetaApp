@@ -32,7 +32,7 @@ class UserRefferalsPage extends StatelessWidget {
                 const _HeaderText(),
                 const SizedBox(height: 60),
                 UserGeneralInfoPanel(user: user),
-                FilterableUserTable(users: []),
+                const FilterableUserTable(users: []),
                 const SizedBox(height: 100),
                 const RightsReservedFooter(),
                 const SizedBox(height: 10),

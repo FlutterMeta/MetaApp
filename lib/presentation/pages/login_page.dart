@@ -1,8 +1,8 @@
-import 'dart:math';
 import 'dart:html' as html;
 
 import 'package:async_redux/async_redux.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import "package:meta_app/core/utils/extensions/build_context_ext.dart";
@@ -15,6 +15,7 @@ import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 import 'package:meta_app/data/repositories/api_repository_impl.dart';
 import '../../core/global.dart';
+import '../../core/mixins/message_overlay.dart';
 import '../../core/utils/api_client.dart';
 import '../../data/models/user.dart';
 import '../redux/app_state.dart';
@@ -27,7 +28,7 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> with Validator {
+class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
   final _loginController = TextEditingController();
   final _passwordController = TextEditingController();
   final _codeController = TextEditingController();
@@ -44,9 +45,10 @@ class _LoginPageState extends State<LoginPage> with Validator {
     StoreProvider.of<AppState>(context, null).dispatch(LoginUserAction(user));
   }
 
-  Future<bool> login() async {
+  Future<Response> login() async {
+    late Response response;
     try {
-      var response = await apiRepository.login(
+      response = await apiRepository.login(
         _loginController.text,
         _passwordController.text,
       );
@@ -54,20 +56,36 @@ class _LoginPageState extends State<LoginPage> with Validator {
       return response;
     } catch (e) {
       debugPrint(e.toString());
-      return false;
     }
+    return response;
   }
 
   void _onLoginButtonPressed() async {
     //if (_formKey.currentState?.validate() == false) return;
-    bool response = await login();
-    if (response) {
+    // TODO uncomment this
+    Response response = await login();
+
+    if (apiRepository.isSuccessfulStatusCode(response.statusCode) ||
+        response.data["token"] != null) {
+      // Request to get user profile, by user's token
+
       String key = html.window.localStorage["token"] ?? "";
       ApiClient apiClient = ApiClient(baseUrl: baseUrl, token: key);
       ApiRepositoryImpl apiRepository = ApiRepositoryImpl(apiClient: apiClient);
-      User user = await apiRepository.userProfile();
-      _loginAction(context, user);
-      _goToProfilePage(context);
+      User? user = await apiRepository.userProfile();
+      if (user != null && user.id != null) {
+        showMessage(
+          context.localizations.loginSuccess,
+          Colors.green,
+        );
+        _loginAction(context, user);
+        _goToProfilePage(context);
+      }
+    } else {
+      showMessage(
+        "${context.localizations.loginFailed}: ${response.data["title"]} ",
+        Colors.red,
+      );
     }
   }
 

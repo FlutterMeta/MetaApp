@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/mixins/validator.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
@@ -32,9 +33,9 @@ class _RegistrationPageState extends State<RegistrationPage>
 
   final _formKey = GlobalKey<FormState>();
 
-  Future<bool> _register() async {
+  Future<Response> _register() async {
     try {
-      bool response = await apiRepository.register(
+      Response response = await apiRepository.register(
         Registration(
           login: _loginController.text,
           email: _emailController.text,
@@ -46,15 +47,16 @@ class _RegistrationPageState extends State<RegistrationPage>
       return response;
     } catch (e) {
       debugPrint(e.toString());
-      return false;
+      return Response(requestOptions: RequestOptions(path: ''));
     }
   }
 
   void _onRegisterButtonPressed() async {
     if (_formKey.currentState?.validate() == false) return;
 
-    bool response = await _register();
-    if (response) {
+    Response response = await _register();
+    if (apiRepository.isSuccessfulStatusCode(response.statusCode) ||
+        response.data["token"] != null) {
       showMessage(
         context.localizations.registrationSuccess,
         Colors.green,

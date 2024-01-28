@@ -13,58 +13,65 @@ class ApiRepositoryImpl implements ApiRepository {
 
   ApiRepositoryImpl({required this.apiClient});
 
-  bool _isSuccessfulStatusCode(int? statusCode) {
+  bool isSuccessfulStatusCode(int? statusCode) {
     return statusCode != null && statusCode >= 200 && statusCode < 300;
   }
 
   @override
-  Future<bool> login(String login, String password) async {
+  Future<Response> login(String login, String password) async {
+    late Response response;
     try {
-      Response response = await apiClient.post(
+      response = await apiClient.post(
         '/Account/Login',
         body: {'Login': login, 'Password': password},
         isFormData: true,
       );
+
       html.window.localStorage["token"] = response.data["token"];
-      if (!_isSuccessfulStatusCode(response.statusCode)) {
+      if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('Error: ${response.statusCode}');
-        return false;
       }
       debugPrint(response.toString());
     } catch (e) {
       debugPrint(e.toString());
     }
-    return true;
+    print("------------------");
+    print(response.data);
+    return response;
   }
 
   @override
-  Future<bool> register(Registration registration) async {
+  Future<Response> register(Registration registration) async {
+    late Response response;
+
     try {
-      Response response = await apiClient.post('/Account/Register', body: {
+      response = await apiClient.post('/Account/Register', body: {
         'login': registration.login,
         'email': registration.email,
         'phoneNumber': registration.phoneNumber,
         'password': registration.password,
         'referal': registration.referal,
       });
-      if (!_isSuccessfulStatusCode(response.statusCode)) {
+      if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('Error: ${response.statusCode}');
-        return false;
       }
       debugPrint(response.toString());
+      return response;
     } catch (e) {
       debugPrint(e.toString());
     }
-    return true;
+    return response;
   }
 
   @override
-  Future<User> userProfile() async {
+  Future<User?> userProfile() async {
+    late User? user;
+
     try {
       Response response = await apiClient.get('/User/Profile');
-      if (!_isSuccessfulStatusCode(response.statusCode)) {
+      if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('Error: ${response.statusCode}');
-        return User.empty();
+        return null;
       }
       debugPrint(response.toString());
       final rolesList =
@@ -75,39 +82,46 @@ class ApiRepositoryImpl implements ApiRepository {
       } else {
         response.data['roles'] = 'User'; // Default role
       }
-
-      return User.fromJson(response.data);
+      user = User.fromJson(response.data);
     } catch (e) {
       debugPrint(e.toString());
     }
-    return User.empty();
+    return user;
   }
 
   @override
-  Future<bool> forgotPassword(String email) async {
+  Future<Response> forgotPassword(String email) async {
+    late Response response;
+
     try {
-      Response response = await apiClient.post(
+      response = await apiClient.post(
         '/Account/ForgotPassword',
         body: {
           'email': email,
         },
         isFormData: true,
       );
-      if (!_isSuccessfulStatusCode(response.statusCode)) {
+      if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('Error: ${response.statusCode}');
-        return false;
       }
       debugPrint(response.toString());
+      return response;
     } catch (e) {
       debugPrint(e.toString());
     }
-    return true;
+    return response;
   }
 
   @override
-  Future<bool> resetPassword(String email, int code, String password) async {
+  Future<Response> resetPassword(
+    String email,
+    int code,
+    String password,
+  ) async {
+    late Response response;
+
     try {
-      Response response = await apiClient.post(
+      response = await apiClient.post(
         '/Account/ResetPassword',
         body: {
           'email': email,
@@ -117,41 +131,42 @@ class ApiRepositoryImpl implements ApiRepository {
         },
         isFormData: true,
       );
-      if (!_isSuccessfulStatusCode(response.statusCode)) {
+      if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('Error: ${response.statusCode}');
-        return false;
       }
       debugPrint(response.toString());
+      return response;
     } catch (e) {
       debugPrint(e.toString());
     }
-    return true;
+    return response;
   }
 
   @override
-  Future<bool> deleteAccount() {
+  Future<Response> deleteAccount() {
     // TODO: implement deleteAccount
     throw UnimplementedError();
   }
 
   @override
-  Future<bool> registerAdmin(Registration registration) async {
+  Future<Response> registerAdmin(Registration registration) async {
+    late Response response;
+
     try {
-      Response response = await apiClient.post('/Account/RegisterAdmin', body: {
+      response = await apiClient.post('/Account/RegisterAdmin', body: {
         'login': registration.login,
         'email': registration.email,
         'phoneNumber': registration.phoneNumber,
         'password': registration.password,
         'referal': registration.referal,
       });
-      if (!_isSuccessfulStatusCode(response.statusCode)) {
+      if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('Error: ${response.statusCode}');
-        return false;
       }
+      return response;
     } catch (e) {
       debugPrint(e.toString());
-      return false;
     }
-    return true;
+    return response;
   }
 }

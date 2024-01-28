@@ -13,7 +13,10 @@ class ApiClient {
       'content-type': 'application/json',
       'authorization': 'Bearer $token',
     };
-
+    dio.options.validateStatus = (int? status) {
+      return status != null &&
+          status < 500; // Consider any status code less than 500 as successful
+    };
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (RequestOptions options, handler) {
         // Log the request
@@ -56,13 +59,23 @@ class ApiClient {
     debugPrint('Sending POST request to $endpoint with $contentType: $body');
 
     // Perform a POST request with the appropriate content type
-    return dio.post(
-      endpoint,
-      data: data,
-      options: Options(
-        contentType: isFormData ? 'multipart/form-data' : 'application/json',
-      ),
-    );
+    late Response<dynamic> response;
+    try {
+      print("------------------");
+      response = await dio.post(
+        endpoint,
+        data: data,
+        options: Options(
+          contentType: isFormData ? 'multipart/form-data' : 'application/json',
+        ),
+      );
+      debugPrint('Response: ${response.data}');
+      return response;
+    } catch (e) {
+      debugPrint("$e------------------");
+    }
+
+    return response;
   }
 
   Future<Response<dynamic>> put(
