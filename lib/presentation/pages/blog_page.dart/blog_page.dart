@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:async_redux/async_redux.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -18,6 +19,8 @@ import 'package:meta_app/presentation/widgets/sliver_sized_box.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 
 import '../../../data/models/blog.dart';
+import '../../../data/models/user.dart';
+import '../../redux/app_state.dart';
 import '../../widgets/responsive.dart';
 
 part 'sections/presentation_section.dart';
@@ -40,7 +43,7 @@ class _BlogPageState extends State<BlogPage> {
 
   void _loadBlogPosts() async {
     Response posts = await apiRepository.getBlogPosts();
-
+    _MockPosts.instance.posts.clear();
     for (var post in posts.data["\$values"]) {
       _MockPosts.instance.addPost(Blog.fromJson(post));
       _MockPosts.mockController.value++;

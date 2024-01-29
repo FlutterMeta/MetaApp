@@ -49,54 +49,122 @@ class __HoverablePostState extends State<_HoverablePost> {
   Widget build(BuildContext context) {
     return _HoveredPost(
       builder: (_) {
-        return MouseRegion(
-          onEnter: (_) => setState(() => _isHovered = !_isHovered),
-          onExit: (_) => setState(() => _isHovered = !_isHovered),
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: context.color.blogPostBackground,
-              border: _isHovered
-                  ? Border.all(color: context.color.blogPostBorderHovered)
-                  : Border.all(color: context.color.blogPostBorder),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 10),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  constraints: const BoxConstraints(maxWidth: 800),
-                  child: Text(
-                    widget.post.title ?? "Blog post title",
-                    style: context.text.blogPostHeadline,
-                  ),
+        return StoreConnector<AppState, User?>(
+          converter: (store) => store.state.currentUser,
+          builder: (context, currentUser) {
+            return MouseRegion(
+              onEnter: (_) => setState(() => _isHovered = !_isHovered),
+              onExit: (_) => setState(() => _isHovered = !_isHovered),
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  color: context.color.blogPostBackground,
+                  border: _isHovered
+                      ? Border.all(color: context.color.blogPostBorderHovered)
+                      : Border.all(color: context.color.blogPostBorder),
+                  borderRadius: BorderRadius.circular(16),
                 ),
-                const SizedBox(height: 20),
-                Text(widget.post.content ?? "Blog post content"),
-                const SizedBox(height: 60),
-                SizedBox(
-                  width: double.infinity,
-                  child: Wrap(
-                    alignment: WrapAlignment.spaceBetween,
-                    crossAxisAlignment: WrapCrossAlignment.end,
-                    runSpacing: 20,
-                    spacing: 20,
-                    children: [
-                      const SizedBox(),
-                      _PostLink(
-                        isHovered: _isHovered,
-                        text: context.localizations.newsChannelInTelegram,
-                        onTap: () {},
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      constraints: const BoxConstraints(maxWidth: 800),
+                      child: Text(
+                        widget.post.title ?? "Blog post title",
+                        style: context.text.blogPostHeadline,
                       ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 20),
+                    Text(widget.post.content ?? "Blog post content"),
+                    const SizedBox(height: 60),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Wrap(
+                        alignment: WrapAlignment.spaceBetween,
+                        crossAxisAlignment: WrapCrossAlignment.end,
+                        runSpacing: 20,
+                        spacing: 20,
+                        children: [
+                          const SizedBox(),
+                          // _PostLink(
+                          //   isHovered: _isHovered,
+                          //   text: context.localizations.newsChannelInTelegram,
+                          //   onTap: () {},
+                          // ),
+                          currentUser?.role == UserRole.admin ||
+                                  currentUser?.role == UserRole.adam
+                              ? Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    _EditPostButton(post: widget.post),
+                                    const SizedBox(width: 20),
+                                    _DeletePostButton(postId: widget.post.id),
+                                  ],
+                                )
+                              : const SizedBox(),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+}
+
+class _DeletePostButton extends StatelessWidget {
+  final int postId;
+  const _DeletePostButton({required this.postId, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ColoredButton(
+      color: context.color.profilePageError,
+      title: context.localizations.deletePost,
+      onTap: () {
+        apiRepository.deleteBlogPost(postId);
+        _MockPosts.instance.posts.removeWhere((post) => post.id == postId);
+        _MockPosts.mockController.value++;
+      },
+    );
+  }
+}
+
+class _EditPostButton extends StatelessWidget {
+  final Blog post;
+  const _EditPostButton({required this.post, Key? key}) : super(key: key);
+  Future<void> _pushDialog(BuildContext context, Blog post) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return SingleChildScrollView(
+          child: Dialog(
+            insetPadding: Responsive.isMobile(context)
+                ? const EdgeInsets.all(10)
+                : const EdgeInsets.all(100),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
             ),
+            child: _BlankPost(post: post),
           ),
         );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ColoredButton(
+      color: context.color.profilePageSecondaryVariant,
+      title: context.localizations.editPost,
+      onTap: () {
+        _pushDialog(context, post);
       },
     );
   }

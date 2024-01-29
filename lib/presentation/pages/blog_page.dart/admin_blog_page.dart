@@ -12,7 +12,7 @@ class _AdminBlogPageState extends State<AdminBlogPage> {
 
   void _loadBlogPosts() async {
     Response posts = await apiRepository.getBlogPosts();
-
+    _MockPosts.instance.posts.clear();
     for (var post in posts.data["\$values"]) {
       _MockPosts.instance.addPost(Blog.fromJson(post));
       _MockPosts.mockController.value++;
@@ -23,6 +23,12 @@ class _AdminBlogPageState extends State<AdminBlogPage> {
   void initState() {
     _loadBlogPosts();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _MockPosts.instance.posts.clear();
+    super.dispose();
   }
 
   double _getHeaderYOffset() {
@@ -114,6 +120,10 @@ class _MockPosts {
 
   List<Blog> get posts => _posts;
   void addPost(Blog post) => _posts.add(post);
+  void editPost(Blog post) {
+    final index = _posts.indexWhere((element) => element.id == post.id);
+    _posts[index] = post;
+  }
 
   final List<Blog> _posts = [];
 }

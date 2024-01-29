@@ -1,7 +1,8 @@
 part of "../blog_page.dart";
 
 class _BlankPost extends StatefulWidget {
-  const _BlankPost({Key? key}) : super(key: key);
+  final Blog? post;
+  const _BlankPost({this.post, Key? key}) : super(key: key);
 
   @override
   State<_BlankPost> createState() => _BlankPostState();
@@ -11,15 +12,39 @@ class _BlankPostState extends State<_BlankPost> {
   final _titleController = TextEditingController();
   final _bodyController = TextEditingController();
 
-  void _onAddTap() {
-    _writePost();
+  void _onAddTap() async {
+    await _writePost();
     _clearControllers();
-    _MockPosts._mockController.value++;
+    _MockPosts.mockController.value++;
+
     Navigator.of(context).pop();
   }
 
-  void _writePost() {
-    final String mockData = "mock data";
+  void _onEditTap() async {
+    await _editPost();
+    _clearControllers();
+    _MockPosts.mockController.value++;
+
+    Navigator.of(context).pop();
+  }
+
+  Future<void> _editPost() async {
+    const String mockData = "mock data";
+    final Uint8List mockBytes = Uint8List.fromList(mockData.codeUnits);
+    final blog = Blog(
+      id: widget.post?.id ?? 0,
+      title: _titleController.text,
+      content: _bodyController.text,
+      url: "",
+      image: base64Encode(mockBytes),
+    );
+    await apiRepository.updateBlogPost(blog.id, blog.toJson());
+
+    _MockPosts.instance.editPost(blog);
+  }
+
+  Future<void> _writePost() async {
+    const String mockData = "mock data";
     final Uint8List mockBytes = Uint8List.fromList(mockData.codeUnits);
     final blog = Blog(
       id: 0,
@@ -28,7 +53,9 @@ class _BlankPostState extends State<_BlankPost> {
       url: "",
       image: base64Encode(mockBytes),
     );
-    apiRepository.createBlogPost(blog.toJson());
+    await apiRepository.createBlogPost(blog.toJson());
+
+    _MockPosts.instance.addPost(blog);
   }
 
   void _clearControllers() {
@@ -59,6 +86,7 @@ class _BlankPostState extends State<_BlankPost> {
           ),
           const SizedBox(height: 20),
           _EditablePostFields(
+            post: widget.post,
             titleController: _titleController,
             bodyController: _bodyController,
           ),
@@ -69,7 +97,7 @@ class _BlankPostState extends State<_BlankPost> {
             children: [
               ColoredButton(
                 title: context.localizations.approveBlogArticle,
-                onTap: _onAddTap,
+                onTap: widget.post == null ? _onAddTap : _onEditTap,
                 color: context.color.profilePageSecondaryVariant,
               ),
               ColoredButton(
@@ -86,10 +114,12 @@ class _BlankPostState extends State<_BlankPost> {
 }
 
 class _EditablePostFields extends StatelessWidget {
+  final Blog? post;
   final TextEditingController titleController;
   final TextEditingController bodyController;
 
   const _EditablePostFields({
+    this.post,
     required this.titleController,
     required this.bodyController,
     Key? key,
@@ -97,6 +127,12 @@ class _EditablePostFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("post title: ${post?.title}");
+    if (post != null) {
+      titleController.text = post?.title ?? "";
+      bodyController.text = post?.content ?? "";
+    }
+
     return Align(
       child: Container(
         padding: const EdgeInsets.all(20),

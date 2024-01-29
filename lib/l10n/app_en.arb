@@ -340,5 +340,7 @@
     "registrationSuccess": "Registration completed successfully",
     "loginSuccess": "Login completed successfully",
     "loginFailed": "Login failed",
-    "codeWasSent": "Code was sent to your email"
+    "codeWasSent": "Code was sent to your email",
+    "deletePost": "Delete post",
+    "editPost": "Edit post"
 }
