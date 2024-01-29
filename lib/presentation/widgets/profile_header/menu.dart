@@ -96,7 +96,7 @@ class ProfileMenu extends Menu {
         color: context.color.profilePagePrimaryVariant,
       ),
       _MenuItem(
-        onTap: () => context.router.push(AdminBlogRoute()),
+        onTap: () => context.router.push(const AdminBlogRoute()),
         title: context.localizations.updateBlog,
         icon: Icons.table_chart_rounded,
         color: context.color.profilePagePrimaryVariant,

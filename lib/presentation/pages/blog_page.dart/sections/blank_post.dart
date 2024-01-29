@@ -15,7 +15,7 @@ class _BlankPostState extends State<_BlankPost> {
   void _onAddTap() async {
     await _writePost();
     _clearControllers();
-    _MockPosts.mockController.value++;
+    BlogStateHandler.controller.value++;
 
     Navigator.of(context).pop();
   }
@@ -23,7 +23,7 @@ class _BlankPostState extends State<_BlankPost> {
   void _onEditTap() async {
     await _editPost();
     _clearControllers();
-    _MockPosts.mockController.value++;
+    BlogStateHandler.controller.value++;
 
     Navigator.of(context).pop();
   }
@@ -40,7 +40,7 @@ class _BlankPostState extends State<_BlankPost> {
     );
     await apiRepository.updateBlogPost(blog.id, blog.toJson());
 
-    _MockPosts.instance.editPost(blog);
+    BlogStateHandler.instance.editPost(blog);
   }
 
   Future<void> _writePost() async {
@@ -55,7 +55,7 @@ class _BlankPostState extends State<_BlankPost> {
     );
     await apiRepository.createBlogPost(blog.toJson());
 
-    _MockPosts.instance.addPost(blog);
+    BlogStateHandler.instance.addPost(blog);
   }
 
   void _clearControllers() {

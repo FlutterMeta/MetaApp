@@ -22,6 +22,7 @@ import '../../../data/models/blog.dart';
 import '../../../data/models/user.dart';
 import '../../redux/app_state.dart';
 import '../../widgets/responsive.dart';
+import 'blog_state_handler.dart';
 
 part 'sections/presentation_section.dart';
 part 'sections/single_post_card.dart';
@@ -43,10 +44,10 @@ class _BlogPageState extends State<BlogPage> {
 
   void _loadBlogPosts() async {
     Response posts = await apiRepository.getBlogPosts();
-    _MockPosts.instance.posts.clear();
+    BlogStateHandler.instance.posts.clear();
     for (var post in posts.data["\$values"]) {
-      _MockPosts.instance.addPost(Blog.fromJson(post));
-      _MockPosts.mockController.value++;
+      BlogStateHandler.instance.addPost(Blog.fromJson(post));
+      BlogStateHandler.controller.value++;
     }
   }
 

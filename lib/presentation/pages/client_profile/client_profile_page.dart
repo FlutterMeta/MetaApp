@@ -18,7 +18,6 @@ class ClientProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //TODO: client/admin header
       appBar: ProfileHeader.client(scaffoldKey: _getScaffoldKey),
       drawer: const SideMenuSection(),
       backgroundColor: context.color.profilePageBackground,

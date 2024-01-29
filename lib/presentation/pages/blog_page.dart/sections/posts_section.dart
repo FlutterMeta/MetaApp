@@ -8,12 +8,12 @@ class _PostsSection extends StatefulWidget {
 }
 
 class __PostsSectionState extends State<_PostsSection> {
-  List<Blog> posts = _MockPosts.instance.posts;
+  List<Blog> posts = BlogStateHandler.instance.posts;
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: _MockPosts.mockController,
+      valueListenable: BlogStateHandler.controller,
       builder: (_, __, ___) {
         return ListView.separated(
           reverse: true,

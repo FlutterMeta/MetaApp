@@ -129,8 +129,9 @@ class _DeletePostButton extends StatelessWidget {
       title: context.localizations.deletePost,
       onTap: () {
         apiRepository.deleteBlogPost(postId);
-        _MockPosts.instance.posts.removeWhere((post) => post.id == postId);
-        _MockPosts.mockController.value++;
+        BlogStateHandler.instance.posts
+            .removeWhere((post) => post.id == postId);
+        BlogStateHandler.controller.value++;
       },
     );
   }

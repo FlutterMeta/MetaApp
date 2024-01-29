@@ -28,7 +28,7 @@ List<Story> get _pages => [
       ),
       RouterAwareStory(
         name: 'Pages/Blog',
-        initialRoutes: [BlogRoute()],
+        initialRoutes: const [BlogRoute()],
         router: AppRouter(),
       ),
       RouterAwareStory(
