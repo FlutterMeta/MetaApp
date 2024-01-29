@@ -1,7 +1,14 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
+import 'package:meta_app/core/global.dart';
+import 'package:meta_app/core/utils/api_client.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/domain/repositories/api_repository.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/footer/footer.dart';
@@ -10,7 +17,7 @@ import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/sliver_sized_box.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
 
-import '../../../data/models/post.dart';
+import '../../../data/models/blog.dart';
 import '../../widgets/responsive.dart';
 
 part 'sections/presentation_section.dart';
@@ -21,10 +28,30 @@ part 'sections/posts_section.dart';
 part './admin_blog_page.dart';
 part 'date_time_ext.dart';
 
-class BlogPage extends StatelessWidget {
+class BlogPage extends StatefulWidget {
+  const BlogPage({super.key});
+
+  @override
+  State<BlogPage> createState() => _BlogPageState();
+}
+
+class _BlogPageState extends State<BlogPage> {
   final _headerKey = GlobalKey();
 
-  BlogPage({super.key});
+  void _loadBlogPosts() async {
+    Response posts = await apiRepository.getBlogPosts();
+
+    for (var post in posts.data["\$values"]) {
+      _MockPosts.instance.addPost(Blog.fromJson(post));
+      _MockPosts.mockController.value++;
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadBlogPosts();
+  }
 
   double _getHeaderYOffset() {
     final renderSliver =

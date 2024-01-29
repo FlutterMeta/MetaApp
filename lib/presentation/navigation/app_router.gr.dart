@@ -74,11 +74,9 @@ class AppRouter extends _i16.RootStackRouter {
       );
     },
     BlogRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<BlogRouteArgs>(orElse: () => const BlogRouteArgs());
       return _i16.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i6.BlogPage(key: args.key),
+        child: const _i6.BlogPage(),
       );
     },
     DirectionsRoute.name: (routeData) {
@@ -151,11 +149,9 @@ class AppRouter extends _i16.RootStackRouter {
       );
     },
     AdminBlogRoute.name: (routeData) {
-      final args = routeData.argsAs<AdminBlogRouteArgs>(
-          orElse: () => const AdminBlogRouteArgs());
       return _i16.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i6.AdminBlogPage(key: args.key),
+        child: const _i6.AdminBlogPage(),
       );
     },
   };
@@ -327,26 +323,14 @@ class PartnersRouteArgs {
 
 /// generated route for
 /// [_i6.BlogPage]
-class BlogRoute extends _i16.PageRouteInfo<BlogRouteArgs> {
-  BlogRoute({_i17.Key? key})
+class BlogRoute extends _i16.PageRouteInfo<void> {
+  const BlogRoute()
       : super(
           BlogRoute.name,
           path: '/blog',
-          args: BlogRouteArgs(key: key),
         );
 
   static const String name = 'BlogRoute';
-}
-
-class BlogRouteArgs {
-  const BlogRouteArgs({this.key});
-
-  final _i17.Key? key;
-
-  @override
-  String toString() {
-    return 'BlogRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for
@@ -545,24 +529,12 @@ class UserRefferalsRouteArgs {
 
 /// generated route for
 /// [_i6.AdminBlogPage]
-class AdminBlogRoute extends _i16.PageRouteInfo<AdminBlogRouteArgs> {
-  AdminBlogRoute({_i17.Key? key})
+class AdminBlogRoute extends _i16.PageRouteInfo<void> {
+  const AdminBlogRoute()
       : super(
           AdminBlogRoute.name,
           path: '/admin-blog',
-          args: AdminBlogRouteArgs(key: key),
         );
 
   static const String name = 'AdminBlogRoute';
-}
-
-class AdminBlogRouteArgs {
-  const AdminBlogRouteArgs({this.key});
-
-  final _i17.Key? key;
-
-  @override
-  String toString() {
-    return 'AdminBlogRouteArgs{key: $key}';
-  }
 }

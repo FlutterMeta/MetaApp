@@ -168,4 +168,79 @@ class ApiRepositoryImpl implements ApiRepository {
     }
     return response;
   }
+
+  @override
+  Future<Response> createBlogPost(Map<String, dynamic> body) async {
+    late Response response;
+    try {
+      response = await apiClient.post('/Blog', body: body);
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> deleteBlogPost(int id) async {
+    late Response response;
+    try {
+      response = await apiClient.delete('/Blog/$id');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getBlogPost(int id) async {
+    late Response response;
+    try {
+      response = await apiClient.get('/Blog/$id');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getBlogPosts() async {
+    late Response response;
+    try {
+      response = await apiClient.get('/Blog');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> updateBlogPost(int id, Map<String, dynamic> body) async {
+    late Response response;
+    try {
+      response = await apiClient.put('/Blog', body: body);
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
 }

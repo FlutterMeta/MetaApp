@@ -13,5 +13,10 @@ abstract class ApiRepository {
   Future<Response> resetPassword(String email, String code, String password);
   Future<Response> deleteAccount();
 
-  // ... other methods for interacting with the API
+  // BLOG
+  Future<Response> getBlogPosts();
+  Future<Response> getBlogPost(int id);
+  Future<Response> createBlogPost(Map<String, dynamic> body);
+  Future<Response> updateBlogPost(int id, Map<String, dynamic> body);
+  Future<Response> deleteBlogPost(int id);
 }

@@ -1,9 +1,29 @@
 part of 'blog_page.dart';
 
-class AdminBlogPage extends StatelessWidget {
-  AdminBlogPage({super.key});
+class AdminBlogPage extends StatefulWidget {
+  const AdminBlogPage({super.key});
 
+  @override
+  State<AdminBlogPage> createState() => _AdminBlogPageState();
+}
+
+class _AdminBlogPageState extends State<AdminBlogPage> {
   final _headerKey = GlobalKey();
+
+  void _loadBlogPosts() async {
+    Response posts = await apiRepository.getBlogPosts();
+
+    for (var post in posts.data["\$values"]) {
+      _MockPosts.instance.addPost(Blog.fromJson(post));
+      _MockPosts.mockController.value++;
+    }
+  }
+
+  @override
+  void initState() {
+    _loadBlogPosts();
+    super.initState();
+  }
 
   double _getHeaderYOffset() {
     final renderSliver =
@@ -92,24 +112,8 @@ class _MockPosts {
   static final ValueNotifier<int> _mockController = ValueNotifier(0);
   static ValueNotifier<int> get mockController => _mockController;
 
-  List<Post> get posts => _posts;
-  void addPost(Post post) => _posts.add(post);
+  List<Blog> get posts => _posts;
+  void addPost(Blog post) => _posts.add(post);
 
-  final List<Post> _posts = [
-    Post(
-      title: 'Post 1',
-      body: 'Lorem Ipsum Content 1' * 30,
-      date: DateTime.now(),
-    ),
-    Post(
-      title: 'Post 2',
-      body: 'Lorem Ipsum Content 2' * 30,
-      date: DateTime.now(),
-    ),
-    Post(
-      title: 'Post 3',
-      body: 'Lorem Ipsum Content 3' * 30,
-      date: DateTime.now(),
-    ),
-  ];
+  final List<Blog> _posts = [];
 }

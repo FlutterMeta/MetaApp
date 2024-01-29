@@ -19,13 +19,16 @@ class _BlankPostState extends State<_BlankPost> {
   }
 
   void _writePost() {
-    _MockPosts.instance.addPost(
-      Post(
-        title: _titleController.text,
-        body: _bodyController.text,
-        date: DateTime.now(),
-      ),
+    final String mockData = "mock data";
+    final Uint8List mockBytes = Uint8List.fromList(mockData.codeUnits);
+    final blog = Blog(
+      id: 0,
+      title: _titleController.text,
+      content: _bodyController.text,
+      url: "",
+      image: base64Encode(mockBytes),
     );
+    apiRepository.createBlogPost(blog.toJson());
   }
 
   void _clearControllers() {

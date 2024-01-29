@@ -1,7 +1,7 @@
 part of "../blog_page.dart";
 
 class _SinglePostCard extends StatelessWidget {
-  final Post post;
+  final Blog post;
 
   const _SinglePostCard({
     required this.post,
@@ -31,7 +31,7 @@ class _SinglePostCard extends StatelessWidget {
 }
 
 class _HoverablePost extends StatefulWidget {
-  final Post post;
+  final Blog post;
 
   const _HoverablePost({
     required this.post,
@@ -64,21 +64,17 @@ class __HoverablePostState extends State<_HoverablePost> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "${widget.post.date._format()} ${context.localizations.publicationDate}",
-                  style: context.text.blogPostSubHeadline,
-                ),
                 const SizedBox(height: 10),
                 Container(
                   alignment: Alignment.centerLeft,
                   constraints: const BoxConstraints(maxWidth: 800),
                   child: Text(
-                    widget.post.title,
+                    widget.post.title ?? "Blog post title",
                     style: context.text.blogPostHeadline,
                   ),
                 ),
                 const SizedBox(height: 20),
-                Text(widget.post.body),
+                Text(widget.post.content ?? "Blog post content"),
                 const SizedBox(height: 60),
                 SizedBox(
                   width: double.infinity,
