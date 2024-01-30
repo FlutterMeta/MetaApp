@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/pages/admin_profile/referal_level_state_handler.dart';
 import 'package:meta_app/presentation/widgets/bot_demo_card.dart';
 import 'package:meta_app/presentation/widgets/level_card.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
@@ -132,21 +134,40 @@ class _BotDemoCards extends StatelessWidget {
   }
 }
 
-class _LevelCards extends StatelessWidget {
+class _LevelCards extends StatefulWidget {
   const _LevelCards({Key? key}) : super(key: key);
 
   @override
+  State<_LevelCards> createState() => _LevelCardsState();
+}
+
+class _LevelCardsState extends State<_LevelCards> {
+  void preloadLevels() {}
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 20,
-      runSpacing: 16,
-      children: List.generate(
-        15,
-        (index) => EditableLevelCard(
-          level: index + 1,
-          reward: index % 2 == 0 ? 300 : 500,
-        ),
-      ),
+    return ValueListenableBuilder(
+      valueListenable: ReferalLevelStateHandler.controller,
+      builder: (_, __, ___) {
+        return Wrap(
+          spacing: 20,
+          runSpacing: 16,
+          children: ReferalLevelStateHandler.instance.levels
+              .map(
+                (level) => EditableLevelCard(
+                  level: level.level,
+                  reward: level.reward,
+                  requiredReferalsCount: level.requiredReferalsCount,
+                ),
+              )
+              .toList(),
+        );
+      },
     );
   }
 }

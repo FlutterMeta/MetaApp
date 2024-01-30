@@ -59,10 +59,12 @@ class LevelCard extends StatelessWidget {
 class EditableLevelCard extends StatefulWidget {
   final int level;
   final double reward;
+  final int requiredReferalsCount;
 
   const EditableLevelCard({
     required this.level,
     required this.reward,
+    required this.requiredReferalsCount,
     Key? key,
   }) : super(key: key);
 
