@@ -48,3 +48,24 @@ abstract class AppColors {
   static const seaGreen = Color(0xFF26A69A);
   static const aquamarine = Color(0xFF3DC6FC);
 }
+
+class DarkAppColors {
+  static const transparent = Colors.transparent;
+  static const darkerGrey = Color(0xFFDDDDDD);
+  static const lighterBlack = Color(0xFF181925);
+  static const black = Color(0xFF000000);
+  static const white = Color(0xFFFAFAFA);
+  static const grey = Color(0xFF424242);
+  static const lightGrey = Color(0xFF424242);
+  static const brightAquamarine = Color(0xFF00AEC4);
+  static const darkGrey = Color(0xFF121212);
+  static const blueGrey = Color(0xFF263238);
+  static const red = Color(0xFFCF6679);
+  static const yellow = Color(0xFFFFD54F);
+  static const indigo = Color(0xFF1A237E);
+  static const darkIndigo = Color.fromARGB(255, 5, 7, 26);
+  static const greyish = Color(0xFF7E7E7E);
+  static const turquoise = Color(0xFF004D40);
+  static const seaGreen = Color(0xFF2E7D32);
+  static const darkExtremelyLightIndigo = Color(0xFFE8EAF6);
+}

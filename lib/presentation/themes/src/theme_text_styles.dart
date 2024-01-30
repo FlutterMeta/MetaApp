@@ -1263,38 +1263,43 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
 
   static get dark => ThemeTextStyles(
         test: headline1.copyWith(
-          color: AppColors.white,
+          color: DarkAppColors.white,
           fontWeight: FontWeight.w700,
         ),
         authButtonText: headline3.copyWith(
-          color: AppColors.blue,
+          color: const Color.fromARGB(255, 176, 204, 228),
           fontSize: 16,
           fontWeight: FontWeight.w600,
         ),
         loginFormText: headline3.copyWith(
-          color: AppColors.white,
+          color: const Color.fromARGB(255, 255, 255, 255),
         ),
         loginFormTextBold: headline3.copyWith(
           fontWeight: FontWeight.w600,
-          color: AppColors.white,
+          color: const Color.fromARGB(255, 255, 255, 255),
         ),
         loginFormTitle: headline1.copyWith(
-          color: AppColors.white,
+          color: const Color.fromARGB(255, 255, 255, 255),
         ),
-        authFormHint: headline1.copyWith(fontSize: 14),
+        authFormHint:
+            headline1.copyWith(fontSize: 14, color: DarkAppColors.white),
         authFormError: headline3.copyWith(
           color: AppColors.white,
           fontWeight: FontWeight.w400,
         ),
-        multiMetaUniverseTitle: headline1.copyWith(fontSize: 62),
-        metaverseThatUnitesTitle: headline1.copyWith(fontSize: 52),
+        multiMetaUniverseTitle:
+            headline1.copyWith(fontSize: 62, color: DarkAppColors.white),
+        metaverseThatUnitesTitle: headline1.copyWith(
+          fontSize: 52,
+          color: DarkAppColors.white,
+        ),
         fromFiftyDollarsTitle: headline1.copyWith(
           fontSize: 22,
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 255, 255, 255),
         ),
         leadershipBonusesTitle: headline1.copyWith(
           fontSize: 22,
-          color: AppColors.lightIndigo,
+          color: const Color.fromARGB(255, 198, 193, 233),
         ),
         profitToPartnersTitle: headline1.copyWith(
           fontSize: 22,
@@ -1302,13 +1307,15 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         accountTitle: headline3.copyWith(
           fontWeight: FontWeight.bold,
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 162, 171, 221),
         ),
         homePagePurpleBodyText: headline3.copyWith(
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 164, 172, 216),
           fontWeight: FontWeight.w700,
         ),
-        revelantInfoTitle: headline2,
+        revelantInfoTitle: headline2.copyWith(
+          color: const Color.fromARGB(255, 255, 255, 255),
+        ),
         purpleButtonText: headline3.copyWith(
           color: AppColors.white,
           fontSize: 14,
@@ -1338,6 +1345,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         videoTitle: headline1.copyWith(
           fontWeight: FontWeight.w400,
+          color: DarkAppColors.white,
         ),
         footerNavTabTitle: headline3.copyWith(
           color: AppColors.darkerBlueGrey,
@@ -1362,32 +1370,44 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         localeTitle: headline3.copyWith(
           fontSize: 16,
+          color: DarkAppColors.white,
           fontWeight: FontWeight.w300,
         ),
-        blogTitle: headline3.copyWith(),
+        blogTitle: headline3.copyWith(
+          color: DarkAppColors.white,
+        ),
         blogTitleHovered: headline3.copyWith(
-          color: AppColors.darkIndigo,
+          color: const Color.fromARGB(255, 168, 179, 207),
         ),
         incomeSectionTitle: headline1.copyWith(
           fontSize: 63,
+          color: DarkAppColors.white,
           height: .94,
         ),
-        incomeSectionText: headline3.copyWith(),
+        incomeSectionText: headline3.copyWith(
+          color: DarkAppColors.white,
+        ),
         joinButton: headline3.copyWith(
-          color: AppColors.darkIndigo,
+          color: const Color.fromARGB(255, 164, 185, 240),
         ),
         cardsSectionTitle: headline1.copyWith(
           fontSize: 60,
+          color: DarkAppColors.white,
           fontWeight: FontWeight.w600,
         ),
-        cardsSectionText: headline3.copyWith(),
+        cardsSectionText: headline3.copyWith(
+          color: DarkAppColors.white,
+        ),
         partnersSectionCardTitle: headline1.copyWith(
           fontSize: 22,
+          color: DarkAppColors.white,
           fontWeight: FontWeight.w600,
         ),
-        partnersSectionCardSubtitle: headline3.copyWith(),
+        partnersSectionCardSubtitle: headline3.copyWith(
+          color: DarkAppColors.white,
+        ),
         partnersSectionCardText: headline3.copyWith(
-          color: AppColors.darkIndigo,
+          color: const Color.fromARGB(255, 171, 192, 245),
         ),
         becomePartnerSectionTitle: headline1.copyWith(
           fontSize: 60,
@@ -1398,39 +1418,49 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           color: AppColors.white,
         ),
         careServiceButton: headline3.copyWith(
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 173, 184, 247),
         ),
         partnerTableSectionTitle: headline1.copyWith(
           fontSize: 48,
+          color: DarkAppColors.white,
           fontWeight: FontWeight.w500,
         ),
-        partnerTableSectionText: headline3.copyWith(),
-        partnerTableSectionCellTitle: headline3.copyWith(),
+        partnerTableSectionText: headline3.copyWith(
+          color: DarkAppColors.white,
+        ),
+        partnerTableSectionCellTitle: headline3.copyWith(
+          color: DarkAppColors.white,
+        ),
         partnerTableSectionIncomeCell: headline3.copyWith(
           fontWeight: FontWeight.w600,
+          color: DarkAppColors.white,
         ),
         partnerTableSectionReferralCell: headline3.copyWith(
           fontWeight: FontWeight.w600,
-          color: AppColors.darkIndigo,
+          color: const Color.fromARGB(255, 164, 182, 226),
         ),
         partnerPdfSectionTitle: headline1.copyWith(
           fontSize: 60,
+          color: DarkAppColors.white,
         ),
         partnerPdfSectionSubtitle: headline3.copyWith(
           fontSize: 24,
+          color: DarkAppColors.white,
         ),
         productsSmallerHeadline: headline1.copyWith(
           fontSize: 40,
+          color: DarkAppColors.white,
           height: 1.5,
         ),
         productsSubHeadline: headline3.copyWith(
           fontSize: 16,
-          color: AppColors.darkGrey,
+          color: const Color.fromARGB(255, 198, 201, 235),
           height: 1.4,
           letterSpacing: .3,
         ),
         productsInvestorSectionTitle: headline3.copyWith(
           fontSize: 22,
+          color: DarkAppColors.white,
           fontWeight: FontWeight.w500,
           height: 1.2,
         ),
@@ -1439,7 +1469,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w400,
           letterSpacing: .3,
           height: 1.4,
-          color: AppColors.darkGrey,
+          color: const Color.fromARGB(255, 216, 218, 236),
         ),
         trustedSectionTitle: headline3.copyWith(
           fontSize: 56,
@@ -1457,14 +1487,17 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         productsFaqSectionItemText: headline3.copyWith(
           fontSize: 22,
           height: 1.2,
+          color: DarkAppColors.white,
           fontWeight: FontWeight.w500,
         ),
         productsFaqSectionTitle: headline3.copyWith(
           fontSize: 45,
+          color: DarkAppColors.white,
           fontWeight: FontWeight.w500,
         ),
         productsComponentsSectionTitle: headline3.copyWith(
           fontSize: 45,
+          color: DarkAppColors.white,
           fontWeight: FontWeight.w500,
         ),
         productsComponentItemDescription: headline3.copyWith(
@@ -1472,15 +1505,17 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w400,
           letterSpacing: .3,
           height: 1.4,
-          color: AppColors.darkGrey,
+          color: const Color.fromARGB(255, 199, 202, 228),
         ),
         productsComponentItemTitle: headline3.copyWith(
           fontSize: 22,
+          color: DarkAppColors.white,
           fontWeight: FontWeight.w500,
           height: 1.2,
         ),
         productsPartnersSectionTitle: headline3.copyWith(
           fontSize: 45,
+          color: DarkAppColors.white,
           fontWeight: FontWeight.w500,
         ),
         productsPartnersSectionDescription: headline3.copyWith(
@@ -1488,20 +1523,22 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w400,
           letterSpacing: .3,
           height: 1.4,
-          color: AppColors.darkGrey,
+          color: const Color.fromARGB(255, 216, 217, 228),
         ),
         productsPartnersSectionSpecialPurple: headline3.copyWith(
           fontSize: 18,
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 189, 194, 219),
           height: 1.2,
         ),
         productsPartnersImageCardTitle: headline3.copyWith(
           fontSize: 18,
           height: 1.2,
+          color: DarkAppColors.white,
         ),
         productsPartnersInfoCardDescription: headline3.copyWith(
           fontSize: 34,
           fontWeight: FontWeight.w400,
+          color: AppColors.white,
           height: 1.1,
         ),
         productsFaqAnswer: headline3.copyWith(
@@ -1509,17 +1546,18 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontWeight: FontWeight.w400,
           height: 1.4,
           letterSpacing: .3,
-          color: AppColors.darkGrey,
+          color: const Color.fromARGB(255, 204, 205, 216),
         ),
         productsPartnerName:
             headline3.copyWith(color: AppColors.white, height: 1.2),
         blogHeadline: headline1.copyWith(
           fontSize: 63,
           height: .94,
+          color: DarkAppColors.white,
         ),
         blogSubHeadline: headline3.copyWith(
           fontSize: 16,
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 156, 162, 194),
           height: 1.12,
         ),
         blogPostSubHeadline: headline3.copyWith(
@@ -1529,7 +1567,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         blogPostHeadline: headline3.copyWith(
           fontSize: 28,
-          color: AppColors.darkBlue,
+          color: const Color.fromARGB(255, 185, 187, 216),
           height: .92,
         ),
         blogWelcomeDescription: headline3.copyWith(
@@ -1545,7 +1583,7 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         askButton: headline3.copyWith(
           fontSize: 14,
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 209, 211, 228),
           height: 1.22,
         ),
         partnerButton: headline3.copyWith(
@@ -1555,35 +1593,35 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         blogPostLink: headline3.copyWith(
           fontSize: 14,
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 167, 171, 194),
         ),
         blogPostLinkHovered: headline3.copyWith(
           fontSize: 14,
-          color: AppColors.darkIndigo,
+          color: const Color.fromARGB(255, 171, 178, 197),
         ),
         promotionSectionTitle:
             headline1.copyWith(fontSize: 54, color: AppColors.lighterBlack),
         promotionSectionText: headline3.copyWith(
-          color: AppColors.darkestGrey,
+          color: const Color.fromARGB(255, 206, 207, 219),
         ),
         promotionSectionCardTitle: headline3.copyWith(
           fontSize: 14,
-          color: AppColors.darkestGrey,
+          color: const Color.fromARGB(255, 215, 216, 224),
         ),
         promotionSectionCardSubtitle: headline1.copyWith(
           fontSize: 26,
-          color: AppColors.lighterBlack,
+          color: const Color.fromARGB(255, 186, 188, 216),
         ),
         promotionSectionCardText: headline3.copyWith(
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 172, 175, 187),
         ),
         homeCardSubtitle: headline1.copyWith(
           fontSize: 18,
-          color: AppColors.indigo,
+          color: const Color.fromRGBO(215, 217, 226, 1),
         ),
         homeCardTitle: headline1.copyWith(
           fontSize: 40,
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 182, 187, 214),
         ),
         homePartnershipChip: headline3.copyWith(
           fontSize: 13,
@@ -1599,28 +1637,28 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         homeAskButtonText: headline1.copyWith(
           fontSize: 14,
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 171, 175, 201),
         ),
         homePartnershipInfoDescription: headline1.copyWith(
           fontSize: 16,
-          color: AppColors.darkGrey,
+          color: const Color.fromARGB(255, 195, 198, 226),
           height: 1.16,
           letterSpacing: .3,
         ),
         homePartnershipInfoHeadline: headline1.copyWith(
           fontSize: 53,
-          color: AppColors.darkBlue,
+          color: const Color.fromARGB(255, 179, 181, 202),
         ),
         homePartnershipInfoPurpleTitle: headline1.copyWith(
           fontSize: 16,
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 203, 208, 235),
         ),
         revenueSectionTitle: headline1.copyWith(
           fontSize: 54,
-          color: AppColors.lighterBlack,
+          color: const Color.fromARGB(255, 204, 205, 216),
         ),
         revenueSectionNewsTitle: headline3.copyWith(
-          color: AppColors.lighterBlack,
+          color: const Color.fromARGB(255, 200, 202, 218),
         ),
         revenueSectionNewsCardTitle: headline3.copyWith(
           fontSize: 14,
@@ -1628,21 +1666,22 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         revenueSectionNewsCardText: headline1.copyWith(
           fontSize: 22,
-          color: AppColors.lighterBlack,
+          color: const Color.fromARGB(255, 191, 192, 209),
         ),
         revenueSectionRateCard: headline3.copyWith(
-          color: AppColors.lighterBlack,
+          color: const Color.fromARGB(255, 197, 198, 212),
         ),
         revenueSectionRateCardHighlighted: headline3.copyWith(
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 191, 192, 201),
         ),
         partnershipSectionSubtitle: headline3.copyWith(
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 177, 182, 212),
           fontWeight: FontWeight.w300,
         ),
         partnershipSectionTitle: headline1.copyWith(
           fontSize: 64,
           height: 0.9,
+          color: DarkAppColors.white,
         ),
         directionCardDescription: headline3.copyWith(
           fontSize: 16,
@@ -1652,66 +1691,71 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
         ),
         directionCardTitle: headline1.copyWith(
           fontSize: 21,
-          color: AppColors.darkBlue,
+          color: const Color.fromARGB(255, 224, 226, 248),
         ),
         directionsBenefitsDescription: headline3.copyWith(
           fontSize: 16,
-          color: AppColors.darkGrey,
+          color: const Color.fromARGB(255, 177, 179, 196),
           height: 1.16,
           letterSpacing: .3,
         ),
         directionsBenefitsTitle: headline1.copyWith(
           fontSize: 53,
-          color: AppColors.darkBlue,
+          color: const Color.fromARGB(255, 164, 171, 245),
         ),
         directionsBenefitsSubtitle: headline3.copyWith(
           fontSize: 16,
           height: 1.12,
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 163, 168, 196),
         ),
         productsHeadline: headline1.copyWith(
           fontSize: 63,
           height: .94,
-          color: AppColors.darkBlue,
+          color: const Color.fromARGB(255, 255, 255, 255),
         ),
         dashboardSideMenuSelectedLable: headline3.copyWith(
           fontSize: 18,
-          color: AppColors.black,
+          color: const Color.fromARGB(255, 250, 250, 250),
         ),
         dashboardSideMenuUnselectedLable: headline3.copyWith(
           fontSize: 18,
-          color: AppColors.greyish,
+          color: const Color.fromARGB(255, 204, 203, 203),
         ),
         allRightsReserved: headline1.copyWith(
           fontSize: 16,
-          color: AppColors.greyish,
+          color: const Color.fromARGB(255, 206, 206, 206),
         ),
-        profilePageBody: headline3.copyWith(),
+        profilePageBody: headline3.copyWith(
+          color: DarkAppColors.white,
+        ),
         profilePageInverseBody: headline3.copyWith(color: AppColors.white),
         profileDashboardReferralCodeItself: headline1.copyWith(
           fontSize: 18,
-          color: AppColors.steelBlue,
+          color: const Color.fromARGB(255, 160, 175, 201),
           fontWeight: FontWeight.w700,
         ),
         profilePageSubtitle: headline3.copyWith(
           fontSize: 13,
-          color: AppColors.greyish,
+          color: const Color.fromARGB(255, 218, 216, 216),
         ),
         profileBotsDefault: headline1.copyWith(color: AppColors.darkIndigo),
         profileHeaderSubtitle: headline1.copyWith(
           fontSize: 12,
-          color: AppColors.mako,
+          color: const Color.fromARGB(255, 125, 126, 129),
         ),
         headerNavItemHovered: headline3.copyWith(
           fontSize: 14,
-          color: AppColors.indigo,
+          color: const Color.fromARGB(255, 166, 174, 218),
         ),
         warning: headline1.copyWith(
           fontSize: 16,
           fontWeight: FontWeight.w700,
           height: 1.16,
-          color: AppColors.yellow,
+          color: const Color.fromARGB(255, 236, 189, 155),
         ),
-        adminUserTableLabel: headline1.copyWith(fontSize: 15),
+        adminUserTableLabel: headline1.copyWith(
+          fontSize: 15,
+          color: DarkAppColors.white,
+        ),
       );
 }

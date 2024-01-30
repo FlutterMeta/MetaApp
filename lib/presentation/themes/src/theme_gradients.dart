@@ -129,20 +129,19 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           colors: [AppColors.white, AppColors.extremelyLightIndigo],
         ),
       );
-
   static get dark => ThemeGradients(
         indigoTurquoise: const LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          colors: [AppColors.turquoise, AppColors.indigo],
+          colors: [DarkAppColors.turquoise, DarkAppColors.indigo],
         ),
         indigoTurquoiseReversed: const LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          colors: [AppColors.indigo, AppColors.turquoise],
+          colors: [DarkAppColors.indigo, DarkAppColors.transparent],
         ),
         indigoTurquoiseDiagonal: const LinearGradient(
-          colors: [AppColors.indigo, AppColors.turquoise],
+          colors: [DarkAppColors.indigo, DarkAppColors.turquoise],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -150,33 +149,40 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
           colors: [
-            AppColors.lightIndigo.withOpacity(0.2),
-            AppColors.turquoise.withOpacity(0.2)
+            DarkAppColors.indigo.withOpacity(0.6),
+            DarkAppColors.turquoise.withOpacity(0.6)
           ],
         ),
         indigoVertical: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
-          colors: [AppColors.indigo, AppColors.indigo.withOpacity(0.2)],
+          colors: [
+            DarkAppColors.indigo,
+            DarkAppColors.darkIndigo.withOpacity(0.7)
+          ],
         ),
         blackVertical: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
           stops: const [0.01, 1],
-          colors: [AppColors.black.withOpacity(0.84), AppColors.transparent],
+          colors: [
+            DarkAppColors.black.withOpacity(0.84),
+            DarkAppColors.transparent
+          ],
         ),
         lightIndigoTurquoiseVertical: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
           colors: [
-            AppColors.lightIndigo.withOpacity(0.2),
-            AppColors.turquoise.withOpacity(0.1)
+            DarkAppColors.indigo.withOpacity(0.4),
+            DarkAppColors.turquoise.withOpacity(0.3)
           ],
         ),
         lightIndigo: const LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          colors: [AppColors.white, AppColors.extremelyLightIndigo],
+          stops: [0.4, 0.95],
+          colors: [DarkAppColors.darkGrey, DarkAppColors.darkIndigo],
         ),
       );
 }

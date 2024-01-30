@@ -32,7 +32,7 @@ class _BotDemoCardState extends State<BotDemoCard> {
 
   @override
   Widget build(BuildContext context) {
-    return _CardWrapper(
+    return CardWrapper(
       child: Column(
         children: [
           Text(
@@ -85,7 +85,7 @@ class _EditableBotDemoCardState extends State<EditableBotDemoCard> {
 
   @override
   Widget build(BuildContext context) {
-    return _CardWrapper(
+    return CardWrapper(
       child: Column(
         children: [
           Text(
@@ -116,10 +116,10 @@ class _EditableBotDemoCardState extends State<EditableBotDemoCard> {
   }
 }
 
-class _CardWrapper extends StatelessWidget {
+class CardWrapper extends StatelessWidget {
   final Widget child;
 
-  const _CardWrapper({
+  const CardWrapper({
     required this.child,
     Key? key,
   }) : super(key: key);
@@ -140,7 +140,8 @@ class _CardWrapper extends StatelessWidget {
       ),
       padding: const EdgeInsets.all(20),
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 240, maxHeight: 340),
+        constraints:
+            const BoxConstraints(maxWidth: 240, maxHeight: 340, minWidth: 210),
         child: child,
       ),
     );

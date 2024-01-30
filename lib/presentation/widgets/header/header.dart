@@ -7,6 +7,7 @@ import 'package:meta_app/data/datasources/local/shared_prefs.dart';
 import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/locale_manager.dart';
 import 'package:meta_app/presentation/navigation/app_router.gr.dart';
+import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/return_home_logo.dart';
 import 'package:meta_app/presentation/widgets/media_buttons.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
@@ -14,6 +15,7 @@ import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 import '../../../data/models/user.dart';
 import '../../redux/app_state.dart';
+import '../../themes/theme_manager.dart';
 part 'components/account_button.dart';
 part 'components/compact_menu.dart';
 part 'components/expanded_menu.dart';
@@ -79,6 +81,8 @@ class Header extends SliverPersistentHeaderDelegate {
                       SizedBox(width: 10),
                       _AccountButton(),
                       SizedBox(width: 24),
+                      DayNightIcon(),
+                      SizedBox(width: 24),
                       _LocaleDropdown(),
                       SizedBox(width: 90),
                     ],
@@ -110,6 +114,44 @@ class Header extends SliverPersistentHeaderDelegate {
           ),
         ),
       ),
+    );
+  }
+}
+
+class DayNightIcon extends StatefulWidget {
+  const DayNightIcon({Key? key}) : super(key: key);
+
+  @override
+  _DayNightIconState createState() => _DayNightIconState();
+}
+
+class _DayNightIconState extends State<DayNightIcon> {
+  late bool _isDarkMode;
+
+  void _onDayNightPressed(BuildContext context) {
+    ThemeManager.switchTheme(context);
+    setState(() {
+      _isDarkMode = !_isDarkMode;
+    });
+  }
+
+  final _dayIcon = Icons.wb_sunny;
+  final _nightIcon = Icons.nightlight_round;
+
+  @override
+  void initState() {
+    super.initState();
+    _isDarkMode = locator<SharedPrefs>().getThemeMode() == ThemeMode.dark;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        _isDarkMode ? _dayIcon : _nightIcon,
+        color: _isDarkMode ? AppColors.white : AppColors.black,
+      ),
+      onPressed: () => _onDayNightPressed(context),
     );
   }
 }

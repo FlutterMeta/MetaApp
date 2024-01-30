@@ -350,5 +350,7 @@
     "add": "Add",
     "error": "Error",
     "tapOnCardToEditIt": "Tap on a card to edit it or + to add a new one",
-    "errorHappened": "Error happened"
+    "errorHappened": "Error happened",
+    "productManagement": "Product management",
+    "addNewProduct": "Add new product"
 }

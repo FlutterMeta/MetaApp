@@ -121,24 +121,59 @@ class _BotDemoCards extends StatelessWidget {
         price: 5000,
         benefits: _advancedBenefits(context),
       ),
+      CardWrapper(
+        child: Column(
+          children: [
+            Text(
+              context.localizations.addNewProduct,
+              style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+            ),
+            const SizedBox(height: 10),
+            Icon(Icons.add, color: context.color.profilePagePrimary, size: 40),
+          ],
+        ),
+      ),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 380,
-      width: double.infinity,
-      child: Align(
-        child: ListView.separated(
-          shrinkWrap: true,
-          clipBehavior: Clip.none,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) => _demoCards(context).elementAt(index),
-          itemCount: _demoCards(context).length,
-          separatorBuilder: (_, __) => const SizedBox(width: 20),
+    return Column(
+      children: [
+        SizedBox(
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                context.localizations.auroraUniverseReferralReward,
+                style: context.text.profileBotsDefault.copyWith(fontSize: 24),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                context.localizations.tapOnCardToEditIt,
+                style: context.text.profileBotsDefault.copyWith(fontSize: 15),
+              ),
+              const SizedBox(height: 30),
+            ],
+          ),
         ),
-      ),
+        SizedBox(
+          height: 380,
+          width: double.infinity,
+          child: Align(
+            child: ListView.separated(
+              shrinkWrap: true,
+              clipBehavior: Clip.none,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) =>
+                  _demoCards(context).elementAt(index),
+              itemCount: _demoCards(context).length,
+              separatorBuilder: (_, __) => const SizedBox(width: 20),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
