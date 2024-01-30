@@ -243,4 +243,67 @@ class ApiRepositoryImpl implements ApiRepository {
     }
     return response;
   }
+
+  @override
+  Future<Response> createReferalLevel(Map<String, dynamic> body) async {
+    late Response response;
+    try {
+      response = await apiClient.post('/ReferalLevel', body: body);
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getReferalLevels() async {
+    late Response response;
+    try {
+      response = await apiClient.get('/ReferalLevel');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> updateReferalLevel(int id, Map<String, dynamic> body) async {
+    late Response response;
+    try {
+      response = await apiClient.put('/ReferalLevel/$id', body: body);
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getReferalLevel(int id) async {
+    late Response response;
+    try {
+      response = await apiClient.get('/ReferalLevel/$id');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
 }

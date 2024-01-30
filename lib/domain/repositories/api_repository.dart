@@ -19,4 +19,10 @@ abstract class ApiRepository {
   Future<Response> createBlogPost(Map<String, dynamic> body);
   Future<Response> updateBlogPost(int id, Map<String, dynamic> body);
   Future<Response> deleteBlogPost(int id);
+
+  // ReferalLevels
+  Future<Response> getReferalLevels();
+  Future<Response> getReferalLevel(int id);
+  Future<Response> createReferalLevel(Map<String, dynamic> body);
+  Future<Response> updateReferalLevel(int id, Map<String, dynamic> body);
 }
