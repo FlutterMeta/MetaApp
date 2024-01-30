@@ -306,4 +306,110 @@ class ApiRepositoryImpl implements ApiRepository {
     }
     return response;
   }
+
+  @override
+  Future<Response> createProduct(Map<String, dynamic> body) async {
+    late Response response;
+    try {
+      response = await apiClient.post('/Product', body: body);
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> createPurchaseTransaction(
+      int id, int paymentSystemId) async {
+    late Response response;
+    try {
+      response =
+          await apiClient.post('/Product/$id/PurchaseTransaction', body: {
+        "paymentSystemId": paymentSystemId,
+      });
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> deleteProduct(int id) async {
+    late Response response;
+    try {
+      response = await apiClient.delete('/Product/$id');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getProduct(int id) async {
+    late Response response;
+    try {
+      response = await apiClient.get('/Product/$id');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getProducts() async {
+    late Response response;
+    try {
+      response = await apiClient.get('/Product');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getUserProducts(int userId) async {
+    late Response response;
+    try {
+      response = await apiClient.get('/User/$userId/Product');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> updateProduct(int id, Map<String, dynamic> body) {
+    // TODO: implement updateProduct
+    throw UnimplementedError();
+  }
 }

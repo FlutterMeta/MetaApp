@@ -14,9 +14,6 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
       subscriptionDuration: json['subscriptionDuration'] as int,
       subscriptionTier:
           $enumDecode(_$SubscriptionTierEnumMap, json['subscriptionTier']),
-      users: (json['users'] as List<dynamic>)
-          .map((e) => User.fromJson(e as Map<String, dynamic>))
-          .toList(),
     );
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
@@ -26,7 +23,6 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'price': instance.price,
       'subscriptionDuration': instance.subscriptionDuration,
       'subscriptionTier': _$SubscriptionTierEnumMap[instance.subscriptionTier]!,
-      'users': instance.users.map((e) => e.toJson()).toList(),
     };
 
 const _$SubscriptionTierEnumMap = {

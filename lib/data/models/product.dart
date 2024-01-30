@@ -12,7 +12,6 @@ class Product {
   final double price;
   final int subscriptionDuration;
   final SubscriptionTier subscriptionTier;
-  final List<User> users;
 
   Product({
     required this.id,
@@ -21,7 +20,6 @@ class Product {
     required this.price,
     required this.subscriptionDuration,
     required this.subscriptionTier,
-    required this.users,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) =>
