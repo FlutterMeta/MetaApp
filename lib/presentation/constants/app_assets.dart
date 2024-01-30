@@ -15,4 +15,13 @@ abstract class AppAssets {
   static const indigoBackground = "assets/images/indigo_background.png";
   static const chart = "assets/images/chart.png";
   static const border = "assets/svg/border.svg";
+
+  //Crypto icons
+  static const bitcoinIcon = "assets/images/crypto/btc.png";
+  static const ethereumIcon = "assets/images/crypto/eth.png";
+  static const tetherIcon = "assets/images/crypto/usdt.png";
+  static const usdCoinIcon = "assets/images/crypto/usdc.png";
+  static const daiIcon = "assets/images/crypto/dai.png";
+  static const binanceCoinIcon = "assets/images/crypto/bnb.png";
+  static const dogecoinIcon = "assets/images/crypto/doge.png";
 }
