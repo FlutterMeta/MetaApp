@@ -62,11 +62,12 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
   }
 
   void _onLoginButtonPressed() async {
-    if (_formKey.currentState?.validate() == false) return;
+    //if (_formKey.currentState?.validate() == false) return; TODO: uncomment
     Response response = await login();
 
-    if (apiRepository.isSuccessfulStatusCode(response.statusCode) ||
-        response.data["token"] != null) {
+    //if (apiRepository.isSuccessfulStatusCode(response.statusCode) ||
+    //    response.data["token"] != null) { TODO: uncomment
+    if (true) {
       // Request to get user profile, by user's token
       String key = html.window.localStorage["token"] ?? "";
       ApiClient apiClient = ApiClient(baseUrl: baseUrl, token: key);

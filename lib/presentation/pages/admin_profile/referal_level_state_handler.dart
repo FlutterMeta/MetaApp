@@ -25,6 +25,7 @@ class ReferalLevelStateHandler {
 
   void init() async {
     _levels.clear();
+    ReferalLevelStateHandler.controller.value--;
     preloadLevels();
   }
 

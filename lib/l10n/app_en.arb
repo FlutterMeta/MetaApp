@@ -344,6 +344,10 @@
     "deletePost": "Delete post",
     "editPost": "Edit post",
     "requiredReferalsCount": "Required referals count",
-    "addLevel": "Add level",
-    "add": "Add"
+    "addLevel": "Add Referral Level",
+    "editReferalLevel": "Edit Referral Level",
+    "enterReferalsCountNeededToAchieve": "Enter referals count needed to achieve this level",
+    "add": "Add",
+    "error": "Error",
+    "errorHappened": "Error happened"
 }
