@@ -61,7 +61,7 @@ class _ReferralRewards extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             context.localizations.tapOnCardToEditIt,
-            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+            style: context.text.profileBotsDefault.copyWith(fontSize: 15),
           ),
           const SizedBox(height: 30),
           const _LevelCards(),
