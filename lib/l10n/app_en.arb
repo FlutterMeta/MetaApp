@@ -342,5 +342,8 @@
     "loginFailed": "Login failed",
     "codeWasSent": "Code was sent to your email",
     "deletePost": "Delete post",
-    "editPost": "Edit post"
+    "editPost": "Edit post",
+    "requiredReferalsCount": "Required referals count",
+    "addLevel": "Add level",
+    "add": "Add"
 }

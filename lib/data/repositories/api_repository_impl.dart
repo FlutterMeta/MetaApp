@@ -29,7 +29,7 @@ class ApiRepositoryImpl implements ApiRepository {
 
       html.window.localStorage["token"] = response.data["token"];
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       debugPrint(response.toString());
     } catch (e) {
@@ -52,7 +52,7 @@ class ApiRepositoryImpl implements ApiRepository {
         'referal': registration.referal,
       });
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       debugPrint(response.toString());
       return response;
@@ -69,7 +69,7 @@ class ApiRepositoryImpl implements ApiRepository {
     try {
       Response response = await apiClient.get('/User/Profile');
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
         return null;
       }
       debugPrint(response.toString());
@@ -101,7 +101,7 @@ class ApiRepositoryImpl implements ApiRepository {
         isFormData: true,
       );
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       debugPrint(response.toString());
       return response;
@@ -131,7 +131,7 @@ class ApiRepositoryImpl implements ApiRepository {
         isFormData: true,
       );
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       debugPrint(response.toString());
       return response;
@@ -160,7 +160,7 @@ class ApiRepositoryImpl implements ApiRepository {
         'referal': registration.referal,
       });
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       return response;
     } catch (e) {
@@ -175,7 +175,7 @@ class ApiRepositoryImpl implements ApiRepository {
     try {
       response = await apiClient.post('/Blog', body: body);
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       debugPrint(response.toString());
     } catch (e) {
@@ -190,7 +190,7 @@ class ApiRepositoryImpl implements ApiRepository {
     try {
       response = await apiClient.delete('/Blog/$id');
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       debugPrint(response.toString());
     } catch (e) {
@@ -205,7 +205,7 @@ class ApiRepositoryImpl implements ApiRepository {
     try {
       response = await apiClient.get('/Blog/$id');
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       debugPrint(response.toString());
     } catch (e) {
@@ -220,7 +220,7 @@ class ApiRepositoryImpl implements ApiRepository {
     try {
       response = await apiClient.get('/Blog');
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       debugPrint(response.toString());
     } catch (e) {
@@ -235,7 +235,7 @@ class ApiRepositoryImpl implements ApiRepository {
     try {
       response = await apiClient.put('/Blog', body: body);
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       debugPrint(response.toString());
     } catch (e) {
@@ -250,7 +250,7 @@ class ApiRepositoryImpl implements ApiRepository {
     try {
       response = await apiClient.post('/ReferalLevel', body: body);
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       debugPrint(response.toString());
     } catch (e) {
@@ -265,7 +265,7 @@ class ApiRepositoryImpl implements ApiRepository {
     try {
       response = await apiClient.get('/ReferalLevel');
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       debugPrint(response.toString());
       return response;
@@ -281,7 +281,7 @@ class ApiRepositoryImpl implements ApiRepository {
     try {
       response = await apiClient.put('/ReferalLevel/$id', body: body);
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       debugPrint(response.toString());
       return response;
@@ -297,7 +297,7 @@ class ApiRepositoryImpl implements ApiRepository {
     try {
       response = await apiClient.get('/ReferalLevel/$id');
       if (!isSuccessfulStatusCode(response.statusCode)) {
-        debugPrint('Error: ${response.statusCode}');
+        debugPrint('API Error: ${response.statusCode}');
       }
       debugPrint(response.toString());
       return response;

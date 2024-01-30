@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../../core/global.dart';
 import '../../../data/models/referal_level.dart';
 
 class ReferalLevelStateHandler {
@@ -21,5 +23,23 @@ class ReferalLevelStateHandler {
     _levels[index] = level;
   }
 
+  void init() async {
+    _levels.clear();
+    preloadLevels();
+  }
+
   final List<ReferalLevel> _levels = [];
+}
+
+void preloadLevels() async {
+  Response response = await apiRepository.getReferalLevels();
+  if (response.statusCode == 200) {
+    final data = response.data["\$values"] as List<dynamic>;
+
+    for (final level in data) {
+      ReferalLevelStateHandler.instance
+          .addlevel(ReferalLevel.fromJson(level as Map<String, dynamic>));
+      ReferalLevelStateHandler.controller.value++;
+    }
+  }
 }

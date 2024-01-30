@@ -19,5 +19,7 @@ class ReferalLevel {
   factory ReferalLevel.fromJson(Map<String, dynamic> json) =>
       _$ReferalLevelFromJson(json);
 
+  get instance => null;
+
   Map<String, dynamic> toJson() => _$ReferalLevelToJson(this);
 }

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/data/models/referal_level.dart';
 import 'package:meta_app/presentation/widgets/admin_window.dart';
 import 'package:meta_app/presentation/widgets/editing_field.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
 class LevelCard extends StatelessWidget {
-  final int level;
-  final double reward;
+  final ReferalLevel level;
 
   const LevelCard({
     required this.level,
-    required this.reward,
     Key? key,
   }) : super(key: key);
 
@@ -28,7 +27,7 @@ class LevelCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 88,
+      height: 112,
       width: _cardWidth(context),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -42,12 +41,17 @@ class LevelCard extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "${context.localizations.level} $level",
+            "${context.localizations.level} ${level.level}  ",
             style: context.text.askButton,
           ),
           const SizedBox(height: 10),
           Text(
-            "${context.localizations.reward}: $reward\$",
+            "${context.localizations.requiredReferalsCount}:  ${level.requiredReferalsCount}",
+            style: context.text.askButton,
+          ),
+          const SizedBox(height: 10),
+          Text(
+            "${context.localizations.reward}: ${level.reward} ",
             style: context.text.askButton,
           ),
         ],
@@ -57,14 +61,10 @@ class LevelCard extends StatelessWidget {
 }
 
 class EditableLevelCard extends StatefulWidget {
-  final int level;
-  final double reward;
-  final int requiredReferalsCount;
+  final ReferalLevel level;
 
   const EditableLevelCard({
     required this.level,
-    required this.reward,
-    required this.requiredReferalsCount,
     Key? key,
   }) : super(key: key);
 
@@ -109,7 +109,7 @@ class _EditableLevelCardState extends State<EditableLevelCard> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   EditingField(
-                    value: widget.reward.toString(),
+                    value: widget.level.reward.toString(),
                     width: 120,
                     controller: _priceController,
                   ),
@@ -122,7 +122,7 @@ class _EditableLevelCardState extends State<EditableLevelCard> {
               onConfirm: _onConfirm,
               onCancel: () => setState(() => _isTapped = false),
             ),
-            child: LevelCard(level: widget.level, reward: widget.reward),
+            child: LevelCard(level: widget.level),
           );
         },
       ),

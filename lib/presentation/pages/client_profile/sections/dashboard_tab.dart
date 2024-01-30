@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/data/models/referal_level.dart';
 import 'package:meta_app/presentation/pages/client_profile/menu_controller.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
@@ -15,6 +16,7 @@ import 'package:useful_extensions/useful_extensions.dart';
 import '../../../../data/models/transaction.dart';
 import '../../../../data/models/user.dart';
 import '../../../redux/app_state.dart';
+import '../../admin_profile/referal_level_state_handler.dart';
 
 class DashboardTab extends StatelessWidget {
   const DashboardTab({super.key});
@@ -104,21 +106,31 @@ class _AdaptiveMainContent extends StatelessWidget {
   }
 }
 
-class _LevelCards extends StatelessWidget {
+class _LevelCards extends StatefulWidget {
   const _LevelCards({Key? key}) : super(key: key);
 
   @override
+  State<_LevelCards> createState() => _LevelCardsState();
+}
+
+class _LevelCardsState extends State<_LevelCards> {
+  @override
+  void initState() {
+    super.initState();
+    ReferalLevelStateHandler.instance.init();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 20,
-      runSpacing: 16,
-      children: List.generate(
-        15,
-        (index) => LevelCard(
-          level: index + 1,
-          reward: index % 2 == 0 ? 300 : 500,
-        ),
-      ),
+    return ValueListenableBuilder(
+      valueListenable: ReferalLevelStateHandler.controller,
+      builder: (_, __, ___) {
+        return Wrap(spacing: 20, runSpacing: 16, children: [
+          ...ReferalLevelStateHandler.instance.levels
+              .map((level) => LevelCard(level: level))
+              .toList(),
+        ]);
+      },
     );
   }
 }
