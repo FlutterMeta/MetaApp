@@ -349,5 +349,6 @@
     "enterReferalsCountNeededToAchieve": "Enter referals count needed to achieve this level",
     "add": "Add",
     "error": "Error",
+    "tapOnCardToEditIt": "Tap on a card to edit it",
     "errorHappened": "Error happened"
 }

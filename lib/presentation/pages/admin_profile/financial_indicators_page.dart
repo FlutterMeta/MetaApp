@@ -58,6 +58,11 @@ class _ReferralRewards extends StatelessWidget {
             context.localizations.auroraUniverseReferralReward,
             style: context.text.profileBotsDefault.copyWith(fontSize: 24),
           ),
+          const SizedBox(height: 10),
+          Text(
+            context.localizations.tapOnCardToEditIt,
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+          ),
           const SizedBox(height: 30),
           const _LevelCards(),
         ],
