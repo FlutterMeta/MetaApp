@@ -79,13 +79,6 @@ class EditableLevelCard extends StatefulWidget {
 
 class _EditableLevelCardState extends State<EditableLevelCard> {
   final _priceController = TextEditingController();
-  bool _isTapped = false;
-
-  void _onConfirm() {
-    _priceController.text;
-    _priceController.clear();
-    //setState(() => _isTapped = false);
-  }
 
   void _handleOnTap(BuildContext context) async {
     showDialog(
@@ -94,7 +87,7 @@ class _EditableLevelCardState extends State<EditableLevelCard> {
         return Dialog(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          child: _AddLevelModal(level: widget.level),
+          child: _EditLevelModal(level: widget.level),
         );
       },
     );
@@ -113,50 +106,22 @@ class _EditableLevelCardState extends State<EditableLevelCard> {
       onTap: () => _handleOnTap(context),
       child: Builder(
         builder: (context) {
-          return PortalTarget(
-            anchor: const Aligned(
-              follower: Alignment.topCenter,
-              target: Alignment.bottomCenter,
-            ),
-            visible: _isTapped,
-            portalFollower: AdminWindow(
-              title: context.localizations.levelReward,
-              confirmText: context.localizations.approve,
-              content: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  EditingField(
-                    value: widget.level.reward.toString(),
-                    width: 120,
-                    controller: _priceController,
-                  ),
-                  Icon(
-                    Icons.attach_money_rounded,
-                    color: context.color.profilePagePrimaryVariant,
-                  ),
-                ],
-              ),
-              onConfirm: _onConfirm,
-              onCancel: () => setState(() => _isTapped = false),
-            ),
-            child: LevelCard(level: widget.level),
-          );
+          return LevelCard(level: widget.level);
         },
       ),
     );
   }
 }
 
-class _AddLevelModal extends StatefulWidget {
+class _EditLevelModal extends StatefulWidget {
   final ReferalLevel level;
-  const _AddLevelModal({Key? key, required this.level}) : super(key: key);
+  const _EditLevelModal({Key? key, required this.level}) : super(key: key);
 
   @override
-  State<_AddLevelModal> createState() => _AddLevelModalState();
+  State<_EditLevelModal> createState() => _EditLevelModalState();
 }
 
-class _AddLevelModalState extends State<_AddLevelModal> with MessageOverlay {
+class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
   final _rewardController = TextEditingController();
   final _requiredReferalsCountController = TextEditingController();
 
