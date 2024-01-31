@@ -4,29 +4,17 @@ import 'package:meta_app/presentation/widgets/bot_demo_card.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 
+import '../../admin_profile/products_state_handler.dart';
 import '../menu_controller.dart';
 
-class BotsTab extends StatelessWidget {
+class BotsTab extends StatefulWidget {
   const BotsTab({super.key});
 
-  List<String> _basicBenefits(BuildContext context) {
-    return [
-      context.localizations.twentyPositions,
-      context.localizations.portfolioManagement,
-      context.localizations.manualTrading,
-      context.localizations.allAvailableExchanges,
-    ];
-  }
+  @override
+  State<BotsTab> createState() => _BotsTabState();
+}
 
-  List<String> _advancedBenefits(BuildContext context) {
-    return [
-      ..._basicBenefits(context),
-      context.localizations.allCoinsForSignals,
-      context.localizations.marketArbitrage,
-      context.localizations.algorithmIntelligence,
-    ];
-  }
-
+class _BotsTabState extends State<BotsTab> {
   void _pushTransactionTab() {
     const int transactionTabIndex = 2;
     MenuController.tabIndex.value = transactionTabIndex;
@@ -54,41 +42,10 @@ class BotsTab extends StatelessWidget {
     ];
   }
 
-  List<Widget> _demoCards(BuildContext context) {
-    final localization = context.localizations;
-
-    return [
-      BotDemoCard(
-        title: localization.pioneer,
-        price: 20.39,
-        benefits: _basicBenefits(context),
-        onTap: _pushTransactionTab,
-      ),
-      BotDemoCard(
-        title: localization.adventurer,
-        price: 40.22,
-        benefits: _basicBenefits(context),
-        onTap: _pushTransactionTab,
-      ),
-      BotDemoCard(
-        title: localization.hero,
-        price: 78.25,
-        benefits: _advancedBenefits(context),
-        onTap: _pushTransactionTab,
-      ),
-      BotDemoCard(
-        title: localization.pioneer,
-        price: 3000,
-        benefits: _advancedBenefits(context),
-        onTap: _pushTransactionTab,
-      ),
-      BotDemoCard(
-        title: localization.adventurer,
-        price: 5000,
-        benefits: _advancedBenefits(context),
-        onTap: _pushTransactionTab,
-      ),
-    ];
+  @override
+  void initState() {
+    super.initState();
+    ProductsStateHandler.instance.init();
   }
 
   @override
@@ -98,16 +55,24 @@ class BotsTab extends StatelessWidget {
         decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
         alignment: Alignment.center,
         padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            _CardsWrap(children: _profitCards(context)),
-            const SizedBox(height: 20),
-            _CardsWrap(children: _demoCards(context)),
-            const SizedBox(height: 30),
-            const _FunctionalityComparisonTable(),
-            const SizedBox(height: 60),
-            const RightsReservedFooter(),
-          ],
+        child: ValueListenableBuilder(
+          valueListenable: ProductsStateHandler.controller,
+          builder: (BuildContext context, _, __) {
+            return Column(
+              children: [
+                _CardsWrap(children: _profitCards(context)),
+                const SizedBox(height: 20),
+                _CardsWrap(children: [
+                  for (final product in ProductsStateHandler.instance.products)
+                    BotDemoCard(product: product, onTap: (() {})),
+                ]),
+                const SizedBox(height: 30),
+                const _FunctionalityComparisonTable(),
+                const SizedBox(height: 60),
+                const RightsReservedFooter(),
+              ],
+            );
+          },
         ),
       ),
     );

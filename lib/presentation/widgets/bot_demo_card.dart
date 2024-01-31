@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/simple_outlined_button.dart';
+import '../../data/models/product.dart';
+import '../pages/admin_profile/modals/manage_product_modal.dart';
 import 'editing_field.dart';
 
 class BotDemoCard extends StatefulWidget {
-  final String title;
-  final double price;
-  final List<String> benefits;
+  final Product product;
   final VoidCallback onTap;
 
   const BotDemoCard({
-    required this.title,
-    required this.price,
-    required this.benefits,
+    required this.product,
     required this.onTap,
     Key? key,
   }) : super(key: key);
@@ -36,16 +34,19 @@ class _BotDemoCardState extends State<BotDemoCard> {
       child: Column(
         children: [
           Text(
-            widget.title,
+            widget.product.title,
             style: context.text.profileBotsDefault.copyWith(fontSize: 16),
           ),
           const SizedBox(height: 10),
           _PriceSection(
-            price: widget.price,
+            price: widget.product.price,
             controller: _priceController,
           ),
           const SizedBox(height: 20),
-          _BenefitSection(benefits: widget.benefits),
+          _BenefitSection(
+            description: widget.product.description,
+            duration: widget.product.subscriptionDuration,
+          ),
           const Spacer(),
           SimpleOutlinedButton(
             onTap: widget.onTap,
@@ -58,14 +59,10 @@ class _BotDemoCardState extends State<BotDemoCard> {
 }
 
 class EditableBotDemoCard extends StatefulWidget {
-  final String title;
-  final double price;
-  final List<String> benefits;
+  final Product product;
 
   const EditableBotDemoCard({
-    required this.title,
-    required this.price,
-    required this.benefits,
+    required this.product,
     Key? key,
   }) : super(key: key);
 
@@ -77,10 +74,19 @@ class _EditableBotDemoCardState extends State<EditableBotDemoCard> {
   final _priceController = TextEditingController();
   bool _isEditing = false;
 
-  void _onConfirm() {
-    _priceController.text;
-    _priceController.clear();
-    setState(() => _isEditing = false);
+  void _handleOnTap(BuildContext context, Product product) {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return SingleChildScrollView(
+          child: Dialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: ManageProductModal(product: product),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -89,27 +95,25 @@ class _EditableBotDemoCardState extends State<EditableBotDemoCard> {
       child: Column(
         children: [
           Text(
-            widget.title,
+            widget.product.title,
             style: context.text.profileBotsDefault.copyWith(fontSize: 16),
           ),
           const SizedBox(height: 10),
           _PriceSection(
-            price: widget.price,
+            price: widget.product.price,
             isEditing: _isEditing,
             controller: _priceController,
           ),
           const SizedBox(height: 20),
-          _BenefitSection(benefits: widget.benefits),
+          _BenefitSection(
+            description: widget.product.description,
+            duration: widget.product.subscriptionDuration,
+          ),
           const Spacer(),
-          _isEditing
-              ? SimpleOutlinedButton(
-                  onTap: _onConfirm,
-                  label: context.localizations.confirmChanges,
-                )
-              : SimpleOutlinedButton(
-                  onTap: () => setState(() => _isEditing = !_isEditing),
-                  label: context.localizations.edit,
-                ),
+          SimpleOutlinedButton(
+            onTap: (() => _handleOnTap(context, widget.product)),
+            label: context.localizations.edit,
+          ),
         ],
       ),
     );
@@ -141,7 +145,7 @@ class CardWrapper extends StatelessWidget {
       padding: const EdgeInsets.all(20),
       child: ConstrainedBox(
         constraints:
-            const BoxConstraints(maxWidth: 240, maxHeight: 340, minWidth: 210),
+            const BoxConstraints(maxWidth: 240, maxHeight: 380, minWidth: 210),
         child: child,
       ),
     );
@@ -184,24 +188,18 @@ class _PriceSection extends StatelessWidget {
                 "$price",
                 style: context.text.profileBotsDefault.copyWith(fontSize: 24),
               ),
-        Container(
-          height: 26,
-          alignment: Alignment.bottomCenter,
-          child: Text(
-            "/${context.localizations.monthShortened}",
-            style: context.text.profileBotsDefault.copyWith(fontSize: 12),
-          ),
-        ),
       ],
     );
   }
 }
 
 class _BenefitSection extends StatelessWidget {
-  final List<String> benefits;
+  final String? description;
+  final int? duration;
 
   const _BenefitSection({
-    required this.benefits,
+    required this.description,
+    required this.duration,
     Key? key,
   }) : super(key: key);
 
@@ -209,22 +207,36 @@ class _BenefitSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ...benefits.map(
-          (benefit) => Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "${context.localizations.productDescription} :",
+            style: context.text.profileBotsDefault.copyWith(fontSize: 12),
+          ),
+        ),
+        const SizedBox(height: 10),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            description ?? "",
+            style: context.text.profileBotsDefault.copyWith(fontSize: 14),
+            maxLines: 8,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+        const SizedBox(height: 20),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Row(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
-                child: SizedBox(
-                  width: 200,
-                  child: Text(
-                    benefit,
-                    style: context.text.profileBotsDefault.copyWith(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w200,
-                    ),
-                  ),
-                ),
+              Text(
+                "${context.localizations.subscriptionDuration} :",
+                style: context.text.profileBotsDefault.copyWith(fontSize: 12),
+              ),
+              const SizedBox(width: 10),
+              Text(
+                "$duration days",
+                style: context.text.profileBotsDefault.copyWith(fontSize: 14),
               ),
             ],
           ),

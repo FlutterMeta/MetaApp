@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import '../../domain/entities/subscription_tier.dart';
-import 'user.dart'; // Make sure to import the User class
 
 part 'product.g.dart';
 
@@ -11,6 +10,7 @@ class Product {
   final String description;
   final double price;
   final int subscriptionDuration;
+  @JsonEnum()
   final SubscriptionTier subscriptionTier;
 
   Product({

@@ -352,5 +352,14 @@
     "tapOnCardToEditIt": "Tap on a card to edit it or + to add a new one",
     "errorHappened": "Error happened",
     "productManagement": "Product management",
-    "addNewProduct": "Add new product"
+    "addNewProduct": "Add new product",
+    "noProductsYet": "No products yet",
+    "productDescription": "Product description",
+    "productTitle": "Product title",
+    "subscriptionTier": "Subscription tier",
+    "productAddedSuccessfully": "Product added successfully",
+    "editProduct": "Edit product",
+    "deletedSuccessfully" : "Deleted successfully",
+    "subscriptionDuration": "Subscription duration",
+    "editedSuccessfully": "Edited successfully"
 }

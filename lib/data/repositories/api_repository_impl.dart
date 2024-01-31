@@ -408,8 +408,17 @@ class ApiRepositoryImpl implements ApiRepository {
   }
 
   @override
-  Future<Response> updateProduct(int id, Map<String, dynamic> body) {
-    // TODO: implement updateProduct
-    throw UnimplementedError();
+  Future<Response> updateProduct(int id, Map<String, dynamic> body) async {
+    late Response response;
+    try {
+      response = await apiClient.put('/Product', body: body);
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
   }
 }

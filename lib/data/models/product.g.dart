@@ -26,7 +26,7 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
     };
 
 const _$SubscriptionTierEnumMap = {
-  SubscriptionTier.basic: 'basic',
-  SubscriptionTier.advanced: 'advanced',
-  SubscriptionTier.professional: 'professional',
+  SubscriptionTier.basic: 1,
+  SubscriptionTier.advanced: 2,
+  SubscriptionTier.professional: 3,
 };

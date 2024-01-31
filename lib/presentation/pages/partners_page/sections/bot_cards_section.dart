@@ -1,15 +1,13 @@
 part of "../partners_page.dart";
 
-class _BotCardsSection extends StatelessWidget {
+class _BotCardsSection extends StatefulWidget {
   const _BotCardsSection({Key? key}) : super(key: key);
 
-  List<String> _basicBenefits(BuildContext context) {
-    return [
-      context.localizations.portfolioManagement,
-      context.localizations.manualTrading,
-    ];
-  }
+  @override
+  State<_BotCardsSection> createState() => _BotCardsSectionState();
+}
 
+class _BotCardsSectionState extends State<_BotCardsSection> {
   void _handleTap(BuildContext context) {
     _pushTransactionTab();
     _pushProfilePage(context);
@@ -33,6 +31,13 @@ class _BotCardsSection extends StatelessWidget {
     } else {
       return screenWidth;
     }
+  }
+
+  List<Product> get products => ProductsStateHandler.instance.products;
+  @override
+  void initState() {
+    super.initState();
+    ProductsStateHandler.instance.init();
   }
 
   @override
@@ -66,48 +71,11 @@ class _BotCardsSection extends StatelessWidget {
               spacing: 20,
               runSpacing: 20,
               children: [
-                Container(
-                  width: _getCardWidth(context),
-                  constraints: const BoxConstraints(minWidth: 400),
-                  child: BotDemoCard(
-                    benefits: [
-                      "300% ${context.localizations.roiPerMonth}",
-                      "20 ${context.localizations.positions}",
-                      ..._basicBenefits(context),
-                    ],
-                    price: 20.39,
-                    title: context.localizations.pioneer,
+                for (final product in products)
+                  BotDemoCard(
+                    product: product,
                     onTap: () => _handleTap(context),
                   ),
-                ),
-                Container(
-                  width: _getCardWidth(context),
-                  constraints: const BoxConstraints(minWidth: 400),
-                  child: BotDemoCard(
-                    benefits: [
-                      "600% ${context.localizations.roiPerMonth}",
-                      "80 ${context.localizations.positions}",
-                      ..._basicBenefits(context),
-                    ],
-                    price: 81.67,
-                    title: context.localizations.adventurer,
-                    onTap: () => _handleTap(context),
-                  ),
-                ),
-                Container(
-                  width: _getCardWidth(context),
-                  constraints: const BoxConstraints(minWidth: 400),
-                  child: BotDemoCard(
-                    benefits: [
-                      "1000% ${context.localizations.roiPerMonth}",
-                      "160 ${context.localizations.positions}",
-                      ..._basicBenefits(context),
-                    ],
-                    price: 160.88,
-                    title: context.localizations.hero,
-                    onTap: () => _handleTap(context),
-                  ),
-                ),
               ],
             ),
           ],

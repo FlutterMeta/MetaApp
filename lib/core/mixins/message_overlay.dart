@@ -14,7 +14,7 @@ mixin MessageOverlay<T extends StatefulWidget> on State<T> {
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(12),
             child: Container(
-              padding: const EdgeInsets.all(32),
+              padding: const EdgeInsets.symmetric(horizontal: 34, vertical: 20),
               color: color,
               child: Text(
                 message,
