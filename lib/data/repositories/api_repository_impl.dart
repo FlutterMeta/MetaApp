@@ -325,7 +325,9 @@ class ApiRepositoryImpl implements ApiRepository {
 
   @override
   Future<Response> createPurchaseTransaction(
-      int id, int paymentSystemId) async {
+    int id,
+    int paymentSystemId,
+  ) async {
     late Response response;
     try {
       response =

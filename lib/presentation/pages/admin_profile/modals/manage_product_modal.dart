@@ -44,13 +44,14 @@ class ManageProductModalState extends State<ManageProductModal>
 
   void _fillTextFields() {
     if (widget.product != null) {
-      _titleController.text = widget.product!.title;
-      _descriptionController.text = widget.product!.description;
-      _priceController.text = widget.product!.price.toString();
+      _titleController.text = widget.product?.title ?? "";
+      _descriptionController.text = widget.product?.description ?? "";
+      _priceController.text = widget.product?.price.toString() ?? "";
       _subscriptionDurationController.text =
-          widget.product!.subscriptionDuration.toString();
+          widget.product?.subscriptionDuration.toString() ?? "";
+
       _subscriptionTierController.text =
-          widget.product!.subscriptionTier.value.toString();
+          widget.product?.subscriptionTier.value.toString() ?? "";
     }
   }
 
@@ -62,7 +63,7 @@ class ManageProductModalState extends State<ManageProductModal>
     String subscriptionTier,
   ) async {
     final product = Product(
-      id: widget.product!.id,
+      id: widget.product?.id ?? 0,
       title: title,
       description: description,
       price: double.parse(price),
@@ -72,7 +73,7 @@ class ManageProductModalState extends State<ManageProductModal>
     );
 
     Response response = await apiRepository.updateProduct(
-      widget.product!.id,
+      widget.product?.id ?? 0,
       product.toJson(),
     );
     if (response.statusCode == 200) {
@@ -286,7 +287,8 @@ class ManageProductModalState extends State<ManageProductModal>
                 if (widget.product != null)
                   ElevatedButton(
                     onPressed: () async {
-                      await apiRepository.deleteProduct(widget.product!.id);
+                      await apiRepository
+                          .deleteProduct(widget.product?.id ?? 0);
                       ProductsStateHandler.instance.init();
                       ProductsStateHandler.controller.value++;
                       showMessage(
