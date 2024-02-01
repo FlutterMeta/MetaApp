@@ -17,11 +17,11 @@ abstract class AppAssets {
   static const border = "assets/svg/border.svg";
 
   //Crypto icons
-  static const bitcoinIcon = "assets/images/crypto/btc.png";
-  static const ethereumIcon = "assets/images/crypto/eth.png";
-  static const tetherIcon = "assets/images/crypto/usdt.png";
-  static const usdCoinIcon = "assets/images/crypto/usdc.png";
-  static const daiIcon = "assets/images/crypto/dai.png";
-  static const binanceCoinIcon = "assets/images/crypto/bnb.png";
-  static const dogecoinIcon = "assets/images/crypto/doge.png";
+  static const bitcoinIcon = "images/crypto/btc.png";
+  static const ethereumIcon = "images/crypto/ethereum.png";
+  static const tetherIcon = "images/crypto/usdt.png";
+  static const usdCoinIcon = "images/crypto/usdc.png";
+  static const daiIcon = "images/crypto/dai.png";
+  static const binanceCoinIcon = "images/crypto/bnb.png";
+  static const dogecoinIcon = "images/crypto/doge.png";
 }

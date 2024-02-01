@@ -15,7 +15,6 @@ class _AdminDialog extends StatelessWidget {
           horizontal: context.screenWidth < 400 ? 16 : 30,
           vertical: 30,
         ),
-        constraints: const BoxConstraints(maxWidth: 600),
         child: child,
       ),
     );

@@ -359,7 +359,17 @@
     "subscriptionTier": "Subscription tier",
     "productAddedSuccessfully": "Product added successfully",
     "editProduct": "Edit product",
-    "deletedSuccessfully" : "Deleted successfully",
+    "deletedSuccessfully": "Deleted successfully",
     "subscriptionDuration": "Subscription duration",
-    "editedSuccessfully": "Edited successfully"
+    "editedSuccessfully": "Edited successfully",
+    "addPaymentSystem": "Add payment system",
+    "paymentSystemName": "Payment system name",
+    "paymentSystemManagement": "Payment system management",
+    "paymentSystemAddedSuccessfully": "Payment system added successfully",
+    "paymentSystemEditedSuccessfully": "Payment system edited successfully",
+    "paymentSystemDeletedSuccessfully": "Payment system deleted successfully",
+    "pleaseProvideTitle": "Please provide title which represents token and network like \"USDT (ERC20)\"",
+    "walletAddress": "Wallet address",
+   
+    "key": "Key"
 }

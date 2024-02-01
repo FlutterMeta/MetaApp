@@ -11,12 +11,13 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i16;
-import 'package:flutter/material.dart' as _i17;
+import 'package:auto_route/auto_route.dart' as _i17;
+import 'package:flutter/material.dart' as _i18;
 
-import '../../data/models/user.dart' as _i18;
+import '../../data/models/user.dart' as _i19;
 import '../pages/admin_profile/dashboard_page.dart' as _i13;
 import '../pages/admin_profile/financial_indicators_page.dart' as _i11;
+import '../pages/admin_profile/payment_system_overview_page.dart' as _i16;
 import '../pages/admin_profile/transactions_page.dart' as _i14;
 import '../pages/admin_profile/user_refferals_page.dart' as _i15;
 import '../pages/admin_profile/user_transactions_page.dart' as _i12;
@@ -31,28 +32,28 @@ import '../pages/registration_page.dart' as _i3;
 import '../pages/reset_access_page.dart' as _i9;
 import '../pages/reset_password_page.dart' as _i8;
 
-class AppRouter extends _i16.RootStackRouter {
-  AppRouter([_i17.GlobalKey<_i17.NavigatorState>? navigatorKey])
+class AppRouter extends _i17.RootStackRouter {
+  AppRouter([_i18.GlobalKey<_i18.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i16.PageFactory> pagesMap = {
+  final Map<String, _i17.PageFactory> pagesMap = {
     HomeRoute.name: (routeData) {
       final args =
           routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i1.HomePage(key: args.key),
       );
     },
     LoginRoute.name: (routeData) {
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i2.LoginPage(),
       );
     },
     RegistrationRoute.name: (routeData) {
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i3.RegistrationPage(),
       );
@@ -60,7 +61,7 @@ class AppRouter extends _i16.RootStackRouter {
     ProductsRoute.name: (routeData) {
       final args = routeData.argsAs<ProductsRouteArgs>(
           orElse: () => const ProductsRouteArgs());
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i4.ProductsPage(key: args.key),
       );
@@ -68,13 +69,13 @@ class AppRouter extends _i16.RootStackRouter {
     PartnersRoute.name: (routeData) {
       final args = routeData.argsAs<PartnersRouteArgs>(
           orElse: () => const PartnersRouteArgs());
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i5.PartnersPage(key: args.key),
       );
     },
     BlogRoute.name: (routeData) {
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i6.BlogPage(),
       );
@@ -82,19 +83,19 @@ class AppRouter extends _i16.RootStackRouter {
     DirectionsRoute.name: (routeData) {
       final args = routeData.argsAs<DirectionsRouteArgs>(
           orElse: () => const DirectionsRouteArgs());
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i7.DirectionsPage(key: args.key),
       );
     },
     ResetPasswordRoute.name: (routeData) {
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i8.ResetPasswordPage(),
       );
     },
     ResetAccessRoute.name: (routeData) {
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i9.ResetAccessPage(),
       );
@@ -102,20 +103,20 @@ class AppRouter extends _i16.RootStackRouter {
     ClientProfileRoute.name: (routeData) {
       final args = routeData.argsAs<ClientProfileRouteArgs>(
           orElse: () => const ClientProfileRouteArgs());
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i10.ClientProfilePage(key: args.key),
       );
     },
     FinancialIndicatorsRoute.name: (routeData) {
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i11.FinancialIndicatorsPage(),
       );
     },
     UserTransactionsRoute.name: (routeData) {
       final args = routeData.argsAs<UserTransactionsRouteArgs>();
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i12.UserTransactionsPage(
           user: args.user,
@@ -126,20 +127,20 @@ class AppRouter extends _i16.RootStackRouter {
       );
     },
     DashboardRoute.name: (routeData) {
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i13.DashboardPage(),
       );
     },
     TransactionsRoute.name: (routeData) {
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i14.TransactionsPage(),
       );
     },
     UserRefferalsRoute.name: (routeData) {
       final args = routeData.argsAs<UserRefferalsRouteArgs>();
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i15.UserRefferalsPage(
           user: args.user,
@@ -148,8 +149,14 @@ class AppRouter extends _i16.RootStackRouter {
         ),
       );
     },
+    PaymentSystemOverviewRoute.name: (routeData) {
+      return _i17.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i16.PaymentSystemOverviewPage(),
+      );
+    },
     AdminBlogRoute.name: (routeData) {
-      return _i16.MaterialPageX<dynamic>(
+      return _i17.MaterialPageX<dynamic>(
         routeData: routeData,
         child: const _i6.AdminBlogPage(),
       );
@@ -157,68 +164,72 @@ class AppRouter extends _i16.RootStackRouter {
   };
 
   @override
-  List<_i16.RouteConfig> get routes => [
-        _i16.RouteConfig(
+  List<_i17.RouteConfig> get routes => [
+        _i17.RouteConfig(
           HomeRoute.name,
           path: '/home',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           LoginRoute.name,
           path: '/login',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           RegistrationRoute.name,
           path: '/registration',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           ProductsRoute.name,
           path: '/products',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           PartnersRoute.name,
           path: '/partners',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           BlogRoute.name,
           path: '/blog',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           DirectionsRoute.name,
           path: '/directions',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           ResetPasswordRoute.name,
           path: '/reset-password',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           ResetAccessRoute.name,
           path: '/reset-access',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           ClientProfileRoute.name,
           path: '/client-profile',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           FinancialIndicatorsRoute.name,
           path: '/admin-profile/financial-indicators',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           UserTransactionsRoute.name,
           path: '/admin-profile/user-transactions/:userName',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           DashboardRoute.name,
           path: '/admin-profile/dashboard',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           TransactionsRoute.name,
           path: '/admin-profile/transactions',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
           UserRefferalsRoute.name,
           path: '/admin-profile/user-refferals/:userName',
         ),
-        _i16.RouteConfig(
+        _i17.RouteConfig(
+          PaymentSystemOverviewRoute.name,
+          path: '/admin-profile/payment-systems-overview',
+        ),
+        _i17.RouteConfig(
           AdminBlogRoute.name,
           path: '/admin-blog',
         ),
@@ -227,8 +238,8 @@ class AppRouter extends _i16.RootStackRouter {
 
 /// generated route for
 /// [_i1.HomePage]
-class HomeRoute extends _i16.PageRouteInfo<HomeRouteArgs> {
-  HomeRoute({_i17.Key? key})
+class HomeRoute extends _i17.PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({_i18.Key? key})
       : super(
           HomeRoute.name,
           path: '/home',
@@ -241,7 +252,7 @@ class HomeRoute extends _i16.PageRouteInfo<HomeRouteArgs> {
 class HomeRouteArgs {
   const HomeRouteArgs({this.key});
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   @override
   String toString() {
@@ -251,7 +262,7 @@ class HomeRouteArgs {
 
 /// generated route for
 /// [_i2.LoginPage]
-class LoginRoute extends _i16.PageRouteInfo<void> {
+class LoginRoute extends _i17.PageRouteInfo<void> {
   const LoginRoute()
       : super(
           LoginRoute.name,
@@ -263,7 +274,7 @@ class LoginRoute extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.RegistrationPage]
-class RegistrationRoute extends _i16.PageRouteInfo<void> {
+class RegistrationRoute extends _i17.PageRouteInfo<void> {
   const RegistrationRoute()
       : super(
           RegistrationRoute.name,
@@ -275,8 +286,8 @@ class RegistrationRoute extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.ProductsPage]
-class ProductsRoute extends _i16.PageRouteInfo<ProductsRouteArgs> {
-  ProductsRoute({_i17.Key? key})
+class ProductsRoute extends _i17.PageRouteInfo<ProductsRouteArgs> {
+  ProductsRoute({_i18.Key? key})
       : super(
           ProductsRoute.name,
           path: '/products',
@@ -289,7 +300,7 @@ class ProductsRoute extends _i16.PageRouteInfo<ProductsRouteArgs> {
 class ProductsRouteArgs {
   const ProductsRouteArgs({this.key});
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   @override
   String toString() {
@@ -299,8 +310,8 @@ class ProductsRouteArgs {
 
 /// generated route for
 /// [_i5.PartnersPage]
-class PartnersRoute extends _i16.PageRouteInfo<PartnersRouteArgs> {
-  PartnersRoute({_i17.Key? key})
+class PartnersRoute extends _i17.PageRouteInfo<PartnersRouteArgs> {
+  PartnersRoute({_i18.Key? key})
       : super(
           PartnersRoute.name,
           path: '/partners',
@@ -313,7 +324,7 @@ class PartnersRoute extends _i16.PageRouteInfo<PartnersRouteArgs> {
 class PartnersRouteArgs {
   const PartnersRouteArgs({this.key});
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   @override
   String toString() {
@@ -323,7 +334,7 @@ class PartnersRouteArgs {
 
 /// generated route for
 /// [_i6.BlogPage]
-class BlogRoute extends _i16.PageRouteInfo<void> {
+class BlogRoute extends _i17.PageRouteInfo<void> {
   const BlogRoute()
       : super(
           BlogRoute.name,
@@ -335,8 +346,8 @@ class BlogRoute extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.DirectionsPage]
-class DirectionsRoute extends _i16.PageRouteInfo<DirectionsRouteArgs> {
-  DirectionsRoute({_i17.Key? key})
+class DirectionsRoute extends _i17.PageRouteInfo<DirectionsRouteArgs> {
+  DirectionsRoute({_i18.Key? key})
       : super(
           DirectionsRoute.name,
           path: '/directions',
@@ -349,7 +360,7 @@ class DirectionsRoute extends _i16.PageRouteInfo<DirectionsRouteArgs> {
 class DirectionsRouteArgs {
   const DirectionsRouteArgs({this.key});
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   @override
   String toString() {
@@ -359,7 +370,7 @@ class DirectionsRouteArgs {
 
 /// generated route for
 /// [_i8.ResetPasswordPage]
-class ResetPasswordRoute extends _i16.PageRouteInfo<void> {
+class ResetPasswordRoute extends _i17.PageRouteInfo<void> {
   const ResetPasswordRoute()
       : super(
           ResetPasswordRoute.name,
@@ -371,7 +382,7 @@ class ResetPasswordRoute extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.ResetAccessPage]
-class ResetAccessRoute extends _i16.PageRouteInfo<void> {
+class ResetAccessRoute extends _i17.PageRouteInfo<void> {
   const ResetAccessRoute()
       : super(
           ResetAccessRoute.name,
@@ -383,8 +394,8 @@ class ResetAccessRoute extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.ClientProfilePage]
-class ClientProfileRoute extends _i16.PageRouteInfo<ClientProfileRouteArgs> {
-  ClientProfileRoute({_i17.Key? key})
+class ClientProfileRoute extends _i17.PageRouteInfo<ClientProfileRouteArgs> {
+  ClientProfileRoute({_i18.Key? key})
       : super(
           ClientProfileRoute.name,
           path: '/client-profile',
@@ -397,7 +408,7 @@ class ClientProfileRoute extends _i16.PageRouteInfo<ClientProfileRouteArgs> {
 class ClientProfileRouteArgs {
   const ClientProfileRouteArgs({this.key});
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   @override
   String toString() {
@@ -407,7 +418,7 @@ class ClientProfileRouteArgs {
 
 /// generated route for
 /// [_i11.FinancialIndicatorsPage]
-class FinancialIndicatorsRoute extends _i16.PageRouteInfo<void> {
+class FinancialIndicatorsRoute extends _i17.PageRouteInfo<void> {
   const FinancialIndicatorsRoute()
       : super(
           FinancialIndicatorsRoute.name,
@@ -420,12 +431,12 @@ class FinancialIndicatorsRoute extends _i16.PageRouteInfo<void> {
 /// generated route for
 /// [_i12.UserTransactionsPage]
 class UserTransactionsRoute
-    extends _i16.PageRouteInfo<UserTransactionsRouteArgs> {
+    extends _i17.PageRouteInfo<UserTransactionsRouteArgs> {
   UserTransactionsRoute({
-    required _i18.User user,
+    required _i19.User user,
     required String userName,
     bool? showPendingTransactions = false,
-    _i17.Key? key,
+    _i18.Key? key,
   }) : super(
           UserTransactionsRoute.name,
           path: '/admin-profile/user-transactions/:userName',
@@ -449,13 +460,13 @@ class UserTransactionsRouteArgs {
     this.key,
   });
 
-  final _i18.User user;
+  final _i19.User user;
 
   final String userName;
 
   final bool? showPendingTransactions;
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   @override
   String toString() {
@@ -465,7 +476,7 @@ class UserTransactionsRouteArgs {
 
 /// generated route for
 /// [_i13.DashboardPage]
-class DashboardRoute extends _i16.PageRouteInfo<void> {
+class DashboardRoute extends _i17.PageRouteInfo<void> {
   const DashboardRoute()
       : super(
           DashboardRoute.name,
@@ -477,7 +488,7 @@ class DashboardRoute extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i14.TransactionsPage]
-class TransactionsRoute extends _i16.PageRouteInfo<void> {
+class TransactionsRoute extends _i17.PageRouteInfo<void> {
   const TransactionsRoute()
       : super(
           TransactionsRoute.name,
@@ -489,11 +500,11 @@ class TransactionsRoute extends _i16.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i15.UserRefferalsPage]
-class UserRefferalsRoute extends _i16.PageRouteInfo<UserRefferalsRouteArgs> {
+class UserRefferalsRoute extends _i17.PageRouteInfo<UserRefferalsRouteArgs> {
   UserRefferalsRoute({
-    required _i18.User user,
+    required _i19.User user,
     required String userName,
-    _i17.Key? key,
+    _i18.Key? key,
   }) : super(
           UserRefferalsRoute.name,
           path: '/admin-profile/user-refferals/:userName',
@@ -515,11 +526,11 @@ class UserRefferalsRouteArgs {
     this.key,
   });
 
-  final _i18.User user;
+  final _i19.User user;
 
   final String userName;
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   @override
   String toString() {
@@ -528,8 +539,20 @@ class UserRefferalsRouteArgs {
 }
 
 /// generated route for
+/// [_i16.PaymentSystemOverviewPage]
+class PaymentSystemOverviewRoute extends _i17.PageRouteInfo<void> {
+  const PaymentSystemOverviewRoute()
+      : super(
+          PaymentSystemOverviewRoute.name,
+          path: '/admin-profile/payment-systems-overview',
+        );
+
+  static const String name = 'PaymentSystemOverviewRoute';
+}
+
+/// generated route for
 /// [_i6.AdminBlogPage]
-class AdminBlogRoute extends _i16.PageRouteInfo<void> {
+class AdminBlogRoute extends _i17.PageRouteInfo<void> {
   const AdminBlogRoute()
       : super(
           AdminBlogRoute.name,

@@ -423,4 +423,81 @@ class ApiRepositoryImpl implements ApiRepository {
     }
     return response;
   }
+
+  @override
+  Future<Response> createPaymentSystem(Map<String, dynamic> body) async {
+    late Response response;
+    try {
+      response = await apiClient.post('/PaymentSystem', body: body);
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> deletePaymentSystem(int id) async {
+    late Response response;
+    try {
+      response = await apiClient.delete('/PaymentSystem/$id');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getPaymentSystem(int id) async {
+    late Response response;
+    try {
+      response = await apiClient.get('/PaymentSystem/$id');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getPaymentSystems() async {
+    late Response response;
+    try {
+      response = await apiClient.get('/PaymentSystem');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> updatePaymentSystem(
+    Map<String, dynamic> body,
+  ) async {
+    late Response response;
+    try {
+      response = await apiClient.put('/PaymentSystem', body: body);
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
 }

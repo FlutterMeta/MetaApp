@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/models/registration.dart';
+import 'package:meta_app/presentation/pages/admin_profile/payment_system_overview_page.dart';
 import 'package:meta_app/presentation/redux/authorization/actions/logout_user_action.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'dart:html' as html;
@@ -113,7 +114,12 @@ class ProfileMenu extends Menu {
         icon: Icons.pie_chart_rounded,
         color: context.color.profilePagePrimaryVariant,
       ),
-      _EditRequisitesMenuItem(closeMenuCallback: closeOnTap),
+      _MenuItem(
+        onTap: () => context.router.push(const PaymentSystemOverviewRoute()),
+        title: context.localizations.requisites,
+        icon: Icons.account_balance_wallet_rounded,
+        color: context.color.profilePagePrimaryVariant,
+      ),
       _CreateAdminMenuItem(closeMenuCallback: closeOnTap),
     ];
   }

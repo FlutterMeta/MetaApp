@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:meta_app/presentation/pages/admin_profile/dashboard_page.dart';
+import 'package:meta_app/presentation/pages/admin_profile/payment_system_overview_page.dart';
 import 'package:meta_app/presentation/pages/admin_profile/transactions_page.dart';
 import 'package:meta_app/presentation/pages/admin_profile/user_refferals_page.dart';
 import 'package:meta_app/presentation/pages/admin_profile/user_transactions_page.dart';
@@ -41,6 +42,10 @@ import '../pages/admin_profile/financial_indicators_page.dart';
     AutoRoute(
       page: UserRefferalsPage,
       path: "/admin-profile/user-refferals/:userName",
+    ),
+    AutoRoute(
+      page: PaymentSystemOverviewPage,
+      path: "/admin-profile/payment-systems-overview",
     ),
     AutoRoute(page: AdminBlogPage, path: "/admin-blog"),
   ],
