@@ -1,119 +1,233 @@
+import 'package:async_redux/async_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
-class TransactionTab extends StatelessWidget {
-  const TransactionTab({super.key});
+import '../../../../data/models/payment_system.dart';
+import '../../../../data/models/product.dart';
+import '../../../../data/models/user.dart';
+import '../../../redux/app_state.dart';
+
+class TransactionTab extends StatefulWidget {
+  final Product product;
+  final PaymentSystem paymentSystem;
+
+  const TransactionTab({
+    required this.product,
+    required this.paymentSystem,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _TransactionTabState createState() => _TransactionTabState();
+}
+
+class _TransactionTabState extends State<TransactionTab> {
+  bool _paymentDone = false;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
-        alignment: Alignment.center,
-        padding: EdgeInsets.symmetric(
-          horizontal: Responsive.isDesktop(context) ? 80 : 20,
-          vertical: 20,
-        ),
-        constraints: BoxConstraints(minHeight: context.screenHeight - 120),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              context.localizations.payment,
-              style: context.text.profilePageBody
-                  .copyWith(fontSize: 27, fontWeight: FontWeight.w700),
+    return Container(
+      padding: const EdgeInsets.all(30.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            context.localizations.payment,
+            style: context.text.profilePageBody
+                .copyWith(fontSize: 27, fontWeight: FontWeight.w700),
+          ),
+          const SizedBox(height: 20),
+          if (_paymentDone)
+            _PaymentSuccessMessage()
+          else
+            _TransactionWindow(
+              product: widget.product,
+              paymentSystem: widget.paymentSystem,
+              onPaymentDone: () => setState(() => _paymentDone = true),
             ),
-            const SizedBox(height: 20),
-            const _TransactionWindow(
-              date: 'today, 13:02',
-              lastRequestDateTime: '15:02:48 12-01-22',
-              paymentSystem: 'Tether (ERC20)',
-              price: '100.000000',
-              requisites: '0x13e4b676e3794434a02810a009c97bd112d5e76c',
-              status: 'Awaiting payment',
-            ),
-          ],
-        ),
+        ],
       ),
     );
   }
 }
 
+class _PaymentSuccessMessage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset(
+          AppAssets.greenCheck,
+          height: Responsive.isMobile(context) ? 100 : 160,
+        ),
+        const SizedBox(height: 20),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            RichText(
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: "${context.localizations.thanksForPayment}!",
+                    style: context.text.profilePageBody.copyWith(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 60),
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: context.localizations.afterPaymentTip,
+                    style: context.text.profilePageBody.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20),
+            // RichText(
+            //   text: TextSpan(
+            //     children: [
+            //       TextSpan(
+            //         text: context.localizations.keyTip,
+            //         style: context.text.profilePageBody.copyWith(
+            //           fontSize: 18,
+            //           fontWeight: FontWeight.w700,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: context.color.okay.withOpacity(0.1),
+              ),
+              padding: const EdgeInsets.all(20),
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    WidgetSpan(
+                      child: Icon(
+                        Icons.warning_rounded,
+                        color: context.color.okay,
+                      ),
+                    ),
+                    TextSpan(
+                      text: context.localizations.keyTip,
+                      style: TextStyle(
+                        color: context.color.okay,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 100),
+        ColoredButton(
+          title: context.localizations.ok.toUpperCase(),
+          color: Colors.green,
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
+  }
+}
+
 class _TransactionWindow extends StatelessWidget {
-  final String status;
-  final String lastRequestDateTime;
-  final String price;
-  final String requisites;
-  final String date;
-  final String paymentSystem;
+  final Product product;
+  final PaymentSystem paymentSystem;
+  final VoidCallback onPaymentDone;
 
   const _TransactionWindow({
-    required this.price,
-    required this.requisites,
-    required this.status,
-    required this.date,
+    required this.product,
     required this.paymentSystem,
-    required this.lastRequestDateTime,
+    required this.onPaymentDone,
     Key? key,
   }) : super(key: key);
 
-  static const _accountName = 'Bobr123';
-  static const _accountEmail = 'adwdawdwa@gmail.com';
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: context.color.profilePageBackground,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: context.color.profilePagePrimary.withOpacity(0.1),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
+    return StoreConnector<AppState, User?>(
+      converter: (store) => store.state.currentUser,
+      builder: (context, currentUser) {
+        return Container(
+          decoration: BoxDecoration(
+            color: context.color.profilePageBackground,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: context.color.profilePagePrimary.withOpacity(0.1),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+              ),
+            ],
           ),
-        ],
-      ),
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const SizedBox(height: 10),
-          _RequestStatus(
-            lastRequestDateTime: lastRequestDateTime,
-            status: status,
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 10),
+              const Divider(),
+              const SizedBox(height: 20),
+              _GeneralInfo(
+                accountEmail: currentUser?.email ?? '',
+                accountName: currentUser?.login ?? '',
+                price: product.price.toString(),
+              ),
+              const SizedBox(height: 20),
+              const _WarningWindow(),
+              const SizedBox(height: 40),
+              _DetailsTable(
+                date: DateTime.now().toString(),
+                paymentSystem: paymentSystem.title,
+                price: product.price.toString(),
+                requisites: paymentSystem.key,
+                status: 'Pending',
+              ),
+              const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Align(
+                    child: ColoredButton(
+                      title: context.localizations.paid,
+                      color: context.color.profilePagePrimary,
+                      onTap: onPaymentDone,
+                    ),
+                  ),
+                  Align(
+                    child: ColoredButton(
+                      title: context.localizations.cancel,
+                      color: context.color.profilePageError,
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
-          const SizedBox(height: 20),
-          const Divider(),
-          const SizedBox(height: 20),
-          const _GeneralInfo(
-            accountEmail: _accountEmail,
-            accountName: _accountName,
-            price: '100.000000',
-          ),
-          const SizedBox(height: 20),
-          const _WarningWindow(),
-          const SizedBox(height: 40),
-          _DetailsTable(
-            date: date,
-            paymentSystem: paymentSystem,
-            price: price,
-            requisites: requisites,
-            status: status,
-          ),
-          const SizedBox(height: 20),
-          Align(
-            child: ColoredButton(
-              title: context.localizations.cancel,
-              color: context.color.profilePageError,
-              onTap: () {},
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -267,7 +381,7 @@ class _GeneralInfo extends StatelessWidget {
                     .copyWith(fontSize: 16, height: 1.3),
               ),
               Text(
-                "$price USDT",
+                "$price USD",
                 style: context.text.profilePageSubtitle.copyWith(
                   fontSize: 16,
                   height: 1.3,

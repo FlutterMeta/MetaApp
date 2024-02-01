@@ -15,6 +15,7 @@ abstract class AppAssets {
   static const indigoBackground = "assets/images/indigo_background.png";
   static const chart = "assets/images/chart.png";
   static const border = "assets/svg/border.svg";
+  static const greenCheck = "assets/images/green_check.png";
 
   //Crypto icons
   static const bitcoinIcon = "images/crypto/btc.png";

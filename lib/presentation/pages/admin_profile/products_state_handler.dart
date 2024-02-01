@@ -24,12 +24,18 @@ class ProductsStateHandler {
   }
 
   void init() async {
-    _products.clear();
+    clear();
     load();
     ProductsStateHandler.controller.value++;
   }
 
+  void clear() {
+    _products.clear();
+    ProductsStateHandler.controller.value++;
+  }
+
   void load() async {
+    clear();
     Response response = await apiRepository.getProducts();
     if (response.statusCode == 200) {
       final data = response.data["\$values"] as List<dynamic>;

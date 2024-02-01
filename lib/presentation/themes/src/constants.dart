@@ -33,6 +33,8 @@ abstract class AppColors {
 
   static const red = Color(0xFFE74C3C);
 
+  static const green = Color(0xFF2ECC71);
+
   static const yellow = Color(0xFFFE8024);
 
   static const indigo = Color(0xFF3F51B5);

@@ -276,7 +276,7 @@
     "emailForQuestions": "Email for questions",
     "roiPerMonth": "ROI per month",
     "monthShortened": "mo",
-    "transactionWarningMessage": "Funds are credited automatically when transferring the payment amount according to the specified payment data in the \"Details for payment\" field. Check if the translation means belongs to the corresponding Blockchain (TRC, ERC, BEP, etc.)",
+    "transactionWarningMessage": "Please transfer the funds to the wallet address provided in the 'Requisites' field to complete your payment.\nEnsure to verify the 'Payment System' field details carefully, as it specifies the blockchain network (e.g., TRC, ERC, BEP) and the cryptocurrency (e.g., USDT, BTC, ETH) that should be used for the transaction.",
     "warning": "Warning!",
     "@_ADMIN_PAGE": {},
     "userSearch": "User search",
@@ -370,6 +370,13 @@
     "paymentSystemDeletedSuccessfully": "Payment system deleted successfully",
     "pleaseProvideTitle": "Please provide title which represents token and network like \"USDT (ERC20)\"",
     "walletAddress": "Wallet address",
-   
-    "key": "Key"
+    "choosePaymentSystem": "Choose payment system",
+    "confirm": "Confirm",
+    "noPaymentSystems": "No payment systems yet, sorry. Wait for admin to add them",
+    "key": "Key",
+    "back": "Back",
+    "paid": "Paid",
+    "thanksForPayment": "Thanks for payment",
+    "afterPaymentTip": "Your payment is currently under review by the admin.\nOnce confirmed, you will receive the key at your registered email address.",
+    "keyTip": "This key will be used to activate your bot in Telegram."
 }

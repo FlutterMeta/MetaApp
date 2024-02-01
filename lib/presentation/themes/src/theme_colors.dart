@@ -63,6 +63,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
   final Color greyish;
   final Color profilePageError;
   final Color warning;
+  final Color okay;
 
   const ThemeColors({
     required this.authButtonFill,
@@ -127,6 +128,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     required this.profilePageError,
     required this.greyish,
     required this.warning,
+    required this.okay,
   });
 
   @override
@@ -194,6 +196,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
     Color? profilePageError,
     Color? greyish,
     Color? warning,
+    Color? okay,
   }) {
     return ThemeColors(
       authButtonFill: authButtonFill ?? this.authButtonFill,
@@ -292,6 +295,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           profilePageTransparent ?? this.profilePageTransparent,
       profilePageError: profilePageError ?? this.profilePageError,
       greyish: greyish ?? this.greyish,
+      okay: okay ?? this.okay,
     );
   }
 
@@ -430,6 +434,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
           other.dashboardSideMenuUnselectedItem,
           t)!,
       greyish: Color.lerp(greyish, other.greyish, t)!,
+      okay: Color.lerp(okay, other.okay, t)!,
     );
   }
 
@@ -496,6 +501,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         profilePageSecondaryVariant: AppColors.seaGreen,
         profilePageTransparent: AppColors.transparent,
         warning: AppColors.yellow,
+        okay: AppColors.green,
       );
 
   static get dark => const ThemeColors(
@@ -561,5 +567,6 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         profilePageSecondaryVariant: DarkAppColors.seaGreen,
         profilePageTransparent: DarkAppColors.transparent,
         warning: DarkAppColors.yellow,
+        okay: AppColors.green,
       );
 }

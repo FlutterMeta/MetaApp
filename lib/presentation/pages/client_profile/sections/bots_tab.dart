@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/pages/admin_profile/modals/choose_payment_system_modal.dart';
 import 'package:meta_app/presentation/widgets/bot_demo_card.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 
+import '../../../../data/models/product.dart';
 import '../../admin_profile/products_state_handler.dart';
 import '../menu_controller.dart';
 
@@ -15,11 +17,6 @@ class BotsTab extends StatefulWidget {
 }
 
 class _BotsTabState extends State<BotsTab> {
-  void _pushTransactionTab() {
-    const int transactionTabIndex = 2;
-    MenuController.tabIndex.value = transactionTabIndex;
-  }
-
   List<Widget> _profitCards(BuildContext context) {
     final localization = context.localizations;
 
@@ -40,6 +37,24 @@ class _BotsTabState extends State<BotsTab> {
         roi: 80,
       ),
     ];
+  }
+
+  void _showDialog(BuildContext context, Product product) {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return Expanded(
+          child: SingleChildScrollView(
+            child: Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: ChoosePaymentSystemModal(product: product),
+            ),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -64,7 +79,10 @@ class _BotsTabState extends State<BotsTab> {
                 const SizedBox(height: 20),
                 _CardsWrap(children: [
                   for (final product in ProductsStateHandler.instance.products)
-                    BotDemoCard(product: product, onTap: (() {})),
+                    BotDemoCard(
+                      product: product,
+                      onTap: () => _showDialog(context, product),
+                    ),
                 ]),
                 const SizedBox(height: 30),
                 const _FunctionalityComparisonTable(),

@@ -4,7 +4,6 @@ import 'package:meta_app/presentation/pages/client_profile/menu_controller.dart'
 import 'package:meta_app/presentation/pages/client_profile/sections/bots_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile/sections/dashboard_tab.dart';
 import 'package:meta_app/presentation/pages/client_profile/sections/side_menu_section.dart';
-import 'package:meta_app/presentation/pages/client_profile/sections/transaction_tab.dart';
 import 'package:meta_app/presentation/widgets/profile_header/profile_header.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
@@ -52,7 +51,6 @@ class _TabsBox extends StatelessWidget {
   static final _tabs = [
     const DashboardTab(),
     const BotsTab(),
-    const TransactionTab(),
   ];
 
   @override

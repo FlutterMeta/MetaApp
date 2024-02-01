@@ -35,6 +35,10 @@ class PaymentSystemsStateHandler {
     }
   }
 
+  PaymentSystem getSystemById(int id) {
+    return _systems.firstWhere((element) => element.id == id);
+  }
+
   void editSystem(PaymentSystem system) {
     final index = _systems.indexWhere((element) => element.id == system.id);
 
