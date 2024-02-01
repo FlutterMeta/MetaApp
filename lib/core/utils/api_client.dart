@@ -61,7 +61,7 @@ class ApiClient {
     // Perform a POST request with the appropriate content type
     late Response<dynamic> response;
     try {
-      print("------------------");
+      debugPrint("------------------");
       response = await dio.post(
         endpoint,
         data: data,

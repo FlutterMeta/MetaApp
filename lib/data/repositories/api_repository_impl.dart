@@ -500,4 +500,63 @@ class ApiRepositoryImpl implements ApiRepository {
     }
     return response;
   }
+
+  @override
+  Future<Response> createTransaction(Map<String, dynamic> body) async {
+    late Response response;
+    try {
+      response = await apiClient.post('/Transaction/withdrawal', body: body);
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> declineTransaction(int id) async {
+    late Response response;
+    try {
+      response = await apiClient.put('/Transaction/Decline/$id', body: {});
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  Future<Response> approveTransaction(int id) async {
+    late Response response;
+    try {
+      response = await apiClient.put('/Transaction/Approve/$id', body: {});
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getTransactions() async {
+    late Response response;
+    try {
+      response = await apiClient.get('/Transaction');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
 }
