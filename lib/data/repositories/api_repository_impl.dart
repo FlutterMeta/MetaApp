@@ -330,10 +330,8 @@ class ApiRepositoryImpl implements ApiRepository {
   ) async {
     late Response response;
     try {
-      response =
-          await apiClient.post('/Product/$id/PurchaseTransaction', body: {
-        "paymentSystemId": paymentSystemId,
-      });
+      response = await apiClient
+          .post('/Product/purchase/$id?paymentSystemId=$paymentSystemId');
       if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('API Error: ${response.statusCode}');
       }
@@ -531,6 +529,7 @@ class ApiRepositoryImpl implements ApiRepository {
     return response;
   }
 
+  @override
   Future<Response> approveTransaction(int id) async {
     late Response response;
     try {

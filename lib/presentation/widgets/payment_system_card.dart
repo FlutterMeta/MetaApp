@@ -37,7 +37,8 @@ class PaymentSystemCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                paymentSystem.image == null || paymentSystem.image!.isEmpty
+                paymentSystem.image == null ||
+                        paymentSystem.image?.isEmpty == true
                     ? const Icon(Icons.payment, size: 40)
                     : Image.memory(
                         Uint8List.fromList(paymentSystem.image ?? []),
@@ -89,7 +90,7 @@ class SmallPaymentSystemCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            paymentSystem.image == null || paymentSystem.image!.isEmpty
+            paymentSystem.image == null || paymentSystem.image?.isEmpty == true
                 ? const Icon(
                     Icons.payment,
                     size: 40,

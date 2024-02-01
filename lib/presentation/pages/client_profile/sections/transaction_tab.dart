@@ -1,6 +1,10 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:meta_app/core/global.dart';
+import 'package:meta_app/core/mixins/message_overlay.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/data/models/withdrawal_transaction.dart';
 
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
@@ -151,7 +155,7 @@ class _PaymentSuccessMessage extends StatelessWidget {
   }
 }
 
-class _TransactionWindow extends StatelessWidget {
+class _TransactionWindow extends StatefulWidget {
   final Product product;
   final PaymentSystem paymentSystem;
   final VoidCallback onPaymentDone;
@@ -162,6 +166,31 @@ class _TransactionWindow extends StatelessWidget {
     required this.onPaymentDone,
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<_TransactionWindow> createState() => _TransactionWindowState();
+}
+
+class _TransactionWindowState extends State<_TransactionWindow>
+    with MessageOverlay {
+  void createTransaction() async {
+    try {
+      Response response = await apiRepository.createPurchaseTransaction(
+        widget.product.id,
+        widget.paymentSystem.id,
+      );
+      if (apiRepository.isSuccessfulStatusCode(response.statusCode)) {
+        widget.onPaymentDone();
+      } else {
+        showMessage(
+          context.localizations.error + response.data['title'],
+          Colors.red,
+        );
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -190,29 +219,30 @@ class _TransactionWindow extends StatelessWidget {
               _GeneralInfo(
                 accountEmail: currentUser?.email ?? '',
                 accountName: currentUser?.login ?? '',
-                price: product.price.toString(),
+                price: widget.product.price.toString(),
               ),
               const SizedBox(height: 20),
               const _WarningWindow(),
               const SizedBox(height: 40),
               _DetailsTable(
                 date: DateTime.now().toString(),
-                paymentSystem: paymentSystem.title,
-                price: product.price.toString(),
-                requisites: paymentSystem.key,
+                paymentSystem: widget.paymentSystem.title,
+                price: widget.product.price.toString(),
+                requisites: widget.paymentSystem.key,
                 status: 'Pending',
               ),
               const SizedBox(height: 20),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Align(
                     child: ColoredButton(
                       title: context.localizations.paid,
                       color: context.color.profilePagePrimary,
-                      onTap: onPaymentDone,
+                      onTap: () => createTransaction(),
                     ),
                   ),
+                  const SizedBox(width: 30),
                   Align(
                     child: ColoredButton(
                       title: context.localizations.cancel,
