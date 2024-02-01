@@ -26,7 +26,7 @@ class _FilterableTransactionTableState
 
     setState(
       () => _transactions = widget.transactions
-          .where((transaction) => transaction.user.email
+          .where((transaction) => transaction.login
               .toLowerCase()
               .contains(searchBarValue.toLowerCase()))
           .toList(),

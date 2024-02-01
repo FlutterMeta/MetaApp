@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
+import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 

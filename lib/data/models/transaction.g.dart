@@ -7,24 +7,26 @@ part of 'transaction.dart';
 // **************************************************************************
 
 Transaction _$TransactionFromJson(Map<String, dynamic> json) => Transaction(
-      network: json['network'] as String,
-      user: User.fromJson(json['user'] as Map<String, dynamic>),
-      amount: (json['amount'] as num).toDouble(),
+      id: json['id'] as int,
       date: json['date'] as String,
       status: json['status'] as String,
-      note: json['note'] as String,
-      destinationAddress: json['destinationAddress'] as String,
       type: json['type'] as String,
+      amount: (json['amount'] as num).toDouble(),
+      walletKey: json['walletKey'] as String,
+      login: json['login'] as String,
+      userId: json['userId'] as String,
+      paymentSystemTitle: json['paymentSystemTitle'] as String,
     );
 
 Map<String, dynamic> _$TransactionToJson(Transaction instance) =>
     <String, dynamic>{
-      'network': instance.network,
-      'amount': instance.amount,
+      'id': instance.id,
       'date': instance.date,
       'status': instance.status,
       'type': instance.type,
-      'note': instance.note,
-      'destinationAddress': instance.destinationAddress,
-      'user': instance.user,
+      'amount': instance.amount,
+      'walletKey': instance.walletKey,
+      'login': instance.login,
+      'userId': instance.userId,
+      'paymentSystemTitle': instance.paymentSystemTitle,
     };

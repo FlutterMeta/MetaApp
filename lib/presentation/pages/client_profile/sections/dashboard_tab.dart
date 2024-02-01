@@ -484,38 +484,38 @@ class _RequestWithdrawButton extends StatelessWidget {
 class _TransactionsHistorySection extends StatelessWidget {
   const _TransactionsHistorySection({Key? key}) : super(key: key);
 
-  static final _transactions = [
-    Transaction(
-      network: 'Tether (TRC20)',
-      amount: 1000.000,
-      user: User.empty(),
-      date: '12 October 2020, 19:23',
-      status: 'completed',
-      destinationAddress: "0x000000000",
-      note: "",
-      type: 'Deposit',
-    ),
-    Transaction(
-      network: 'Tether (TRC20)',
-      amount: 1000.000,
-      user: User.empty(),
-      destinationAddress: "0x000000000",
-      date: '12 October 2020, 19:23',
-      status: 'canceled',
-      note: "",
-      type: 'Deposit',
-    ),
-    Transaction(
-      network: 'Tether (TRC20)',
-      amount: 1000.000,
-      user: User.empty(),
-      destinationAddress: "0x000000000",
-      date: '12 October 2020, 19:23',
-      status: 'pending',
-      note: "",
-      type: 'Deposit',
-    ),
-  ];
+  // static final _transactions = [
+  //   Transaction(
+  //     network: 'Tether (TRC20)',
+  //     amount: 1000.000,
+  //     user: User.empty(),
+  //     date: '12 October 2020, 19:23',
+  //     status: 'completed',
+  //     destinationAddress: "0x000000000",
+  //     note: "",
+  //     type: 'Deposit',
+  //   ),
+  //   Transaction(
+  //     network: 'Tether (TRC20)',
+  //     amount: 1000.000,
+  //     user: User.empty(),
+  //     destinationAddress: "0x000000000",
+  //     date: '12 October 2020, 19:23',
+  //     status: 'canceled',
+  //     note: "",
+  //     type: 'Deposit',
+  //   ),
+  //   Transaction(
+  //     network: 'Tether (TRC20)',
+  //     amount: 1000.000,
+  //     user: User.empty(),
+  //     destinationAddress: "0x000000000",
+  //     date: '12 October 2020, 19:23',
+  //     status: 'pending',
+  //     note: "",
+  //     type: 'Deposit',
+  //   ),
+  // ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -531,7 +531,7 @@ class _TransactionsHistorySection extends StatelessWidget {
           style: context.text.profilePageSubtitle,
         ),
         const SizedBox(height: 30),
-        TransactionTable.user(transactions: _transactions),
+        TransactionTable.user(transactions: []),
       ],
     );
   }

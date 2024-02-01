@@ -101,9 +101,9 @@ class __TransactionTableWithFilterState
 
     final result = widget.transactionsHistory.transactions.where((transaction) {
       return transaction.type.toLowerCase().contains(operation) &&
-          transaction.status.toLowerCase().contains(status) &&
-          transaction.network.toLowerCase().contains(paymentSystem) &&
-          transaction.note.toLowerCase().contains(note);
+          transaction.status.toLowerCase().contains(status); //&&
+      // transaction.network.toLowerCase().contains(paymentSystem) &&
+      // transaction.note.toLowerCase().contains(note);
     }).toList();
 
     setState(() => transactionsHistory = result);

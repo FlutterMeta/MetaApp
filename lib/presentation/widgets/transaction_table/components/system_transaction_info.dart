@@ -48,7 +48,7 @@ class _SystemTransactionInfoState extends State<_SystemTransactionInfo> {
           child: _StatusChip(status: parse(widget.transaction.status)),
         ),
       ),
-      leading: _EmailLeading(email: widget.transaction.user.email),
+      leading: _EmailLeading(email: widget.transaction.login),
     );
   }
 }
@@ -77,11 +77,11 @@ class _PopupDialog extends StatelessWidget {
           children: [
             _TextTile(
               title: context.localizations.walletAdress,
-              value: transaction.destinationAddress.toString(),
+              value: transaction.walletKey.toString(),
             ),
             _TextTile(
               title: context.localizations.network,
-              value: transaction.network,
+              value: transaction.paymentSystemTitle,
             ),
             _TextTile(
               title: context.localizations.transactionAmount,

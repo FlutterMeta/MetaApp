@@ -76,12 +76,13 @@ List<Transaction> _generateTransactions() {
   return List.generate(
     10,
     (index) => Transaction(
-      network: index % 2 == 0 ? 'Tether (TRC20)' : 'Tron (TRX)',
       amount: Random().nextDouble() * 100000 + 100,
-      user: User.empty(),
       date: '',
-      note: '$index',
-      destinationAddress: "Tw9a8zmv6c4u2rk1w3o0f12c63hs2saq",
+      id: index,
+      login: "shookones$index",
+      userId: "$index",
+      paymentSystemTitle: 'Visa',
+      walletKey: 'walletKey',
       status: Random().nextBool() ? 'pending' : 'completed',
       type: index % 2 == 0 ? 'withdraw' : 'deposit',
     ),

@@ -5,39 +5,31 @@ part 'transaction.g.dart';
 
 @JsonSerializable()
 class Transaction {
-  final String network;
-  final double amount;
+  final int id;
   final String date;
   final String status;
   final String type;
-  final String note;
-  final String destinationAddress;
-  final User user;
+  final double amount;
+  final String walletKey;
+
+  final String login;
+  final String userId;
+  final String paymentSystemTitle;
 
   Transaction({
-    required this.network,
-    required this.user,
-    required this.amount,
+    required this.id,
     required this.date,
     required this.status,
-    required this.note,
-    required this.destinationAddress,
     required this.type,
+    required this.amount,
+    required this.walletKey,
+    required this.login,
+    required this.userId,
+    required this.paymentSystemTitle,
   });
-
-  Transaction.empty()
-      : network = '',
-        user = User.empty(),
-        amount = 0.0,
-        date = '',
-        status = 'pending',
-        destinationAddress = '',
-        note = '',
-        type = '';
 
   factory Transaction.fromJson(Map<String, dynamic> json) =>
       _$TransactionFromJson(json);
-
   Map<String, dynamic> toJson() => _$TransactionToJson(this);
 }
 

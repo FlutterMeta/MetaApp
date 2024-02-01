@@ -50,7 +50,9 @@ class _AdministeredUserTransactionInfoState
           child: _StatusChip(status: parse(widget.transaction.status)),
         ),
       ),
-      leading: _PaymentLeading(transactionNetwork: widget.transaction.network),
+      leading: _PaymentLeading(
+        transactionNetwork: widget.transaction.paymentSystemTitle,
+      ),
     );
   }
 }
