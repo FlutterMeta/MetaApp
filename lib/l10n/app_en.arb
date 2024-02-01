@@ -378,5 +378,8 @@
     "paid": "Paid",
     "thanksForPayment": "Thanks for payment",
     "afterPaymentTip": "Your payment is currently under review by the admin.\nOnce confirmed, you will receive the key at your registered email address.",
-    "keyTip": "This key will be used to activate your bot in Telegram."
+    "keyTip": "This key will be used to activate your bot in Telegram.",
+    "fillAllFields": "Fill all fields",
+    "and": "and",
+    "chooseIcon": "Choose icon"
 }

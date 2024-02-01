@@ -7,7 +7,6 @@ import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 
 import '../../../../data/models/product.dart';
 import '../../admin_profile/products_state_handler.dart';
-import '../menu_controller.dart';
 
 class BotsTab extends StatefulWidget {
   const BotsTab({super.key});

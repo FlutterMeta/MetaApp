@@ -22,10 +22,10 @@ class TransactionTab extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _TransactionTabState createState() => _TransactionTabState();
+  TransactionTabState createState() => TransactionTabState();
 }
 
-class _TransactionTabState extends State<TransactionTab> {
+class TransactionTabState extends State<TransactionTab> {
   bool _paymentDone = false;
 
   @override
@@ -228,63 +228,6 @@ class _TransactionWindow extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-}
-
-class _RequestStatus extends StatelessWidget {
-  final String status;
-  final String lastRequestDateTime;
-
-  const _RequestStatus({
-    required this.status,
-    required this.lastRequestDateTime,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Wrap(
-        alignment: Responsive.isMobile(context)
-            ? WrapAlignment.center
-            : WrapAlignment.spaceBetween,
-        runAlignment: WrapAlignment.spaceBetween,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        spacing: 10,
-        runSpacing: 10,
-        children: [
-          Text(
-            context.localizations.lastRequestDateTime,
-            style: context.text.profilePageSubtitle.copyWith(fontSize: 16),
-          ),
-          Text(
-            lastRequestDateTime,
-            style: context.text.profilePageSubtitle
-                .copyWith(fontSize: 16, fontWeight: FontWeight.w700),
-          ),
-          RichText(
-            textAlign: TextAlign.center,
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: " ${context.localizations.requestStatus}: ",
-                  style: context.text.profilePageSubtitle.copyWith(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                TextSpan(
-                  text: status,
-                  style:
-                      context.text.profilePageSubtitle.copyWith(fontSize: 16),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

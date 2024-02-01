@@ -1,12 +1,12 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
+import 'package:dio/dio.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/pages/admin_profile/payment_systems_state_handler.dart';
 
+import '../../../../core/mixins/message_overlay.dart';
 import '../../../../data/models/payment_system.dart';
 import '../../../constants/app_assets.dart';
 
@@ -16,13 +16,13 @@ class PaymentSystemModal extends StatefulWidget {
   const PaymentSystemModal({Key? key, this.paymentSystem}) : super(key: key);
 
   @override
-  _PaymentSystemModalState createState() => _PaymentSystemModalState();
+  PaymentSystemModalState createState() => PaymentSystemModalState();
 }
 
-class _PaymentSystemModalState extends State<PaymentSystemModal> {
+class PaymentSystemModalState extends State<PaymentSystemModal>
+    with MessageOverlay {
   late TextEditingController _titleController;
   late TextEditingController _keyController;
-  String? _selectedImage;
   String? _selectedCryptoIcon;
 
   @override
@@ -32,8 +32,11 @@ class _PaymentSystemModalState extends State<PaymentSystemModal> {
         TextEditingController(text: widget.paymentSystem?.title ?? '');
     _keyController =
         TextEditingController(text: widget.paymentSystem?.key ?? '');
-    // Initialize selectedCryptoIcon based on the paymentSystem's image
-    _selectedCryptoIcon = _getIconPathFromImage(widget.paymentSystem?.image);
+    if (widget.paymentSystem?.image != null) {
+      // Here you might need actual logic to determine the corresponding icon from the image data
+      // As a placeholder, using the first key from _cryptoIcons
+      _selectedCryptoIcon = null;
+    }
   }
 
   final Map<String, String> _cryptoIcons = {
@@ -58,21 +61,19 @@ class _PaymentSystemModalState extends State<PaymentSystemModal> {
       final Uint8List bytes = data.buffer.asUint8List();
       return bytes;
     } catch (e) {
-      print("Error loading image: $e");
+      debugPrint("Error loading image: $e");
       return null;
     }
   }
 
-  // Convert Uint8List image to key of the crypto icon
-  String? _getIconPathFromImage(Uint8List? image) {
-    // Implement your logic to determine the icon path from the image data
-    // This placeholder function always returns null. You'll need actual logic here.
-    return null;
-  }
-
   void _savePaymentSystem() async {
-    if (_titleController.text.isEmpty || _keyController.text.isEmpty) {
-      // Handle error, show toast, or message
+    if (_titleController.text.isEmpty ||
+        _keyController.text.isEmpty ||
+        _selectedCryptoIcon == null) {
+      showMessage(
+        "${context.localizations.fillAllFields} ${context.localizations.and} ${context.localizations.chooseIcon.toLowerCase()}",
+        context.color.profilePageError,
+      );
       return;
     }
 
@@ -109,7 +110,25 @@ class _PaymentSystemModalState extends State<PaymentSystemModal> {
   void _deletePaymentSystem() async {
     if (widget.paymentSystem != null) {
       // Perform API call to delete the system
-      // Handle response and update state accordingly
+      try {
+        Response response = await apiRepository
+            .deletePaymentSystem(widget.paymentSystem?.id ?? 0);
+        if (apiRepository.isSuccessfulStatusCode(response.statusCode)) {
+          PaymentSystemsStateHandler.instance
+              .removeSystem(widget.paymentSystem as PaymentSystem);
+          showMessage(
+            context.localizations.paymentSystemDeletedSuccessfully,
+            context.color.okay,
+          );
+        } else {
+          showMessage(
+            "${context.localizations.error}: ${response.statusCode}",
+            context.color.profilePageError,
+          );
+        }
+      } catch (e) {
+        debugPrint(e.toString());
+      }
     }
 
     // Close the modal

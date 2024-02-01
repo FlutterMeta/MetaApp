@@ -27,7 +27,6 @@ class PaymentSystemsStateHandler {
 
   void removeSystem(PaymentSystem system) {
     try {
-      apiRepository.deletePaymentSystem(system.id);
       _systems.removeWhere((element) => element.id == system.id);
       PaymentSystemsStateHandler.controller.value++;
     } catch (e) {
