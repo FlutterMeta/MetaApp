@@ -6,6 +6,7 @@ import '../../../data/models/payment_system.dart';
 import '../../widgets/payment_system_card.dart';
 import '../../widgets/profile_header/profile_header.dart';
 import '../../widgets/responsive.dart';
+import '../../widgets/rights_reserved_footer.dart';
 import 'modals/payment_system_modal.dart';
 
 class PaymentSystemOverviewPage extends StatefulWidget {
@@ -71,6 +72,11 @@ class _PaymentSystemOverviewPageState extends State<PaymentSystemOverviewPage> {
                 },
               ),
             ),
+            const Align(
+              alignment: Alignment.center,
+              child: RightsReservedFooter(),
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
