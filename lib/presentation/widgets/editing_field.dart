@@ -15,28 +15,25 @@ class EditingField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      textAlign: TextAlign.center,
-      controller: controller,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        fillColor: context.color.profilePagePrimary.withOpacity(0.2),
-        filled: true,
-        hintText: value,
-        hintStyle: context.text.profileBotsDefault.copyWith(fontSize: 24),
-        constraints: BoxConstraints(
-          maxWidth: width,
-          maxHeight: 30,
-        ),
-        contentPadding: const EdgeInsets.symmetric(
-          vertical: 4,
-          horizontal: 6,
-        ),
+    return Container(
+      decoration: BoxDecoration(
+        color: context.color.profilePagePrimary.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(10),
       ),
-      style: context.text.profileBotsDefault.copyWith(fontSize: 24),
+      padding: const EdgeInsets.symmetric(
+        vertical: 6,
+        horizontal: 8,
+      ),
+      width: width,
+      child: EditableText(
+        controller: controller,
+        cursorColor: context.color.profilePagePrimaryVariant,
+        backgroundCursorColor: context.color.profilePagePrimaryVariant,
+        style: context.text.profileBotsDefault.copyWith(fontSize: 24),
+        cursorWidth: 2,
+        textAlign: TextAlign.center,
+        focusNode: FocusNode(),
+      ),
     );
   }
 }
