@@ -14,7 +14,8 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
       level: json['level'] as int,
       phoneNumber: json['phoneNumber'] as String,
       balance: (json['balance'] as num).toDouble(),
-      role: $enumDecode(_$UserRoleEnumMap, json['roles']),
+      role: $enumDecodeNullable(_$UserRoleEnumMap, json['roles']) ??
+          UserRole.user,
       transactions: (json['transactions'] as List<dynamic>?)
           ?.map((e) => Transaction.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -31,7 +32,7 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
       'level': instance.level,
       'phoneNumber': instance.phoneNumber,
       'balance': instance.balance,
-      'roles': _$UserRoleEnumMap[instance.role]!,
+      'roles': _$UserRoleEnumMap[instance.role],
       'transactions': instance.transactions,
       'products': instance.products,
     };

@@ -558,4 +558,79 @@ class ApiRepositoryImpl implements ApiRepository {
     }
     return response;
   }
+
+  @override
+  Future<Response> changeBalance(String id, double amount) async {
+    late Response response;
+    try {
+      response = await apiClient.put('/User/Balance/$id', body: amount);
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getAdmins() async {
+    late Response response;
+    try {
+      response = await apiClient.get('/User/admins');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getUser(String id) async {
+    late Response response;
+    try {
+      response = await apiClient.get('/User/$id');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getUserReferals(String id) async {
+    late Response response;
+    try {
+      response = await apiClient.get('/User/Referals/$id');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
+  Future<Response> getUsers() async {
+    late Response response;
+    try {
+      response = await apiClient.get('/User');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
 }

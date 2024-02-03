@@ -18,6 +18,10 @@ class _ManageUserPanelState extends State<_ManageUserPanel> {
 
   void _onConfirm() {
     if (_priceController.text.isEmpty) return;
+    final newBalance = double.parse(_priceController.text);
+    final usersNotifier = Provider.of<UsersNotifier>(context, listen: false);
+
+    usersNotifier.changeBalance(widget.user.id, newBalance);
     _priceController.clear();
     setState(() => _isTapped = false);
   }
@@ -33,52 +37,60 @@ class _ManageUserPanelState extends State<_ManageUserPanel> {
     return Container(
       color: context.color.profilePageSecondaryVariant.withOpacity(0.1),
       padding: const EdgeInsets.only(top: 6, bottom: 20, left: 20, right: 20),
-      child: Wrap(
-        alignment: WrapAlignment.spaceBetween,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        spacing: 20,
-        runSpacing: 20,
-        children: [
-          _TableCell(
-            title: context.localizations.availableBalance,
-            content: Text(
-              '${widget.user.balance.toStringAsFixed(0)} \$',
-              style: context.text.headerNavItemHovered.copyWith(fontSize: 16),
-            ),
-          ),
-          _TableCell(
-            title: context.localizations.pendingTransactions,
-            content: _PendingTransactionsRow(user: widget.user),
-          ),
-          _TableCell(
-            title: context.localizations.changeOfBalance,
-            content: _ChangeBalanceButton(
-              isWindowVisible: _isTapped,
-              onTap: () => setState(() => _isTapped = true),
-              title: context.localizations.change,
-              color: context.color.profilePagePrimary,
-              window: AdminWindow(
-                title: "${context.localizations.availableBalance}:",
-                content: _BalanceEditField(
-                  availableBalance: widget.user.balance,
-                  priceController: _priceController,
+      child: Consumer<UsersNotifier>(
+        builder: (context, usersNotifier, child) {
+          return Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 20,
+            runSpacing: 20,
+            children: [
+              _TableCell(
+                title: context.localizations.availableBalance,
+                content: Text(
+                  usersNotifier.users
+                      .firstWhere((user) => user.id == widget.user.id)
+                      .balance
+                      .toStringAsFixed(0),
+                  style:
+                      context.text.headerNavItemHovered.copyWith(fontSize: 16),
                 ),
-                confirmText: context.localizations.change,
-                onConfirm: _onConfirm,
-                onCancel: () => setState(() => _isTapped = false),
               ),
-            ),
-          ),
-          const SizedBox(),
-          _TableCell(
-            title: context.localizations.userProfile,
-            content: ColoredButton(
-              onTap: () {},
-              color: context.color.profilePagePrimary,
-              title: context.localizations.delete,
-            ),
-          ),
-        ],
+              _TableCell(
+                title: context.localizations.pendingTransactions,
+                content: _PendingTransactionsRow(user: widget.user),
+              ),
+              _TableCell(
+                title: context.localizations.changeOfBalance,
+                content: _ChangeBalanceButton(
+                  isWindowVisible: _isTapped,
+                  onTap: () => setState(() => _isTapped = true),
+                  title: context.localizations.change,
+                  color: context.color.profilePagePrimary,
+                  window: AdminWindow(
+                    title: "${context.localizations.availableBalance}:",
+                    content: _BalanceEditField(
+                      availableBalance: widget.user.balance,
+                      priceController: _priceController,
+                    ),
+                    confirmText: context.localizations.change,
+                    onConfirm: _onConfirm,
+                    onCancel: () => setState(() => _isTapped = false),
+                  ),
+                ),
+              ),
+              const SizedBox(),
+              _TableCell(
+                title: context.localizations.userProfile,
+                content: ColoredButton(
+                  onTap: () {},
+                  color: context.color.profilePagePrimary,
+                  title: context.localizations.delete,
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
@@ -109,24 +121,26 @@ class _ChangeBalanceButtonState extends State<_ChangeBalanceButton> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: widget.onTap,
-      child: PortalTarget(
-        anchor: const Aligned(
-          follower: Alignment.topCenter,
-          target: Alignment.bottomRight,
-        ),
-        visible: widget.isWindowVisible,
-        portalFollower: widget.window,
-        child: ColoredButton(
-          title: widget.title,
-          color: widget.color,
-          onTap: widget.onTap,
+      child: RepaintBoundary(
+        child: PortalTarget(
+          anchor: const Aligned(
+            follower: Alignment.topCenter,
+            target: Alignment.bottomRight,
+          ),
+          visible: widget.isWindowVisible,
+          portalFollower: widget.window,
+          child: ColoredButton(
+            title: widget.title,
+            color: widget.color,
+            onTap: widget.onTap,
+          ),
         ),
       ),
     );
   }
 }
 
-class _BalanceEditField extends StatelessWidget {
+class _BalanceEditField extends StatefulWidget {
   final double availableBalance;
   final TextEditingController priceController;
 
@@ -137,15 +151,26 @@ class _BalanceEditField extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<_BalanceEditField> createState() => _BalanceEditFieldState();
+}
+
+class _BalanceEditFieldState extends State<_BalanceEditField> {
+  @override
+  void initState() {
+    super.initState();
+    widget.priceController.text = widget.availableBalance.toStringAsFixed(0);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
         EditingField(
-          value: availableBalance.toStringAsFixed(0),
+          value: widget.availableBalance.toStringAsFixed(0),
           width: 120,
-          controller: priceController,
+          controller: widget.priceController,
         ),
         Icon(
           Icons.attach_money_rounded,

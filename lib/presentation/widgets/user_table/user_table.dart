@@ -7,8 +7,10 @@ import 'package:meta_app/presentation/widgets/admin_window.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/editing_field.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
+import 'package:provider/provider.dart';
 
 import '../../../data/models/user.dart';
+import '../../providers/users_notifier.dart';
 
 part 'components/user_information_panel.dart';
 part 'components/avatar_cell.dart';

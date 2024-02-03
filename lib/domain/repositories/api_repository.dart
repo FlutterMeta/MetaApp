@@ -47,4 +47,11 @@ abstract class ApiRepository {
   Future<Response> createTransaction(Map<String, dynamic> body);
   Future<Response> declineTransaction(int id);
   Future<Response> approveTransaction(int id);
+
+  // Users
+  Future<Response> getUsers();
+  Future<Response> getUser(String id);
+  Future<Response> getAdmins();
+  Future<Response> changeBalance(String id, double amount);
+  Future<Response> getUserReferals(String id); //inviter id
 }

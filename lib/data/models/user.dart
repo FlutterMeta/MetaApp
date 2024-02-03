@@ -15,7 +15,7 @@ class User {
   final double balance;
   @JsonEnum()
   @JsonKey(name: 'roles')
-  final UserRole role;
+  final UserRole? role;
   final List<Transaction>? transactions;
   final List<Product>? products;
 
@@ -27,7 +27,7 @@ class User {
     required this.level,
     required this.phoneNumber,
     required this.balance,
-    required this.role,
+    this.role = UserRole.user,
     required this.transactions,
     required this.products,
   });
