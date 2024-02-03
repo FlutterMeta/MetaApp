@@ -12,14 +12,14 @@ class User {
   final String email;
   final int level;
   final String phoneNumber;
-  final double balance;
+  double balance;
   @JsonEnum()
   @JsonKey(name: 'roles')
   final UserRole? role;
-  final List<Transaction>? transactions;
-  final List<Product>? products;
+  List<Transaction>? transactions;
+  List<Product>? products;
 
-  const User({
+  User({
     required this.id,
     required this.key,
     required this.login,

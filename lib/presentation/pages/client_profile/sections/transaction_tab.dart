@@ -4,15 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/mixins/message_overlay.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/data/models/withdrawal_transaction.dart';
+import 'dart:html' as html;
 
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
+import '../../../../core/utils/api_client.dart';
 import '../../../../data/models/payment_system.dart';
 import '../../../../data/models/product.dart';
 import '../../../../data/models/user.dart';
+import '../../../../data/repositories/api_repository_impl.dart';
 import '../../../redux/app_state.dart';
 
 class TransactionTab extends StatefulWidget {
@@ -175,6 +177,10 @@ class _TransactionWindowState extends State<_TransactionWindow>
     with MessageOverlay {
   void createTransaction() async {
     try {
+      // Request to get user profile, by user's token
+      String key = html.window.localStorage["token"] ?? "";
+      ApiClient apiClient = ApiClient(baseUrl: baseUrl, token: key);
+      ApiRepositoryImpl apiRepository = ApiRepositoryImpl(apiClient: apiClient);
       Response response = await apiRepository.createPurchaseTransaction(
         widget.product.id,
         widget.paymentSystem.id,

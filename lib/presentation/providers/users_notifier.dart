@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:dio/dio.dart';
 
 import '../../core/global.dart';
+import '../../data/models/transaction.dart';
 import '../../data/models/user.dart';
 
 class UsersNotifier extends ChangeNotifier {
@@ -57,6 +58,7 @@ class UsersNotifier extends ChangeNotifier {
     try {
       Response response = await apiRepository.changeBalance(userId, amount);
       if (response.statusCode == 200) {
+        users.firstWhere((user) => user.id == userId).balance = amount;
         notifyListeners();
       }
     } catch (e) {
@@ -73,6 +75,37 @@ class UsersNotifier extends ChangeNotifier {
         for (final referalData in data) {
           _users.add(User.fromJson(referalData as Map<String, dynamic>));
         }
+        notifyListeners();
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  Future<void> deleteUser(String userId) async {
+    try {
+      Response response = await apiRepository.deleteAccount(userId);
+      if (response.statusCode == 200) {
+        _users.removeWhere((user) => user.id == userId);
+        notifyListeners();
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
+
+  void getUserTransactions(String userId) async {
+    try {
+      Response response = await apiRepository.getTransactions(
+        userId: userId,
+      );
+      if (response.statusCode == 200) {
+        final data = response.data["\$values"] as List<dynamic>;
+
+        users.firstWhere((user) => user.id == userId).transactions = data
+            .map((transactionData) =>
+                Transaction.fromJson(transactionData as Map<String, dynamic>))
+            .toList();
         notifyListeners();
       }
     } catch (e) {

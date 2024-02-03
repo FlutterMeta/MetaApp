@@ -16,7 +16,7 @@ class _ManageUserPanelState extends State<_ManageUserPanel> {
   final _priceController = TextEditingController();
   bool _isTapped = false;
 
-  void _onConfirm() {
+  void _onBalanceChangeConfirm() {
     if (_priceController.text.isEmpty) return;
     final newBalance = double.parse(_priceController.text);
     final usersNotifier = Provider.of<UsersNotifier>(context, listen: false);
@@ -24,6 +24,39 @@ class _ManageUserPanelState extends State<_ManageUserPanel> {
     usersNotifier.changeBalance(widget.user.id, newBalance);
     _priceController.clear();
     setState(() => _isTapped = false);
+  }
+
+  void _onDelete() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(context.localizations.deleteUser),
+          content: Text(
+            context.localizations.deleteUserConfirmation,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(context.localizations.cancel),
+            ),
+            ColoredButton(
+              color: context.color.profilePageError,
+              onTap: () {
+                _deleteUser();
+                Navigator.of(context).pop();
+              },
+              title: context.localizations.delete,
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _deleteUser() {
+    final usersNotifier = context.read<UsersNotifier>();
+    usersNotifier.deleteUser(widget.user.id);
   }
 
   @override
@@ -37,60 +70,52 @@ class _ManageUserPanelState extends State<_ManageUserPanel> {
     return Container(
       color: context.color.profilePageSecondaryVariant.withOpacity(0.1),
       padding: const EdgeInsets.only(top: 6, bottom: 20, left: 20, right: 20),
-      child: Consumer<UsersNotifier>(
-        builder: (context, usersNotifier, child) {
-          return Wrap(
-            alignment: WrapAlignment.spaceBetween,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            spacing: 20,
-            runSpacing: 20,
-            children: [
-              _TableCell(
-                title: context.localizations.availableBalance,
-                content: Text(
-                  usersNotifier.users
-                      .firstWhere((user) => user.id == widget.user.id)
-                      .balance
-                      .toStringAsFixed(0),
-                  style:
-                      context.text.headerNavItemHovered.copyWith(fontSize: 16),
+      child: Wrap(
+        alignment: WrapAlignment.spaceBetween,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 20,
+        runSpacing: 20,
+        children: [
+          _TableCell(
+            title: context.localizations.availableBalance,
+            content: Text(
+              widget.user.balance.toStringAsFixed(0),
+              style: context.text.headerNavItemHovered.copyWith(fontSize: 16),
+            ),
+          ),
+          _TableCell(
+            title: context.localizations.pendingTransactions,
+            content: _PendingTransactionsRow(user: widget.user),
+          ),
+          _TableCell(
+            title: context.localizations.changeOfBalance,
+            content: _ChangeBalanceButton(
+              isWindowVisible: _isTapped,
+              onTap: () => setState(() => _isTapped = true),
+              title: context.localizations.change,
+              color: context.color.profilePagePrimary,
+              window: AdminWindow(
+                title: "${context.localizations.availableBalance}:",
+                content: _BalanceEditField(
+                  availableBalance: widget.user.balance,
+                  priceController: _priceController,
                 ),
+                confirmText: context.localizations.change,
+                onConfirm: _onBalanceChangeConfirm,
+                onCancel: () => setState(() => _isTapped = false),
               ),
-              _TableCell(
-                title: context.localizations.pendingTransactions,
-                content: _PendingTransactionsRow(user: widget.user),
-              ),
-              _TableCell(
-                title: context.localizations.changeOfBalance,
-                content: _ChangeBalanceButton(
-                  isWindowVisible: _isTapped,
-                  onTap: () => setState(() => _isTapped = true),
-                  title: context.localizations.change,
-                  color: context.color.profilePagePrimary,
-                  window: AdminWindow(
-                    title: "${context.localizations.availableBalance}:",
-                    content: _BalanceEditField(
-                      availableBalance: widget.user.balance,
-                      priceController: _priceController,
-                    ),
-                    confirmText: context.localizations.change,
-                    onConfirm: _onConfirm,
-                    onCancel: () => setState(() => _isTapped = false),
-                  ),
-                ),
-              ),
-              const SizedBox(),
-              _TableCell(
-                title: context.localizations.userProfile,
-                content: ColoredButton(
-                  onTap: () {},
-                  color: context.color.profilePagePrimary,
-                  title: context.localizations.delete,
-                ),
-              ),
-            ],
-          );
-        },
+            ),
+          ),
+          const SizedBox(),
+          _TableCell(
+            title: context.localizations.userProfile,
+            content: ColoredButton(
+              onTap: _onDelete,
+              color: context.color.profilePageError,
+              title: context.localizations.delete,
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -181,7 +206,7 @@ class _BalanceEditFieldState extends State<_BalanceEditField> {
   }
 }
 
-class _PendingTransactionsRow extends StatelessWidget {
+class _PendingTransactionsRow extends StatefulWidget {
   final User user;
 
   const _PendingTransactionsRow({
@@ -190,27 +215,51 @@ class _PendingTransactionsRow extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<_PendingTransactionsRow> createState() =>
+      _PendingTransactionsRowState();
+}
+
+class _PendingTransactionsRowState extends State<_PendingTransactionsRow> {
+  @override
+  initState() {
+    super.initState();
+    final usersNotifier = context.read<UsersNotifier>();
+    usersNotifier.getUserTransactions(widget.user.id);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: 110),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            user.transactions?.length.toString() ?? '0',
-            style: context.text.headerNavItemHovered.copyWith(fontSize: 16),
-          ),
-          const SizedBox(width: 10),
-          _ShowTextButton(
-            onTap: () => context.router.push(
-              UserTransactionsRoute(
-                user: user,
-                userName: user.login,
-                showPendingTransactions: true,
+      child: Consumer<UsersNotifier>(
+        builder: (context, usersNotifier, child) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                usersNotifier.users
+                        .firstWhere((user) => user.id == widget.user.id)
+                        .transactions
+                        ?.where((transaction) =>
+                            transaction.status.toLowerCase() == 'pending')
+                        .length
+                        .toString() ??
+                    "-1",
+                style: context.text.headerNavItemHovered.copyWith(fontSize: 16),
               ),
-            ),
-          ),
-        ],
+              const SizedBox(width: 10),
+              _ShowTextButton(
+                onTap: () => context.router.push(
+                  UserTransactionsRoute(
+                    user: widget.user,
+                    userName: widget.user.login,
+                    showPendingTransactions: true,
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

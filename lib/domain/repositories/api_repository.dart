@@ -11,7 +11,7 @@ abstract class ApiRepository {
   Future<User?> userProfile();
   Future<Response> forgotPassword(String email);
   Future<Response> resetPassword(String email, String code, String password);
-  Future<Response> deleteAccount();
+  Future<Response> deleteAccount(String id);
 
   // BLOG
   Future<Response> getBlogPosts();
@@ -43,7 +43,7 @@ abstract class ApiRepository {
   Future<Response> deletePaymentSystem(int id);
 
   // Transactions
-  Future<Response> getTransactions();
+  Future<Response> getTransactions({int? type, int? status, String? userId});
   Future<Response> createTransaction(Map<String, dynamic> body);
   Future<Response> declineTransaction(int id);
   Future<Response> approveTransaction(int id);

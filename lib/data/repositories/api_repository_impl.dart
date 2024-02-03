@@ -142,9 +142,20 @@ class ApiRepositoryImpl implements ApiRepository {
   }
 
   @override
-  Future<Response> deleteAccount() {
-    // TODO: implement deleteAccount
-    throw UnimplementedError();
+  Future<Response> deleteAccount(String id) async {
+    late Response response;
+
+    try {
+      response = await apiClient.delete('/Account/$id');
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      debugPrint(response.toString());
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
   }
 
   @override
@@ -545,10 +556,29 @@ class ApiRepositoryImpl implements ApiRepository {
   }
 
   @override
-  Future<Response> getTransactions() async {
+  Future<Response> getTransactions({
+    int? type,
+    int? status,
+    String? userId,
+  }) async {
     late Response response;
     try {
-      response = await apiClient.get('/Transaction');
+      String request = '/Transaction';
+
+      if (type != null) {
+        request += '?Type=$type';
+      }
+
+      if (status != null) {
+        request += '${request.contains('?') ? '&' : '?'}Status=$status';
+      }
+
+      if (userId != null) {
+        request +=
+            '${request.contains('?') || request.contains('&') ? '&' : '?'}UserId=$userId';
+      }
+
+      response = await apiClient.get(request);
       if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('API Error: ${response.statusCode}');
       }
