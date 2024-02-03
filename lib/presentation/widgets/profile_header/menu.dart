@@ -93,7 +93,13 @@ class ProfileMenu extends Menu {
       _MenuItem(
         onTap: () => context.router.push(ClientProfileRoute()),
         title: context.localizations.profile,
-        icon: Icons.person_outline_rounded,
+        icon: Icons.person_rounded,
+        color: context.color.profilePagePrimaryVariant,
+      ),
+      _MenuItem(
+        onTap: () => context.router.push(const DashboardRoute()),
+        title: context.localizations.allUsersManagement,
+        icon: Icons.group_sharp,
         color: context.color.profilePagePrimaryVariant,
       ),
       _MenuItem(

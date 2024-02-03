@@ -381,5 +381,6 @@
     "keyTip": "This key will be used to activate your bot in Telegram.",
     "fillAllFields": "Fill all fields",
     "and": "and",
+    "allUsersManagement": "User Management",
     "chooseIcon": "Choose icon"
 }

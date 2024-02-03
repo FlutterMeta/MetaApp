@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meta_app/data/models/user.dart';
 
 part 'transaction.g.dart';
 

@@ -35,7 +35,8 @@ class _TransactionInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                transaction.date,
+                DateFormat('dd MMMM yyyy, HH:mm')
+                    .format(DateTime.parse(transaction.date)),
                 style: _transactionTextStyle(context),
               ),
               const SizedBox(height: 6),
