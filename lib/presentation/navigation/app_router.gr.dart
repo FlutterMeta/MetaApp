@@ -203,7 +203,7 @@ class AppRouter extends _i17.RootStackRouter {
         ),
         _i17.RouteConfig(
           ClientProfileRoute.name,
-          path: '/client-profile',
+          path: '/profile',
         ),
         _i17.RouteConfig(
           FinancialIndicatorsRoute.name,
@@ -398,7 +398,7 @@ class ClientProfileRoute extends _i17.PageRouteInfo<ClientProfileRouteArgs> {
   ClientProfileRoute({_i18.Key? key})
       : super(
           ClientProfileRoute.name,
-          path: '/client-profile',
+          path: '/profile',
           args: ClientProfileRouteArgs(key: key),
         );
 

@@ -244,7 +244,7 @@ class _PendingTransactionsRowState extends State<_PendingTransactionsRow> {
                             transaction.status.toLowerCase() == 'pending')
                         .length
                         .toString() ??
-                    "-1",
+                    "N/A",
                 style: context.text.headerNavItemHovered.copyWith(fontSize: 16),
               ),
               const SizedBox(width: 10),
