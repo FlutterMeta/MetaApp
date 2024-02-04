@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:dio/dio.dart';
 
 import '../../core/global.dart';
+import '../../data/models/role_list.dart';
 import '../../data/models/transaction.dart';
 import '../../data/models/user.dart';
 
@@ -16,7 +17,9 @@ class UsersNotifier extends ChangeNotifier {
         final data = response.data["\$values"] as List<dynamic>;
 
         for (final userData in data) {
-          _users.add(User.fromJson(userData as Map<String, dynamic>));
+          User user = User.fromJson(userData as Map<String, dynamic>);
+
+          _users.add(user);
         }
         notifyListeners();
       }
@@ -29,8 +32,8 @@ class UsersNotifier extends ChangeNotifier {
     try {
       Response response = await apiRepository.getUser(userId);
       if (response.statusCode == 200) {
-        final userData = response.data as Map<String, dynamic>;
-        _users.add(User.fromJson(userData));
+        User user = User.fromJson(response.data);
+        _users.add(user);
         notifyListeners();
       }
     } catch (e) {

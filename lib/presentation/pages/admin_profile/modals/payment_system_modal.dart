@@ -107,17 +107,19 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
     Navigator.of(context).pop();
   }
 
-  void _deletePaymentSystem() async {
+  void _disablePaymentSystem() async {
     if (widget.paymentSystem != null) {
       // Perform API call to delete the system
       try {
-        Response response = await apiRepository
-            .deletePaymentSystem(widget.paymentSystem?.id ?? 0);
+        Response response = await apiRepository.pathPaymentSystem(
+          widget.paymentSystem?.id ?? 0,
+          {'enabled': false},
+        );
         if (apiRepository.isSuccessfulStatusCode(response.statusCode)) {
           PaymentSystemsStateHandler.instance
               .removeSystem(widget.paymentSystem as PaymentSystem);
           showMessage(
-            context.localizations.paymentSystemDeletedSuccessfully,
+            context.localizations.paymentSystemSuccessfullyDisabled,
             context.color.okay,
           );
         } else {
@@ -317,7 +319,7 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
                   ),
                   const SizedBox(width: 16),
                   ElevatedButton(
-                    onPressed: _deletePaymentSystem,
+                    onPressed: _disablePaymentSystem,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: context.color.profilePageError,
                       padding: const EdgeInsets.symmetric(
@@ -328,7 +330,7 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                    child: Text(context.localizations.delete),
+                    child: Text(context.localizations.disable),
                   ),
                 ],
               ],

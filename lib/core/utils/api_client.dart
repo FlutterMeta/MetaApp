@@ -90,4 +90,12 @@ class ApiClient {
     // Perform a DELETE request
     return dio.delete(endpoint);
   }
+
+  Future<Response<dynamic>> patch(
+    String endpoint, {
+    required dynamic body,
+  }) async {
+    // Perform a PATCH request
+    return dio.patch(endpoint, data: body);
+  }
 }

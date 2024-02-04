@@ -73,14 +73,7 @@ class ApiRepositoryImpl implements ApiRepository {
         return null;
       }
       debugPrint(response.toString());
-      final rolesList =
-          RoleList.fromJson(response.data['roles'] as Map<String, dynamic>);
 
-      if (rolesList.values.isNotEmpty) {
-        response.data['roles'] = rolesList.values.first; // Use the first role
-      } else {
-        response.data['roles'] = 'User'; // Default role
-      }
       user = User.fromJson(response.data);
     } catch (e) {
       debugPrint(e.toString());
@@ -449,10 +442,11 @@ class ApiRepositoryImpl implements ApiRepository {
   }
 
   @override
-  Future<Response> deletePaymentSystem(int id) async {
+  Future<Response> pathPaymentSystem(int id, Map<String, dynamic> body) async {
     late Response response;
     try {
-      response = await apiClient.delete('/PaymentSystem/$id');
+      response = await apiClient
+          .patch('/PaymentSystem/$id?enabled=${body['enabled']}', body: {});
       if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('API Error: ${response.statusCode}');
       }

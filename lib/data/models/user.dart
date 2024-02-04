@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:meta_app/data/models/product.dart';
+import 'package:meta_app/data/models/role_list.dart';
 import 'package:meta_app/data/models/transaction.dart';
 
 part 'user.g.dart';
@@ -44,7 +45,17 @@ class User {
         transactions = const [],
         products = const [];
 
-  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+  factory User.fromJson(Map<String, dynamic> json) {
+    final rolesList = RoleList.fromJson(json['roles'] as Map<String, dynamic>);
+
+    if (rolesList.values.isNotEmpty) {
+      json['roles'] = rolesList.values
+          .first; // Use the first role (there must be only one role for each user)
+    } else {
+      json['roles'] = 'User'; // Default role
+    }
+    return _$UserFromJson(json);
+  }
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
 }

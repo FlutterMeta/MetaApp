@@ -1,8 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:meta_app/data/models/user.dart';
 
 part 'transaction.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class Transaction {
   final int id;
   final String date;
@@ -11,8 +12,7 @@ class Transaction {
   final double amount;
   final String walletKey;
 
-  final String login;
-  final String userId;
+  final User user;
   final String paymentSystemTitle;
 
   Transaction({
@@ -22,8 +22,7 @@ class Transaction {
     required this.type,
     required this.amount,
     required this.walletKey,
-    required this.login,
-    required this.userId,
+    required this.user,
     required this.paymentSystemTitle,
   });
 

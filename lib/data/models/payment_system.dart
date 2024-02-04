@@ -11,11 +11,13 @@ class PaymentSystem {
   @Uint8ListConverter()
   final Uint8List? image;
   final String key;
+  bool enabled;
 
   PaymentSystem({
     required this.id,
     required this.title,
     this.image,
+    this.enabled = true,
     required this.key,
   });
 

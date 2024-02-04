@@ -48,7 +48,7 @@ class _SystemTransactionInfoState extends State<_SystemTransactionInfo> {
           child: _StatusChip(status: parse(widget.transaction.status)),
         ),
       ),
-      leading: _EmailLeading(email: widget.transaction.login),
+      leading: _EmailLeading(email: widget.transaction.user.email),
     );
   }
 }
