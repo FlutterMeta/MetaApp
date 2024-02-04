@@ -296,7 +296,14 @@ class _ProductDetails extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            product.title,
+            "${context.localizations.youreBuying}:",
+            style: context.text.profilePageBody.copyWith(
+              fontSize: 20,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            product.title.toUpperCase(),
             style: context.text.profilePageBody.copyWith(
               fontSize: 20,
               fontWeight: FontWeight.w700,
@@ -312,7 +319,7 @@ class _ProductDetails extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            "${product.subscriptionDuration} day(s)",
+            "${context.localizations.subscriptionDuration} ${product.subscriptionDuration} day(s)",
             style: context.text.profilePageBody.copyWith(
               fontSize: 16,
               fontWeight: FontWeight.w700,
