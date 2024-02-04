@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
-import 'package:meta_app/presentation/pages/admin_profile/products_state_handler.dart';
 import 'package:meta_app/presentation/pages/admin_profile/referal_level_state_handler.dart';
 import 'package:meta_app/presentation/widgets/bot_demo_card.dart';
 import 'package:meta_app/presentation/widgets/level_card.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/products_notifier.dart';
 import '../../widgets/profile_header/profile_header.dart';
 import '../../widgets/responsive.dart';
 import 'modals/manage_product_modal.dart';
@@ -71,19 +72,8 @@ class _ReferralRewards extends StatelessWidget {
   }
 }
 
-class _BotDemoCards extends StatefulWidget {
+class _BotDemoCards extends StatelessWidget {
   const _BotDemoCards({Key? key}) : super(key: key);
-
-  @override
-  State<_BotDemoCards> createState() => _BotDemoCardsState();
-}
-
-class _BotDemoCardsState extends State<_BotDemoCards> {
-  @override
-  void initState() {
-    ProductsStateHandler.instance.init();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,25 +90,23 @@ class _BotDemoCardsState extends State<_BotDemoCards> {
             height: 380,
             width: double.infinity,
             child: Align(
-              child: ValueListenableBuilder(
-                valueListenable: ProductsStateHandler.controller,
-                builder: (_, __, ___) {
+              child: Consumer<ProductsNotifier>(
+                builder: (context, productsNotifier, child) {
                   return ListView.separated(
                     shrinkWrap: true,
                     clipBehavior: Clip.none,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      if (index ==
-                          ProductsStateHandler.instance.products.length) {
+                      if (index == productsNotifier.products.length) {
                         return const AddProduct();
                       }
 
                       return EditableBotDemoCard(
-                        product: ProductsStateHandler.instance.products[index],
+                        product: productsNotifier.products[index],
                       );
                     },
                     itemCount:
-                        ProductsStateHandler.instance.products.length + 1,
+                        productsNotifier.products.length + 1, // +1 for the add
                     separatorBuilder: (_, __) => const SizedBox(width: 20),
                   );
                 },

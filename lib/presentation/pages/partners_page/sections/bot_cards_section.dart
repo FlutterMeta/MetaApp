@@ -33,13 +33,6 @@ class _BotCardsSectionState extends State<_BotCardsSection> {
     }
   }
 
-  List<Product> get products => ProductsStateHandler.instance.products;
-  @override
-  void initState() {
-    super.initState();
-    ProductsStateHandler.instance.init();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,16 +60,20 @@ class _BotCardsSectionState extends State<_BotCardsSection> {
               ),
             ),
             const SizedBox(height: 100),
-            Wrap(
-              spacing: 20,
-              runSpacing: 20,
-              children: [
-                for (final product in products)
-                  BotDemoCard(
-                    product: product,
-                    onTap: () => _handleTap(context),
-                  ),
-              ],
+            Consumer<ProductsNotifier>(
+              builder: (context, productsNotifier, child) {
+                return Wrap(
+                  spacing: 20,
+                  runSpacing: 20,
+                  children: [
+                    for (final product in productsNotifier.products)
+                      BotDemoCard(
+                        product: product,
+                        onTap: () => _handleTap(context),
+                      ),
+                  ],
+                );
+              },
             ),
           ],
         ),

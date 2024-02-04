@@ -12,26 +12,23 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => UsersNotifier()..loadUsers(),
-      child: Scaffold(
-        appBar: ProfileHeader.adminSearch(),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              const _HeaderText(),
-              const SizedBox(height: 60),
-              Consumer<UsersNotifier>(
-                builder: (context, usersNotifier, child) {
-                  return FilterableUserTable(users: usersNotifier.users);
-                },
-              ),
-              const SizedBox(height: 70),
-              const RightsReservedFooter(),
-              const SizedBox(height: 20),
-            ],
-          ),
+    return Scaffold(
+      appBar: ProfileHeader.adminSearch(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            const _HeaderText(),
+            const SizedBox(height: 60),
+            Consumer<UsersNotifier>(
+              builder: (context, usersNotifier, child) {
+                return FilterableUserTable(users: usersNotifier.users);
+              },
+            ),
+            const SizedBox(height: 70),
+            const RightsReservedFooter(),
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );

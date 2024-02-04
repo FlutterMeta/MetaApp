@@ -4,9 +4,10 @@ import 'package:meta_app/presentation/pages/admin_profile/modals/choose_payment_
 import 'package:meta_app/presentation/widgets/bot_demo_card.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../data/models/product.dart';
-import '../../admin_profile/products_state_handler.dart';
+import '../../../providers/products_notifier.dart';
 
 class BotsTab extends StatefulWidget {
   const BotsTab({super.key});
@@ -57,27 +58,20 @@ class _BotsTabState extends State<BotsTab> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    ProductsStateHandler.instance.init();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
         decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
         alignment: Alignment.center,
         padding: const EdgeInsets.all(20),
-        child: ValueListenableBuilder(
-          valueListenable: ProductsStateHandler.controller,
-          builder: (BuildContext context, _, __) {
+        child: Consumer<ProductsNotifier>(
+          builder: (context, productsNotifier, child) {
             return Column(
               children: [
                 _CardsWrap(children: _profitCards(context)),
                 const SizedBox(height: 20),
                 _CardsWrap(children: [
-                  for (final product in ProductsStateHandler.instance.products)
+                  for (final product in productsNotifier.products)
                     BotDemoCard(
                       product: product,
                       onTap: () => _showDialog(context, product),

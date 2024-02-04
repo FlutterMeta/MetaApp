@@ -6,11 +6,15 @@ import '../../../../core/global.dart';
 import '../../../../core/mixins/message_overlay.dart';
 import '../../../../data/models/product.dart';
 import '../../../../domain/entities/subscription_tier.dart';
-import '../products_state_handler.dart';
+import '../../../providers/products_notifier.dart';
 
 class ManageProductModal extends StatefulWidget {
   final Product? product;
-  const ManageProductModal({Key? key, this.product}) : super(key: key);
+
+  const ManageProductModal({
+    this.product,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<ManageProductModal> createState() => ManageProductModalState();
@@ -24,9 +28,12 @@ class ManageProductModalState extends State<ManageProductModal>
   final _subscriptionDurationController = TextEditingController();
   final _subscriptionTierController = TextEditingController();
 
+  late ProductsNotifier _productNotifier;
+
   @override
   void initState() {
     super.initState();
+    _productNotifier = ProductsNotifier();
     if (widget.product != null) {
       _fillTextFields();
     }
@@ -72,25 +79,12 @@ class ManageProductModalState extends State<ManageProductModal>
           .firstWhere((e) => e.value.toString() == subscriptionTier),
     );
 
-    Response response = await apiRepository.updateProduct(
-      widget.product?.id ?? 0,
-      product.toJson(),
+    await _productNotifier.editProduct(product);
+    showMessage(
+      context.localizations.editedSuccessfully,
+      Colors.green,
     );
-    if (response.statusCode == 200) {
-      ProductsStateHandler.instance.init();
-      ProductsStateHandler.controller.value++;
-      showMessage(
-        context.localizations.editedSuccessfully,
-        Colors.green,
-      );
-      Navigator.pop(context);
-    } else {
-      showMessage(
-        "${context.localizations.error}: ${response.data["title"]} ",
-        Colors.red,
-      );
-    }
-    return;
+    Navigator.pop(context);
   }
 
   void _handleOnTap(BuildContext context) async {
@@ -126,21 +120,12 @@ class ManageProductModalState extends State<ManageProductModal>
               .firstWhere((e) => e.value.toString() == subscriptionTier),
         );
 
-        Response response = await apiRepository.createProduct(product.toJson());
-        if (response.statusCode == 200) {
-          ProductsStateHandler.instance.init();
-          ProductsStateHandler.controller.value++;
-          showMessage(
-            context.localizations.productAddedSuccessfully,
-            Colors.green,
-          );
-          Navigator.pop(context);
-        } else {
-          showMessage(
-            "${context.localizations.error}: ${response.data["title"]} ",
-            Colors.red,
-          );
-        }
+        await _productNotifier.addProduct(product);
+        showMessage(
+          context.localizations.productAddedSuccessfully,
+          Colors.green,
+        );
+        Navigator.pop(context);
       }
     }
   }
@@ -287,10 +272,8 @@ class ManageProductModalState extends State<ManageProductModal>
                 if (widget.product != null)
                   ElevatedButton(
                     onPressed: () async {
-                      await apiRepository
+                      await _productNotifier
                           .deleteProduct(widget.product?.id ?? 0);
-                      ProductsStateHandler.instance.init();
-                      ProductsStateHandler.controller.value++;
                       showMessage(
                         context.localizations.deletedSuccessfully,
                         Colors.green,

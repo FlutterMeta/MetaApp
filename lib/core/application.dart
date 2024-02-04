@@ -8,9 +8,12 @@ import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/l10n.dart';
 import 'package:meta_app/presentation/navigation/app_router.gr.dart';
 import 'package:meta_app/presentation/navigation/router_observer.dart';
+import 'package:meta_app/presentation/providers/products_notifier.dart';
+import 'package:meta_app/presentation/providers/users_notifier.dart';
 import 'package:meta_app/presentation/redux/app_state.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
 import 'package:meta_app/presentation/widgets/web_scroll_behaviour.dart';
+import 'package:provider/provider.dart';
 
 class Application extends StatelessWidget {
   final Store<AppState> store;
@@ -29,25 +32,35 @@ class Application extends StatelessWidget {
       child: StoreConnector<AppState, _ViewModel>(
         vm: () => _Factory(this),
         builder: (BuildContext context, _ViewModel vm) => Portal(
-          child: MaterialApp.router(
-            scrollBehavior: WebScrollBehaviour(),
-            locale: vm.appLocale.locale,
-            supportedLocales: L10n.all,
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
+          child: MultiProvider(
+            providers: [
+              ChangeNotifierProvider<UsersNotifier>(
+                create: (context) => UsersNotifier()..loadUsers(),
+              ),
+              ChangeNotifierProvider<ProductsNotifier>(
+                create: ((context) => ProductsNotifier()..loadProducts()),
+              ),
             ],
-            theme: createLightTheme(),
-            darkTheme: createDarkTheme(),
-            themeMode: vm.themeMode,
-            routerDelegate: AutoRouterDelegate(
-              appRouter,
-              initialRoutes: [HomeRoute()],
-              navigatorObservers: () => [RouterObserver()],
+            child: MaterialApp.router(
+              scrollBehavior: WebScrollBehaviour(),
+              locale: vm.appLocale.locale,
+              supportedLocales: L10n.all,
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              theme: createLightTheme(),
+              darkTheme: createDarkTheme(),
+              themeMode: vm.themeMode,
+              routerDelegate: AutoRouterDelegate(
+                appRouter,
+                initialRoutes: [HomeRoute()],
+                navigatorObservers: () => [RouterObserver()],
+              ),
+              routeInformationParser: appRouter.defaultRouteParser(),
             ),
-            routeInformationParser: appRouter.defaultRouteParser(),
           ),
         ),
       ),
