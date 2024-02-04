@@ -12,16 +12,28 @@ class _ManageUserPanel extends StatefulWidget {
   State<_ManageUserPanel> createState() => _ManageUserPanelState();
 }
 
-class _ManageUserPanelState extends State<_ManageUserPanel> {
+class _ManageUserPanelState extends State<_ManageUserPanel>
+    with MessageOverlay {
   final _priceController = TextEditingController();
   bool _isTapped = false;
 
-  void _onBalanceChangeConfirm() {
+  void _onBalanceChangeConfirm() async {
     if (_priceController.text.isEmpty) return;
     final newBalance = double.parse(_priceController.text);
     final usersNotifier = Provider.of<UsersNotifier>(context, listen: false);
 
-    usersNotifier.changeBalance(widget.user.id, newBalance);
+    Result result =
+        await usersNotifier.changeBalance(widget.user.id, newBalance);
+
+    if (result.success) {
+      showMessage(
+        context.localizations.balanceChangedSuccessfully,
+        Colors.green,
+      );
+    } else {
+      showMessage(result.message ?? context.localizations.error, Colors.red);
+    }
+
     _priceController.clear();
     setState(() => _isTapped = false);
   }

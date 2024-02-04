@@ -6,6 +6,7 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import '../../../../core/global.dart';
 import '../../../../core/mixins/message_overlay.dart';
 import '../../../../data/models/product.dart';
+import '../../../../data/models/result.dart';
 import '../../../../domain/entities/subscription_tier.dart';
 import '../../../providers/products_notifier.dart';
 
@@ -80,12 +81,20 @@ class ManageProductModalState extends State<ManageProductModal>
           .firstWhere((e) => e.value.toString() == subscriptionTier),
     );
 
-    await _productNotifier.editProduct(product);
-    // showMessage(
-    //   context.localizations.editedSuccessfully,
-    //   Colors.green,
-    // );
-    Navigator.pop(context);
+    Result result = await _productNotifier.editProduct(product);
+
+    if (result.success) {
+      showMessage(
+        context.localizations.editedSuccessfully,
+        Colors.green,
+      );
+      Navigator.pop(context);
+    } else {
+      showMessage(
+        "${context.localizations.error}: ${result.message}",
+        Colors.red,
+      );
+    }
   }
 
   void _handleOnTap(BuildContext context) async {
@@ -121,12 +130,20 @@ class ManageProductModalState extends State<ManageProductModal>
               .firstWhere((e) => e.value.toString() == subscriptionTier),
         );
 
-        await _productNotifier.addProduct(product);
-        // showMessage(
-        //   context.localizations.productAddedSuccessfully,
-        //   Colors.green,
-        // );
-        Navigator.pop(context);
+        Result result = await _productNotifier.addProduct(product);
+
+        if (result.success) {
+          showMessage(
+            context.localizations.productAddedSuccessfully,
+            Colors.green,
+          );
+          Navigator.pop(context);
+        } else {
+          showMessage(
+            "${context.localizations.error}: ${result.message}",
+            Colors.red,
+          );
+        }
       }
     }
   }
@@ -273,13 +290,20 @@ class ManageProductModalState extends State<ManageProductModal>
                 if (widget.product != null)
                   ElevatedButton(
                     onPressed: () async {
-                      await _productNotifier
+                      Result result = await _productNotifier
                           .deleteProduct(widget.product?.id ?? 0);
-                      showMessage(
-                        context.localizations.deletedSuccessfully,
-                        Colors.green,
-                      );
-                      Navigator.pop(context);
+
+                      if (result.success) {
+                        showMessage(
+                          context.localizations.deletedSuccessfully,
+                          Colors.green,
+                        );
+                      } else {
+                        showMessage(
+                          "${context.localizations.error}: ${result.message}",
+                          Colors.red,
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: context.color.profilePageError,
