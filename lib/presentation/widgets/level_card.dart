@@ -50,7 +50,7 @@ class LevelCard extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            "${context.localizations.requiredReferalsCount}:  ${level.requiredReferralsCount}",
+            "${context.localizations.requiredReferals}:  ${level.requiredReferralsCount}",
             style: context.text.askButton,
           ),
           const SizedBox(height: 10),

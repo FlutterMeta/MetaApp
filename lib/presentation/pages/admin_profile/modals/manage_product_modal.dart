@@ -97,6 +97,23 @@ class ManageProductModalState extends State<ManageProductModal>
     }
   }
 
+  void _handleDelete(BuildContext context) async {
+    Result result =
+        await _productNotifier.deleteProduct(widget.product?.id ?? 0);
+
+    if (result.success) {
+      showMessage(
+        context.localizations.deletedSuccessfully,
+        Colors.green,
+      );
+    } else {
+      showMessage(
+        "${context.localizations.error}: ${result.message}",
+        Colors.red,
+      );
+    }
+  }
+
   void _handleOnTap(BuildContext context) async {
     final title = _titleController.text;
     final description = _descriptionController.text;
@@ -289,22 +306,7 @@ class ManageProductModalState extends State<ManageProductModal>
               children: [
                 if (widget.product != null)
                   ElevatedButton(
-                    onPressed: () async {
-                      Result result = await _productNotifier
-                          .deleteProduct(widget.product?.id ?? 0);
-
-                      if (result.success) {
-                        showMessage(
-                          context.localizations.deletedSuccessfully,
-                          Colors.green,
-                        );
-                      } else {
-                        showMessage(
-                          "${context.localizations.error}: ${result.message}",
-                          Colors.red,
-                        );
-                      }
-                    },
+                    onPressed: () => _handleDelete(context),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: context.color.profilePageError,
                       padding: const EdgeInsets.symmetric(
