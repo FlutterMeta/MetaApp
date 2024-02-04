@@ -139,7 +139,7 @@ class ApiRepositoryImpl implements ApiRepository {
     late Response response;
 
     try {
-      response = await apiClient.delete('/Account/$id');
+      response = await apiClient.patch('/Account/$id', body: {}); //Soft delete
       if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('API Error: ${response.statusCode}');
       }
@@ -587,7 +587,7 @@ class ApiRepositoryImpl implements ApiRepository {
   Future<Response> changeBalance(String id, double amount) async {
     late Response response;
     try {
-      response = await apiClient.put('/User/Balance/$id', body: amount);
+      response = await apiClient.patch('/User/Balance/$id', body: amount);
       if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('API Error: ${response.statusCode}');
       }
@@ -632,7 +632,7 @@ class ApiRepositoryImpl implements ApiRepository {
   Future<Response> getUserReferals(String id) async {
     late Response response;
     try {
-      response = await apiClient.get('/User/Referals/$id');
+      response = await apiClient.get('/User/referrals/$id');
       if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('API Error: ${response.statusCode}');
       }

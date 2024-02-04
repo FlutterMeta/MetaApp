@@ -18,7 +18,7 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
     with MessageOverlay {
   final _rewardController = TextEditingController();
   final _requiredReferalsCountController = TextEditingController();
-
+  final levelController = TextEditingController();
   @override
   void dispose() {
     _rewardController.dispose();
@@ -27,15 +27,16 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
   }
 
   void _handleOnTap(BuildContext context) async {
+    final lev = levelController.text;
     final reward = _rewardController.text;
     final requiredReferalsCount = _requiredReferalsCountController.text;
 
     if (reward.isNotEmpty && requiredReferalsCount.isNotEmpty) {
       final level = ReferalLevel(
         id: 0,
-        level: -1, // it will be set on the server
+        level: int.parse(lev),
         reward: double.parse(reward),
-        requiredReferalsCount: int.parse(requiredReferalsCount),
+        requiredReferralsCount: int.parse(requiredReferalsCount),
       );
 
       Response response =
@@ -46,7 +47,7 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
         Navigator.pop(context);
       } else {
         showMessage(
-          "${context.localizations.error}: ${response.data["title"]} ",
+          "${context.localizations.error}: ${response.data} ",
           Colors.red,
         );
       }
@@ -59,7 +60,7 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
       padding: const EdgeInsets.all(40),
       constraints: const BoxConstraints(
         maxWidth: 500,
-        maxHeight: 400,
+        maxHeight: 500,
       ),
       decoration: BoxDecoration(
         color: context.color.profilePageBackground,
@@ -75,6 +76,27 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
             style: context.text.profileBotsDefault.copyWith(fontSize: 24),
           ),
           const SizedBox(height: 30),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              context.localizations.level,
+              style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+            ),
+          ),
+          const SizedBox(height: 10),
+          TextField(
+            controller: levelController,
+            decoration: InputDecoration(
+              hintText: context.localizations.level,
+              hintStyle: context.text.profileBotsDefault.copyWith(fontSize: 12),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide.none,
+              ),
+              filled: true,
+              fillColor: context.color.profilePagePrimary.withOpacity(0.1),
+            ),
+          ),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(

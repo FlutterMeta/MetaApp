@@ -10,7 +10,7 @@ ReferalLevel _$ReferalLevelFromJson(Map<String, dynamic> json) => ReferalLevel(
       id: json['id'] as int,
       level: json['level'] as int,
       reward: (json['reward'] as num).toDouble(),
-      requiredReferalsCount: json['requiredReferalsCount'] as int,
+      requiredReferralsCount: json['requiredReferralsCount'] as int,
     );
 
 Map<String, dynamic> _$ReferalLevelToJson(ReferalLevel instance) =>
@@ -18,5 +18,5 @@ Map<String, dynamic> _$ReferalLevelToJson(ReferalLevel instance) =>
       'id': instance.id,
       'level': instance.level,
       'reward': instance.reward,
-      'requiredReferalsCount': instance.requiredReferalsCount,
+      'requiredReferralsCount': instance.requiredReferralsCount,
     };
