@@ -4,12 +4,14 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/pages/client_profile/menu_controller.dart';
+import 'package:meta_app/presentation/providers/users_notifier.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/level_card.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import 'package:meta_app/presentation/widgets/transaction_table/transaction_table.dart';
+import 'package:provider/provider.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 
 import '../../../../data/models/transaction.dart';
@@ -484,38 +486,6 @@ class _RequestWithdrawButton extends StatelessWidget {
 class _TransactionsHistorySection extends StatelessWidget {
   const _TransactionsHistorySection({Key? key}) : super(key: key);
 
-  // static final _transactions = [
-  //   Transaction(
-  //     network: 'Tether (TRC20)',
-  //     amount: 1000.000,
-  //     user: User.empty(),
-  //     date: '12 October 2020, 19:23',
-  //     status: 'completed',
-  //     destinationAddress: "0x000000000",
-  //     note: "",
-  //     type: 'Deposit',
-  //   ),
-  //   Transaction(
-  //     network: 'Tether (TRC20)',
-  //     amount: 1000.000,
-  //     user: User.empty(),
-  //     destinationAddress: "0x000000000",
-  //     date: '12 October 2020, 19:23',
-  //     status: 'canceled',
-  //     note: "",
-  //     type: 'Deposit',
-  //   ),
-  //   Transaction(
-  //     network: 'Tether (TRC20)',
-  //     amount: 1000.000,
-  //     user: User.empty(),
-  //     destinationAddress: "0x000000000",
-  //     date: '12 October 2020, 19:23',
-  //     status: 'pending',
-  //     note: "",
-  //     type: 'Deposit',
-  //   ),
-  // ];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -531,7 +501,14 @@ class _TransactionsHistorySection extends StatelessWidget {
           style: context.text.profilePageSubtitle,
         ),
         const SizedBox(height: 30),
-        TransactionTable.user(transactions: []),
+        StoreConnector<AppState, User?>(
+          converter: (store) => store.state.currentUser,
+          builder: (context, currentUser) {
+            return TransactionTable.user(
+              transactions: currentUser?.transactions ?? [],
+            );
+          },
+        ),
       ],
     );
   }

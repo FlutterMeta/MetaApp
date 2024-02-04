@@ -1,4 +1,3 @@
-// Action to log in a user
 import 'package:async_redux/async_redux.dart';
 
 import '../../../../data/models/user.dart';

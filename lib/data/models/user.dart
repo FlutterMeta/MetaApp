@@ -58,6 +58,32 @@ class User {
   }
 
   Map<String, dynamic> toJson() => _$UserToJson(this);
+
+  User copyWith({
+    String? id,
+    String? key,
+    String? login,
+    String? email,
+    int? level,
+    String? phoneNumber,
+    double? balance,
+    UserRole? role,
+    List<Transaction>? transactions,
+    List<Product>? products,
+  }) {
+    return User(
+      id: id ?? this.id,
+      key: key ?? this.key,
+      login: login ?? this.login,
+      email: email ?? this.email,
+      level: level ?? this.level,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
+      balance: balance ?? this.balance,
+      role: role ?? this.role,
+      transactions: transactions ?? this.transactions,
+      products: products ?? this.products,
+    );
+  }
 }
 
 enum UserRole {
