@@ -43,9 +43,8 @@ class ProductsNotifier extends ChangeNotifier {
       Response response =
           await apiRepository.updateProduct(product.id, product.toJson());
       if (response.statusCode == 200) {
-        final index =
-            _products.indexWhere((element) => element.id == product.id);
-        _products[index] = product;
+        final index = products.indexWhere((p) => p.id == product.id);
+        products[index] = product;
         notifyListeners();
       }
     } catch (e) {

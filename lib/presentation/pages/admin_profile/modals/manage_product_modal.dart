@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
 import '../../../../core/global.dart';
@@ -33,7 +34,7 @@ class ManageProductModalState extends State<ManageProductModal>
   @override
   void initState() {
     super.initState();
-    _productNotifier = ProductsNotifier();
+    _productNotifier = context.read<ProductsNotifier>();
     if (widget.product != null) {
       _fillTextFields();
     }
@@ -80,10 +81,10 @@ class ManageProductModalState extends State<ManageProductModal>
     );
 
     await _productNotifier.editProduct(product);
-    showMessage(
-      context.localizations.editedSuccessfully,
-      Colors.green,
-    );
+    // showMessage(
+    //   context.localizations.editedSuccessfully,
+    //   Colors.green,
+    // );
     Navigator.pop(context);
   }
 
@@ -121,10 +122,10 @@ class ManageProductModalState extends State<ManageProductModal>
         );
 
         await _productNotifier.addProduct(product);
-        showMessage(
-          context.localizations.productAddedSuccessfully,
-          Colors.green,
-        );
+        // showMessage(
+        //   context.localizations.productAddedSuccessfully,
+        //   Colors.green,
+        // );
         Navigator.pop(context);
       }
     }

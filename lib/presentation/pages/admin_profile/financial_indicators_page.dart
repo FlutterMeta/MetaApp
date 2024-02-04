@@ -92,6 +92,7 @@ class _BotDemoCards extends StatelessWidget {
             child: Align(
               child: Consumer<ProductsNotifier>(
                 builder: (context, productsNotifier, child) {
+                  print("Length: ${productsNotifier.products.length}");
                   return ListView.separated(
                     shrinkWrap: true,
                     clipBehavior: Clip.none,
