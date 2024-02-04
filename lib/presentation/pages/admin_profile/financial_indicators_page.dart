@@ -127,11 +127,13 @@ class AddProduct extends StatelessWidget {
     showDialog(
       context: context,
       builder: (_) {
-        return SingleChildScrollView(
-          child: Dialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            child: const ManageProductModal(),
+        return Center(
+          child: SingleChildScrollView(
+            child: Dialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+              child: const ManageProductModal(),
+            ),
           ),
         );
       },
@@ -200,10 +202,12 @@ class AddLevelCard extends StatelessWidget {
     showDialog(
       context: context,
       builder: (_) {
-        return Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          child: const AddReferalLevelModal(),
+        return Center(
+          child: Dialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: const AddReferalLevelModal(),
+          ),
         );
       },
     );

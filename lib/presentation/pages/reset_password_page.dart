@@ -40,20 +40,22 @@ class _ResetPasswordPageState extends State<ResetPasswordPage>
   void _showDialog(bool response) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(
-          response
-              ? context.localizations.resetPasswordSuccess
-              : context.localizations.resetPasswordError,
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              context.router.pop();
-            },
-            child: Text(context.localizations.ok),
+      builder: (context) => Center(
+        child: AlertDialog(
+          title: Text(
+            response
+                ? context.localizations.resetPasswordSuccess
+                : context.localizations.resetPasswordError,
           ),
-        ],
+          actions: [
+            TextButton(
+              onPressed: () {
+                context.router.pop();
+              },
+              child: Text(context.localizations.ok),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -55,7 +55,7 @@ class _ResetAccessPageState extends State<ResetAccessPage>
         context.localizations.resetPasswordSuccess,
         Colors.green,
       );
-      await Future.delayed(const Duration(seconds: 3));
+      await Future.delayed(const Duration(seconds: 2));
       _goToLoginPage();
     }
   }

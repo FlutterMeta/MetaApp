@@ -125,15 +125,17 @@ class ChoosePaymentSystemModalState extends State<ChoosePaymentSystemModal>
                   Navigator.of(context).pop(selectedSystemId.value);
                   showDialog(
                     context: context,
-                    builder: (_) => SingleChildScrollView(
-                      child: Dialog(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: TransactionTab(
-                          product: widget.product,
-                          paymentSystem: PaymentSystemsStateHandler.instance
-                              .getSystemById(selectedSystemId.value ?? 0),
+                    builder: (_) => Center(
+                      child: SingleChildScrollView(
+                        child: Dialog(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: TransactionTab(
+                            product: widget.product,
+                            paymentSystem: PaymentSystemsStateHandler.instance
+                                .getSystemById(selectedSystemId.value ?? 0),
+                          ),
                         ),
                       ),
                     ),

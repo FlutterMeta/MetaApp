@@ -43,13 +43,15 @@ class _BotsTabState extends State<BotsTab> {
     showDialog(
       context: context,
       builder: (_) {
-        return Expanded(
-          child: SingleChildScrollView(
-            child: Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+        return Center(
+          child: Expanded(
+            child: SingleChildScrollView(
+              child: Dialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: ChoosePaymentSystemModal(product: product),
               ),
-              child: ChoosePaymentSystemModal(product: product),
             ),
           ),
         );

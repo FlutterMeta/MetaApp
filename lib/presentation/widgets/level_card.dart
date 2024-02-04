@@ -83,10 +83,12 @@ class _EditableLevelCardState extends State<EditableLevelCard> {
     showDialog(
       context: context,
       builder: (_) {
-        return Dialog(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          child: _EditLevelModal(level: widget.level),
+        return Center(
+          child: Dialog(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            child: _EditLevelModal(level: widget.level),
+          ),
         );
       },
     );

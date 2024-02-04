@@ -8,6 +8,7 @@ import 'dart:html' as html;
 
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
+import 'package:meta_app/presentation/widgets/message_chip.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
 import '../../../../core/utils/api_client.dart';
@@ -136,6 +137,7 @@ class _PaymentSuccessMessage extends StatelessWidget {
                       text: context.localizations.keyTip,
                       style: TextStyle(
                         color: context.color.okay,
+                        fontSize: 18,
                       ),
                     ),
                   ],
@@ -219,7 +221,7 @@ class _TransactionWindowState extends State<_TransactionWindow>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 10),
+              _ProductDetails(product: widget.product),
               const Divider(),
               const SizedBox(height: 20),
               _GeneralInfo(
@@ -236,6 +238,10 @@ class _TransactionWindowState extends State<_TransactionWindow>
                 price: widget.product.price.toString(),
                 requisites: widget.paymentSystem.key,
                 status: 'Pending',
+              ),
+              const SizedBox(height: 20),
+              MessageChip.info(
+                message: context.localizations.prePaidInfoMessage,
               ),
               const SizedBox(height: 20),
               Row(
@@ -264,6 +270,56 @@ class _TransactionWindowState extends State<_TransactionWindow>
           ),
         );
       },
+    );
+  }
+}
+
+class _ProductDetails extends StatelessWidget {
+  final Product product;
+  const _ProductDetails({
+    required this.product,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: context.color.profilePagePrimary.withOpacity(0.1),
+        ),
+        color: context.color.profilePagePrimary.withOpacity(0.1),
+      ),
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            product.title,
+            style: context.text.profilePageBody.copyWith(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            product.description,
+            style: context.text.profilePageBody.copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            "${product.subscriptionDuration} day(s)",
+            style: context.text.profilePageBody.copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -425,7 +481,7 @@ class _WarningWindow extends StatelessWidget {
             TextSpan(
               text: " ${localization.warning} ",
               style: context.text.warning
-                  .copyWith(fontWeight: FontWeight.w800, fontSize: 15),
+                  .copyWith(fontWeight: FontWeight.w800, fontSize: 18),
             ),
             TextSpan(
               text: localization.transactionWarningMessage,
@@ -525,7 +581,7 @@ class _DetailsTableRow extends StatelessWidget {
               value,
               style: context.text.profilePageBody.copyWith(
                 fontSize: 16,
-                fontWeight: index == 0 ? FontWeight.bold : null,
+                fontWeight: index == 0 || index == 3 ? FontWeight.bold : null,
               ),
               textAlign: Responsive.isMobile(context) ? TextAlign.center : null,
             ),

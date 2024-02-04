@@ -144,15 +144,17 @@ class _EditPostButton extends StatelessWidget {
     return showDialog(
       context: context,
       builder: (context) {
-        return SingleChildScrollView(
-          child: Dialog(
-            insetPadding: Responsive.isMobile(context)
-                ? const EdgeInsets.all(10)
-                : const EdgeInsets.all(100),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+        return Center(
+          child: SingleChildScrollView(
+            child: Dialog(
+              insetPadding: Responsive.isMobile(context)
+                  ? const EdgeInsets.all(10)
+                  : const EdgeInsets.all(100),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: _BlankPost(post: post),
             ),
-            child: _BlankPost(post: post),
           ),
         );
       },

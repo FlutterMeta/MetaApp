@@ -78,11 +78,13 @@ class _EditableBotDemoCardState extends State<EditableBotDemoCard> {
     showDialog(
       context: context,
       builder: (_) {
-        return SingleChildScrollView(
-          child: Dialog(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-            child: ManageProductModal(product: product),
+        return Center(
+          child: SingleChildScrollView(
+            child: Dialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
+              child: ManageProductModal(product: product),
+            ),
           ),
         );
       },

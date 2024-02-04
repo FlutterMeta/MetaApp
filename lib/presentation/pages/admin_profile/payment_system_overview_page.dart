@@ -22,7 +22,7 @@ class _PaymentSystemOverviewPageState extends State<PaymentSystemOverviewPage> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return PaymentSystemModal(paymentSystem: paymentSystem);
+        return Center(child: PaymentSystemModal(paymentSystem: paymentSystem));
       },
     );
   }
@@ -96,7 +96,7 @@ class _AddSystemCardState extends State<AddSystemCard> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return PaymentSystemModal(paymentSystem: paymentSystem);
+        return Center(child: PaymentSystemModal(paymentSystem: paymentSystem));
       },
     );
   }
