@@ -523,7 +523,7 @@ class ApiRepositoryImpl implements ApiRepository {
   Future<Response> declineTransaction(int id) async {
     late Response response;
     try {
-      response = await apiClient.put('/Transaction/Decline/$id', body: {});
+      response = await apiClient.patch('/Transaction/decline/$id', body: {});
       if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('API Error: ${response.statusCode}');
       }
@@ -538,7 +538,7 @@ class ApiRepositoryImpl implements ApiRepository {
   Future<Response> approveTransaction(int id) async {
     late Response response;
     try {
-      response = await apiClient.put('/Transaction/Approve/$id', body: {});
+      response = await apiClient.patch('/Transaction/approve/$id', body: {});
       if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('API Error: ${response.statusCode}');
       }

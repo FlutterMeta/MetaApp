@@ -26,13 +26,35 @@ class Transaction {
     required this.paymentSystemTitle,
   });
 
+  Transaction copyWith({
+    int? id,
+    String? date,
+    String? status,
+    String? type,
+    double? amount,
+    String? walletKey,
+    User? user,
+    String? paymentSystemTitle,
+  }) {
+    return Transaction(
+      id: id ?? this.id,
+      date: date ?? this.date,
+      status: status ?? this.status,
+      type: type ?? this.type,
+      amount: amount ?? this.amount,
+      walletKey: walletKey ?? this.walletKey,
+      user: user ?? this.user,
+      paymentSystemTitle: paymentSystemTitle ?? this.paymentSystemTitle,
+    );
+  }
+
   factory Transaction.fromJson(Map<String, dynamic> json) =>
       _$TransactionFromJson(json);
   Map<String, dynamic> toJson() => _$TransactionToJson(this);
 }
 
 enum TransactionStatus {
-  completed,
+  approved,
+  declined,
   pending,
-  canceled;
 }

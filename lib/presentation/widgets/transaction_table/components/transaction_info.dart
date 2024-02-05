@@ -77,11 +77,11 @@ class _StatusChip extends StatelessWidget {
 
   Color get _chipColor {
     switch (status) {
-      case TransactionStatus.completed:
+      case TransactionStatus.approved:
         return Colors.green;
       case TransactionStatus.pending:
         return Colors.orange;
-      case TransactionStatus.canceled:
+      case TransactionStatus.declined:
         return Colors.red;
       default:
         return Colors.green;

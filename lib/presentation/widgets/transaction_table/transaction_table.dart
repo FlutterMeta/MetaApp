@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:intl/intl.dart';
 import 'package:meta_app/core/global.dart';
+import 'package:meta_app/core/mixins/message_overlay.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
 import '../../../data/models/transaction.dart';
+import '../../pages/admin_profile/transactions_state_handler.dart';
 import '../admin_window.dart';
+import '../admin_window_decline.dart';
 part 'components/transaction_info.dart';
 part 'components/system_transaction_info.dart';
 part 'components/user_transaction_info.dart';

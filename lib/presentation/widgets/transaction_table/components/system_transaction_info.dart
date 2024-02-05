@@ -12,7 +12,8 @@ class _SystemTransactionInfo extends StatefulWidget {
   State<_SystemTransactionInfo> createState() => _SystemTransactionInfoState();
 }
 
-class _SystemTransactionInfoState extends State<_SystemTransactionInfo> {
+class _SystemTransactionInfoState extends State<_SystemTransactionInfo>
+    with MessageOverlay {
   bool isPopupVisible = false;
 
   TransactionStatus parse(String value) {
@@ -23,8 +24,37 @@ class _SystemTransactionInfoState extends State<_SystemTransactionInfo> {
   }
 
   void _handleTap() {
-    if (widget.transaction.status == TransactionStatus.pending.name) {
+    if (widget.transaction.status.toLowerCase() ==
+        TransactionStatus.pending.name.toLowerCase()) {
       setState(() => isPopupVisible = !isPopupVisible);
+    }
+  }
+
+  void _handleConfirm() async {
+    var response =
+        await apiRepository.approveTransaction(widget.transaction.id);
+    if (response.statusCode == 200) {
+      setState(() => isPopupVisible = false);
+      showMessage(context.localizations.transactionApproved, Colors.green);
+      TransactionsStateHandler.instance
+          .edittransaction(widget.transaction.copyWith(
+        status: TransactionStatus.approved.name,
+      ));
+      TransactionsStateHandler.controller.value++;
+    }
+  }
+
+  void _handleDecline() async {
+    var response =
+        await apiRepository.declineTransaction(widget.transaction.id);
+    if (response.statusCode == 200) {
+      setState(() => isPopupVisible = false);
+      showMessage(context.localizations.transactionDeclined, Colors.red);
+      TransactionsStateHandler.instance
+          .edittransaction(widget.transaction.copyWith(
+        status: TransactionStatus.declined.name,
+      ));
+      TransactionsStateHandler.controller.value++;
     }
   }
 
@@ -41,11 +71,16 @@ class _SystemTransactionInfoState extends State<_SystemTransactionInfo> {
             target: Alignment.topLeft,
           ),
           portalFollower: _PopupDialog(
-            onConfirm: () {},
+            onConfirm: _handleConfirm,
+            onDecline: _handleDecline,
             transaction: widget.transaction,
             onCancel: () => setState(() => isPopupVisible = false),
           ),
-          child: _StatusChip(status: parse(widget.transaction.status)),
+          child: _StatusChip(
+            status: parse(
+              widget.transaction.status.toLowerCase(),
+            ),
+          ),
         ),
       ),
       leading: _EmailLeading(email: widget.transaction.user.email),
@@ -56,11 +91,13 @@ class _SystemTransactionInfoState extends State<_SystemTransactionInfo> {
 class _PopupDialog extends StatelessWidget {
   final VoidCallback onConfirm;
   final VoidCallback onCancel;
+  final VoidCallback onDecline;
   final Transaction transaction;
 
   const _PopupDialog({
     required this.onConfirm,
     required this.onCancel,
+    required this.onDecline,
     required this.transaction,
     Key? key,
   }) : super(key: key);
@@ -70,8 +107,8 @@ class _PopupDialog extends StatelessWidget {
     return ConstrainedBox(
       constraints:
           BoxConstraints(maxWidth: Responsive.isMobile(context) ? 340 : 400),
-      child: AdminWindow(
-        title: context.localizations.requestAwaitingPayment,
+      child: AdminWindowDecline(
+        title: context.localizations.pendingPayment,
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -89,9 +126,10 @@ class _PopupDialog extends StatelessWidget {
             ),
           ],
         ),
-        confirmText: context.localizations.confirmRequest,
+        confirmText: context.localizations.confirmPayment,
         onConfirm: onConfirm,
         onCancel: onCancel,
+        onDecline: onDecline,
       ),
     );
   }
