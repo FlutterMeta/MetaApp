@@ -53,7 +53,7 @@ class AdminWindowDecline extends StatelessWidget {
           const SizedBox(height: 16),
           content,
           const SizedBox(height: 16),
-          MessageChip.info(message: context.localizations.checkRequisites),
+          MessageChip.warning(message: context.localizations.checkRequisites),
           const SizedBox(height: 16),
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -66,7 +66,7 @@ class AdminWindowDecline extends StatelessWidget {
               ),
               const SizedBox(width: 20),
               ColoredButton(
-                title: context.localizations.declineRequest,
+                title: context.localizations.decline,
                 onTap: onDecline,
                 color: context.color.profilePageError,
               ),
