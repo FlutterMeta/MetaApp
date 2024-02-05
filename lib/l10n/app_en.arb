@@ -395,6 +395,8 @@
     "balanceChangedSuccessfully": "Balance changed successfully",
     "requiredReferals": "Required referals",
     "youreBuying": "You're buying",
+    "yourRequestToWithdraw": "Your request to withdraw was sent successfully",
+    "yourRequestToWithdrawError": "Your request to withdraw was sent with an error",
     "subscriptionTierInfo": "The  bigger the tier, the more features user gets (more strategies)",
     "prePaidInfoMessage": "Please ensure that you have transferred the exact amount of USD to the wallet address provided in the requisites field. Afterward, click the 'Paid' button.",
     "paymentSystemSuccessfullyDisabled": "Payment system successfully disabled"

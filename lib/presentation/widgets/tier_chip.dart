@@ -12,15 +12,15 @@ class TierChip extends StatelessWidget {
   Color _getColorForTier(int tier) {
     switch (tier) {
       case 1:
-        return Color.fromARGB(255, 218, 196, 0);
+        return const Color.fromARGB(255, 218, 196, 0);
       case 2:
         return Colors.orange;
-      case 3:
+      case 3: // Currently only 3 tiers are supported
         return Colors.red;
       case 4:
-        return Colors.purple;
-      case 5:
         return Colors.blue;
+      case 5:
+        return Colors.purple;
       default:
         return Colors.grey;
     }

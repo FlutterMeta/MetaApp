@@ -388,18 +388,18 @@ class _WalletCardState extends State<_WalletCard> with MessageOverlay {
 
   void _requestWithdrawHandle() async {
     WithdrawalTransaction transaction = WithdrawalTransaction(
-      sum: 1000,
+      sum: double.parse(_amountController.text),
       walletKey: _walletController.text,
       network: _selectedNetwork,
     );
     var response = await apiRepository.createTransaction(transaction.toJson());
     if (response.statusCode == 200) {
-      showMessage(context.localizations.transactionApproved, Colors.green);
+      showMessage(context.localizations.yourRequestToWithdraw, Colors.green);
 
       TransactionsStateHandler.controller.value++;
     } else if (_walletController.text.isEmpty) {
       showMessage(
-        "${context.localizations.transactionDeclined}: ${response.data["errors"]["WalletKey"][0]}",
+        "${context.localizations.yourRequestToWithdrawError}: ${response.data["errors"]["WalletKey"][0]}",
         Colors.red,
       );
       return;
