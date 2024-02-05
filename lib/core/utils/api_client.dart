@@ -21,7 +21,7 @@ class ApiClient {
       onRequest: (RequestOptions options, handler) {
         // Log the request
         debugPrint('Sending request: ${options.method} ${options.path}');
-        debugPrint('Request headers: ${options.headers}');
+        //debugPrint('Request headers: ${options.headers}');
         debugPrint('Request body: ${options.data}');
         return handler.next(options); //continue
       },

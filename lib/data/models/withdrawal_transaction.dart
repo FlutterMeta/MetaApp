@@ -6,9 +6,11 @@ part 'withdrawal_transaction.g.dart';
 class WithdrawalTransaction {
   final double sum;
   final String walletKey;
+  final String network;
 
   WithdrawalTransaction({
     required this.sum,
+    required this.network,
     required this.walletKey,
   });
 

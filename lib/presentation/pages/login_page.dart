@@ -50,11 +50,6 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
     StoreProvider.of<AppState>(context, null).dispatch(LoginUserAction(user));
   }
 
-  void _loadTransactions(BuildContext context, User user) {
-    StoreProvider.of<AppState>(context, null)
-        .dispatch(LoadTransactionsAction(user.id));
-  }
-
   Future<Response> login() async {
     late Response response;
     try {
@@ -90,7 +85,6 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
         TextInput.finishAutofillContext();
         _loginAction(context, user);
         _goToProfilePage(context);
-        _loadTransactions(context, user);
       }
     } else {
       showMessage(

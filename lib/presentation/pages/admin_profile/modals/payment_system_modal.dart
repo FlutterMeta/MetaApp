@@ -220,12 +220,10 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton2(
                     value: _selectedCryptoIcon,
-                    hint: const Text(
-                      'Select Crypto Icon',
-                      style: TextStyle(
-                        fontSize: 16, // Adjust the font size as needed
-                        color: Colors.black, // Adjust the text color as needed
-                      ),
+                    hint: Text(
+                      context.localizations.selectCryptoIcon,
+                      style: context.text.profileBotsDefault
+                          .copyWith(fontSize: 16),
                     ),
                     items: _cryptoIcons.entries
                         .map(
@@ -237,10 +235,8 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
                                 const SizedBox(width: 8),
                                 Text(
                                   entry.key,
-                                  style: const TextStyle(
-                                    fontSize:
-                                        16, // Adjust the font size as needed
-                                  ),
+                                  style: context.text.profileBotsDefault
+                                      .copyWith(fontSize: 16),
                                 ),
                               ],
                             ),

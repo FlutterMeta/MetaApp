@@ -10,6 +10,7 @@ WithdrawalTransaction _$WithdrawalTransactionFromJson(
         Map<String, dynamic> json) =>
     WithdrawalTransaction(
       sum: (json['sum'] as num).toDouble(),
+      network: json['network'] as String,
       walletKey: json['walletKey'] as String,
     );
 
@@ -18,4 +19,5 @@ Map<String, dynamic> _$WithdrawalTransactionToJson(
     <String, dynamic>{
       'sum': instance.sum,
       'walletKey': instance.walletKey,
+      'network': instance.network,
     };

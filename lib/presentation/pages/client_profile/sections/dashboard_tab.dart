@@ -1,8 +1,13 @@
+import 'dart:math';
+
 import 'package:async_redux/async_redux.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:meta_app/core/mixins/message_overlay.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/data/models/withdrawal_transaction.dart';
 import 'package:meta_app/presentation/pages/client_profile/menu_controller.dart';
 import 'package:meta_app/presentation/providers/users_notifier.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
@@ -14,13 +19,33 @@ import 'package:meta_app/presentation/widgets/transaction_table/transaction_tabl
 import 'package:provider/provider.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 
+import '../../../../core/global.dart';
 import '../../../../data/models/transaction.dart';
 import '../../../../data/models/user.dart';
 import '../../../redux/app_state.dart';
+import '../../../redux/authorization/actions/fetch_user_data_action.dart';
 import '../../admin_profile/referal_level_state_handler.dart';
+import '../../admin_profile/transactions_state_handler.dart';
 
-class DashboardTab extends StatelessWidget {
+class DashboardTab extends StatefulWidget {
   const DashboardTab({super.key});
+
+  @override
+  State<DashboardTab> createState() => _DashboardTabState();
+}
+
+class _DashboardTabState extends State<DashboardTab> {
+  void _fetchUserData(BuildContext context) {
+    StoreProvider.of<AppState>(context, null).dispatch(FetchUserDataAction());
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () {
+      _fetchUserData(context);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -356,7 +381,37 @@ class _WalletCard extends StatefulWidget {
   State<_WalletCard> createState() => _WalletCardState();
 }
 
-class _WalletCardState extends State<_WalletCard> {
+class _WalletCardState extends State<_WalletCard> with MessageOverlay {
+  final TextEditingController _walletController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
+  final String _selectedNetwork = "TRON (TRC20)";
+
+  void _requestWithdrawHandle() async {
+    WithdrawalTransaction transaction = WithdrawalTransaction(
+      sum: 1000,
+      walletKey: _walletController.text,
+      network: _selectedNetwork,
+    );
+    var response = await apiRepository.createTransaction(transaction.toJson());
+    if (response.statusCode == 200) {
+      showMessage(context.localizations.transactionApproved, Colors.green);
+
+      TransactionsStateHandler.controller.value++;
+    } else if (_walletController.text.isEmpty) {
+      showMessage(
+        "${context.localizations.transactionDeclined}: ${response.data["errors"]["WalletKey"][0]}",
+        Colors.red,
+      );
+      return;
+    } else {
+      showMessage(
+        "${response.data}",
+        Colors.red,
+      );
+      return;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final labelTextStyle = context.text.profilePageInverseBody.copyWith(
@@ -390,7 +445,7 @@ class _WalletCardState extends State<_WalletCard> {
             const SizedBox(height: 6),
             _FilledTextField(
               hintText: "0x...",
-              controller: TextEditingController(),
+              controller: _walletController,
             ),
             const SizedBox(height: 32),
             Text(
@@ -398,10 +453,7 @@ class _WalletCardState extends State<_WalletCard> {
               style: labelTextStyle,
             ),
             const SizedBox(height: 6),
-            _FilledTextField(
-              hintText: "USDT(TRC20)",
-              controller: TextEditingController(),
-            ),
+            _ChooseNetworkDropdown(selectedNetwork: _selectedNetwork),
             const SizedBox(height: 32),
             Text(
               context.localizations.chooseAmount,
@@ -410,12 +462,75 @@ class _WalletCardState extends State<_WalletCard> {
             const SizedBox(height: 6),
             _FilledTextField(
               hintText: "1000 \$",
-              controller: TextEditingController(),
+              controller: _amountController,
             ),
             const SizedBox(height: 62),
-            _RequestWithdrawButton(onTap: () {}),
+            _RequestWithdrawButton(onTap: _requestWithdrawHandle),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _ChooseNetworkDropdown extends StatefulWidget {
+  final String selectedNetwork;
+  const _ChooseNetworkDropdown({required this.selectedNetwork, Key? key})
+      : super(key: key);
+
+  @override
+  State<_ChooseNetworkDropdown> createState() => _ChooseNetworkDropdownState();
+}
+
+class _ChooseNetworkDropdownState extends State<_ChooseNetworkDropdown> {
+  late String selectedNetwork;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedNetwork = widget.selectedNetwork;
+  }
+
+  final List<String> _supportedNetworks = [
+    "BNB Smart Chain (BEP20)",
+    "Ethereum (ERC20)",
+    "Polygon  (MATIC, ERC20)",
+    "TRON (TRC20)",
+    "Avalanche (AVAX, ERC20)",
+    "Arbitrum (ARB, ERC20)",
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+        color: context.color.profilePageBackground,
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: DropdownButton2<String>(
+        value: selectedNetwork,
+        buttonWidth: double.infinity,
+        underline: const SizedBox(),
+        style: context.text.profilePageBody.copyWith(fontSize: 16),
+        items: _supportedNetworks.map((String network) {
+          return DropdownMenuItem<String>(
+            value: network,
+            child: Text(network),
+          );
+        }).toList(),
+        onChanged: (String? newValue) {
+          setState(() {
+            selectedNetwork = newValue ?? selectedNetwork;
+          });
+        },
+        dropdownMaxHeight: 200,
+        dropdownWidth: 300,
+        dropdownDecoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          color: context.color.profilePageBackground,
+        ),
+        buttonHeight: 50,
+        itemHeight: 40,
       ),
     );
   }

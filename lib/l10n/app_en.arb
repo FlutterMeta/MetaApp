@@ -223,6 +223,7 @@
     "chooseAmount": "Choose an amount to withdraw",
     "requestWithdraw": "Request a withdrawal",
     "level": "Level",
+    "selectCryptoIcon": "Select Crypto Icon",
     "reward": "Reward",
     "historyOfTransactions": "History of transactions and operations on the account",
     "timeOfPayments": "The time of payment transactions is specified in Greenwich Mean Time",

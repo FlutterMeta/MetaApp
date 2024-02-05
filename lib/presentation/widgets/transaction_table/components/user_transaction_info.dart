@@ -10,7 +10,7 @@ class _UserTransactionInfo extends StatelessWidget {
 
   TransactionStatus parse(String value) {
     return TransactionStatus.values.firstWhere(
-      (element) => element.name == value,
+      (element) => element.name.toLowerCase() == value.toLowerCase(),
       orElse: () => TransactionStatus.pending,
     );
   }

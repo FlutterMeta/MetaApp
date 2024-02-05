@@ -103,6 +103,7 @@ class _StatusChip extends StatelessWidget {
           status.name,
           style: context.text.profilePageBody.copyWith(
             fontSize: 12,
+            fontWeight: FontWeight.bold,
             color: _chipColor,
           ),
         ),

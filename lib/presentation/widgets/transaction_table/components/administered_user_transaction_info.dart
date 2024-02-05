@@ -19,7 +19,7 @@ class _AdministeredUserTransactionInfoState
 
   TransactionStatus parse(String value) {
     return TransactionStatus.values.firstWhere(
-      (element) => element.name == value,
+      (element) => element.name.toLowerCase() == value.toLowerCase(),
       orElse: () => TransactionStatus.pending,
     );
   }
