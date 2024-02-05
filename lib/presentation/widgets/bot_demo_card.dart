@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/simple_outlined_button.dart';
+import 'package:meta_app/presentation/widgets/tier_chip.dart';
 import '../../data/models/product.dart';
 import '../pages/admin_profile/modals/manage_product_modal.dart';
 import 'editing_field.dart';
@@ -42,11 +43,14 @@ class _BotDemoCardState extends State<BotDemoCard> {
             price: widget.product.price,
             controller: _priceController,
           ),
+          const SizedBox(height: 10),
+          TierChip(tier: widget.product.subscriptionTier.value),
           const SizedBox(height: 20),
           _BenefitSection(
             description: widget.product.description,
             duration: widget.product.subscriptionDuration,
           ),
+          const SizedBox(height: 20),
           const Spacer(),
           SimpleOutlinedButton(
             onTap: widget.onTap,
@@ -136,6 +140,7 @@ class CardWrapper extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: context.color.profilePageBackground,
+        border: Border.all(color: context.color.postShadow, width: 1),
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(

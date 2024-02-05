@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/widgets/message_chip.dart';
 
 import '../../../../core/global.dart';
 import '../../../../core/mixins/message_overlay.dart';
@@ -31,6 +33,8 @@ class ManageProductModalState extends State<ManageProductModal>
   final _subscriptionTierController = TextEditingController();
 
   late ProductsNotifier _productNotifier;
+  final List<int> _subscriptionTierValues = [1, 2, 3];
+  int? _selectedSubscriptionTier;
 
   @override
   void initState() {
@@ -59,9 +63,40 @@ class ManageProductModalState extends State<ManageProductModal>
       _subscriptionDurationController.text =
           widget.product?.subscriptionDuration.toString() ?? "";
 
-      _subscriptionTierController.text =
-          widget.product?.subscriptionTier.value.toString() ?? "";
+      _selectedSubscriptionTier =
+          int.tryParse(widget.product?.subscriptionTier.value.toString() ?? "");
     }
+  }
+
+  Widget _buildSubscriptionTierDropdown() {
+    return DropdownButton2<int>(
+      value: _selectedSubscriptionTier,
+      items: _subscriptionTierValues.map((int value) {
+        return DropdownMenuItem<int>(
+          value: value,
+          child: Text(value == 1
+              ? "Tier ${value} (The Most Basic)"
+              : value == _subscriptionTierValues.length
+                  ? "Tier ${value} (The Most Advanced)"
+                  : "Tier $value"),
+        );
+      }).toList(),
+      onChanged: (int? newValue) {
+        setState(() {
+          _selectedSubscriptionTier = newValue;
+        });
+      },
+      dropdownMaxHeight: 200,
+      dropdownWidth: 300,
+      dropdownDecoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(4),
+        color: context.color.profilePageBackground,
+      ),
+      buttonHeight: 50,
+      itemHeight: 40,
+      underline: const SizedBox(),
+      hint: Text(context.localizations.subscriptionTier),
+    );
   }
 
   void _handleProductUpdate(
@@ -119,13 +154,11 @@ class ManageProductModalState extends State<ManageProductModal>
     final description = _descriptionController.text;
     final price = _priceController.text;
     final subscriptionDuration = _subscriptionDurationController.text;
-    final subscriptionTier = _subscriptionTierController.text;
 
     if (title.isNotEmpty &&
         description.isNotEmpty &&
         price.isNotEmpty &&
-        subscriptionDuration.isNotEmpty &&
-        subscriptionTier.isNotEmpty) {
+        subscriptionDuration.isNotEmpty) {
       if (widget.product != null) {
         // Updating product cause one was passed to the modal
         _handleProductUpdate(
@@ -133,7 +166,7 @@ class ManageProductModalState extends State<ManageProductModal>
           description,
           price,
           subscriptionDuration,
-          subscriptionTier,
+          _selectedSubscriptionTier.toString(),
         );
       } else {
         // Creating new product
@@ -143,10 +176,10 @@ class ManageProductModalState extends State<ManageProductModal>
           description: description,
           price: double.parse(price),
           subscriptionDuration: int.parse(subscriptionDuration),
-          subscriptionTier: SubscriptionTier.values
-              .firstWhere((e) => e.value.toString() == subscriptionTier),
+          subscriptionTier: SubscriptionTier.values.firstWhere((e) =>
+              e.value.toString() == _selectedSubscriptionTier.toString()),
         );
-
+        print("We are adding a product: $product");
         Result result = await _productNotifier.addProduct(product);
 
         if (result.success) {
@@ -285,19 +318,9 @@ class ManageProductModalState extends State<ManageProductModal>
             ),
           ),
           const SizedBox(height: 10),
-          TextField(
-            controller: _subscriptionTierController,
-            decoration: InputDecoration(
-              hintText: context.localizations.subscriptionTier,
-              hintStyle: context.text.profileBotsDefault.copyWith(fontSize: 12),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide.none,
-              ),
-              filled: true,
-              fillColor: context.color.profilePagePrimary.withOpacity(0.1),
-            ),
-          ),
+          MessageChip.info(message: context.localizations.subscriptionTierInfo),
+          const SizedBox(height: 10),
+          _buildSubscriptionTierDropdown(),
           const SizedBox(height: 30),
           Align(
             alignment: Alignment.centerRight,
