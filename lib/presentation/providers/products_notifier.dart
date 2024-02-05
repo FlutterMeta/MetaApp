@@ -21,6 +21,9 @@ class ProductsNotifier extends ChangeNotifier {
               Product.fromJson(productData as Map<String, dynamic>);
           _products.add(product);
         }
+        // Sort products by tier (assuming subscriptionTier is an int)
+        _products.sort((a, b) =>
+            a.subscriptionTier.value.compareTo(b.subscriptionTier.value));
         notifyListeners();
         return Result.success();
       } else {

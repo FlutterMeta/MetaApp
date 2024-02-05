@@ -179,7 +179,7 @@ class ManageProductModalState extends State<ManageProductModal>
           subscriptionTier: SubscriptionTier.values.firstWhere((e) =>
               e.value.toString() == _selectedSubscriptionTier.toString()),
         );
-        print("We are adding a product: $product");
+
         Result result = await _productNotifier.addProduct(product);
 
         if (result.success) {
