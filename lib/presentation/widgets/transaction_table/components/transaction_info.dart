@@ -28,7 +28,7 @@ class _TransactionInfo extends StatelessWidget {
       spacing: 10,
       runSpacing: 10,
       children: [
-        leading,
+        SizedBox(width: 300, child: leading),
         SizedBox(
           width: 200,
           child: Column(

@@ -100,17 +100,18 @@ class _TransactionTable extends StatelessWidget {
             itemBuilder: (_, index) {
               final transaction = transactions[index];
 
-              if (isAcceptable) {
-                if (isPaymentLeading) {
-                  return _AdministeredUserTransactionInfo(
-                    transaction: transaction,
-                  );
-                } else {
-                  return _SystemTransactionInfo(transaction: transaction);
-                }
-              } else {
+              if (!isAcceptable) {
                 return _UserTransactionInfo(transaction: transaction);
               }
+              if (isAcceptable && isPaymentLeading) {
+                return _AdministeredUserTransactionInfo(
+                  transaction: transaction,
+                );
+              }
+              if (isAcceptable && !isPaymentLeading) {
+                return _SystemTransactionInfo(transaction: transaction);
+              }
+              return const SizedBox();
             },
             separatorBuilder: (_, __) => const SizedBox(height: 20),
           ),

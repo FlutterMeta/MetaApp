@@ -26,7 +26,23 @@ class _SystemTransactionInfoState extends State<_SystemTransactionInfo>
   void _handleTap() {
     if (widget.transaction.status.toLowerCase() ==
         TransactionStatus.pending.name.toLowerCase()) {
-      setState(() => isPopupVisible = !isPopupVisible);
+      if (context.screenWidth >= 540) {
+        setState(() => isPopupVisible = !isPopupVisible);
+      } else {
+        showDialog(
+          context: context,
+          builder: (context) => Center(
+            child: Dialog(
+              child: _PopupDialog(
+                onConfirm: _handleConfirm,
+                onDecline: _handleDecline,
+                transaction: widget.transaction,
+                onCancel: () => Navigator.pop(context),
+              ),
+            ),
+          ),
+        );
+      }
     }
   }
 
@@ -66,9 +82,13 @@ class _SystemTransactionInfoState extends State<_SystemTransactionInfo>
         onTap: _handleTap,
         child: PortalTarget(
           visible: isPopupVisible,
-          anchor: const Aligned(
-            follower: Alignment.topRight,
-            target: Alignment.topLeft,
+          anchor: Aligned(
+            follower: context.screenWidth < 850 && context.screenWidth >= 750
+                ? Alignment.topLeft
+                : Alignment.topRight,
+            target: context.screenWidth < 850 && context.screenWidth >= 750
+                ? Alignment.topLeft
+                : Alignment.topRight,
           ),
           portalFollower: _PopupDialog(
             onConfirm: _handleConfirm,

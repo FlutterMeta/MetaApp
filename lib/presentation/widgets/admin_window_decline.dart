@@ -55,23 +55,41 @@ class AdminWindowDecline extends StatelessWidget {
           const SizedBox(height: 16),
           MessageChip.warning(message: context.localizations.checkRequisites),
           const SizedBox(height: 16),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ColoredButton(
-                title: confirmText,
-                onTap: onConfirm,
-                color: context.color.profilePageSecondaryVariant,
-              ),
-              const SizedBox(width: 20),
-              ColoredButton(
-                title: context.localizations.decline,
-                onTap: onDecline,
-                color: context.color.profilePageError,
-              ),
-            ],
-          ),
+          if (context.screenWidth >= 540)
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ColoredButton(
+                  title: confirmText,
+                  onTap: onConfirm,
+                  color: context.color.profilePageSecondaryVariant,
+                ),
+                const SizedBox(width: 20),
+                ColoredButton(
+                  title: context.localizations.decline,
+                  onTap: onDecline,
+                  color: context.color.profilePageError,
+                ),
+              ],
+            ),
+          if (context.screenWidth < 540)
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ColoredButton(
+                  title: confirmText,
+                  onTap: onConfirm,
+                  color: context.color.profilePageSecondaryVariant,
+                ),
+                const SizedBox(height: 20),
+                ColoredButton(
+                  title: context.localizations.decline,
+                  onTap: onDecline,
+                  color: context.color.profilePageError,
+                ),
+              ],
+            ),
         ],
       ),
     );
