@@ -127,7 +127,6 @@ class _EditablePostFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("post title: ${post?.title}");
     if (post != null) {
       titleController.text = post?.title ?? "";
       bodyController.text = post?.content ?? "";

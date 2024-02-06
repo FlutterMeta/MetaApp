@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:async_redux/async_redux.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +7,6 @@ import 'package:meta_app/core/mixins/message_overlay.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/models/withdrawal_transaction.dart';
 import 'package:meta_app/presentation/pages/client_profile/menu_controller.dart';
-import 'package:meta_app/presentation/providers/users_notifier.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/level_card.dart';
@@ -20,11 +17,10 @@ import 'package:provider/provider.dart';
 import 'package:useful_extensions/useful_extensions.dart';
 
 import '../../../../core/global.dart';
-import '../../../../data/models/transaction.dart';
 import '../../../../data/models/user.dart';
+import '../../../providers/levels_notifier.dart';
 import '../../../redux/app_state.dart';
 import '../../../redux/authorization/actions/fetch_user_data_action.dart';
-import '../../admin_profile/referal_level_state_handler.dart';
 import '../../admin_profile/transactions_state_handler.dart';
 
 class DashboardTab extends StatefulWidget {
@@ -132,27 +128,16 @@ class _AdaptiveMainContent extends StatelessWidget {
   }
 }
 
-class _LevelCards extends StatefulWidget {
+class _LevelCards extends StatelessWidget {
   const _LevelCards({Key? key}) : super(key: key);
 
   @override
-  State<_LevelCards> createState() => _LevelCardsState();
-}
-
-class _LevelCardsState extends State<_LevelCards> {
-  @override
-  void initState() {
-    super.initState();
-    ReferalLevelStateHandler.instance.init();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: ReferalLevelStateHandler.controller,
-      builder: (_, __, ___) {
+    return Consumer<LevelsNotifier>(
+      builder: (context, levelsNotifier, _) {
         return Wrap(spacing: 20, runSpacing: 16, children: [
-          ...ReferalLevelStateHandler.instance.levels
+          ...levelsNotifier.levels
               .map((level) => LevelCard(level: level))
               .toList(),
         ]);

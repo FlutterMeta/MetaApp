@@ -5,7 +5,7 @@ import 'dart:html' as html;
 
 import '../../core/utils/api_client.dart';
 import '../../domain/repositories/api_repository.dart';
-import '../models/role_list.dart';
+
 import '../models/user.dart';
 
 class ApiRepositoryImpl implements ApiRepository {
@@ -253,6 +253,7 @@ class ApiRepositoryImpl implements ApiRepository {
     late Response response;
     try {
       response = await apiClient.post('/ReferalLevel', body: body);
+
       if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('API Error: ${response.statusCode}');
       }

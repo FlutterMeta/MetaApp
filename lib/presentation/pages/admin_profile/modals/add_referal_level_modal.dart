@@ -1,11 +1,11 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:provider/provider.dart';
 
-import '../../../../core/global.dart';
 import '../../../../core/mixins/message_overlay.dart';
 import '../../../../data/models/referal_level.dart';
-import '../referal_level_state_handler.dart';
+import '../../../../data/models/result.dart';
+import '../../../providers/levels_notifier.dart';
 
 class AddReferalLevelModal extends StatefulWidget {
   const AddReferalLevelModal({Key? key}) : super(key: key);
@@ -19,6 +19,14 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
   final _rewardController = TextEditingController();
   final _requiredReferalsCountController = TextEditingController();
   final levelController = TextEditingController();
+  late final LevelsNotifier levelsNotifier;
+
+  @override
+  void initState() {
+    super.initState();
+    levelsNotifier = context.read<LevelsNotifier>();
+  }
+
   @override
   void dispose() {
     _rewardController.dispose();
@@ -31,23 +39,28 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
     final reward = _rewardController.text;
     final requiredReferalsCount = _requiredReferalsCountController.text;
 
-    if (reward.isNotEmpty && requiredReferalsCount.isNotEmpty) {
+    if (reward.isNotEmpty &&
+        requiredReferalsCount.isNotEmpty &&
+        lev.isNotEmpty) {
       final level = ReferalLevel(
-        id: 0,
+        id: -1,
         level: int.parse(lev),
         reward: double.parse(reward),
         requiredReferralsCount: int.parse(requiredReferalsCount),
       );
 
-      Response response =
-          await apiRepository.createReferalLevel(level.toJson());
-      if (response.statusCode == 200) {
-        ReferalLevelStateHandler.instance.init();
-        ReferalLevelStateHandler.controller.value++;
+      Result result = await levelsNotifier.addLevel(level);
+
+      if (result.success) {
+        showMessage(
+          context.localizations.productAddedSuccessfully,
+          Colors.green,
+        );
+
         Navigator.pop(context);
       } else {
         showMessage(
-          "${context.localizations.error}: ${response.data} ",
+          "${context.localizations.error}: ${result.message}",
           Colors.red,
         );
       }

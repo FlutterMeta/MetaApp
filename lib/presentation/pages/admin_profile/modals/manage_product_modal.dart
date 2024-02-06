@@ -1,11 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/message_chip.dart';
 
-import '../../../../core/global.dart';
 import '../../../../core/mixins/message_overlay.dart';
 import '../../../../data/models/product.dart';
 import '../../../../data/models/result.dart';
@@ -75,9 +73,9 @@ class ManageProductModalState extends State<ManageProductModal>
         return DropdownMenuItem<int>(
           value: value,
           child: Text(value == 1
-              ? "Tier ${value} (The Most Basic)"
+              ? "Tier $value (The Most Basic)"
               : value == _subscriptionTierValues.length
-                  ? "Tier ${value} (The Most Advanced)"
+                  ? "Tier $value (The Most Advanced)"
                   : "Tier $value"),
         );
       }).toList(),

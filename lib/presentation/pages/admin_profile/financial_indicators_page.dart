@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
-import 'package:meta_app/presentation/pages/admin_profile/referal_level_state_handler.dart';
 import 'package:meta_app/presentation/widgets/bot_demo_card.dart';
 import 'package:meta_app/presentation/widgets/level_card.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import 'package:provider/provider.dart';
 
+import '../../providers/levels_notifier.dart';
 import '../../providers/products_notifier.dart';
 import '../../widgets/profile_header/profile_header.dart';
 import '../../widgets/responsive.dart';
@@ -92,7 +92,6 @@ class _BotDemoCards extends StatelessWidget {
             child: Align(
               child: Consumer<ProductsNotifier>(
                 builder: (context, productsNotifier, child) {
-                  print("Length: ${productsNotifier.products.length}");
                   return ListView.separated(
                     shrinkWrap: true,
                     clipBehavior: Clip.none,
@@ -131,7 +130,8 @@ class AddProduct extends StatelessWidget {
           child: SingleChildScrollView(
             child: Dialog(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)),
+                borderRadius: BorderRadius.circular(12),
+              ),
               child: const ManageProductModal(),
             ),
           ),
@@ -165,27 +165,15 @@ class AddProduct extends StatelessWidget {
   }
 }
 
-class _LevelCards extends StatefulWidget {
+class _LevelCards extends StatelessWidget {
   const _LevelCards({Key? key}) : super(key: key);
 
   @override
-  State<_LevelCards> createState() => _LevelCardsState();
-}
-
-class _LevelCardsState extends State<_LevelCards> {
-  @override
-  void initState() {
-    super.initState();
-    ReferalLevelStateHandler.instance.init();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: ReferalLevelStateHandler.controller,
-      builder: (_, __, ___) {
+    return Consumer<LevelsNotifier>(
+      builder: (context, levelsNotifier, _) {
         return Wrap(spacing: 20, runSpacing: 16, children: [
-          ...ReferalLevelStateHandler.instance.levels
+          ...levelsNotifier.levels
               .map((level) => EditableLevelCard(level: level))
               .toList(),
           const AddLevelCard(),

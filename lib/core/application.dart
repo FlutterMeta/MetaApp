@@ -8,6 +8,7 @@ import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/l10n.dart';
 import 'package:meta_app/presentation/navigation/app_router.gr.dart';
 import 'package:meta_app/presentation/navigation/router_observer.dart';
+import 'package:meta_app/presentation/providers/levels_notifier.dart';
 import 'package:meta_app/presentation/providers/products_notifier.dart';
 import 'package:meta_app/presentation/providers/users_notifier.dart';
 import 'package:meta_app/presentation/redux/app_state.dart';
@@ -39,6 +40,9 @@ class Application extends StatelessWidget {
               ),
               ChangeNotifierProvider<ProductsNotifier>(
                 create: ((context) => ProductsNotifier()..loadProducts()),
+              ),
+              ChangeNotifierProvider<LevelsNotifier>(
+                create: ((context) => LevelsNotifier()..loadLevels()),
               ),
             ],
             child: MaterialApp.router(

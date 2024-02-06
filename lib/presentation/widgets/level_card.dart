@@ -5,10 +5,12 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/models/referal_level.dart';
 
 import 'package:meta_app/presentation/widgets/responsive.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/global.dart';
 import '../../core/mixins/message_overlay.dart';
-import '../pages/admin_profile/referal_level_state_handler.dart';
+import '../../data/models/result.dart';
+import '../providers/levels_notifier.dart';
 
 class LevelCard extends StatelessWidget {
   final ReferalLevel level;
@@ -123,8 +125,11 @@ class _EditLevelModal extends StatefulWidget {
 }
 
 class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
+  final _levelController = TextEditingController();
   final _rewardController = TextEditingController();
   final _requiredReferalsCountController = TextEditingController();
+
+  late final LevelsNotifier levelsNotifier;
 
   @override
   void initState() {
@@ -132,38 +137,44 @@ class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
     _rewardController.text = widget.level.reward.toString();
     _requiredReferalsCountController.text =
         widget.level.requiredReferralsCount.toString();
+    _levelController.text = widget.level.level.toString();
+    levelsNotifier = context.read<LevelsNotifier>();
   }
 
   @override
   void dispose() {
     _rewardController.dispose();
     _requiredReferalsCountController.dispose();
+    _levelController.dispose();
     super.dispose();
   }
 
   void _handleOnTap(BuildContext context) async {
+    final levelCtrl = _levelController.text;
     final reward = _rewardController.text;
     final requiredReferalsCount = _requiredReferalsCountController.text;
 
-    if (reward.isNotEmpty && requiredReferalsCount.isNotEmpty) {
+    if (reward.isNotEmpty &&
+        requiredReferalsCount.isNotEmpty &&
+        levelCtrl.isNotEmpty) {
       final level = ReferalLevel(
-        id: 0,
-        level: -1, // it will be set on the server
+        id: widget.level.id,
+        level: int.parse(levelCtrl),
         reward: double.parse(reward),
         requiredReferralsCount: int.parse(requiredReferalsCount),
       );
 
-      Response response = await apiRepository.updateReferalLevel(
-        widget.level.id,
-        level.toJson(),
-      );
-      if (response.statusCode == 200) {
-        ReferalLevelStateHandler.instance.init();
-        ReferalLevelStateHandler.controller.value++;
+      Result result = await levelsNotifier.editLevel(level);
+
+      if (result.success) {
+        showMessage(
+          context.localizations.editedSuccessfully,
+          Colors.green,
+        );
         Navigator.pop(context);
       } else {
         showMessage(
-          "${context.localizations.error}: ${response.data["title"]} ",
+          "${context.localizations.error}: ${result.message}",
           Colors.red,
         );
       }
@@ -176,7 +187,7 @@ class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
       padding: const EdgeInsets.all(40),
       constraints: const BoxConstraints(
         maxWidth: 500,
-        maxHeight: 400,
+        maxHeight: 600,
       ),
       decoration: BoxDecoration(
         color: context.color.profilePageBackground,
@@ -192,6 +203,28 @@ class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
             style: context.text.profileBotsDefault.copyWith(fontSize: 24),
           ),
           const SizedBox(height: 30),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Text(
+              context.localizations.level,
+              style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+            ),
+          ),
+          const SizedBox(height: 10),
+          TextField(
+            controller: _levelController,
+            decoration: InputDecoration(
+              hintText: context.localizations.addLevel,
+              hintStyle: context.text.profileBotsDefault.copyWith(fontSize: 16),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide.none,
+              ),
+              filled: true,
+              fillColor: context.color.profilePagePrimary.withOpacity(0.1),
+            ),
+          ),
+          const SizedBox(height: 20),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
@@ -268,7 +301,7 @@ class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
-                  child: Text(context.localizations.add),
+                  child: Text(context.localizations.edit),
                 ),
               ],
             ),
