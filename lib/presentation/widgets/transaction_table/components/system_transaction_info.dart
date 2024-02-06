@@ -33,6 +33,9 @@ class _SystemTransactionInfoState extends State<_SystemTransactionInfo>
           context: context,
           builder: (context) => Center(
             child: Dialog(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
               child: _PopupDialog(
                 onConfirm: _handleConfirm,
                 onDecline: _handleDecline,
