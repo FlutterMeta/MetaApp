@@ -111,6 +111,8 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
       context: context,
       builder: (context) {
         return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           title: Text(context.localizations.captcha),
           content: SliderCaptcha(
             controller: _sliderCaptchaController,

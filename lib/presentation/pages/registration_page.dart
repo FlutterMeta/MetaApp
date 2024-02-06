@@ -10,9 +10,11 @@ import 'package:meta_app/presentation/widgets/auth_field.dart';
 import 'package:meta_app/presentation/widgets/code_verification_section.dart';
 import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_view.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
+import 'package:slider_captcha/slider_captcha.dart';
 
 import '../../core/global.dart';
 import '../../core/mixins/message_overlay.dart';
+import '../constants/app_assets.dart';
 
 class RegistrationPage extends StatefulWidget {
   const RegistrationPage({Key? key}) : super(key: key);
@@ -30,8 +32,47 @@ class _RegistrationPageState extends State<RegistrationPage>
   final _repeatPasswordController = TextEditingController();
   final _inviteCodeController = TextEditingController();
   final _imageCodeController = TextEditingController();
+  final _sliderCaptchaController = SliderController();
 
   final _formKey = GlobalKey<FormState>();
+
+  void _showCaptchaDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          title: Text(context.localizations.captcha),
+          content: SliderCaptcha(
+            controller: _sliderCaptchaController,
+            image: Image.asset(
+              AppAssets.sliderCaptcha,
+              fit: BoxFit.fitWidth,
+            ),
+            colorBar: context.color.postBackground,
+            colorCaptChar: context.color.postBackground,
+            onConfirm: (value) async {
+              Future.delayed(const Duration(seconds: 1));
+              if (value) {
+                _register();
+              } else {
+                showMessage(
+                  context.localizations.captchaFailed,
+                  Colors.red,
+                );
+              }
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  bool _checkFields() {
+    if (_formKey.currentState?.validate() == false) return false;
+    return true;
+  }
 
   Future<Response> _register() async {
     try {
@@ -189,20 +230,15 @@ class _RegistrationPageState extends State<RegistrationPage>
                         controller: _inviteCodeController,
                       ),
                       const SizedBox(height: 20),
-                      CodeVerificationSection(
-                        child: AuthField(
-                          validator: (code) => validateCode(code, context),
-                          controller: _imageCodeController,
-                        ),
-                      ),
-                      const SizedBox(height: 30),
                       AuthButton(
                         text: context.localizations.createAccount,
                         onPressed: _onRegisterButtonPressed,
                       ),
                       const SizedBox(height: 20),
                       TextButton(
-                        onPressed: _goToLoginPage,
+                        onPressed: () {
+                          if (_checkFields()) _showCaptchaDialog(context);
+                        },
                         child: Text(
                           context.localizations.alreadyHaveAccount,
                           style: context.text.haveAnAccount,
