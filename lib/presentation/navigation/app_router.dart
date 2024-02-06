@@ -28,7 +28,11 @@ import '../pages/admin_profile/financial_indicators_page.dart';
     AutoRoute(page: DirectionsPage, path: "/directions"),
     AutoRoute(page: ResetPasswordPage, path: "/reset-password"),
     AutoRoute(page: ResetAccessPage, path: "/reset-access"),
-    AutoRoute(page: ClientProfilePage, path: "/profile"),
+    CustomRoute(
+      page: ClientProfilePage,
+      path: "/profile",
+      transitionsBuilder: TransitionsBuilders.noTransition,
+    ),
     AutoRoute(
       page: FinancialIndicatorsPage,
       path: "/admin-profile/financial-indicators",

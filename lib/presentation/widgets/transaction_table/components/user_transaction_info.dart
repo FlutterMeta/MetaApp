@@ -20,8 +20,9 @@ class _UserTransactionInfo extends StatelessWidget {
     return _TransactionInfo(
       transaction: transaction,
       trailing: _StatusChip(status: parse(transaction.status)),
-      leading:
-          _PaymentLeading(transactionNetwork: transaction.paymentSystemTitle),
+      leading: _PaymentLeading(
+        transactionNetwork: transaction.paymentSystemTitle ?? 'N/A',
+      ),
     );
   }
 }

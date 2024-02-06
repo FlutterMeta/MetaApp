@@ -14,7 +14,7 @@ Transaction _$TransactionFromJson(Map<String, dynamic> json) => Transaction(
       amount: (json['amount'] as num).toDouble(),
       walletKey: json['walletKey'] as String,
       user: User.fromJson(json['user'] as Map<String, dynamic>),
-      paymentSystemTitle: json['paymentSystemTitle'] as String,
+      paymentSystemTitle: json['paymentSystemTitle'] as String?,
     );
 
 Map<String, dynamic> _$TransactionToJson(Transaction instance) =>

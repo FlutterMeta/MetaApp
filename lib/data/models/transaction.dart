@@ -13,7 +13,7 @@ class Transaction {
   final String walletKey;
 
   final User user;
-  final String paymentSystemTitle;
+  final String? paymentSystemTitle;
 
   Transaction({
     required this.id,

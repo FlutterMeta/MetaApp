@@ -444,7 +444,7 @@ class _WalletCardState extends State<_WalletCard> with MessageOverlay {
             ),
             const SizedBox(height: 6),
             _FilledTextField(
-              hintText: "0x...",
+              hintText: "TUfNgSnLXe...",
               controller: _walletController,
             ),
             const SizedBox(height: 32),

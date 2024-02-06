@@ -103,9 +103,12 @@ class AppRouter extends _i17.RootStackRouter {
     ClientProfileRoute.name: (routeData) {
       final args = routeData.argsAs<ClientProfileRouteArgs>(
           orElse: () => const ClientProfileRouteArgs());
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: _i10.ClientProfilePage(key: args.key),
+        transitionsBuilder: _i17.TransitionsBuilders.noTransition,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     FinancialIndicatorsRoute.name: (routeData) {

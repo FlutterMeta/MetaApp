@@ -81,7 +81,7 @@ class _AdministeredUserTransactionInfoState
         ),
       ),
       leading: _PaymentLeading(
-        transactionNetwork: widget.transaction.paymentSystemTitle,
+        transactionNetwork: widget.transaction.paymentSystemTitle ?? '',
       ),
     );
   }
