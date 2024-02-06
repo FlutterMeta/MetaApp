@@ -19,39 +19,91 @@ import '../pages/admin_profile/financial_indicators_page.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: HomePage, path: "/home"),
-    AutoRoute(page: LoginPage, path: "/login"),
-    AutoRoute(page: RegistrationPage, path: "/registration"),
-    AutoRoute(page: ProductsPage, path: "/products"),
-    AutoRoute(page: PartnersPage, path: "/partners"),
-    AutoRoute(page: BlogPage, path: "/blog"),
-    AutoRoute(page: DirectionsPage, path: "/directions"),
-    AutoRoute(page: ResetPasswordPage, path: "/reset-password"),
-    AutoRoute(page: ResetAccessPage, path: "/reset-access"),
+    CustomRoute(
+      page: HomePage,
+      path: "/home",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: LoginPage,
+      path: "/login",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: RegistrationPage,
+      path: "/registration",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: ProductsPage,
+      path: "/products",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: PartnersPage,
+      path: "/partners",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: BlogPage,
+      path: "/blog",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: DirectionsPage,
+      path: "/directions",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: ResetPasswordPage,
+      path: "/reset-password",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: ResetAccessPage,
+      path: "/reset-access",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
     CustomRoute(
       page: ClientProfilePage,
       path: "/profile",
-      transitionsBuilder: TransitionsBuilders.noTransition,
+      transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
-    AutoRoute(
+    CustomRoute(
       page: FinancialIndicatorsPage,
       path: "/admin-profile/financial-indicators",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
-    AutoRoute(
+    CustomRoute(
       page: UserTransactionsPage,
       path: "/admin-profile/user-transactions/:userName",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
-    AutoRoute(page: DashboardPage, path: "/admin-profile/dashboard"),
-    AutoRoute(page: TransactionsPage, path: "/admin-profile/transactions"),
-    AutoRoute(
+    CustomRoute(
+      page: DashboardPage,
+      path: "/admin-profile/dashboard",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
+      page: TransactionsPage,
+      path: "/admin-profile/transactions",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
+    CustomRoute(
       page: UserRefferalsPage,
       path: "/admin-profile/user-refferals/:userName",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
-    AutoRoute(
+    CustomRoute(
       page: PaymentSystemOverviewPage,
       path: "/admin-profile/payment-systems-overview",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
     ),
-    AutoRoute(page: AdminBlogPage, path: "/admin-blog"),
+    CustomRoute(
+      page: AdminBlogPage,
+      path: "/admin-blog",
+      transitionsBuilder: TransitionsBuilders.fadeIn,
+    ),
   ],
 )
 class $AppRouter {}

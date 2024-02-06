@@ -41,63 +41,90 @@ class AppRouter extends _i17.RootStackRouter {
     HomeRoute.name: (routeData) {
       final args =
           routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: _i1.HomePage(key: args.key),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     LoginRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i2.LoginPage(),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     RegistrationRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i3.RegistrationPage(),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     ProductsRoute.name: (routeData) {
       final args = routeData.argsAs<ProductsRouteArgs>(
           orElse: () => const ProductsRouteArgs());
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: _i4.ProductsPage(key: args.key),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     PartnersRoute.name: (routeData) {
       final args = routeData.argsAs<PartnersRouteArgs>(
           orElse: () => const PartnersRouteArgs());
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: _i5.PartnersPage(key: args.key),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     BlogRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i6.BlogPage(),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     DirectionsRoute.name: (routeData) {
       final args = routeData.argsAs<DirectionsRouteArgs>(
           orElse: () => const DirectionsRouteArgs());
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: _i7.DirectionsPage(key: args.key),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     ResetPasswordRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i8.ResetPasswordPage(),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     ResetAccessRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i9.ResetAccessPage(),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     ClientProfileRoute.name: (routeData) {
@@ -106,20 +133,23 @@ class AppRouter extends _i17.RootStackRouter {
       return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: _i10.ClientProfilePage(key: args.key),
-        transitionsBuilder: _i17.TransitionsBuilders.noTransition,
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
         opaque: true,
         barrierDismissible: false,
       );
     },
     FinancialIndicatorsRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i11.FinancialIndicatorsPage(),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     UserTransactionsRoute.name: (routeData) {
       final args = routeData.argsAs<UserTransactionsRouteArgs>();
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: _i12.UserTransactionsPage(
           user: args.user,
@@ -127,41 +157,59 @@ class AppRouter extends _i17.RootStackRouter {
           showPendingTransactions: args.showPendingTransactions,
           key: args.key,
         ),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     DashboardRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i13.DashboardPage(),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     TransactionsRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i14.TransactionsPage(),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     UserRefferalsRoute.name: (routeData) {
       final args = routeData.argsAs<UserRefferalsRouteArgs>();
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: _i15.UserRefferalsPage(
           user: args.user,
           userName: args.userName,
           key: args.key,
         ),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     PaymentSystemOverviewRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i16.PaymentSystemOverviewPage(),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
     AdminBlogRoute.name: (routeData) {
-      return _i17.MaterialPageX<dynamic>(
+      return _i17.CustomPage<dynamic>(
         routeData: routeData,
         child: const _i6.AdminBlogPage(),
+        transitionsBuilder: _i17.TransitionsBuilders.fadeIn,
+        opaque: true,
+        barrierDismissible: false,
       );
     },
   };
