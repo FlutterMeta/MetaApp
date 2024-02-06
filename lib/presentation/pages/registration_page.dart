@@ -55,7 +55,7 @@ class _RegistrationPageState extends State<RegistrationPage>
             onConfirm: (value) async {
               Future.delayed(const Duration(seconds: 1));
               if (value) {
-                _register();
+                _onRegisterButtonPressed();
               } else {
                 showMessage(
                   context.localizations.captchaFailed,
@@ -74,28 +74,16 @@ class _RegistrationPageState extends State<RegistrationPage>
     return true;
   }
 
-  Future<Response> _register() async {
-    try {
-      Response response = await apiRepository.register(
-        Registration(
-          login: _loginController.text,
-          email: _emailController.text,
-          phoneNumber: _telegramController.text,
-          password: _passwordController.text,
-          referal: _inviteCodeController.text,
-        ),
-      );
-      return response;
-    } catch (e) {
-      debugPrint(e.toString());
-      return Response(requestOptions: RequestOptions(path: ''));
-    }
-  }
-
   void _onRegisterButtonPressed() async {
-    if (_formKey.currentState?.validate() == false) return;
-
-    Response response = await _register();
+    Response response = await apiRepository.register(
+      Registration(
+        login: _loginController.text,
+        email: _emailController.text,
+        phoneNumber: _telegramController.text,
+        password: _passwordController.text,
+        referal: _inviteCodeController.text,
+      ),
+    );
     if (apiRepository.isSuccessfulStatusCode(response.statusCode) ||
         response.data["token"] != null) {
       showMessage(
@@ -232,13 +220,13 @@ class _RegistrationPageState extends State<RegistrationPage>
                       const SizedBox(height: 20),
                       AuthButton(
                         text: context.localizations.createAccount,
-                        onPressed: _onRegisterButtonPressed,
-                      ),
-                      const SizedBox(height: 20),
-                      TextButton(
                         onPressed: () {
                           if (_checkFields()) _showCaptchaDialog(context);
                         },
+                      ),
+                      const SizedBox(height: 20),
+                      TextButton(
+                        onPressed: _goToLoginPage,
                         child: Text(
                           context.localizations.alreadyHaveAccount,
                           style: context.text.haveAnAccount,

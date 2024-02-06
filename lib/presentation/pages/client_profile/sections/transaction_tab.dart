@@ -105,19 +105,6 @@ class _PaymentSuccessMessage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            // RichText(
-            //   text: TextSpan(
-            //     children: [
-            //       TextSpan(
-            //         text: context.localizations.keyTip,
-            //         style: context.text.profilePageBody.copyWith(
-            //           fontSize: 18,
-            //           fontWeight: FontWeight.w700,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),

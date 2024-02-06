@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/mixins/message_overlay.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/widgets/message_chip.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
 import '../../../data/models/transaction.dart';
@@ -93,6 +94,10 @@ class _TransactionTable extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       child: Column(
         children: [
+          if (transactions.isEmpty)
+            MessageChip.info(
+              message: context.localizations.noTransactionsYet,
+            ),
           ListView.separated(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

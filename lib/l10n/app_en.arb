@@ -401,6 +401,7 @@
     "alreadyLevels": "There are already following levels",
     "levelCannotBeChanged": "Level cannot be changed",
     "captchaFailed": "Captcha failed",
+    "noTransactionsYet": "No transactions yet",
     "wrongEmailOrPassword": "Wrong email or password",
     "captcha": "Captcha",
     "subscriptionTierInfo": "The  bigger the tier, the more features user gets (more strategies)",
