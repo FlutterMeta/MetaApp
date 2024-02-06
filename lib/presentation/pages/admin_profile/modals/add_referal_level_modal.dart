@@ -97,6 +97,12 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
             ),
           ),
           const SizedBox(height: 10),
+          Consumer<LevelsNotifier>(builder: (context, levelsNotifier, child) {
+            return Text(
+              "${context.localizations.alreadyLevels}: ${levelsNotifier.levels.map((e) => e.level)}",
+            );
+          }),
+          const SizedBox(height: 10),
           TextField(
             controller: levelController,
             decoration: InputDecoration(
@@ -113,7 +119,7 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              context.localizations.reward,
+              "${context.localizations.reward} (\$)",
               style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             ),
           ),

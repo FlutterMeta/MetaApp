@@ -35,12 +35,15 @@ class _DashboardTabState extends State<DashboardTab> {
     StoreProvider.of<AppState>(context, null).dispatch(FetchUserDataAction());
   }
 
+  late final LevelsNotifier levelsNotifier;
   @override
   void initState() {
     super.initState();
     Future.delayed(Duration.zero, () {
       _fetchUserData(context);
     });
+    levelsNotifier = context.read<LevelsNotifier>();
+    levelsNotifier.loadLevels();
   }
 
   @override

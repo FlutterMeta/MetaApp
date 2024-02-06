@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
@@ -7,7 +6,6 @@ import 'package:meta_app/data/models/referal_level.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/global.dart';
 import '../../core/mixins/message_overlay.dart';
 import '../../data/models/result.dart';
 import '../providers/levels_notifier.dart';
@@ -154,6 +152,16 @@ class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
     final reward = _rewardController.text;
     final requiredReferalsCount = _requiredReferalsCountController.text;
 
+    // List<int> levels = levelsNotifier.levels.map((e) => e.level).toList();
+
+    // if (levels.contains(int.parse(levelCtrl))) {
+    //   showMessage(
+    //     context.localizations.levelAlreadyExists,
+    //     Colors.orange,
+    //   );
+    //   return;
+    // }
+
     if (reward.isNotEmpty &&
         requiredReferalsCount.isNotEmpty &&
         levelCtrl.isNotEmpty) {
@@ -211,7 +219,21 @@ class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
             ),
           ),
           const SizedBox(height: 10),
+          // Consumer<LevelsNotifier>(builder: (context, levelsNotifier, child) {
+          //   return Text(
+          //     "${context.localizations.alreadyLevels}: ${levelsNotifier.levels.map((e) => e.level)}",
+          //   );
+          // }),
+          const SizedBox(height: 5),
+          Text(
+            context.localizations.levelCannotBeChanged,
+            style: context.text.profileBotsDefault.copyWith(fontSize: 14),
+          ),
+
+          const SizedBox(height: 5),
+
           TextField(
+            enabled: false, // Disable editing
             controller: _levelController,
             decoration: InputDecoration(
               hintText: context.localizations.addLevel,
@@ -221,14 +243,14 @@ class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
                 borderSide: BorderSide.none,
               ),
               filled: true,
-              fillColor: context.color.profilePagePrimary.withOpacity(0.1),
+              fillColor: context.color.profilePagePrimary.withOpacity(0.2),
             ),
           ),
           const SizedBox(height: 20),
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              context.localizations.reward,
+              "${context.localizations.reward} (\$)",
               style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             ),
           ),

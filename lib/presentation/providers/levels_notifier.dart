@@ -26,7 +26,7 @@ class LevelsNotifier extends ChangeNotifier {
         notifyListeners();
         return Result.success();
       } else {
-        return Result.failure(message: response.data["title"]?.toString());
+        return Result.failure(message: response.data.toString());
       }
     } catch (e) {
       debugPrint(e.toString());
@@ -63,7 +63,7 @@ class LevelsNotifier extends ChangeNotifier {
         notifyListeners();
         return Result.success();
       } else {
-        return Result.failure(message: response.data["title"]?.toString());
+        return Result.failure(message: response.data.toString());
       }
     } catch (e) {
       debugPrint(e.toString());
