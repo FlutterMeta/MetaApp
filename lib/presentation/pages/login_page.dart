@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import "package:meta_app/core/utils/extensions/build_context_ext.dart";
 import 'package:meta_app/core/mixins/validator.dart';
+import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/navigation/app_router.gr.dart';
 import 'package:meta_app/presentation/providers/users_notifier.dart';
 import 'package:meta_app/presentation/widgets/auth_field.dart';
@@ -17,6 +18,7 @@ import 'package:meta_app/presentation/widgets/code_verification_section.dart';
 import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_view.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 import 'package:meta_app/data/repositories/api_repository_impl.dart';
+import 'package:slider_captcha/slider_captcha.dart';
 import '../../core/global.dart';
 import '../../core/mixins/message_overlay.dart';
 import '../../core/utils/api_client.dart';
@@ -37,6 +39,7 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
   final _loginController = TextEditingController();
   final _passwordController = TextEditingController();
   final _codeController = TextEditingController();
+  final _sliderCaptchaController = SliderController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -65,13 +68,16 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
     return response;
   }
 
+  bool _checkFields() {
+    if (_formKey.currentState?.validate() == false) return false;
+    return true;
+  }
+
   void _onLoginButtonPressed() async {
-    //if (_formKey.currentState?.validate() == false) return; TODO: uncomment
     Response response = await login();
 
-    //if (apiRepository.isSuccessfulStatusCode(response.statusCode) ||
-    //    response.data["token"] != null) { TODO: uncomment
-    if (true) {
+    if (apiRepository.isSuccessfulStatusCode(response.statusCode) ||
+        response.data["token"] != null) {
       // Request to get user profile, by user's token
       String key = html.window.localStorage["token"] ?? "";
       ApiClient apiClient = ApiClient(baseUrl: baseUrl, token: key);
@@ -87,8 +93,11 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
         _goToProfilePage(context);
       }
     } else {
+      String text = response.data["title"].toString().contains("Unathorized")
+          ? context.localizations.wrongEmailOrPassword
+          : response.data["title"].toString();
       showMessage(
-        "${context.localizations.loginFailed}: ${response.data["title"]} ",
+        "${context.localizations.loginFailed}:  $text",
         Colors.red,
       );
     }
@@ -96,6 +105,37 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
 
   void _goToResetPasswordPage() =>
       context.router.replace(const ResetPasswordRoute());
+
+  void _showCaptchaDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(context.localizations.captcha),
+          content: SliderCaptcha(
+            controller: _sliderCaptchaController,
+            image: Image.asset(
+              AppAssets.sliderCaptcha,
+              fit: BoxFit.fitWidth,
+            ),
+            colorBar: context.color.postBackground,
+            colorCaptChar: context.color.postBackground,
+            onConfirm: (value) async {
+              Future.delayed(const Duration(seconds: 1));
+              if (value) {
+                _onLoginButtonPressed();
+              } else {
+                showMessage(
+                  context.localizations.captchaFailed,
+                  Colors.red,
+                );
+              }
+            },
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -154,18 +194,13 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
                         controller: _passwordController,
                       ),
                       const SizedBox(height: 20),
-                      CodeVerificationSection(
-                        child: AuthField(
-                          validator: (code) => validateCode(code, context),
-                          controller: _codeController,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
                       _ForgotPasswordSection(onTap: _goToResetPasswordPage),
                       const SizedBox(height: 30),
                       AuthButton(
                         text: context.localizations.login,
-                        onPressed: _onLoginButtonPressed,
+                        onPressed: () {
+                          if (_checkFields()) _showCaptchaDialog(context);
+                        },
                       ),
                       const SizedBox(height: 16),
                       const Divider(),

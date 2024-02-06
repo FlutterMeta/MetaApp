@@ -803,6 +803,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  slider_captcha:
+    dependency: "direct main"
+    description:
+      name: slider_captcha
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   source_gen:
     dependency: transitive
     description:

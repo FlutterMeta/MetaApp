@@ -25,4 +25,7 @@ abstract class AppAssets {
   static const daiIcon = "images/crypto/dai.png";
   static const binanceCoinIcon = "images/crypto/bnb.png";
   static const dogecoinIcon = "images/crypto/doge.png";
+
+  //captcha
+  static const sliderCaptcha = "assets/images/captcha.jpg";
 }
