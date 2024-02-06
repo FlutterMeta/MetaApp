@@ -72,10 +72,10 @@ class _BlankPostState extends State<_BlankPost> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: Responsive.isMobile(context) ? 12 : 100,
-        vertical: Responsive.isMobile(context) ? 20 : 100,
+        horizontal: Responsive.isMobile(context) ? 12 : 30,
+        vertical: Responsive.isMobile(context) ? 20 : 30,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -159,7 +159,9 @@ class _EditablePostFields extends StatelessWidget {
                 hintStyle: context.text.profilePageBody.copyWith(fontSize: 24),
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
+            const Divider(),
+            const SizedBox(height: 10),
             TextField(
               controller: bodyController,
               minLines: 16,
