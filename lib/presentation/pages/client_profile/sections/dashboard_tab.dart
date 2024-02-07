@@ -97,7 +97,7 @@ class _AdaptiveMainContent extends StatelessWidget {
                   Column(
                     children: [
                       _RankCard(
-                        partnerIncomeLevel: 0,
+                        partnerIncomeLevel: currentUser?.level ?? 0,
                         rank: _userRank,
                         reward: currentUser?.balance ?? 0,
                       ),
@@ -113,7 +113,7 @@ class _AdaptiveMainContent extends StatelessWidget {
               return Column(
                 children: [
                   _RankCard(
-                    partnerIncomeLevel: 0,
+                    partnerIncomeLevel: currentUser?.level ?? 0,
                     rank: _userRank,
                     reward: currentUser?.balance ?? 0,
                   ),
@@ -341,7 +341,7 @@ class _RankCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "${context.localizations.partnerIncomeLevel}:",
+                  "${context.localizations.referralLevel}:",
                   style: context.text.profilePageInverseBody.copyWith(
                     fontSize: 14,
                     color: context.text.profilePageInverseBody.color

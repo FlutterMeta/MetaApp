@@ -9,13 +9,13 @@ class _BotCardsSection extends StatefulWidget {
 
 class _BotCardsSectionState extends State<_BotCardsSection> {
   void _handleTap(BuildContext context) {
-    _pushTransactionTab();
+    _pushProductsTab();
     _pushProfilePage(context);
   }
 
-  void _pushTransactionTab() {
-    const int transactionTabIndex = 2;
-    MenuController.tabIndex.value = transactionTabIndex;
+  void _pushProductsTab() {
+    int productsTabIndex = 1;
+    MenuController.tabIndex.value = productsTabIndex;
   }
 
   void _pushProfilePage(BuildContext context) {

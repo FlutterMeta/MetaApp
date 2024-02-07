@@ -15,6 +15,9 @@ class __PostsSectionState extends State<_PostsSection> {
     return ValueListenableBuilder(
       valueListenable: BlogStateHandler.controller,
       builder: (_, __, ___) {
+        if (posts.isEmpty) {
+          return const Center(child: CircularProgressIndicator());
+        }
         return ListView.separated(
           reverse: true,
           shrinkWrap: true,
