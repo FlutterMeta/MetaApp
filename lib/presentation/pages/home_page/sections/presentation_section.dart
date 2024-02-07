@@ -52,7 +52,11 @@ class _PresentationSection extends StatelessWidget {
             const SizedBox(height: 6),
             const _RevelantInfoSection(),
             const SizedBox(height: 10),
-            GradientButton(title: context.localizations.startNow, onTap: () {}),
+            GradientButton(
+                title: context.localizations.startNow,
+                onTap: () {
+                  context.router.push(const LoginRoute());
+                }),
             const SizedBox(height: 50),
           ],
         ),
