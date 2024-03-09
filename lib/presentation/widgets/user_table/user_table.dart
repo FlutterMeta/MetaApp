@@ -11,7 +11,6 @@ import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/models/result.dart';
-import '../../../data/models/transaction.dart';
 import '../../../data/models/user.dart';
 import '../../providers/users_notifier.dart';
 

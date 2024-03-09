@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/client_profile/menu_controller.dart';
+import 'package:meta_app/presentation/pages/client_profile/client_menu_controller.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
 class SideMenuSection extends StatefulWidget {
@@ -11,12 +11,12 @@ class SideMenuSection extends StatefulWidget {
 }
 
 class _SideMenuSectionState extends State<SideMenuSection> {
-  void _onLabelTap(int index) => MenuController.tabIndex.value = index;
+  void _onLabelTap(int index) => ClientMenuController.tabIndex.value = index;
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: MenuController.isCollapsed,
+      valueListenable: ClientMenuController.isCollapsed,
       builder: (context, isCollapsed, child) {
         return Drawer(
           backgroundColor: isCollapsed
@@ -35,7 +35,7 @@ class _SideMenuSectionState extends State<SideMenuSection> {
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: ValueListenableBuilder(
-              valueListenable: MenuController.tabIndex,
+              valueListenable: ClientMenuController.tabIndex,
               builder: (context, index, child) {
                 return ListView(
                   children: [
@@ -90,7 +90,7 @@ class __DrawerListTileState extends State<_DrawerListTile> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: MenuController.isCollapsed,
+      valueListenable: ClientMenuController.isCollapsed,
       builder: (context, isCollapsed, child) {
         return InkWell(
           onTap: () {

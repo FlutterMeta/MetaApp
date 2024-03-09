@@ -26,8 +26,8 @@ class FinancialIndicatorsPage extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
-          child: Column(
-            children: const [
+          child: const Column(
+            children: [
               _BotDemoCards(),
               SizedBox(height: 40),
               _ReferralRewards(),

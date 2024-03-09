@@ -11,11 +11,11 @@ class _CardsSection extends StatelessWidget {
       alignment: Alignment.center,
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1270),
-        child: Wrap(
+        child: const Wrap(
           runSpacing: 20,
           spacing: 150,
           crossAxisAlignment: WrapCrossAlignment.center,
-          children: const [
+          children: [
             _DirectionCards(),
             _InfoBlock(),
           ],

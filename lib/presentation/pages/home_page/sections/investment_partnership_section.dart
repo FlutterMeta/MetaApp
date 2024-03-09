@@ -8,10 +8,10 @@ class _InvestmentPartnershipSection extends StatelessWidget {
     return Align(
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1270),
-        child: Wrap(
+        child: const Wrap(
           spacing: 100,
           runSpacing: 20,
-          children: const [
+          children: [
             _InvestmentCard(),
             _InvestmentInfo(),
           ],

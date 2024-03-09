@@ -15,7 +15,7 @@ class _BotCardsSectionState extends State<_BotCardsSection> {
 
   void _pushProductsTab() {
     int productsTabIndex = 1;
-    MenuController.tabIndex.value = productsTabIndex;
+    ClientMenuController.tabIndex.value = productsTabIndex;
   }
 
   void _pushProfilePage(BuildContext context) {

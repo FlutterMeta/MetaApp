@@ -26,7 +26,7 @@ mixin MessageOverlay<T extends StatefulWidget> on State<T> {
       ),
     );
 
-    overlay?.insert(overlayEntry);
+    overlay.insert(overlayEntry);
 
     // Automatically remove the overlay after 3 seconds
     await Future.delayed(const Duration(seconds: 4));

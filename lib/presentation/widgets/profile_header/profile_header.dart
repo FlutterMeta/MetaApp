@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/profile_header/animated_menu_icon.dart';
-import 'package:meta_app/presentation/widgets/profile_header/search_bar.dart';
+import 'package:meta_app/presentation/widgets/profile_header/rounded_search_bar.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 
 import '../header.dart';
@@ -33,7 +33,7 @@ class ProfileHeader extends Header {
   factory ProfileHeader.admin() => const ProfileHeader();
 
   factory ProfileHeader.adminSearch() =>
-      const ProfileHeader(searchBar: SearchBar());
+      const ProfileHeader(searchBar: RoundedSearchBar());
 }
 
 class _SideMenuIcon extends StatelessWidget {

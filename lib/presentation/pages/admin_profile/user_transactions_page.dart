@@ -96,8 +96,8 @@ class __TransactionTableWithFilterState
   void _filterTransactions() {
     final operation = _operationFieldController.text.toLowerCase();
     final status = _statusFieldController.text.toLowerCase();
-    final paymentSystem = _paymentSystemFieldController.text.toLowerCase();
-    final note = _noteFieldController.text.toLowerCase();
+    // final paymentSystem = _paymentSystemFieldController.text.toLowerCase();
+    // final note = _noteFieldController.text.toLowerCase();
 
     final result = widget.transactionsHistory.transactions.where((transaction) {
       return transaction.type.toLowerCase().contains(operation) &&

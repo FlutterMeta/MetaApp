@@ -31,7 +31,7 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
     );
 
     _overlayEntry?.let((entry) {
-      overlayState?.insert(entry);
+      overlayState.insert(entry);
       animationController.forward();
     });
   }
@@ -120,11 +120,11 @@ class _LocaleOverlay extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               color: context.color.localeDropdownBackground,
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   _LocaleWidget(locale: AppLocale.en),
                 ],
               ),

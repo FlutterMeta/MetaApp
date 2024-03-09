@@ -40,7 +40,7 @@ class _CompactMenuState extends State<_CompactMenu>
       ),
     );
     _overlayEntry?.let((entry) {
-      overlayState?.insert(entry);
+      overlayState.insert(entry);
       _animationController.forward();
     });
   }

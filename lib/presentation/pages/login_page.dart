@@ -5,16 +5,15 @@ import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import "package:meta_app/core/utils/extensions/build_context_ext.dart";
 import 'package:meta_app/core/mixins/validator.dart';
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/navigation/app_router.gr.dart';
-import 'package:meta_app/presentation/providers/users_notifier.dart';
+
 import 'package:meta_app/presentation/widgets/auth_field.dart';
 import 'package:meta_app/presentation/widgets/auth_button.dart';
-import 'package:meta_app/presentation/widgets/code_verification_section.dart';
+
 import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_view.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 import 'package:meta_app/data/repositories/api_repository_impl.dart';
@@ -22,10 +21,10 @@ import 'package:slider_captcha/slider_captcha.dart';
 import '../../core/global.dart';
 import '../../core/mixins/message_overlay.dart';
 import '../../core/utils/api_client.dart';
-import '../../data/models/transaction.dart';
+
 import '../../data/models/user.dart';
 import '../redux/app_state.dart';
-import '../redux/authorization/actions/load_transactions_action.dart';
+
 import '../redux/authorization/actions/login_user_action.dart';
 
 class LoginPage extends StatefulWidget {
@@ -38,7 +37,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
   final _loginController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _codeController = TextEditingController();
+  // final _codeController = TextEditingController();
   final _sliderCaptchaController = SliderController();
 
   final _formKey = GlobalKey<FormState>();

@@ -4,14 +4,14 @@ import 'package:meta_app/presentation/widgets/responsive.dart';
 
 import 'search_bar_controller.dart';
 
-class SearchBar extends StatefulWidget {
-  const SearchBar({Key? key}) : super(key: key);
+class RoundedSearchBar extends StatefulWidget {
+  const RoundedSearchBar({Key? key}) : super(key: key);
 
   @override
-  State<SearchBar> createState() => _SearchBarState();
+  State<RoundedSearchBar> createState() => _RoundedSearchBarState();
 }
 
-class _SearchBarState extends State<SearchBar> {
+class _RoundedSearchBarState extends State<RoundedSearchBar> {
   @override
   Widget build(BuildContext context) {
     return Container(

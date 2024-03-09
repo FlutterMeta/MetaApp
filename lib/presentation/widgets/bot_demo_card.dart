@@ -76,7 +76,7 @@ class EditableBotDemoCard extends StatefulWidget {
 
 class _EditableBotDemoCardState extends State<EditableBotDemoCard> {
   final _priceController = TextEditingController();
-  bool _isEditing = false;
+  final bool _isEditing = false;
 
   void _handleOnTap(BuildContext context, Product product) {
     showDialog(

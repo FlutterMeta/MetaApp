@@ -50,7 +50,6 @@ class RouterAwareStory extends Story {
           wrapperBuilder: (context, child) => child as Widget,
           builder: (context) => MaterialApp.router(
             supportedLocales: L10n.all,
-            useInheritedMediaQuery: true,
             localizationsDelegates: const [
               AppLocalizations.delegate,
               GlobalMaterialLocalizations.delegate,
@@ -77,7 +76,6 @@ class CustomMaterialAppWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
         supportedLocales: L10n.all,
-        useInheritedMediaQuery: true,
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,

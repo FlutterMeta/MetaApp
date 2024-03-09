@@ -2,8 +2,8 @@ part of '../theme.dart';
 
 TextTheme createTextTheme() {
   return const TextTheme(
-    headline1: headline1,
-    headline2: headline2,
-    headline3: headline3,
+    displayLarge: headline1,
+    displayMedium: headline2,
+    displaySmall: headline3,
   );
 }

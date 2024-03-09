@@ -6,7 +6,7 @@ import 'package:meta_app/presentation/widgets/profile_header/menu.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/return_home_logo.dart';
 import '../../data/models/user.dart';
-import '../pages/client_profile/menu_controller.dart';
+import '../pages/client_profile/client_menu_controller.dart';
 import '../redux/app_state.dart';
 
 class Header extends StatefulWidget implements PreferredSizeWidget {
@@ -33,11 +33,11 @@ class Header extends StatefulWidget implements PreferredSizeWidget {
 class _HeaderState extends State<Header> {
   @override
   void didChangeDependencies() {
-    final menuCollapsedState = MenuController.isCollapsed.value;
+    final menuCollapsedState = ClientMenuController.isCollapsed.value;
 
     if ((Responsive.isMobile(context) || Responsive.isTablet(context)) &&
         menuCollapsedState) {
-      MenuController.isCollapsed.value = false;
+      ClientMenuController.isCollapsed.value = false;
     }
 
     if (widget.scaffoldKey != null) {
@@ -55,7 +55,7 @@ class _HeaderState extends State<Header> {
         return Padding(
           padding: const EdgeInsets.all(4),
           child: ValueListenableBuilder(
-            valueListenable: MenuController.isCollapsed,
+            valueListenable: ClientMenuController.isCollapsed,
             builder: (context, isCollapsed, child) {
               return Row(
                 children: [

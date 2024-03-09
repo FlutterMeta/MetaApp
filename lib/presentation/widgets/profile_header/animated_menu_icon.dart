@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
-import '../../pages/client_profile/menu_controller.dart';
+import '../../pages/client_profile/client_menu_controller.dart';
 
 class AnimatedMenuIcon extends StatefulWidget {
   const AnimatedMenuIcon({Key? key}) : super(key: key);
@@ -30,7 +30,7 @@ class _AnimatedMenuIconState extends State<AnimatedMenuIcon>
   }
 
   void _changeState() {
-    final menuCollapsedState = MenuController.isCollapsed;
+    final menuCollapsedState = ClientMenuController.isCollapsed;
 
     if (menuCollapsedState.value) {
       _controller.reverse();

@@ -69,12 +69,12 @@ class Header extends SliverPersistentHeaderDelegate {
           child: Column(
             children: [
               if (width > 780) ...[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       _SpecialInfoComponent(),
                       Spacer(),
                       _BlogButton(),
@@ -122,10 +122,10 @@ class DayNightIcon extends StatefulWidget {
   const DayNightIcon({Key? key}) : super(key: key);
 
   @override
-  _DayNightIconState createState() => _DayNightIconState();
+  DayNightIconState createState() => DayNightIconState();
 }
 
-class _DayNightIconState extends State<DayNightIcon> {
+class DayNightIconState extends State<DayNightIcon> {
   late bool _isDarkMode;
 
   void _onDayNightPressed(BuildContext context) {

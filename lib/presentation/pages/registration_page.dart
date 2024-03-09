@@ -7,7 +7,6 @@ import 'package:meta_app/data/models/registration.dart';
 
 import 'package:meta_app/presentation/widgets/auth_button.dart';
 import 'package:meta_app/presentation/widgets/auth_field.dart';
-import 'package:meta_app/presentation/widgets/code_verification_section.dart';
 import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_view.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 import 'package:slider_captcha/slider_captcha.dart';
@@ -31,7 +30,7 @@ class _RegistrationPageState extends State<RegistrationPage>
   final _passwordController = TextEditingController();
   final _repeatPasswordController = TextEditingController();
   final _inviteCodeController = TextEditingController();
-  final _imageCodeController = TextEditingController();
+  // final _imageCodeController = TextEditingController();
   final _sliderCaptchaController = SliderController();
 
   final _formKey = GlobalKey<FormState>();

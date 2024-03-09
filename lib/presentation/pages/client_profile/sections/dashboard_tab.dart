@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:meta_app/core/mixins/message_overlay.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/models/withdrawal_transaction.dart';
-import 'package:meta_app/presentation/pages/client_profile/menu_controller.dart';
+import 'package:meta_app/presentation/pages/client_profile/client_menu_controller.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/level_card.dart';
@@ -50,7 +50,7 @@ class _DashboardTabState extends State<DashboardTab> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: ValueListenableBuilder(
-        valueListenable: MenuController.isCollapsed,
+        valueListenable: ClientMenuController.isCollapsed,
         builder: (context, isCollapsed, child) {
           return Container(
             decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
@@ -58,8 +58,8 @@ class _DashboardTabState extends State<DashboardTab> {
             child: Align(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 1200),
-                child: Column(
-                  children: const [
+                child: const Column(
+                  children: [
                     _InformationPanel(),
                     SizedBox(height: 20),
                     _AdaptiveMainContent(),
@@ -173,7 +173,7 @@ class _InformationPanelState extends State<_InformationPanel>
     });
 
     _overlayEntry?.let((entry) {
-      overlayState?.insert(entry);
+      overlayState.insert(entry);
       _animationController.forward();
     });
 

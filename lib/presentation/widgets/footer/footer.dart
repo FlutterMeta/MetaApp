@@ -16,8 +16,8 @@ class Footer extends StatelessWidget {
       alignment: Alignment.center,
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1270),
-        child: Column(
-          children: const [
+        child: const Column(
+          children: [
             _FooterNavigation(),
             SizedBox(height: 50),
             _FooterLogoArea(),

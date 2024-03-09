@@ -5,7 +5,6 @@ ThemeData createDarkTheme() {
     fontFamily: GoogleFonts.inter().fontFamily,
     textTheme: createTextTheme(),
     scaffoldBackgroundColor: DarkAppColors.darkGrey,
-    backgroundColor: DarkAppColors.darkGrey,
     extensions: <ThemeExtension<dynamic>>[
       ThemeColors.dark,
       ThemeTextStyles.dark,

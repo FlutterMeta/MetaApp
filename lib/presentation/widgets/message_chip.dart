@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
 class MessageChip extends StatelessWidget {
   final String message;
