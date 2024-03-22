@@ -11,7 +11,7 @@ class Transaction {
   final String type;
   final double amount;
   final String walletKey;
-
+  final String externalId;
   final User user;
   final String? paymentSystemTitle;
 
@@ -21,6 +21,7 @@ class Transaction {
     required this.status,
     required this.type,
     required this.amount,
+    required this.externalId,
     required this.walletKey,
     required this.user,
     required this.paymentSystemTitle,
@@ -42,6 +43,7 @@ class Transaction {
       status: status ?? this.status,
       type: type ?? this.type,
       amount: amount ?? this.amount,
+      externalId: externalId,
       walletKey: walletKey ?? this.walletKey,
       user: user ?? this.user,
       paymentSystemTitle: paymentSystemTitle ?? this.paymentSystemTitle,

@@ -11,6 +11,7 @@ PaymentSystem _$PaymentSystemFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       title: json['title'] as String,
       image: const Uint8ListConverter().fromJson(json['image'] as String?),
+      network: json['network'] as String,
       enabled: json['enabled'] as bool? ?? true,
       key: json['key'] as String,
     );
@@ -20,6 +21,7 @@ Map<String, dynamic> _$PaymentSystemToJson(PaymentSystem instance) =>
       'id': instance.id,
       'title': instance.title,
       'image': const Uint8ListConverter().toJson(instance.image),
+      'network': instance.network,
       'key': instance.key,
       'enabled': instance.enabled,
     };

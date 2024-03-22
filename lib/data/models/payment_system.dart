@@ -10,6 +10,7 @@ class PaymentSystem {
   final String title;
   @Uint8ListConverter()
   final Uint8List? image;
+  final String network;
   final String key;
   bool enabled;
 
@@ -17,6 +18,7 @@ class PaymentSystem {
     required this.id,
     required this.title,
     this.image,
+    required this.network,
     this.enabled = true,
     required this.key,
   });

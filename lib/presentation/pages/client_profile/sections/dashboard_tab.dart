@@ -378,7 +378,7 @@ class _WalletCardState extends State<_WalletCard> with MessageOverlay {
     WithdrawalTransaction transaction = WithdrawalTransaction(
       sum: double.parse(_amountController.text),
       walletKey: _walletController.text,
-      network: _selectedNetwork,
+      paymentSystemId: 1,
     );
     var response = await apiRepository.createTransaction(transaction.toJson());
     if (response.statusCode == 200) {

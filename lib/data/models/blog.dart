@@ -9,11 +9,13 @@ class Blog {
   final String? content;
   final String? url;
   final String image;
+  final DateTime createDate;
 
   Blog({
     required this.id,
     required this.title,
     required this.content,
+    required this.createDate,
     this.url,
     required this.image,
   });

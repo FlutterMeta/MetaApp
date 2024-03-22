@@ -23,6 +23,7 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
     with MessageOverlay {
   late TextEditingController _titleController;
   late TextEditingController _keyController;
+  late TextEditingController _networkController;
   String? _selectedCryptoIcon;
 
   @override
@@ -32,6 +33,8 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
         TextEditingController(text: widget.paymentSystem?.title ?? '');
     _keyController =
         TextEditingController(text: widget.paymentSystem?.key ?? '');
+    _networkController =
+        TextEditingController(text: widget.paymentSystem?.network ?? '');
     if (widget.paymentSystem?.image != null) {
       // Here you might need actual logic to determine the corresponding icon from the image data
       // As a placeholder, using the first key from _cryptoIcons
@@ -69,7 +72,8 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
   void _savePaymentSystem() async {
     if (_titleController.text.isEmpty ||
         _keyController.text.isEmpty ||
-        _selectedCryptoIcon == null) {
+        _selectedCryptoIcon == null ||
+        _networkController.text.isEmpty) {
       showMessage(
         "${context.localizations.fillAllFields} ${context.localizations.and} ${context.localizations.chooseIcon.toLowerCase()}",
         context.color.profilePageError,
@@ -91,6 +95,7 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
       title: _titleController.text,
       image: imageBytes, // Use the loaded image bytes
       key: _keyController.text,
+      network: _networkController.text,
     );
 
     // Perform API call to create or update the system
@@ -169,6 +174,29 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
               controller: _titleController,
               decoration: InputDecoration(
                 hintText: context.localizations.paymentSystemName,
+                hintStyle:
+                    context.text.profileBotsDefault.copyWith(fontSize: 12),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide.none,
+                ),
+                filled: true,
+                fillColor: context.color.profilePagePrimary.withOpacity(0.1),
+              ),
+            ),
+            const SizedBox(height: 26),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                context.localizations.network,
+                style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+              ),
+            ),
+            const SizedBox(height: 16),
+            TextField(
+              controller: _networkController,
+              decoration: InputDecoration(
+                hintText: context.localizations.network,
                 hintStyle:
                     context.text.profileBotsDefault.copyWith(fontSize: 12),
                 border: OutlineInputBorder(

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'app_state.dart';
 
@@ -12,7 +12,7 @@ part of 'app_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AppState {
@@ -68,21 +68,22 @@ class _$AppStateCopyWithImpl<$Res, $Val extends AppState>
 }
 
 /// @nodoc
-abstract class _$$_AppStateCopyWith<$Res> implements $AppStateCopyWith<$Res> {
-  factory _$$_AppStateCopyWith(
-          _$_AppState value, $Res Function(_$_AppState) then) =
-      __$$_AppStateCopyWithImpl<$Res>;
+abstract class _$$AppStateImplCopyWith<$Res>
+    implements $AppStateCopyWith<$Res> {
+  factory _$$AppStateImplCopyWith(
+          _$AppStateImpl value, $Res Function(_$AppStateImpl) then) =
+      __$$AppStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ThemeMode themeMode, AppLocale appLocale, User? currentUser});
 }
 
 /// @nodoc
-class __$$_AppStateCopyWithImpl<$Res>
-    extends _$AppStateCopyWithImpl<$Res, _$_AppState>
-    implements _$$_AppStateCopyWith<$Res> {
-  __$$_AppStateCopyWithImpl(
-      _$_AppState _value, $Res Function(_$_AppState) _then)
+class __$$AppStateImplCopyWithImpl<$Res>
+    extends _$AppStateCopyWithImpl<$Res, _$AppStateImpl>
+    implements _$$AppStateImplCopyWith<$Res> {
+  __$$AppStateImplCopyWithImpl(
+      _$AppStateImpl _value, $Res Function(_$AppStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +93,7 @@ class __$$_AppStateCopyWithImpl<$Res>
     Object? appLocale = null,
     Object? currentUser = freezed,
   }) {
-    return _then(_$_AppState(
+    return _then(_$AppStateImpl(
       themeMode: null == themeMode
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
@@ -111,8 +112,8 @@ class __$$_AppStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AppState implements _AppState {
-  const _$_AppState(
+class _$AppStateImpl implements _AppState {
+  const _$AppStateImpl(
       {required this.themeMode, required this.appLocale, this.currentUser});
 
   @override
@@ -128,10 +129,10 @@ class _$_AppState implements _AppState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AppState &&
+            other is _$AppStateImpl &&
             (identical(other.themeMode, themeMode) ||
                 other.themeMode == themeMode) &&
             (identical(other.appLocale, appLocale) ||
@@ -147,15 +148,15 @@ class _$_AppState implements _AppState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AppStateCopyWith<_$_AppState> get copyWith =>
-      __$$_AppStateCopyWithImpl<_$_AppState>(this, _$identity);
+  _$$AppStateImplCopyWith<_$AppStateImpl> get copyWith =>
+      __$$AppStateImplCopyWithImpl<_$AppStateImpl>(this, _$identity);
 }
 
 abstract class _AppState implements AppState {
   const factory _AppState(
       {required final ThemeMode themeMode,
       required final AppLocale appLocale,
-      final User? currentUser}) = _$_AppState;
+      final User? currentUser}) = _$AppStateImpl;
 
   @override
   ThemeMode get themeMode;
@@ -165,6 +166,6 @@ abstract class _AppState implements AppState {
   User? get currentUser;
   @override
   @JsonKey(ignore: true)
-  _$$_AppStateCopyWith<_$_AppState> get copyWith =>
+  _$$AppStateImplCopyWith<_$AppStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

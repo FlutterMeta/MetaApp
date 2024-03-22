@@ -35,6 +35,7 @@ class _BlankPostState extends State<_BlankPost> {
       id: widget.post?.id ?? 0,
       title: _titleController.text,
       content: _bodyController.text,
+      createDate: widget.post?.createDate ?? DateTime.now(),
       url: "",
       image: base64Encode(mockBytes),
     );
@@ -50,6 +51,7 @@ class _BlankPostState extends State<_BlankPost> {
       id: 0,
       title: _titleController.text,
       content: _bodyController.text,
+      createDate: DateTime.now(),
       url: "",
       image: base64Encode(mockBytes),
     );
