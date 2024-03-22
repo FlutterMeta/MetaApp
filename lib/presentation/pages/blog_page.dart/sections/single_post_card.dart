@@ -76,6 +76,11 @@ class __HoverablePostState extends State<_HoverablePost> {
                         style: context.text.blogPostHeadline,
                       ),
                     ),
+                    const SizedBox(height: 10),
+                    Text(
+                      "${DateFormat.jm().format(widget.post.createDate)} | ${DateFormat.yMMMd().format(widget.post.createDate)} UTC",
+                      style: context.text.blogPostLink,
+                    ),
                     const SizedBox(height: 20),
                     Text(widget.post.content ?? "Blog post content"),
                     const SizedBox(height: 60),
@@ -128,10 +133,7 @@ class _DeletePostButton extends StatelessWidget {
       color: context.color.profilePageError,
       title: context.localizations.deletePost,
       onTap: () {
-        apiRepository.deleteBlogPost(postId);
-        BlogStateHandler.instance.posts
-            .removeWhere((post) => post.id == postId);
-        BlogStateHandler.controller.value++;
+        context.read<BlogsNotifier>().deleteBlog(postId);
       },
     );
   }

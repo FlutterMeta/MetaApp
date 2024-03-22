@@ -8,23 +8,25 @@ class _PostsSection extends StatefulWidget {
 }
 
 class __PostsSectionState extends State<_PostsSection> {
-  List<Blog> posts = BlogStateHandler.instance.posts;
-
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder(
-      valueListenable: BlogStateHandler.controller,
-      builder: (_, __, ___) {
-        if (posts.isEmpty) {
+    return Consumer<BlogsNotifier>(
+      builder: (_, blogsNotifier, __) {
+        if (blogsNotifier.isLoading && blogsNotifier.blogs.isEmpty) {
           return const Center(child: CircularProgressIndicator());
+        } else if (blogsNotifier.blogs.isEmpty) {
+          return Center(
+              child:
+                  MessageChip.info(message: context.localizations.noPostsYet));
         }
         return ListView.separated(
           reverse: true,
           shrinkWrap: true,
-          itemCount: posts.length,
+          itemCount: blogsNotifier.blogs.length,
           physics: const NeverScrollableScrollPhysics(),
           separatorBuilder: (_, __) => const SizedBox(height: 40),
-          itemBuilder: (_, index) => _SinglePostCard(post: posts[index]),
+          itemBuilder: (_, index) =>
+              _SinglePostCard(post: blogsNotifier.blogs[index]),
         );
       },
     );

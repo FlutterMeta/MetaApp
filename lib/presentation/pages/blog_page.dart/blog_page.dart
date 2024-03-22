@@ -11,18 +11,20 @@ import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 
 import 'package:meta_app/presentation/constants/app_assets.dart';
+import 'package:meta_app/presentation/providers/blogs_notifier.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/footer/footer.dart';
 import 'package:meta_app/presentation/widgets/header/header.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
+import 'package:meta_app/presentation/widgets/message_chip.dart';
 import 'package:meta_app/presentation/widgets/sliver_sized_box.dart';
 import 'package:meta_app/presentation/widgets/web_button.dart';
+import 'package:provider/provider.dart';
 
 import '../../../data/models/blog.dart';
 import '../../../data/models/user.dart';
 import '../../redux/app_state.dart';
 import '../../widgets/responsive.dart';
-import 'blog_state_handler.dart';
 
 part 'sections/presentation_section.dart';
 part 'sections/single_post_card.dart';
@@ -44,10 +46,12 @@ class _BlogPageState extends State<BlogPage> {
 
   void _loadBlogPosts() async {
     Response posts = await apiRepository.getBlogPosts();
-    BlogStateHandler.instance.posts.clear();
+    // BlogStateHandler.instance.posts.clear();
+    context.read<BlogsNotifier>().blogs.clear();
     for (var post in posts.data["\$values"]) {
-      BlogStateHandler.instance.addPost(Blog.fromJson(post));
-      BlogStateHandler.controller.value++;
+      // BlogStateHandler.instance.addPost(Blog.fromJson(post));
+      // BlogStateHandler.controller.value++;
+      context.read<BlogsNotifier>().blogs.add(Blog.fromJson(post));
     }
   }
 

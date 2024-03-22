@@ -12,10 +12,9 @@ class _AdminBlogPageState extends State<AdminBlogPage> {
 
   void _loadBlogPosts() async {
     Response posts = await apiRepository.getBlogPosts();
-    BlogStateHandler.instance.posts.clear();
+    context.read<BlogsNotifier>().blogs.clear();
     for (var post in posts.data["\$values"]) {
-      BlogStateHandler.instance.addPost(Blog.fromJson(post));
-      BlogStateHandler.controller.value++;
+      context.read<BlogsNotifier>().blogs.add(Blog.fromJson(post));
     }
   }
 
@@ -27,7 +26,6 @@ class _AdminBlogPageState extends State<AdminBlogPage> {
 
   @override
   void dispose() {
-    BlogStateHandler.instance.posts.clear();
     super.dispose();
   }
 

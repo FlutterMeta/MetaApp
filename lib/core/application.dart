@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_portal/flutter_portal.dart';
+import 'package:meta_app/data/models/blog.dart';
 import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/l10n.dart';
 import 'package:meta_app/presentation/navigation/app_router.gr.dart';
 import 'package:meta_app/presentation/navigation/router_observer.dart';
+import 'package:meta_app/presentation/providers/blogs_notifier.dart';
 import 'package:meta_app/presentation/providers/levels_notifier.dart';
 import 'package:meta_app/presentation/providers/products_notifier.dart';
 import 'package:meta_app/presentation/providers/users_notifier.dart';
@@ -43,6 +45,9 @@ class Application extends StatelessWidget {
               ),
               ChangeNotifierProvider<LevelsNotifier>(
                 create: ((context) => LevelsNotifier()..loadLevels()),
+              ),
+              ChangeNotifierProvider<BlogsNotifier>(
+                create: ((context) => BlogsNotifier()..loadBlogs()),
               ),
             ],
             child: MaterialApp.router(

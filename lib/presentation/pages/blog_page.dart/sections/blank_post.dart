@@ -15,7 +15,6 @@ class _BlankPostState extends State<_BlankPost> {
   void _onAddTap() async {
     await _writePost();
     _clearControllers();
-    BlogStateHandler.controller.value++;
 
     Navigator.of(context).pop();
   }
@@ -23,7 +22,6 @@ class _BlankPostState extends State<_BlankPost> {
   void _onEditTap() async {
     await _editPost();
     _clearControllers();
-    BlogStateHandler.controller.value++;
 
     Navigator.of(context).pop();
   }
@@ -39,9 +37,11 @@ class _BlankPostState extends State<_BlankPost> {
       url: "",
       image: base64Encode(mockBytes),
     );
-    await apiRepository.updateBlogPost(blog.id, blog.toJson());
-
-    BlogStateHandler.instance.editPost(blog);
+    try {
+      context.read<BlogsNotifier>().editBlog(blog);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   Future<void> _writePost() async {
@@ -51,13 +51,15 @@ class _BlankPostState extends State<_BlankPost> {
       id: 0,
       title: _titleController.text,
       content: _bodyController.text,
-      createDate: DateTime.now(),
+      createDate: DateTime.now().toUtc(), //GMT +0
       url: "",
       image: base64Encode(mockBytes),
     );
-    await apiRepository.createBlogPost(blog.toJson());
-
-    BlogStateHandler.instance.addPost(blog);
+    try {
+      context.read<BlogsNotifier>().addBlog(blog);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   void _clearControllers() {
