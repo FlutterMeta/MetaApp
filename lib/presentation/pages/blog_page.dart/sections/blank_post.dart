@@ -8,7 +8,7 @@ class _BlankPost extends StatefulWidget {
   State<_BlankPost> createState() => _BlankPostState();
 }
 
-class _BlankPostState extends State<_BlankPost> {
+class _BlankPostState extends State<_BlankPost> with MessageOverlay {
   final _titleController = TextEditingController();
   final _bodyController = TextEditingController();
 
@@ -38,7 +38,13 @@ class _BlankPostState extends State<_BlankPost> {
       image: base64Encode(mockBytes),
     );
     try {
-      context.read<BlogsNotifier>().editBlog(blog);
+      Result result = await context.read<BlogsNotifier>().editBlog(blog);
+      if (result.success) {
+        showMessage(context.localizations.editedSuccessfully, Colors.green);
+      } else {
+        showMessage(
+            "${context.localizations.error}: ${result.message}", Colors.red);
+      }
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -56,7 +62,14 @@ class _BlankPostState extends State<_BlankPost> {
       image: base64Encode(mockBytes),
     );
     try {
-      context.read<BlogsNotifier>().addBlog(blog);
+      Result result = await context.read<BlogsNotifier>().addBlog(blog);
+      if (result.success) {
+        showMessage(context.localizations.addedSuccessfully, Colors.green);
+        await context.read<BlogsNotifier>().loadBlogs();
+      } else {
+        showMessage(
+            "${context.localizations.error}: ${result.message}", Colors.red);
+      }
     } catch (e) {
       debugPrint(e.toString());
     }

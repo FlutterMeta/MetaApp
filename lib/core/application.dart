@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_portal/flutter_portal.dart';
-import 'package:meta_app/data/models/blog.dart';
 import 'package:meta_app/l10n/app_locale.dart';
 import 'package:meta_app/l10n/l10n.dart';
 import 'package:meta_app/presentation/navigation/app_router.gr.dart';

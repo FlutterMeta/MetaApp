@@ -404,6 +404,7 @@
     "noTransactionsYet": "No transactions yet",
     "wrongEmailOrPassword": "Wrong email or password",
     "captcha": "Captcha",
+    "addedSuccessfully": "Added successfully",
     "noPostsYet": "No posts yet",
     "subscriptionTierInfo": "The  bigger the tier, the more features user gets (more strategies)",
     "prePaidInfoMessage": "Please ensure that you have transferred the exact amount of USD to the wallet address provided in the requisites field. Afterward, click the 'Paid' button.",

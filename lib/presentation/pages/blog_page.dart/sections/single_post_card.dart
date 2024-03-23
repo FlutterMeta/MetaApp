@@ -123,9 +123,30 @@ class __HoverablePostState extends State<_HoverablePost> {
   }
 }
 
-class _DeletePostButton extends StatelessWidget {
+class _DeletePostButton extends StatefulWidget {
   final int postId;
   const _DeletePostButton({required this.postId, Key? key}) : super(key: key);
+
+  @override
+  State<_DeletePostButton> createState() => _DeletePostButtonState();
+}
+
+class _DeletePostButtonState extends State<_DeletePostButton>
+    with MessageOverlay {
+  void _deletePost(BuildContext context, int postId) async {
+    try {
+      Result result = await context.read<BlogsNotifier>().deleteBlog(postId);
+      print(postId);
+      if (result.success) {
+        showMessage(context.localizations.deletedSuccessfully, Colors.green);
+      } else {
+        showMessage(
+            "${context.localizations.error}: ${result.message}", Colors.red);
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +154,7 @@ class _DeletePostButton extends StatelessWidget {
       color: context.color.profilePageError,
       title: context.localizations.deletePost,
       onTap: () {
-        context.read<BlogsNotifier>().deleteBlog(postId);
+        context.read<BlogsNotifier>().deleteBlog(widget.postId);
       },
     );
   }

@@ -7,15 +7,12 @@ class AdminBlogPage extends StatefulWidget {
   State<AdminBlogPage> createState() => _AdminBlogPageState();
 }
 
-class _AdminBlogPageState extends State<AdminBlogPage> {
+class _AdminBlogPageState extends State<AdminBlogPage> with MessageOverlay {
   final _headerKey = GlobalKey();
 
   void _loadBlogPosts() async {
-    Response posts = await apiRepository.getBlogPosts();
     context.read<BlogsNotifier>().blogs.clear();
-    for (var post in posts.data["\$values"]) {
-      context.read<BlogsNotifier>().blogs.add(Blog.fromJson(post));
-    }
+    await context.read<BlogsNotifier>().loadBlogs();
   }
 
   @override

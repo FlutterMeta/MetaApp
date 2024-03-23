@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:meta_app/core/global.dart';
+import 'package:meta_app/core/mixins/message_overlay.dart';
 
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/data/models/result.dart';
 
 import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/providers/blogs_notifier.dart';
@@ -45,14 +47,8 @@ class _BlogPageState extends State<BlogPage> {
   final _headerKey = GlobalKey();
 
   void _loadBlogPosts() async {
-    Response posts = await apiRepository.getBlogPosts();
-    // BlogStateHandler.instance.posts.clear();
     context.read<BlogsNotifier>().blogs.clear();
-    for (var post in posts.data["\$values"]) {
-      // BlogStateHandler.instance.addPost(Blog.fromJson(post));
-      // BlogStateHandler.controller.value++;
-      context.read<BlogsNotifier>().blogs.add(Blog.fromJson(post));
-    }
+    await context.read<BlogsNotifier>().loadBlogs();
   }
 
   @override
