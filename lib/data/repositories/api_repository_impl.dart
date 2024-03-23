@@ -332,11 +332,13 @@ class ApiRepositoryImpl implements ApiRepository {
   Future<Response> createPurchaseTransaction(
     int id,
     int paymentSystemId,
+    String externalId,
   ) async {
     late Response response;
     try {
-      response = await apiClient
-          .post('/Product/purchase/$id?paymentSystemId=$paymentSystemId');
+      response = await apiClient.post(
+          '/Product/purchase/$id?paymentSystemId=$paymentSystemId&externalId=$externalId',
+          body: {});
       if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('API Error: ${response.statusCode}');
       }

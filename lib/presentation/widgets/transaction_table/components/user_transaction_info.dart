@@ -21,7 +21,7 @@ class _UserTransactionInfo extends StatelessWidget {
       transaction: transaction,
       trailing: _StatusChip(status: parse(transaction.status)),
       leading: _PaymentLeading(
-        transactionNetwork: transaction.paymentSystemTitle ?? 'N/A',
+        transactionNetwork: "${transaction.paymentSystemTitle} " ?? 'N/A',
       ),
     );
   }

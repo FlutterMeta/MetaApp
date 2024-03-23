@@ -33,7 +33,8 @@ abstract class ApiRepository {
   Future<Response> updateProduct(int id, Map<String, dynamic> body);
   Future<Response> deleteProduct(int id);
   Future<Response> getUserProducts(int userId);
-  Future<Response> createPurchaseTransaction(int id, int paymentSystemId);
+  Future<Response> createPurchaseTransaction(
+      int id, int paymentSystemId, String externalId);
 
   // PaymentSystem
   Future<Response> getPaymentSystems();

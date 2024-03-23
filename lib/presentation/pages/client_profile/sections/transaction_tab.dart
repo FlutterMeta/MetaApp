@@ -82,14 +82,32 @@ class EnterTxIdModal extends StatefulWidget {
 class _EnterTxIdModalState extends State<EnterTxIdModal> with MessageOverlay {
   final TextEditingController _txIdController = TextEditingController();
 
-  void _onSubmit() {
+  void _onSubmit() async {
     Navigator.of(context).pop();
-    Navigator.of(context).pop();
+    try {
+      Response response = await createTransaction();
+      if (response.statusCode == 200) {
+        widget.onPaymentDone();
+        showMessage(
+          context.localizations.successfulPayment,
+          Colors.green,
+        );
+      } else {
+        showMessage(
+          context.localizations.error + response.data['title'],
+          Colors.red,
+        );
+      }
+    } catch (e) {
+      showMessage(context.localizations.error, Colors.red);
+
+      debugPrint(e.toString());
+    }
     showDialog(
         context: context, builder: (context) => _PaymentSuccessMessage());
   }
 
-  void createTransaction() async {
+  Future<Response> createTransaction() async {
     try {
       // Request to get user profile, by user's token
       String key = html.window.localStorage["token"] ?? "";
@@ -98,18 +116,27 @@ class _EnterTxIdModalState extends State<EnterTxIdModal> with MessageOverlay {
       Response response = await apiRepository.createPurchaseTransaction(
         widget.product.id,
         widget.paymentSystem.id,
+        _txIdController.text,
       );
       if (apiRepository.isSuccessfulStatusCode(response.statusCode)) {
         widget.onPaymentDone();
+        showMessage(
+          context.localizations.successfulPayment,
+          Colors.green,
+        );
       } else {
         showMessage(
           context.localizations.error + response.data['title'],
           Colors.red,
         );
       }
+      return response;
     } catch (e) {
+      showMessage(context.localizations.error, Colors.red);
+
       debugPrint(e.toString());
     }
+    return Response(requestOptions: RequestOptions(path: ''));
   }
 
   @override
