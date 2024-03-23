@@ -1,4 +1,5 @@
 import 'package:async_redux/async_redux.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/global.dart';
@@ -62,96 +63,12 @@ class TransactionTabState extends State<TransactionTab> {
   }
 }
 
-class _PaymentSuccessMessage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Image.asset(
-          AppAssets.greenCheck,
-          height: Responsive.isMobile(context) ? 100 : 160,
-        ),
-        const SizedBox(height: 20),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: "${context.localizations.thanksForPayment}!",
-                    style: context.text.profilePageBody.copyWith(
-                      fontSize: 22,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 60),
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: context.localizations.afterPaymentTip,
-                    style: context.text.profilePageBody.copyWith(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: context.color.okay.withOpacity(0.1),
-              ),
-              padding: const EdgeInsets.all(20),
-              child: Text.rich(
-                TextSpan(
-                  children: [
-                    WidgetSpan(
-                      child: Icon(
-                        Icons.warning_rounded,
-                        color: context.color.okay,
-                      ),
-                    ),
-                    TextSpan(
-                      text: context.localizations.keyTip,
-                      style: TextStyle(
-                        color: context.color.okay,
-                        fontSize: 18,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 100),
-        ColoredButton(
-          title: context.localizations.ok.toUpperCase(),
-          color: Colors.green,
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ],
-    );
-  }
-}
-
-class _TransactionWindow extends StatefulWidget {
+class EnterTxIdModal extends StatefulWidget {
   final Product product;
   final PaymentSystem paymentSystem;
   final VoidCallback onPaymentDone;
 
-  const _TransactionWindow({
+  const EnterTxIdModal({
     required this.product,
     required this.paymentSystem,
     required this.onPaymentDone,
@@ -159,11 +76,19 @@ class _TransactionWindow extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<_TransactionWindow> createState() => _TransactionWindowState();
+  _EnterTxIdModalState createState() => _EnterTxIdModalState();
 }
 
-class _TransactionWindowState extends State<_TransactionWindow>
-    with MessageOverlay {
+class _EnterTxIdModalState extends State<EnterTxIdModal> with MessageOverlay {
+  final TextEditingController _txIdController = TextEditingController();
+
+  void _onSubmit() {
+    Navigator.of(context).pop();
+    Navigator.of(context).pop();
+    showDialog(
+        context: context, builder: (context) => _PaymentSuccessMessage());
+  }
+
   void createTransaction() async {
     try {
       // Request to get user profile, by user's token
@@ -187,6 +112,141 @@ class _TransactionWindowState extends State<_TransactionWindow>
     }
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(context.localizations.enterTxId),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          MessageChip.info(message: context.localizations.txIdInfo),
+          TextField(
+            controller: _txIdController,
+            decoration: InputDecoration(
+              hintText: context.localizations.txId,
+            ),
+          ),
+          const SizedBox(height: 20),
+          ColoredButton(
+            title: context.localizations.submit,
+            color: context.color.profilePagePrimary,
+            onTap: _onSubmit,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PaymentSuccessMessage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      child: Padding(
+        padding: Responsive.isMobile(context)
+            ? const EdgeInsets.all(10)
+            : const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              AppAssets.greenCheck,
+              height: Responsive.isMobile(context) ? 100 : 160,
+            ),
+            const SizedBox(height: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: "${context.localizations.thanksForPayment}!",
+                        style: context.text.profilePageBody.copyWith(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 60),
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: context.localizations.afterPaymentTip,
+                        style: context.text.profilePageBody.copyWith(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: context.color.okay.withOpacity(0.1),
+                  ),
+                  padding: const EdgeInsets.all(20),
+                  child: Text.rich(
+                    TextSpan(
+                      children: [
+                        WidgetSpan(
+                          child: Icon(
+                            Icons.warning_rounded,
+                            color: context.color.okay,
+                          ),
+                        ),
+                        TextSpan(
+                          text: context.localizations.keyTip,
+                          style: TextStyle(
+                            color: context.color.okay,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 100),
+            ColoredButton(
+              title: context.localizations.ok.toUpperCase(),
+              color: Colors.green,
+              onTap: () {
+                context.router.pushNamed('/profile');
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _TransactionWindow extends StatefulWidget {
+  final Product product;
+  final PaymentSystem paymentSystem;
+  final VoidCallback onPaymentDone;
+
+  const _TransactionWindow({
+    required this.product,
+    required this.paymentSystem,
+    required this.onPaymentDone,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<_TransactionWindow> createState() => _TransactionWindowState();
+}
+
+class _TransactionWindowState extends State<_TransactionWindow>
+    with MessageOverlay {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<AppState, User?>(
@@ -238,7 +298,16 @@ class _TransactionWindowState extends State<_TransactionWindow>
                     child: ColoredButton(
                       title: context.localizations.paid,
                       color: context.color.profilePagePrimary,
-                      onTap: () => createTransaction(),
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => EnterTxIdModal(
+                            product: widget.product,
+                            paymentSystem: widget.paymentSystem,
+                            onPaymentDone: widget.onPaymentDone,
+                          ),
+                        );
+                      },
                     ),
                   ),
                   const SizedBox(width: 30),

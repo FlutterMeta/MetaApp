@@ -49,6 +49,14 @@ class PaymentSystemCard extends StatelessWidget {
                 Text(paymentSystem.title),
               ],
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(context.localizations.paymentSystemNetworkLabel),
+                const SizedBox(width: 16),
+                Text(paymentSystem.network),
+              ],
+            ),
             const SizedBox(height: 16),
             SelectableText(paymentSystem.key),
           ],
@@ -103,6 +111,13 @@ class SmallPaymentSystemCard extends StatelessWidget {
             const SizedBox(height: 8), // Reduced space
             Text(
               paymentSystem.title,
+              textAlign: TextAlign.center,
+              style: // Reduced font size
+                  context.text.profileBotsDefault.copyWith(fontSize: 12),
+            ),
+            const SizedBox(height: 8), // Reduced space
+            Text(
+              paymentSystem.network,
               textAlign: TextAlign.center,
               style: // Reduced font size
                   context.text.profileBotsDefault.copyWith(fontSize: 12),

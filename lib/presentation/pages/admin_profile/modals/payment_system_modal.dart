@@ -146,220 +146,224 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
   Widget build(BuildContext context) {
     return Dialog(
       insetPadding: EdgeInsets.zero,
-      child: Container(
-        constraints: const BoxConstraints(maxWidth: 500, maxHeight: 500),
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                widget.paymentSystem == null
-                    ? context.localizations.addPaymentSystem
-                    : context.localizations.edit,
-                style: context.text.profileBotsDefault.copyWith(fontSize: 24),
-              ),
-            ),
-            const SizedBox(height: 20),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                context.localizations.paymentSystemName,
-                style: context.text.profileBotsDefault.copyWith(fontSize: 16),
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _titleController,
-              decoration: InputDecoration(
-                hintText: context.localizations.paymentSystemName,
-                hintStyle:
-                    context.text.profileBotsDefault.copyWith(fontSize: 12),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide.none,
+      child: SingleChildScrollView(
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 500, maxHeight: 800),
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  widget.paymentSystem == null
+                      ? context.localizations.addPaymentSystem
+                      : context.localizations.edit,
+                  style: context.text.profileBotsDefault.copyWith(fontSize: 24),
                 ),
-                filled: true,
-                fillColor: context.color.profilePagePrimary.withOpacity(0.1),
               ),
-            ),
-            const SizedBox(height: 26),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                context.localizations.network,
-                style: context.text.profileBotsDefault.copyWith(fontSize: 16),
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _networkController,
-              decoration: InputDecoration(
-                hintText: context.localizations.network,
-                hintStyle:
-                    context.text.profileBotsDefault.copyWith(fontSize: 12),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide.none,
+              const SizedBox(height: 20),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  context.localizations.paymentSystemName,
+                  style: context.text.profileBotsDefault.copyWith(fontSize: 16),
                 ),
-                filled: true,
-                fillColor: context.color.profilePagePrimary.withOpacity(0.1),
               ),
-            ),
-            const SizedBox(height: 26),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                context.localizations.walletAddress,
-                style: context.text.profileBotsDefault.copyWith(fontSize: 16),
-              ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _keyController,
-              decoration: InputDecoration(
-                hintText: "0x19323dEf2...",
-                hintStyle:
-                    context.text.profileBotsDefault.copyWith(fontSize: 12),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                  borderSide: BorderSide.none,
-                ),
-                filled: true,
-                fillColor: context.color.profilePagePrimary.withOpacity(0.1),
-              ),
-            ),
-            const SizedBox(height: 36),
-            Align(
-              alignment: Alignment.center,
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                decoration: BoxDecoration(
-                  color: context.color.profilePagePrimary
-                      .withOpacity(0.1), // Adjust the opacity as needed
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(
-                    color:
-                        context.color.profilePagePrimaryVariant, // Border color
-                    width: 2,
+              const SizedBox(height: 16),
+              TextField(
+                controller: _titleController,
+                decoration: InputDecoration(
+                  hintText: context.localizations.paymentSystemName,
+                  hintStyle:
+                      context.text.profileBotsDefault.copyWith(fontSize: 12),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide.none,
                   ),
+                  filled: true,
+                  fillColor: context.color.profilePagePrimary.withOpacity(0.1),
                 ),
-                child: DropdownButtonHideUnderline(
-                  child: DropdownButton2(
-                    value: _selectedCryptoIcon,
-                    hint: Text(
-                      context.localizations.selectCryptoIcon,
-                      style: context.text.profileBotsDefault
-                          .copyWith(fontSize: 16),
+              ),
+              const SizedBox(height: 26),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  context.localizations.network,
+                  style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _networkController,
+                decoration: InputDecoration(
+                  hintText: context.localizations.network,
+                  hintStyle:
+                      context.text.profileBotsDefault.copyWith(fontSize: 12),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide.none,
+                  ),
+                  filled: true,
+                  fillColor: context.color.profilePagePrimary.withOpacity(0.1),
+                ),
+              ),
+              const SizedBox(height: 26),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  context.localizations.walletAddress,
+                  style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: _keyController,
+                decoration: InputDecoration(
+                  hintText: "0x19323dEf2...",
+                  hintStyle:
+                      context.text.profileBotsDefault.copyWith(fontSize: 12),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8),
+                    borderSide: BorderSide.none,
+                  ),
+                  filled: true,
+                  fillColor: context.color.profilePagePrimary.withOpacity(0.1),
+                ),
+              ),
+              const SizedBox(height: 36),
+              Align(
+                alignment: Alignment.center,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  decoration: BoxDecoration(
+                    color: context.color.profilePagePrimary
+                        .withOpacity(0.1), // Adjust the opacity as needed
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(
+                      color: context
+                          .color.profilePagePrimaryVariant, // Border color
+                      width: 2,
                     ),
-                    items: _cryptoIcons.entries
-                        .map(
-                          (entry) => DropdownMenuItem<String>(
-                            value: entry.key,
-                            child: Row(
-                              children: [
-                                Image.asset(entry.value, width: 24, height: 24),
-                                const SizedBox(width: 8),
-                                Text(
-                                  entry.key,
-                                  style: context.text.profileBotsDefault
-                                      .copyWith(fontSize: 16),
-                                ),
-                              ],
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton2(
+                      value: _selectedCryptoIcon,
+                      hint: Text(
+                        context.localizations.selectCryptoIcon,
+                        style: context.text.profileBotsDefault
+                            .copyWith(fontSize: 16),
+                      ),
+                      items: _cryptoIcons.entries
+                          .map(
+                            (entry) => DropdownMenuItem<String>(
+                              value: entry.key,
+                              child: Row(
+                                children: [
+                                  Image.asset(entry.value,
+                                      width: 24, height: 24),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    entry.key,
+                                    style: context.text.profileBotsDefault
+                                        .copyWith(fontSize: 16),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        )
-                        .toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        _selectedCryptoIcon = value;
-                      });
-                    },
-                    dropdownMaxHeight: 200, // Adjust the max height as needed
-                    dropdownWidth: 200, // Adjust the width as needed
-                    dropdownDecoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15), // Border radius
-                      color: Colors.white, // Dropdown background color
+                          )
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedCryptoIcon = value;
+                        });
+                      },
+                      dropdownMaxHeight: 200, // Adjust the max height as needed
+                      dropdownWidth: 200, // Adjust the width as needed
+                      dropdownDecoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(15), // Border radius
+                        color: Colors.white, // Dropdown background color
+                      ),
+                      buttonHeight: 50, // Adjust the height as needed
+                      buttonWidth: 200, // Adjust the width as needed
+                      itemHeight: 40, // Adjust the item height as needed
                     ),
-                    buttonHeight: 50, // Adjust the height as needed
-                    buttonWidth: 200, // Adjust the width as needed
-                    itemHeight: 40, // Adjust the item height as needed
                   ),
                 ),
               ),
-            ),
-            const Spacer(),
-            Row(
-              children: [
-                const SizedBox(height: 16),
-                ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: context.color.profilePagePrimaryVariant,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 15,
+              const Spacer(),
+              Row(
+                children: [
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    onPressed: () => Navigator.pop(context),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: context.color.profilePagePrimaryVariant,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 15,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
                     ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
+                    child: Text(context.localizations.cancel),
                   ),
-                  child: Text(context.localizations.cancel),
-                ),
-                const Spacer(),
-                if (widget.paymentSystem == null) ...[
+                  const Spacer(),
+                  if (widget.paymentSystem == null) ...[
+                    const SizedBox(width: 16),
+                    ElevatedButton(
+                      onPressed: _savePaymentSystem,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: context.color.profilePagePrimary,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 30,
+                          vertical: 15,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      child: Text(context.localizations.create),
+                    ),
+                  ],
                   const SizedBox(width: 16),
-                  ElevatedButton(
-                    onPressed: _savePaymentSystem,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: context.color.profilePagePrimary,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 15,
+                  if (widget.paymentSystem != null) ...[
+                    ElevatedButton(
+                      onPressed: _savePaymentSystem,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: context.color.profilePagePrimary,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 30,
+                          vertical: 15,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
+                      child: Text(context.localizations.edit),
                     ),
-                    child: Text(context.localizations.create),
-                  ),
+                    const SizedBox(width: 16),
+                    ElevatedButton(
+                      onPressed: _disablePaymentSystem,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: context.color.profilePageError,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 30,
+                          vertical: 15,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      child: Text(context.localizations.disable),
+                    ),
+                  ],
                 ],
-                const SizedBox(width: 16),
-                if (widget.paymentSystem != null) ...[
-                  ElevatedButton(
-                    onPressed: _savePaymentSystem,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: context.color.profilePagePrimary,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 15,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: Text(context.localizations.edit),
-                  ),
-                  const SizedBox(width: 16),
-                  ElevatedButton(
-                    onPressed: _disablePaymentSystem,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: context.color.profilePageError,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 15,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: Text(context.localizations.disable),
-                  ),
-                ],
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );
