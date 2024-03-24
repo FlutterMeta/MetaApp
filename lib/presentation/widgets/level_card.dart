@@ -234,6 +234,7 @@ class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
           const SizedBox(height: 5),
 
           TextField(
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             enabled: false, // Disable editing
             controller: _levelController,
             decoration: InputDecoration(
@@ -257,6 +258,7 @@ class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
           ),
           const SizedBox(height: 10),
           TextField(
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             controller: _rewardController,
             decoration: InputDecoration(
               hintText: context.localizations.reward,
@@ -279,6 +281,7 @@ class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
           ),
           const SizedBox(height: 10),
           TextField(
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             controller: _requiredReferalsCountController,
             decoration: InputDecoration(
               hintText: context.localizations.enterReferalsCountNeededToAchieve,
@@ -300,7 +303,7 @@ class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
                 ColoredButton(
                   title: context.localizations.cancel,
                   onTap: () => Navigator.pop(context),
-                  color: context.color.profilePagePrimaryVariant,
+                  color: context.color.greyish,
                 ),
                 const SizedBox(width: 20),
                 ColoredButton(

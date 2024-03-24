@@ -311,6 +311,7 @@ class _FilterField extends StatelessWidget {
               : context.screenWidth * 0.24,
           constraints: const BoxConstraints(maxWidth: 400),
           child: TextField(
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             onChanged: (_) => onFieldChanged(),
             controller: controller,
             decoration: InputDecoration(

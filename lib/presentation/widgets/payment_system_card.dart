@@ -46,21 +46,33 @@ class PaymentSystemCard extends StatelessWidget {
                         height: 40,
                       ),
                 const SizedBox(width: 16),
-                Text(paymentSystem.title),
+                Text(
+                  paymentSystem.title,
+                  style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+                ),
               ],
             ),
             const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("${context.localizations.paymentSystemNetworkLabel}: ",
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                Text(
+                  "${context.localizations.paymentSystemNetworkLabel}: ",
+                  style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+                ),
                 const SizedBox(width: 8),
-                Text(paymentSystem.network),
+                Text(
+                  paymentSystem.network,
+                  style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+                ),
               ],
             ),
             const SizedBox(height: 16),
-            SelectableText(paymentSystem.key),
+            SelectableText(
+              paymentSystem.key,
+              style: context.text.profileBotsDefault
+                  .copyWith(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
           ],
         ),
       ),

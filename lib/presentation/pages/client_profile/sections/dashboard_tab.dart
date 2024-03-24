@@ -537,6 +537,7 @@ class _FilledTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: context.text.profileBotsDefault.copyWith(fontSize: 16),
       controller: controller,
       decoration: InputDecoration(
         hintText: hintText,

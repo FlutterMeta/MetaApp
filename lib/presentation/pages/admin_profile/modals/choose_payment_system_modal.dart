@@ -127,20 +127,23 @@ class ChoosePaymentSystemModalState extends State<ChoosePaymentSystemModal>
             },
           ),
           const SizedBox(height: 30),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ColoredButton(
-                title: context.localizations.cancel,
-                onTap: () => Navigator.of(context).pop(),
-                color: context.color.profilePagePrimaryVariant,
-              ),
-              ColoredButton(
-                title: context.localizations.confirm,
-                onTap: _handleOnTap,
-                color: context.color.profilePagePrimary,
-              ),
-            ],
+          Align(
+            alignment: Alignment.centerRight,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ColoredButton(
+                  title: context.localizations.cancel,
+                  onTap: () => Navigator.of(context).pop(),
+                  color: context.color.greyish,
+                ),
+                ColoredButton(
+                  title: context.localizations.confirm,
+                  onTap: _handleOnTap,
+                  color: context.color.profilePagePrimary,
+                ),
+              ],
+            ),
           ),
         ],
       ),

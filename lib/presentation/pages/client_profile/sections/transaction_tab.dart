@@ -161,6 +161,7 @@ class EnterTxIdModalState extends State<EnterTxIdModal> with MessageOverlay {
             const SizedBox(height: 20),
             TextField(
               controller: _txIdController,
+              style: context.text.profileBotsDefault.copyWith(fontSize: 16),
               decoration: InputDecoration(
                 hintText: context.localizations.txId,
                 border: OutlineInputBorder(

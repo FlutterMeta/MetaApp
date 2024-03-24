@@ -149,8 +149,13 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
       insetPadding: EdgeInsets.zero,
       child: Container(
         constraints: const BoxConstraints(maxWidth: 500),
+        decoration: BoxDecoration(
+          color: context.color.profilePageBackground,
+          borderRadius: BorderRadius.circular(12),
+        ),
         padding: const EdgeInsets.all(32),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Align(
@@ -172,6 +177,7 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
             ),
             const SizedBox(height: 16),
             TextField(
+              style: context.text.profileBotsDefault.copyWith(fontSize: 16),
               controller: _titleController,
               decoration: InputDecoration(
                 hintText: context.localizations.paymentSystemName,
@@ -195,6 +201,7 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
             ),
             const SizedBox(height: 16),
             TextField(
+              style: context.text.profileBotsDefault.copyWith(fontSize: 16),
               controller: _networkController,
               decoration: InputDecoration(
                 hintText: context.localizations.network,
@@ -218,6 +225,7 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
             ),
             const SizedBox(height: 16),
             TextField(
+              style: context.text.profileBotsDefault.copyWith(fontSize: 16),
               controller: _keyController,
               decoration: InputDecoration(
                 hintText: "0x19323dEf2...",
@@ -292,35 +300,39 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
             ),
             // const Spacer(),
             const SizedBox(height: 36),
-            Row(
-              children: [
-                const SizedBox(height: 16),
-                ColoredButton(
-                  title: context.localizations.cancel,
-                  color: context.color.profilePagePrimaryVariant,
-                  onTap: () => Navigator.pop(context),
-                ),
-                const SizedBox(width: 16),
-                if (widget.paymentSystem == null) ...[
+            Align(
+              alignment: Alignment.centerRight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const SizedBox(height: 16),
+                  ColoredButton(
+                    title: context.localizations.cancel,
+                    color: context.color.greyish,
+                    onTap: () => Navigator.pop(context),
+                  ),
                   const SizedBox(width: 16),
-                  ColoredButton(
-                      title: context.localizations.create,
-                      color: context.color.profilePagePrimary,
-                      onTap: _savePaymentSystem),
-                ],
-                const SizedBox(width: 16),
-                if (widget.paymentSystem != null) ...[
-                  ColoredButton(
-                      title: context.localizations.save,
-                      color: context.color.profilePagePrimary,
-                      onTap: _savePaymentSystem),
+                  if (widget.paymentSystem == null) ...[
+                    const SizedBox(width: 16),
+                    ColoredButton(
+                        title: context.localizations.create,
+                        color: context.color.profilePagePrimary,
+                        onTap: _savePaymentSystem),
+                  ],
                   const SizedBox(width: 16),
-                  ColoredButton(
-                      title: context.localizations.disable,
-                      color: context.color.profilePageError,
-                      onTap: _disablePaymentSystem),
+                  if (widget.paymentSystem != null) ...[
+                    ColoredButton(
+                        title: context.localizations.save,
+                        color: context.color.profilePagePrimary,
+                        onTap: _savePaymentSystem),
+                    const SizedBox(width: 16),
+                    ColoredButton(
+                        title: context.localizations.disable,
+                        color: context.color.profilePageError,
+                        onTap: _disablePaymentSystem),
+                  ],
                 ],
-              ],
+              ),
             ),
           ],
         ),

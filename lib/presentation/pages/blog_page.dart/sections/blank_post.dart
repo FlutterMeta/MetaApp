@@ -183,6 +183,7 @@ class _EditablePostFields extends StatelessWidget {
               controller: bodyController,
               minLines: 16,
               maxLines: 30,
+              style: context.text.profileBotsDefault.copyWith(fontSize: 16),
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: context.localizations.blogBody,

@@ -76,7 +76,6 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
       padding: const EdgeInsets.all(40),
       constraints: const BoxConstraints(
         maxWidth: 500,
-        maxHeight: 500,
       ),
       decoration: BoxDecoration(
         color: context.color.profilePageBackground,
@@ -107,6 +106,7 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
           }),
           const SizedBox(height: 10),
           TextField(
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             controller: levelController,
             decoration: InputDecoration(
               hintText: context.localizations.level,
@@ -128,6 +128,7 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
           ),
           const SizedBox(height: 10),
           TextField(
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             controller: _rewardController,
             decoration: InputDecoration(
               hintText: context.localizations.reward,
@@ -150,6 +151,7 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
           ),
           const SizedBox(height: 10),
           TextField(
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             controller: _requiredReferalsCountController,
             decoration: InputDecoration(
               hintText: context.localizations.enterReferalsCountNeededToAchieve,
@@ -162,7 +164,7 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
               fillColor: context.color.profilePagePrimary.withOpacity(0.1),
             ),
           ),
-          const Spacer(),
+          const SizedBox(height: 20),
           Align(
             alignment: Alignment.centerRight,
             child: Row(
@@ -174,8 +176,9 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  color: context.color.profilePagePrimaryVariant,
+                  color: context.color.greyish,
                 ),
+                const SizedBox(width: 20),
                 ColoredButton(
                   title: context.localizations.add,
                   onTap: () => _handleOnTap(context),

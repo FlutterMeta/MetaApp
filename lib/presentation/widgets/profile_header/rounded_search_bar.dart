@@ -23,6 +23,7 @@ class _RoundedSearchBarState extends State<RoundedSearchBar> {
           ? context.screenWidth * 0.4
           : context.screenWidth * 0.58,
       child: TextField(
+        style: context.text.profileBotsDefault.copyWith(fontSize: 16),
         onChanged: (value) => SearchBarController.searchInput.value = value,
         decoration: InputDecoration(
           border: InputBorder.none,

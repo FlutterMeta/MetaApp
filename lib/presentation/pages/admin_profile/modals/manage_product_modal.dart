@@ -201,9 +201,7 @@ class ManageProductModalState extends State<ManageProductModal>
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(40),
-      constraints: const BoxConstraints(
-        maxWidth: 500,
-      ),
+      constraints: const BoxConstraints(maxWidth: 600),
       decoration: BoxDecoration(
         color: context.color.profilePageBackground,
         borderRadius: BorderRadius.circular(12),
@@ -228,6 +226,7 @@ class ManageProductModalState extends State<ManageProductModal>
           ),
           const SizedBox(height: 10),
           TextField(
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             controller: _titleController,
             decoration: InputDecoration(
               hintText: context.localizations.productTitle,
@@ -253,6 +252,7 @@ class ManageProductModalState extends State<ManageProductModal>
             controller: _descriptionController,
             minLines: 6,
             maxLines: 12,
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             decoration: InputDecoration(
               hintText: context.localizations.productDescription,
               hintStyle: context.text.profileBotsDefault.copyWith(fontSize: 12),
@@ -274,6 +274,7 @@ class ManageProductModalState extends State<ManageProductModal>
           ),
           const SizedBox(height: 10),
           TextField(
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             controller: _priceController,
             decoration: InputDecoration(
               hintText: context.localizations.price,
@@ -296,6 +297,7 @@ class ManageProductModalState extends State<ManageProductModal>
           ),
           const SizedBox(height: 10),
           TextField(
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
             controller: _subscriptionDurationController,
             decoration: InputDecoration(
               hintText: context.localizations.subscriptionDuration,
@@ -338,7 +340,7 @@ class ManageProductModalState extends State<ManageProductModal>
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  color: context.color.profilePagePrimaryVariant,
+                  color: context.color.greyish,
                 ),
                 const SizedBox(width: 20),
                 ColoredButton(
