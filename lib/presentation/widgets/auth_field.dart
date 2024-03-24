@@ -21,7 +21,7 @@ class AuthField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       validator: validator,
-      style: context.text.loginFormText,
+      style: context.text.profileBotsDefault.copyWith(fontSize: 16),
       controller: controller,
       obscureText: obscureText,
       autofillHints: autofillHints,
@@ -61,7 +61,7 @@ class _PasswordFieldState extends State<PasswordField> {
   Widget build(BuildContext context) {
     return TextFormField(
       validator: widget.validator,
-      style: context.text.loginFormText,
+      style: context.text.profileBotsDefault.copyWith(fontSize: 16),
       controller: widget.controller,
       obscureText: _isObscured,
       autofillHints: const [AutofillHints.password],
