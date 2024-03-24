@@ -411,7 +411,8 @@
     "txId": "Transaction ID",
     "submit": "Submit",
     "successfulPayment": "Successful payment",
-    "txIdInfo": "Transaction ID is a unique identifier of the transaction in the blockchain",
+    "txIdVerification": "We need it to verify your payment",
+    "txIdInfo": "Transaction Hash is a unique identifier of the transaction in the blockchain.\nIt's a long string of letters and numbers, like this: 0x87015566c0a38483443fa4c1e5a630fb4426a42adb56380e4c708e9b0a572915",
     "subscriptionTierInfo": "The  bigger the tier, the more features user gets (more strategies)",
     "prePaidInfoMessage": "Please ensure that you have transferred the exact amount of USD to the wallet address provided in the requisites field. Afterward, click the 'Paid' button.",
     "paymentSystemSuccessfullyDisabled": "Payment system successfully disabled"

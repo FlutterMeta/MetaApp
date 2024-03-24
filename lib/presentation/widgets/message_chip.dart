@@ -37,18 +37,34 @@ class MessageChip extends StatelessWidget {
         TextSpan(
           children: [
             WidgetSpan(
+              alignment: PlaceholderAlignment.middle,
               child: Icon(
                 Icons.warning_rounded,
                 color: color,
               ),
             ),
             TextSpan(
-              text: '  $message',
+              text: ' $message',
               style: TextStyle(color: color, fontSize: 16),
             ),
           ],
         ),
       ),
+      // child: Row(
+      //   children: [
+      //     Icon(
+      //       Icons.warning_rounded,
+      //       color: color,
+      //     ),
+      //     SizedBox(width: 8), // Adjust the width as needed for spacing
+      //     Expanded(
+      //       child: Text(
+      //         message,
+      //         style: TextStyle(color: color, fontSize: 16),
+      //       ),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

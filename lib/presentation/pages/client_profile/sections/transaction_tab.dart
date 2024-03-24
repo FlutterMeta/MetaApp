@@ -143,23 +143,36 @@ class _EnterTxIdModalState extends State<EnterTxIdModal> with MessageOverlay {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(context.localizations.enterTxId),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          MessageChip.info(message: context.localizations.txIdInfo),
-          TextField(
-            controller: _txIdController,
-            decoration: InputDecoration(
-              hintText: context.localizations.txId,
+      content: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 500),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            MessageChip.info(message: context.localizations.txIdInfo),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                MessageChip.warning(
+                    message: context.localizations.txIdVerification),
+              ],
             ),
-          ),
-          const SizedBox(height: 20),
-          ColoredButton(
-            title: context.localizations.submit,
-            color: context.color.profilePagePrimary,
-            onTap: _onSubmit,
-          ),
-        ],
+            const SizedBox(height: 20),
+            TextField(
+              controller: _txIdController,
+              decoration: InputDecoration(
+                hintText: context.localizations.txId,
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              ),
+            ),
+            const SizedBox(height: 20),
+            ColoredButton(
+              title: context.localizations.submit,
+              color: context.color.profilePagePrimary,
+              onTap: _onSubmit,
+            ),
+          ],
+        ),
       ),
     );
   }
