@@ -49,11 +49,13 @@ class PaymentSystemCard extends StatelessWidget {
                 Text(paymentSystem.title),
               ],
             ),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(context.localizations.paymentSystemNetworkLabel),
-                const SizedBox(width: 16),
+                Text("${context.localizations.paymentSystemNetworkLabel}: ",
+                    style: const TextStyle(fontWeight: FontWeight.bold)),
+                const SizedBox(width: 8),
                 Text(paymentSystem.network),
               ],
             ),

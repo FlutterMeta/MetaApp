@@ -2,6 +2,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/message_chip.dart';
 
 import '../../../../core/mixins/message_overlay.dart';
@@ -326,51 +327,26 @@ class ManageProductModalState extends State<ManageProductModal>
               mainAxisSize: MainAxisSize.min,
               children: [
                 if (widget.product != null)
-                  ElevatedButton(
-                    onPressed: () => _handleDelete(context),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: context.color.profilePageError,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 15,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                    ),
-                    child: Text(context.localizations.delete),
+                  ColoredButton(
+                    title: context.localizations.delete,
+                    onTap: () => _handleDelete(context),
+                    color: context.color.profilePageError,
                   ),
                 const Spacer(),
-                ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: context.color.profilePagePrimaryVariant,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 15,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: Text(context.localizations.cancel),
+                ColoredButton(
+                  title: context.localizations.cancel,
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  color: context.color.profilePagePrimaryVariant,
                 ),
                 const SizedBox(width: 20),
-                ElevatedButton(
-                  onPressed: () => _handleOnTap(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: context.color.profilePagePrimary,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 15,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: Text(widget.product == null
+                ColoredButton(
+                  title: widget.product == null
                       ? context.localizations.add
-                      : context.localizations.edit),
+                      : context.localizations.edit,
+                  onTap: () => _handleOnTap(context),
+                  color: context.color.profilePagePrimary,
                 ),
                 const SizedBox(width: 20),
               ],

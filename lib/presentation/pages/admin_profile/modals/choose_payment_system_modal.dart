@@ -4,6 +4,7 @@ import 'package:meta_app/presentation/pages/admin_profile/payment_systems_state_
 import 'package:meta_app/core/mixins/message_overlay.dart';
 import 'package:meta_app/data/models/product.dart';
 import 'package:meta_app/presentation/pages/client_profile/sections/transaction_tab.dart';
+import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/payment_system_card.dart';
 
 class ChoosePaymentSystemModal extends StatefulWidget {
@@ -30,6 +31,34 @@ class ChoosePaymentSystemModalState extends State<ChoosePaymentSystemModal>
   void dispose() {
     selectedSystemId.dispose();
     super.dispose();
+  }
+
+  void _handleOnTap() async {
+    if (selectedSystemId.value == null) {
+      showMessage(
+        context.localizations.choosePaymentSystem,
+        context.color.profilePageError,
+      );
+      return;
+    }
+    Navigator.of(context).pop(selectedSystemId.value);
+    showDialog(
+      context: context,
+      builder: (_) => Center(
+        child: SingleChildScrollView(
+          child: Dialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: TransactionTab(
+              product: widget.product,
+              paymentSystem: PaymentSystemsStateHandler.instance
+                  .getSystemById(selectedSystemId.value ?? 0),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -101,55 +130,15 @@ class ChoosePaymentSystemModalState extends State<ChoosePaymentSystemModal>
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              ElevatedButton(
-                onPressed: () => Navigator.of(context).pop(),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: context.color.profilePagePrimaryVariant,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                child: Text(context.localizations.cancel),
+              ColoredButton(
+                title: context.localizations.cancel,
+                onTap: () => Navigator.of(context).pop(),
+                color: context.color.profilePagePrimaryVariant,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  if (selectedSystemId.value == null) {
-                    showMessage(
-                      context.localizations.choosePaymentSystem,
-                      context.color.profilePageError,
-                    );
-                    return;
-                  }
-                  Navigator.of(context).pop(selectedSystemId.value);
-                  showDialog(
-                    context: context,
-                    builder: (_) => Center(
-                      child: SingleChildScrollView(
-                        child: Dialog(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: TransactionTab(
-                            product: widget.product,
-                            paymentSystem: PaymentSystemsStateHandler.instance
-                                .getSystemById(selectedSystemId.value ?? 0),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: context.color.profilePagePrimary,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                ),
-                child: Text(context.localizations.confirm),
+              ColoredButton(
+                title: context.localizations.confirm,
+                onTap: _handleOnTap,
+                color: context.color.profilePagePrimary,
               ),
             ],
           ),

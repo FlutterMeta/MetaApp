@@ -2,6 +2,7 @@ import 'package:async_redux/async_redux.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/mixins/message_overlay.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
@@ -11,6 +12,7 @@ import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/message_chip.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
+import 'package:meta_app/presentation/widgets/temporarily_disabled_colored_button.dart';
 
 import '../../../../core/utils/api_client.dart';
 import '../../../../data/models/payment_system.dart';
@@ -161,12 +163,24 @@ class EnterTxIdModalState extends State<EnterTxIdModal> with MessageOverlay {
               controller: _txIdController,
               decoration: InputDecoration(
                 hintText: context.localizations.txId,
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                suffixIcon: IconButton(
+                  onPressed: () async {
+                    // Paste functionality
+                    ClipboardData? data =
+                        await Clipboard.getData(Clipboard.kTextPlain);
+                    if (data != null) {
+                      _txIdController.text = data.text!;
+                    }
+                  },
+                  icon: const Icon(Icons.content_paste),
+                ),
               ),
             ),
             const SizedBox(height: 20),
-            ColoredButton(
+            TemporarilyDisabledColoredButton(
               title: context.localizations.submit,
               color: context.color.profilePagePrimary,
               onTap: _onSubmit,
@@ -335,7 +349,8 @@ class _TransactionWindowState extends State<_TransactionWindow>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Align(
-                    child: ColoredButton(
+                    child: TemporarilyDisabledColoredButton(
+                      disableDuration: 10,
                       title: context.localizations.paid,
                       color: context.color.profilePagePrimary,
                       onTap: () {

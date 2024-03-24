@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/mixins/message_overlay.dart';
@@ -64,6 +65,8 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
           Colors.red,
         );
       }
+
+      await levelsNotifier.loadLevels();
     }
   }
 
@@ -163,36 +166,20 @@ class AddReferalLevelModalState extends State<AddReferalLevelModal>
           Align(
             alignment: Alignment.centerRight,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.min,
               children: [
-                ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: context.color.profilePagePrimaryVariant,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 15,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: Text(context.localizations.cancel),
+                ColoredButton(
+                  title: context.localizations.cancel,
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  color: context.color.profilePagePrimaryVariant,
                 ),
-                const SizedBox(width: 20),
-                ElevatedButton(
-                  onPressed: () => _handleOnTap(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: context.color.profilePagePrimary,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 15,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: Text(context.localizations.add),
+                ColoredButton(
+                  title: context.localizations.add,
+                  onTap: () => _handleOnTap(context),
+                  color: context.color.profilePageSecondaryVariant,
                 ),
               ],
             ),

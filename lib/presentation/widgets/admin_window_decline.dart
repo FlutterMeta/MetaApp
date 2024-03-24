@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/message_chip.dart';
+import 'package:meta_app/presentation/widgets/temporarily_disabled_colored_button.dart';
 
 class AdminWindowDecline extends StatelessWidget {
   final String title;
@@ -60,13 +61,13 @@ class AdminWindowDecline extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ColoredButton(
+                TemporarilyDisabledColoredButton(
                   title: confirmText,
                   onTap: onConfirm,
                   color: context.color.profilePageSecondaryVariant,
                 ),
                 const SizedBox(width: 20),
-                ColoredButton(
+                TemporarilyDisabledColoredButton(
                   title: context.localizations.decline,
                   onTap: onDecline,
                   color: context.color.profilePageError,
@@ -77,13 +78,13 @@ class AdminWindowDecline extends StatelessWidget {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ColoredButton(
+                TemporarilyDisabledColoredButton(
                   title: confirmText,
                   onTap: onConfirm,
                   color: context.color.profilePageSecondaryVariant,
                 ),
                 const SizedBox(height: 20),
-                ColoredButton(
+                TemporarilyDisabledColoredButton(
                   title: context.localizations.decline,
                   onTap: onDecline,
                   color: context.color.profilePageError,

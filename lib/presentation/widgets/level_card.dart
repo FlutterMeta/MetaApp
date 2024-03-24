@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/models/referal_level.dart';
+import 'package:meta_app/presentation/widgets/colored_button.dart';
 
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:provider/provider.dart';
@@ -296,34 +297,16 @@ class _EditLevelModalState extends State<_EditLevelModal> with MessageOverlay {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: context.color.profilePagePrimaryVariant,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 15,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: Text(context.localizations.cancel),
+                ColoredButton(
+                  title: context.localizations.cancel,
+                  onTap: () => Navigator.pop(context),
+                  color: context.color.profilePagePrimaryVariant,
                 ),
                 const SizedBox(width: 20),
-                ElevatedButton(
-                  onPressed: () => _handleOnTap(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: context.color.profilePagePrimary,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 15,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                  ),
-                  child: Text(context.localizations.edit),
+                ColoredButton(
+                  title: context.localizations.save,
+                  onTap: () => _handleOnTap(context),
+                  color: context.color.profilePageSecondaryVariant,
                 ),
               ],
             ),

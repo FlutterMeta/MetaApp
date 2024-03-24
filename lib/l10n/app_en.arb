@@ -234,6 +234,7 @@
     "checkRequisites": "Check the requisites and approve or decline the payment",
     "transactionDeclined": "Transaction declined",
     "decline": "Decline",
+    "save": "Save",
     "transactionApproved": "Transaction approved",
     "pendingPayment": "Pending payment",
     "confirmPayment": "Confirm payment",

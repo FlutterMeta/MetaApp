@@ -50,7 +50,7 @@ class _AdministeredUserTransactionInfoState
         await apiRepository.declineTransaction(widget.transaction.id);
     if (response.statusCode == 200) {
       setState(() => isPopupVisible = false);
-      showMessage(context.localizations.transactionDeclined, Colors.red);
+      showMessage(context.localizations.transactionDeclined, Colors.green);
       TransactionsStateHandler.instance
           .edittransaction(widget.transaction.copyWith(
         status: TransactionStatus.declined.name,
