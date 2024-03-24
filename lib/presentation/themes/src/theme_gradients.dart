@@ -138,7 +138,7 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
         indigoTurquoiseReversed: const LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
-          colors: [DarkAppColors.indigo, DarkAppColors.transparent],
+          colors: [AppColors.indigo, DarkAppColors.indigo],
         ),
         indigoTurquoiseDiagonal: const LinearGradient(
           colors: [DarkAppColors.indigo, DarkAppColors.turquoise],
@@ -149,17 +149,14 @@ class ThemeGradients extends ThemeExtension<ThemeGradients> {
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
           colors: [
-            DarkAppColors.indigo.withOpacity(0.6),
-            DarkAppColors.turquoise.withOpacity(0.6)
+            DarkAppColors.indigo.withOpacity(0.1),
+            DarkAppColors.turquoise.withOpacity(0.1)
           ],
         ),
         indigoVertical: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
-          colors: [
-            DarkAppColors.indigo,
-            DarkAppColors.darkIndigo.withOpacity(0.7)
-          ],
+          colors: [AppColors.indigo, DarkAppColors.indigo.withOpacity(0.2)],
         ),
         blackVertical: LinearGradient(
           begin: Alignment.bottomCenter,

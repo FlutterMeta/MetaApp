@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
+import 'package:meta_app/presentation/widgets/day_night_icon.dart';
 import 'package:meta_app/presentation/widgets/profile_header/animated_menu_icon.dart';
 import 'package:meta_app/presentation/widgets/profile_header/rounded_search_bar.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
@@ -27,7 +28,7 @@ class ProfileHeader extends Header {
       ProfileHeader(
         scaffoldKey: scaffoldKey,
         menuIcon: _SideMenuIcon(scaffoldKey: scaffoldKey),
-        supportIcon: const _SupportChatIcon(),
+        supportIcon: const DayNightIcon(),
       );
 
   factory ProfileHeader.admin() => const ProfileHeader();

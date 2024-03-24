@@ -504,7 +504,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         okay: AppColors.green,
       );
 
-  static get dark => const ThemeColors(
+  static get dark => ThemeColors(
         authButtonFill: AppColors.indigo,
         formFieldFill: DarkAppColors.blueGrey,
         infoCardBackground: DarkAppColors.darkGrey,
@@ -547,9 +547,9 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         revenueSectionRateCardBorder: DarkAppColors.grey,
         revenueSectionArrowIcon: DarkAppColors.lighterBlack,
         revenueSectionHoverColor: DarkAppColors.transparent,
-        directionsCardBackground: DarkAppColors.brightAquamarine,
+        directionsCardBackground: DarkAppColors.darkIndigo,
         directionsCardsSectionBackground: DarkAppColors.darkGrey,
-        directionCardIcon: Color.fromARGB(255, 196, 187, 255),
+        directionCardIcon: const Color.fromARGB(255, 196, 187, 255),
         directionCardIconBackground: DarkAppColors.grey,
         directionsScaffoldBackground: DarkAppColors.darkGrey,
         termsButtonFillColor: DarkAppColors.grey,
@@ -559,11 +559,11 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         dashboardSideMenuUnselectedItem: DarkAppColors.blueGrey,
         greyish: DarkAppColors.greyish,
         profilePageError: DarkAppColors.red,
-        profilePageAboveBackground: Color.fromARGB(255, 196, 187, 255),
+        profilePageAboveBackground: const Color.fromARGB(255, 196, 187, 255),
         profilePageBackground: DarkAppColors.darkGrey,
-        profilePagePrimary: Color.fromARGB(255, 197, 190, 245),
-        profilePagePrimaryVariant: Color.fromARGB(255, 196, 187, 255),
-        profilePageSecondary: DarkAppColors.turquoise,
+        profilePagePrimary: const Color.fromARGB(255, 54, 52, 68),
+        profilePagePrimaryVariant: const Color.fromARGB(255, 188, 187, 196),
+        profilePageSecondary: DarkAppColors.indigo.withOpacity(0.5),
         profilePageSecondaryVariant: DarkAppColors.seaGreen,
         profilePageTransparent: DarkAppColors.transparent,
         warning: DarkAppColors.yellow,

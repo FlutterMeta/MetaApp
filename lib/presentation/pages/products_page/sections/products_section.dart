@@ -6,12 +6,7 @@ class _ProductsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(AppAssets.indigoBackground),
-          fit: BoxFit.fill,
-        ),
-      ),
+      decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
       padding: const EdgeInsets.symmetric(vertical: 246, horizontal: 16),
       alignment: Alignment.center,
       child: Container(

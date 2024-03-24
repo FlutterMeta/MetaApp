@@ -13,7 +13,8 @@ class _SpecialInfoComponent extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         child: Row(
           children: [
-            Text(context.localizations.moreFactsAbout),
+            Text(context.localizations.moreFactsAbout,
+                style: context.text.blogTitle),
             const SizedBox(width: 10),
             Container(
               decoration: BoxDecoration(

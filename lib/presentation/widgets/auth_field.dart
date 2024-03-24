@@ -21,6 +21,7 @@ class AuthField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       validator: validator,
+      style: context.text.loginFormText,
       controller: controller,
       obscureText: obscureText,
       autofillHints: autofillHints,
@@ -60,6 +61,7 @@ class _PasswordFieldState extends State<PasswordField> {
   Widget build(BuildContext context) {
     return TextFormField(
       validator: widget.validator,
+      style: context.text.loginFormText,
       controller: widget.controller,
       obscureText: _isObscured,
       autofillHints: const [AutofillHints.password],

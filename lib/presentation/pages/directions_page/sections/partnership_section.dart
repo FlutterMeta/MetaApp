@@ -11,12 +11,7 @@ class _PartnershipSection extends StatelessWidget {
         : CrossAxisAlignment.start;
 
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(AppAssets.indigoBackground),
-          fit: BoxFit.fill,
-        ),
-      ),
+      decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(vertical: 100),
       child: Container(

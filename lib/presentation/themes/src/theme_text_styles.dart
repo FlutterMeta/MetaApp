@@ -1738,7 +1738,8 @@ class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> {
           fontSize: 13,
           color: const Color.fromARGB(255, 218, 216, 216),
         ),
-        profileBotsDefault: headline1.copyWith(color: AppColors.darkIndigo),
+        profileBotsDefault:
+            headline1.copyWith(color: const Color.fromARGB(255, 187, 187, 187)),
         profileHeaderSubtitle: headline1.copyWith(
           fontSize: 12,
           color: const Color.fromARGB(255, 125, 126, 129),

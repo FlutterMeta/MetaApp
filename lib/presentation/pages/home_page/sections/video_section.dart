@@ -58,7 +58,7 @@ class _Video extends StatelessWidget {
         ..style.height = "216px"
         ..src = model.source
         ..style.borderRadius = "10px"
-        ..style.boxShadow = " 0px 6px 28px -4px rgb(136 130 226 / 100%)"
+        ..style.boxShadow = " 0px 6px 28px -4px rgb(80 76 150 / 100%)"
         ..style.border = 'none',
     );
 

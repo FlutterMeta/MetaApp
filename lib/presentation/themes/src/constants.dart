@@ -59,7 +59,7 @@ class DarkAppColors {
   static const white = Color(0xFFFAFAFA);
   static const grey = Color(0xFF424242);
   static const lightGrey = Color(0xFF424242);
-  static const brightAquamarine = Color(0xFF00AEC4);
+  static const aquamarine = Color(0xFF3DC6FC);
   static const darkGrey = Color(0xFF121212);
   static const blueGrey = Color(0xFF263238);
   static const red = Color(0xFFCF6679);

@@ -10,7 +10,6 @@ import 'package:meta_app/core/mixins/message_overlay.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/models/result.dart';
 
-import 'package:meta_app/presentation/constants/app_assets.dart';
 import 'package:meta_app/presentation/providers/blogs_notifier.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/footer/footer.dart';
@@ -67,7 +66,6 @@ class _BlogPageState extends State<BlogPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
@@ -78,7 +76,6 @@ class _BlogPageState extends State<BlogPage> {
             ),
             pinned: true,
           ),
-          const SliverSizedBox(height: 70),
           const SliverSizedBox(child: _PresentationSection()),
           const SliverSizedBox(height: 20),
           const SliverSizedBox(child: _PostsSection()),

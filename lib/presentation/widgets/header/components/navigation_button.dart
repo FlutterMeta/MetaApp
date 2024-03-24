@@ -31,7 +31,7 @@ class _NavigationButton extends StatelessWidget {
           title,
           style: currentRouteName(context) == routeName
               ? context.text.headerNavItemHovered
-              : null,
+              : context.text.blogTitle.copyWith(fontSize: 14),
         ),
       ),
     );

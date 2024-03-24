@@ -6,12 +6,7 @@ class _PresentationSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(AppAssets.indigoBackground),
-          fit: BoxFit.fill,
-        ),
-      ),
+      decoration: BoxDecoration(gradient: context.gradient.lightIndigo),
       child: Column(
         children: [
           const SizedBox(height: 30),
