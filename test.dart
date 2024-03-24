@@ -8,7 +8,7 @@ void main() {
         body: Column(
           children: [
             ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: 400),
+              constraints: const BoxConstraints(maxWidth: 400),
               child: MessageChip.info(
                   message:
                       'This is an info message. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),

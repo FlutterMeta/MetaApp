@@ -136,7 +136,7 @@ class _DeletePostButtonState extends State<_DeletePostButton>
   void _deletePost(BuildContext context, int postId) async {
     try {
       Result result = await context.read<BlogsNotifier>().deleteBlog(postId);
-      print(postId);
+
       if (result.success) {
         showMessage(context.localizations.deletedSuccessfully, Colors.green);
       } else {
@@ -154,7 +154,7 @@ class _DeletePostButtonState extends State<_DeletePostButton>
       color: context.color.profilePageError,
       title: context.localizations.deletePost,
       onTap: () {
-        context.read<BlogsNotifier>().deleteBlog(widget.postId);
+        _deletePost(context, widget.postId);
       },
     );
   }

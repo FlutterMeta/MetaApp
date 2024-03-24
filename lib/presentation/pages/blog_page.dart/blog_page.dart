@@ -2,11 +2,9 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:async_redux/async_redux.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
-import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/mixins/message_overlay.dart';
 
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';

@@ -76,10 +76,10 @@ class EnterTxIdModal extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _EnterTxIdModalState createState() => _EnterTxIdModalState();
+  EnterTxIdModalState createState() => EnterTxIdModalState();
 }
 
-class _EnterTxIdModalState extends State<EnterTxIdModal> with MessageOverlay {
+class EnterTxIdModalState extends State<EnterTxIdModal> with MessageOverlay {
   final TextEditingController _txIdController = TextEditingController();
 
   void _onSubmit() async {
