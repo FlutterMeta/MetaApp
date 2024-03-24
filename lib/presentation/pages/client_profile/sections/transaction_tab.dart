@@ -42,6 +42,7 @@ class TransactionTabState extends State<TransactionTab> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(30.0),
+      color: context.color.profilePageBackground,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

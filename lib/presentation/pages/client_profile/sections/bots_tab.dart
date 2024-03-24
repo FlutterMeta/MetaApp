@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/pages/admin_profile/modals/choose_payment_system_modal.dart';
 import 'package:meta_app/presentation/widgets/bot_demo_card.dart';
+import 'package:meta_app/presentation/widgets/message_chip.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import 'package:provider/provider.dart';
@@ -72,7 +73,40 @@ class _BotsTabState extends State<BotsTab> {
               children: [
                 _CardsWrap(children: _profitCards(context)),
                 const SizedBox(height: 20),
+                // Container(
+                //   margin: Responsive.isMobile(context)
+                //       ? const EdgeInsets.only(left: 20)
+                //       : const EdgeInsets.only(left: 80),
+                //   alignment: Alignment.centerLeft,
+                //   child: Text(
+                //     context.localizations.ourProducts,
+                //     style: context.text.profileBotsDefault
+                //         .copyWith(fontSize: 24, fontWeight: FontWeight.bold),
+                //   ),
+                // ),
+                // const SizedBox(height: 10),
+                // Container(
+                //   child: Text(
+                //     context.localizations.ourProductsInfo,
+                //     style:
+                //         context.text.profileBotsDefault.copyWith(fontSize: 16),
+                //   ),
+                // ),
+                _TitleWrap(
+                    title: context.localizations.ourProducts,
+                    subtitle: context.localizations.ourProductsInfo),
+                const SizedBox(height: 20),
                 _CardsWrap(children: [
+                  if (productsNotifier.products.isEmpty)
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 1270),
+                      child: Row(children: [
+                        Expanded(
+                          child: MessageChip.info(
+                              message: context.localizations.noProducts),
+                        ),
+                      ]),
+                    ),
                   for (final product in productsNotifier.products)
                     BotDemoCard(
                       product: product,
@@ -87,6 +121,40 @@ class _BotsTabState extends State<BotsTab> {
             );
           },
         ),
+      ),
+    );
+  }
+}
+
+class _TitleWrap extends StatelessWidget {
+  final String title;
+  final String subtitle;
+
+  const _TitleWrap({
+    required this.title,
+    required this.subtitle,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      constraints: const BoxConstraints(maxWidth: 1270),
+      alignment: Alignment.centerLeft,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: context.text.profileBotsDefault
+                .copyWith(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            subtitle,
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+          ),
+        ],
       ),
     );
   }
