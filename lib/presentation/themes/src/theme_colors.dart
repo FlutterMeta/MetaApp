@@ -556,7 +556,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         directionsJoinButtonBorder: DarkAppColors.white,
         productsScaffoldBackground: DarkAppColors.darkGrey,
         dashboardSideMenuSelectedItem: AppColors.lighterIndigo,
-        dashboardSideMenuUnselectedItem: DarkAppColors.blueGrey,
+        dashboardSideMenuUnselectedItem: AppColors.greyish,
         greyish: DarkAppColors.greyish,
         profilePageError: DarkAppColors.red,
         profilePageAboveBackground: const Color.fromARGB(255, 196, 187, 255),
