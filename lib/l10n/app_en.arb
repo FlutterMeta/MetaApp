@@ -370,7 +370,7 @@
     "subscriptionDuration": "Subscription duration",
     "editedSuccessfully": "Edited successfully",
     "addPaymentSystem": "Add payment system",
-    "paymentSystemName": "Payment system name",
+    "paymentSystemName": "Payment system name (preferably token name, e.g. USDT, BTC, ETH)",
     "paymentSystemManagement": "Payment system management",
     "paymentSystemAddedSuccessfully": "Payment system added successfully",
     "paymentSystemEditedSuccessfully": "Payment system edited successfully",

@@ -139,9 +139,15 @@ class _PopupDialog extends StatelessWidget {
               title: context.localizations.walletAdress,
               value: transaction.walletKey.toString(),
             ),
+            if (transaction.externalId != null)
+              _TextTile(
+                title: context.localizations.txId,
+                value: transaction.externalId.toString(),
+              ),
             _TextTile(
               title: context.localizations.network,
-              value: transaction.paymentSystemTitle ?? 'N/A',
+              value:
+                  "${transaction.paymentSystemTitle} (${transaction.paymentSystemNetwork})",
             ),
             _TextTile(
               title: context.localizations.transactionAmount,

@@ -54,7 +54,7 @@ class UserTransactionsPage extends StatelessWidget {
                     transactions: user.transactions ?? [],
                   ),
                 ),
-                const SizedBox(height: 140),
+                const SizedBox(height: 440),
                 const Align(
                   alignment: Alignment.center,
                   child: RightsReservedFooter(),

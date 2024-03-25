@@ -27,6 +27,7 @@ class AdminWindowDecline extends StatelessWidget {
       decoration: BoxDecoration(
         color: context.color.profilePageBackground,
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: context.color.greyish),
         boxShadow: [
           BoxShadow(
             color: context.color.profilePagePrimary.withOpacity(0.1),
@@ -35,7 +36,7 @@ class AdminWindowDecline extends StatelessWidget {
           ),
         ],
       ),
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(18),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

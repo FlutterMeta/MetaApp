@@ -50,7 +50,7 @@ class _TransactionsPageState extends State<TransactionsPage> {
                     );
                   },
                 ),
-                const SizedBox(height: 280),
+                const SizedBox(height: 400),
                 const Align(
                   alignment: Alignment.center,
                   child: RightsReservedFooter(),
