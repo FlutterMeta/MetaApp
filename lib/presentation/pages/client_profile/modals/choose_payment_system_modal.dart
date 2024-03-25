@@ -44,7 +44,9 @@ class ChoosePaymentSystemModalState extends State<ChoosePaymentSystemModal>
           const SizedBox(height: 20),
           MessageChip.warning(
               message: context.localizations.networkChoosingTip),
+          const SizedBox(height: 10),
           MessageChip.info(message: context.localizations.walletChooseTip),
+          const SizedBox(height: 20),
           ValueListenableBuilder<int?>(
             valueListenable: widget.selectedSystemId,
             builder: (context, selectedId, child) {
