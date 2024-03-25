@@ -20,17 +20,16 @@ class _UserTransactionInfo extends StatelessWidget {
     return _TransactionInfo(
       transaction: transaction,
       trailing: _StatusChip(status: parse(transaction.status)),
-      leading: _PaymentLeading(
-          transactionNetwork: "${transaction.paymentSystemTitle} "),
+      leading: _PaymentLeading(transaction: transaction),
     );
   }
 }
 
 class _PaymentLeading extends StatelessWidget {
-  final String transactionNetwork;
+  final Transaction transaction;
 
   const _PaymentLeading({
-    required this.transactionNetwork,
+    required this.transaction,
     Key? key,
   }) : super(key: key);
 
@@ -39,20 +38,16 @@ class _PaymentLeading extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
+        Image.memory(
+          base64Decode(transaction.paymentSystemImage ?? ''),
           height: 50,
-          width: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            color: context.color.profilePageSecondaryVariant,
-          ),
         ),
         const SizedBox(width: 20),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              transactionNetwork,
+              '${transaction.paymentSystemTitle!} (${transaction.paymentSystemNetwork!})',
               style: context.text.profilePageBody.copyWith(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,

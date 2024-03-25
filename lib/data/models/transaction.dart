@@ -11,9 +11,11 @@ class Transaction {
   final String type;
   final double amount;
   final String walletKey;
-  final String externalId;
+  final String? externalId;
   final User user;
   final String? paymentSystemTitle;
+  final String? paymentSystemImage;
+  final String? paymentSystemNetwork;
 
   Transaction({
     required this.id,
@@ -25,6 +27,8 @@ class Transaction {
     required this.walletKey,
     required this.user,
     required this.paymentSystemTitle,
+    this.paymentSystemImage,
+    this.paymentSystemNetwork,
   });
 
   Transaction copyWith({
@@ -36,6 +40,9 @@ class Transaction {
     String? walletKey,
     User? user,
     String? paymentSystemTitle,
+    String? externalId,
+    String? paymentSystemLogo,
+    String? paymentSystemNetwork,
   }) {
     return Transaction(
       id: id ?? this.id,
@@ -47,6 +54,8 @@ class Transaction {
       walletKey: walletKey ?? this.walletKey,
       user: user ?? this.user,
       paymentSystemTitle: paymentSystemTitle ?? this.paymentSystemTitle,
+      paymentSystemImage: paymentSystemLogo ?? this.paymentSystemImage,
+      paymentSystemNetwork: paymentSystemNetwork ?? this.paymentSystemNetwork,
     );
   }
 

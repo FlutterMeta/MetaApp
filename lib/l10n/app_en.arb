@@ -413,6 +413,8 @@
     "submit": "Submit",
     "ourProducts": "Our products",
     "noProducts": "No products yet",
+    "networkChoosingTip": "Please pick the type of cryptocurrency and its network you want to get your money in from our list.",
+    "walletChooseTip": "In the subsequent step, give us your wallet details. Make sure it's for the same network and type of cryptocurrency you chose.",
     "ourProductsInfo": "Choose the trading bot that suits you best",
     "successfulPayment": "Successful payment",
     "txIdVerification": "We need it to verify your payment",

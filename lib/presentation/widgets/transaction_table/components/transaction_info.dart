@@ -55,7 +55,7 @@ class _TransactionInfo extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 80,
+          width: 90,
           child: Text(
             transaction.type,
             style: _transactionTextStyle(context),

@@ -3,10 +3,15 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/mixins/message_overlay.dart';
+import 'package:meta_app/core/utils/api_client.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/models/withdrawal_transaction.dart';
+import 'package:meta_app/data/repositories/api_repository_impl.dart';
+import 'package:meta_app/presentation/pages/admin_profile/payment_systems_state_handler.dart';
 import 'package:meta_app/presentation/pages/client_profile/client_menu_controller.dart';
+import 'package:meta_app/presentation/pages/client_profile/modals/choose_payment_system_modal.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/level_card.dart';
@@ -14,9 +19,9 @@ import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import 'package:meta_app/presentation/widgets/transaction_table/transaction_table.dart';
 import 'package:provider/provider.dart';
+import 'dart:html' as html;
 import 'package:useful_extensions/useful_extensions.dart';
 
-import '../../../../core/global.dart';
 import '../../../../data/models/user.dart';
 import '../../../providers/levels_notifier.dart';
 import '../../../redux/app_state.dart';
@@ -372,14 +377,23 @@ class _WalletCard extends StatefulWidget {
 class _WalletCardState extends State<_WalletCard> with MessageOverlay {
   final TextEditingController _walletController = TextEditingController();
   final TextEditingController _amountController = TextEditingController();
-  final String _selectedNetwork = "TRON (TRC20)";
+  // final String _selectedNetwork = "TRON (TRC20)";
+  ValueNotifier<int?> selectedSystemId = ValueNotifier<int?>(null);
 
   void _requestWithdrawHandle() async {
     WithdrawalTransaction transaction = WithdrawalTransaction(
       sum: double.parse(_amountController.text),
       walletKey: _walletController.text,
-      paymentSystemId: 1,
+      paymentSystemId: selectedSystemId.value ?? 0,
     );
+
+    var token = html.window.localStorage['token'];
+
+    final apiClient = ApiClient(
+      baseUrl: baseUrl,
+      token: token ?? "",
+    );
+    final apiRepository = ApiRepositoryImpl(apiClient: apiClient);
     var response = await apiRepository.createTransaction(transaction.toJson());
     if (response.statusCode == 200) {
       showMessage(context.localizations.yourRequestToWithdraw, Colors.green);
@@ -427,6 +441,17 @@ class _WalletCardState extends State<_WalletCard> with MessageOverlay {
             ),
             const SizedBox(height: 56),
             Text(
+              context.localizations.chooseNetwork,
+              style: labelTextStyle,
+            ),
+            const SizedBox(height: 6),
+            // _ChooseNetworkDropdown(selectedNetwork: _selectedNetwork),
+            _PaymentSystemChooseButton(
+              selectedSystemId: selectedSystemId,
+              onTap: () {},
+            ),
+            const SizedBox(height: 32),
+            Text(
               context.localizations.enterWalletAddress,
               style: labelTextStyle,
             ),
@@ -435,13 +460,7 @@ class _WalletCardState extends State<_WalletCard> with MessageOverlay {
               hintText: "TUfNgSnLXe...",
               controller: _walletController,
             ),
-            const SizedBox(height: 32),
-            Text(
-              context.localizations.chooseNetwork,
-              style: labelTextStyle,
-            ),
-            const SizedBox(height: 6),
-            _ChooseNetworkDropdown(selectedNetwork: _selectedNetwork),
+
             const SizedBox(height: 32),
             Text(
               context.localizations.chooseAmount,
@@ -457,6 +476,105 @@ class _WalletCardState extends State<_WalletCard> with MessageOverlay {
           ],
         ),
       ),
+    );
+  }
+}
+
+class _PaymentSystemChooseButton extends StatefulWidget {
+  final ValueNotifier<int?> selectedSystemId;
+  final VoidCallback onTap;
+
+  const _PaymentSystemChooseButton({
+    required this.onTap,
+    required this.selectedSystemId,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<_PaymentSystemChooseButton> createState() =>
+      _PaymentSystemChooseButtonState();
+}
+
+class _PaymentSystemChooseButtonState extends State<_PaymentSystemChooseButton>
+    with MessageOverlay {
+  // Id of selected payment system
+
+  @override
+  void initState() {
+    super.initState();
+    PaymentSystemsStateHandler.instance.init();
+  }
+
+  @override
+  void dispose() {
+    widget.selectedSystemId.dispose();
+    super.dispose();
+  }
+
+  void _showDialog(BuildContext context) {
+    // Show dialog with payment systems cards to choose from
+    showDialog(
+      context: context,
+      builder: (_) {
+        return Center(
+          child: Expanded(
+            child: SingleChildScrollView(
+              child: Dialog(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: ChoosePaymentSystemModal(
+                  selectedSystemId: widget.selectedSystemId,
+                  onTap: _handleOnTap,
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _handleOnTap() async {
+    // If system is not selected show error message, else close the dialog
+    if (widget.selectedSystemId.value == null) {
+      showMessage(
+        context.localizations.choosePaymentSystem,
+        context.color.profilePageError,
+      );
+      return;
+    }
+    Navigator.of(context).pop();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Hover(
+      builder: (_) {
+        return InkWell(
+          onTap: () => _showDialog(context),
+          child: Container(
+            height: 40,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              color: context.color.termsButtonFillColor,
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            clipBehavior: Clip.antiAlias,
+            alignment: Alignment.center,
+            child: ValueListenableBuilder<int?>(
+                valueListenable: widget.selectedSystemId,
+                builder: (context, selectedId, child) {
+                  return Text(
+                    widget.selectedSystemId.value == null
+                        ? context.localizations.choosePaymentSystem
+                        : "${PaymentSystemsStateHandler.instance.getSystemById(widget.selectedSystemId.value ?? 0).title} (${PaymentSystemsStateHandler.instance.getSystemById(widget.selectedSystemId.value ?? 0).network})",
+                    style: context.text.askButton,
+                  );
+                }),
+          ),
+        );
+      },
     );
   }
 }

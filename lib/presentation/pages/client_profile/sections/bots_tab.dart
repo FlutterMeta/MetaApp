@@ -73,46 +73,31 @@ class _BotsTabState extends State<BotsTab> {
               children: [
                 _CardsWrap(children: _profitCards(context)),
                 const SizedBox(height: 20),
-                // Container(
-                //   margin: Responsive.isMobile(context)
-                //       ? const EdgeInsets.only(left: 20)
-                //       : const EdgeInsets.only(left: 80),
-                //   alignment: Alignment.centerLeft,
-                //   child: Text(
-                //     context.localizations.ourProducts,
-                //     style: context.text.profileBotsDefault
-                //         .copyWith(fontSize: 24, fontWeight: FontWeight.bold),
-                //   ),
-                // ),
-                // const SizedBox(height: 10),
-                // Container(
-                //   child: Text(
-                //     context.localizations.ourProductsInfo,
-                //     style:
-                //         context.text.profileBotsDefault.copyWith(fontSize: 16),
-                //   ),
-                // ),
                 _TitleWrap(
                     title: context.localizations.ourProducts,
                     subtitle: context.localizations.ourProductsInfo),
                 const SizedBox(height: 20),
-                _CardsWrap(children: [
-                  if (productsNotifier.products.isEmpty)
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 1270),
-                      child: Row(children: [
-                        Expanded(
-                          child: MessageChip.info(
-                              message: context.localizations.noProducts),
-                        ),
-                      ]),
-                    ),
-                  for (final product in productsNotifier.products)
-                    BotDemoCard(
-                      product: product,
-                      onTap: () => _showDialog(context, product),
-                    ),
-                ]),
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 1270),
+                  alignment: Alignment.centerLeft,
+                  child: _CardsWrap(children: [
+                    if (productsNotifier.products.isEmpty)
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 1270),
+                        child: Row(children: [
+                          Expanded(
+                            child: MessageChip.info(
+                                message: context.localizations.noProducts),
+                          ),
+                        ]),
+                      ),
+                    for (final product in productsNotifier.products)
+                      BotDemoCard(
+                        product: product,
+                        onTap: () => _showDialog(context, product),
+                      ),
+                  ]),
+                ),
                 const SizedBox(height: 30),
                 const _FunctionalityComparisonTable(),
                 const SizedBox(height: 60),
