@@ -262,9 +262,10 @@ class _PaymentSuccessMessage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 100),
-            ColoredButton(
+            TemporarilyDisabledColoredButton(
               title: context.localizations.ok.toUpperCase(),
               color: Colors.green,
+              disableDuration: 9,
               onTap: () {
                 context.router.pushNamed('/profile');
               },
