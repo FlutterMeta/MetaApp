@@ -647,6 +647,28 @@ class ApiRepositoryImpl implements ApiRepository {
   }
 
   @override
+  Future<Response> getUserTransactions({int? type, int? status}) async {
+    late Response response;
+    try {
+      String request = '/User/transactions';
+      if (type != null) {
+        request += '?Type=$type';
+      }
+      if (status != null) {
+        request += '${request.contains('?') ? '&' : '?'}Status=$status';
+      }
+      response = await apiClient.get(request);
+      if (!isSuccessfulStatusCode(response.statusCode)) {
+        debugPrint('API Error: ${response.statusCode}');
+      }
+      return response;
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return response;
+  }
+
+  @override
   Future<Response> getUsers() async {
     late Response response;
     try {

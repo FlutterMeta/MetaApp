@@ -54,6 +54,7 @@ abstract class ApiRepository {
 
   // Users
   Future<Response> getUsers();
+  Future<Response> getUserTransactions({int? type, int? status});
   Future<Response> getUser(String id);
   Future<Response> getAdmins();
   Future<Response> changeBalance(String id, double amount);

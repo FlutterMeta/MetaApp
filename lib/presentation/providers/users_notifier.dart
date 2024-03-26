@@ -123,9 +123,32 @@ class UsersNotifier extends ChangeNotifier {
     }
   }
 
-  Future<Result> getUserTransactions(String userId) async {
+  Future<Result> getUserTransactionsByAdmin(String userId) async {
     try {
       Response response = await apiRepository.getTransactions(userId: userId);
+
+      if (response.statusCode == 200) {
+        final data = response.data["\$values"] as List<dynamic>;
+
+        users.firstWhere((user) => user.id == userId).transactions = data
+            .map((transactionData) =>
+                Transaction.fromJson(transactionData as Map<String, dynamic>))
+            .toList();
+        notifyListeners();
+        return Result.success();
+      } else {
+        return Result.failure(message: response.data["title"]?.toString());
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+      return Result.failure(message: e.toString());
+    }
+  }
+
+  Future<Result> getUserTransactions(String userId) async {
+    try {
+      Response response = await apiRepository.getUserTransactions();
+
       if (response.statusCode == 200) {
         final data = response.data["\$values"] as List<dynamic>;
 

@@ -41,7 +41,7 @@ class Transaction {
     User? user,
     String? paymentSystemTitle,
     String? externalId,
-    String? paymentSystemLogo,
+    String? paymentSystemImage,
     String? paymentSystemNetwork,
   }) {
     return Transaction(
@@ -54,7 +54,7 @@ class Transaction {
       walletKey: walletKey ?? this.walletKey,
       user: user ?? this.user,
       paymentSystemTitle: paymentSystemTitle ?? this.paymentSystemTitle,
-      paymentSystemImage: paymentSystemLogo ?? this.paymentSystemImage,
+      paymentSystemImage: paymentSystemImage ?? this.paymentSystemImage,
       paymentSystemNetwork: paymentSystemNetwork ?? this.paymentSystemNetwork,
     );
   }

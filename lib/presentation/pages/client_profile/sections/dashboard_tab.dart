@@ -5,10 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/mixins/message_overlay.dart';
-import 'package:meta_app/core/utils/api_client.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/models/withdrawal_transaction.dart';
-import 'package:meta_app/data/repositories/api_repository_impl.dart';
 import 'package:meta_app/presentation/pages/admin_profile/payment_systems_state_handler.dart';
 import 'package:meta_app/presentation/pages/client_profile/client_menu_controller.dart';
 import 'package:meta_app/presentation/pages/client_profile/modals/choose_payment_system_modal.dart';
@@ -19,7 +17,6 @@ import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import 'package:meta_app/presentation/widgets/transaction_table/transaction_table.dart';
 import 'package:provider/provider.dart';
-import 'dart:html' as html;
 import 'package:useful_extensions/useful_extensions.dart';
 
 import '../../../../data/models/user.dart';
@@ -387,16 +384,12 @@ class _WalletCardState extends State<_WalletCard> with MessageOverlay {
       paymentSystemId: selectedSystemId.value ?? 0,
     );
 
-    var token = html.window.localStorage['token'];
-
-    final apiClient = ApiClient(
-      baseUrl: baseUrl,
-      token: token ?? "",
-    );
-    final apiRepository = ApiRepositoryImpl(apiClient: apiClient);
     var response = await apiRepository.createTransaction(transaction.toJson());
+
     if (response.statusCode == 200) {
       showMessage(context.localizations.yourRequestToWithdraw, Colors.green);
+      debugPrint("Token: ${response.data["token"]}");
+      tokenStorage.saveToken(response.data["token"]);
 
       TransactionsStateHandler.controller.value++;
     } else if (_walletController.text.isEmpty) {

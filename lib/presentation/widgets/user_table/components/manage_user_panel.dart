@@ -236,7 +236,7 @@ class _PendingTransactionsRowState extends State<_PendingTransactionsRow> {
   initState() {
     super.initState();
     final usersNotifier = context.read<UsersNotifier>();
-    usersNotifier.getUserTransactions(widget.user.id);
+    usersNotifier.getUserTransactionsByAdmin(widget.user.id);
   }
 
   @override

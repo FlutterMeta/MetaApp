@@ -1,22 +1,24 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/widgets.dart';
+import 'package:meta_app/core/utils/auth_interceptor.dart';
 
 class ApiClient {
   final String baseUrl;
-  final String token;
+
   final Dio dio = Dio();
 
-  ApiClient({required this.baseUrl, required this.token}) {
+  ApiClient({required this.baseUrl}) {
+    dio.interceptors.add(AuthInterceptor());
     dio.options.baseUrl = baseUrl;
     dio.options.headers = <String, dynamic>{
       'accept': '*/*',
       'content-type': 'application/json',
-      'authorization': 'Bearer $token',
     };
     dio.options.validateStatus = (int? status) {
       return status != null &&
           status < 500; // Consider any status code less than 500 as successful
     };
+
     dio.interceptors.add(InterceptorsWrapper(
       onRequest: (RequestOptions options, handler) {
         // Log the request
