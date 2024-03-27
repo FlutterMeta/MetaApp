@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/message_chip.dart';
@@ -32,7 +33,10 @@ class ManageProductModalState extends State<ManageProductModal>
   final _subscriptionTierController = TextEditingController();
 
   late ProductsNotifier _productNotifier;
-  final List<int> _subscriptionTierValues = [1, 2, 3];
+  // final List<int> _subscriptionTierValues = [1, 2, 3];
+  final List<int> _subscriptionTierValues = List.generate(
+      int.parse(dotenv.env["BOT_TIERS_NUMBER"] ?? "3"), (index) => index + 1);
+
   int? _selectedSubscriptionTier;
 
   @override
@@ -71,14 +75,25 @@ class ManageProductModalState extends State<ManageProductModal>
     return DropdownButton2<int>(
       value: _selectedSubscriptionTier,
       items: _subscriptionTierValues.map((int value) {
+        String tierName =
+            SubscriptionTier.values.firstWhere((e) => e.value == value).name;
+        tierName = tierName.replaceFirst('SubscriptionTier.', '');
+
         return DropdownMenuItem<int>(
-          value: value,
-          child: Text(value == 1
-              ? "Tier $value (The Most Basic)"
-              : value == _subscriptionTierValues.length
-                  ? "Tier $value (The Most Advanced)"
-                  : "Tier $value"),
-        );
+            value: value,
+            // child: Text(value == 1
+            //     ? "Tier $value (The Most Basic)"
+            //     : value == _subscriptionTierValues.length
+            //         ? "Tier $value (The Most Advanced)"
+            //         : "Tier $value"),
+            // child: Text(context.localizations.subscriptionTierValue(
+            //     SubscriptionTier.values
+            //         .firstWhere((e) => e.value == value)
+            //         .toString())),
+            child: Text(context.localizations.subscriptionTierValue(
+                tierName.substring(0, 1).toUpperCase() +
+                    tierName.substring(1))) // Capitalize first letter
+            );
       }).toList(),
       onChanged: (int? newValue) {
         setState(() {
@@ -140,6 +155,7 @@ class ManageProductModalState extends State<ManageProductModal>
         context.localizations.deletedSuccessfully,
         Colors.green,
       );
+      Navigator.pop(context);
     } else {
       showMessage(
         "${context.localizations.error}: ${result.message}",
@@ -180,6 +196,7 @@ class ManageProductModalState extends State<ManageProductModal>
         );
 
         Result result = await _productNotifier.addProduct(product);
+        await _productNotifier.loadProducts();
 
         if (result.success) {
           showMessage(
@@ -194,6 +211,11 @@ class ManageProductModalState extends State<ManageProductModal>
           );
         }
       }
+    } else {
+      showMessage(
+        context.localizations.fillAllFields,
+        Colors.red,
+      );
     }
   }
 
@@ -321,6 +343,10 @@ class ManageProductModalState extends State<ManageProductModal>
           const SizedBox(height: 10),
           MessageChip.info(message: context.localizations.subscriptionTierInfo),
           const SizedBox(height: 10),
+          Text(
+            context.localizations.firstTheMostBasicAndLastTheMostAdvanced,
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+          ),
           _buildSubscriptionTierDropdown(),
           const SizedBox(height: 30),
           Align(

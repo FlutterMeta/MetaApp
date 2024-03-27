@@ -364,6 +364,8 @@
     "productDescription": "Product description",
     "productTitle": "Product title",
     "subscriptionTier": "Subscription tier",
+    "firstTheMostBasicAndLastTheMostAdvanced": "First - the most basic, last - the most advanced",
+    "subscriptionTierValue": "«{value}» subscription tier",
     "productAddedSuccessfully": "Product added successfully",
     "editProduct": "Edit product",
     "deletedSuccessfully": "Deleted successfully",

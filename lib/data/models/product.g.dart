@@ -29,4 +29,7 @@ const _$SubscriptionTierEnumMap = {
   SubscriptionTier.basic: 1,
   SubscriptionTier.advanced: 2,
   SubscriptionTier.professional: 3,
+  SubscriptionTier.professionalPlus: 4,
+  SubscriptionTier.godlike: 5,
+  SubscriptionTier.godlikePlus: 6,
 };

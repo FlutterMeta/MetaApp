@@ -5,9 +5,11 @@ import 'package:meta_app/presentation/navigation/app_router.gr.dart';
 import 'package:meta_app/presentation/redux/locale/actions/init_locale_action.dart';
 import 'package:meta_app/presentation/redux/store.dart';
 import 'package:meta_app/presentation/redux/theme/actions/init_theme_action.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
 
   await configureDependencies();
 
