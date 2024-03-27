@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/data/models/registration.dart';
-import 'dart:html' as html;
 
 import '../../core/utils/api_client.dart';
 import '../../domain/repositories/api_repository.dart';
@@ -27,7 +26,6 @@ class ApiRepositoryImpl implements ApiRepository {
         isFormData: true,
       );
 
-      html.window.localStorage["token"] = response.data["token"];
       if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('API Error: ${response.statusCode}');
       }

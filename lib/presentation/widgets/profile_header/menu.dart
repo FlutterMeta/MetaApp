@@ -5,7 +5,6 @@ import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/models/registration.dart';
 import 'package:meta_app/presentation/redux/authorization/actions/logout_user_action.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
-import 'dart:html' as html;
 import '../../../core/global.dart';
 import '../../../core/mixins/message_overlay.dart';
 import '../../../data/models/mock_wallets.dart';
@@ -62,7 +61,7 @@ class _MenuState extends State<Menu> {
             ...widget.items(context, widget.onCloseItemTap),
             _MenuItem(
               onTap: () {
-                html.window.localStorage["token"] = "";
+                tokenStorage.clearToken();
                 _logoutAction(context);
                 context.router.push(HomeRoute());
               },
