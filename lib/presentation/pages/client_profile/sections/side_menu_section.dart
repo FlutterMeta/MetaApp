@@ -191,15 +191,18 @@ class __DrawerListTileState extends State<_DrawerListTile> {
                   ),
                 ),
                 SizedBox(width: isCollapsed ? 0 : 8),
-                isCollapsed
-                    ? const SizedBox()
-                    : Text(
-                        widget.label,
-                        style: _isSelected
-                            ? context.text.dashboardSideMenuSelectedLable
-                            : context.text.dashboardSideMenuUnselectedLable,
-                        overflow: TextOverflow.ellipsis,
-                      ),
+                if (isCollapsed)
+                  const SizedBox()
+                else
+                  Flexible(
+                    child: Text(
+                      widget.label,
+                      style: _isSelected
+                          ? context.text.dashboardSideMenuSelectedLable
+                          : context.text.dashboardSideMenuUnselectedLable,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
               ],
             ),
           ),

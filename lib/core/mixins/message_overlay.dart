@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../presentation/widgets/responsive.dart';
+
 mixin MessageOverlay<T extends StatefulWidget> on State<T> {
   void showMessage(String message, Color color) async {
     final overlay = Overlay.of(context);
@@ -16,9 +18,25 @@ mixin MessageOverlay<T extends StatefulWidget> on State<T> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 34, vertical: 20),
               color: color,
-              child: Text(
-                message,
-                style: const TextStyle(color: Colors.white, fontSize: 20),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.info_outline,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                  const SizedBox(width: 20),
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                        maxWidth: Responsive.isMobile(context) ? 300 : 500),
+                    child: Text(
+                      message,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(color: Colors.white, fontSize: 20),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

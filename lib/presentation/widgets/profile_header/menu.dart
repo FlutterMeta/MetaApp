@@ -90,7 +90,7 @@ class ProfileMenu extends Menu {
     return [
       _MenuItem(
         onTap: () => context.router.push(ClientProfileRoute()),
-        title: context.localizations.profile,
+        title: context.localizations.account,
         icon: Icons.person_rounded,
         color: context.color.profilePagePrimaryVariant,
       ),
