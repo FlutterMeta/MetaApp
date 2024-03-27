@@ -6,6 +6,7 @@ import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/presentation/providers/payment_systems_notifier.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
+import 'package:meta_app/presentation/widgets/message_chip.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/mixins/message_overlay.dart';
@@ -184,7 +185,7 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
               style: context.text.profileBotsDefault.copyWith(fontSize: 16),
               controller: _titleController,
               decoration: InputDecoration(
-                hintText: context.localizations.paymentSystemName,
+                hintText: context.localizations.paymentSystemName2,
                 hintStyle:
                     context.text.profileBotsDefault.copyWith(fontSize: 12),
                 border: OutlineInputBorder(
@@ -196,6 +197,7 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
               ),
             ),
             const SizedBox(height: 26),
+
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -203,7 +205,10 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
                 style: context.text.profileBotsDefault.copyWith(fontSize: 16),
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 6),
+            MessageChip.info(message: context.localizations.networkExamples),
+
+            const SizedBox(height: 6),
             TextField(
               style: context.text.profileBotsDefault.copyWith(fontSize: 16),
               controller: _networkController,
