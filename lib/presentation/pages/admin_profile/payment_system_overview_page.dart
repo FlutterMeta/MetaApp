@@ -38,24 +38,22 @@ class _PaymentSystemOverviewPageState extends State<PaymentSystemOverviewPage> {
     return Scaffold(
       appBar: ProfileHeader.admin(),
       backgroundColor: context.color.profilePageBackground,
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        padding: const EdgeInsets.all(32),
-        child: Column(
-          children: [
-            Text(
-              context.localizations.paymentSystemManagement,
-              style: context.text.profileBotsDefault.copyWith(fontSize: 24),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              context.localizations.tapOnCardToEditIt,
-              style: context.text.profileBotsDefault.copyWith(fontSize: 15),
-            ),
-            const SizedBox(height: 30),
-            Expanded(
-              child: ValueListenableBuilder(
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            children: [
+              Text(
+                context.localizations.paymentSystemManagement,
+                style: context.text.profileBotsDefault.copyWith(fontSize: 24),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                context.localizations.tapOnCardToEditIt,
+                style: context.text.profileBotsDefault.copyWith(fontSize: 15),
+              ),
+              const SizedBox(height: 30),
+              ValueListenableBuilder(
                 valueListenable: PaymentSystemsStateHandler.controller,
                 builder: (_, __, ___) {
                   return Wrap(spacing: 20, runSpacing: 16, children: [
@@ -71,13 +69,13 @@ class _PaymentSystemOverviewPageState extends State<PaymentSystemOverviewPage> {
                   ]);
                 },
               ),
-            ),
-            const Align(
-              alignment: Alignment.center,
-              child: RightsReservedFooter(),
-            ),
-            const SizedBox(height: 20),
-          ],
+              const Align(
+                alignment: Alignment.center,
+                child: RightsReservedFooter(),
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );
