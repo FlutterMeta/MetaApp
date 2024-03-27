@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/admin_profile/payment_systems_state_handler.dart';
+import 'package:meta_app/data/models/payment_system.dart';
 import 'package:meta_app/core/mixins/message_overlay.dart';
 import 'package:meta_app/data/models/product.dart';
 import 'package:meta_app/presentation/pages/client_profile/sections/transaction_tab.dart';
+import 'package:meta_app/presentation/providers/payment_systems_notifier.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/payment_system_card.dart';
+import 'package:provider/provider.dart';
 
 class ChoosePaymentSystemModal extends StatefulWidget {
   final Product product;
@@ -20,11 +22,12 @@ class ChoosePaymentSystemModal extends StatefulWidget {
 class ChoosePaymentSystemModalState extends State<ChoosePaymentSystemModal>
     with MessageOverlay {
   ValueNotifier<int?> selectedSystemId = ValueNotifier<int?>(null);
+  late PaymentSystemNotifier paymentSystemsNotifier;
 
   @override
   void initState() {
+    paymentSystemsNotifier = context.read<PaymentSystemNotifier>();
     super.initState();
-    PaymentSystemsStateHandler.instance.init();
   }
 
   @override
@@ -42,6 +45,10 @@ class ChoosePaymentSystemModalState extends State<ChoosePaymentSystemModal>
       return;
     }
     Navigator.of(context).pop(selectedSystemId.value);
+
+    PaymentSystem paymentSystem =
+        await paymentSystemsNotifier.loadSystemById(selectedSystemId.value!);
+
     showDialog(
       context: context,
       builder: (_) => Center(
@@ -52,8 +59,7 @@ class ChoosePaymentSystemModalState extends State<ChoosePaymentSystemModal>
             ),
             child: TransactionTab(
               product: widget.product,
-              paymentSystem: PaymentSystemsStateHandler.instance
-                  .getSystemById(selectedSystemId.value ?? 0),
+              paymentSystem: paymentSystem,
             ),
           ),
         ),
@@ -82,10 +88,9 @@ class ChoosePaymentSystemModalState extends State<ChoosePaymentSystemModal>
           ValueListenableBuilder<int?>(
             valueListenable: selectedSystemId,
             builder: (context, selectedId, child) {
-              return ValueListenableBuilder(
-                valueListenable: PaymentSystemsStateHandler.controller,
-                builder: (context, value, child) {
-                  return PaymentSystemsStateHandler.instance.systems.isEmpty
+              return Consumer<PaymentSystemNotifier>(
+                builder: (context, paymentSystemNotifier, _) {
+                  return paymentSystemNotifier.systems.isEmpty
                       ? Center(
                           child: Text(
                             context.localizations.noPaymentSystems,
@@ -104,11 +109,9 @@ class ChoosePaymentSystemModalState extends State<ChoosePaymentSystemModal>
                             mainAxisSpacing: 20,
                             childAspectRatio: 1.2, // Aspect ratio of each item
                           ),
-                          itemCount: PaymentSystemsStateHandler
-                              .instance.systems.length,
+                          itemCount: paymentSystemNotifier.systems.length,
                           itemBuilder: (context, index) {
-                            var system = PaymentSystemsStateHandler
-                                .instance.systems[index];
+                            var system = paymentSystemNotifier.systems[index];
                             bool isSelected =
                                 selectedSystemId.value == system.id;
                             return SmallPaymentSystemCard(

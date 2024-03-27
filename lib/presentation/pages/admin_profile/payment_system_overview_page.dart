@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/admin_profile/payment_systems_state_handler.dart';
+import 'package:meta_app/presentation/providers/payment_systems_notifier.dart';
+import 'package:provider/provider.dart';
 
 import '../../../data/models/payment_system.dart';
 import '../../widgets/payment_system_card.dart';
@@ -28,12 +29,6 @@ class _PaymentSystemOverviewPageState extends State<PaymentSystemOverviewPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    PaymentSystemsStateHandler.instance.init();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: ProfileHeader.admin(),
@@ -53,11 +48,10 @@ class _PaymentSystemOverviewPageState extends State<PaymentSystemOverviewPage> {
                 style: context.text.profileBotsDefault.copyWith(fontSize: 15),
               ),
               const SizedBox(height: 30),
-              ValueListenableBuilder(
-                valueListenable: PaymentSystemsStateHandler.controller,
-                builder: (_, __, ___) {
+              Consumer<PaymentSystemNotifier>(
+                builder: (context, paymentSystemNotifier, _) {
                   return Wrap(spacing: 20, runSpacing: 16, children: [
-                    ...PaymentSystemsStateHandler.instance.systems
+                    ...paymentSystemNotifier.systems
                         .map((system) => PaymentSystemCard(
                               paymentSystem: system,
                               onTap: () => _showPaymentSystemModal(

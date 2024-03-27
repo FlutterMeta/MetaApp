@@ -443,7 +443,7 @@ class ApiRepositoryImpl implements ApiRepository {
   }
 
   @override
-  Future<Response> pathPaymentSystem(int id, Map<String, dynamic> body) async {
+  Future<Response> patchPaymentSystem(int id, Map<String, dynamic> body) async {
     late Response response;
     try {
       response = await apiClient

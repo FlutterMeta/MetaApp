@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/admin_profile/payment_systems_state_handler.dart';
+import 'package:meta_app/presentation/providers/payment_systems_notifier.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/mixins/message_overlay.dart';
 import '../../../../data/models/payment_system.dart';
@@ -25,11 +26,14 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
   late TextEditingController _titleController;
   late TextEditingController _keyController;
   late TextEditingController _networkController;
+  late PaymentSystemNotifier _paymentSystemNotifier;
+
   String? _selectedCryptoIcon;
 
   @override
   void initState() {
     super.initState();
+    _paymentSystemNotifier = context.read<PaymentSystemNotifier>();
     _titleController =
         TextEditingController(text: widget.paymentSystem?.title ?? '');
     _keyController =
@@ -103,10 +107,10 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
     // Handle response and update state accordingly
     if (widget.paymentSystem == null) {
       // Create
-      PaymentSystemsStateHandler.instance.addSystem(system);
+      _paymentSystemNotifier.addSystem(system);
     } else {
       // Update
-      PaymentSystemsStateHandler.instance.editSystem(system);
+      _paymentSystemNotifier.editSystem(system);
     }
 
     // Close the modal
@@ -117,13 +121,13 @@ class PaymentSystemModalState extends State<PaymentSystemModal>
     if (widget.paymentSystem != null) {
       // Perform API call to delete the system
       try {
-        Response response = await apiRepository.pathPaymentSystem(
+        Response response = await apiRepository.patchPaymentSystem(
           widget.paymentSystem?.id ?? 0,
           {'enabled': false},
         );
         if (apiRepository.isSuccessfulStatusCode(response.statusCode)) {
-          PaymentSystemsStateHandler.instance
-              .removeSystem(widget.paymentSystem as PaymentSystem);
+          // PaymentSystemsStateHandler.instance
+          //     .removeSystem(widget.paymentSystem as PaymentSystem);
           showMessage(
             context.localizations.paymentSystemSuccessfullyDisabled,
             context.color.okay,

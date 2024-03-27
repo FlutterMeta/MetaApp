@@ -7,9 +7,9 @@ import 'package:meta_app/core/global.dart';
 import 'package:meta_app/core/mixins/message_overlay.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
 import 'package:meta_app/data/models/withdrawal_transaction.dart';
-import 'package:meta_app/presentation/pages/admin_profile/payment_systems_state_handler.dart';
 import 'package:meta_app/presentation/pages/client_profile/client_menu_controller.dart';
 import 'package:meta_app/presentation/pages/client_profile/modals/choose_payment_system_modal.dart';
+import 'package:meta_app/presentation/providers/payment_systems_notifier.dart';
 import 'package:meta_app/presentation/widgets/hover.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/level_card.dart';
@@ -38,14 +38,21 @@ class _DashboardTabState extends State<DashboardTab> {
   }
 
   late final LevelsNotifier levelsNotifier;
+  late final PaymentSystemNotifier paymentSystemNotifier;
+
   @override
   void initState() {
     super.initState();
+
     Future.delayed(Duration.zero, () {
       _fetchUserData(context);
     });
+
     levelsNotifier = context.read<LevelsNotifier>();
+    paymentSystemNotifier = context.read<PaymentSystemNotifier>();
+
     levelsNotifier.loadLevels();
+    paymentSystemNotifier.loadSystems();
   }
 
   @override
@@ -377,6 +384,12 @@ class _WalletCardState extends State<_WalletCard> with MessageOverlay {
   // final String _selectedNetwork = "TRON (TRC20)";
   ValueNotifier<int?> selectedSystemId = ValueNotifier<int?>(null);
 
+  void _clearInputData() {
+    selectedSystemId.value = null;
+    _walletController.clear();
+    _amountController.clear();
+  }
+
   void _requestWithdrawHandle() async {
     WithdrawalTransaction transaction = WithdrawalTransaction(
       sum: double.parse(_amountController.text),
@@ -388,9 +401,7 @@ class _WalletCardState extends State<_WalletCard> with MessageOverlay {
 
     if (response.statusCode == 200) {
       showMessage(context.localizations.yourRequestToWithdraw, Colors.green);
-      debugPrint("Token: ${response.data["token"]}");
-      tokenStorage.saveToken(response.data["token"]);
-
+      _clearInputData();
       TransactionsStateHandler.controller.value++;
     } else if (_walletController.text.isEmpty) {
       showMessage(
@@ -438,7 +449,6 @@ class _WalletCardState extends State<_WalletCard> with MessageOverlay {
               style: labelTextStyle,
             ),
             const SizedBox(height: 6),
-            // _ChooseNetworkDropdown(selectedNetwork: _selectedNetwork),
             _PaymentSystemChooseButton(
               selectedSystemId: selectedSystemId,
               onTap: () {},
@@ -453,7 +463,6 @@ class _WalletCardState extends State<_WalletCard> with MessageOverlay {
               hintText: "TUfNgSnLXe...",
               controller: _walletController,
             ),
-
             const SizedBox(height: 32),
             Text(
               context.localizations.chooseAmount,
@@ -490,14 +499,6 @@ class _PaymentSystemChooseButton extends StatefulWidget {
 
 class _PaymentSystemChooseButtonState extends State<_PaymentSystemChooseButton>
     with MessageOverlay {
-  // Id of selected payment system
-
-  @override
-  void initState() {
-    super.initState();
-    PaymentSystemsStateHandler.instance.init();
-  }
-
   @override
   void dispose() {
     widget.selectedSystemId.dispose();
@@ -544,6 +545,8 @@ class _PaymentSystemChooseButtonState extends State<_PaymentSystemChooseButton>
   Widget build(BuildContext context) {
     return Hover(
       builder: (_) {
+        debugPrint(
+            "ZHOPA Selected system ID: ${widget.selectedSystemId.value}");
         return InkWell(
           onTap: () => _showDialog(context),
           child: Container(
@@ -557,12 +560,27 @@ class _PaymentSystemChooseButtonState extends State<_PaymentSystemChooseButton>
             alignment: Alignment.center,
             child: ValueListenableBuilder<int?>(
                 valueListenable: widget.selectedSystemId,
-                builder: (context, selectedId, child) {
-                  return Text(
-                    widget.selectedSystemId.value == null
-                        ? context.localizations.choosePaymentSystem
-                        : "${PaymentSystemsStateHandler.instance.getSystemById(widget.selectedSystemId.value ?? 0).title} (${PaymentSystemsStateHandler.instance.getSystemById(widget.selectedSystemId.value ?? 0).network})",
-                    style: context.text.askButton,
+                builder: (context, value, _) {
+                  return Consumer<PaymentSystemNotifier>(
+                    builder: (context, paymentSystemNotifier, _) {
+                      // var system =
+                      //     paymentSystemNotifier.systems.firstWhere((element) {
+                      //   debugPrint("ZHOPA d111 cycle system ID: ${element.id}");
+                      //   debugPrint(
+                      //       "ZHOPA d222Selected system ID: ${widget.selectedSystemId.value}");
+                      //   if (widget.selectedSystemId.value == null) {
+                      //     return false;
+                      //   }
+                      //   return element.id == widget.selectedSystemId.value;
+                      // });
+                      var systems = paymentSystemNotifier.systems;
+                      return Text(
+                        widget.selectedSystemId.value == null
+                            ? context.localizations.choosePaymentSystem
+                            : "${systems.firstWhere((element) => element.id == widget.selectedSystemId.value).title} (${systems.firstWhere((element) => element.id == widget.selectedSystemId.value).network})",
+                        style: context.text.askButton,
+                      );
+                    },
                   );
                 }),
           ),
@@ -572,68 +590,68 @@ class _PaymentSystemChooseButtonState extends State<_PaymentSystemChooseButton>
   }
 }
 
-class _ChooseNetworkDropdown extends StatefulWidget {
-  final String selectedNetwork;
-  const _ChooseNetworkDropdown({required this.selectedNetwork, Key? key})
-      : super(key: key);
+// class _ChooseNetworkDropdown extends StatefulWidget {
+//   final String selectedNetwork;
+//   const _ChooseNetworkDropdown({required this.selectedNetwork, Key? key})
+//       : super(key: key);
 
-  @override
-  State<_ChooseNetworkDropdown> createState() => _ChooseNetworkDropdownState();
-}
+//   @override
+//   State<_ChooseNetworkDropdown> createState() => _ChooseNetworkDropdownState();
+// }
 
-class _ChooseNetworkDropdownState extends State<_ChooseNetworkDropdown> {
-  late String selectedNetwork;
+// class _ChooseNetworkDropdownState extends State<_ChooseNetworkDropdown> {
+//   late String selectedNetwork;
 
-  @override
-  void initState() {
-    super.initState();
-    selectedNetwork = widget.selectedNetwork;
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     selectedNetwork = widget.selectedNetwork;
+//   }
 
-  final List<String> _supportedNetworks = [
-    "BNB Smart Chain (BEP20)",
-    "Ethereum (ERC20)",
-    "Polygon  (MATIC, ERC20)",
-    "TRON (TRC20)",
-    "Avalanche (AVAX, ERC20)",
-    "Arbitrum (ARB, ERC20)",
-  ];
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(4),
-        color: context.color.profilePageBackground,
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: DropdownButton2<String>(
-        value: selectedNetwork,
-        buttonWidth: double.infinity,
-        underline: const SizedBox(),
-        style: context.text.profilePageBody.copyWith(fontSize: 16),
-        items: _supportedNetworks.map((String network) {
-          return DropdownMenuItem<String>(
-            value: network,
-            child: Text(network),
-          );
-        }).toList(),
-        onChanged: (String? newValue) {
-          setState(() {
-            selectedNetwork = newValue ?? selectedNetwork;
-          });
-        },
-        dropdownMaxHeight: 200,
-        dropdownWidth: 300,
-        dropdownDecoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
-          color: context.color.profilePageBackground,
-        ),
-        buttonHeight: 50,
-        itemHeight: 40,
-      ),
-    );
-  }
-}
+//   final List<String> _supportedNetworks = [
+//     "BNB Smart Chain (BEP20)",
+//     "Ethereum (ERC20)",
+//     "Polygon  (MATIC, ERC20)",
+//     "TRON (TRC20)",
+//     "Avalanche (AVAX, ERC20)",
+//     "Arbitrum (ARB, ERC20)",
+//   ];
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(4),
+//         color: context.color.profilePageBackground,
+//       ),
+//       padding: const EdgeInsets.symmetric(horizontal: 8),
+//       child: DropdownButton2<String>(
+//         value: selectedNetwork,
+//         buttonWidth: double.infinity,
+//         underline: const SizedBox(),
+//         style: context.text.profilePageBody.copyWith(fontSize: 16),
+//         items: _supportedNetworks.map((String network) {
+//           return DropdownMenuItem<String>(
+//             value: network,
+//             child: Text(network),
+//           );
+//         }).toList(),
+//         onChanged: (String? newValue) {
+//           setState(() {
+//             selectedNetwork = newValue ?? selectedNetwork;
+//           });
+//         },
+//         dropdownMaxHeight: 200,
+//         dropdownWidth: 300,
+//         dropdownDecoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(4),
+//           color: context.color.profilePageBackground,
+//         ),
+//         buttonHeight: 50,
+//         itemHeight: 40,
+//       ),
+//     );
+//   }
+// }
 
 class _FilledTextField extends StatelessWidget {
   final TextEditingController controller;

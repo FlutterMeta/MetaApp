@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/admin_profile/payment_systems_state_handler.dart';
 import 'package:meta_app/core/mixins/message_overlay.dart';
+import 'package:meta_app/presentation/providers/payment_systems_notifier.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/message_chip.dart';
 import 'package:meta_app/presentation/widgets/payment_system_card.dart';
+import 'package:provider/provider.dart';
 
 // PaymentSystem for Withdraw
 class ChoosePaymentSystemModal extends StatefulWidget {
@@ -47,48 +48,40 @@ class ChoosePaymentSystemModalState extends State<ChoosePaymentSystemModal>
           const SizedBox(height: 10),
           MessageChip.info(message: context.localizations.walletChooseTip),
           const SizedBox(height: 20),
-          ValueListenableBuilder<int?>(
-            valueListenable: widget.selectedSystemId,
-            builder: (context, selectedId, child) {
-              return ValueListenableBuilder(
-                valueListenable: PaymentSystemsStateHandler.controller,
-                builder: (context, value, child) {
-                  return PaymentSystemsStateHandler.instance.systems.isEmpty
-                      ? Center(
-                          child: Text(
-                            context.localizations.noPaymentSystems,
-                            style: context.text.profileBotsDefault.copyWith(
-                              fontSize: 22,
-                              color: context.color.profilePagePrimaryVariant,
-                            ),
-                          ),
-                        )
-                      : GridView.builder(
-                          shrinkWrap: true,
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, // Number of columns
-                            crossAxisSpacing: 20,
-                            mainAxisSpacing: 20,
-                            childAspectRatio: 1.2, // Aspect ratio of each item
-                          ),
-                          itemCount: PaymentSystemsStateHandler
-                              .instance.systems.length,
-                          itemBuilder: (context, index) {
-                            var system = PaymentSystemsStateHandler
-                                .instance.systems[index];
-                            bool isSelected =
-                                widget.selectedSystemId.value == system.id;
-                            return SmallPaymentSystemCard(
-                              paymentSystem: system,
-                              onTap: () => setState(() =>
-                                  widget.selectedSystemId.value = system.id),
-                              selected: isSelected,
-                            );
-                          },
+          Consumer<PaymentSystemNotifier>(
+            builder: (context, paymentSystemNotifier, _) {
+              return paymentSystemNotifier.systems.isEmpty
+                  ? Center(
+                      child: Text(
+                        context.localizations.noPaymentSystems,
+                        style: context.text.profileBotsDefault.copyWith(
+                          fontSize: 22,
+                          color: context.color.profilePagePrimaryVariant,
+                        ),
+                      ),
+                    )
+                  : GridView.builder(
+                      shrinkWrap: true,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, // Number of columns
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
+                        childAspectRatio: 1.2, // Aspect ratio of each item
+                      ),
+                      itemCount: paymentSystemNotifier.systems.length,
+                      itemBuilder: (context, index) {
+                        var system = paymentSystemNotifier.systems[index];
+                        bool isSelected =
+                            widget.selectedSystemId.value == system.id;
+                        return SmallPaymentSystemCard(
+                          paymentSystem: system,
+                          onTap: () => setState(
+                              () => widget.selectedSystemId.value = system.id),
+                          selected: isSelected,
                         );
-                },
-              );
+                      },
+                    );
             },
           ),
           const SizedBox(height: 30),

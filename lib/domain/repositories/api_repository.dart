@@ -41,7 +41,7 @@ abstract class ApiRepository {
   Future<Response> getPaymentSystem(int id);
   Future<Response> createPaymentSystem(Map<String, dynamic> body);
   Future<Response> updatePaymentSystem(Map<String, dynamic> body);
-  Future<Response> pathPaymentSystem(
+  Future<Response> patchPaymentSystem(
     int id,
     Map<String, dynamic> body,
   ); //enable/disable
