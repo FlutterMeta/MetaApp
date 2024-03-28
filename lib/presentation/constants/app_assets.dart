@@ -27,5 +27,7 @@ abstract class AppAssets {
   static const dogecoinIcon = "images/crypto/doge.png";
 
   //captcha
-  static const sliderCaptcha = "assets/images/captcha.jpg";
+  static const sliderCaptcha1 = "assets/images/captcha.jpg";
+  static const sliderCaptcha2 = "assets/images/captcha (1).jpg";
+  static const sliderCaptcha3 = "assets/images/captcha (2).jpg";
 }

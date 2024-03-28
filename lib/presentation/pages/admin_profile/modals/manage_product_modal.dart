@@ -81,15 +81,6 @@ class ManageProductModalState extends State<ManageProductModal>
 
         return DropdownMenuItem<int>(
             value: value,
-            // child: Text(value == 1
-            //     ? "Tier $value (The Most Basic)"
-            //     : value == _subscriptionTierValues.length
-            //         ? "Tier $value (The Most Advanced)"
-            //         : "Tier $value"),
-            // child: Text(context.localizations.subscriptionTierValue(
-            //     SubscriptionTier.values
-            //         .firstWhere((e) => e.value == value)
-            //         .toString())),
             child: Text(context.localizations.subscriptionTierValue(
                 tierName.substring(0, 1).toUpperCase() +
                     tierName.substring(1))) // Capitalize first letter
@@ -109,7 +100,8 @@ class ManageProductModalState extends State<ManageProductModal>
       buttonHeight: 50,
       itemHeight: 40,
       underline: const SizedBox(),
-      hint: Text(context.localizations.subscriptionTier),
+      hint: Text(context.localizations.subscriptionTier,
+          style: context.text.profileBotsDefault.copyWith(fontSize: 16)),
     );
   }
 

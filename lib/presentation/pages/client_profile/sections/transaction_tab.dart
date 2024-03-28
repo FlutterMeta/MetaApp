@@ -136,7 +136,9 @@ class EnterTxIdModalState extends State<EnterTxIdModal> with MessageOverlay {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(context.localizations.enterTxId),
+      backgroundColor: context.color.profilePageBackground,
+      title: Text(context.localizations.enterTxId,
+          style: context.text.profilePageBody.copyWith(fontSize: 20)),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 500),
         child: Column(
@@ -156,8 +158,12 @@ class EnterTxIdModalState extends State<EnterTxIdModal> with MessageOverlay {
               style: context.text.profileBotsDefault.copyWith(fontSize: 16),
               decoration: InputDecoration(
                 hintText: context.localizations.txId,
+                hintStyle:
+                    context.text.profileBotsDefault.copyWith(fontSize: 16),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
+                  borderSide:
+                      BorderSide(color: context.color.profilePagePrimary),
                 ),
                 suffixIcon: IconButton(
                   onPressed: () async {
@@ -189,6 +195,7 @@ class _PaymentSuccessMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: context.color.profilePageBackground,
       child: Padding(
         padding: Responsive.isMobile(context)
             ? const EdgeInsets.all(10)
@@ -684,6 +691,10 @@ class _DetailsTableRow extends StatelessWidget {
               textAlign: Responsive.isMobile(context)
                   ? TextAlign.center
                   : TextAlign.end,
+              style: context.text.profilePageBody.copyWith(
+                fontSize: 16,
+                fontWeight: index == 0 || index == 3 ? FontWeight.bold : null,
+              ),
             ),
           ),
           const SizedBox(width: 20),

@@ -410,6 +410,7 @@
     "noTransactionsYet": "No transactions yet",
     "wrongEmailOrPassword": "Wrong email or password",
     "captcha": "Captcha",
+    "sliderCaptchaTitle": "Slide to authenticate",
     "addedSuccessfully": "Added successfully",
     "noPostsYet": "No posts yet",
     "paymentSystemNetworkLabel": "Network",

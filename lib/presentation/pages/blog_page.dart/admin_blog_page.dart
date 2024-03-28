@@ -78,6 +78,7 @@ class _CreatePostSectionState extends State<_CreatePostSection> {
         return Center(
           child: SingleChildScrollView(
             child: Dialog(
+              backgroundColor: context.color.profilePageBackground,
               insetPadding: Responsive.isMobile(context)
                   ? const EdgeInsets.all(10)
                   : const EdgeInsets.all(100),

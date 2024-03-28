@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:async_redux/async_redux.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:dio/dio.dart';
@@ -105,18 +107,57 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
     showDialog(
       context: context,
       builder: (context) {
+        String assetPath = AppAssets.sliderCaptcha1;
+
+        // Generate a random index between 1 and 3
+        int randomIndex = Random().nextInt(3) + 1;
+
+        // Assign the asset path based on the random index
+        switch (randomIndex) {
+          case 1:
+            assetPath = AppAssets.sliderCaptcha1;
+            break;
+          case 2:
+            assetPath = AppAssets.sliderCaptcha2;
+            break;
+          case 3:
+            assetPath = AppAssets.sliderCaptcha3;
+            break;
+        }
+
+        Image image = Image.asset(
+          assetPath,
+          fit: BoxFit.fitWidth,
+        );
+
         return AlertDialog(
+          backgroundColor: context.color.postBackground,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           title: Text(context.localizations.captcha),
           content: SliderCaptcha(
             controller: _sliderCaptchaController,
-            image: Image.asset(
-              AppAssets.sliderCaptcha,
-              fit: BoxFit.fitWidth,
+            title: context.localizations.sliderCaptchaTitle,
+            titleStyle: context.text.authFormHint,
+            imageToBarPadding: 10,
+            image: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(13),
+                border: Border.all(
+                    width: 3, color: context.color.profilePageAboveBackground),
+                color: context.color.profilePageBackground,
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  assetPath,
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
             ),
-            colorBar: context.color.postBackground,
-            colorCaptChar: context.color.postBackground,
+            colorBar: context.color.profilePageBackground, //slider color
+            colorCaptChar:
+                context.color.profilePageAboveBackground, //puzzle hole place
             onConfirm: (value) async {
               Future.delayed(const Duration(seconds: 1));
               if (value) {

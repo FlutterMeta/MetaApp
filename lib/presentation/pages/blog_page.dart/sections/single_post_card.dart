@@ -82,7 +82,8 @@ class __HoverablePostState extends State<_HoverablePost> {
                       style: context.text.blogPostLink,
                     ),
                     const SizedBox(height: 20),
-                    Text(widget.post.content ?? "Blog post content"),
+                    Text(widget.post.content ?? "Blog post content",
+                        style: context.text.allRightsReserved),
                     const SizedBox(height: 60),
                     SizedBox(
                       width: double.infinity,
