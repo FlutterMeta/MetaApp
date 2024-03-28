@@ -317,7 +317,8 @@ class _FilterField extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(width: 70, child: Text(title)),
+        SizedBox(
+            width: 80, child: Text(title, style: context.text.profilePageBody)),
         const SizedBox(width: 10),
         Container(
           width: Responsive.isMobile(context) || Responsive.isTablet(context)
@@ -329,6 +330,7 @@ class _FilterField extends StatelessWidget {
             onChanged: (_) => onFieldChanged(),
             controller: controller,
             decoration: InputDecoration(
+              hintStyle: context.text.profileBotsDefault.copyWith(fontSize: 16),
               enabledBorder: OutlineInputBorder(
                 borderSide:
                     BorderSide(color: context.color.greyish.withOpacity(0.3)),
