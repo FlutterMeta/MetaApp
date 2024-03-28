@@ -293,7 +293,7 @@ class _PopupNotification extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: context.color.faqItemArrowFill,
+            color: context.color.profilePagePrimary,
           ),
           padding: const EdgeInsets.all(10),
           alignment: Alignment.center,
