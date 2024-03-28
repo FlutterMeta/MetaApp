@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/presentation/pages/admin_profile/transactions_state_handler.dart';
+import 'package:meta_app/data/models/transaction.dart';
+import 'package:meta_app/presentation/providers/transactions_notifier.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
+import 'package:provider/provider.dart';
 import '../../widgets/profile_header/profile_header.dart';
 import '../../widgets/transaction_table/filterable_transaction_table.dart';
 
@@ -15,11 +17,6 @@ class TransactionsPage extends StatefulWidget {
 
 class _TransactionsPageState extends State<TransactionsPage> {
   @override
-  void initState() {
-    super.initState();
-    TransactionsStateHandler.instance.init();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,12 +38,10 @@ class _TransactionsPageState extends State<TransactionsPage> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                ValueListenableBuilder(
-                  valueListenable: TransactionsStateHandler.controller,
-                  builder: (context, int value, child) {
+                Consumer<TransactionsNotifier>(
+                  builder: (context, transactionsNotifier, _) {
                     return FilterableTransactionTable(
-                      transactions:
-                          TransactionsStateHandler.instance.transactions,
+                      transactions: transactionsNotifier.transactions,
                     );
                   },
                 ),

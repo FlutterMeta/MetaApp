@@ -15,10 +15,17 @@ class _SystemTransactionInfo extends StatefulWidget {
 class _SystemTransactionInfoState extends State<_SystemTransactionInfo>
     with MessageOverlay {
   bool isPopupVisible = false;
+  late TransactionsNotifier transactionsNotifier;
+
+  @override
+  void initState() {
+    transactionsNotifier = context.read<TransactionsNotifier>();
+    super.initState();
+  }
 
   TransactionStatus parse(String value) {
     return TransactionStatus.values.firstWhere(
-      (element) => element.name == value,
+      (element) => element.name.toLowerCase() == value.toLowerCase(),
       orElse: () => TransactionStatus.pending,
     );
   }
@@ -55,11 +62,7 @@ class _SystemTransactionInfoState extends State<_SystemTransactionInfo>
     if (response.statusCode == 200) {
       setState(() => isPopupVisible = false);
       showMessage(context.localizations.transactionApproved, Colors.green);
-      TransactionsStateHandler.instance
-          .edittransaction(widget.transaction.copyWith(
-        status: TransactionStatus.approved.name,
-      ));
-      TransactionsStateHandler.controller.value++;
+      transactionsNotifier.approveTransaction(widget.transaction);
     }
   }
 
@@ -69,11 +72,7 @@ class _SystemTransactionInfoState extends State<_SystemTransactionInfo>
     if (response.statusCode == 200) {
       setState(() => isPopupVisible = false);
       showMessage(context.localizations.transactionDeclined, Colors.green);
-      TransactionsStateHandler.instance
-          .edittransaction(widget.transaction.copyWith(
-        status: TransactionStatus.declined.name,
-      ));
-      TransactionsStateHandler.controller.value++;
+      transactionsNotifier.declineTransaction(widget.transaction);
     }
   }
 

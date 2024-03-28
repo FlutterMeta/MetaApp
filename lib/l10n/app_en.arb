@@ -387,6 +387,7 @@
     "key": "Key",
     "back": "Back",
     "paid": "Paid",
+    "errorOccurred": "Error occurred. Please try again",
     "thanksForPayment": "Thanks for payment",
     "afterPaymentTip": "Your payment is currently under review by the admin.\nOnce confirmed, you will receive the key at your registered email address.",
     "keyTip": "This key will be used to activate your bot in Telegram.",

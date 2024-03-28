@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/data/models/transaction_history.dart';
+import 'package:meta_app/presentation/providers/transactions_notifier.dart';
 import 'package:meta_app/presentation/widgets/colored_button.dart';
 import 'package:meta_app/presentation/widgets/responsive.dart';
 import 'package:meta_app/presentation/widgets/user_table/user_table.dart';
+import 'package:provider/provider.dart';
 
 import '../../../data/models/transaction.dart';
 import '../../../data/models/user.dart';
@@ -48,11 +49,19 @@ class UserTransactionsPage extends StatelessWidget {
                 const SizedBox(height: 20),
                 UserGeneralInfoPanel(user: user),
                 const SizedBox(height: 20),
-                _TransactionTableWithFilter(
-                  showPendingTransactions: showPendingTransactions ?? false,
-                  transactionsHistory: TransactionHistory(
-                    transactions: user.transactions ?? [],
-                  ),
+                Consumer<TransactionsNotifier>(
+                  builder: (context, transactionsNotifier, _) {
+                    var usersTransactions = transactionsNotifier.transactions
+                        .where(
+                          (transaction) => transaction.user.id == user.id,
+                        )
+                        .toList();
+
+                    return _TransactionTableWithFilter(
+                      showPendingTransactions: showPendingTransactions ?? false,
+                      transactionsHistory: usersTransactions,
+                    );
+                  },
                 ),
                 const SizedBox(height: 440),
                 const Align(
@@ -70,7 +79,7 @@ class UserTransactionsPage extends StatelessWidget {
 }
 
 class _TransactionTableWithFilter extends StatefulWidget {
-  final TransactionHistory transactionsHistory;
+  final List<Transaction> transactionsHistory;
   final bool showPendingTransactions;
 
   const _TransactionTableWithFilter({
@@ -96,21 +105,19 @@ class __TransactionTableWithFilterState
   void _filterTransactions() {
     final operation = _operationFieldController.text.toLowerCase();
     final status = _statusFieldController.text.toLowerCase();
-    // final paymentSystem = _paymentSystemFieldController.text.toLowerCase();
-    // final note = _noteFieldController.text.toLowerCase();
+    final paymentSystem = _paymentSystemFieldController.text.toLowerCase();
 
-    final result = widget.transactionsHistory.transactions.where((transaction) {
+    final result = widget.transactionsHistory.where((transaction) {
       return transaction.type.toLowerCase().contains(operation) &&
-          transaction.status.toLowerCase().contains(status); //&&
-      // transaction.network.toLowerCase().contains(paymentSystem) &&
-      // transaction.note.toLowerCase().contains(note);
+          transaction.status.toLowerCase().contains(status) &&
+          transaction.paymentSystemTitle!.toLowerCase().contains(paymentSystem);
     }).toList();
 
     setState(() => transactionsHistory = result);
   }
 
   List<Transaction> _getPendingTransactions() {
-    return widget.transactionsHistory.transactions.where((transaction) {
+    return widget.transactionsHistory.where((transaction) {
       return transaction.status.toLowerCase() == TransactionStatus.pending.name;
     }).toList();
   }
@@ -122,7 +129,7 @@ class __TransactionTableWithFilterState
     if (widget.showPendingTransactions) {
       transactionsHistory = _getPendingTransactions();
     } else {
-      transactionsHistory = widget.transactionsHistory.transactions;
+      transactionsHistory = widget.transactionsHistory;
     }
   }
 
@@ -131,7 +138,14 @@ class __TransactionTableWithFilterState
     if (widget.showPendingTransactions) {
       _statusFieldController.text = context.localizations.pending;
     }
+
     super.didChangeDependencies();
+  }
+
+  @override
+  void didUpdateWidget(covariant _TransactionTableWithFilter oldWidget) {
+    _filterTransactions();
+    super.didUpdateWidget(oldWidget);
   }
 
   @override

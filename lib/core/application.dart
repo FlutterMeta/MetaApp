@@ -12,6 +12,7 @@ import 'package:meta_app/presentation/providers/blogs_notifier.dart';
 import 'package:meta_app/presentation/providers/levels_notifier.dart';
 import 'package:meta_app/presentation/providers/payment_systems_notifier.dart';
 import 'package:meta_app/presentation/providers/products_notifier.dart';
+import 'package:meta_app/presentation/providers/transactions_notifier.dart';
 import 'package:meta_app/presentation/providers/users_notifier.dart';
 import 'package:meta_app/presentation/redux/app_state.dart';
 import 'package:meta_app/presentation/themes/theme.dart';
@@ -51,6 +52,10 @@ class Application extends StatelessWidget {
               ),
               ChangeNotifierProvider<PaymentSystemNotifier>(
                 create: ((context) => PaymentSystemNotifier()..loadSystems()),
+              ),
+              ChangeNotifierProvider<TransactionsNotifier>(
+                create: ((context) =>
+                    TransactionsNotifier()..loadTransactions()),
               ),
             ],
             child: MaterialApp.router(

@@ -14,8 +14,7 @@ class LoadTransactionsAction extends ReduxAction<AppState> {
   Future<AppState> reduce() async {
     final user = state.currentUser;
     List<Transaction> transactions = [];
-    final response =
-        await apiRepository.getTransactions(userId: user?.id ?? userId);
+    final response = await apiRepository.getUserTransactions();
     final transactionsJson = response.data["\$values"] as List<dynamic>;
     for (final transaction in transactionsJson) {
       transactions

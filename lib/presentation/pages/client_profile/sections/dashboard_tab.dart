@@ -22,7 +22,6 @@ import '../../../../data/models/user.dart';
 import '../../../providers/levels_notifier.dart';
 import '../../../redux/app_state.dart';
 import '../../../redux/authorization/actions/fetch_user_data_action.dart';
-import '../../admin_profile/transactions_state_handler.dart';
 
 class DashboardTab extends StatefulWidget {
   const DashboardTab({super.key});
@@ -401,7 +400,6 @@ class _WalletCardState extends State<_WalletCard> with MessageOverlay {
     if (response.statusCode == 200) {
       showMessage(context.localizations.yourRequestToWithdraw, Colors.green);
       _clearInputData();
-      TransactionsStateHandler.controller.value++;
     } else if (_walletController.text.isEmpty) {
       showMessage(
         "${context.localizations.yourRequestToWithdrawError}: ${response.data["errors"]["WalletKey"][0]}",
@@ -544,8 +542,6 @@ class _PaymentSystemChooseButtonState extends State<_PaymentSystemChooseButton>
   Widget build(BuildContext context) {
     return Hover(
       builder: (_) {
-        debugPrint(
-            "ZHOPA Selected system ID: ${widget.selectedSystemId.value}");
         return InkWell(
           onTap: () => _showDialog(context),
           child: Container(
@@ -562,16 +558,6 @@ class _PaymentSystemChooseButtonState extends State<_PaymentSystemChooseButton>
                 builder: (context, value, _) {
                   return Consumer<PaymentSystemNotifier>(
                     builder: (context, paymentSystemNotifier, _) {
-                      // var system =
-                      //     paymentSystemNotifier.systems.firstWhere((element) {
-                      //   debugPrint("ZHOPA d111 cycle system ID: ${element.id}");
-                      //   debugPrint(
-                      //       "ZHOPA d222Selected system ID: ${widget.selectedSystemId.value}");
-                      //   if (widget.selectedSystemId.value == null) {
-                      //     return false;
-                      //   }
-                      //   return element.id == widget.selectedSystemId.value;
-                      // });
                       var systems = paymentSystemNotifier.systems;
                       return Text(
                         widget.selectedSystemId.value == null

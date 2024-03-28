@@ -16,6 +16,7 @@ class _AdministeredUserTransactionInfo extends StatefulWidget {
 class _AdministeredUserTransactionInfoState
     extends State<_AdministeredUserTransactionInfo> with MessageOverlay {
   bool isPopupVisible = false;
+  late TransactionsNotifier transactionsNotifier;
 
   TransactionStatus parse(String value) {
     return TransactionStatus.values.firstWhere(
@@ -33,30 +34,32 @@ class _AdministeredUserTransactionInfoState
 
   void _handleConfirm() async {
     var response =
-        await apiRepository.approveTransaction(widget.transaction.id);
-    if (response.statusCode == 200) {
+        await transactionsNotifier.approveTransaction(widget.transaction);
+    if (response.success == true) {
       setState(() => isPopupVisible = false);
       showMessage(context.localizations.transactionApproved, Colors.green);
-      TransactionsStateHandler.instance
-          .edittransaction(widget.transaction.copyWith(
-        status: TransactionStatus.approved.name,
-      ));
-      TransactionsStateHandler.controller.value++;
+    } else {
+      showMessage(
+          response.message ?? context.localizations.errorOccurred, Colors.red);
     }
   }
 
   void _handleDecline() async {
     var response =
-        await apiRepository.declineTransaction(widget.transaction.id);
-    if (response.statusCode == 200) {
+        await transactionsNotifier.declineTransaction(widget.transaction);
+    if (response.success == true) {
       setState(() => isPopupVisible = false);
       showMessage(context.localizations.transactionDeclined, Colors.green);
-      TransactionsStateHandler.instance
-          .edittransaction(widget.transaction.copyWith(
-        status: TransactionStatus.declined.name,
-      ));
-      TransactionsStateHandler.controller.value++;
+    } else {
+      showMessage(
+          response.message ?? context.localizations.errorOccurred, Colors.red);
     }
+  }
+
+  @override
+  void initState() {
+    transactionsNotifier = context.read<TransactionsNotifier>();
+    super.initState();
   }
 
   @override
