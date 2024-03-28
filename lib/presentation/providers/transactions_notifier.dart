@@ -20,8 +20,7 @@ class TransactionsNotifier extends ChangeNotifier {
               Transaction.fromJson(transactionData as Map<String, dynamic>);
           _transactions.add(transaction);
         }
-        // Sort transactions by date
-        _transactions.sort((a, b) => a.date.compareTo(b.date));
+        sortTransactionsByDate();
         notifyListeners();
         return Result.success();
       } else {
@@ -95,5 +94,9 @@ class TransactionsNotifier extends ChangeNotifier {
       debugPrint(e.toString());
       return Result.failure(message: e.toString());
     }
+  }
+
+  sortTransactionsByDate() {
+    _transactions.sort((a, b) => b.date.compareTo(a.date));
   }
 }
