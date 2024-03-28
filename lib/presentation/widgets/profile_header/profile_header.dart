@@ -67,15 +67,3 @@ class _SideMenuIcon extends StatelessWidget {
     );
   }
 }
-
-class _SupportChatIcon extends StatelessWidget {
-  const _SupportChatIcon({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {},
-      icon: const Icon(Icons.chat_bubble_outline_rounded),
-    );
-  }
-}

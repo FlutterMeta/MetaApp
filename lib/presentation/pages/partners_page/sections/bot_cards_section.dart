@@ -22,17 +22,6 @@ class _BotCardsSectionState extends State<_BotCardsSection> {
     context.router.push(ClientProfileRoute());
   }
 
-  double _getCardWidth(BuildContext context) {
-    final double screenWidth = context.screenWidth;
-    if (screenWidth > 1270) {
-      return 1270 / 3 - 20;
-    } else if (screenWidth > 550) {
-      return screenWidth / 2;
-    } else {
-      return screenWidth;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(

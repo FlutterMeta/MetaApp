@@ -88,9 +88,7 @@ class _RegistrationPageState extends State<RegistrationPage>
           referal: _inviteCodeController.text,
         ),
       );
-      debugPrint("API response3: $response");
     } catch (e) {
-      debugPrint("first catch" + e.toString());
       showMessage(
         "${context.localizations.error}:  ${response.data["errors"]}",
         Colors.red,
@@ -105,7 +103,6 @@ class _RegistrationPageState extends State<RegistrationPage>
       await Future.delayed(const Duration(seconds: 2));
       _goToLoginPage();
     } else {
-      debugPrint("second catch" + response.data.toString());
       showMessage(
         "${context.localizations.error}: ${response.data["errors"] ?? response.data["detail"]}",
         Colors.red,
