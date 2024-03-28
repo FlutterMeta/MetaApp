@@ -80,15 +80,17 @@ class _LocaleDropdownState extends State<_LocaleDropdown>
         child: Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
+            color: context.color.localeDropdownBackground,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
             children: [
               Text(
                 currentLocale.localeFlag ?? '',
-                style: const TextStyle(fontSize: 20),
+                style: context.text.localeTitle,
               ),
-              const Icon(Icons.arrow_drop_down),
+              Icon(Icons.arrow_drop_down,
+                  color: context.text.localeTitle.color),
             ],
           ),
         ),
@@ -153,7 +155,7 @@ class _LocaleWidget extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(locale.localeFlag ?? ""),
+            Text(locale.localeFlag ?? "", style: context.text.localeTitle),
             const SizedBox(width: 10),
             Text(
               locale.toTitle(context),

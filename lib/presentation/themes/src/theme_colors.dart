@@ -515,7 +515,7 @@ class ThemeColors extends ThemeExtension<ThemeColors> {
         headerBackground: DarkAppColors.darkGrey,
         headerShadow: DarkAppColors.black,
         footerBackground: DarkAppColors.darkIndigo,
-        localeDropdownBackground: DarkAppColors.darkerGrey,
+        localeDropdownBackground: DarkAppColors.darkGrey,
         localeDropdownOpacity: DarkAppColors.transparent,
         faqItemBorder: DarkAppColors.blueGrey,
         faqItemHoverBackground: DarkAppColors.grey,

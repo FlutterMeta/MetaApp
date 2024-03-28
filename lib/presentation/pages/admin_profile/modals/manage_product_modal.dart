@@ -80,11 +80,13 @@ class ManageProductModalState extends State<ManageProductModal>
         tierName = tierName.replaceFirst('SubscriptionTier.', '');
 
         return DropdownMenuItem<int>(
-            value: value,
-            child: Text(context.localizations.subscriptionTierValue(
-                tierName.substring(0, 1).toUpperCase() +
-                    tierName.substring(1))) // Capitalize first letter
-            );
+          value: value,
+          child: Text(
+              context.localizations.subscriptionTierValue(
+                  tierName.substring(0, 1).toUpperCase() +
+                      tierName.substring(1)),
+              style: context.text.profileBotsDefault.copyWith(fontSize: 16)),
+        );
       }).toList(),
       onChanged: (int? newValue) {
         setState(() {

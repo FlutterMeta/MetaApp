@@ -180,8 +180,14 @@ class _TextTile extends StatelessWidget {
       child: Wrap(
         alignment: WrapAlignment.spaceBetween,
         children: [
-          SizedBox(width: 120, child: Text(title)),
-          SizedBox(width: 240, child: Text(value)),
+          SizedBox(
+              width: 120,
+              child: Text(title,
+                  style: context.text.profilePageBody.copyWith(fontSize: 16))),
+          SizedBox(
+              width: 240,
+              child: Text(value,
+                  style: context.text.profilePageBody.copyWith(fontSize: 16))),
         ],
       ),
     );
