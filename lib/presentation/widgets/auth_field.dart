@@ -75,7 +75,7 @@ class _PasswordFieldState extends State<PasswordField> {
         suffixIcon: IconButton(
           icon: Icon(
             _isObscured ? Icons.visibility : Icons.visibility_off,
-            color: context.color.profilePagePrimary,
+            color: context.color.profilePageAboveBackground,
           ),
           onPressed: _toggleObscureText,
         ),

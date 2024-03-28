@@ -13,6 +13,7 @@ import 'package:meta_app/presentation/navigation/app_router.gr.dart';
 
 import 'package:meta_app/presentation/widgets/auth_field.dart';
 import 'package:meta_app/presentation/widgets/auth_button.dart';
+import 'package:meta_app/presentation/widgets/captcha_dialog.dart';
 
 import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_view.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
@@ -70,6 +71,7 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
   }
 
   void _onLoginButtonPressed() async {
+    if (!_checkFields()) return;
     Response response = await login();
 
     if (apiRepository.isSuccessfulStatusCode(response.statusCode) ||
@@ -125,51 +127,10 @@ class _LoginPageState extends State<LoginPage> with Validator, MessageOverlay {
             break;
         }
 
-        Image image = Image.asset(
-          assetPath,
-          fit: BoxFit.fitWidth,
-        );
-
-        return AlertDialog(
-          backgroundColor: context.color.postBackground,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          title: Text(context.localizations.captcha),
-          content: SliderCaptcha(
-            controller: _sliderCaptchaController,
-            title: context.localizations.sliderCaptchaTitle,
-            titleStyle: context.text.authFormHint,
-            imageToBarPadding: 10,
-            image: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(13),
-                border: Border.all(
-                    width: 3, color: context.color.profilePageAboveBackground),
-                color: context.color.profilePageBackground,
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  assetPath,
-                  fit: BoxFit.fitWidth,
-                ),
-              ),
-            ),
-            colorBar: context.color.profilePageBackground, //slider color
-            colorCaptChar:
-                context.color.profilePageAboveBackground, //puzzle hole place
-            onConfirm: (value) async {
-              Future.delayed(const Duration(seconds: 1));
-              if (value) {
-                _onLoginButtonPressed();
-              } else {
-                showMessage(
-                  context.localizations.captchaFailed,
-                  Colors.red,
-                );
-              }
-            },
-          ),
+        return CaptchaDialog(
+          sliderCaptchaController: _sliderCaptchaController,
+          assetPath: assetPath,
+          onConfirm: _onLoginButtonPressed,
         );
       },
     );

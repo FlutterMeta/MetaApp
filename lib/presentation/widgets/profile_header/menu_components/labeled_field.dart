@@ -22,9 +22,12 @@ class _LabeledField extends StatelessWidget {
       children: [
         SizedBox(
           width: 80,
-          child: Text(
-            "$label:",
-            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+          child: Flexible(
+            child: Text(
+              "$label:",
+              maxLines: 1,
+              style: context.text.profileBotsDefault.copyWith(fontSize: 16),
+            ),
           ),
         ),
         const SizedBox(width: 10),
@@ -37,6 +40,7 @@ class _LabeledField extends StatelessWidget {
             decoration: InputDecoration(
               filled: true,
               hintText: hint,
+              hintStyle: context.text.profileBotsDefault.copyWith(fontSize: 16),
               fillColor: context.color.profilePagePrimary.withOpacity(0.2),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),

@@ -9,6 +9,7 @@ import 'package:meta_app/data/models/registration.dart';
 
 import 'package:meta_app/presentation/widgets/auth_button.dart';
 import 'package:meta_app/presentation/widgets/auth_field.dart';
+import 'package:meta_app/presentation/widgets/captcha_dialog.dart';
 import 'package:meta_app/presentation/widgets/fill_viewport_single_child_scroll_view.dart';
 import 'package:meta_app/presentation/widgets/gradient_background.dart';
 import 'package:slider_captcha/slider_captcha.dart';
@@ -59,50 +60,10 @@ class _RegistrationPageState extends State<RegistrationPage>
             break;
         }
 
-        Image image = Image.asset(
-          assetPath,
-          fit: BoxFit.fitWidth,
-        );
-        return AlertDialog(
-          backgroundColor: context.color.postBackground,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          title: Text(context.localizations.captcha),
-          content: SliderCaptcha(
-            controller: _sliderCaptchaController,
-            title: context.localizations.sliderCaptchaTitle,
-            titleStyle: context.text.authFormHint,
-            imageToBarPadding: 10,
-            image: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(13),
-                border: Border.all(
-                    width: 3, color: context.color.profilePageAboveBackground),
-                color: context.color.profilePageBackground,
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  assetPath,
-                  fit: BoxFit.fitWidth,
-                ),
-              ),
-            ),
-            colorBar: context.color.profilePageBackground, //slider color
-            colorCaptChar:
-                context.color.profilePageAboveBackground, //puzzle hole place
-            onConfirm: (value) async {
-              Future.delayed(const Duration(seconds: 1));
-              if (value) {
-                _onRegisterButtonPressed();
-              } else {
-                showMessage(
-                  context.localizations.captchaFailed,
-                  Colors.red,
-                );
-              }
-            },
-          ),
+        return CaptchaDialog(
+          sliderCaptchaController: _sliderCaptchaController,
+          assetPath: assetPath,
+          onConfirm: _onRegisterButtonPressed,
         );
       },
     );
@@ -114,15 +75,27 @@ class _RegistrationPageState extends State<RegistrationPage>
   }
 
   void _onRegisterButtonPressed() async {
-    Response response = await apiRepository.register(
-      Registration(
-        login: _loginController.text,
-        email: _emailController.text,
-        phoneNumber: _telegramController.text,
-        password: _passwordController.text,
-        referal: _inviteCodeController.text,
-      ),
-    );
+    // if (!_checkFields()) return;
+    late Response response;
+
+    try {
+      response = await apiRepository.register(
+        Registration(
+          login: _loginController.text,
+          email: _emailController.text,
+          phoneNumber: _telegramController.text,
+          password: _passwordController.text,
+          referal: _inviteCodeController.text,
+        ),
+      );
+      debugPrint("API response3: $response");
+    } catch (e) {
+      debugPrint("first catch" + e.toString());
+      showMessage(
+        "${context.localizations.error}:  ${response.data["errors"]}",
+        Colors.red,
+      );
+    }
     if (apiRepository.isSuccessfulStatusCode(response.statusCode) ||
         response.data["token"] != null) {
       showMessage(
@@ -131,6 +104,12 @@ class _RegistrationPageState extends State<RegistrationPage>
       );
       await Future.delayed(const Duration(seconds: 2));
       _goToLoginPage();
+    } else {
+      debugPrint("second catch" + response.data.toString());
+      showMessage(
+        "${context.localizations.error}: ${response.data["errors"] ?? response.data["detail"]}",
+        Colors.red,
+      );
     }
   }
 

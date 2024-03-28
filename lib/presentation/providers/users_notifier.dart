@@ -13,12 +13,14 @@ class UsersNotifier extends ChangeNotifier {
   Future<Result> loadUsers() async {
     try {
       Response response = await apiRepository.getUsers();
+
       if (response.statusCode == 200) {
         final data = response.data["\$values"] as List<dynamic>;
 
         _users.clear();
         for (final userData in data) {
           User user = User.fromJson(userData as Map<String, dynamic>);
+
           _users.add(user);
         }
         notifyListeners();
@@ -49,6 +51,7 @@ class UsersNotifier extends ChangeNotifier {
     }
   }
 
+  // It has to return List of Users instead, I think.
   Future<Result> loadAdmins() async {
     try {
       Response response = await apiRepository.getAdmins();
@@ -86,24 +89,21 @@ class UsersNotifier extends ChangeNotifier {
     }
   }
 
-  Future<Result> getUserReferals(String userId) async {
+  Future<List<User>> getUserReferals(String userId) async {
     try {
       Response response = await apiRepository.getUserReferals(userId);
       if (response.statusCode == 200) {
         final data = response.data["\$values"] as List<dynamic>;
 
-        _users.clear();
-        for (final referalData in data) {
-          _users.add(User.fromJson(referalData as Map<String, dynamic>));
-        }
-        notifyListeners();
-        return Result.success();
+        return data
+            .map((userData) => User.fromJson(userData as Map<String, dynamic>))
+            .toList();
       } else {
-        return Result.failure(message: response.data["title"]?.toString());
+        return [];
       }
     } catch (e) {
       debugPrint(e.toString());
-      return Result.failure(message: e.toString());
+      return [];
     }
   }
 

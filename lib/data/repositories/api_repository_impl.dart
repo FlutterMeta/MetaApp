@@ -29,7 +29,8 @@ class ApiRepositoryImpl implements ApiRepository {
       if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('API Error: ${response.statusCode}');
       }
-      debugPrint(response.toString());
+      debugPrint("API response: $response");
+      return response;
     } catch (e) {
       debugPrint(e.toString());
     }
@@ -40,7 +41,6 @@ class ApiRepositoryImpl implements ApiRepository {
   @override
   Future<Response> register(Registration registration) async {
     late Response response;
-
     try {
       response = await apiClient.post('/Account/Register', body: {
         'login': registration.login,
@@ -52,11 +52,12 @@ class ApiRepositoryImpl implements ApiRepository {
       if (!isSuccessfulStatusCode(response.statusCode)) {
         debugPrint('API Error: ${response.statusCode}');
       }
-      debugPrint(response.toString());
+      debugPrint("API response: $response");
       return response;
     } catch (e) {
-      debugPrint(e.toString());
+      debugPrint("catch error: $e");
     }
+    debugPrint("last response: $response");
     return response;
   }
 

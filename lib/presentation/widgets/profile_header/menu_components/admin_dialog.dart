@@ -8,9 +8,11 @@ class _AdminDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dialog(
+      backgroundColor: context.color.profilePagePrimary,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       insetPadding: const EdgeInsets.all(10),
       child: Container(
+        color: context.color.profilePageBackground,
         padding: EdgeInsets.symmetric(
           horizontal: context.screenWidth < 400 ? 16 : 30,
           vertical: 30,

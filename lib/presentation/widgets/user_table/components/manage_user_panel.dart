@@ -43,9 +43,12 @@ class _ManageUserPanelState extends State<_ManageUserPanel>
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(context.localizations.deleteUser),
+          backgroundColor: context.color.profilePageBackground,
+          title: Text(context.localizations.deleteUser,
+              style: context.text.profileBotsDefault),
           content: Text(
             context.localizations.deleteUserConfirmation,
+            style: context.text.profileBotsDefault.copyWith(fontSize: 16),
           ),
           actions: [
             TextButton(

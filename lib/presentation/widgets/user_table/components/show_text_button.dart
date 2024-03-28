@@ -17,9 +17,9 @@ class _ShowTextButtonState extends State<_ShowTextButton> {
 
   Color _getTextColor(BuildContext context) {
     if (_isHovered) {
-      return context.color.profilePagePrimary.withOpacity(0.7);
+      return context.color.profilePageAboveBackground.withOpacity(0.7);
     } else {
-      return context.color.profilePagePrimary;
+      return context.color.profilePageAboveBackground;
     }
   }
 

@@ -60,24 +60,22 @@ class ApiClient {
     final contentType = isFormData ? 'FormData/multipart' : 'JSON';
     debugPrint('Sending POST request to $endpoint with $contentType: $body');
 
-    // Perform a POST request with the appropriate content type
-    late Response<dynamic> response;
     try {
       debugPrint("------------------");
-      response = await dio.post(
+      final response = await dio.post(
         endpoint,
         data: data,
         options: Options(
           contentType: isFormData ? 'multipart/form-data' : 'application/json',
+          validateStatus: (_) => true,
         ),
       );
-      debugPrint('Response: ${response.data}');
+      debugPrint('API Response: ${response.data}');
       return response;
     } catch (e) {
       debugPrint("$e------------------");
+      rethrow;
     }
-
-    return response;
   }
 
   Future<Response<dynamic>> put(

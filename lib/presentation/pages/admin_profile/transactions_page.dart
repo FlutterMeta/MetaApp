@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:meta_app/core/utils/extensions/build_context_ext.dart';
-import 'package:meta_app/data/models/transaction.dart';
 import 'package:meta_app/presentation/providers/transactions_notifier.dart';
 import 'package:meta_app/presentation/widgets/rights_reserved_footer.dart';
 import 'package:provider/provider.dart';
